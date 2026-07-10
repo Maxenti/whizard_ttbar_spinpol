@@ -1,0 +1,16 @@
+sample_id=mumu_ttbar_emu_unpol_iso_500GeV
+initial_state=mumu
+sindarin_file=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/mumu/mumu_ttbar_emu_unpol_iso_500GeV.sin
+run_directory=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/mumu/mumu_ttbar_emu_unpol_iso_500GeV
+hostname=lxplus988.cern.ch
+start_time_utc=2026-07-10T16:48:39Z
+whizard_path=/cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/whizard/3.1.5-nmagsz/bin/whizard
+return_code=0
+
+WHIZARD 3.1.5
+Copyright (C) 1999-2024 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+end_time_utc=2026-07-10T16:49:02Z

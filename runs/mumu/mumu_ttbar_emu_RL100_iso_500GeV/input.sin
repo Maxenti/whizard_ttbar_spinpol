@@ -1,0 +1,77 @@
+! ======================================================================
+! WHIZARD ttbar spin/polarization validation sample
+! ======================================================================
+! META sample_id=mumu_ttbar_emu_RL100_iso_500GeV
+! META initial_state=mumu
+! META sqrt_s_GeV=500
+! META decay_channel=emu
+! META polarization=RL100
+! META beam1_helicity=+1
+! META beam2_helicity=-1
+! META beam1_pol_fraction=1.0
+! META beam2_pol_fraction=1.0
+! META spin_mode=iso
+! META isr_enabled=false
+! META beam_spectrum=none
+! META model=SM
+! META seed=212002
+! META requested_events=10000
+!
+! Hard process:
+!   mu- mu+ -> t tbar
+!
+! Explicit mixed-flavour decays:
+!   t    -> b    e+  nu_e
+!   tbar -> bbar mu- anti-nu_mu
+!
+! Continuum validation at sqrt(s)=500 GeV. ISR, beam-energy spectra,
+! showering, and hadronization are intentionally disabled.
+! ======================================================================
+
+model = SM
+
+process tt_prod    = e2, E2 => t, tbar
+process t_decay    = t    => b,    E1, n1
+process tbar_decay = tbar => bbar, e2, N2
+
+
+! ----------------------------------------------------------------------
+! Integrate the one-particle decay processes before defining collider
+! beams. With an active e+e- or mu+mu- beam setup, WHIZARD 3.1.x treats
+! the current context as scattering and aborts when initializing a
+! decay grid.
+! ----------------------------------------------------------------------
+integrate (t_decay) {
+  iterations = 3:5000, 3:20000
+}
+
+integrate (tbar_decay) {
+  iterations = 3:5000, 3:20000
+}
+
+sqrts = 500 GeV
+beams = e2, E2
+beams_pol_density  = @(+1), @(-1)
+beams_pol_fraction = 100%, 100%
+
+! sc: full spin-density-matrix correlations.
+! iso: isotropic, spin-uncorrelated decay control.
+?diagonal_decay = false
+?isotropic_decay = true
+
+integrate (tt_prod) {
+  iterations = 5:20000, 5:50000
+  ?polarized_events = true
+}
+
+unstable t    (t_decay)
+unstable tbar (tbar_decay)
+
+seed = 212002
+n_events = 10000
+sample_format = lhef
+$sample = "mumu_ttbar_emu_RL100_iso_500GeV"
+
+simulate (tt_prod) {
+  ?polarized_events = true
+}
