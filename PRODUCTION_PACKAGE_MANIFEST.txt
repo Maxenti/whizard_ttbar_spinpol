@@ -1,0 +1,65 @@
+WHIZARD ttbar spin/polarization production package v1
+=====================================================
+
+Purpose
+-------
+Production-grade, HTCondor-sharded WHIZARD workflow for spin-correlated,
+longitudinally polarized ttbar samples at sqrt(s) = 500 GeV, with ISR enabled.
+
+Intended repository overlay
+---------------------------
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+
+Persistent campaign output root
+-------------------------------
+/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production
+
+Physics matrix
+--------------
+- Initial states: e- e+, mu- mu+
+- Beam helicities: LR100, RL100
+- Decay channels:
+  * epmum: t -> b e+ nue; tbar -> bbar mu- numubar
+  * mupem: t -> b mu+ numu; tbar -> bbar e- nuebar
+- Spin treatment: exact correlated WHIZARD factorized decays
+- ISR: enabled with recoil handler and explicit incoming-lepton mass
+- Machine beam spectrum: disabled in v1
+- Nominal production size: 10 shards x 10,000 events x 8 configurations
+- Total nominal events: 800,000
+
+Included files
+--------------
+configs/production/production_500GeV_ISR_sc_v1.csv
+condor/whizard_production.sub
+scripts/production/README.md
+scripts/production/production_common.py
+scripts/production/make_production_sindarin.py
+scripts/production/run_production_shard.sh
+scripts/production/submit_production.py
+scripts/production/make_production_manifest.py
+scripts/production/calibrate_decay_normalization.py
+scripts/production/finalize_forced_decay_lhe.py
+scripts/production/collect_production.py
+scripts/production/validate_production_outputs.py
+sindarin/production/generated_templates.csv
+sindarin/production/*.sin.in
+
+Output policy
+-------------
+All persistent generated products are written below EOS. WHIZARD/O'Mega
+compilation and event generation occur in local/Condor scratch. Raw WHIZARD
+LHE files are retained unchanged; forced-decay-normalized LHE files are written
+as separate products with JSON sidecars.
+
+Validation status
+-----------------
+- Python syntax: passed
+- Shell syntax: passed
+- Configuration/template consistency: passed
+- Synthetic 8-configuration smoke workflow: passed
+- Raw synthetic validation: 128 PASS, 0 WARN, 0 FAIL
+- Finalized synthetic validation: 144 PASS, 0 WARN, 0 FAIL
+
+The synthetic test used a fake WHIZARD executable to exercise orchestration,
+staging, parsing, normalization, merging, and validation. A real eight-sample
+WHIZARD smoke campaign on lxplus remains mandatory before full submission.

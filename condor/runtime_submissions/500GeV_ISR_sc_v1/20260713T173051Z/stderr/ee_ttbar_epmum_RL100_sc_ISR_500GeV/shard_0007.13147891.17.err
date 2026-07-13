@@ -1,0 +1,2 @@
+mkdir: cannot create directory '/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1/runs': File exists
+mkdir: cannot create directory '/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1/lhe_raw': File exists

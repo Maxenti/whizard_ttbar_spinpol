@@ -1,0 +1,82 @@
+! ======================================================================
+! WHIZARD polarized, spin-correlated ttbar production template
+! ======================================================================
+! META campaign_id=500GeV_ISR_sc_v1
+! META sample_id=mumu_ttbar_epmum_RL100_sc_ISR_500GeV
+! META initial_state=mumu
+! META sqrt_s_GeV=500
+! META decay_channel=epmum
+! META polarization=RL100
+! META beam1_helicity=1
+! META beam2_helicity=-1
+! META beam1_pol_fraction=1
+! META beam2_pol_fraction=1
+! META spin_mode=sc
+! META isr_enabled=true
+! META isr_mass_GeV=0.105658389
+! META isr_alpha=0.0072973525693
+! META beam_spectrum=none
+! META model=SM
+! META seed=__SEED__
+! META requested_events=__N_EVENTS__
+! META shard_label=__SHARD_LABEL__
+!
+! Production:
+!   e2 E2 -> t tbar
+!
+! Forced decay assignment:
+!   t -> b e+ nu_e
+!   tbar -> bbar mu- anti-nu_mu
+!
+! The raw LHE header contains the inclusive polarized ttbar production
+! cross section because each forced decay table has one configured channel.
+! The workflow preserves raw LHE and creates separately normalized final LHE.
+! ======================================================================
+
+model = SM
+
+process tt_prod = e2, E2 => t, tbar
+process t_decay    = t    => b,    E1, n1
+process tbar_decay = tbar => bbar, e2, N2
+
+! Integrate decay processes before defining collider beams.  This ordering is
+! required by the validated WHIZARD 3.1.5 workflow for separate decay grids.
+integrate (t_decay) {
+  iterations = 3:5000, 3:20000
+}
+
+integrate (tbar_decay) {
+  iterations = 3:5000, 3:20000
+}
+
+sqrts = 500 GeV
+beams = e2, E2 => isr
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass = 0.105658389 GeV
+isr_alpha = 0.0072973525693
+
+beams_pol_density  = @(+1), @(-1)
+beams_pol_fraction = 100%, 100%
+
+?diagonal_decay = false
+?isotropic_decay = false
+
+integrate (tt_prod) {
+  iterations = 5:20000, 5:50000
+  ?polarized_events = true
+}
+
+unstable t    (t_decay)
+unstable tbar (tbar_decay)
+
+seed = __SEED__
+n_events = __N_EVENTS__
+sample_format = lhef
+$sample = "__OUTPUT_SAMPLE__"
+
+simulate (tt_prod) {
+  ?polarized_events = true
+}

@@ -1,0 +1,17 @@
+WHIZARD ttbar spin/polarization first angular-analysis package
+
+Code:
+  scripts/analysis/parse_lhe_ttbar.py
+  scripts/analysis/make_spin_observables.py
+  scripts/analysis/compare_spin_samples.py
+  scripts/analysis/validate_spin_shapes.py
+  scripts/analysis/README.md
+
+Output directories:
+  validation/angular_summaries/
+  validation/angular_tables/events/
+  validation/angular_tables/observables/
+  validation/plots/production/
+  validation/plots/dilepton/
+  validation/plots/helicity_angles/
+  validation/plots/two_dimensional/

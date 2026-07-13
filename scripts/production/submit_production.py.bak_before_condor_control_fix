@@ -1,0 +1,306 @@
+#!/usr/bin/env python3
+"""Create and optionally submit the WHIZARD production shard matrix to Condor."""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import fnmatch
+import json
+import os
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+from production_common import (
+    campaign_root as default_campaign_root,
+    default_output_root,
+    ensure_eos,
+    filter_configs,
+    load_json,
+    read_configs,
+    repo_root_from_script,
+    utc_now,
+    write_csv,
+)
+
+
+def parse_args() -> argparse.Namespace:
+    root = repo_root_from_script(__file__)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--config",
+        type=Path,
+        default=root / "configs/production/production_500GeV_ISR_sc_v1.csv",
+    )
+    parser.add_argument(
+        "--template-dir",
+        type=Path,
+        default=root / "sindarin/production",
+    )
+    parser.add_argument(
+        "--submit-template",
+        type=Path,
+        default=root / "condor/whizard_production.sub",
+    )
+    parser.add_argument("--campaign-root", type=Path, default=None)
+    parser.add_argument("--sample", action="append", default=[], help="fnmatch pattern")
+    parser.add_argument(
+        "--shard",
+        action="append",
+        type=int,
+        default=[],
+        help="specific shard index; may be repeated",
+    )
+    parser.add_argument(
+        "--smoke",
+        action="store_true",
+        help="submit only shard 0 of every selected sample to a separate _smoke root",
+    )
+    parser.add_argument("--smoke-events", type=int, default=200)
+    parser.add_argument("--resume", action="store_true", help="skip already-successful shards")
+    parser.add_argument("--force", action="store_true", help="allow replacement of existing shard outputs")
+    parser.add_argument("--max-jobs", type=int, default=None)
+    parser.add_argument(
+        "--key4hep-setup",
+        default=os.environ.get("KEY4HEP_SETUP", "/cvmfs/sw.hsf.org/key4hep/setup.sh"),
+    )
+    parser.add_argument("--batch-name", default=None)
+    parser.add_argument("--submit", action="store_true", help="run condor_submit")
+    parser.add_argument("--allow-non-eos", action="store_true")
+    return parser.parse_args()
+
+
+def replace_tokens(text: str, replacements: dict[str, str]) -> str:
+    for token, value in replacements.items():
+        if token not in text:
+            raise ValueError(f"submit template is missing token {token}")
+        text = text.replace(token, value)
+    unresolved = sorted(set(re.findall(r"@[A-Z0-9_]+@", text)))
+    if unresolved:
+        raise ValueError(f"unresolved submit-template tokens: {unresolved}")
+    return text
+
+
+def output_exists(root: Path, sample_id: str, shard_label: str) -> tuple[bool, bool, str]:
+    run_dir = root / "runs" / sample_id / shard_label
+    output_sample = f"{sample_id}__{shard_label}"
+    raw_dir = root / "lhe_raw" / sample_id
+    final_dir = root / "lhe" / sample_id
+    extra = []
+    for directory in (raw_dir, final_dir):
+        if directory.exists():
+            extra.extend(directory.glob(f"{output_sample}.lhe*"))
+    metadata = load_json(run_dir / "run_metadata.json") if run_dir.exists() else {}
+    exists = run_dir.exists() or bool(extra)
+    success = run_dir.exists() and metadata.get("status") == "success"
+    if success:
+        status = "success"
+    elif run_dir.exists():
+        status = str(metadata.get("status", "existing_without_metadata"))
+    elif extra:
+        status = "orphan_lhe_output"
+    else:
+        status = ""
+    return exists, success, status
+
+
+def main() -> int:
+    args = parse_args()
+    repo = repo_root_from_script(__file__)
+    configs = filter_configs(read_configs(args.config), args.sample)
+    campaign_id = configs[0].campaign_id
+    root = args.campaign_root or default_campaign_root(default_output_root(), campaign_id, smoke=args.smoke)
+    root = root.expanduser()
+    ensure_eos(root, allow_non_eos=args.allow_non_eos)
+
+    if args.smoke and args.smoke_events <= 0:
+        raise ValueError("--smoke-events must be positive")
+    if args.max_jobs is not None and args.max_jobs <= 0:
+        raise ValueError("--max-jobs must be positive")
+
+    requested_shards = set(args.shard)
+    jobs: list[dict[str, object]] = []
+    skipped: list[dict[str, object]] = []
+
+    for cfg in configs:
+        template = (args.template_dir / cfg.template_name).resolve()
+        if not template.exists():
+            raise FileNotFoundError(
+                f"missing generated template: {template}; run make_production_sindarin.py"
+            )
+        indices = [0] if args.smoke else list(range(cfg.n_shards))
+        if requested_shards:
+            indices = [idx for idx in indices if idx in requested_shards]
+        for idx in indices:
+            if idx < 0 or idx >= cfg.n_shards:
+                raise ValueError(f"invalid shard {idx} for {cfg.sample_id}")
+            label = cfg.shard_label(idx)
+            exists, success, status = output_exists(root, cfg.sample_id, label)
+            if exists and not args.force:
+                if args.resume and success:
+                    skipped.append(
+                        {
+                            "sample_id": cfg.sample_id,
+                            "shard_label": label,
+                            "reason": "already_successful",
+                        }
+                    )
+                    continue
+                raise FileExistsError(
+                    f"output exists for {cfg.sample_id}/{label} with status={status}; "
+                    "use --resume to skip successful shards or --force to replace"
+                )
+            events = args.smoke_events if args.smoke else cfg.events_per_shard
+            jobs.append(
+                {
+                    "sample_id": cfg.sample_id,
+                    "initial_state": cfg.initial_state,
+                    "decay_channel": cfg.decay_channel,
+                    "polarization": cfg.polarization,
+                    "shard_index": idx,
+                    "shard_label": label,
+                    "seed": cfg.shard_seed(idx),
+                    "events": events,
+                    "template_path": str(template),
+                    "template_basename": template.name,
+                    "request_cpus": cfg.request_cpus,
+                    "request_memory_mb": cfg.request_memory_mb,
+                    "job_flavour": cfg.job_flavour,
+                    "archive_workspace": int(cfg.archive_workspace),
+                    "force_flag": "--force" if args.force else "--no-force",
+                }
+            )
+
+    if args.max_jobs is not None:
+        jobs = jobs[: args.max_jobs]
+    if not jobs:
+        print("No jobs remain after selection/resume filtering.")
+        return 0
+
+    stamp = utc_now().replace(":", "").replace("-", "")
+    submission_dir = root / "manifests" / "submissions" / stamp
+    stdout_root = root / "condor" / "stdout"
+    stderr_root = root / "condor" / "stderr"
+    for path in (submission_dir, stdout_root, stderr_root):
+        path.mkdir(parents=True, exist_ok=True)
+    for cfg in configs:
+        (stdout_root / cfg.sample_id).mkdir(parents=True, exist_ok=True)
+        (stderr_root / cfg.sample_id).mkdir(parents=True, exist_ok=True)
+
+    itemdata = submission_dir / "jobs.itemdata"
+    columns = [
+        "sample_id",
+        "initial_state",
+        "decay_channel",
+        "polarization",
+        "shard_index",
+        "shard_label",
+        "seed",
+        "events",
+        "template_path",
+        "template_basename",
+        "request_cpus",
+        "request_memory_mb",
+        "job_flavour",
+        "archive_workspace",
+        "force_flag",
+    ]
+    with itemdata.open("w") as stream:
+        for job in jobs:
+            values = [str(job[column]) for column in columns]
+            if any(any(ch.isspace() for ch in value) for value in values):
+                raise ValueError(f"Condor itemdata values may not contain whitespace: {values}")
+            stream.write(" ".join(values) + "\n")
+
+    write_csv(
+        submission_dir / "jobs.csv",
+        columns,
+        jobs,
+    )
+    write_csv(
+        submission_dir / "skipped.csv",
+        ["sample_id", "shard_label", "reason"],
+        skipped,
+    )
+
+    # Preserve the selected sample definitions beside the submission.
+    config_rows = []
+    with args.config.open(newline="") as stream:
+        for row in csv.DictReader(stream):
+            if any(fnmatch.fnmatch(row["sample_id"], pattern) for pattern in args.sample) or not args.sample:
+                config_rows.append(row)
+    if config_rows:
+        write_csv(
+            submission_dir / "sample_definitions.csv",
+            list(config_rows[0].keys()),
+            config_rows,
+        )
+
+    batch_name = args.batch_name or f"whizard_{campaign_id}{'_smoke' if args.smoke else ''}"
+    submission_log = root / "condor" / f"{stamp}.condor.log"
+    executable = (repo / "scripts/production/run_production_shard.sh").resolve()
+    template_text = args.submit_template.read_text()
+    concrete = replace_tokens(
+        template_text,
+        {
+            "@EXECUTABLE@": str(executable),
+            "@CAMPAIGN_ROOT@": str(root),
+            "@STDOUT_ROOT@": str(stdout_root),
+            "@STDERR_ROOT@": str(stderr_root),
+            "@SUBMISSION_LOG@": str(submission_log),
+            "@KEY4HEP_SETUP@": args.key4hep_setup,
+            "@BATCH_NAME@": batch_name,
+            "@JOBS_FILE@": str(itemdata),
+        },
+    )
+    concrete_path = submission_dir / "whizard_production.sub"
+    concrete_path.write_text(concrete)
+
+    record = {
+        "created_utc": utc_now(),
+        "campaign_id": campaign_id,
+        "campaign_root": str(root),
+        "smoke": args.smoke,
+        "job_count": len(jobs),
+        "skipped_count": len(skipped),
+        "config": str(args.config.resolve()),
+        "submit_file": str(concrete_path),
+        "jobs_file": str(itemdata),
+        "batch_name": batch_name,
+        "key4hep_setup": args.key4hep_setup,
+        "submitted": False,
+        "condor_cluster_id": "",
+    }
+    record_path = submission_dir / "submission.json"
+    record_path.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n")
+
+    command = ["condor_submit", str(concrete_path)]
+    print(f"Campaign root: {root}")
+    print(f"Prepared jobs: {len(jobs)}")
+    print(f"Skipped jobs:  {len(skipped)}")
+    print(f"Submit file:   {concrete_path}")
+    print("Command:")
+    print("  " + " ".join(command))
+
+    if not args.submit:
+        print("Not submitted. Re-run with --submit after reviewing jobs.csv and the submit file.")
+        return 0
+
+    result = subprocess.run(command, text=True, capture_output=True)
+    sys.stdout.write(result.stdout)
+    sys.stderr.write(result.stderr)
+    if result.returncode != 0:
+        return result.returncode
+    match = re.search(r"submitted to cluster\s+(\d+)", result.stdout, re.I)
+    record["submitted"] = True
+    record["submitted_utc"] = utc_now()
+    record["condor_cluster_id"] = match.group(1) if match else ""
+    record_path.write_text(json.dumps(record, indent=2, sort_keys=True) + "\n")
+    print(f"Updated {record_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

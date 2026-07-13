@@ -1,0 +1,349 @@
+#!/usr/bin/env bash
+# Run one WHIZARD production shard in local/Condor scratch and stage products to EOS.
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  run_production_shard.sh \
+    --sample-id ID --initial-state ee|mumu --decay-channel epmum|mupem \
+    --polarization LR100|RL100 --shard-index N --seed N --events N \
+    --campaign-root /eos/... --template FILE \
+    [--archive-workspace 0|1] [--force]
+
+The template must contain __SHARD_LABEL__, __OUTPUT_SAMPLE__, __SEED__, and
+__N_EVENTS__.  WHIZARD runs entirely in local scratch.  Persistent files are
+staged atomically to the EOS campaign root.
+EOF
+}
+
+SAMPLE_ID=""
+INITIAL_STATE=""
+DECAY_CHANNEL=""
+POLARIZATION=""
+SHARD_INDEX=""
+SEED=""
+EVENTS=""
+CAMPAIGN_ROOT=""
+TEMPLATE=""
+ARCHIVE_WORKSPACE=1
+FORCE=0
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --sample-id) SAMPLE_ID=${2:?}; shift 2 ;;
+    --initial-state) INITIAL_STATE=${2:?}; shift 2 ;;
+    --decay-channel) DECAY_CHANNEL=${2:?}; shift 2 ;;
+    --polarization) POLARIZATION=${2:?}; shift 2 ;;
+    --shard-index) SHARD_INDEX=${2:?}; shift 2 ;;
+    --seed) SEED=${2:?}; shift 2 ;;
+    --events) EVENTS=${2:?}; shift 2 ;;
+    --campaign-root) CAMPAIGN_ROOT=${2:?}; shift 2 ;;
+    --template) TEMPLATE=${2:?}; shift 2 ;;
+    --archive-workspace) ARCHIVE_WORKSPACE=${2:?}; shift 2 ;;
+    --force) FORCE=1; shift ;;
+    --no-force) FORCE=0; shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) echo "ERROR: unknown argument: $1" >&2; usage >&2; exit 2 ;;
+  esac
+done
+
+for var in SAMPLE_ID INITIAL_STATE DECAY_CHANNEL POLARIZATION SHARD_INDEX SEED EVENTS CAMPAIGN_ROOT TEMPLATE; do
+  if [[ -z ${!var:-} ]]; then
+    echo "ERROR: missing required value: $var" >&2
+    usage >&2
+    exit 2
+  fi
+done
+
+[[ "$INITIAL_STATE" == "ee" || "$INITIAL_STATE" == "mumu" ]] || {
+  echo "ERROR: invalid initial state: $INITIAL_STATE" >&2; exit 3;
+}
+[[ "$DECAY_CHANNEL" == "epmum" || "$DECAY_CHANNEL" == "mupem" ]] || {
+  echo "ERROR: invalid decay channel: $DECAY_CHANNEL" >&2; exit 3;
+}
+[[ "$POLARIZATION" == "LR100" || "$POLARIZATION" == "RL100" ]] || {
+  echo "ERROR: invalid polarization: $POLARIZATION" >&2; exit 3;
+}
+[[ "$SHARD_INDEX" =~ ^[0-9]+$ && "$SEED" =~ ^[0-9]+$ && "$EVENTS" =~ ^[1-9][0-9]*$ ]] || {
+  echo "ERROR: shard index, seed and events must be non-negative integers (events > 0)" >&2; exit 3;
+}
+[[ "$ARCHIVE_WORKSPACE" == "0" || "$ARCHIVE_WORKSPACE" == "1" ]] || {
+  echo "ERROR: --archive-workspace must be 0 or 1" >&2; exit 3;
+}
+[[ -f "$TEMPLATE" ]] || { echo "ERROR: missing SINDARIN template: $TEMPLATE" >&2; exit 4; }
+
+CANONICAL_CAMPAIGN_ROOT=$(readlink -m "$CAMPAIGN_ROOT")
+case "$CANONICAL_CAMPAIGN_ROOT" in
+  /eos/*) ;;
+  *)
+    if [[ ${WHIZARD_ALLOW_NON_EOS_OUTPUT:-0} != 1 ]]; then
+      echo "ERROR: campaign root is not on EOS: $CAMPAIGN_ROOT -> $CANONICAL_CAMPAIGN_ROOT" >&2
+      exit 5
+    fi
+    ;;
+esac
+
+SHARD_LABEL=$(printf 'shard_%04d' "$SHARD_INDEX")
+OUTPUT_SAMPLE="${SAMPLE_ID}__${SHARD_LABEL}"
+RUN_DIR="$CAMPAIGN_ROOT/runs/$SAMPLE_ID/$SHARD_LABEL"
+RAW_LHE_DIR="$CAMPAIGN_ROOT/lhe_raw/$SAMPLE_ID"
+FINAL_LHE_DIR="$CAMPAIGN_ROOT/lhe/$SAMPLE_ID"
+LOG_DIR="$CAMPAIGN_ROOT/logs/$SAMPLE_ID"
+FAILURE_DIR="$CAMPAIGN_ROOT/failed/$SAMPLE_ID/$SHARD_LABEL"
+
+if [[ -e "$RUN_DIR" || \
+      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe" || \
+      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef" || \
+      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" || \
+      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef.gz" || \
+      -e "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe" || \
+      -e "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" ]]; then
+  if [[ $FORCE -eq 1 ]]; then
+    rm -rf "$RUN_DIR" "$FAILURE_DIR"
+    rm -f "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe" "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef" \
+          "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef.gz"
+    rm -f "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe" "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" \
+          "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.normalization.json" \
+          "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz.normalization.json"
+    rm -f "$CAMPAIGN_ROOT/lhe_merged/raw/${SAMPLE_ID}.lhe" \
+          "$CAMPAIGN_ROOT/lhe_merged/raw/${SAMPLE_ID}.lhe.gz" \
+          "$CAMPAIGN_ROOT/lhe_merged/final/${SAMPLE_ID}.lhe" \
+          "$CAMPAIGN_ROOT/lhe_merged/final/${SAMPLE_ID}.lhe.gz"
+  else
+    echo "ERROR: persistent output already exists for $SAMPLE_ID/$SHARD_LABEL" >&2
+    echo "Use --force only for an intentional replacement." >&2
+    exit 6
+  fi
+fi
+
+if [[ ${WHIZARD_SKIP_ENV_SETUP:-0} != 1 ]]; then
+  KEY4HEP_SETUP=${KEY4HEP_SETUP:-/cvmfs/sw.hsf.org/key4hep/setup.sh}
+  [[ -r "$KEY4HEP_SETUP" ]] || {
+    echo "ERROR: cannot read Key4HEP setup: $KEY4HEP_SETUP" >&2
+    exit 7
+  }
+
+  # Key4HEP's setup scripts access positional parameters such as $1.
+  # They are therefore not safe to source while Bash nounset is active.
+  # Disable nounset only during environment setup and restore it afterward.
+  nounset_was_on=0
+  case $- in
+    *u*)
+      nounset_was_on=1
+      set +u
+      ;;
+  esac
+
+  setup_rc=0
+  # shellcheck disable=SC1090
+  source "$KEY4HEP_SETUP" || setup_rc=$?
+
+  if (( nounset_was_on == 1 )); then
+    set -u
+  fi
+
+  if (( setup_rc != 0 )); then
+    echo "ERROR: Key4HEP setup failed with return code $setup_rc: $KEY4HEP_SETUP" >&2
+    exit 7
+  fi
+fi
+
+command -v whizard >/dev/null 2>&1 || {
+  echo "ERROR: whizard is not available after environment setup" >&2
+  exit 8
+}
+
+export OMP_NUM_THREADS=${OMP_NUM_THREADS:-1}
+export OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-1}
+export MKL_NUM_THREADS=${MKL_NUM_THREADS:-1}
+export NUMEXPR_NUM_THREADS=${NUMEXPR_NUM_THREADS:-1}
+export MALLOC_ARENA_MAX=${MALLOC_ARENA_MAX:-2}
+export PYTHONDONTWRITEBYTECODE=1
+
+SCRATCH_BASE=${_CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}}
+mkdir -p "$SCRATCH_BASE"
+WORK_DIR=$(mktemp -d "$SCRATCH_BASE/whizard_${OUTPUT_SAMPLE}_XXXXXX")
+PACKAGE_DIR=$(mktemp -d "$SCRATCH_BASE/whizard_stage_${OUTPUT_SAMPLE}_XXXXXX")
+KEEP_SCRATCH=0
+
+cleanup() {
+  rc=$?
+  if [[ $KEEP_SCRATCH -eq 0 ]]; then
+    rm -rf "$WORK_DIR" "$PACKAGE_DIR"
+  else
+    echo "Scratch preserved: $WORK_DIR" >&2
+    echo "Staging preserved: $PACKAGE_DIR" >&2
+  fi
+  exit "$rc"
+}
+trap cleanup EXIT
+
+cp "$TEMPLATE" "$WORK_DIR/template.sin.in"
+python3 - "$WORK_DIR/template.sin.in" "$WORK_DIR/input.sin" \
+  "$SHARD_LABEL" "$OUTPUT_SAMPLE" "$SEED" "$EVENTS" <<'PY_RENDER'
+from pathlib import Path
+import re
+import sys
+src, dst, shard, output_sample, seed, events = sys.argv[1:]
+text = Path(src).read_text()
+replacements = {
+    "__SHARD_LABEL__": shard,
+    "__OUTPUT_SAMPLE__": output_sample,
+    "__SEED__": seed,
+    "__N_EVENTS__": events,
+}
+for key, value in replacements.items():
+    if key not in text:
+        raise SystemExit(f"missing template token: {key}")
+    text = text.replace(key, value)
+unresolved = sorted(set(re.findall(r"__[A-Z][A-Z0-9_]*__", text)))
+if unresolved:
+    raise SystemExit(f"unresolved template token(s): {unresolved}")
+Path(dst).write_text(text)
+PY_RENDER
+
+START_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+env | sort > "$WORK_DIR/environment.txt"
+whizard --version > "$WORK_DIR/whizard_version.txt" 2>&1 || true
+
+set +e
+(
+  cd "$WORK_DIR"
+  set -o pipefail
+  whizard input.sin 2>&1 | tee console.log
+)
+WHIZARD_RC=$?
+set -e
+END_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+
+mapfile -t LHE_CANDIDATES < <(
+  find "$WORK_DIR" -maxdepth 2 -type f \
+    \( -name '*.lhe' -o -name '*.lhef' -o -name '*.lhe.gz' -o -name '*.lhef.gz' \) \
+    -print | sort
+)
+LHE_SOURCE=""
+if [[ ${#LHE_CANDIDATES[@]} -eq 1 ]]; then
+  LHE_SOURCE=${LHE_CANDIDATES[0]}
+elif [[ ${#LHE_CANDIDATES[@]} -gt 1 ]]; then
+  for candidate in "${LHE_CANDIDATES[@]}"; do
+    if [[ $(basename "$candidate") == "$OUTPUT_SAMPLE".* ]]; then
+      LHE_SOURCE=$candidate
+      break
+    fi
+  done
+fi
+
+GENERATED_EVENTS=0
+LHE_SHA256=""
+if [[ -n "$LHE_SOURCE" ]]; then
+  GENERATED_EVENTS=$(python3 - "$LHE_SOURCE" <<'PY_COUNT'
+import gzip
+from pathlib import Path
+import re
+import sys
+p = Path(sys.argv[1])
+opener = gzip.open if p.name.endswith('.gz') else open
+count = 0
+with opener(p, 'rt', errors='replace') as stream:
+    for line in stream:
+        if line.lstrip().startswith('<event'):
+            count += 1
+print(count)
+PY_COUNT
+)
+  LHE_SHA256=$(sha256sum "$LHE_SOURCE" | awk '{print $1}')
+fi
+
+STATUS=success
+if [[ $WHIZARD_RC -ne 0 ]]; then STATUS=whizard_failed; fi
+if [[ -z "$LHE_SOURCE" ]]; then STATUS=missing_lhe; fi
+if [[ "$GENERATED_EVENTS" -ne "$EVENTS" ]]; then STATUS=event_count_mismatch; fi
+
+python3 - "$PACKAGE_DIR/run_metadata.json" <<PY_METADATA
+import json, os, socket
+payload = {
+  "sample_id": ${SAMPLE_ID@Q},
+  "initial_state": ${INITIAL_STATE@Q},
+  "decay_channel": ${DECAY_CHANNEL@Q},
+  "polarization": ${POLARIZATION@Q},
+  "shard_index": int(${SHARD_INDEX@Q}),
+  "shard_label": ${SHARD_LABEL@Q},
+  "output_sample": ${OUTPUT_SAMPLE@Q},
+  "seed": int(${SEED@Q}),
+  "requested_events": int(${EVENTS@Q}),
+  "generated_events": int(${GENERATED_EVENTS@Q}),
+  "status": ${STATUS@Q},
+  "whizard_return_code": int(${WHIZARD_RC@Q}),
+  "start_utc": ${START_UTC@Q},
+  "end_utc": ${END_UTC@Q},
+  "hostname": socket.gethostname(),
+  "cluster_id": os.environ.get("CLUSTER", os.environ.get("ClusterId", "")),
+  "process_id": os.environ.get("PROCESS", os.environ.get("ProcId", "")),
+  "campaign_root": ${CAMPAIGN_ROOT@Q},
+  "scratch_directory": ${WORK_DIR@Q},
+  "lhe_source_name": ${LHE_SOURCE@Q},
+  "lhe_sha256": ${LHE_SHA256@Q},
+  "archive_workspace": bool(int(${ARCHIVE_WORKSPACE@Q})),
+}
+with open(${PACKAGE_DIR@Q} + "/run_metadata.json", "w") as stream:
+    json.dump(payload, stream, indent=2, sort_keys=True)
+    stream.write("\n")
+PY_METADATA
+
+cp "$WORK_DIR/input.sin" "$PACKAGE_DIR/input.sin"
+cp "$WORK_DIR/template.sin.in" "$PACKAGE_DIR/template.sin.in"
+cp "$WORK_DIR/environment.txt" "$PACKAGE_DIR/environment.txt"
+cp "$WORK_DIR/whizard_version.txt" "$PACKAGE_DIR/whizard_version.txt"
+[[ -f "$WORK_DIR/console.log" ]] && cp "$WORK_DIR/console.log" "$PACKAGE_DIR/console.log"
+[[ -f "$WORK_DIR/whizard.log" ]] && cp "$WORK_DIR/whizard.log" "$PACKAGE_DIR/whizard.log"
+
+if [[ $ARCHIVE_WORKSPACE -eq 1 ]]; then
+  tar -C "$WORK_DIR" \
+    --exclude='*.lhe' --exclude='*.lhef' --exclude='*.lhe.gz' --exclude='*.lhef.gz' \
+    --exclude='*.evx' --exclude='console.log' --exclude='whizard.log' \
+    -czf "$PACKAGE_DIR/workspace_without_events.tar.gz" .
+fi
+
+(
+  cd "$PACKAGE_DIR"
+  find . -maxdepth 1 -type f ! -name checksums.sha256 -print0 \
+    | sort -z | xargs -0 sha256sum > checksums.sha256
+)
+
+mkdir -p "$CAMPAIGN_ROOT/runs/$SAMPLE_ID" "$RAW_LHE_DIR" "$LOG_DIR" "$CAMPAIGN_ROOT/failed/$SAMPLE_ID"
+RUN_TMP="$CAMPAIGN_ROOT/runs/$SAMPLE_ID/.${SHARD_LABEL}.partial.${CLUSTER:-local}.${PROCESS:-0}.$$"
+rm -rf "$RUN_TMP"
+mkdir -p "$RUN_TMP"
+rsync -rlt --safe-links "$PACKAGE_DIR/" "$RUN_TMP/"
+
+if [[ -n "$LHE_SOURCE" ]]; then
+  case "$LHE_SOURCE" in
+    *.lhe.gz) EXT=.lhe.gz ;;
+    *.lhef.gz) EXT=.lhef.gz ;;
+    *.lhef) EXT=.lhef ;;
+    *) EXT=.lhe ;;
+  esac
+  RAW_FINAL="$RAW_LHE_DIR/${OUTPUT_SAMPLE}${EXT}"
+  RAW_TMP="${RAW_FINAL}.partial.${CLUSTER:-local}.${PROCESS:-0}.$$"
+  cp "$LHE_SOURCE" "$RAW_TMP"
+  mv "$RAW_TMP" "$RAW_FINAL"
+fi
+
+[[ -f "$WORK_DIR/console.log" ]] && cp "$WORK_DIR/console.log" "$LOG_DIR/${OUTPUT_SAMPLE}.console.log"
+[[ -f "$WORK_DIR/whizard.log" ]] && cp "$WORK_DIR/whizard.log" "$LOG_DIR/${OUTPUT_SAMPLE}.whizard.log"
+
+mv "$RUN_TMP" "$RUN_DIR"
+
+if [[ "$STATUS" != "success" ]]; then
+  rm -rf "$FAILURE_DIR"
+  cp -a "$RUN_DIR" "$FAILURE_DIR"
+  KEEP_SCRATCH=1
+  echo "ERROR: shard status=$STATUS, WHIZARD_RC=$WHIZARD_RC, events=$GENERATED_EVENTS/$EVENTS" >&2
+  if [[ $WHIZARD_RC -ne 0 ]]; then exit "$WHIZARD_RC"; fi
+  exit 20
+fi
+
+echo "Completed $SAMPLE_ID/$SHARD_LABEL: events=$GENERATED_EVENTS seed=$SEED"
+echo "Run metadata: $RUN_DIR/run_metadata.json"
+echo "Raw LHE: $RAW_LHE_DIR/${OUTPUT_SAMPLE}${EXT}"

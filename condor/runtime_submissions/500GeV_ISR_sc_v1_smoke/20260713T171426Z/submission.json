@@ -1,0 +1,18 @@
+{
+  "batch_name": "whizard_500GeV_ISR_sc_v1_smoke",
+  "campaign_id": "500GeV_ISR_sc_v1",
+  "campaign_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1_smoke",
+  "condor_cluster_id": "13147889",
+  "config": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_500GeV_ISR_sc_v1.csv",
+  "created_utc": "2026-07-13T17:14:27Z",
+  "job_count": 8,
+  "jobs_file": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T171426Z/jobs.itemdata",
+  "key4hep_setup": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/setup_lxplus.sh",
+  "provenance_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1_smoke/manifests/submissions/20260713T171426Z",
+  "skipped_count": 0,
+  "smoke": true,
+  "submission_control_dir": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T171426Z",
+  "submit_file": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T171426Z/whizard_production.sub",
+  "submitted": true,
+  "submitted_utc": "2026-07-13T17:14:27Z"
+}

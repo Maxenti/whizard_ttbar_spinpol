@@ -98,3 +98,9 @@ unset _SETUP_DIR
 unset _required_commands
 unset _missing
 unset _cmd
+
+# Canonical persistent output location.
+export WHIZARD_TTBAR_OUTPUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+
+# Do not create Python bytecode caches inside the AFS source tree.
+export PYTHONDONTWRITEBYTECODE=1
