@@ -1,0 +1,3043 @@
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/README_QIS.md qis_gate_final/README_QIS.md
+--- qis_user_current/README_QIS.md	2026-07-13 19:45:46.000000000 +0000
++++ qis_gate_final/README_QIS.md	2026-07-17 20:56:34.888088642 +0000
+@@ -122,3 +122,21 @@
+ - Threshold precision requires an appropriate off-shell/resummed generator treatment beyond the default 500 GeV factorized campaign.
+ 
+ These boundaries are explicit contracts rather than silent approximations.
++
++## Spin-15 production qualification
++
++The next production gate verifies beam polarization and the complete two-spin
++coefficient set:
++
++```text
++B1k B1r B1n B2k B2r B2n
++Ckk Crr Cnn Ckr Crk Ckn Cnk Crn Cnr
++```
++
++See:
++
++- `docs/qis/SPIN15_VALIDATION.md`
++- `scripts/qis/run_next_production_gate.sh`
++- `scripts/qis/run_spin15_qualification_gate.sh`
++- `scripts/qis/plot_spin15_distributions.py`
++- `scripts/qis/validate_spin15_gate.py`
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/condor/qis/pythia_shower.sub qis_gate_final/condor/qis/pythia_shower.sub
+--- qis_user_current/condor/qis/pythia_shower.sub	2026-07-13 19:48:03.000000000 +0000
++++ qis_gate_final/condor/qis/pythia_shower.sub	2026-07-17 20:51:36.150135506 +0000
+@@ -1,6 +1,6 @@
+ universe = vanilla
+ executable = $(wrapper)
+-arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup)
++arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --qed-shower-by-gamma $(qed_shower_by_gamma)
+ initialdir = $(repo_root)
+ output = $(stdout_path)
+ error = $(stderr_path)
+@@ -13,4 +13,4 @@
+ +JobBatchName = "$(batch_name)"
+ on_exit_hold = (ExitBySignal == true) || (ExitCode != 0)
+ periodic_release = false
+-queue wrapper,input_lhe,output_root,sample_id,campaign_id,shard_id,seed,max_events,shower_executable,settings_file,key4hep_setup,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_disk_gb,job_flavour,batch_name from $(itemdata)
++queue wrapper,input_lhe,output_root,sample_id,campaign_id,shard_id,seed,max_events,shower_executable,settings_file,key4hep_setup,qed_shower_by_gamma,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_disk_gb,job_flavour,batch_name from $(itemdata)
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/configs/qis/qualification_500GeV_ISR_iso_v1.yaml qis_gate_final/configs/qis/qualification_500GeV_ISR_iso_v1.yaml
+--- qis_user_current/configs/qis/qualification_500GeV_ISR_iso_v1.yaml	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/configs/qis/qualification_500GeV_ISR_iso_v1.yaml	2026-07-17 20:52:00.307840536 +0000
+@@ -0,0 +1,51 @@
++schema_version: 1
++level: A
++campaign:
++  source_campaign_id: 500GeV_ISR_iso_validation_v1
++  qualification_id: 500GeV_ISR_iso_explicitW_gammaOn_10k_v1
++  source_manifest: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_iso_validation_v1/manifests/sample_manifest.csv
++  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_iso_explicitW_gammaOn_10k_v1
++  negative_lepton_defines_plus_z: true
++inputs:
++  mode: manifest
++  prefer_merged_final_lhe: true
++  allowed_initial_states: [ee, mumu]
++  allowed_polarizations: [LR100, RL100]
++  allowed_decay_channels: [epmum, mupem]
++  allowed_spin_modes: [iso]
++physics:
++  basis_order: [k, r, n]
++  antitop_axis_convention: particle_helicity_right_handed
++  antitop_analyzer_sign: -1.0
++  analyzing_power:
++    lepton_plus: 1.0
++    lepton_minus: 1.0
++  entropy_log_base: 2
++  top_mass_GeV: 173.1
++  w_mass_GeV: 80.379
++statistics:
++  bootstrap_replicas_test: 100
++  bootstrap_replicas_production: 1000
++  bootstrap_seed: 740001
++  confidence_level: 0.68
++  physical_projection: eigenvalue_simplex
++  maximum_likelihood_fit: true
++binning:
++  mtt_GeV: [340, 360, 380, 400, 420, 440, 460, 480, 490, 500.0001]
++  cos_theta_t: [-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.000001]
++outputs:
++  parquet: true
++  root: true
++  csv: true
++  json: true
++  plots: [png, pdf]
++  plot_label: WHIZARD + PYTHIA8
++  plot_subtitle: Isotropic-decay control, sqrt(s) = 500 GeV
++showering:
++  executable: build/qis_lhe_to_hepmc3
++  settings_file: configs/pythia/level_a.cmnd
++  events_per_job: 10000
++  lhe_preparation_policy: whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3
++  qed_shower_by_gamma: true
++  preserve_whizard_top_decays: true
++  preserve_whizard_w_decay_kinematics: true
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/configs/qis/qualification_500GeV_ISR_sc_v1.yaml qis_gate_final/configs/qis/qualification_500GeV_ISR_sc_v1.yaml
+--- qis_user_current/configs/qis/qualification_500GeV_ISR_sc_v1.yaml	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/configs/qis/qualification_500GeV_ISR_sc_v1.yaml	2026-07-17 20:52:00.299559488 +0000
+@@ -0,0 +1,51 @@
++schema_version: 1
++level: A
++campaign:
++  source_campaign_id: 500GeV_ISR_sc_v1
++  qualification_id: 500GeV_ISR_sc_explicitW_gammaOn_10k_v1
++  source_manifest: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1/manifests/sample_manifest.csv
++  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_sc_explicitW_gammaOn_10k_v1
++  negative_lepton_defines_plus_z: true
++inputs:
++  mode: manifest
++  prefer_merged_final_lhe: true
++  allowed_initial_states: [ee, mumu]
++  allowed_polarizations: [LR100, RL100]
++  allowed_decay_channels: [epmum, mupem]
++  allowed_spin_modes: [sc]
++physics:
++  basis_order: [k, r, n]
++  antitop_axis_convention: particle_helicity_right_handed
++  antitop_analyzer_sign: -1.0
++  analyzing_power:
++    lepton_plus: 1.0
++    lepton_minus: 1.0
++  entropy_log_base: 2
++  top_mass_GeV: 173.1
++  w_mass_GeV: 80.379
++statistics:
++  bootstrap_replicas_test: 100
++  bootstrap_replicas_production: 1000
++  bootstrap_seed: 730001
++  confidence_level: 0.68
++  physical_projection: eigenvalue_simplex
++  maximum_likelihood_fit: true
++binning:
++  mtt_GeV: [340, 360, 380, 400, 420, 440, 460, 480, 490, 500.0001]
++  cos_theta_t: [-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.000001]
++outputs:
++  parquet: true
++  root: true
++  csv: true
++  json: true
++  plots: [png, pdf]
++  plot_label: WHIZARD + PYTHIA8
++  plot_subtitle: Spin-correlated qualification, sqrt(s) = 500 GeV
++showering:
++  executable: build/qis_lhe_to_hepmc3
++  settings_file: configs/pythia/level_a.cmnd
++  events_per_job: 10000
++  lhe_preparation_policy: whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3
++  qed_shower_by_gamma: true
++  preserve_whizard_top_decays: true
++  preserve_whizard_w_decay_kinematics: true
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/docs/qis/SPIN15_VALIDATION.md qis_gate_final/docs/qis/SPIN15_VALIDATION.md
+--- qis_user_current/docs/qis/SPIN15_VALIDATION.md	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/docs/qis/SPIN15_VALIDATION.md	2026-07-17 20:53:35.507582058 +0000
+@@ -0,0 +1,270 @@
++# Complete 15-observable polarization and spin-correlation gate
++
++## Purpose
++
++The production qualification must establish more than successful event
++conversion.  It must verify that:
++
++1. the configured LR100 and RL100 beam helicities are correct;
++2. the generated samples exhibit polarization-dependent angular structure;
++3. the spin-correlated samples differ from matched isotropic-decay controls;
++4. canonicalization, explicit-W insertion, PYTHIA showering, and HepMC3 export
++   preserve the hard-process spin information used by the QIS analysis.
++
++The gate uses the complete `6 + 9` coefficient set of a two-spin density
++matrix in the ordered `(k,r,n)` basis.
++
++## Basis convention
++
++In the `ttbar` rest frame:
++
++```text
++k = unit top direction
++n = unit(negative-lepton beam x k)
++r = n x k
++```
++
++The antitop basis is independently right handed:
++
++```text
++kbar = unit antitop direction = -k
++nbar = n
++rbar = nbar x kbar
++```
++
++The positive charged lepton is analyzed in the top rest frame.  The negative
++charged lepton is analyzed in the antitop rest frame with the framework
++convention `antitop_analyzer_sign = -1`.
++
++## Fifteen event-level observables
++
++The lower-case values are bounded event-by-event angular analyzers.
++
++### Polarization analyzers
++
++```text
++b1k  b1r  b1n
++b2k  b2r  b2n
++```
++
++Here `1` denotes the top/positive-lepton analyzer and `2` denotes the
++antitop/negative-lepton analyzer.
++
++### Correlation analyzers
++
++```text
++ckk  ckr  ckn
++crk  crr  crn
++cnk  cnr  cnn
++```
++
++For example:
++
++```text
++ckr = b1k * b2r
++crn = b1r * b2n
++```
++
++The plotting package displays the diagonal terms first for readability:
++
++```text
++ckk crr cnn ckr crk ckn cnk crn cnr
++```
++
++but every named matrix element retains its physical `(first axis, second
++axis)` meaning.
++
++## Extracted coefficients
++
++For charged-lepton analyzing powers `alpha_plus` and `alpha_minus`:
++
++```text
++B1_i = 3 <b1i> / alpha_plus
++B2_i = 3 <b2i> / alpha_minus
++C_ij = 9 <cij> / (alpha_plus alpha_minus)
++```
++
++The Level-A defaults use:
++
++```text
++alpha_plus  = 1
++alpha_minus = 1
++```
++
++The connected correlation used for the SC-versus-ISO gate is:
++
++```text
++D_ij = C_ij - B1_i B2_j
++```
++
++This removes the factorized product of single-particle polarizations and tests
++the genuinely connected part of the two-spin distribution.
++
++## Qualification datasets
++
++The gate uses four matched ntuple families:
++
++```text
++lhe_sc
++hepmc_sc
++lhe_iso
++hepmc_iso
++```
++
++The recommended qualification statistics are:
++
++```text
++8 spin-correlated samples x 10,000 events = 80,000
++8 isotropic controls       x 10,000 events = 80,000
++```
++
++The eight samples in each family span:
++
++```text
++initial state:  ee, mumu
++polarization:   LR100, RL100
++decay channel: epmum, mupem
++```
++
++## Gate logic
++
++### 1. Beam configuration audit
++
++The production CSV is checked directly:
++
++```text
++LR100: beam1_helicity = -1, beam2_helicity = +1
++RL100: beam1_helicity = +1, beam2_helicity = -1
++beam polarization fractions = 1.0
++```
++
++The `spin_correlated` flag must agree with the `sc` or `iso` sample ID.
++
++### 2. LR100 versus RL100 separation
++
++For each initial state, decay channel, spin mode, and analysis stage, the six
++`B` coefficients are compared.  At least one component must exceed the
++configured separation threshold.  The default qualification threshold is
++`5 sigma`.
++
++No hard-coded Standard Model sign is imposed.  This protects the analysis from
++silently assuming a convention that differs from the implemented antitop basis.
++
++### 3. SC versus ISO separation
++
++For every matched initial-state/polarization/decay sample, the nine connected
++correlations `D_ij` are compared between the spin-correlated and isotropic
++samples.  At least one component must exceed the configured threshold.  The
++default is `5 sigma`.
++
++### 4. LHE versus HepMC preservation
++
++All 15 coefficients are compared between the authoritative LHE truth and the
++showered HepMC record.  The default gate requires both:
++
++```text
++absolute shift <= 0.02
++combined significance <= 5 sigma
++```
++
++The purpose is not to demand that every final-state particle remain unchanged.
++It is to verify that the resonance-level truth objects selected by the QIS
++reader preserve the intended spin information through the production chain.
++
++### 5. Decay-flavour consistency
++
++The `epmum` and `mupem` channels are independent samples of the same underlying
++spin configuration with exchanged charged-lepton flavours.  Differences above
++the configured threshold are reported as warnings because finite statistics
++and flavour-dependent QED effects can produce small differences.
++
++## Distribution products
++
++For every dataset and sample, the plotting script writes:
++
++```text
++spin15_polarization_panel.{png,pdf}
++spin15_correlation_panel.{png,pdf}
++individual/b1k.{png,pdf}
++...
++individual/cnr.{png,pdf}
++```
++
++The full coefficient table is:
++
++```text
++spin15_coefficients.csv
++```
++
++The gate products include:
++
++```text
++spin15_lhe_hepmc_preservation.csv
++spin15_lr_rl_details.csv
++spin15_lr_rl_gate.csv
++spin15_connected_correlations.csv
++spin15_sc_iso_details.csv
++spin15_sc_iso_gate.csv
++spin15_decay_flavour_details.csv
++spin15_decay_flavour_gate.csv
++spin15_gate_report.md
++spin15_gate_summary.json
++```
++
++## Production preparation policy
++
++The qualification shower worker uses:
++
++```text
++authoritative WHIZARD LHE
++  -> canonical LHA v2
++  -> explicit-W v3
++  -> PYTHIA8
++  -> HepMC3
++```
++
++The central qualification keeps:
++
++```text
++TimeShower:QEDshowerByGamma = on
++```
++
++and records the nonfatal negative-dipole warning count in metadata.  The
++gamma-conversion-off configuration remains a generator systematic.
++
++## Commands
++
++Prepare and submit the SC qualification shower jobs:
++
++```bash
++python3 scripts/showering/submit_showering.py \
++  --config configs/qis/qualification_500GeV_ISR_sc_v1.yaml \
++  --submit
++```
++
++Prepare and submit the ISO qualification shower jobs:
++
++```bash
++python3 scripts/showering/submit_showering.py \
++  --config configs/qis/qualification_500GeV_ISR_iso_v1.yaml \
++  --submit
++```
++
++After all jobs finish, merge each campaign:
++
++```bash
++python3 scripts/showering/collect_showering.py \
++  --config configs/qis/qualification_500GeV_ISR_sc_v1.yaml
++
++python3 scripts/showering/collect_showering.py \
++  --config configs/qis/qualification_500GeV_ISR_iso_v1.yaml
++```
++
++Then run the complete Spin-15 gate:
++
++```bash
++scripts/qis/run_spin15_qualification_gate.sh
++```
++
++The production qualification is closed only when the structural and strict
++physics statuses both pass.
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/qis_ttbar/physics/observables.py qis_gate_final/qis_ttbar/physics/observables.py
+--- qis_user_current/qis_ttbar/physics/observables.py	2026-07-13 19:35:20.000000000 +0000
++++ qis_gate_final/qis_ttbar/physics/observables.py	2026-07-17 20:43:49.046298517 +0000
+@@ -10,6 +10,31 @@
+ from .ancestry import validate_truth_closure
+ 
+ 
++# Event-level angular analyzers used to extract the complete 15-parameter
++# ttbar spin density matrix in the ordered (k,r,n) basis.  Lower-case names
++# denote bounded per-event observables.  Their weighted means give the
++# conventional upper-case coefficients through
++#
++#   B1_i = 3 <b1i> / alpha_plus
++#   B2_i = 3 <b2i> / alpha_minus
++#   C_ij = 9 <cij> / (alpha_plus alpha_minus)
++#
++# because event_observables applies antitop_analyzer_sign=-1 by default.
++SPIN15_EVENT_COLUMNS: tuple[str, ...] = (
++    "b1k", "b1r", "b1n",
++    "b2k", "b2r", "b2n",
++    "ckk", "crr", "cnn",
++    "ckr", "crk", "ckn", "cnk", "crn", "cnr",
++)
++
++SPIN15_COEFFICIENT_NAMES: tuple[str, ...] = (
++    "B1k", "B1r", "B1n",
++    "B2k", "B2r", "B2n",
++    "Ckk", "Crr", "Cnn",
++    "Ckr", "Crk", "Ckn", "Cnk", "Crn", "Cnr",
++)
++
++
+ def wrap_delta_phi(value: float) -> float:
+     return float((value + math.pi) % (2.0 * math.pi) - math.pi)
+ 
+@@ -75,6 +100,19 @@
+     for i, left in enumerate(basis_order):
+         for j, right in enumerate(basis_order):
+             output[f"uproduct_{left}{right}"] = float(coordinates_plus[i] * coordinates_minus[j])
++
++    # Stable, analysis-facing aliases for the complete 6+9 spin set.  These
++    # aliases intentionally remain independent of basis_order serialization: the
++    # named coordinates are looked up by axis name, not by numerical position.
++    coordinate_plus = {name: float(coordinates_plus[index]) for index, name in enumerate(basis_order)}
++    coordinate_minus = {name: float(coordinates_minus[index]) for index, name in enumerate(basis_order)}
++    for axis in ("k", "r", "n"):
++        output[f"b1{axis}"] = coordinate_plus[axis]
++        output[f"b2{axis}"] = coordinate_minus[axis]
++    for left in ("k", "r", "n"):
++        for right in ("k", "r", "n"):
++            output[f"c{left}{right}"] = coordinate_plus[left] * coordinate_minus[right]
++
+     # CP-odd/T-odd triple product in the ttbar frame.
+     output["cp_triple_product"] = float(np.dot(beam_hat, np.cross(lp_tt.unit3(), lm_tt.unit3())))
+     return output
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/qis/plot_spin15_distributions.py qis_gate_final/scripts/qis/plot_spin15_distributions.py
+--- qis_user_current/scripts/qis/plot_spin15_distributions.py	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/scripts/qis/plot_spin15_distributions.py	2026-07-17 20:44:54.956529479 +0000
+@@ -0,0 +1,415 @@
++#!/usr/bin/env python3
++"""Plot and summarize the complete 15 ttbar spin-density observables.
++
++The input tables are produced by scripts/qis/make_qis_ntuples.py after the
++analysis-facing aliases b1k...cnr have been added by
++qis_ttbar.physics.observables.event_observables.
++
++Lower-case columns are bounded event-level angular analyzers.  The corresponding
++spin-density coefficients are extracted from weighted means using the repository
++convention antitop_analyzer_sign=-1:
++
++  B1_i = 3 <b1i> / alpha_plus
++  B2_i = 3 <b2i> / alpha_minus
++  C_ij = 9 <cij> / (alpha_plus alpha_minus)
++
++Examples
++--------
++python3 scripts/qis/plot_spin15_distributions.py \
++  --dataset lhe_sc=/path/to/ntuples/lhe_sc \
++  --dataset hepmc_sc=/path/to/ntuples/hepmc_sc \
++  --output-dir /path/to/spin15
++"""
++
++from __future__ import annotations
++
++import argparse
++import csv
++import json
++import math
++import re
++import sys
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Iterable
++
++import matplotlib.pyplot as plt
++import numpy as np
++import pandas as pd
++
++ROOT = Path(__file__).resolve().parents[2]
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++
++from qis_ttbar.physics.observables import (  # noqa: E402
++    SPIN15_COEFFICIENT_NAMES,
++    SPIN15_EVENT_COLUMNS,
++)
++
++POLARIZATION_COLUMNS = ("b1k", "b1r", "b1n", "b2k", "b2r", "b2n")
++CORRELATION_COLUMNS = ("ckk", "crr", "cnn", "ckr", "crk", "ckn", "cnk", "crn", "cnr")
++
++COEFFICIENT_BY_COLUMN = dict(zip(SPIN15_EVENT_COLUMNS, SPIN15_COEFFICIENT_NAMES, strict=True))
++SAMPLE_RE = re.compile(
++    r"^(?P<initial_state>ee|mumu)_ttbar_"
++    r"(?P<decay_channel>epmum|mupem)_"
++    r"(?P<polarization>LR100|RL100|unpol)_"
++    r"(?P<spin_mode>sc|iso)_ISR_"
++    r"(?P<sqrt_s>[0-9]+)GeV$"
++)
++
++
++@dataclass(frozen=True)
++class DatasetSpec:
++    label: str
++    directory: Path
++
++
++@dataclass(frozen=True)
++class SampleTable:
++    dataset: str
++    sample_id: str
++    path: Path
++    frame: pd.DataFrame
++    initial_state: str
++    decay_channel: str
++    polarization: str
++    spin_mode: str
++    sqrt_s_GeV: int
++
++
++def parse_args() -> argparse.Namespace:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument(
++        "--dataset",
++        action="append",
++        required=True,
++        metavar="LABEL=DIR",
++        help="Input ntuple directory. Repeat for LHE/HepMC and SC/ISO datasets.",
++    )
++    parser.add_argument("--output-dir", required=True, type=Path)
++    parser.add_argument("--bins", type=int, default=40)
++    parser.add_argument("--max-events", type=int)
++    parser.add_argument("--formats", nargs="+", default=("png", "pdf"))
++    parser.add_argument("--dpi", type=int, default=170)
++    parser.add_argument("--no-individual", action="store_true")
++    parser.add_argument("--strict", action="store_true")
++    return parser.parse_args()
++
++
++def parse_dataset(value: str) -> DatasetSpec:
++    if "=" not in value:
++        raise ValueError(f"dataset must be LABEL=DIR, got {value!r}")
++    label, directory = value.split("=", 1)
++    label = label.strip()
++    path = Path(directory).expanduser()
++    if not label:
++        raise ValueError("dataset label cannot be empty")
++    if not path.is_dir():
++        raise FileNotFoundError(path)
++    return DatasetSpec(label=label, directory=path)
++
++
++def discover_tables(spec: DatasetSpec) -> list[Path]:
++    # Prefer parquet over CSV when both were written for the same sample.
++    selected: dict[str, Path] = {}
++    for extension in (".csv", ".parquet"):
++        for path in sorted(spec.directory.glob(f"*{extension}")):
++            if path.name.endswith(".summary.csv"):
++                continue
++            sample_id = path.stem
++            if extension == ".parquet" or sample_id not in selected:
++                selected[sample_id] = path
++    if not selected:
++        raise FileNotFoundError(f"no CSV or parquet ntuples under {spec.directory}")
++    return [selected[key] for key in sorted(selected)]
++
++
++def read_table(path: Path, max_events: int | None) -> pd.DataFrame:
++    frame = pd.read_parquet(path) if path.suffix == ".parquet" else pd.read_csv(path)
++    if max_events is not None:
++        frame = frame.head(max_events).copy()
++    return frame
++
++
++def parse_sample(path: Path, frame: pd.DataFrame, dataset: str) -> SampleTable:
++    if "sample_id" in frame.columns and len(frame):
++        ids = frame["sample_id"].dropna().astype(str).unique()
++        if len(ids) != 1:
++            raise ValueError(f"{path}: expected one sample_id, found {ids.tolist()}")
++        sample_id = str(ids[0])
++    else:
++        sample_id = path.stem
++    match = SAMPLE_RE.match(sample_id)
++    if not match:
++        raise ValueError(f"unsupported sample ID convention: {sample_id}")
++    missing = [column for column in SPIN15_EVENT_COLUMNS if column not in frame.columns]
++    if missing:
++        raise ValueError(f"{path}: missing spin15 columns {missing}")
++    return SampleTable(
++        dataset=dataset,
++        sample_id=sample_id,
++        path=path,
++        frame=frame,
++        initial_state=match.group("initial_state"),
++        decay_channel=match.group("decay_channel"),
++        polarization=match.group("polarization"),
++        spin_mode=match.group("spin_mode"),
++        sqrt_s_GeV=int(match.group("sqrt_s")),
++    )
++
++
++def finite_values(frame: pd.DataFrame, column: str) -> tuple[np.ndarray, np.ndarray]:
++    values = pd.to_numeric(frame[column], errors="coerce").to_numpy(float)
++    if "event_weight" in frame.columns:
++        weights = pd.to_numeric(frame["event_weight"], errors="coerce").to_numpy(float)
++    else:
++        weights = np.ones(len(frame), dtype=float)
++    mask = np.isfinite(values) & np.isfinite(weights)
++    values = values[mask]
++    weights = weights[mask]
++    if len(values) == 0:
++        raise ValueError(f"column {column} has no finite values")
++    if float(np.sum(weights)) == 0.0:
++        raise ValueError(f"column {column} has zero total weight")
++    return values, weights
++
++
++def weighted_stats(values: np.ndarray, weights: np.ndarray) -> dict[str, float]:
++    sum_w = float(np.sum(weights))
++    sum_w2 = float(np.sum(np.square(weights)))
++    mean = float(np.sum(weights * values) / sum_w)
++    variance = float(np.sum(weights * np.square(values - mean)) / sum_w)
++    neff = sum_w * sum_w / sum_w2 if sum_w2 > 0.0 else 0.0
++    std = math.sqrt(max(variance, 0.0))
++    mean_se = std / math.sqrt(neff) if neff > 0.0 else math.nan
++    return {
++        "events": float(len(values)),
++        "weight_sum": sum_w,
++        "effective_events": neff,
++        "mean": mean,
++        "std": std,
++        "mean_se": mean_se,
++        "min": float(np.min(values)),
++        "max": float(np.max(values)),
++    }
++
++
++def coefficient_scale(column: str, frame: pd.DataFrame) -> float:
++    alpha_plus = float(frame["alpha_plus"].iloc[0]) if "alpha_plus" in frame.columns and len(frame) else 1.0
++    alpha_minus = float(frame["alpha_minus"].iloc[0]) if "alpha_minus" in frame.columns and len(frame) else 1.0
++    if column.startswith("b1"):
++        if alpha_plus == 0.0:
++            raise ValueError("alpha_plus is zero")
++        return 3.0 / alpha_plus
++    if column.startswith("b2"):
++        if alpha_minus == 0.0:
++            raise ValueError("alpha_minus is zero")
++        return 3.0 / alpha_minus
++    if alpha_plus == 0.0 or alpha_minus == 0.0:
++        raise ValueError("spin analyzing powers must be nonzero")
++    return 9.0 / (alpha_plus * alpha_minus)
++
++
++def normalized_histogram(values: np.ndarray, weights: np.ndarray, edges: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
++    counts, _ = np.histogram(values, bins=edges, weights=weights)
++    variance, _ = np.histogram(values, bins=edges, weights=np.square(weights))
++    total = float(np.sum(counts))
++    if total == 0.0:
++        return np.zeros_like(counts), np.zeros_like(counts)
++    return counts / total, np.sqrt(variance) / abs(total)
++
++
++def save_figure(fig, base: Path, formats: Iterable[str], dpi: int) -> list[str]:
++    base.parent.mkdir(parents=True, exist_ok=True)
++    outputs = []
++    for extension in formats:
++        path = base.with_suffix(f".{extension}")
++        fig.savefig(path, dpi=dpi, bbox_inches="tight")
++        outputs.append(str(path))
++    plt.close(fig)
++    return outputs
++
++
++def draw_histogram(ax, values: np.ndarray, weights: np.ndarray, bins: int, label: str | None = None) -> None:
++    edges = np.linspace(-1.0, 1.0, bins + 1)
++    probabilities, errors = normalized_histogram(values, weights, edges)
++    centers = 0.5 * (edges[:-1] + edges[1:])
++    ax.stairs(probabilities, edges, linewidth=1.5, label=label)
++    ax.errorbar(centers, probabilities, yerr=errors, fmt="none", linewidth=0.7)
++    ax.set_xlim(-1.0, 1.0)
++    ax.grid(alpha=0.25)
++
++
++def make_panel(sample: SampleTable, columns: tuple[str, ...], *, title: str, output_base: Path, bins: int, formats: Iterable[str], dpi: int) -> list[str]:
++    rows = 2 if len(columns) == 6 else 3
++    cols = 3
++    fig, axes = plt.subplots(rows, cols, figsize=(12.0, 7.3 if rows == 2 else 10.0), squeeze=False)
++    for ax, column in zip(axes.flat, columns, strict=True):
++        values, weights = finite_values(sample.frame, column)
++        draw_histogram(ax, values, weights, bins)
++        coefficient = COEFFICIENT_BY_COLUMN[column]
++        scale = coefficient_scale(column, sample.frame)
++        stats = weighted_stats(values, weights)
++        ax.set_title(f"{column}  ({coefficient}={scale * stats['mean']:+.3f})")
++        ax.set_xlabel(column)
++        ax.set_ylabel("Normalized events / bin")
++    fig.suptitle(f"{title}\n{sample.dataset}: {sample.sample_id}", y=1.01)
++    fig.tight_layout()
++    return save_figure(fig, output_base, formats, dpi)
++
++
++def make_individual(sample: SampleTable, column: str, *, output_base: Path, bins: int, formats: Iterable[str], dpi: int) -> list[str]:
++    values, weights = finite_values(sample.frame, column)
++    stats = weighted_stats(values, weights)
++    scale = coefficient_scale(column, sample.frame)
++    coefficient = COEFFICIENT_BY_COLUMN[column]
++    fig, ax = plt.subplots(figsize=(7.2, 5.2))
++    draw_histogram(ax, values, weights, bins)
++    ax.set_xlabel(column)
++    ax.set_ylabel("Normalized events / bin")
++    ax.set_title(
++        f"{sample.dataset}: {sample.sample_id}\n"
++        f"{coefficient} = {scale * stats['mean']:+.4f} ± {scale * stats['mean_se']:.4f}"
++    )
++    fig.tight_layout()
++    return save_figure(fig, output_base, formats, dpi)
++
++
++def main() -> int:
++    args = parse_args()
++    if args.bins < 5:
++        raise ValueError("--bins must be at least 5")
++    specs = [parse_dataset(value) for value in args.dataset]
++    labels = [spec.label for spec in specs]
++    if len(labels) != len(set(labels)):
++        raise ValueError("dataset labels must be unique")
++
++    samples: list[SampleTable] = []
++    for spec in specs:
++        for path in discover_tables(spec):
++            samples.append(parse_sample(path, read_table(path, args.max_events), spec.label))
++
++    args.output_dir.mkdir(parents=True, exist_ok=True)
++    summary_rows: list[dict[str, object]] = []
++    figure_manifest: list[dict[str, str]] = []
++    failures: list[str] = []
++
++    for sample in samples:
++        sample_root = args.output_dir / "per_sample" / sample.dataset / sample.sample_id
++        try:
++            outputs = make_panel(
++                sample,
++                POLARIZATION_COLUMNS,
++                title="Top and antitop polarization analyzers",
++                output_base=sample_root / "spin15_polarization_panel",
++                bins=args.bins,
++                formats=args.formats,
++                dpi=args.dpi,
++            )
++            figure_manifest.extend(
++                {"dataset": sample.dataset, "sample_id": sample.sample_id, "kind": "polarization_panel", "path": path}
++                for path in outputs
++            )
++            outputs = make_panel(
++                sample,
++                CORRELATION_COLUMNS,
++                title="Top-antitop spin-correlation analyzers",
++                output_base=sample_root / "spin15_correlation_panel",
++                bins=args.bins,
++                formats=args.formats,
++                dpi=args.dpi,
++            )
++            figure_manifest.extend(
++                {"dataset": sample.dataset, "sample_id": sample.sample_id, "kind": "correlation_panel", "path": path}
++                for path in outputs
++            )
++
++            for column in SPIN15_EVENT_COLUMNS:
++                values, weights = finite_values(sample.frame, column)
++                stats = weighted_stats(values, weights)
++                scale = coefficient_scale(column, sample.frame)
++                row = {
++                    "dataset": sample.dataset,
++                    "sample_id": sample.sample_id,
++                    "initial_state": sample.initial_state,
++                    "decay_channel": sample.decay_channel,
++                    "polarization": sample.polarization,
++                    "spin_mode": sample.spin_mode,
++                    "sqrt_s_GeV": sample.sqrt_s_GeV,
++                    "observable": column,
++                    "coefficient_name": COEFFICIENT_BY_COLUMN[column],
++                    **stats,
++                    "coefficient": scale * stats["mean"],
++                    "coefficient_se": abs(scale) * stats["mean_se"],
++                    "in_unit_interval": stats["min"] >= -1.0 - 1.0e-10 and stats["max"] <= 1.0 + 1.0e-10,
++                    "source_table": str(sample.path),
++                }
++                summary_rows.append(row)
++                if not row["in_unit_interval"]:
++                    failures.append(
++                        f"{sample.dataset}/{sample.sample_id}/{column}: range "
++                        f"[{stats['min']}, {stats['max']}]"
++                    )
++                if not args.no_individual:
++                    outputs = make_individual(
++                        sample,
++                        column,
++                        output_base=sample_root / "individual" / column,
++                        bins=args.bins,
++                        formats=args.formats,
++                        dpi=args.dpi,
++                    )
++                    figure_manifest.extend(
++                        {"dataset": sample.dataset, "sample_id": sample.sample_id, "kind": column, "path": path}
++                        for path in outputs
++                    )
++        except Exception as exc:
++            failures.append(f"{sample.dataset}/{sample.sample_id}: {exc}")
++            if args.strict:
++                raise
++
++    summary_path = args.output_dir / "spin15_coefficients.csv"
++    pd.DataFrame(summary_rows).to_csv(summary_path, index=False)
++    manifest_path = args.output_dir / "spin15_figure_manifest.csv"
++    with manifest_path.open("w", newline="") as stream:
++        writer = csv.DictWriter(stream, fieldnames=["dataset", "sample_id", "kind", "path"])
++        writer.writeheader()
++        writer.writerows(figure_manifest)
++
++    metadata = {
++        "schema_version": 1,
++        "datasets": [{"label": spec.label, "directory": str(spec.directory)} for spec in specs],
++        "samples": len(samples),
++        "observables": list(SPIN15_EVENT_COLUMNS),
++        "coefficients": list(SPIN15_COEFFICIENT_NAMES),
++        "coefficient_convention": {
++            "B1_i": "3 * weighted_mean(b1i) / alpha_plus",
++            "B2_i": "3 * weighted_mean(b2i) / alpha_minus",
++            "C_ij": "9 * weighted_mean(cij) / (alpha_plus * alpha_minus)",
++            "antitop_analyzer_sign": -1.0,
++        },
++        "summary_csv": str(summary_path),
++        "figure_manifest_csv": str(manifest_path),
++        "failures": failures,
++    }
++    (args.output_dir / "spin15_manifest.json").write_text(
++        json.dumps(metadata, indent=2, sort_keys=True) + "\n"
++    )
++
++    print(f"Samples: {len(samples)}")
++    print(f"Coefficient rows: {len(summary_rows)}")
++    print(f"Figures: {len(figure_manifest)}")
++    print(f"Wrote {summary_path}")
++    print(f"Wrote {manifest_path}")
++    if failures:
++        print("FAILURES:")
++        for failure in failures:
++            print(f"  - {failure}")
++        return 1 if args.strict else 0
++    print("SPIN15 DISTRIBUTION PACKAGE: PASS")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/qis/run_next_production_gate.sh qis_gate_final/scripts/qis/run_next_production_gate.sh
+--- qis_user_current/scripts/qis/run_next_production_gate.sh	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/scripts/qis/run_next_production_gate.sh	2026-07-17 20:56:16.935297904 +0000
+@@ -0,0 +1,184 @@
++#!/usr/bin/env bash
++# Ordered driver for the 10k-per-sample shower + Spin-15 qualification gate.
++#
++# This script intentionally uses explicit phases because HTCondor jobs complete
++# asynchronously.  Run one phase, wait for jobs to finish, then run the next.
++
++set -euo pipefail
++
++REPO=${REPO:-/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol}
++SC_QIS_CONFIG=${SC_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_sc_v1.yaml}
++ISO_QIS_CONFIG=${ISO_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_iso_v1.yaml}
++ISO_PRODUCTION_CONFIG=${ISO_PRODUCTION_CONFIG:-$REPO/configs/production/production_500GeV_ISR_iso_validation_v1.csv}
++
++usage() {
++  cat <<'USAGE'
++Usage: run_next_production_gate.sh PHASE
++
++Phases:
++  preflight               Check software, configs, and authoritative manifests.
++  submit-iso-production   Submit the matched 8x10k isotropic WHIZARD controls.
++  collect-iso-production  Validate and merge completed isotropic WHIZARD jobs.
++  submit-showers          Submit SC and ISO 10k explicit-W v3 shower jobs.
++  validate-showers        Strictly validate SC and ISO shower products.
++  collect-showers         Merge SC and ISO HepMC products by sample.
++  spin15                  Build distributions and run the strict Spin-15 gate.
++  status                  Print expected paths and current file counts.
++
++The script never waits for Condor jobs.  Use condor_q between submission and
++collection/validation phases.
++USAGE
++}
++
++[[ $# -eq 1 ]] || { usage >&2; exit 2; }
++PHASE=$1
++cd "$REPO"
++
++read_yaml_value() {
++  python3 - "$1" "$2" <<'PY'
++import sys
++from pathlib import Path
++import yaml
++value = yaml.safe_load(Path(sys.argv[1]).read_text())
++for key in sys.argv[2].split('.'):
++    value = value[key]
++print(value)
++PY
++}
++
++SC_MANIFEST=$(read_yaml_value "$SC_QIS_CONFIG" campaign.source_manifest)
++ISO_MANIFEST=$(read_yaml_value "$ISO_QIS_CONFIG" campaign.source_manifest)
++SC_ROOT=$(read_yaml_value "$SC_QIS_CONFIG" campaign.output_root)
++ISO_ROOT=$(read_yaml_value "$ISO_QIS_CONFIG" campaign.output_root)
++
++case "$PHASE" in
++  preflight)
++    source setup_lxplus.sh
++    [[ -x build/qis_lhe_to_hepmc3 ]] || {
++      echo "ERROR: build/qis_lhe_to_hepmc3 is missing; run scripts/qis/build_qis.sh" >&2
++      exit 1
++    }
++    for path in \
++      "$SC_QIS_CONFIG" \
++      "$ISO_QIS_CONFIG" \
++      "$ISO_PRODUCTION_CONFIG" \
++      scripts/showering/canonicalize_whizard_lhe_for_pythia.py \
++      scripts/showering/insert_explicit_w_resonances.py \
++      scripts/showering/augment_shower_metadata.py \
++      scripts/qis/plot_spin15_distributions.py \
++      scripts/qis/validate_spin15_gate.py; do
++      [[ -r $path ]] || { echo "ERROR: missing $path" >&2; exit 1; }
++    done
++    [[ -f $SC_MANIFEST ]] || {
++      echo "ERROR: missing SC manifest: $SC_MANIFEST" >&2
++      exit 1
++    }
++    if [[ -f $ISO_MANIFEST ]]; then
++      echo "ISO manifest: present"
++    else
++      echo "ISO manifest: not present yet"
++      echo "Next phase: submit-iso-production"
++    fi
++    python3 -m pytest -q \
++      tests/qis/test_spin15_observables.py \
++      tests/qis/test_lhe_smoke.py
++    echo "PREFLIGHT PASS"
++    ;;
++
++  submit-iso-production)
++    source setup_lxplus.sh
++    python3 scripts/production/submit_production.py \
++      --config "$ISO_PRODUCTION_CONFIG" \
++      --submit
++    ;;
++
++  collect-iso-production)
++    source setup_lxplus.sh
++    python3 scripts/production/validate_production_outputs.py \
++      --config "$ISO_PRODUCTION_CONFIG" \
++      --stage final \
++      --scan-events 0 \
++      --strict
++    python3 scripts/production/collect_production.py \
++      --config "$ISO_PRODUCTION_CONFIG" \
++      --source final \
++      --merge \
++      --overwrite
++    python3 scripts/production/make_production_manifest.py \
++      --config "$ISO_PRODUCTION_CONFIG"
++    [[ -f $ISO_MANIFEST ]] || {
++      echo "ERROR: ISO manifest was not created: $ISO_MANIFEST" >&2
++      exit 1
++    }
++    ;;
++
++  submit-showers)
++    source setup_lxplus.sh
++    [[ -f $SC_MANIFEST ]] || { echo "ERROR: missing $SC_MANIFEST" >&2; exit 1; }
++    [[ -f $ISO_MANIFEST ]] || { echo "ERROR: missing $ISO_MANIFEST" >&2; exit 1; }
++    python3 scripts/showering/submit_showering.py \
++      --config "$SC_QIS_CONFIG" \
++      --submit
++    python3 scripts/showering/submit_showering.py \
++      --config "$ISO_QIS_CONFIG" \
++      --submit
++    ;;
++
++  validate-showers)
++    source setup_lxplus.sh
++    python3 scripts/showering/validate_showering.py \
++      --config "$SC_QIS_CONFIG" \
++      --strict \
++      --checksums
++    python3 scripts/showering/validate_showering.py \
++      --config "$ISO_QIS_CONFIG" \
++      --strict \
++      --checksums
++    ;;
++
++  collect-showers)
++    source setup_lxplus.sh
++    python3 scripts/showering/collect_showering.py \
++      --config "$SC_QIS_CONFIG" \
++      --overwrite
++    python3 scripts/showering/collect_showering.py \
++      --config "$ISO_QIS_CONFIG" \
++      --overwrite
++    ;;
++
++  spin15)
++    source setup_lxplus.sh
++    REPO="$REPO" \
++    SC_CONFIG="$SC_QIS_CONFIG" \
++    ISO_CONFIG="$ISO_QIS_CONFIG" \
++    STRICT_PHYSICS=1 \
++      scripts/qis/run_spin15_qualification_gate.sh
++    ;;
++
++  status)
++    cat <<EOF
++SC manifest:
++  $SC_MANIFEST
++ISO manifest:
++  $ISO_MANIFEST
++SC shower root:
++  $SC_ROOT/shower
++ISO shower root:
++  $ISO_ROOT/shower
++EOF
++    for label in SC ISO; do
++      root=$SC_ROOT
++      [[ $label == ISO ]] && root=$ISO_ROOT
++      echo
++      echo "$label counts"
++      find "$root/shower/hepmc3" -name '*.hepmc3' 2>/dev/null | wc -l | xargs echo "  shower files:"
++      find "$root/shower/metadata" -name '*.json' 2>/dev/null | wc -l | xargs echo "  metadata files:"
++      find "$root/shower/hepmc3_merged" -name '*.hepmc3' 2>/dev/null | wc -l | xargs echo "  merged files:"
++    done
++    ;;
++
++  *)
++    usage >&2
++    exit 2
++    ;;
++esac
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/qis/run_spin15_qualification_gate.sh qis_gate_final/scripts/qis/run_spin15_qualification_gate.sh
+--- qis_user_current/scripts/qis/run_spin15_qualification_gate.sh	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/scripts/qis/run_spin15_qualification_gate.sh	2026-07-17 20:52:46.684402276 +0000
+@@ -0,0 +1,185 @@
++#!/usr/bin/env bash
++#
++# Build and validate the complete 15-observable ttbar polarization/spin package
++# for the 10k-per-sample production qualification.
++#
++# Preconditions:
++#   1. SC and ISO authoritative LHE manifests exist.
++#   2. SC and ISO shower jobs have completed.
++#   3. collect_showering.py has produced hepmc3_merged/*.hepmc3.
++#
++# The gate builds four matched ntuple datasets:
++#   lhe_sc, hepmc_sc, lhe_iso, hepmc_iso
++# and produces all 15 distributions for every sample plus coefficient and gate
++# tables.
++
++set -euo pipefail
++
++REPO=${REPO:-/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol}
++SC_CONFIG=${SC_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_sc_v1.yaml}
++ISO_CONFIG=${ISO_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_iso_v1.yaml}
++SC_PRODUCTION_CONFIG=${SC_PRODUCTION_CONFIG:-$REPO/configs/production/production_500GeV_ISR_sc_v1.csv}
++ISO_PRODUCTION_CONFIG=${ISO_PRODUCTION_CONFIG:-$REPO/configs/production/production_500GeV_ISR_iso_validation_v1.csv}
++MAX_EVENTS=${MAX_EVENTS:-10000}
++STRICT_PHYSICS=${STRICT_PHYSICS:-1}
++FORCE=${FORCE:-0}
++PLOT_FORMATS=${PLOT_FORMATS:-"png pdf"}
++
++read_yaml_value() {
++  local config=$1
++  local expression=$2
++  python3 - "$config" "$expression" <<'PY'
++import sys
++from pathlib import Path
++import yaml
++
++path = Path(sys.argv[1])
++keys = sys.argv[2].split(".")
++payload = yaml.safe_load(path.read_text())
++value = payload
++for key in keys:
++    value = value[key]
++print(value)
++PY
++}
++
++die() {
++  echo "ERROR: $*" >&2
++  exit 1
++}
++
++[[ -d $REPO ]] || die "repository does not exist: $REPO"
++[[ -f $SC_CONFIG ]] || die "missing SC QIS config: $SC_CONFIG"
++[[ -f $ISO_CONFIG ]] || die "missing ISO QIS config: $ISO_CONFIG"
++[[ -f $SC_PRODUCTION_CONFIG ]] || die "missing SC production config: $SC_PRODUCTION_CONFIG"
++[[ -f $ISO_PRODUCTION_CONFIG ]] || die "missing ISO production config: $ISO_PRODUCTION_CONFIG"
++(( MAX_EVENTS > 0 )) || die "MAX_EVENTS must be positive"
++
++SC_MANIFEST=${SC_MANIFEST:-$(read_yaml_value "$SC_CONFIG" campaign.source_manifest)}
++ISO_MANIFEST=${ISO_MANIFEST:-$(read_yaml_value "$ISO_CONFIG" campaign.source_manifest)}
++SC_QIS_ROOT=$(read_yaml_value "$SC_CONFIG" campaign.output_root)
++ISO_QIS_ROOT=$(read_yaml_value "$ISO_CONFIG" campaign.output_root)
++SC_HEPMC_ROOT=${SC_HEPMC_ROOT:-$SC_QIS_ROOT/shower/hepmc3_merged}
++ISO_HEPMC_ROOT=${ISO_HEPMC_ROOT:-$ISO_QIS_ROOT/shower/hepmc3_merged}
++OUT=${OUT:-/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/spin15_gate_10k_v1}
++
++[[ -f $SC_MANIFEST ]] || die "missing SC manifest: $SC_MANIFEST"
++[[ -f $ISO_MANIFEST ]] || die "missing ISO manifest: $ISO_MANIFEST"
++[[ -d $SC_HEPMC_ROOT ]] || die "missing SC merged HepMC directory: $SC_HEPMC_ROOT"
++[[ -d $ISO_HEPMC_ROOT ]] || die "missing ISO merged HepMC directory: $ISO_HEPMC_ROOT"
++[[ $OUT == /eos/* || $OUT == /tmp/* ]] || die "OUT must be on EOS or under /tmp"
++
++if [[ -e $OUT ]]; then
++  if [[ $FORCE == 1 ]]; then
++    rm -rf "$OUT"
++  else
++    die "output exists: $OUT; set FORCE=1 to replace"
++  fi
++fi
++
++mkdir -p \
++  "$OUT/ntuples/lhe_sc" \
++  "$OUT/ntuples/hepmc_sc" \
++  "$OUT/ntuples/lhe_iso" \
++  "$OUT/ntuples/hepmc_iso" \
++  "$OUT/spin15" \
++  "$OUT/gate" \
++  "$OUT/provenance"
++
++export PYTHONDONTWRITEBYTECODE=1
++
++TABLE_OPTIONS=(--no-root)
++if ! python3 - <<'PY' >/dev/null 2>&1
++import pyarrow
++PY
++then
++  echo "WARNING: pyarrow is unavailable; writing CSV only."
++  TABLE_OPTIONS+=(--no-parquet)
++fi
++
++run_ntuples() {
++  local label=$1
++  local config=$2
++  local manifest=$3
++  local input_format=$4
++  local output_dir=$5
++  local input_root=${6:-}
++
++  echo
++  echo "======================================================================"
++  echo "NTUPLES: $label"
++  echo "======================================================================"
++
++  command=(
++    python3 "$REPO/scripts/qis/make_qis_ntuples.py"
++    --config "$config"
++    --manifest "$manifest"
++    --input-format "$input_format"
++    --output-dir "$output_dir"
++    --max-events "$MAX_EVENTS"
++    "${TABLE_OPTIONS[@]}"
++  )
++  if [[ -n $input_root ]]; then
++    command+=(--input-root "$input_root")
++  fi
++  "${command[@]}" | tee "$OUT/provenance/ntuples_${label}.log"
++}
++
++run_ntuples lhe_sc "$SC_CONFIG" "$SC_MANIFEST" lhe \
++  "$OUT/ntuples/lhe_sc"
++run_ntuples hepmc_sc "$SC_CONFIG" "$SC_MANIFEST" hepmc3 \
++  "$OUT/ntuples/hepmc_sc" "$SC_HEPMC_ROOT"
++run_ntuples lhe_iso "$ISO_CONFIG" "$ISO_MANIFEST" lhe \
++  "$OUT/ntuples/lhe_iso"
++run_ntuples hepmc_iso "$ISO_CONFIG" "$ISO_MANIFEST" hepmc3 \
++  "$OUT/ntuples/hepmc_iso" "$ISO_HEPMC_ROOT"
++
++read -r -a FORMAT_ARGS <<<"$PLOT_FORMATS"
++
++python3 "$REPO/scripts/qis/plot_spin15_distributions.py" \
++  --dataset "lhe_sc=$OUT/ntuples/lhe_sc" \
++  --dataset "hepmc_sc=$OUT/ntuples/hepmc_sc" \
++  --dataset "lhe_iso=$OUT/ntuples/lhe_iso" \
++  --dataset "hepmc_iso=$OUT/ntuples/hepmc_iso" \
++  --output-dir "$OUT/spin15" \
++  --bins 40 \
++  --formats "${FORMAT_ARGS[@]}" \
++  --strict \
++  2>&1 | tee "$OUT/provenance/plot_spin15.log"
++
++VALIDATOR_ARGS=(
++  python3 "$REPO/scripts/qis/validate_spin15_gate.py"
++  --coefficients "$OUT/spin15/spin15_coefficients.csv"
++  --output-dir "$OUT/gate"
++  --production-config "$SC_PRODUCTION_CONFIG"
++  --production-config "$ISO_PRODUCTION_CONFIG"
++)
++if [[ $STRICT_PHYSICS == 1 ]]; then
++  VALIDATOR_ARGS+=(--strict-physics)
++fi
++"${VALIDATOR_ARGS[@]}" 2>&1 | tee "$OUT/provenance/validate_spin15.log"
++
++cp -a \
++  "$SC_CONFIG" \
++  "$ISO_CONFIG" \
++  "$SC_PRODUCTION_CONFIG" \
++  "$ISO_PRODUCTION_CONFIG" \
++  "$REPO/scripts/qis/plot_spin15_distributions.py" \
++  "$REPO/scripts/qis/validate_spin15_gate.py" \
++  "$REPO/scripts/qis/run_spin15_qualification_gate.sh" \
++  "$OUT/provenance/"
++
++find "$OUT" -type f -print0 \
++  | sort -z \
++  | xargs -0 sha256sum \
++  > "$OUT/provenance/SHA256SUMS.txt"
++
++cat <<EOF
++
++SPIN15 QUALIFICATION PRODUCTS
++  Root:          $OUT
++  Distributions: $OUT/spin15/per_sample
++  Coefficients:  $OUT/spin15/spin15_coefficients.csv
++  Gate report:   $OUT/gate/spin15_gate_report.md
++  Gate JSON:     $OUT/gate/spin15_gate_summary.json
++EOF
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/qis/validate_spin15_gate.py qis_gate_final/scripts/qis/validate_spin15_gate.py
+--- qis_user_current/scripts/qis/validate_spin15_gate.py	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/scripts/qis/validate_spin15_gate.py	2026-07-17 20:50:11.698697112 +0000
+@@ -0,0 +1,959 @@
++#!/usr/bin/env python3
++"""Validate the complete 15-observable ttbar polarization/spin gate.
++
++The input is the coefficient table written by plot_spin15_distributions.py.
++The validator performs four logically separate checks:
++
++1. Structural completeness and bounded event-level observable ranges.
++2. Beam-polarization configuration audit for LR100 and RL100 samples.
++3. Preservation of the 15 extracted coefficients from LHE to HepMC3.
++4. Physics discrimination:
++   - LR100 versus RL100 separation using the six B coefficients;
++   - spin-correlated versus isotropic-decay separation using the nine
++     connected correlations D_ij = C_ij - B1_i B2_j;
++   - e+mu- versus mu+e- decay-flavour consistency.
++
++No hard-coded Standard Model sign is imposed.  The authoritative LHE truth is
++used as the reference, and the showered HepMC sample must preserve it.
++"""
++
++from __future__ import annotations
++
++import argparse
++import csv
++import json
++import math
++import re
++import sys
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Iterable
++
++import numpy as np
++import pandas as pd
++
++ROOT = Path(__file__).resolve().parents[2]
++if str(ROOT) not in sys.path:
++    sys.path.insert(0, str(ROOT))
++
++from qis_ttbar.physics.observables import (  # noqa: E402
++    SPIN15_COEFFICIENT_NAMES,
++    SPIN15_EVENT_COLUMNS,
++)
++
++COEFFICIENT_BY_OBSERVABLE = dict(
++    zip(SPIN15_EVENT_COLUMNS, SPIN15_COEFFICIENT_NAMES, strict=True)
++)
++B_OBSERVABLES = ("b1k", "b1r", "b1n", "b2k", "b2r", "b2n")
++C_OBSERVABLES = ("ckk", "ckr", "ckn", "crk", "crr", "crn", "cnk", "cnr", "cnn")
++AXES = ("k", "r", "n")
++
++SAMPLE_RE = re.compile(
++    r"^(?P<initial_state>ee|mumu)_ttbar_"
++    r"(?P<decay_channel>epmum|mupem)_"
++    r"(?P<polarization>LR100|RL100|unpol)_"
++    r"(?P<spin_mode>sc|iso)_ISR_"
++    r"(?P<sqrt_s>[0-9]+)GeV$"
++)
++
++
++@dataclass(frozen=True)
++class GateThresholds:
++    preservation_max_abs: float
++    preservation_max_z: float
++    polarization_min_z: float
++    spin_correlation_min_z: float
++    flavour_consistency_max_z: float
++
++
++def parse_args() -> argparse.Namespace:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--coefficients", required=True, type=Path)
++    parser.add_argument("--output-dir", required=True, type=Path)
++    parser.add_argument(
++        "--production-config",
++        action="append",
++        default=[],
++        type=Path,
++        help="Production CSV to audit. Repeat for SC and ISO configurations.",
++    )
++    parser.add_argument("--lhe-sc-label", default="lhe_sc")
++    parser.add_argument("--hepmc-sc-label", default="hepmc_sc")
++    parser.add_argument("--lhe-iso-label", default="lhe_iso")
++    parser.add_argument("--hepmc-iso-label", default="hepmc_iso")
++    parser.add_argument("--preservation-max-abs", type=float, default=0.02)
++    parser.add_argument("--preservation-max-z", type=float, default=5.0)
++    parser.add_argument("--polarization-min-z", type=float, default=5.0)
++    parser.add_argument("--spin-correlation-min-z", type=float, default=5.0)
++    parser.add_argument("--flavour-consistency-max-z", type=float, default=5.0)
++    parser.add_argument(
++        "--strict-physics",
++        action="store_true",
++        help="Return nonzero when a physics-separation/preservation requirement fails.",
++    )
++    return parser.parse_args()
++
++
++def safe_z(delta: float, first_se: float, second_se: float) -> float:
++    denominator = math.hypot(first_se, second_se)
++    if denominator > 0.0 and math.isfinite(denominator):
++        return delta / denominator
++    if abs(delta) <= 1.0e-14:
++        return 0.0
++    return math.copysign(math.inf, delta)
++
++
++def parse_bool(value: object) -> bool:
++    return str(value).strip().lower() in {"1", "true", "yes", "on"}
++
++
++def sample_identity(row: pd.Series | dict[str, object]) -> tuple[str, str, str, str, int]:
++    return (
++        str(row["initial_state"]),
++        str(row["decay_channel"]),
++        str(row["polarization"]),
++        str(row["spin_mode"]),
++        int(float(row["sqrt_s_GeV"])),
++    )
++
++
++def stage_from_dataset(label: str) -> str:
++    lowered = label.lower()
++    if "hepmc" in lowered:
++        return "hepmc"
++    if "lhe" in lowered:
++        return "lhe"
++    raise ValueError(
++        f"cannot infer stage from dataset label {label!r}; include 'lhe' or 'hepmc'"
++    )
++
++
++def spin_from_dataset(label: str) -> str:
++    lowered = label.lower()
++    if lowered.endswith("_sc") or "_sc_" in lowered:
++        return "sc"
++    if lowered.endswith("_iso") or "_iso_" in lowered:
++        return "iso"
++    raise ValueError(
++        f"cannot infer spin mode from dataset label {label!r}; include '_sc' or '_iso'"
++    )
++
++
++def audit_production_config(path: Path) -> list[dict[str, object]]:
++    if not path.is_file():
++        raise FileNotFoundError(path)
++    rows: list[dict[str, object]] = []
++    with path.open(newline="") as stream:
++        reader = csv.DictReader(stream)
++        required = {
++            "sample_id",
++            "enabled",
++            "initial_state",
++            "decay_channel",
++            "polarization",
++            "beam1_helicity",
++            "beam2_helicity",
++            "beam1_pol_fraction",
++            "beam2_pol_fraction",
++            "spin_correlated",
++        }
++        if reader.fieldnames is None or not required.issubset(reader.fieldnames):
++            raise ValueError(
++                f"{path}: missing columns {sorted(required - set(reader.fieldnames or []))}"
++            )
++        for source in reader:
++            if not parse_bool(source["enabled"]):
++                continue
++            sample_id = source["sample_id"]
++            match = SAMPLE_RE.match(sample_id)
++            messages: list[str] = []
++            if not match:
++                messages.append("sample ID does not match canonical convention")
++            else:
++                for field in ("initial_state", "decay_channel", "polarization"):
++                    if source[field] != match.group(field):
++                        messages.append(
++                            f"{field}={source[field]!r} disagrees with sample ID "
++                            f"{match.group(field)!r}"
++                        )
++                expected_spin = match.group("spin_mode") == "sc"
++                if parse_bool(source["spin_correlated"]) != expected_spin:
++                    messages.append(
++                        "spin_correlated disagrees with sc/iso sample ID"
++                    )
++
++            polarization = source["polarization"]
++            h1 = int(source["beam1_helicity"])
++            h2 = int(source["beam2_helicity"])
++            f1 = float(source["beam1_pol_fraction"])
++            f2 = float(source["beam2_pol_fraction"])
++            expected_helicities = {
++                "LR100": (-1, 1),
++                "RL100": (1, -1),
++            }.get(polarization)
++            if expected_helicities is None:
++                messages.append(f"unsupported polarization label {polarization!r}")
++            elif (h1, h2) != expected_helicities:
++                messages.append(
++                    f"helicities {(h1, h2)} do not match {polarization} "
++                    f"expectation {expected_helicities}"
++                )
++            if not math.isclose(f1, 1.0, abs_tol=1.0e-12):
++                messages.append(f"beam1_pol_fraction={f1} is not 1.0")
++            if not math.isclose(f2, 1.0, abs_tol=1.0e-12):
++                messages.append(f"beam2_pol_fraction={f2} is not 1.0")
++
++            rows.append(
++                {
++                    "config": str(path),
++                    "sample_id": sample_id,
++                    "polarization": polarization,
++                    "beam1_helicity": h1,
++                    "beam2_helicity": h2,
++                    "beam1_pol_fraction": f1,
++                    "beam2_pol_fraction": f2,
++                    "spin_correlated": parse_bool(source["spin_correlated"]),
++                    "status": "pass" if not messages else "fail",
++                    "messages": "; ".join(messages),
++                }
++            )
++    if not rows:
++        raise ValueError(f"{path}: no enabled rows")
++    return rows
++
++
++def validate_structure(frame: pd.DataFrame) -> tuple[list[dict[str, object]], list[str]]:
++    required = {
++        "dataset",
++        "sample_id",
++        "initial_state",
++        "decay_channel",
++        "polarization",
++        "spin_mode",
++        "sqrt_s_GeV",
++        "observable",
++        "coefficient_name",
++        "coefficient",
++        "coefficient_se",
++        "min",
++        "max",
++        "in_unit_interval",
++    }
++    missing = sorted(required - set(frame.columns))
++    if missing:
++        raise ValueError(f"coefficient table missing columns: {missing}")
++
++    rows: list[dict[str, object]] = []
++    failures: list[str] = []
++
++    for (dataset, sample_id), group in frame.groupby(["dataset", "sample_id"], sort=True):
++        messages: list[str] = []
++        observed = set(group["observable"].astype(str))
++        missing_observables = sorted(set(SPIN15_EVENT_COLUMNS) - observed)
++        extras = sorted(observed - set(SPIN15_EVENT_COLUMNS))
++        if missing_observables:
++            messages.append(f"missing observables {missing_observables}")
++        if extras:
++            messages.append(f"unexpected observables {extras}")
++        if len(group) != len(SPIN15_EVENT_COLUMNS):
++            messages.append(f"row count is {len(group)}, expected 15")
++
++        match = SAMPLE_RE.match(str(sample_id))
++        if not match:
++            messages.append("sample ID does not match canonical convention")
++        else:
++            first = group.iloc[0]
++            for field in ("initial_state", "decay_channel", "polarization", "spin_mode"):
++                if str(first[field]) != match.group(field):
++                    messages.append(
++                        f"{field}={first[field]!r} disagrees with sample ID"
++                    )
++
++        for _, source in group.iterrows():
++            observable = str(source["observable"])
++            expected_name = COEFFICIENT_BY_OBSERVABLE.get(observable)
++            if source["coefficient_name"] != expected_name:
++                messages.append(
++                    f"{observable}: coefficient name {source['coefficient_name']!r} "
++                    f"!= {expected_name!r}"
++                )
++            numbers = (
++                float(source["coefficient"]),
++                float(source["coefficient_se"]),
++                float(source["min"]),
++                float(source["max"]),
++            )
++            if not all(math.isfinite(value) for value in numbers):
++                messages.append(f"{observable}: nonfinite summary value")
++            if float(source["coefficient_se"]) < 0.0:
++                messages.append(f"{observable}: negative coefficient uncertainty")
++            if not parse_bool(source["in_unit_interval"]):
++                messages.append(
++                    f"{observable}: event range [{source['min']}, {source['max']}] "
++                    "is outside [-1,1]"
++                )
++
++        status = "pass" if not messages else "fail"
++        rows.append(
++            {
++                "dataset": dataset,
++                "sample_id": sample_id,
++                "observable_rows": len(group),
++                "status": status,
++                "messages": "; ".join(messages),
++            }
++        )
++        if messages:
++            failures.append(f"{dataset}/{sample_id}: {'; '.join(messages)}")
++
++    return rows, failures
++
++
++def indexed_coefficients(frame: pd.DataFrame) -> dict[tuple[str, str, str, str, str, int, str], pd.Series]:
++    index: dict[tuple[str, str, str, str, str, int, str], pd.Series] = {}
++    for _, row in frame.iterrows():
++        key = (
++            str(row["dataset"]),
++            str(row["initial_state"]),
++            str(row["decay_channel"]),
++            str(row["polarization"]),
++            str(row["spin_mode"]),
++            int(float(row["sqrt_s_GeV"])),
++            str(row["observable"]),
++        )
++        if key in index:
++            raise ValueError(f"duplicate coefficient row for {key}")
++        index[key] = row
++    return index
++
++
++def preservation_rows(
++    frame: pd.DataFrame,
++    *,
++    pairs: Iterable[tuple[str, str, str]],
++    thresholds: GateThresholds,
++) -> list[dict[str, object]]:
++    index = indexed_coefficients(frame)
++    rows: list[dict[str, object]] = []
++    for lhe_label, hepmc_label, spin_mode in pairs:
++        lhe_samples = frame[
++            (frame["dataset"] == lhe_label) & (frame["spin_mode"] == spin_mode)
++        ][["initial_state", "decay_channel", "polarization", "sqrt_s_GeV"]].drop_duplicates()
++        for _, sample in lhe_samples.iterrows():
++            base = (
++                str(sample["initial_state"]),
++                str(sample["decay_channel"]),
++                str(sample["polarization"]),
++                spin_mode,
++                int(float(sample["sqrt_s_GeV"])),
++            )
++            for observable in SPIN15_EVENT_COLUMNS:
++                left = index.get((lhe_label, *base, observable))
++                right = index.get((hepmc_label, *base, observable))
++                if left is None or right is None:
++                    rows.append(
++                        {
++                            "spin_mode": spin_mode,
++                            "initial_state": base[0],
++                            "decay_channel": base[1],
++                            "polarization": base[2],
++                            "sqrt_s_GeV": base[4],
++                            "observable": observable,
++                            "lhe_dataset": lhe_label,
++                            "hepmc_dataset": hepmc_label,
++                            "status": "fail",
++                            "message": "missing LHE or HepMC coefficient",
++                        }
++                    )
++                    continue
++                delta = float(right["coefficient"]) - float(left["coefficient"])
++                z = safe_z(
++                    delta,
++                    float(left["coefficient_se"]),
++                    float(right["coefficient_se"]),
++                )
++                status = (
++                    "pass"
++                    if abs(delta) <= thresholds.preservation_max_abs
++                    and abs(z) <= thresholds.preservation_max_z
++                    else "fail"
++                )
++                rows.append(
++                    {
++                        "spin_mode": spin_mode,
++                        "initial_state": base[0],
++                        "decay_channel": base[1],
++                        "polarization": base[2],
++                        "sqrt_s_GeV": base[4],
++                        "observable": observable,
++                        "coefficient_name": COEFFICIENT_BY_OBSERVABLE[observable],
++                        "lhe_dataset": lhe_label,
++                        "hepmc_dataset": hepmc_label,
++                        "lhe_coefficient": float(left["coefficient"]),
++                        "lhe_se": float(left["coefficient_se"]),
++                        "hepmc_coefficient": float(right["coefficient"]),
++                        "hepmc_se": float(right["coefficient_se"]),
++                        "delta_hepmc_minus_lhe": delta,
++                        "z": z,
++                        "status": status,
++                        "message": "",
++                    }
++                )
++    return rows
++
++
++def polarization_rows(
++    frame: pd.DataFrame,
++    *,
++    thresholds: GateThresholds,
++) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
++    index = indexed_coefficients(frame)
++    details: list[dict[str, object]] = []
++    groups: list[dict[str, object]] = []
++    keys = frame[["dataset", "initial_state", "decay_channel", "spin_mode", "sqrt_s_GeV"]].drop_duplicates()
++    for _, key_row in keys.iterrows():
++        dataset = str(key_row["dataset"])
++        initial = str(key_row["initial_state"])
++        decay = str(key_row["decay_channel"])
++        mode = str(key_row["spin_mode"])
++        sqrt_s = int(float(key_row["sqrt_s_GeV"]))
++        group_details = []
++        for observable in B_OBSERVABLES:
++            lr = index.get((dataset, initial, decay, "LR100", mode, sqrt_s, observable))
++            rl = index.get((dataset, initial, decay, "RL100", mode, sqrt_s, observable))
++            if lr is None or rl is None:
++                continue
++            delta = float(lr["coefficient"]) - float(rl["coefficient"])
++            z = safe_z(delta, float(lr["coefficient_se"]), float(rl["coefficient_se"]))
++            detail = {
++                "dataset": dataset,
++                "stage": stage_from_dataset(dataset),
++                "initial_state": initial,
++                "decay_channel": decay,
++                "spin_mode": mode,
++                "sqrt_s_GeV": sqrt_s,
++                "observable": observable,
++                "coefficient_name": COEFFICIENT_BY_OBSERVABLE[observable],
++                "lr_coefficient": float(lr["coefficient"]),
++                "lr_se": float(lr["coefficient_se"]),
++                "rl_coefficient": float(rl["coefficient"]),
++                "rl_se": float(rl["coefficient_se"]),
++                "delta_lr_minus_rl": delta,
++                "z": z,
++            }
++            details.append(detail)
++            group_details.append(detail)
++        if not group_details:
++            groups.append(
++                {
++                    "dataset": dataset,
++                    "initial_state": initial,
++                    "decay_channel": decay,
++                    "spin_mode": mode,
++                    "sqrt_s_GeV": sqrt_s,
++                    "max_abs_z": math.nan,
++                    "leading_observable": "",
++                    "status": "fail",
++                    "message": "missing LR100/RL100 B-coefficient pair",
++                }
++            )
++            continue
++        leading = max(group_details, key=lambda row: abs(float(row["z"])))
++        max_abs_z = abs(float(leading["z"]))
++        groups.append(
++            {
++                "dataset": dataset,
++                "stage": stage_from_dataset(dataset),
++                "initial_state": initial,
++                "decay_channel": decay,
++                "spin_mode": mode,
++                "sqrt_s_GeV": sqrt_s,
++                "max_abs_z": max_abs_z,
++                "leading_observable": leading["observable"],
++                "leading_delta": leading["delta_lr_minus_rl"],
++                "status": "pass" if max_abs_z >= thresholds.polarization_min_z else "fail",
++                "message": "",
++            }
++        )
++    return details, groups
++
++
++def sample_coefficient_map(group: pd.DataFrame) -> dict[str, tuple[float, float]]:
++    return {
++        str(row["observable"]): (
++            float(row["coefficient"]),
++            float(row["coefficient_se"]),
++        )
++        for _, row in group.iterrows()
++    }
++
++
++def connected_correlations(frame: pd.DataFrame) -> pd.DataFrame:
++    rows: list[dict[str, object]] = []
++    grouping = [
++        "dataset",
++        "sample_id",
++        "initial_state",
++        "decay_channel",
++        "polarization",
++        "spin_mode",
++        "sqrt_s_GeV",
++    ]
++    for keys, group in frame.groupby(grouping, sort=True):
++        values = sample_coefficient_map(group)
++        if not all(name in values for name in SPIN15_EVENT_COLUMNS):
++            continue
++        metadata = dict(zip(grouping, keys, strict=True))
++        for first in AXES:
++            for second in AXES:
++                c_name = f"c{first}{second}"
++                b1_name = f"b1{first}"
++                b2_name = f"b2{second}"
++                c, c_se = values[c_name]
++                b1, b1_se = values[b1_name]
++                b2, b2_se = values[b2_name]
++                connected = c - b1 * b2
++                # Delta-method uncertainty.  This deliberately neglects the
++                # within-sample covariance between C_ij, B1_i, and B2_j; the
++                # full tomography bootstrap remains the final precision tool.
++                connected_se = math.sqrt(
++                    c_se * c_se
++                    + (b2 * b1_se) ** 2
++                    + (b1 * b2_se) ** 2
++                )
++                rows.append(
++                    {
++                        **metadata,
++                        "observable": c_name,
++                        "connected_name": f"D{first}{second}",
++                        "Cij": c,
++                        "B1i": b1,
++                        "B2j": b2,
++                        "connected": connected,
++                        "connected_se": connected_se,
++                    }
++                )
++    return pd.DataFrame(rows)
++
++
++def spin_correlation_rows(
++    connected: pd.DataFrame,
++    *,
++    sc_labels: dict[str, str],
++    iso_labels: dict[str, str],
++    thresholds: GateThresholds,
++) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
++    details: list[dict[str, object]] = []
++    groups: list[dict[str, object]] = []
++    index: dict[tuple[str, str, str, str, int, str], pd.Series] = {}
++    for _, row in connected.iterrows():
++        key = (
++            str(row["dataset"]),
++            str(row["initial_state"]),
++            str(row["decay_channel"]),
++            str(row["polarization"]),
++            int(float(row["sqrt_s_GeV"])),
++            str(row["observable"]),
++        )
++        index[key] = row
++
++    for stage in ("lhe", "hepmc"):
++        sc_label = sc_labels[stage]
++        iso_label = iso_labels[stage]
++        sc_samples = connected[connected["dataset"] == sc_label][
++            ["initial_state", "decay_channel", "polarization", "sqrt_s_GeV"]
++        ].drop_duplicates()
++        for _, sample in sc_samples.iterrows():
++            initial = str(sample["initial_state"])
++            decay = str(sample["decay_channel"])
++            polarization = str(sample["polarization"])
++            sqrt_s = int(float(sample["sqrt_s_GeV"]))
++            group_details = []
++            for observable in C_OBSERVABLES:
++                sc = index.get((sc_label, initial, decay, polarization, sqrt_s, observable))
++                iso = index.get((iso_label, initial, decay, polarization, sqrt_s, observable))
++                if sc is None or iso is None:
++                    continue
++                delta = float(sc["connected"]) - float(iso["connected"])
++                z = safe_z(
++                    delta,
++                    float(sc["connected_se"]),
++                    float(iso["connected_se"]),
++                )
++                detail = {
++                    "stage": stage,
++                    "sc_dataset": sc_label,
++                    "iso_dataset": iso_label,
++                    "initial_state": initial,
++                    "decay_channel": decay,
++                    "polarization": polarization,
++                    "sqrt_s_GeV": sqrt_s,
++                    "observable": observable,
++                    "connected_name": sc["connected_name"],
++                    "sc_connected": float(sc["connected"]),
++                    "sc_se": float(sc["connected_se"]),
++                    "iso_connected": float(iso["connected"]),
++                    "iso_se": float(iso["connected_se"]),
++                    "delta_sc_minus_iso": delta,
++                    "z": z,
++                }
++                details.append(detail)
++                group_details.append(detail)
++            if not group_details:
++                groups.append(
++                    {
++                        "stage": stage,
++                        "initial_state": initial,
++                        "decay_channel": decay,
++                        "polarization": polarization,
++                        "sqrt_s_GeV": sqrt_s,
++                        "max_abs_z": math.nan,
++                        "leading_observable": "",
++                        "status": "fail",
++                        "message": "missing matched SC/ISO connected correlations",
++                    }
++                )
++                continue
++            leading = max(group_details, key=lambda row: abs(float(row["z"])))
++            max_abs_z = abs(float(leading["z"]))
++            groups.append(
++                {
++                    "stage": stage,
++                    "initial_state": initial,
++                    "decay_channel": decay,
++                    "polarization": polarization,
++                    "sqrt_s_GeV": sqrt_s,
++                    "max_abs_z": max_abs_z,
++                    "leading_observable": leading["observable"],
++                    "leading_delta": leading["delta_sc_minus_iso"],
++                    "status": "pass" if max_abs_z >= thresholds.spin_correlation_min_z else "fail",
++                    "message": "",
++                }
++            )
++    return details, groups
++
++
++def flavour_consistency_rows(
++    frame: pd.DataFrame,
++    *,
++    thresholds: GateThresholds,
++) -> tuple[list[dict[str, object]], list[dict[str, object]]]:
++    index = indexed_coefficients(frame)
++    details: list[dict[str, object]] = []
++    groups: list[dict[str, object]] = []
++    keys = frame[["dataset", "initial_state", "polarization", "spin_mode", "sqrt_s_GeV"]].drop_duplicates()
++    for _, key_row in keys.iterrows():
++        dataset = str(key_row["dataset"])
++        initial = str(key_row["initial_state"])
++        polarization = str(key_row["polarization"])
++        mode = str(key_row["spin_mode"])
++        sqrt_s = int(float(key_row["sqrt_s_GeV"]))
++        group_details = []
++        for observable in SPIN15_EVENT_COLUMNS:
++            first = index.get((dataset, initial, "epmum", polarization, mode, sqrt_s, observable))
++            second = index.get((dataset, initial, "mupem", polarization, mode, sqrt_s, observable))
++            if first is None or second is None:
++                continue
++            delta = float(first["coefficient"]) - float(second["coefficient"])
++            z = safe_z(
++                delta,
++                float(first["coefficient_se"]),
++                float(second["coefficient_se"]),
++            )
++            detail = {
++                "dataset": dataset,
++                "initial_state": initial,
++                "polarization": polarization,
++                "spin_mode": mode,
++                "sqrt_s_GeV": sqrt_s,
++                "observable": observable,
++                "epmum_coefficient": float(first["coefficient"]),
++                "epmum_se": float(first["coefficient_se"]),
++                "mupem_coefficient": float(second["coefficient"]),
++                "mupem_se": float(second["coefficient_se"]),
++                "delta_epmum_minus_mupem": delta,
++                "z": z,
++            }
++            details.append(detail)
++            group_details.append(detail)
++        if not group_details:
++            groups.append(
++                {
++                    "dataset": dataset,
++                    "initial_state": initial,
++                    "polarization": polarization,
++                    "spin_mode": mode,
++                    "sqrt_s_GeV": sqrt_s,
++                    "max_abs_z": math.nan,
++                    "leading_observable": "",
++                    "status": "fail",
++                    "message": "missing epmum/mupem coefficient pairs",
++                }
++            )
++            continue
++        leading = max(group_details, key=lambda row: abs(float(row["z"])))
++        max_abs_z = abs(float(leading["z"]))
++        groups.append(
++            {
++                "dataset": dataset,
++                "initial_state": initial,
++                "polarization": polarization,
++                "spin_mode": mode,
++                "sqrt_s_GeV": sqrt_s,
++                "max_abs_z": max_abs_z,
++                "leading_observable": leading["observable"],
++                "leading_delta": leading["delta_epmum_minus_mupem"],
++                "status": "pass" if max_abs_z <= thresholds.flavour_consistency_max_z else "warn",
++                "message": "",
++            }
++        )
++    return details, groups
++
++
++def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
++    path.parent.mkdir(parents=True, exist_ok=True)
++    if not rows:
++        path.write_text("")
++        return
++    fieldnames: list[str] = []
++    for row in rows:
++        for key in row:
++            if key not in fieldnames:
++                fieldnames.append(key)
++    with path.open("w", newline="") as stream:
++        writer = csv.DictWriter(stream, fieldnames=fieldnames, extrasaction="ignore")
++        writer.writeheader()
++        writer.writerows(rows)
++
++
++def count_status(rows: Iterable[dict[str, object]], status: str) -> int:
++    return sum(str(row.get("status", "")) == status for row in rows)
++
++
++def main() -> int:
++    args = parse_args()
++    if not args.coefficients.is_file():
++        raise FileNotFoundError(args.coefficients)
++    args.output_dir.mkdir(parents=True, exist_ok=True)
++
++    thresholds = GateThresholds(
++        preservation_max_abs=args.preservation_max_abs,
++        preservation_max_z=args.preservation_max_z,
++        polarization_min_z=args.polarization_min_z,
++        spin_correlation_min_z=args.spin_correlation_min_z,
++        flavour_consistency_max_z=args.flavour_consistency_max_z,
++    )
++
++    frame = pd.read_csv(args.coefficients)
++    structure, structural_failures = validate_structure(frame)
++
++    expected_labels = {
++        args.lhe_sc_label: ("lhe", "sc"),
++        args.hepmc_sc_label: ("hepmc", "sc"),
++        args.lhe_iso_label: ("lhe", "iso"),
++        args.hepmc_iso_label: ("hepmc", "iso"),
++    }
++    dataset_failures: list[str] = []
++    for label, (expected_stage, expected_spin) in expected_labels.items():
++        if label not in set(frame["dataset"].astype(str)):
++            dataset_failures.append(f"missing required dataset {label}")
++            continue
++        if stage_from_dataset(label) != expected_stage:
++            dataset_failures.append(f"dataset {label} has wrong stage convention")
++        if spin_from_dataset(label) != expected_spin:
++            dataset_failures.append(f"dataset {label} has wrong spin-mode convention")
++        modes = set(frame.loc[frame["dataset"] == label, "spin_mode"].astype(str))
++        if modes != {expected_spin}:
++            dataset_failures.append(
++                f"dataset {label} contains spin modes {sorted(modes)}, expected {expected_spin}"
++            )
++
++    config_audit: list[dict[str, object]] = []
++    for path in args.production_config:
++        config_audit.extend(audit_production_config(path))
++    config_failures = [
++        f"{row['sample_id']}: {row['messages']}"
++        for row in config_audit
++        if row["status"] == "fail"
++    ]
++
++    preservation = preservation_rows(
++        frame,
++        pairs=(
++            (args.lhe_sc_label, args.hepmc_sc_label, "sc"),
++            (args.lhe_iso_label, args.hepmc_iso_label, "iso"),
++        ),
++        thresholds=thresholds,
++    )
++    preservation_failures = [
++        row for row in preservation if row.get("status") == "fail"
++    ]
++
++    polarization_details, polarization_groups = polarization_rows(
++        frame, thresholds=thresholds
++    )
++    polarization_failures = [
++        row for row in polarization_groups if row.get("status") == "fail"
++    ]
++
++    connected = connected_correlations(frame)
++    connected_path = args.output_dir / "spin15_connected_correlations.csv"
++    connected.to_csv(connected_path, index=False)
++    spin_details, spin_groups = spin_correlation_rows(
++        connected,
++        sc_labels={"lhe": args.lhe_sc_label, "hepmc": args.hepmc_sc_label},
++        iso_labels={"lhe": args.lhe_iso_label, "hepmc": args.hepmc_iso_label},
++        thresholds=thresholds,
++    )
++    spin_failures = [row for row in spin_groups if row.get("status") == "fail"]
++
++    flavour_details, flavour_groups = flavour_consistency_rows(
++        frame, thresholds=thresholds
++    )
++    flavour_warnings = [row for row in flavour_groups if row.get("status") == "warn"]
++    flavour_failures = [row for row in flavour_groups if row.get("status") == "fail"]
++
++    products = {
++        "structure": args.output_dir / "spin15_structure.csv",
++        "production_config_audit": args.output_dir / "beam_polarization_config_audit.csv",
++        "lhe_hepmc_preservation": args.output_dir / "spin15_lhe_hepmc_preservation.csv",
++        "polarization_details": args.output_dir / "spin15_lr_rl_details.csv",
++        "polarization_groups": args.output_dir / "spin15_lr_rl_gate.csv",
++        "spin_details": args.output_dir / "spin15_sc_iso_details.csv",
++        "spin_groups": args.output_dir / "spin15_sc_iso_gate.csv",
++        "flavour_details": args.output_dir / "spin15_decay_flavour_details.csv",
++        "flavour_groups": args.output_dir / "spin15_decay_flavour_gate.csv",
++    }
++    write_csv(products["structure"], structure)
++    write_csv(products["production_config_audit"], config_audit)
++    write_csv(products["lhe_hepmc_preservation"], preservation)
++    write_csv(products["polarization_details"], polarization_details)
++    write_csv(products["polarization_groups"], polarization_groups)
++    write_csv(products["spin_details"], spin_details)
++    write_csv(products["spin_groups"], spin_groups)
++    write_csv(products["flavour_details"], flavour_details)
++    write_csv(products["flavour_groups"], flavour_groups)
++
++    structural_ok = not (
++        structural_failures or dataset_failures or config_failures or flavour_failures
++    )
++    physics_ok = not (
++        preservation_failures or polarization_failures or spin_failures
++    )
++    overall_ok = structural_ok and (physics_ok or not args.strict_physics)
++
++    report_path = args.output_dir / "spin15_gate_report.md"
++    with report_path.open("w") as stream:
++        stream.write("# Spin-15 production qualification gate\n\n")
++        stream.write(f"- Coefficient table: `{args.coefficients}`\n")
++        stream.write(f"- Structural status: **{'PASS' if structural_ok else 'FAIL'}**\n")
++        stream.write(f"- Physics status: **{'PASS' if physics_ok else 'FAIL'}**\n")
++        stream.write(f"- Strict physics mode: `{args.strict_physics}`\n\n")
++        stream.write("## Observable contract\n\n")
++        stream.write("Six polarization analyzers:\n\n")
++        stream.write("`b1k, b1r, b1n, b2k, b2r, b2n`\n\n")
++        stream.write("Nine correlation analyzers:\n\n")
++        stream.write("`ckk, crr, cnn, ckr, crk, ckn, cnk, crn, cnr`\n\n")
++        stream.write("## Gate counts\n\n")
++        stream.write(
++            "| Check | Groups/rows | Fail | Warn |\n"
++            "|---|---:|---:|---:|\n"
++        )
++        stream.write(
++            f"| Sample structure | {len(structure)} | "
++            f"{count_status(structure, 'fail')} | 0 |\n"
++        )
++        stream.write(
++            f"| Beam configuration audit | {len(config_audit)} | "
++            f"{count_status(config_audit, 'fail')} | 0 |\n"
++        )
++        stream.write(
++            f"| LHE to HepMC coefficients | {len(preservation)} | "
++            f"{len(preservation_failures)} | 0 |\n"
++        )
++        stream.write(
++            f"| LR100 versus RL100 | {len(polarization_groups)} | "
++            f"{len(polarization_failures)} | 0 |\n"
++        )
++        stream.write(
++            f"| SC versus ISO connected correlations | {len(spin_groups)} | "
++            f"{len(spin_failures)} | 0 |\n"
++        )
++        stream.write(
++            f"| epmum versus mupem consistency | {len(flavour_groups)} | "
++            f"{len(flavour_failures)} | {len(flavour_warnings)} |\n\n"
++        )
++        stream.write("## Thresholds\n\n")
++        stream.write(
++            f"- LHE/HepMC maximum absolute coefficient shift: "
++            f"{thresholds.preservation_max_abs}\n"
++            f"- LHE/HepMC maximum significance: "
++            f"{thresholds.preservation_max_z}\n"
++            f"- Minimum LR/RL separation: "
++            f"{thresholds.polarization_min_z} sigma in at least one B component\n"
++            f"- Minimum SC/ISO separation: "
++            f"{thresholds.spin_correlation_min_z} sigma in at least one connected "
++            "correlation component\n"
++            f"- Decay-flavour consistency warning threshold: "
++            f"{thresholds.flavour_consistency_max_z} sigma\n\n"
++        )
++        stream.write("## Interpretation\n\n")
++        stream.write(
++            "No external sign template is imposed. The LHE coefficients define the "
++            "generator-truth reference. Beam polarization is verified first by the "
++            "configured helicities and then by LR/RL separation in the B vector. "
++            "Spin correlation is verified by comparing connected correlations "
++            "D_ij = C_ij - B1_i B2_j between matched spin-correlated and "
++            "isotropic-decay samples.\n\n"
++        )
++        stream.write("## Products\n\n")
++        for name, path in products.items():
++            stream.write(f"- `{name}`: `{path}`\n")
++        stream.write(f"- `connected_correlations`: `{connected_path}`\n")
++
++    payload = {
++        "schema_version": 1,
++        "status": "pass" if overall_ok else "fail",
++        "structural_status": "pass" if structural_ok else "fail",
++        "physics_status": "pass" if physics_ok else "fail",
++        "strict_physics": args.strict_physics,
++        "thresholds": thresholds.__dict__,
++        "counts": {
++            "coefficient_rows": len(frame),
++            "sample_groups": len(structure),
++            "structural_failures": len(structural_failures),
++            "dataset_failures": len(dataset_failures),
++            "config_failures": len(config_failures),
++            "preservation_failures": len(preservation_failures),
++            "polarization_failures": len(polarization_failures),
++            "spin_correlation_failures": len(spin_failures),
++            "flavour_warnings": len(flavour_warnings),
++            "flavour_failures": len(flavour_failures),
++        },
++        "messages": {
++            "structural": structural_failures,
++            "datasets": dataset_failures,
++            "production_config": config_failures,
++        },
++        "products": {name: str(path) for name, path in products.items()},
++        "connected_correlations": str(connected_path),
++        "report": str(report_path),
++    }
++    json_path = args.output_dir / "spin15_gate_summary.json"
++    json_path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
++
++    print(f"Structural status: {'PASS' if structural_ok else 'FAIL'}")
++    print(f"Physics status:    {'PASS' if physics_ok else 'FAIL'}")
++    print(f"Wrote {report_path}")
++    print(f"Wrote {json_path}")
++    if flavour_warnings:
++        print(f"Decay-flavour warnings: {len(flavour_warnings)}")
++    if not overall_ok:
++        print("SPIN15 QUALIFICATION GATE: FAIL")
++        return 1
++    print("SPIN15 QUALIFICATION GATE: PASS")
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/showering/augment_shower_metadata.py qis_gate_final/scripts/showering/augment_shower_metadata.py
+--- qis_user_current/scripts/showering/augment_shower_metadata.py	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/scripts/showering/augment_shower_metadata.py	2026-07-17 20:54:41.178302664 +0000
+@@ -0,0 +1,130 @@
++#!/usr/bin/env python3
++"""Augment qis_lhe_to_hepmc3 metadata with LHE-preparation provenance.
++
++The C++ converter records PYTHIA/HepMC execution details.  This helper adds the
++framework-owned WHIZARD compatibility transformations and warning accounting so
++that production metadata points back to the authoritative source LHE rather
++than only to a temporary prepared file.
++"""
++
++from __future__ import annotations
++
++import argparse
++import hashlib
++import json
++import re
++from pathlib import Path
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as stream:
++        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
++            digest.update(chunk)
++    return digest.hexdigest()
++
++
++def warning_count(text: str, message: str) -> int:
++    pattern = re.compile(
++        rf"^\s*\|\s*(\d+)\s+Warning in {re.escape(message)}",
++        re.MULTILINE,
++    )
++    found = pattern.findall(text)
++    if found:
++        return int(found[-1])
++    return text.count(f"Warning in {message}")
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--metadata", required=True, type=Path)
++    parser.add_argument(
++        "--source-lhe",
++        required=True,
++        type=Path,
++        help="Readable source copy used for checksum calculation.",
++    )
++    parser.add_argument(
++        "--source-lhe-path",
++        help="Authoritative persistent source path to store in metadata.",
++    )
++    parser.add_argument("--canonical-summary", required=True, type=Path)
++    parser.add_argument("--explicit-w-summary", required=True, type=Path)
++    parser.add_argument("--worker-log", required=True, type=Path)
++    parser.add_argument(
++        "--qed-shower-by-gamma",
++        required=True,
++        choices=("on", "off"),
++    )
++    parser.add_argument("--output", type=Path)
++    args = parser.parse_args()
++
++    for path in (
++        args.metadata,
++        args.source_lhe,
++        args.canonical_summary,
++        args.explicit_w_summary,
++        args.worker_log,
++    ):
++        if not path.is_file():
++            raise FileNotFoundError(path)
++
++    metadata = json.loads(args.metadata.read_text())
++    canonical = json.loads(args.canonical_summary.read_text())
++    explicit_w = json.loads(args.explicit_w_summary.read_text())
++    log_text = args.worker_log.read_text(errors="replace")
++
++    metadata.update(
++        {
++            "source_lhe_path": args.source_lhe_path or str(args.source_lhe),
++            "source_lhe_sha256": sha256(args.source_lhe),
++            "prepared_lhe_policy": "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3",
++            "qed_shower_by_gamma": args.qed_shower_by_gamma == "on",
++            "photon_conversion_policy": (
++                "pythia_default_on"
++                if args.qed_shower_by_gamma == "on"
++                else "generator_systematic_off"
++            ),
++            "preparation": {
++                "canonical_v2": canonical,
++                "explicit_w_v3": explicit_w,
++            },
++            "pythia_warning_counts": {
++                "me_weight_above_ps": warning_count(
++                    log_text,
++                    "SimpleTimeShower::findMEcorr: ME weight above PS one",
++                ),
++                "negative_dipole_mass": warning_count(
++                    log_text,
++                    "SimpleTimeShower::pTnext: negative dipole mass",
++                ),
++            },
++            "pythia_warning_policy": {
++                "me_weight_above_ps": "must_be_zero_for_explicit_w_v3",
++                "negative_dipole_mass": (
++                    "count_and_monitor_nonfatal_gamma_conversion_trials"
++                    if args.qed_shower_by_gamma == "on"
++                    else "must_be_zero_when_gamma_conversion_is_off"
++                ),
++            },
++        }
++    )
++
++    output = args.output or args.metadata
++    output.parent.mkdir(parents=True, exist_ok=True)
++    temporary = output.with_name(f".{output.name}.partial")
++    temporary.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
++    temporary.replace(output)
++
++    print(
++        "METADATA AUGMENTED "
++        f"events={canonical.get('total_events')} "
++        f"inserted_w={explicit_w.get('inserted_w_resonances')} "
++        f"qed_shower_by_gamma={args.qed_shower_by_gamma} "
++        f"output={output}"
++    )
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/showering/run_pythia_shard.sh qis_gate_final/scripts/showering/run_pythia_shard.sh
+--- qis_user_current/scripts/showering/run_pythia_shard.sh	2026-07-17 20:57:04.598785468 +0000
++++ qis_gate_final/scripts/showering/run_pythia_shard.sh	2026-07-17 20:54:41.178641554 +0000
+@@ -5,11 +5,21 @@
+   cat <<'USAGE'
+ Usage: run_pythia_shard.sh --input LHE --output-root EOS_DIR --sample-id ID
+        --campaign-id ID --seed N --executable PATH --settings PATH [options]
++
++Options:
++  --shard-id ID                  Output shard ID (default: merged)
++  --max-events N                 Maximum events, -1 for all (default: -1)
++  --key4hep-setup PATH           Project environment setup script
++  --qed-shower-by-gamma on|off   PYTHIA gamma->fermion shower switch (default: on)
+ USAGE
+ }
+ 
+ INPUT= OUTPUT_ROOT= SAMPLE_ID= CAMPAIGN_ID= SEED= EXECUTABLE= SETTINGS=
+-SHARD_ID=merged MAX_EVENTS=-1 KEY4HEP_SETUP=${KEY4HEP_SETUP:-}
++SHARD_ID=merged
++MAX_EVENTS=-1
++KEY4HEP_SETUP=${KEY4HEP_SETUP:-}
++QED_SHOWER_BY_GAMMA=on
++
+ while (($#)); do
+   case "$1" in
+     --input) INPUT=$2; shift 2;;
+@@ -22,20 +32,34 @@
+     --shard-id) SHARD_ID=$2; shift 2;;
+     --max-events) MAX_EVENTS=$2; shift 2;;
+     --key4hep-setup) KEY4HEP_SETUP=$2; shift 2;;
++    --qed-shower-by-gamma) QED_SHOWER_BY_GAMMA=$2; shift 2;;
+     -h|--help) usage; exit 0;;
+     *) echo "ERROR: unknown argument: $1" >&2; usage >&2; exit 2;;
+   esac
+ done
++
+ for value in INPUT OUTPUT_ROOT SAMPLE_ID CAMPAIGN_ID SEED EXECUTABLE SETTINGS; do
+   [[ -n ${!value} ]] || { echo "ERROR: missing $value" >&2; exit 2; }
+ done
++[[ $QED_SHOWER_BY_GAMMA == on || $QED_SHOWER_BY_GAMMA == off ]] \
++  || { echo "ERROR: --qed-shower-by-gamma must be on or off" >&2; exit 2; }
+ [[ -r $INPUT ]] || { echo "ERROR: unreadable LHE: $INPUT" >&2; exit 3; }
+ [[ -x $EXECUTABLE ]] || { echo "ERROR: shower executable is not executable: $EXECUTABLE" >&2; exit 4; }
+ [[ -r $SETTINGS ]] || { echo "ERROR: unreadable settings: $SETTINGS" >&2; exit 5; }
+ [[ $OUTPUT_ROOT == /eos/* ]] || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
+ 
+-if [[ ${WHIZARD_TTBAR_ENV_READY:-0} != 1 && -n $KEY4HEP_SETUP ]]; then
+-  [[ -r $KEY4HEP_SETUP ]] || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 7; }
++SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
++REPO_ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
++CANONICALIZER="$SCRIPT_DIR/canonicalize_whizard_lhe_for_pythia.py"
++EXPLICIT_W_ADAPTER="$SCRIPT_DIR/insert_explicit_w_resonances.py"
++METADATA_AUGMENTER="$SCRIPT_DIR/augment_shower_metadata.py"
++
++for helper in "$CANONICALIZER" "$EXPLICIT_W_ADAPTER" "$METADATA_AUGMENTER"; do
++  [[ -x $helper ]] || { echo "ERROR: missing executable helper: $helper" >&2; exit 7; }
++done
++
++if [[ -n $KEY4HEP_SETUP ]]; then
++  [[ -r $KEY4HEP_SETUP ]] || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 8; }
+   nounset_was_on=0
+   errexit_was_on=0
+   case $- in *u*) nounset_was_on=1; set +u;; esac
+@@ -45,39 +69,108 @@
+   setup_rc=$?
+   (( errexit_was_on == 0 )) || set -e
+   (( nounset_was_on == 0 )) || set -u
+-  (( setup_rc == 0 )) || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 7; }
++  (( setup_rc == 0 )) || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 8; }
+ fi
+ 
++export PYTHONDONTWRITEBYTECODE=1
++
+ SCRATCH_BASE=${_CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}}
+ WORK=$(mktemp -d "$SCRATCH_BASE/qis_shower_${SAMPLE_ID}_${SHARD_ID}_XXXXXX")
+ cleanup(){ rm -rf "$WORK"; }
+ trap cleanup EXIT
+-LOCAL_LHE=$WORK/input.lhe
++
++LOCAL_SOURCE=$WORK/source_whizard.lhe
++LOCAL_V2=$WORK/canonical_v2.lhe
++LOCAL_V2_SUMMARY=$WORK/canonical_v2.summary.json
++LOCAL_V3=$WORK/explicit_w_v3.lhe
++LOCAL_V3_SUMMARY=$WORK/explicit_w_v3.summary.json
+ LOCAL_OUT=$WORK/output.hepmc3
+ LOCAL_META=$WORK/output.hepmc3.metadata.json
+-cp -p "$INPUT" "$LOCAL_LHE"
++LOCAL_LOG=$WORK/pythia.log
++
++cp -p "$INPUT" "$LOCAL_SOURCE"
++
++python3 "$CANONICALIZER" \
++  --input "$LOCAL_SOURCE" \
++  --output "$LOCAL_V2" \
++  --summary "$LOCAL_V2_SUMMARY"
++
++python3 "$EXPLICIT_W_ADAPTER" \
++  --input "$LOCAL_V2" \
++  --output "$LOCAL_V3" \
++  --summary "$LOCAL_V3_SUMMARY"
+ 
++PYTHIA_OVERRIDES=()
++if [[ $QED_SHOWER_BY_GAMMA == off ]]; then
++  PYTHIA_OVERRIDES+=(--set "TimeShower:QEDshowerByGamma = off")
++fi
++
++set +e
+ "$EXECUTABLE" \
+-  --input "$LOCAL_LHE" --output "$LOCAL_OUT" --metadata "$LOCAL_META" \
+-  --settings "$SETTINGS" --sample-id "$SAMPLE_ID" --campaign-id "$CAMPAIGN_ID" \
+-  --shard-id "$SHARD_ID" --seed "$SEED" --max-events "$MAX_EVENTS"
++  --input "$LOCAL_V3" \
++  --output "$LOCAL_OUT" \
++  --metadata "$LOCAL_META" \
++  --settings "$SETTINGS" \
++  --sample-id "$SAMPLE_ID" \
++  --campaign-id "$CAMPAIGN_ID" \
++  --shard-id "$SHARD_ID" \
++  --seed "$SEED" \
++  --max-events "$MAX_EVENTS" \
++  "${PYTHIA_OVERRIDES[@]}" \
++  2>&1 | tee "$LOCAL_LOG"
++shower_rc=${PIPESTATUS[0]}
++set -e
++
++if (( shower_rc != 0 )); then
++  echo "ERROR: PYTHIA/HepMC conversion failed rc=$shower_rc" >&2
++  exit "$shower_rc"
++fi
++
++[[ -s $LOCAL_OUT ]] || { echo "ERROR: missing/empty local HepMC output" >&2; exit 9; }
++[[ -s $LOCAL_META ]] || { echo "ERROR: missing/empty local metadata" >&2; exit 10; }
++
++python3 "$METADATA_AUGMENTER" \
++  --metadata "$LOCAL_META" \
++  --source-lhe "$LOCAL_SOURCE" \
++  --source-lhe-path "$INPUT" \
++  --canonical-summary "$LOCAL_V2_SUMMARY" \
++  --explicit-w-summary "$LOCAL_V3_SUMMARY" \
++  --worker-log "$LOCAL_LOG" \
++  --qed-shower-by-gamma "$QED_SHOWER_BY_GAMMA"
+ 
+ FINAL_DIR=$OUTPUT_ROOT/hepmc3/$SAMPLE_ID
+ META_DIR=$OUTPUT_ROOT/metadata/$SAMPLE_ID
+ LOG_DIR=$OUTPUT_ROOT/logs/$SAMPLE_ID
+-for directory in "$FINAL_DIR" "$META_DIR" "$LOG_DIR"; do
++PREP_DIR=$OUTPUT_ROOT/preparation/$SAMPLE_ID
++for directory in "$FINAL_DIR" "$META_DIR" "$LOG_DIR" "$PREP_DIR"; do
+   for attempt in 1 2 3 4 5; do
+     mkdir -p "$directory" 2>/dev/null || true
+     [[ -d $directory ]] && break
+     sleep "$attempt"
+   done
+-  [[ -d $directory ]] || { echo "ERROR: cannot prepare $directory" >&2; exit 8; }
++  [[ -d $directory ]] || { echo "ERROR: cannot prepare $directory" >&2; exit 11; }
+ done
++
+ BASE=${SAMPLE_ID}__${SHARD_ID}
+-TMP_OUT=$FINAL_DIR/.${BASE}.hepmc3.partial.$$
+-TMP_META=$META_DIR/.${BASE}.json.partial.$$
+-cp -p "$LOCAL_OUT" "$TMP_OUT"
+-cp -p "$LOCAL_META" "$TMP_META"
+-mv -f "$TMP_OUT" "$FINAL_DIR/${BASE}.hepmc3"
+-mv -f "$TMP_META" "$META_DIR/${BASE}.json"
++
++stage_atomic() {
++  local source=$1
++  local destination=$2
++  local directory
++  directory=$(dirname -- "$destination")
++  local temporary="$directory/.$(basename -- "$destination").partial.$$"
++  cp -p "$source" "$temporary"
++  mv -f "$temporary" "$destination"
++}
++
++stage_atomic "$LOCAL_OUT" "$FINAL_DIR/${BASE}.hepmc3"
++stage_atomic "$LOCAL_META" "$META_DIR/${BASE}.json"
++stage_atomic "$LOCAL_LOG" "$LOG_DIR/${BASE}.log"
++stage_atomic "$LOCAL_V2_SUMMARY" "$PREP_DIR/${BASE}.canonical_v2.json"
++stage_atomic "$LOCAL_V3_SUMMARY" "$PREP_DIR/${BASE}.explicit_w_v3.json"
++
+ echo "STAGED $FINAL_DIR/${BASE}.hepmc3"
++echo "METADATA $META_DIR/${BASE}.json"
++echo "PREPARATION $PREP_DIR/${BASE}.canonical_v2.json"
++echo "PREPARATION $PREP_DIR/${BASE}.explicit_w_v3.json"
++echo "POLICY explicit_w_v3 qed_shower_by_gamma=$QED_SHOWER_BY_GAMMA repo=$REPO_ROOT"
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/showering/submit_showering.py qis_gate_final/scripts/showering/submit_showering.py
+--- qis_user_current/scripts/showering/submit_showering.py	2026-07-13 19:48:03.000000000 +0000
++++ qis_gate_final/scripts/showering/submit_showering.py	2026-07-17 20:51:34.691393440 +0000
+@@ -84,6 +84,20 @@
+     executable = (args.executable or repo / str(shower_cfg.get("executable", "build/qis_lhe_to_hepmc3"))).expanduser()
+     settings = (args.settings or repo / str(shower_cfg.get("settings_file", "configs/pythia/level_a.cmnd"))).expanduser()
+     max_events = args.max_events if args.max_events is not None else int(shower_cfg.get("events_per_job", -1))
++    qed_shower_by_gamma = (
++        "on" if bool(shower_cfg.get("qed_shower_by_gamma", True)) else "off"
++    )
++    preparation_policy = str(
++        shower_cfg.get(
++            "lhe_preparation_policy",
++            "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3",
++        )
++    )
++    if preparation_policy != "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3":
++        raise ValueError(
++            "unsupported showering.lhe_preparation_policy: "
++            f"{preparation_policy}"
++        )
+ 
+     if not manifest.is_file():
+         raise FileNotFoundError(f"sample manifest not found: {manifest}")
+@@ -116,7 +130,8 @@
+     provenance = output_root / "manifests/submissions" / stamp
+     persistent_dirs = [
+         output_root / "hepmc3", output_root / "metadata", output_root / "logs",
+-        output_root / "manifests", output_root / "validation", provenance,
++        output_root / "preparation", output_root / "manifests",
++        output_root / "validation", provenance,
+     ]
+     local_dirs = [control, control / "stdout", control / "stderr"]
+     for directory in (*persistent_dirs, *local_dirs):
+@@ -145,6 +160,7 @@
+             metadata.unlink(missing_ok=True)
+         for directory in (
+             output.parent, metadata.parent, output_root / "logs" / sample,
++            output_root / "preparation" / sample,
+             control / "stdout" / sample, control / "stderr" / sample,
+         ):
+             directory.mkdir(parents=True, exist_ok=True)
+@@ -164,6 +180,7 @@
+             "shower_executable": str(executable.resolve()),
+             "settings_file": str(settings.resolve()),
+             "key4hep_setup": str(args.key4hep_setup.resolve()),
++            "qed_shower_by_gamma": qed_shower_by_gamma,
+             "repo_root": str(repo),
+             "stdout_path": str(control / "stdout" / sample / "$(ClusterId).$(ProcId).out"),
+             "stderr_path": str(control / "stderr" / sample / "$(ClusterId).$(ProcId).err"),
+@@ -195,6 +212,8 @@
+         "config": str(args.config.resolve()),
+         "manifest": str(manifest),
+         "output_root": str(output_root),
++        "lhe_preparation_policy": preparation_policy,
++        "qed_shower_by_gamma": qed_shower_by_gamma,
+         "jobs": len(jobs),
+         "skipped": len(skipped),
+         "submit_file": str(submit_file),
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/scripts/showering/validate_showering.py qis_gate_final/scripts/showering/validate_showering.py
+--- qis_user_current/scripts/showering/validate_showering.py	2026-07-13 19:48:31.000000000 +0000
++++ qis_gate_final/scripts/showering/validate_showering.py	2026-07-17 20:55:24.091959195 +0000
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Validate PYTHIA8/HepMC3 shower products and run metadata."""
++"""Validate PYTHIA8/HepMC3 shower products and preparation provenance."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -11,18 +11,23 @@
+ 
+ import yaml
+ 
++EXPECTED_PREPARATION_POLICY = (
++    "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3"
++)
+ 
+-def configured_root(config_path: Path) -> tuple[Path, int]:
++
++def configured_root(config_path: Path) -> tuple[Path, int, dict[str, Any]]:
+     payload: dict[str, Any] = yaml.safe_load(config_path.read_text()) or {}
+     campaign = payload.get("campaign", {})
+     inputs = payload.get("inputs", {})
++    showering = payload.get("showering", {})
+     root = Path(str(campaign["output_root"])) / "shower"
+     expected = (
+         len(inputs.get("allowed_initial_states", []))
+         * len(inputs.get("allowed_polarizations", []))
+         * len(inputs.get("allowed_decay_channels", []))
+     )
+-    return root, expected
++    return root, expected, showering
+ 
+ 
+ def sha256(path: Path) -> str:
+@@ -35,26 +40,67 @@
+ 
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--config", type=Path, default=Path("configs/qis/level_a_500GeV_ISR_sc_v1.yaml"))
++    parser.add_argument(
++        "--config",
++        type=Path,
++        default=Path("configs/qis/level_a_500GeV_ISR_sc_v1.yaml"),
++    )
+     parser.add_argument("--root", type=Path)
+     parser.add_argument("--expected", type=int)
+     parser.add_argument("--strict", action="store_true")
+     parser.add_argument("--checksums", action="store_true")
+     args = parser.parse_args()
+-    config_root, config_expected = configured_root(args.config)
++
++    config_root, config_expected, shower_cfg = configured_root(args.config)
+     root = args.root or config_root
+     expected = args.expected if args.expected is not None else config_expected
++    expected_qed_gamma = bool(shower_cfg.get("qed_shower_by_gamma", True))
++    expected_policy = str(
++        shower_cfg.get("lhe_preparation_policy", EXPECTED_PREPARATION_POLICY)
++    )
++    expected_events = int(shower_cfg.get("events_per_job", -1))
+ 
+     metadata_paths = sorted((root / "metadata").glob("*/*.json"))
+     output_paths = sorted((root / "hepmc3").glob("*/*.hepmc3"))
+     output_by_sample = {path.parent.name: path for path in output_paths}
+     checks: list[dict[str, object]] = []
+ 
+-    def add(check: str, sample: str, passed: bool, value: object, detail: str) -> None:
+-        checks.append({"check": check, "sample_id": sample, "verdict": "PASS" if passed else "FAIL", "value": value, "detail": detail})
++    def add(
++        check: str,
++        sample: str,
++        passed: bool,
++        value: object,
++        detail: str,
++    ) -> None:
++        checks.append(
++            {
++                "check": check,
++                "sample_id": sample,
++                "verdict": "PASS" if passed else "FAIL",
++                "value": value,
++                "detail": detail,
++            }
++        )
++
++    add(
++        "metadata_count",
++        "—",
++        len(metadata_paths) == expected,
++        len(metadata_paths),
++        f"expected {expected}",
++    )
++    add(
++        "output_count",
++        "—",
++        len(output_paths) == expected,
++        len(output_paths),
++        f"expected {expected}",
++    )
+ 
+-    add("metadata_count", "—", len(metadata_paths) == expected, len(metadata_paths), f"expected {expected}")
+-    add("output_count", "—", len(output_paths) == expected, len(output_paths), f"expected {expected}")
++    warning_totals = {
++        "me_weight_above_ps": 0,
++        "negative_dipole_mass": 0,
++    }
+ 
+     for metadata_path in metadata_paths:
+         sample = metadata_path.parent.name
+@@ -63,31 +109,185 @@
+         except Exception as exc:
+             add("metadata_parse", sample, False, type(exc).__name__, str(exc))
+             continue
++
+         output = output_by_sample.get(sample)
+-        add("metadata_status", sample, data.get("status") == "success", data.get("status"), "must be success")
+-        add("return_code", sample, int(data.get("return_code", 1)) == 0, data.get("return_code"), "must be zero")
++        add(
++            "metadata_status",
++            sample,
++            data.get("status") == "success",
++            data.get("status"),
++            "must be success",
++        )
++        add(
++            "return_code",
++            sample,
++            int(data.get("return_code", 1)) == 0,
++            data.get("return_code"),
++            "must be zero",
++        )
+         accepted = int(data.get("accepted_events", 0))
+         requested = int(data.get("requested_events", -1))
+         add("accepted_events", sample, accepted > 0, accepted, "must be positive")
+         if requested > 0:
+-            add("requested_events", sample, accepted == requested, f"{accepted}/{requested}", "accepted must equal requested")
+-        add("output_exists", sample, output is not None and output.is_file() and output.stat().st_size > 0,
+-            str(output) if output else "missing", "non-empty HepMC3 required")
+-        add("version_metadata", sample, bool(data.get("pythia_version")) and bool(data.get("hepmc_version")),
+-            f"PYTHIA={data.get('pythia_version')} HepMC={data.get('hepmc_version')}", "both versions required")
++            add(
++                "requested_events",
++                sample,
++                accepted == requested,
++                f"{accepted}/{requested}",
++                "accepted must equal requested",
++            )
++        if expected_events > 0:
++            add(
++                "configured_events",
++                sample,
++                accepted == expected_events,
++                f"{accepted}/{expected_events}",
++                "accepted must equal showering.events_per_job",
++            )
++        add(
++            "output_exists",
++            sample,
++            output is not None and output.is_file() and output.stat().st_size > 0,
++            str(output) if output else "missing",
++            "non-empty HepMC3 required",
++        )
++        add(
++            "version_metadata",
++            sample,
++            bool(data.get("pythia_version")) and bool(data.get("hepmc_version")),
++            f"PYTHIA={data.get('pythia_version')} "
++            f"HepMC={data.get('hepmc_version')}",
++            "both versions required",
++        )
++        add(
++            "source_lhe_provenance",
++            sample,
++            bool(data.get("source_lhe_path"))
++            and len(str(data.get("source_lhe_sha256", ""))) == 64,
++            data.get("source_lhe_path", "missing"),
++            "persistent source path and SHA256 required",
++        )
++        add(
++            "prepared_lhe_policy",
++            sample,
++            data.get("prepared_lhe_policy") == expected_policy,
++            data.get("prepared_lhe_policy"),
++            f"expected {expected_policy}",
++        )
++        add(
++            "qed_shower_by_gamma",
++            sample,
++            bool(data.get("qed_shower_by_gamma")) == expected_qed_gamma,
++            data.get("qed_shower_by_gamma"),
++            f"expected {expected_qed_gamma}",
++        )
++
++        preparation = data.get("preparation", {})
++        canonical = preparation.get("canonical_v2", {}) if isinstance(preparation, dict) else {}
++        explicit_w = preparation.get("explicit_w_v3", {}) if isinstance(preparation, dict) else {}
++        canonical_events = int(canonical.get("total_events", -1))
++        v3_events = int(explicit_w.get("total_events", -1))
++        inserted_w = int(explicit_w.get("inserted_w_resonances", -1))
++        add(
++            "canonical_v2_events",
++            sample,
++            canonical_events == accepted,
++            canonical_events,
++            f"must equal accepted events {accepted}",
++        )
++        add(
++            "explicit_w_v3_events",
++            sample,
++            v3_events == accepted,
++            v3_events,
++            f"must equal accepted events {accepted}",
++        )
++        add(
++            "inserted_w_resonances",
++            sample,
++            inserted_w == 2 * accepted,
++            inserted_w,
++            f"expected {2 * accepted}",
++        )
++        add(
++            "canonical_closure",
++            sample,
++            float(canonical.get("max_rel_closure", float("inf"))) <= 1.0e-7,
++            canonical.get("max_rel_closure"),
++            "max relative closure must be <= 1e-7",
++        )
++        add(
++            "explicit_w_vertex_closure",
++            sample,
++            float(explicit_w.get("max_vertex_rel_closure", float("inf")))
++            <= 1.0e-7,
++            explicit_w.get("max_vertex_rel_closure"),
++            "max relative vertex closure must be <= 1e-7",
++        )
++
++        warning_counts = data.get("pythia_warning_counts", {})
++        me_warnings = int(warning_counts.get("me_weight_above_ps", -1))
++        negative_warnings = int(warning_counts.get("negative_dipole_mass", -1))
++        if me_warnings >= 0:
++            warning_totals["me_weight_above_ps"] += me_warnings
++        if negative_warnings >= 0:
++            warning_totals["negative_dipole_mass"] += negative_warnings
++        add(
++            "explicit_w_me_warning_count",
++            sample,
++            me_warnings == 0,
++            me_warnings,
++            "explicit-W v3 must remove findMEcorr warnings",
++        )
++        add(
++            "negative_dipole_warning_count",
++            sample,
++            negative_warnings >= 0
++            and (expected_qed_gamma or negative_warnings == 0),
++            negative_warnings,
++            (
++                "counted nonfatal gamma-conversion trials"
++                if expected_qed_gamma
++                else "must be zero with QEDshowerByGamma=off"
++            ),
++        )
++
++        base = metadata_path.stem
++        prep_dir = root / "preparation" / sample
++        add(
++            "canonical_summary_staged",
++            sample,
++            (prep_dir / f"{base}.canonical_v2.json").is_file(),
++            str(prep_dir / f"{base}.canonical_v2.json"),
++            "staged preparation summary required",
++        )
++        add(
++            "explicit_w_summary_staged",
++            sample,
++            (prep_dir / f"{base}.explicit_w_v3.json").is_file(),
++            str(prep_dir / f"{base}.explicit_w_v3.json"),
++            "staged preparation summary required",
++        )
+ 
+     failures = [row for row in checks if row["verdict"] == "FAIL"]
+     validation_dir = root / "validation"
+     validation_dir.mkdir(parents=True, exist_ok=True)
+     csv_path = validation_dir / "showering_validation.csv"
+     with csv_path.open("w", newline="") as stream:
+-        writer = csv.DictWriter(stream, fieldnames=["check", "sample_id", "verdict", "value", "detail"])
++        writer = csv.DictWriter(
++            stream,
++            fieldnames=["check", "sample_id", "verdict", "value", "detail"],
++        )
+         writer.writeheader()
+         writer.writerows(checks)
++
+     if args.checksums:
+         checksum_path = root / "manifests/hepmc3_sha256.txt"
+         checksum_path.parent.mkdir(parents=True, exist_ok=True)
+-        checksum_path.write_text("".join(f"{sha256(path)}  {path}\n" for path in output_paths))
++        checksum_path.write_text(
++            "".join(f"{sha256(path)}  {path}\n" for path in output_paths)
++        )
++
+     report = validation_dir / "showering_validation.md"
+     report.write_text(
+         "# Shower validation\n\n"
+@@ -95,14 +295,33 @@
+         f"- Expected samples: {expected}\n"
+         f"- Metadata files: {len(metadata_paths)}\n"
+         f"- HepMC3 files: {len(output_paths)}\n"
++        f"- Preparation policy: `{expected_policy}`\n"
++        f"- `TimeShower:QEDshowerByGamma`: "
++        f"`{'on' if expected_qed_gamma else 'off'}`\n"
++        f"- Total ME warnings: {warning_totals['me_weight_above_ps']}\n"
++        f"- Total negative-dipole warnings: "
++        f"{warning_totals['negative_dipole_mass']}\n"
+         f"- Checks: {len(checks)}\n"
+         f"- PASS: {len(checks) - len(failures)}\n"
+         f"- FAIL: {len(failures)}\n\n"
+-        + ("All checks passed.\n" if not failures else "## Failures\n\n" + "\n".join(f"- `{x['sample_id']}` {x['check']}: {x['value']} ({x['detail']})" for x in failures) + "\n")
++        + (
++            "All checks passed.\n"
++            if not failures
++            else "## Failures\n\n"
++            + "\n".join(
++                f"- `{row['sample_id']}` {row['check']}: "
++                f"{row['value']} ({row['detail']})"
++                for row in failures
++            )
++            + "\n"
++        )
+     )
+     print(f"Wrote {csv_path}")
+     print(f"Wrote {report}")
+-    print(f"Checks={len(checks)} PASS={len(checks)-len(failures)} FAIL={len(failures)}")
++    print(
++        f"Checks={len(checks)} PASS={len(checks)-len(failures)} "
++        f"FAIL={len(failures)}"
++    )
+     return 1 if args.strict and failures else 0
+ 
+ 
+diff -ruN '--exclude=__pycache__' '--exclude=*.pyc' qis_user_current/tests/qis/test_spin15_observables.py qis_gate_final/tests/qis/test_spin15_observables.py
+--- qis_user_current/tests/qis/test_spin15_observables.py	1970-01-01 00:00:00.000000000 +0000
++++ qis_gate_final/tests/qis/test_spin15_observables.py	2026-07-17 20:53:02.066498792 +0000
+@@ -0,0 +1,79 @@
++from pathlib import Path
++
++import numpy as np
++import pytest
++
++from qis_ttbar.io.lhe import extract_ttbar_truth, iter_lhe_events
++from qis_ttbar.physics.observables import (
++    SPIN15_COEFFICIENT_NAMES,
++    SPIN15_EVENT_COLUMNS,
++    event_observables,
++)
++
++DATA = Path(__file__).parent / "data/smoke_lhe"
++FILES = sorted(DATA.glob("*.lhe"))
++
++
++EXPECTED_EVENT_COLUMNS = (
++    "b1k", "b1r", "b1n",
++    "b2k", "b2r", "b2n",
++    "ckk", "crr", "cnn",
++    "ckr", "crk", "ckn", "cnk", "crn", "cnr",
++)
++
++EXPECTED_COEFFICIENT_NAMES = (
++    "B1k", "B1r", "B1n",
++    "B2k", "B2r", "B2n",
++    "Ckk", "Crr", "Cnn",
++    "Ckr", "Crk", "Ckn", "Cnk", "Crn", "Cnr",
++)
++
++
++def test_spin15_contract_order():
++    assert SPIN15_EVENT_COLUMNS == EXPECTED_EVENT_COLUMNS
++    assert SPIN15_COEFFICIENT_NAMES == EXPECTED_COEFFICIENT_NAMES
++    assert len(SPIN15_EVENT_COLUMNS) == 15
++    assert len(set(SPIN15_EVENT_COLUMNS)) == 15
++
++
++@pytest.mark.parametrize("path", FILES)
++def test_spin15_aliases_match_legacy_coordinates(path):
++    initial_state = "mumu" if path.name.startswith("mumu") else "ee"
++    event = next(iter_lhe_events(path, max_events=1))
++    truth = extract_ttbar_truth(event, initial_state)
++    observables = event_observables(truth)
++
++    for axis in ("k", "r", "n"):
++        assert observables[f"b1{axis}"] == pytest.approx(
++            observables[f"uplus_{axis}"], abs=1.0e-14
++        )
++        assert observables[f"b2{axis}"] == pytest.approx(
++            observables[f"uminus_{axis}"], abs=1.0e-14
++        )
++
++    for first in ("k", "r", "n"):
++        for second in ("k", "r", "n"):
++            expected = observables[f"b1{first}"] * observables[f"b2{second}"]
++            assert observables[f"c{first}{second}"] == pytest.approx(
++                expected, abs=1.0e-14
++            )
++            assert observables[f"c{first}{second}"] == pytest.approx(
++                observables[f"uproduct_{first}{second}"], abs=1.0e-14
++            )
++
++    values = np.asarray([observables[name] for name in SPIN15_EVENT_COLUMNS])
++    assert np.all(np.isfinite(values))
++    assert np.all(values >= -1.0 - 1.0e-12)
++    assert np.all(values <= 1.0 + 1.0e-12)
++
++
++def test_spin15_aliases_are_basis_order_independent():
++    path = FILES[0]
++    event = next(iter_lhe_events(path, max_events=1))
++    truth = extract_ttbar_truth(event, "ee")
++
++    reference = event_observables(truth, basis_order=("k", "r", "n"))
++    reordered = event_observables(truth, basis_order=("n", "k", "r"))
++
++    for name in SPIN15_EVENT_COLUMNS:
++        assert reordered[name] == pytest.approx(reference[name], abs=1.0e-13)

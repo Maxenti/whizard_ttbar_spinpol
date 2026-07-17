@@ -1,0 +1,15 @@
+universe = vanilla
+executable = $(wrapper)
+arguments = $(arguments)
+initialdir = $(repo_root)
+output = $(stdout_path)
+error = $(stderr_path)
+log = $(event_log)
+should_transfer_files = NO
+request_cpus = $(job_cpus)
+request_memory = $(job_memory_mb)MB
+request_disk = 4GB
++JobFlavour = "$(job_flavour)"
++JobBatchName = "$(batch_name)"
+on_exit_hold = (ExitBySignal == true) || (ExitCode != 0)
+queue wrapper,arguments,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_flavour,batch_name from $(itemdata)

@@ -1,0 +1,71 @@
+--- a/scripts/showering/run_qis_8sample_smoke_matrix_v2.sh
++++ b/scripts/showering/run_qis_8sample_smoke_matrix_v2.sh
+@@ -71,7 +71,7 @@
+     --output "$canonical" \
+     --summary "$canonical_summary"
+ 
+-  python3 - "$canonical" "$canonical_summary" "$EVENTS" <<'PY'
++  python3 - "$canonical" "$canonical_summary" "$EVENTS" "$sample" <<'PY'
+ import json
+ import sys
+ from pathlib import Path
+@@ -79,6 +79,7 @@
+ canonical = Path(sys.argv[1])
+ summary = json.loads(Path(sys.argv[2]).read_text())
+ expected_events = int(sys.argv[3])
++sample_id = sys.argv[4]
+ 
+ assert summary["total_events"] == expected_events, summary
+ assert summary["canonicalized_events"] == expected_events, summary
+@@ -86,6 +87,16 @@
+ assert summary["promoted_beam_particles"] == 2 * expected_events, summary
+ assert summary["rewired_isr_photons"] == 2 * expected_events, summary
+ assert summary["removed_sqme_prc_tags"] == expected_events, summary
++assert summary["max_rel_closure"] <= 1.0e-7, summary
++
++if sample_id.startswith("ee_"):
++    incoming_pid = 11
++elif sample_id.startswith("mumu_"):
++    incoming_pid = 13
++else:
++    raise AssertionError(
++        f"unsupported sample prefix for beam validation: {sample_id}"
++    )
+ 
+ lines = canonical.read_text().splitlines()
+ start = lines.index("<event>")
+@@ -93,20 +104,24 @@
+ particles = [line.split() for line in lines[start + 2:start + 2 + nup]]
+ 
+ expected = [
+-    ["11",  "-1", "0", "0"],
+-    ["-11", "-1", "0", "0"],
+-    ["6",    "2", "1", "2"],
+-    ["-6",   "2", "1", "2"],
+-    ["22",   "1", "1", "2"],
+-    ["22",   "1", "1", "2"],
++    [str(incoming_pid),  "-1", "0", "0"],
++    [str(-incoming_pid), "-1", "0", "0"],
++    ["6",                 "2", "1", "2"],
++    ["-6",                "2", "1", "2"],
++    ["22",                "1", "1", "2"],
++    ["22",                "1", "1", "2"],
+ ]
+ for index, wanted in enumerate(expected):
+     actual = particles[index][0:4]
+     assert actual == wanted, (
+-        f"particle {index + 1}: expected {wanted}, found {actual}"
+-    )
+-
+-print("Canonical v2 contract: PASS")
++        f"{sample_id}: particle {index + 1}: "
++        f"expected {wanted}, found {actual}"
++    )
++
++print(
++    "Canonical v2 contract: PASS "
++    f"sample={sample_id} incoming_pid={incoming_pid}"
++)
+ PY
+ 
+   mode_index=0

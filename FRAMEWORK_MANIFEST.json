@@ -1,0 +1,1083 @@
+{
+  "file_count_excluding_manifest": 179,
+  "files": [
+    {
+      "mode": "0o644",
+      "path": ".gitignore",
+      "sha256": "ad635b9d65a6df6b7e4c6e122bfa1795f3fcf93827d71e68403d2e1576fb67cd",
+      "size_bytes": 417
+    },
+    {
+      "mode": "0o644",
+      "path": "CHANGELOG_QIS.md",
+      "sha256": "e5056786509e449fcff04a249991bcdb19be3fbbcba19c56669c590faa164ad4",
+      "size_bytes": 1196
+    },
+    {
+      "mode": "0o644",
+      "path": "CMakeLists.txt",
+      "sha256": "32c02e0a24bb10317dea4cd9639e971a1bb1728cafc581a33e6892e71abd897a",
+      "size_bytes": 1173
+    },
+    {
+      "mode": "0o644",
+      "path": "README.md",
+      "sha256": "5f503a5502e7bfa557c1cf4608322c9ecc20d4061a93c55ee7317def6456a934",
+      "size_bytes": 2584
+    },
+    {
+      "mode": "0o644",
+      "path": "README_QIS.md",
+      "sha256": "941832b8d11e8ed841d5ac9bb4e1184dd30e316d1ee0e09636e7f1d9fe6cc329",
+      "size_bytes": 5317
+    },
+    {
+      "mode": "0o644",
+      "path": "TEST_REPORT.md",
+      "sha256": "3886dbbf13b16f3910c99ba7d07add16bd97461929ba0338f2e9fddbad23acf1",
+      "size_bytes": 4552
+    },
+    {
+      "mode": "0o644",
+      "path": "cmake/FindHepMC3.cmake",
+      "sha256": "7369a7ee2d85e546ddb749c5c884ff82ca396651535af196e518fdc615997d26",
+      "size_bytes": 1191
+    },
+    {
+      "mode": "0o644",
+      "path": "cmake/FindPythia8.cmake",
+      "sha256": "63394d635457b8bc2127557ac74971137e1c19dd6cc2c5ce9275af4a552461af",
+      "size_bytes": 1303
+    },
+    {
+      "mode": "0o644",
+      "path": "condor/qis/pythia_shower.sub",
+      "sha256": "83d4a21a66ac2b81f2df4b8dc3611f868901475fca6b70367fc63e5e4af736a5",
+      "size_bytes": 926
+    },
+    {
+      "mode": "0o644",
+      "path": "condor/qis/qis_analysis.sub",
+      "sha256": "e86997e81f6bb43fb65cb1c728d47dfefbb4b56dbc7f576a66b2fcdf3f93a51a",
+      "size_bytes": 520
+    },
+    {
+      "mode": "0o644",
+      "path": "condor/whizard_production.sub",
+      "sha256": "b1849344d013165cd8b92e7b88eedd21bff1a19e4599bde66e5bf3a61bc1d70f",
+      "size_bytes": 1316
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/production/production_500GeV_ISR_iso_validation_v1.csv",
+      "sha256": "7acd6990ea248046d577fbb1aed0ac6aa3b016784b3ed6282d0c0f0748c9500c",
+      "size_bytes": 1852
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/production/production_500GeV_ISR_sc_v1.csv",
+      "sha256": "e8f0918e024d7aaf007666f53c0f2f70fa2aff50f73f8989bc4053f181f2dfb3",
+      "size_bytes": 1748
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/pythia/level_a.cmnd",
+      "sha256": "e644ee39717728849dcb40035dae4212dcfaf9ebb61dd635ae06073e2300167c",
+      "size_bytes": 517
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/qis/full_offshell_control.yaml",
+      "sha256": "45a3df052024498dc885f45516f3d74538ab24e3c47a1f76e3971c96aefacc0e",
+      "size_bytes": 827
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/qis/level_a_500GeV_ISR_sc_v1.yaml",
+      "sha256": "50dac1b5fc5958198f1551970cf04beaf9f33a97c6dca27592d3e4cb3b147a62",
+      "size_bytes": 1492
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/qis/level_b_detector.yaml",
+      "sha256": "742a77556211bfd6d8e3ed59bf3afbf9c764047c78d1352a9606bd8b584c3ccc",
+      "size_bytes": 964
+    },
+    {
+      "mode": "0o644",
+      "path": "configs/qis/level_c_research.yaml",
+      "sha256": "4e057648366c98e3254925d978257a9e85b9ba50284e2f7e2ddb88f8ea5c1aa1",
+      "size_bytes": 764
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/ARCHITECTURE.md",
+      "sha256": "a49aa8004371ad53c751403ddbf4a6fb7a1749417847dfc1deaf867c0bb5ac64",
+      "size_bytes": 2742
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/CONDOR_WORKFLOW.md",
+      "sha256": "a52ef3b8178102a34cc6444aa3a038727b1977fd122a9a7dde9e8a7b0f1f7bb4",
+      "size_bytes": 1221
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/LEVEL_B.md",
+      "sha256": "be9ee9378ce26ab7b1a397916f64044b20d02dcb84307cf2a9c149947e1f4435",
+      "size_bytes": 1087
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/LEVEL_C.md",
+      "sha256": "7a1e17326ddf7a8705024df7dd2c79fba36c9cd52502b836b8962f3da8d6699d",
+      "size_bytes": 1434
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/LIMITATIONS.md",
+      "sha256": "6123085cca771830bdccb2f87c951e9a443689f46ddf22e9adc96474993fc94c",
+      "size_bytes": 1062
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/OUTPUT_SCHEMA.md",
+      "sha256": "18f8ca1c5b12f6092b67ca088fceb4cd1ed48de8ff9410c51e43d2cbbc37043d",
+      "size_bytes": 1284
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/PHYSICS_CONVENTIONS.md",
+      "sha256": "5af1c78e00f2250ec47fbac06ebcb1bd1d0bedbe29aeabf23e02d3e3716d2a40",
+      "size_bytes": 2364
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/PYTHIA_CONFIGURATION.md",
+      "sha256": "f9c50c52faac4a25639c03c5dc586e664b22a5808a35aba7936a29394d0a3bc0",
+      "size_bytes": 1675
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/QIS_OBSERVABLES.md",
+      "sha256": "6524c0c19a0389cdd3b65a550698b78cc66d3f90177c3d8dcf9fd73d77170a54",
+      "size_bytes": 1381
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/QUICKSTART.md",
+      "sha256": "bb2f6b58db65570e490af80fb153433d1d282ed9628ad2f5fe140acfd833d2c7",
+      "size_bytes": 2135
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/SPIN_DENSITY_MATRIX.md",
+      "sha256": "939298334d2ad48ccdeaee1b1ea1e6f19c789aa2e288b5210d4bbf94280a4e95",
+      "size_bytes": 1849
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/VALIDATION.md",
+      "sha256": "9a13e2d619b2777041e8561a27c96dea86bc4b60adb0bae1f61f5eeb8960b80c",
+      "size_bytes": 1328
+    },
+    {
+      "mode": "0o644",
+      "path": "docs/qis/WHIZARD_PRODUCTION_HISTORY.md",
+      "sha256": "406a507f7878b27e5523f327a87073bff71588dd6ce971b5fc679092b3d76fc4",
+      "size_bytes": 8471
+    },
+    {
+      "mode": "0o644",
+      "path": "git_commit.txt",
+      "sha256": "7395f3c1252c70e369b03ff2e41b6ba7e0feb8c5d8fc03d6beaf51c07cfa0baf",
+      "size_bytes": 41
+    },
+    {
+      "mode": "0o644",
+      "path": "git_diff.patch",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "git_status.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "mode": "0o644",
+      "path": "git_tracked_files.txt",
+      "sha256": "845f1b81f251c3bb63875a2568fec94818980b830b0011db96e0e739518f40df",
+      "size_bytes": 54052
+    },
+    {
+      "mode": "0o644",
+      "path": "include/qis/EventMetadata.h",
+      "sha256": "c433408ab94951f63b9f2d6a0b16afebc98094356099639587c538f3ab38ef6f",
+      "size_bytes": 866
+    },
+    {
+      "mode": "0o644",
+      "path": "include/qis/ShowerConfig.h",
+      "sha256": "6b39e6f0a8300a7b34adaebcd554aaf51687a24750d9a8dde2d9deb5c8551ddf",
+      "size_bytes": 730
+    },
+    {
+      "mode": "0o644",
+      "path": "provenance/input_bundle/BUNDLE_INFO.txt",
+      "sha256": "452fe8d269639672bf603f534f5a562a910e86bd78b8e7e07e6845342675d2a6",
+      "size_bytes": 319
+    },
+    {
+      "mode": "0o644",
+      "path": "provenance/input_bundle/environment_report.txt",
+      "sha256": "a2e8c3824451b9310110aea257c6221940bd26ed12709c8fab3294eb719defae",
+      "size_bytes": 174981
+    },
+    {
+      "mode": "0o644",
+      "path": "provenance/input_bundle/input_bundle.sha256",
+      "sha256": "539d22402e63db3638cfb9276a58b3fa11198f2335975cd59eb1f6d71fbf80ba",
+      "size_bytes": 128
+    },
+    {
+      "mode": "0o644",
+      "path": "pyproject.toml",
+      "sha256": "54710f46648e28c96552f7555533cdac8b5a00fd9b51193140a2dbed5448a7bc",
+      "size_bytes": 1283
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/__init__.py",
+      "sha256": "1264bd66ed77da63919091dac66a21848c08b97d030aa3803e59772f6f91b805",
+      "size_bytes": 137
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/cli.py",
+      "sha256": "d94a5e3b852e8f13e481fa55e0328a54125e7dac56592faf25bfb18c03967601",
+      "size_bytes": 7688
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/config.py",
+      "sha256": "d932b106e38481a45616b002e95a7f669b7ff540ee88f303db163ae8e91c41e3",
+      "size_bytes": 2539
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/exceptions.py",
+      "sha256": "bd9218f52aeea695f639fbe86427a948baccb2dae83fb79f8b627729a690e199",
+      "size_bytes": 332
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/io/__init__.py",
+      "sha256": "f1010bb148baabf80a6bc63775aecf3734641c4758436426069a2e9fb55f0678",
+      "size_bytes": 278
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/io/hepmc.py",
+      "sha256": "ce2b7ef38c2c54d4e5c0f3f2658aa88025e83adeb935716711e07dd93b9c023e",
+      "size_bytes": 7081
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/io/lhe.py",
+      "sha256": "efee76cb17d460705ee260ca7b7039104478d6d213645f2f875af1080285f26b",
+      "size_bytes": 6499
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/io/manifest.py",
+      "sha256": "312f66599600fa3812b8cbdfdecfa5de8eabada1e3b0ff32079c607eee0a2626",
+      "size_bytes": 2662
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/io/tables.py",
+      "sha256": "cfa5147aeba414352f6ef90f52734a8843feffc4f85e969e8f5472ed3b50f6cf",
+      "size_bytes": 1729
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/__init__.py",
+      "sha256": "5f1a92e2cbdb6551d3f2f5bd8e6099107c793cba7cfeaa8fae4921c95fc4607c",
+      "size_bytes": 572
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/detector.py",
+      "sha256": "61c9f7d70ef030cd92f5bcd8f8cd20ad663ea533c05033b4f52a8c08cc21ad17",
+      "size_bytes": 3012
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/reconstruction.py",
+      "sha256": "ab0d2e39b4df760bbdc3618a60a444476e60ef50c1e0fe3d8c5f6f7f0c107b0c",
+      "size_bytes": 4480
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/semileptonic.py",
+      "sha256": "b145f152fa37abe4d4afcf9b8431455790902d950c8ec6dec9543ffcf8170feb",
+      "size_bytes": 1892
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/systematics.py",
+      "sha256": "c67f2e9b690c2eb3b4cf9d997a70b6fe15c9ee3c4e114ef592734e40116c9769",
+      "size_bytes": 702
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_b/unfolding.py",
+      "sha256": "f44487c5b99f414e7864623b0472782be76e3f3285b79fefa3020455e05c2465",
+      "size_bytes": 2587
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/__init__.py",
+      "sha256": "85c2f904659b6f2af7b4702b4ffc4b747a5db375844cb3ad6033edd519f180c3",
+      "size_bytes": 892
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/cp.py",
+      "sha256": "1460445ea3bbb1e3c1774fd3c6588f0dfb34184430cb0fe22be0811cbdc062bb",
+      "size_bytes": 1060
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/eft.py",
+      "sha256": "fc4654b70f7646554d8d74943ba3cc20d5b01f52fd44211a6ce42fdadc5643c7",
+      "size_bytes": 2069
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/multienergy.py",
+      "sha256": "9180daeecae330fd644f4c91fd0970b01094e42f59e3d46d58807702780f21a0",
+      "size_bytes": 2572
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/nlo.py",
+      "sha256": "f6b80f44409f509f7b25bf7b84c506be13cd7a176e22f21dda0c11c8af211916",
+      "size_bytes": 670
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/optimized_bases.py",
+      "sha256": "4d7be607bb4a3194c4510be8564b33b98b9e8ebc1a9dcf7cebaac8afff75fee6",
+      "size_bytes": 770
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/polarization.py",
+      "sha256": "4b87fb5a08ac4957062a4af8095aefa421becbbe5c4ea598127a547dc5aa1633",
+      "size_bytes": 5548
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/level_c/state_distances.py",
+      "sha256": "725cdd8a817620b46c41a9805fc4cc62b867485fa5b5304b02ec9dbbfac160b6",
+      "size_bytes": 471
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/models.py",
+      "sha256": "bd16f7627997333f6d162bc299c3e57e4727249a1e0eb0701d1e02c063d35139",
+      "size_bytes": 3722
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/physics/__init__.py",
+      "sha256": "add4e4aa0b1f71671b480a7c43803b1d22e44bc2608b221d7050f7de92353dbc",
+      "size_bytes": 310
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/physics/ancestry.py",
+      "sha256": "204391931f98b6f76ec8e7fc38fb34e8d36bd291ce380a1684c5d6627917b8aa",
+      "size_bytes": 842
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/physics/bases.py",
+      "sha256": "218a6c07ce857e2d0f5732ffe1b1f1c78405ee375ec450a6746f0e2655ffe17e",
+      "size_bytes": 3126
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/physics/observables.py",
+      "sha256": "68a844e5f5a417d5076281edaf9fd1badbe2398cd9d96c794aab47bfb9150525",
+      "size_bytes": 3799
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/plotting.py",
+      "sha256": "ce5faeef8793724de9e893edd8f1ff73de22fe05e02bc31352068873a43816c7",
+      "size_bytes": 2803
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/qis/__init__.py",
+      "sha256": "6734effca1429459bbb9759d7a95f08c9557bb56f2159a3793ee72d2655c1038",
+      "size_bytes": 368
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/qis/fisher.py",
+      "sha256": "1dfc116a10a489d14335e4b3b07b052f58bcd1784dc3d2a0c8cf07574f6a35e6",
+      "size_bytes": 1758
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/qis/magic.py",
+      "sha256": "b76e6ef92f990446996905df87136a590f7d38e76480933c4e67423b12e6c847",
+      "size_bytes": 913
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/qis/measures.py",
+      "sha256": "17a4fec2c6816d8a9de6e8cff245808b4f09edeb2075906e539996928c87e483",
+      "size_bytes": 4448
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/qis/steering.py",
+      "sha256": "069067c8a0237d039359078fc01f6cbd86d8ef76e79b4b3b7b583145c756308f",
+      "size_bytes": 705
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/__init__.py",
+      "sha256": "e49859f4ef2c91556388797a46821e0bcc1b5aaae145539123858bcf5cae9618",
+      "size_bytes": 591
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/binning.py",
+      "sha256": "50f5591cd6e3a849a85e5e2c56d49336aba4397806ca3bdddc840a8dae9d3069",
+      "size_bytes": 1806
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/bootstrap.py",
+      "sha256": "d99d9b83e4cd08864bcfedff05fa86574b47853ffdd4d2ca92d3632d199dc008",
+      "size_bytes": 2079
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/density.py",
+      "sha256": "87dd187397114aec18ee27d6981db6930193adca3667e3f99a7b19c8258432d3",
+      "size_bytes": 4261
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/estimators.py",
+      "sha256": "39a755233729969e9894f67827cf1df3a8c9a8e2e19267eff7b0cd9770b902aa",
+      "size_bytes": 3856
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/tomography/fit.py",
+      "sha256": "0136d7d923207a183ab911030cbc37b0edcee0d82098d3204785baab82a885e6",
+      "size_bytes": 3380
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/validation.py",
+      "sha256": "50bcd0515490331976ebb325c02eef7a620d2a648f0aede7c2ad0e3547ad385f",
+      "size_bytes": 3297
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/version.py",
+      "sha256": "27e8febb48ada44153ea2add9969a2c50a9831a74d9755fdd53c549a888b1cc2",
+      "size_bytes": 22
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/workflow/__init__.py",
+      "sha256": "d553a9b916a895cfd3294e80db0e5bdb716ed13aeac852836005b1de93e25d55",
+      "size_bytes": 228
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/workflow/ntuples.py",
+      "sha256": "7c9b1fdd187528d45dd312778f7e3a9c7bbf92b2a9e3f5257774d6353e061754",
+      "size_bytes": 2444
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/workflow/report.py",
+      "sha256": "143e1b556cb4e9e9d46eb676ca3e56bc9411937485e5a1064323e50183174052",
+      "size_bytes": 1087
+    },
+    {
+      "mode": "0o644",
+      "path": "qis_ttbar/workflow/tomography.py",
+      "sha256": "dd259fc27e1478fdbe29255e0fa35c463148d861a827256b93c882f148362478",
+      "size_bytes": 4039
+    },
+    {
+      "mode": "0o644",
+      "path": "repository_tree.txt",
+      "sha256": "258accd2f2ca6038d3800e4c62526d0fed455d0566806cd1736b6061e3faf24c",
+      "size_bytes": 54018
+    },
+    {
+      "mode": "0o644",
+      "path": "scripts/analysis/README.md",
+      "sha256": "d65891123f2bdc5446f471d995f64ee245b0044d0331f94c9c570df549cf325d",
+      "size_bytes": 6876
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/analysis/compare_spin_samples.py",
+      "sha256": "35bf54f1ae4c92b222f60b2eea97f977fbad4ac99daba63f08b138a5f32f4c4f",
+      "size_bytes": 21968
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/analysis/make_spin_observables.py",
+      "sha256": "7686dc8fe953f0aab2e62d90d588edfb457a68057ac203a63d46cce7cbb6b409",
+      "size_bytes": 15360
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/analysis/parse_lhe_ttbar.py",
+      "sha256": "0a31953888b4ecd16120a63dfc530aa82b35074dccb2e697d5278ead85d009c7",
+      "size_bytes": 22704
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/analysis/validate_spin_shapes.py",
+      "sha256": "b082da8307bb9164fd58858e5a3c73be65e99c17d7024576f589a7cd70b3f2dc",
+      "size_bytes": 14330
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/check_whizard_eos_layout.sh",
+      "sha256": "a919098e5f969a950eb5930ff9b32416cb74b2b6f9dc947b3d8b4026e5e2873e",
+      "size_bytes": 2562
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/make_sample_manifest.py",
+      "sha256": "572721f3226f857aa7803840d19bc9b15cfcd6e20eabb74f7a7e6d0fa97d933a",
+      "size_bytes": 10293
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/migrate_whizard_outputs_to_eos.sh",
+      "sha256": "7659359d836f79e759e28223d81af79193ac47d3a8e2024f8bd6213d64b2cfca",
+      "size_bytes": 4209
+    },
+    {
+      "mode": "0o644",
+      "path": "scripts/production/README.md",
+      "sha256": "8b0d0c7722debf744dc084b0281b1f32550ff017a5e92bcf057e22026de57e5c",
+      "size_bytes": 14433
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/calibrate_decay_normalization.py",
+      "sha256": "b8593d72f2a9add886e47c55407f1392ff8e0f85d214151fd7227c7e13a18173",
+      "size_bytes": 8091
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/collect_production.py",
+      "sha256": "8fdf84fa5313b53f2075de3d440bcb2adccf8d825d73567f532e346d762c32e0",
+      "size_bytes": 9483
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/finalize_forced_decay_lhe.py",
+      "sha256": "e607d8e7b9f8d4b201cf7512889f8489a8347b4dbf196b66dc410cb5622f4278",
+      "size_bytes": 9172
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/make_production_manifest.py",
+      "sha256": "6a79df6da24512c17edddc81e153e9a0c72ab3ca011285328acf879c7874e421",
+      "size_bytes": 12256
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/make_production_sindarin.py",
+      "sha256": "e2d16cf0e841c5c4b1d886d21a19a0e57561557e7728b9facb3f8857172dc7a8",
+      "size_bytes": 7579
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/production_common.py",
+      "sha256": "ed4da9cfd7b7750070a26731fb6b3b7af37d63587ad7db6bbe7eecb0bb33d523",
+      "size_bytes": 19651
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/run_production_shard.sh",
+      "sha256": "f8c98bec7bde75d61217ae2416608ea6e2f272a6e7fa360cbe7022ce246b3c62",
+      "size_bytes": 12553
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/submit_production.py",
+      "sha256": "d2f95b9069bb925918af0c10ac78104a405c34e039dd6c9009b45a50311ade1f",
+      "size_bytes": 15095
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/production/validate_production_outputs.py",
+      "sha256": "7504628afd25a9132a543ff3b3e41090f06ac5e9636394b397374ef8d6c56a5a",
+      "size_bytes": 14656
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/build_qis.sh",
+      "sha256": "11c7be1392d24be0226afd63776e6f3efb6fcf852186742db578c47c422fab7c",
+      "size_bytes": 1319
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/compare_spin_modes.py",
+      "sha256": "3613daa3a33f9a166a37432fe89cd9fc72d4430c9d759ca3768e7f5efb79e345",
+      "size_bytes": 1444
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/make_qis_ntuples.py",
+      "sha256": "db625795a607f74338d9e40736d70c40122e400ebd5b6c36ecc962df2e7a6fc9",
+      "size_bytes": 248
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/make_release_manifest.py",
+      "sha256": "c9039d954660e2c4d0477206addd080ff98beafa51ab68dc71e5ef05a564d708",
+      "size_bytes": 6217
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/run_analysis_job.sh",
+      "sha256": "c5af3f57342281bc7d0205330c35999b78f9116e2efcc0eb525f421f11dce0e5",
+      "size_bytes": 343
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/run_level_b.py",
+      "sha256": "1f03c5f6e40a549ab0d553d15e5ea89a61c0b99700e85e8f2f38fcf1aea9e512",
+      "size_bytes": 238
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/run_level_c.py",
+      "sha256": "1fb12e539f6dc4db3f911f074a5c1ca49fad802b38d333a2c708d6d7a1315eeb",
+      "size_bytes": 238
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/run_tomography.py",
+      "sha256": "bff5c9721d270b166c3ce3c41c743a267a0fe6e0888474b2cd737c98b3aad7e9",
+      "size_bytes": 244
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/submit_qis_analysis.py",
+      "sha256": "dfd16dc63c727be4140011dc78d919e94edf23ce2f1e5586d7cfe9f5601364bd",
+      "size_bytes": 2400
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/validate_lxplus_install.sh",
+      "sha256": "bf7dc332e472eec0b7126e1b4a25dc8e277ac38e49ed9b86a42405573624d438",
+      "size_bytes": 2414
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/qis/validate_qis_framework.py",
+      "sha256": "89efcf30c7add8471afd44a5d712cbbc026738eb73496a5734a8848627795ce3",
+      "size_bytes": 240
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/run_one.sh",
+      "sha256": "9b1b7064eff7d6ca7b599bc9c45ac25550d1bb154e9eb78dc3f911f240796001",
+      "size_bytes": 6594
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/run_validation_matrix.sh",
+      "sha256": "8d76e71df303bca885400e9ee9d5bcc493f1adc21d8cae2f3f1d5eb08fdaaf37",
+      "size_bytes": 3216
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/showering/collect_showering.py",
+      "sha256": "f24e7db1fbc2c22d958d097d3ea9b818d5a0436a4686722fe0b459f9ebe0f830",
+      "size_bytes": 2710
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/showering/run_pythia_shard.sh",
+      "sha256": "725bedd96cf652a5547a6df4d03bb3f64c9aae53eec7973106b6af013f5d5ef2",
+      "size_bytes": 3226
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/showering/submit_showering.py",
+      "sha256": "8fc2b2695f379b2902c57bd18e276fe55609c0c064c4c72611e974a11277a357",
+      "size_bytes": 10581
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/showering/validate_showering.py",
+      "sha256": "516211574689994207e38cc0b1cd72b29376853dd9d649acfe5fc98a6fd1c338",
+      "size_bytes": 5106
+    },
+    {
+      "mode": "0o755",
+      "path": "scripts/validate_cross_sections.py",
+      "sha256": "251e0ddb4c8febfe8a7866a8f2209cd9a7b73684896128e1111cc75b7a74be54",
+      "size_bytes": 8641
+    },
+    {
+      "mode": "0o755",
+      "path": "setup_lxplus.sh",
+      "sha256": "74c3ea8cf61d923dc20f35ffb9a307473b1b5a64010ae598d966fb39bdafa5ae",
+      "size_bytes": 2932
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_LR100_iso_500GeV.sin",
+      "sha256": "2110bb0818370b49551ef34183cc77487ea0f68556b8bc305b8f451e29c85301",
+      "size_bytes": 2069
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_LR100_sc_500GeV.sin",
+      "sha256": "7e49169856575bdb359e5fba3bcfb04dd1dd93aa601a690ba7dd9cf3b2e99eb7",
+      "size_bytes": 2067
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_RL100_iso_500GeV.sin",
+      "sha256": "624b4e32675411403c26b161cd68ba88f860cce3a9938981c9ce9df7164ea0bc",
+      "size_bytes": 2069
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_RL100_sc_500GeV.sin",
+      "sha256": "50b1036dea686367d331a48e46a464bb04b4224bd87c62552967b887cf395c77",
+      "size_bytes": 2067
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_unpol_iso_500GeV.sin",
+      "sha256": "2e60aee9d1745e62875004ff464f158c2688cd78bb304f988be20e165a9fdad9",
+      "size_bytes": 2070
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/ee/ee_ttbar_emu_unpol_sc_500GeV.sin",
+      "sha256": "fffe23bffc26f2db59d82299072573eca51105298ab2e42a692b0b66eebfb4c5",
+      "size_bytes": 2068
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_LR100_iso_500GeV.sin",
+      "sha256": "1a44d5c2c18f849c17d66e10faeb0e4bdb33e0d4a7dfb5f72fc52513e288e798",
+      "size_bytes": 2077
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_LR100_sc_500GeV.sin",
+      "sha256": "ed64ca2a6bc9815b80b2e336ddb933aadeae0605a318f8a8c9fc525ffd7b5504",
+      "size_bytes": 2075
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_RL100_iso_500GeV.sin",
+      "sha256": "c901b77b9136ab4b0d6ac612cecb89e91cf88a11b69ee08e82e062af49facc25",
+      "size_bytes": 2077
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_RL100_sc_500GeV.sin",
+      "sha256": "c499ebf719b98a31d292eb18c5ea883eea58e8dc8f89ca31adb3edc09e8de921",
+      "size_bytes": 2075
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_unpol_iso_500GeV.sin",
+      "sha256": "24e524a2f635056e34f0a12d75700b031678c59d1b3881b71d1525e34b2bd335",
+      "size_bytes": 2078
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/mumu/mumu_ttbar_emu_unpol_sc_500GeV.sin",
+      "sha256": "87d0a714802ec07b0662016835509a93e2968d1b7f8c9b2dcc9dd1b2175b82f9",
+      "size_bytes": 2076
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_500GeV.sin.in",
+      "sha256": "277587bd29bdcd0ce9996054fc9c4f666115f74f600b2a18d9217ed5662eb946",
+      "size_bytes": 2144
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/ee_ttbar_epmum_RL100_sc_ISR_500GeV.sin.in",
+      "sha256": "62f697c08dcf116ea6e15af7eba4fff587cc8c84824829941e9dfc441c30e015",
+      "size_bytes": 2144
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/ee_ttbar_mupem_LR100_sc_ISR_500GeV.sin.in",
+      "sha256": "53c94cc0b9ab3ed6e1d28609cef3f2da3ae01e380a34464bc6cc0e5676d04093",
+      "size_bytes": 2144
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/ee_ttbar_mupem_RL100_sc_ISR_500GeV.sin.in",
+      "sha256": "a57a62368d0b61910fec301a1f6e1055d2d06247ed165cfa2cbd9f4fffbe9ff0",
+      "size_bytes": 2144
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/generated_templates.csv",
+      "sha256": "9197afd1cf7a9948d1e8c061e23044c2ef6f1baeb85987693e268753adad3c85",
+      "size_bytes": 1309
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/mumu_ttbar_epmum_LR100_sc_ISR_500GeV.sin.in",
+      "sha256": "f6e52b9a4bb4733ce6b10afe0ee174fd33e40691b22d295187adcf14aea27685",
+      "size_bytes": 2148
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/mumu_ttbar_epmum_RL100_sc_ISR_500GeV.sin.in",
+      "sha256": "590a466a0cf381e17e14eff859c1b2490eef01df2aaa8752af5d6c19767456f2",
+      "size_bytes": 2148
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/mumu_ttbar_mupem_LR100_sc_ISR_500GeV.sin.in",
+      "sha256": "67a5aa3c601f22de2f53e75737b83fb1a4e6b5ba0adbab71af304f407eb591f6",
+      "size_bytes": 2148
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production/mumu_ttbar_mupem_RL100_sc_ISR_500GeV.sin.in",
+      "sha256": "61d4f9697108d555380debe6fc743fc67e272c74274253c3d8d2b5a3eed993c7",
+      "size_bytes": 2148
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/ee_ttbar_epmum_LR100_iso_ISR_500GeV.sin.in",
+      "sha256": "bed50e7f39dc5489fc095eca94a97dc0dd5717892aeef9dc65c3bb13d852e47a",
+      "size_bytes": 2179
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/ee_ttbar_epmum_RL100_iso_ISR_500GeV.sin.in",
+      "sha256": "fbda91d4c7164f055d4c387b6eeb2113d460dc070d692bd939955d5464c9aecf",
+      "size_bytes": 2179
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/ee_ttbar_mupem_LR100_iso_ISR_500GeV.sin.in",
+      "sha256": "89745535cce1596b62e52e7308cb8a1a777305481c495961dfb10295ac19a522",
+      "size_bytes": 2179
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/ee_ttbar_mupem_RL100_iso_ISR_500GeV.sin.in",
+      "sha256": "2b78a25b7c753fa55d2c97c4c6197821601550663d56326bb920d10101ca0db1",
+      "size_bytes": 2179
+    },
+    {
+      "mode": "0o600",
+      "path": "sindarin/production_iso/generated_templates.csv",
+      "sha256": "3861faf4162d1037cd2740220ea47d2c8c461b926f7d523f4f509a7bc5080f0b",
+      "size_bytes": 1461
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/mumu_ttbar_epmum_LR100_iso_ISR_500GeV.sin.in",
+      "sha256": "331c7daccea7ae35f65cfe170e33803c3a88030ad76ddf408c8d97ecf2744f9d",
+      "size_bytes": 2183
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/mumu_ttbar_epmum_RL100_iso_ISR_500GeV.sin.in",
+      "sha256": "3a7af14bcb55e46e25af148f2c1fb2aa6cc09c069364fc995ca99b76be26dc63",
+      "size_bytes": 2183
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/mumu_ttbar_mupem_LR100_iso_ISR_500GeV.sin.in",
+      "sha256": "2f6c8aeeb5f8af2bb6d69e01bd363237880c3eff3ec450d0d12dce04e70fb528",
+      "size_bytes": 2183
+    },
+    {
+      "mode": "0o644",
+      "path": "sindarin/production_iso/mumu_ttbar_mupem_RL100_iso_ISR_500GeV.sin.in",
+      "sha256": "1e6a71327dd9dd0fcb1f9f9079988df20b03cfcbb668c46e83d085d9d1e37f99",
+      "size_bytes": 2183
+    },
+    {
+      "mode": "0o644",
+      "path": "src/qis/EventMetadata.cc",
+      "sha256": "5ff37f75408fb5443f5d9394bad98b42377625a59f8a9d38305b2524b3731cf8",
+      "size_bytes": 2925
+    },
+    {
+      "mode": "0o644",
+      "path": "src/qis/ShowerConfig.cc",
+      "sha256": "174f3f3c19b55b921001d3dbed1a1f3c4dc431f3bef60aa5d27b49bd97f55298",
+      "size_bytes": 4777
+    },
+    {
+      "mode": "0o644",
+      "path": "src/qis/lhe_to_hepmc3.cc",
+      "sha256": "f3a033ab07022bf95a22d960b6a656f34acaa4d40faa183e7efd96635a80c199",
+      "size_bytes": 5035
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/conftest.py",
+      "sha256": "86ef22a91a2fbc713f886138177d2103a44d90ad0884112f03605fd8b5a81961",
+      "size_bytes": 144
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/production_metadata/normalization/decay_width_calibration.csv",
+      "sha256": "0f51dd6990f9f79bc3228d0c2fd70e9df669629aea3603f76f1a8926ae25f89d",
+      "size_bytes": 1255
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/production_metadata/normalization/forced_decay_weights.csv",
+      "sha256": "7ba5d13cda3ec3336a061739c47820e99c413a4e8e4f4a11dd4dbb059dfcf6b8",
+      "size_bytes": 2932
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/production_metadata/sample_manifest.csv",
+      "sha256": "bf2a2c53b248c0d1d1b95db80c78f7d02d4c6c2527a4e835b78e052108eff3a3",
+      "size_bytes": 3111
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/ee_ttbar_epmum_LR100_sc_ISR_500GeV.lhe",
+      "sha256": "24c727f3e970101c87e48bc0eafea8fd6d4f04994b507227b49b819c86605abb",
+      "size_bytes": 424626
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/ee_ttbar_epmum_RL100_sc_ISR_500GeV.lhe",
+      "sha256": "2d145b83c0ab73b8dc14a893e7f0d945fba933b28a879873da780c8524c86155",
+      "size_bytes": 424627
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/ee_ttbar_mupem_LR100_sc_ISR_500GeV.lhe",
+      "sha256": "55eb5167d81f9b761d3c5f793334198b19fbf5fbaf5b069bb182caa40293e4f4",
+      "size_bytes": 424626
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/ee_ttbar_mupem_RL100_sc_ISR_500GeV.lhe",
+      "sha256": "5d62d4e981721fb8b626f83dcc83f05427ed32292e1a526e59d9c11b95b29b40",
+      "size_bytes": 424627
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/mumu_ttbar_epmum_LR100_sc_ISR_500GeV.lhe",
+      "sha256": "5e58ff816252e00f6f46373fbdebdcfefaf6afe7e258e6634385554f0278927a",
+      "size_bytes": 424626
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/mumu_ttbar_epmum_RL100_sc_ISR_500GeV.lhe",
+      "sha256": "3fed8f88a6991df0f9d63a006d9e9e2d74a03c16fd60c5196c56a7847d625e84",
+      "size_bytes": 424628
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/mumu_ttbar_mupem_LR100_sc_ISR_500GeV.lhe",
+      "sha256": "c701c015359a8bf1033d433c4099b85a71fb6751fd1ff8526bcc03d6d44d9b08",
+      "size_bytes": 424626
+    },
+    {
+      "mode": "0o600",
+      "path": "tests/qis/data/smoke_lhe/mumu_ttbar_mupem_RL100_sc_ISR_500GeV.lhe",
+      "sha256": "d41a5e437d78be9d0a2378c6fa460c465a5b257c8a1d10eeb8f4ff2a68448725",
+      "size_bytes": 424628
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_bases.py",
+      "sha256": "ed4bf7a2a295fb90e70c9b02167ce4fbc809c115e9b7ca6e71dd28ccc4ea5645",
+      "size_bytes": 487
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_config.py",
+      "sha256": "ad149198f1e75c84e431208eb9d757b0a45a4a10ce2570388269c7f2b2ecd066",
+      "size_bytes": 374
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_density.py",
+      "sha256": "f1b5020dc0c7f2ef19095b5a1418afaf5f22932e593316846f7b7c979c3daf6b",
+      "size_bytes": 1104
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_fourvector.py",
+      "sha256": "bff8febcf823d607abffd5a3e25883a5070d02efa061751cabb23ba944cc4f1b",
+      "size_bytes": 445
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_level_b.py",
+      "sha256": "746a5b86df2dccc87a4ec23e97f50bfac0ae555f3304e945bf29ca48143ae17f",
+      "size_bytes": 731
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_level_c.py",
+      "sha256": "24d1c0d8212b78576f28d76f07263411ab5a5a71f18bfe4aafc30ee17e5f5e00",
+      "size_bytes": 1748
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_lhe_smoke.py",
+      "sha256": "8b3e9284854937ff48fc4016f6ff7dedce5dbea83fe9a8b9048eb162961b76df",
+      "size_bytes": 823
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_physical_fit.py",
+      "sha256": "c64783615aef3d3f7088525dd3337454bb3b837e24a468daa32a358d2ce52705",
+      "size_bytes": 648
+    },
+    {
+      "mode": "0o644",
+      "path": "tests/qis/test_tomography.py",
+      "sha256": "17acf47d3a828283762e957dfed2247d965f0cc1ab24a3fc524a50274ece0829",
+      "size_bytes": 947
+    }
+  ],
+  "generated_utc": "2026-07-13T20:00:58.569047Z",
+  "package": "whizard_ttbar_spinpol_qis_framework_v1",
+  "schema_version": 1,
+  "total_size_bytes_excluding_manifest": 4215612
+}

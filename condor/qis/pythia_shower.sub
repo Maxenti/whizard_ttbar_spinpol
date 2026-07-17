@@ -1,0 +1,16 @@
+universe = vanilla
+executable = $(wrapper)
+arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --qed-shower-by-gamma $(qed_shower_by_gamma)
+initialdir = $(repo_root)
+output = $(stdout_path)
+error = $(stderr_path)
+log = $(event_log)
+should_transfer_files = NO
+request_cpus = $(job_cpus)
+request_memory = $(job_memory_mb)MB
+request_disk = $(job_disk_gb)GB
++JobFlavour = "$(job_flavour)"
++JobBatchName = "$(batch_name)"
+on_exit_hold = (ExitBySignal == true) || (ExitCode != 0)
+periodic_release = false
+queue wrapper,input_lhe,output_root,sample_id,campaign_id,shard_id,seed,max_events,shower_executable,settings_file,key4hep_setup,qed_shower_by_gamma,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_disk_gb,job_flavour,batch_name from $(itemdata)

@@ -1,0 +1,18 @@
+schema_version: 1
+level: C
+campaign_id: 500GeV_ISR_full6f_control_v1
+purpose: Compare factorized spin-correlated ttbar decays to gauge-complete six-fermion final states.
+energies_GeV: [500]
+initial_states: [ee, mumu]
+polarizations: [LR100, RL100]
+final_states:
+  epmum: [b, bbar, E1, e2, n1, N2]
+  mupem: [b, bbar, E2, e1, n2, N1]
+required_features:
+  - all diagrams for the declared six-fermion final state
+  - ISR identical to the factorized campaign
+  - no diagram filtering in the authoritative control
+  - optional resonance-window diagnostic samples must be separately named
+notes:
+  - Full six-fermion generation is computationally heavier and requires dedicated integration tuning.
+  - This configuration is a planning contract; use WHIZARD process syntax verified against the installed 3.1.5 manual before production.

@@ -1,0 +1,30 @@
+# Locate PYTHIA8 using CMake config files, environment hints, or pythia8-config.
+find_package(Pythia8 CONFIG QUIET NO_MODULE)
+if(TARGET Pythia8::Pythia8)
+  set(Pythia8_FOUND TRUE)
+  return()
+endif()
+
+set(_pythia_hints)
+foreach(var PYTHIA8_ROOT PYTHIA8_DIR PYTHIA8)
+  if(DEFINED ENV{${var}})
+    list(APPEND _pythia_hints "$ENV{${var}}")
+  endif()
+endforeach()
+find_program(PYTHIA8_CONFIG_EXECUTABLE pythia8-config)
+if(PYTHIA8_CONFIG_EXECUTABLE)
+  execute_process(COMMAND "${PYTHIA8_CONFIG_EXECUTABLE}" --prefix
+    OUTPUT_VARIABLE _pythia_prefix OUTPUT_STRIP_TRAILING_WHITESPACE)
+  list(APPEND _pythia_hints "${_pythia_prefix}")
+endif()
+find_path(PYTHIA8_INCLUDE_DIR Pythia8/Pythia.h HINTS ${_pythia_hints} PATH_SUFFIXES include)
+find_library(PYTHIA8_LIBRARY NAMES pythia8 Pythia8 HINTS ${_pythia_hints} PATH_SUFFIXES lib lib64)
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(Pythia8 REQUIRED_VARS PYTHIA8_INCLUDE_DIR PYTHIA8_LIBRARY)
+if(Pythia8_FOUND AND NOT TARGET Pythia8::Pythia8)
+  add_library(Pythia8::Pythia8 UNKNOWN IMPORTED)
+  set_target_properties(Pythia8::Pythia8 PROPERTIES
+    IMPORTED_LOCATION "${PYTHIA8_LIBRARY}"
+    INTERFACE_INCLUDE_DIRECTORIES "${PYTHIA8_INCLUDE_DIR}")
+endif()
+mark_as_advanced(PYTHIA8_INCLUDE_DIR PYTHIA8_LIBRARY PYTHIA8_CONFIG_EXECUTABLE)

@@ -1,0 +1,47 @@
+schema_version: 1
+level: A
+campaign:
+  source_campaign_id: 500GeV_ISR_sc_v1
+  source_manifest: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1/manifests/sample_manifest.csv
+  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/campaigns/500GeV_ISR_sc_v1
+  negative_lepton_defines_plus_z: true
+inputs:
+  mode: manifest
+  prefer_merged_final_lhe: true
+  allowed_initial_states: [ee, mumu]
+  allowed_polarizations: [LR100, RL100]
+  allowed_decay_channels: [epmum, mupem]
+physics:
+  basis_order: [k, r, n]
+  antitop_axis_convention: particle_helicity_right_handed
+  antitop_analyzer_sign: -1.0
+  analyzing_power:
+    lepton_plus: 1.0
+    lepton_minus: 1.0
+  entropy_log_base: 2
+  top_mass_GeV: 173.1
+  w_mass_GeV: 80.379
+statistics:
+  bootstrap_replicas_test: 100
+  bootstrap_replicas_production: 1000
+  bootstrap_seed: 730001
+  confidence_level: 0.68
+  physical_projection: eigenvalue_simplex
+  maximum_likelihood_fit: true
+binning:
+  mtt_GeV: [340, 360, 380, 400, 420, 440, 460, 480, 490, 500.0001]
+  cos_theta_t: [-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.000001]
+outputs:
+  parquet: true
+  root: true
+  csv: true
+  json: true
+  plots: [png, pdf]
+  plot_label: WHIZARD + PYTHIA8
+  plot_subtitle: Generator level, sqrt(s) = 500 GeV
+showering:
+  executable: build/qis_lhe_to_hepmc3
+  settings_file: configs/pythia/level_a.cmnd
+  events_per_job: 10000
+  preserve_whizard_top_decays: true
+  preserve_whizard_w_decays: true

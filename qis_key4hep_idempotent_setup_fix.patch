@@ -1,0 +1,169 @@
+--- a/setup_lxplus.sh
++++ b/setup_lxplus.sh
+@@ -29,21 +29,50 @@
+   return 3
+ fi
+ 
+-# Warn about an already-loaded WHIZARD environment. Sourcing several
+-# independent CVMFS stacks into one shell is not supported.
+-if command -v whizard >/dev/null 2>&1; then
+-  echo "WARNING: whizard was already present before Key4HEP setup:"
+-  command -v whizard
+-  echo
+-  echo "For the cleanest environment, start a fresh lxplus shell and source"
+-  echo "only this setup script."
+-  echo
++# Make project setup idempotent.  The raw Key4HEP setup script deliberately
++# rejects repeated setup in one shell, while project wrappers may be nested
++# (validation -> build, interactive shell -> validation, etc.).
++_key4hep_active=0
++_whizard_before_setup=""
++
++if [[ ${WHIZARD_TTBAR_ENV_READY:-0} == 1 ]]; then
++  _key4hep_active=1
++elif command -v whizard >/dev/null 2>&1; then
++  _whizard_before_setup=$(readlink -f "$(command -v whizard)")
++  if [[ $_whizard_before_setup == /cvmfs/sw.hsf.org/key4hep/releases/* ]]; then
++    _key4hep_active=1
++  fi
+ fi
+ 
+-source "$KEY4HEP_SETUP" || {
+-  echo "ERROR: Key4HEP setup failed." >&2
+-  return 4
+-}
++if (( _key4hep_active == 0 )); then
++  if [[ -n $_whizard_before_setup ]]; then
++    echo "WARNING: a non-Key4HEP WHIZARD environment is already active:"
++    echo "  $_whizard_before_setup"
++    echo
++    echo "For the cleanest environment, start a fresh lxplus shell and source"
++    echo "only this setup script."
++    echo
++  fi
++
++  nounset_was_on=0
++  errexit_was_on=0
++  case $- in *u*) nounset_was_on=1; set +u;; esac
++  case $- in *e*) errexit_was_on=1; set +e;; esac
++
++  # shellcheck disable=SC1090
++  source "$KEY4HEP_SETUP"
++  _setup_rc=$?
++
++  (( errexit_was_on == 0 )) || set -e
++  (( nounset_was_on == 0 )) || set -u
++
++  if (( _setup_rc != 0 )); then
++    echo "ERROR: Key4HEP setup failed with return code $_setup_rc." >&2
++    return 4
++  fi
++else
++  echo "Key4HEP environment already active; reusing current environment."
++fi
+ 
+ export OMP_NUM_THREADS=${OMP_NUM_THREADS:-1}
+ export OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-1}
+@@ -98,6 +127,15 @@
+ unset _required_commands
+ unset _missing
+ unset _cmd
++unset _key4hep_active
++unset _whizard_before_setup
++unset _setup_rc
++unset nounset_was_on
++unset errexit_was_on
++
++# Mark the project environment as initialized so nested wrappers do not source
++# the raw Key4HEP setup script again.
++export WHIZARD_TTBAR_ENV_READY=1
+ 
+ # Canonical persistent output location.
+ export WHIZARD_TTBAR_OUTPUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+--- a/scripts/qis/validate_lxplus_install.sh
++++ b/scripts/qis/validate_lxplus_install.sh
+@@ -7,7 +7,7 @@
+   cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." >/dev/null 2>&1
+   pwd -P
+ )
+-SETUP=${KEY4HEP_SETUP:-$REPO/setup_lxplus.sh}
++SETUP=${QIS_PROJECT_SETUP:-$REPO/setup_lxplus.sh}
+ EVENTS=${QIS_LXPLUS_SMOKE_EVENTS:-10}
+ WORK=${QIS_LXPLUS_SMOKE_DIR:-/tmp/${USER:-unknown}/whizard_qis_lxplus_smoke}
+ INPUT=${QIS_LXPLUS_SMOKE_LHE:-$REPO/tests/qis/data/smoke_lhe/ee_ttbar_epmum_LR100_sc_ISR_500GeV.lhe}
+@@ -29,7 +29,7 @@
+ rm -rf "$WORK"
+ mkdir -p "$WORK"
+ 
+-"$REPO/scripts/qis/build_qis.sh"
++QIS_SKIP_ENV_SETUP=1 "$REPO/scripts/qis/build_qis.sh"
+ 
+ "$REPO/build/qis_lhe_to_hepmc3" \
+   --input "$INPUT" \
+--- a/scripts/qis/build_qis.sh
++++ b/scripts/qis/build_qis.sh
+@@ -2,16 +2,16 @@
+ set -euo pipefail
+ ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd -P)
+ BUILD=${1:-$ROOT/build}
+-KEY4HEP_SETUP=${KEY4HEP_SETUP:-$ROOT/setup_lxplus.sh}
++PROJECT_SETUP=${QIS_PROJECT_SETUP:-$ROOT/setup_lxplus.sh}
+ 
+-if [[ ${QIS_SKIP_ENV_SETUP:-0} != 1 ]]; then
+-  [[ -r $KEY4HEP_SETUP ]] || { echo "ERROR: setup script not readable: $KEY4HEP_SETUP" >&2; exit 2; }
++if [[ ${QIS_SKIP_ENV_SETUP:-0} != 1 && ${WHIZARD_TTBAR_ENV_READY:-0} != 1 ]]; then
++  [[ -r $PROJECT_SETUP ]] || { echo "ERROR: setup script not readable: $PROJECT_SETUP" >&2; exit 2; }
+   nounset_was_on=0
+   errexit_was_on=0
+   case $- in *u*) nounset_was_on=1; set +u;; esac
+   case $- in *e*) errexit_was_on=1; set +e;; esac
+   # shellcheck disable=SC1090
+-  source "$KEY4HEP_SETUP"
++  source "$PROJECT_SETUP"
+   setup_rc=$?
+   (( errexit_was_on == 0 )) || set -e
+   (( nounset_was_on == 0 )) || set -u
+--- a/scripts/qis/run_analysis_job.sh
++++ b/scripts/qis/run_analysis_job.sh
+@@ -1,10 +1,25 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd -P)
+-KEY4HEP_SETUP=${KEY4HEP_SETUP:-$ROOT/setup_lxplus.sh}
+-nounset=0; case $- in *u*) nounset=1; set +u;; esac
+-# shellcheck disable=SC1090
+-source "$KEY4HEP_SETUP"
+-(( nounset == 0 )) || set -u
++PROJECT_SETUP=${QIS_PROJECT_SETUP:-$ROOT/setup_lxplus.sh}
++if [[ ${WHIZARD_TTBAR_ENV_READY:-0} != 1 ]]; then
++  [[ -r $PROJECT_SETUP ]] || {
++    echo "ERROR: setup script not readable: $PROJECT_SETUP" >&2
++    exit 2
++  }
++  nounset=0
++  errexit=0
++  case $- in *u*) nounset=1; set +u;; esac
++  case $- in *e*) errexit=1; set +e;; esac
++  # shellcheck disable=SC1090
++  source "$PROJECT_SETUP"
++  setup_rc=$?
++  (( errexit == 0 )) || set -e
++  (( nounset == 0 )) || set -u
++  (( setup_rc == 0 )) || {
++    echo "ERROR: environment setup failed rc=$setup_rc" >&2
++    exit 3
++  }
++fi
+ export PYTHONPATH="$ROOT:${PYTHONPATH:-}"
+ exec "$@"
+--- a/scripts/showering/run_pythia_shard.sh
++++ b/scripts/showering/run_pythia_shard.sh
+@@ -34,7 +34,7 @@
+ [[ -r $SETTINGS ]] || { echo "ERROR: unreadable settings: $SETTINGS" >&2; exit 5; }
+ [[ $OUTPUT_ROOT == /eos/* ]] || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
+ 
+-if [[ -n $KEY4HEP_SETUP ]]; then
++if [[ ${WHIZARD_TTBAR_ENV_READY:-0} != 1 && -n $KEY4HEP_SETUP ]]; then
+   [[ -r $KEY4HEP_SETUP ]] || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 7; }
+   nounset_was_on=0
+   errexit_was_on=0

@@ -264,8 +264,12 @@ def validate_configs(configs: Sequence[SampleConfig]) -> None:
             raise ValueError(f"invalid ISR mass/alpha for {cfg.sample_id}")
         if not cfg.isr_enabled:
             raise ValueError(f"production-v1 requires ISR enabled for {cfg.sample_id}")
-        if not cfg.spin_correlated:
-            raise ValueError(f"production-v1 requires spin-correlated decays for {cfg.sample_id}")
+        expected_spin_token = "_sc_" if cfg.spin_correlated else "_iso_"
+        if expected_spin_token not in cfg.sample_id:
+            raise ValueError(
+                f"sample_id spin token does not match spin_correlated={cfg.spin_correlated}: "
+                f"{cfg.sample_id}"
+            )
         for shard in range(cfg.n_shards):
             seed = cfg.shard_seed(shard)
             owner = used_seeds.get(seed)

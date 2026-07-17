@@ -1,0 +1,31 @@
+schema_version: 1
+level: B
+source_level_a: configs/qis/level_a_500GeV_ISR_sc_v1.yaml
+output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/level_b/500GeV_ISR_sc_v1
+response:
+  seed: 810001
+  lepton_efficiency: 0.98
+  bjet_efficiency: 0.80
+  lepton_relative_pt_resolution: 0.001
+  lepton_eta_resolution: 0.0005
+  lepton_phi_resolution: 0.0005
+  jet_relative_energy_resolution: 0.05
+  jet_angular_resolution: 0.01
+reconstruction:
+  channel: dilepton
+  top_mass_GeV: 173.1
+  w_mass_GeV: 80.379
+  top_width_GeV: 1.523
+  w_width_GeV: 2.085
+  solver_starts: 32
+  max_chi2: 100.0
+unfolding:
+  method: iterative_bayes
+  iterations: 4
+  regularization: 1.0e-8
+systematics:
+  variations:
+    - {name: lepton_scale_up, parameter: lepton_scale, value: 1.001}
+    - {name: lepton_scale_down, parameter: lepton_scale, value: 0.999}
+    - {name: jet_scale_up, parameter: jet_scale, value: 1.01}
+    - {name: jet_scale_down, parameter: jet_scale, value: 0.99}

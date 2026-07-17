@@ -1,0 +1,218 @@
+--- a/scripts/production/make_production_sindarin.py
++++ b/scripts/production/make_production_sindarin.py
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""Generate shard-renderable WHIZARD SINDARIN templates for production-v1."""
++"""Generate shard-renderable WHIZARD SINDARIN templates for SC and ISO production."""
+ 
+ from __future__ import annotations
+ 
+@@ -67,6 +67,10 @@
+ def render_template(cfg: SampleConfig) -> str:
+     t_process, tbar_process, t_text, tbar_text = decay_lines(cfg)
+     isotropic = "false" if cfg.spin_correlated else "true"
++    spin_mode = "sc" if cfg.spin_correlated else "iso"
++    decay_description = (
++        "spin-correlated" if cfg.spin_correlated else "isotropic-control"
++    )
+     diagonal = "false"
+     beam_line = f"beams = {cfg.beam1}, {cfg.beam2} => isr" if cfg.isr_enabled else f"beams = {cfg.beam1}, {cfg.beam2}"
+     isr_block = f"""
+@@ -79,7 +83,7 @@
+ """.strip() if cfg.isr_enabled else ""
+ 
+     return f"""! ======================================================================
+-! WHIZARD polarized, spin-correlated ttbar production template
++! WHIZARD polarized, {decay_description} ttbar production template
+ ! ======================================================================
+ ! META campaign_id={cfg.campaign_id}
+ ! META sample_id={cfg.sample_id}
+@@ -91,7 +95,7 @@
+ ! META beam2_helicity={cfg.beam2_helicity}
+ ! META beam1_pol_fraction={cfg.beam1_pol_fraction:g}
+ ! META beam2_pol_fraction={cfg.beam2_pol_fraction:g}
+-! META spin_mode=sc
++! META spin_mode={spin_mode}
+ ! META isr_enabled={str(cfg.isr_enabled).lower()}
+ ! META isr_mass_GeV={cfg.isr_mass_GeV:.12g}
+ ! META isr_alpha={cfg.isr_alpha:.12g}
+@@ -162,14 +166,27 @@
+     for token in TOKENS:
+         if token not in text:
+             raise ValueError(f"template for {cfg.sample_id} is missing token {token}")
++
++    spin_mode = "sc" if cfg.spin_correlated else "iso"
++    isotropic = "false" if cfg.spin_correlated else "true"
++    expected_sample_tag = "_sc_" if cfg.spin_correlated else "_iso_"
++
++    if expected_sample_tag not in cfg.sample_id:
++        raise ValueError(
++            f"sample_id={cfg.sample_id!r} disagrees with "
++            f"spin_correlated={cfg.spin_correlated}; expected tag "
++            f"{expected_sample_tag!r}"
++        )
++
+     required = [
+         "=> isr",
+         "?isr_handler = true",
+         "isr_mass =",
+         "isr_alpha =",
+-        "?isotropic_decay = false",
++        f"?isotropic_decay = {isotropic}",
+         "?diagonal_decay = false",
+         "?polarized_events = true",
++        f"! META spin_mode={spin_mode}",
+         f"@({cfg.beam1_helicity:+d})",
+         f"@({cfg.beam2_helicity:+d})",
+         "sample_format = lhef",
+@@ -178,6 +195,30 @@
+     if missing:
+         raise ValueError(f"template for {cfg.sample_id} is missing: {missing}")
+ 
++
++
++def merge_template_manifest(
++    manifest: Path,
++    rows: list[dict[str, object]],
++) -> list[dict[str, object]]:
++    """Merge generated rows without discarding other production campaigns."""
++
++    merged: dict[str, dict[str, object]] = {}
++
++    if manifest.exists():
++        with manifest.open(newline="") as stream:
++            for row in csv.DictReader(stream):
++                sample_id = str(row.get("sample_id", "")).strip()
++                if sample_id:
++                    merged[sample_id] = dict(row)
++
++    for row in rows:
++        merged[str(row["sample_id"])] = row
++
++    return [
++        merged[sample_id]
++        for sample_id in sorted(merged)
++    ]
+ 
+ def main() -> int:
+     args = parse_args()
+@@ -216,6 +257,7 @@
+ 
+     if not args.check:
+         manifest = args.output_dir / "generated_templates.csv"
++        manifest_rows = merge_template_manifest(manifest, rows)
+         write_csv(
+             manifest,
+             [
+@@ -229,9 +271,12 @@
+                 "isr_enabled",
+                 "spin_correlated",
+             ],
+-            rows,
+-        )
+-        print(f"Wrote {manifest}")
++            manifest_rows,
++        )
++        print(
++            f"Wrote {manifest} "
++            f"({len(manifest_rows)} total template record(s))"
++        )
+     print(f"Validated {len(configs)} production template(s)")
+     return 0
+ 
+--- a/scripts/qis/run_next_production_gate.sh
++++ b/scripts/qis/run_next_production_gate.sh
+@@ -62,6 +62,7 @@
+       "$SC_QIS_CONFIG" \
+       "$ISO_QIS_CONFIG" \
+       "$ISO_PRODUCTION_CONFIG" \
++      scripts/production/make_production_sindarin.py \
+       scripts/showering/canonicalize_whizard_lhe_for_pythia.py \
+       scripts/showering/insert_explicit_w_resonances.py \
+       scripts/showering/augment_shower_metadata.py \
+@@ -79,6 +80,9 @@
+       echo "ISO manifest: not present yet"
+       echo "Next phase: submit-iso-production"
+     fi
++    python3 scripts/production/make_production_sindarin.py \
++      --config "$ISO_PRODUCTION_CONFIG" \
++      --check
+     python3 -m pytest -q \
+       tests/qis/test_spin15_observables.py \
+       tests/qis/test_lhe_smoke.py
+@@ -87,8 +91,75 @@
+ 
+   submit-iso-production)
+     source setup_lxplus.sh
++
++    # Templates are generated artifacts.  Rebuild them from the authoritative
++    # ISO production CSV before creating the Condor submission.
++    python3 scripts/production/make_production_sindarin.py \
++      --config "$ISO_PRODUCTION_CONFIG" \
++      --output-dir "$REPO/sindarin/production" \
++      --force
++
++    python3 - "$ISO_PRODUCTION_CONFIG" "$REPO/sindarin/production" <<'PY'
++import csv
++import sys
++from pathlib import Path
++
++config = Path(sys.argv[1])
++template_dir = Path(sys.argv[2])
++failures = []
++
++with config.open(newline="") as stream:
++    rows = [
++        row
++        for row in csv.DictReader(stream)
++        if row.get("enabled", "").strip().lower()
++        in {"1", "true", "yes", "on"}
++    ]
++
++if len(rows) != 8:
++    failures.append(f"expected 8 enabled ISO samples, found {len(rows)}")
++
++for row in rows:
++    sample_id = row["sample_id"].strip()
++    spin_correlated = row["spin_correlated"].strip().lower()
++
++    if "_iso_" not in sample_id:
++        failures.append(f"{sample_id}: sample_id is missing '_iso_'")
++    if spin_correlated not in {"0", "false", "no", "off"}:
++        failures.append(
++            f"{sample_id}: spin_correlated={row['spin_correlated']!r}, "
++            "expected false"
++        )
++
++    template = template_dir / f"{sample_id}.sin.in"
++    if not template.is_file():
++        failures.append(f"{sample_id}: missing template {template}")
++        continue
++
++    text = template.read_text()
++    for required in (
++        "! META spin_mode=iso",
++        "?isotropic_decay = true",
++        "?diagonal_decay = false",
++        "?polarized_events = true",
++    ):
++        if required not in text:
++            failures.append(
++                f"{sample_id}: template is missing {required!r}"
++            )
++
++if failures:
++    print("ISO TEMPLATE AUDIT FAILURES:", file=sys.stderr)
++    for failure in failures:
++        print(f"  - {failure}", file=sys.stderr)
++    raise SystemExit(1)
++
++print(f"ISO TEMPLATE AUDIT PASS: {len(rows)} templates")
++PY
++
+     python3 scripts/production/submit_production.py \
+       --config "$ISO_PRODUCTION_CONFIG" \
++      --template-dir "$REPO/sindarin/production" \
+       --submit
+     ;;
+ 

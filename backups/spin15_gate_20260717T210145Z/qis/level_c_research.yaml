@@ -1,0 +1,25 @@
+schema_version: 1
+level: C
+source_level_b: configs/qis/level_b_detector.yaml
+output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/level_c
+transverse_polarization:
+  require_direct_whizard_generation: true
+  allow_incoherent_longitudinal_mixture: true
+eft:
+  coefficient_names: []
+  polynomial_order: 2
+  enforce_positive_event_weights: false
+cp:
+  observables: [beam_lepton_triple_product, C_rn_minus_C_nr, C_kn_minus_C_nk]
+optimized_bases:
+  method: correlation_svd
+multienergy:
+  energies_GeV: [350, 365, 500, 1000]
+nlo:
+  mode: differential_reweighting
+  interpolation: linear
+qis_advanced:
+  compute_quantum_fisher_information: true
+  compute_stabilizer_renyi_magic: true
+  compute_steering_parameter: true
+  compute_state_distances: true

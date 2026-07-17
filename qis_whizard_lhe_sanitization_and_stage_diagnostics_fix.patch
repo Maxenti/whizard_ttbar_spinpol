@@ -1,0 +1,360 @@
+diff --git a/include/qis/EventMetadata.h b/include/qis/EventMetadata.h
+index 366e42b..312ab2e 100644
+--- a/include/qis/EventMetadata.h
++++ b/include/qis/EventMetadata.h
+@@ -11,6 +11,7 @@ struct RunSummary {
+   std::string sample_id;
+   std::string shard_id;
+   std::string input_path;
++  std::string pythia_input_path;
+   std::string output_path;
+   std::string settings_path;
+   std::string pythia_version;
+@@ -18,12 +19,16 @@ struct RunSummary {
+   std::string host;
+   std::string started_utc;
+   std::string finished_utc;
++  std::string failure_stage;
+   std::string error_message;
+   std::uint32_t seed{0};
+   std::int64_t requested_events{-1};
+   std::int64_t attempted_events{0};
+   std::int64_t accepted_events{0};
+   std::int64_t failed_events{0};
++  std::int64_t removed_auxiliary_weight_tags{0};
++  std::int64_t last_pythia_event_size{0};
++  bool input_was_sanitized{false};
+   double sigma_gen_mb{0.0};
+   double weight_sum{0.0};
+   double weight_sum2{0.0};
+diff --git a/src/qis/EventMetadata.cc b/src/qis/EventMetadata.cc
+index 3b39aca..39cb32a 100644
+--- a/src/qis/EventMetadata.cc
++++ b/src/qis/EventMetadata.cc
+@@ -53,6 +53,7 @@ void write_summary_json(const RunSummary& s, const std::filesystem::path& output
+       << "  \"sample_id\": \"" << escape_json(s.sample_id) << "\",\n"
+       << "  \"shard_id\": \"" << escape_json(s.shard_id) << "\",\n"
+       << "  \"input_path\": \"" << escape_json(s.input_path) << "\",\n"
++      << "  \"pythia_input_path\": \"" << escape_json(s.pythia_input_path) << "\",\n"
+       << "  \"output_path\": \"" << escape_json(s.output_path) << "\",\n"
+       << "  \"settings_path\": \"" << escape_json(s.settings_path) << "\",\n"
+       << "  \"pythia_version\": \"" << escape_json(s.pythia_version) << "\",\n"
+@@ -60,12 +61,16 @@ void write_summary_json(const RunSummary& s, const std::filesystem::path& output
+       << "  \"host\": \"" << escape_json(s.host) << "\",\n"
+       << "  \"started_utc\": \"" << escape_json(s.started_utc) << "\",\n"
+       << "  \"finished_utc\": \"" << escape_json(s.finished_utc) << "\",\n"
++      << "  \"failure_stage\": \"" << escape_json(s.failure_stage) << "\",\n"
+       << "  \"error_message\": \"" << escape_json(s.error_message) << "\",\n"
+       << "  \"seed\": " << s.seed << ",\n"
+       << "  \"requested_events\": " << s.requested_events << ",\n"
+       << "  \"attempted_events\": " << s.attempted_events << ",\n"
+       << "  \"accepted_events\": " << s.accepted_events << ",\n"
+       << "  \"failed_events\": " << s.failed_events << ",\n"
++      << "  \"removed_auxiliary_weight_tags\": " << s.removed_auxiliary_weight_tags << ",\n"
++      << "  \"last_pythia_event_size\": " << s.last_pythia_event_size << ",\n"
++      << "  \"input_was_sanitized\": " << (s.input_was_sanitized ? "true" : "false") << ",\n"
+       << "  \"sigma_gen_mb\": " << s.sigma_gen_mb << ",\n"
+       << "  \"weight_sum\": " << s.weight_sum << ",\n"
+       << "  \"weight_sum2\": " << s.weight_sum2 << ",\n"
+diff --git a/src/qis/lhe_to_hepmc3.cc b/src/qis/lhe_to_hepmc3.cc
+index 217c13c..f0ba767 100644
+--- a/src/qis/lhe_to_hepmc3.cc
++++ b/src/qis/lhe_to_hepmc3.cc
+@@ -9,23 +9,130 @@
+ #include "Pythia8/Pythia.h"
+ #include "Pythia8Plugins/HepMC3.h"
+ 
++#include <algorithm>
++#include <cctype>
+ #include <cmath>
+ #include <filesystem>
++#include <fstream>
+ #include <iostream>
+ #include <memory>
+-#include <stdexcept>
+ #include <sstream>
++#include <stdexcept>
+ #include <string>
++#include <system_error>
++#include <unistd.h>
++#include <vector>
+ 
+ namespace {
+ #define QIS_STRINGIFY_IMPL(value) #value
+ #define QIS_STRINGIFY(value) QIS_STRINGIFY_IMPL(value)
+ 
++struct PreparedLheInput {
++  std::filesystem::path path;
++  std::filesystem::path temporary_path;
++  std::int64_t removed_sqme_weight_tags{0};
++
++  bool sanitized() const { return !temporary_path.empty(); }
++
++  ~PreparedLheInput() {
++    if (!temporary_path.empty()) {
++      std::error_code error;
++      std::filesystem::remove(temporary_path, error);
++    }
++  }
++};
++
++bool contains_sqme_weight_open(const std::string& line) {
++  const auto open = line.find("<weight");
++  if (open == std::string::npos) return false;
++  const auto close = line.find('>', open);
++  if (close == std::string::npos) return false;
++  const std::string tag = line.substr(open, close - open + 1);
++  return tag.find("name=\"sqme_prc\"") != std::string::npos ||
++         tag.find("name='sqme_prc'") != std::string::npos;
++}
++
++PreparedLheInput prepare_lhe_for_pythia(const std::filesystem::path& input,
++                                        const std::filesystem::path& work_directory) {
++  PreparedLheInput prepared;
++  prepared.path = input;
++
++  std::ifstream source(input);
++  if (!source) {
++    throw std::runtime_error("cannot open LHE input for sanitization scan: " + input.string());
++  }
++
++  const auto candidate = work_directory /
++      ("." + input.filename().string() + ".pythia_sanitized." +
++       std::to_string(::getpid()) + ".lhe");
++  std::ofstream destination(candidate, std::ios::trunc);
++  if (!destination) {
++    throw std::runtime_error("cannot create temporary sanitized LHE: " + candidate.string());
++  }
++
++  bool skipping_sqme_weight = false;
++  std::string line;
++  while (std::getline(source, line)) {
++    if (!skipping_sqme_weight && contains_sqme_weight_open(line)) {
++      ++prepared.removed_sqme_weight_tags;
++      if (line.find("</weight>") == std::string::npos) {
++        skipping_sqme_weight = true;
++      }
++      continue;
++    }
++    if (skipping_sqme_weight) {
++      if (line.find("</weight>") != std::string::npos) {
++        skipping_sqme_weight = false;
++      }
++      continue;
++    }
++    destination << line << '\n';
++  }
++
++  if (!source.eof() || !destination) {
++    throw std::runtime_error("I/O failure while preparing LHE input for PYTHIA");
++  }
++  if (skipping_sqme_weight) {
++    throw std::runtime_error("unterminated WHIZARD sqme_prc <weight> element in " + input.string());
++  }
++
++  destination.close();
++  source.close();
++
++  if (prepared.removed_sqme_weight_tags == 0) {
++    std::error_code error;
++    std::filesystem::remove(candidate, error);
++    return prepared;
++  }
++
++  prepared.path = candidate;
++  prepared.temporary_path = candidate;
++  return prepared;
++}
++
++void validate_pythia_topology(const Pythia8::Event& event) {
++  const int size = event.size();
++  for (int particle_index = 0; particle_index < size; ++particle_index) {
++    const auto mothers = event[particle_index].motherList();
++    for (const int mother_index : mothers) {
++      if (mother_index < 0 || mother_index >= size) {
++        std::ostringstream message;
++        message << "invalid PYTHIA mother index: particle=" << particle_index
++                << " id=" << event[particle_index].id()
++                << " mother=" << mother_index
++                << " event_size=" << size;
++        throw std::runtime_error(message.str());
++      }
++    }
++  }
++}
++
+ void add_metadata(HepMC3::GenEvent& event,
+                   const qis::ShowerConfig& config,
+                   std::int64_t index,
+                   const Pythia8::Info& info,
+-                  double nominal_weight) {
++                  double nominal_weight,
++                  const PreparedLheInput& prepared) {
+   event.add_attribute("whizard_campaign_id", std::make_shared<HepMC3::StringAttribute>(config.campaign_id));
+   event.add_attribute("whizard_sample_id", std::make_shared<HepMC3::StringAttribute>(config.sample_id));
+   event.add_attribute("whizard_shard_id", std::make_shared<HepMC3::StringAttribute>(config.shard_id));
+@@ -38,20 +145,16 @@ void add_metadata(HepMC3::GenEvent& event,
+   event.add_attribute("alphaQCD", std::make_shared<HepMC3::DoubleAttribute>(info.alphaS()));
+   event.add_attribute("alphaQED", std::make_shared<HepMC3::DoubleAttribute>(info.alphaEM()));
+   event.add_attribute("nominal_event_weight", std::make_shared<HepMC3::DoubleAttribute>(nominal_weight));
++  event.add_attribute("input_lhe_sanitized", std::make_shared<HepMC3::IntAttribute>(prepared.sanitized() ? 1 : 0));
++  event.add_attribute("removed_sqme_prc_weight_tags", std::make_shared<HepMC3::IntAttribute>(
++      static_cast<int>(prepared.removed_sqme_weight_tags)));
+   event.add_attribute("weight_policy", std::make_shared<HepMC3::StringAttribute>(
+-      "nominal_lha_weight_only; WHIZARD sqme_prc auxiliary weights are not propagated"));
++      "nominal_lha_weight_only; WHIZARD sqme_prc auxiliary diagnostics removed before PYTHIA"));
+ }
+ 
+ void add_nominal_weight_and_cross_section(HepMC3::GenEvent& event,
+                                           const Pythia8::Info& info,
+                                           double nominal_weight) {
+-  // WHIZARD writes an auxiliary <weight name="sqme_prc"> value without a
+-  // corresponding LHE <initrwgt> declaration.  PYTHIA 8.315 can expose an
+-  // inconsistent multiweight count for such files, and the stock HepMC3
+-  // converter then performs an out-of-range access.  These production files
+-  // are unweighted (XWGTUP = 1), so the physically relevant event weight is
+-  // the nominal LHA weight returned by info.weight().  Store exactly that one
+-  // weight and construct the cross-section object explicitly.
+   event.weights().clear();
+   event.weights().push_back(nominal_weight);
+ 
+@@ -67,6 +170,7 @@ int main(int argc, char** argv) {
+   qis::RunSummary summary;
+   std::filesystem::path metadata_path;
+   std::filesystem::path partial_output_path;
++  std::string stage = "command-line parsing";
+ 
+   try {
+     const auto config = qis::parse_command_line(argc, argv);
+@@ -86,15 +190,24 @@ int main(int argc, char** argv) {
+     summary.pythia_version = QIS_STRINGIFY(PYTHIA_VERSION);
+     summary.hepmc_version = HepMC3::version();
+ 
++    stage = "output-directory preparation";
+     std::filesystem::create_directories(config.output_hepmc3.parent_path());
+     std::filesystem::create_directories(config.metadata_json.parent_path());
+     std::filesystem::remove(partial_output_path);
+ 
++    stage = "WHIZARD auxiliary-weight sanitization";
++    auto prepared_input = prepare_lhe_for_pythia(
++        config.input_lhe, config.output_hepmc3.parent_path());
++    summary.pythia_input_path = std::filesystem::absolute(prepared_input.path).string();
++    summary.input_was_sanitized = prepared_input.sanitized();
++    summary.removed_auxiliary_weight_tags = prepared_input.removed_sqme_weight_tags;
++
++    stage = "PYTHIA settings initialization";
+     Pythia8::Pythia pythia;
+     if (!pythia.readFile(config.settings_file.string())) {
+       throw std::runtime_error("PYTHIA failed to read settings file");
+     }
+-    if (!pythia.readString("Beams:LHEF = " + config.input_lhe.string())) {
++    if (!pythia.readString("Beams:LHEF = " + prepared_input.path.string())) {
+       throw std::runtime_error("PYTHIA rejected Beams:LHEF input path");
+     }
+     if (!pythia.readString("Random:setSeed = on") ||
+@@ -106,10 +219,13 @@ int main(int argc, char** argv) {
+         throw std::runtime_error("invalid PYTHIA override: " + setting);
+       }
+     }
++
++    stage = "PYTHIA init";
+     if (!pythia.init()) {
+       throw std::runtime_error("PYTHIA initialization failed");
+     }
+ 
++    stage = "HepMC3 writer initialization";
+     HepMC3::WriterAscii writer(partial_output_path.string());
+     HepMC3::Pythia8ToHepMC3 converter;
+     converter.set_store_pdf(false);
+@@ -121,6 +237,7 @@ int main(int argc, char** argv) {
+ 
+     while (config.max_events < 0 || summary.accepted_events < config.max_events) {
+       ++summary.attempted_events;
++      stage = "PYTHIA next event " + std::to_string(summary.attempted_events);
+       if (!pythia.next()) {
+         if (pythia.info.atEndOfFile()) {
+           break;
+@@ -135,12 +252,16 @@ int main(int argc, char** argv) {
+       }
+ 
+       consecutive_failures = 0;
++      summary.last_pythia_event_size = pythia.event.size();
++
++      stage = "PYTHIA event-topology validation " + std::to_string(summary.attempted_events);
++      validate_pythia_topology(pythia.event);
++
++      stage = "nominal LHA weight retrieval " + std::to_string(summary.attempted_events);
+       const double nominal_weight = pythia.info.weight();
+       HepMC3::GenEvent event(HepMC3::Units::GEV, HepMC3::Units::MM);
+ 
+-      // Deliberately pass no Info pointer to the stock converter.  The event
+-      // topology conversion is retained, while all fragile LHE multiweight
+-      // bookkeeping is handled explicitly below.
++      stage = "PYTHIA-to-HepMC3 topology conversion " + std::to_string(summary.attempted_events);
+       const bool converted = converter.fill_next_event(
+           pythia.event,
+           &event,
+@@ -151,8 +272,12 @@ int main(int argc, char** argv) {
+         throw std::runtime_error("PYTHIA-to-HepMC3 topology conversion failed");
+       }
+ 
++      stage = "HepMC3 metadata and weight population " + std::to_string(summary.attempted_events);
+       add_nominal_weight_and_cross_section(event, pythia.info, nominal_weight);
+-      add_metadata(event, config, summary.accepted_events, pythia.info, nominal_weight);
++      add_metadata(event, config, summary.accepted_events, pythia.info,
++                   nominal_weight, prepared_input);
++
++      stage = "HepMC3 event write " + std::to_string(summary.attempted_events);
+       writer.write_event(event);
+       if (writer.failed()) {
+         throw std::runtime_error("HepMC3 writer failed while writing " + partial_output_path.string());
+@@ -163,11 +288,13 @@ int main(int argc, char** argv) {
+       ++summary.accepted_events;
+     }
+ 
++    stage = "HepMC3 writer close";
+     writer.close();
+     if (writer.failed()) {
+       throw std::runtime_error("HepMC3 writer failed while closing " + partial_output_path.string());
+     }
+ 
++    stage = "accepted-event count validation";
+     if (summary.accepted_events == 0) {
+       throw std::runtime_error("no events were accepted from the LHE input");
+     }
+@@ -178,27 +305,33 @@ int main(int argc, char** argv) {
+       throw std::runtime_error(message.str());
+     }
+ 
++    stage = "final statistics";
+     pythia.stat();
+     summary.sigma_gen_mb = pythia.info.sigmaGen();
+     summary.finished_utc = qis::utc_now();
+     summary.return_code = 0;
+     summary.status = "success";
++    summary.failure_stage.clear();
+     summary.error_message.clear();
+ 
++    stage = "atomic output finalization";
+     std::filesystem::remove(config.output_hepmc3);
+     std::filesystem::rename(partial_output_path, config.output_hepmc3);
+     qis::write_summary_json(summary, metadata_path);
+ 
+     std::cout << "SHOWER SUCCESS sample=" << config.sample_id
+               << " events=" << summary.accepted_events
++              << " sanitized=" << (summary.input_was_sanitized ? "yes" : "no")
++              << " removed_sqme_prc=" << summary.removed_auxiliary_weight_tags
+               << " output=" << config.output_hepmc3 << '\n';
+     return 0;
+   } catch (const std::exception& error) {
+     summary.finished_utc = qis::utc_now();
+     summary.return_code = 1;
+     summary.status = "failed";
+-    summary.error_message = error.what();
+-    std::cerr << "ERROR: " << error.what() << '\n';
++    summary.failure_stage = stage;
++    summary.error_message = "stage=" + stage + ": " + error.what();
++    std::cerr << "ERROR: " << summary.error_message << '\n';
+ 
+     try {
+       if (!partial_output_path.empty()) {

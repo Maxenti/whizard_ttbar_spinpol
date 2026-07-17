@@ -29,21 +29,50 @@ if [[ ! -r "$KEY4HEP_SETUP" ]]; then
   return 3
 fi
 
-# Warn about an already-loaded WHIZARD environment. Sourcing several
-# independent CVMFS stacks into one shell is not supported.
-if command -v whizard >/dev/null 2>&1; then
-  echo "WARNING: whizard was already present before Key4HEP setup:"
-  command -v whizard
-  echo
-  echo "For the cleanest environment, start a fresh lxplus shell and source"
-  echo "only this setup script."
-  echo
+# Make project setup idempotent.  The raw Key4HEP setup script deliberately
+# rejects repeated setup in one shell, while project wrappers may be nested
+# (validation -> build, interactive shell -> validation, etc.).
+_key4hep_active=0
+_whizard_before_setup=""
+
+if [[ ${WHIZARD_TTBAR_ENV_READY:-0} == 1 ]]; then
+  _key4hep_active=1
+elif command -v whizard >/dev/null 2>&1; then
+  _whizard_before_setup=$(readlink -f "$(command -v whizard)")
+  if [[ $_whizard_before_setup == /cvmfs/sw.hsf.org/key4hep/releases/* ]]; then
+    _key4hep_active=1
+  fi
 fi
 
-source "$KEY4HEP_SETUP" || {
-  echo "ERROR: Key4HEP setup failed." >&2
-  return 4
-}
+if (( _key4hep_active == 0 )); then
+  if [[ -n $_whizard_before_setup ]]; then
+    echo "WARNING: a non-Key4HEP WHIZARD environment is already active:"
+    echo "  $_whizard_before_setup"
+    echo
+    echo "For the cleanest environment, start a fresh lxplus shell and source"
+    echo "only this setup script."
+    echo
+  fi
+
+  nounset_was_on=0
+  errexit_was_on=0
+  case $- in *u*) nounset_was_on=1; set +u;; esac
+  case $- in *e*) errexit_was_on=1; set +e;; esac
+
+  # shellcheck disable=SC1090
+  source "$KEY4HEP_SETUP"
+  _setup_rc=$?
+
+  (( errexit_was_on == 0 )) || set -e
+  (( nounset_was_on == 0 )) || set -u
+
+  if (( _setup_rc != 0 )); then
+    echo "ERROR: Key4HEP setup failed with return code $_setup_rc." >&2
+    return 4
+  fi
+else
+  echo "Key4HEP environment already active; reusing current environment."
+fi
 
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-1}
 export OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-1}
@@ -98,6 +127,15 @@ unset _SETUP_DIR
 unset _required_commands
 unset _missing
 unset _cmd
+unset _key4hep_active
+unset _whizard_before_setup
+unset _setup_rc
+unset nounset_was_on
+unset errexit_was_on
+
+# Mark the project environment as initialized so nested wrappers do not source
+# the raw Key4HEP setup script again.
+export WHIZARD_TTBAR_ENV_READY=1
 
 # Canonical persistent output location.
 export WHIZARD_TTBAR_OUTPUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
