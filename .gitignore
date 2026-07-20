@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+.venv/
+venv/
+
+# CMake/C++
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# Runtime products
+runs/
+lhe/
+logs/
+metadata/
+validation/*.tmp
+condor/runtime_submissions/
+
+# QIS outputs
+qis_output/
+*.hepmc
+*.hepmc3
+*.parquet
+*.root
+*.partial
+*.metadata.json
+
+# Editors and OS
+*~
+*.swp
+.DS_Store

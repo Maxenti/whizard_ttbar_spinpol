@@ -1,0 +1,47 @@
+--- a/scripts/showering/submit_showering.py
++++ b/scripts/showering/submit_showering.py
+@@ -125,7 +125,7 @@
+     if not records:
+         raise ValueError("no successful manifest rows match the selection")
+ 
+-    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
++    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+     control = repo / "condor/runtime_submissions/qis_shower" / stamp
+     provenance = output_root / "manifests/submissions" / stamp
+     persistent_dirs = [
+@@ -199,9 +199,32 @@
+     itemdata = control / "jobs.itemdata"
+     fields = list(jobs[0])
+     with itemdata.open("w", newline="") as stream:
+-        writer = csv.DictWriter(stream, fieldnames=fields, delimiter=" ", quoting=csv.QUOTE_MINIMAL, lineterminator="\n")
+-        writer.writeheader()
+-        writer.writerows(jobs)
++        # The submit description already declares the queue variable list:
++        #
++        #   queue field1,field2,... from jobs.itemdata
++        #
++        # Therefore the itemdata file must contain data rows only. A header
++        # would be interpreted by HTCondor as a real job, making values such as
++        # ``repo_root`` literal paths.
++        writer = csv.writer(
++            stream,
++            delimiter=" ",
++            quoting=csv.QUOTE_MINIMAL,
++            lineterminator="\n",
++        )
++        for job in jobs:
++            writer.writerow([job[field] for field in fields])
++
++    itemdata_rows = [
++        line for line in itemdata.read_text().splitlines() if line.strip()
++    ]
++    if len(itemdata_rows) != len(jobs):
++        raise RuntimeError(
++            f"itemdata row-count mismatch: wrote {len(itemdata_rows)}, "
++            f"expected {len(jobs)}"
++        )
++    if itemdata_rows and itemdata_rows[0].split(maxsplit=1)[0] == fields[0]:
++        raise RuntimeError("jobs.itemdata incorrectly contains a header row")
+ 
+     template = (repo / "condor/qis/pythia_shower.sub").read_text()
+     submit_file = control / "pythia_shower.sub"

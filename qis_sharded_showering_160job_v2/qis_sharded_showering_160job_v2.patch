@@ -1,0 +1,3029 @@
+diff --git a/condor/qis/pythia_shower.sub b/condor/qis/pythia_shower.sub
+index 0d68f36..2846ea7 100644
+--- a/condor/qis/pythia_shower.sub
++++ b/condor/qis/pythia_shower.sub
+@@ -1,6 +1,6 @@
+ universe = vanilla
+ executable = $(wrapper)
+-arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --repo-root $(repo_root) --qed-shower-by-gamma $(qed_shower_by_gamma)
++arguments = --input $(input_lhe) --input-sha256 $(input_lhe_sha256) --parent-lhe $(parent_lhe) --source-event-start $(source_event_start) --source-event-stop $(source_event_stop) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --repo-root $(repo_root) --qed-shower-by-gamma $(qed_shower_by_gamma)
+ initialdir = $(repo_root)
+ output = $(stdout_path)
+ error = $(stderr_path)
+@@ -13,4 +13,4 @@ request_disk = $(job_disk_gb)GB
+ +JobBatchName = "$(batch_name)"
+ on_exit_hold = (ExitBySignal == true) || (ExitCode != 0)
+ periodic_release = false
+-queue wrapper,input_lhe,output_root,sample_id,campaign_id,shard_id,seed,max_events,shower_executable,settings_file,key4hep_setup,qed_shower_by_gamma,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_disk_gb,job_flavour,batch_name from $(itemdata)
++queue wrapper,input_lhe,parent_lhe,input_lhe_sha256,source_event_start,source_event_stop,output_root,sample_id,campaign_id,shard_id,seed,max_events,shower_executable,settings_file,key4hep_setup,qed_shower_by_gamma,repo_root,stdout_path,stderr_path,event_log,job_cpus,job_memory_mb,job_disk_gb,job_flavour,batch_name from $(itemdata)
+diff --git a/configs/qis/qualification_500GeV_ISR_iso_v1.yaml b/configs/qis/qualification_500GeV_ISR_iso_v1.yaml
+index 1439754..9484813 100644
+--- a/configs/qis/qualification_500GeV_ISR_iso_v1.yaml
++++ b/configs/qis/qualification_500GeV_ISR_iso_v1.yaml
+@@ -1,10 +1,10 @@
+-schema_version: 1
++schema_version: 2
+ level: A
+ campaign:
+   source_campaign_id: 500GeV_ISR_iso_validation_v1
+-  qualification_id: 500GeV_ISR_iso_explicitW_gammaOn_10k_v1
++  qualification_id: 500GeV_ISR_iso_explicitW_gammaOn_10k_sharded_v2
+   source_manifest: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_iso_validation_v1/manifests/sample_manifest.csv
+-  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_iso_explicitW_gammaOn_10k_v1
++  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_iso_explicitW_gammaOn_10k_sharded_v2
+   negative_lepton_defines_plus_z: true
+ inputs:
+   mode: manifest
+@@ -44,7 +44,14 @@ outputs:
+ showering:
+   executable: build/qis_lhe_to_hepmc3
+   settings_file: configs/pythia/level_a.cmnd
+-  events_per_job: 10000
++  total_events_per_sample: 10000
++  default_jobs_per_sample: 10
++  seed_base: 5200000
++  resources:
++    request_cpus: 1
++    request_memory_mb: 1000
++    request_disk_gb: 2
++    job_flavour: workday
+   lhe_preparation_policy: whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3
+   qed_shower_by_gamma: true
+   preserve_whizard_top_decays: true
+diff --git a/configs/qis/qualification_500GeV_ISR_sc_v1.yaml b/configs/qis/qualification_500GeV_ISR_sc_v1.yaml
+index f5b8330..da95d6a 100644
+--- a/configs/qis/qualification_500GeV_ISR_sc_v1.yaml
++++ b/configs/qis/qualification_500GeV_ISR_sc_v1.yaml
+@@ -1,10 +1,10 @@
+-schema_version: 1
++schema_version: 2
+ level: A
+ campaign:
+   source_campaign_id: 500GeV_ISR_sc_v1
+-  qualification_id: 500GeV_ISR_sc_explicitW_gammaOn_10k_v1
++  qualification_id: 500GeV_ISR_sc_explicitW_gammaOn_10k_sharded_v2
+   source_manifest: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/500GeV_ISR_sc_v1/manifests/sample_manifest.csv
+-  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_sc_explicitW_gammaOn_10k_v1
++  output_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/500GeV_ISR_sc_explicitW_gammaOn_10k_sharded_v2
+   negative_lepton_defines_plus_z: true
+ inputs:
+   mode: manifest
+@@ -44,7 +44,14 @@ outputs:
+ showering:
+   executable: build/qis_lhe_to_hepmc3
+   settings_file: configs/pythia/level_a.cmnd
+-  events_per_job: 10000
++  total_events_per_sample: 10000
++  default_jobs_per_sample: 10
++  seed_base: 5100000
++  resources:
++    request_cpus: 1
++    request_memory_mb: 1000
++    request_disk_gb: 2
++    job_flavour: workday
+   lhe_preparation_policy: whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3
+   qed_shower_by_gamma: true
+   preserve_whizard_top_decays: true
+diff --git a/docs/qis/SHARDED_SHOWERING.md b/docs/qis/SHARDED_SHOWERING.md
+new file mode 100644
+index 0000000..3a9394c
+--- /dev/null
++++ b/docs/qis/SHARDED_SHOWERING.md
+@@ -0,0 +1,135 @@
++# Deterministic sharded showering
++
++## Purpose
++
++The qualification shower stage processes exactly 10,000 source events per
++sample without scanning or rewriting unused events from larger authoritative
++LHE files.  The default family contains 16 samples and requests 160 Condor
++jobs, giving 10 shards and 1,000 events per sample/job.
++
++## Control variables
++
++```bash
++export SHOWER_TOTAL_JOBS=160
++export SHOWER_TOTAL_EVENTS_PER_SAMPLE=10000
++```
++
++`SHOWER_TOTAL_JOBS` is a global SC+ISO count.  It must be divisible by the
++number of selected samples.  With 16 samples:
++
++| Total jobs | Jobs/sample | Events/job |
++|---:|---:|---:|
++| 80 | 5 | 2,000 |
++| 160 | 10 | 1,000 |
++| 320 | 20 | 500 |
++
++If the event count is not divisible by the jobs/sample count, events are
++balanced deterministically with a difference of at most one event.
++
++## Input-shard contract
++
++`prepare_lhe_shards.py`:
++
++1. reads the LHE prefix once;
++2. reads only the first requested event window;
++3. writes non-overlapping half-open ranges `[start, stop)`;
++4. updates `<xsecinfo neve="...">` for every shard;
++5. writes per-shard SHA256 checksums;
++6. records source size, modification time, selected-window digest, ranges, and
++   output paths in `shower/manifests/lhe_shard_manifest.csv`;
++7. never reads the unused tail of a larger source LHE.
++
++For 10 shards/sample the ranges are:
++
++```text
++shard_0000 [   0, 1000)
++shard_0001 [1000, 2000)
++...
++shard_0009 [9000,10000)
++```
++
++## Worker contract
++
++Every Condor worker receives one exact LHE shard.  Before showering it:
++
++- verifies the input shard SHA256;
++- verifies `stop - start == requested_events`;
++- canonicalizes only that shard;
++- inserts explicit W resonances only in that shard;
++- asserts both preparation summaries processed exactly the requested count;
++- asserts two W resonances were inserted per event;
++- runs PYTHIA with the same exact event count;
++- records the parent LHE, persistent shard path/checksum, source range, and
++  preparation summaries in metadata.
++
++A worker cannot silently process the remaining events from the parent file,
++because the parent file is never copied or passed to either preparation tool.
++
++## Resources
++
++Default per 1,000-event shard:
++
++```yaml
++resources:
++  request_cpus: 1
++  request_memory_mb: 1000
++  request_disk_gb: 2
++  job_flavour: workday
++```
++
++PYTHIA is run as a serial process, so requesting more than one CPU does not
++increase event throughput.  The memory request retains a conservative factor
++above the observed ~250--320 MB footprint of the 10,000-event jobs.  Two GB of
++scratch is ample for a 1,000-event LHE shard, prepared intermediates, HepMC3,
++and logs.
++
++## Ordered workflow
++
++```bash
++scripts/qis/run_next_production_gate.sh preflight
++scripts/qis/run_next_production_gate.sh plan-showers
++scripts/qis/run_next_production_gate.sh prepare-shower-shards
++scripts/qis/run_next_production_gate.sh smoke-sharded-worker
++scripts/qis/run_next_production_gate.sh submit-showers
++```
++
++After Condor completion:
++
++```bash
++scripts/qis/run_next_production_gate.sh validate-showers
++scripts/qis/run_next_production_gate.sh collect-showers
++scripts/qis/run_next_production_gate.sh spin15
++```
++
++## Retry semantics
++
++The default modes are:
++
++```bash
++export SHOWER_SHARD_MODE=resume
++export SHOWER_SUBMIT_MODE=resume
++```
++
++Input shards are reused only if their source stat, event ranges, file
++existence, and SHA256 checksums remain valid.  Shower jobs are skipped only if
++both HepMC3 and metadata exist and metadata reports a successful exact event
++count.  Use `force` only to intentionally rebuild the full corresponding
++stage.
++
++## Validation and collection
++
++The strict validator checks:
++
++- exact expected `(sample, shard)` key sets;
++- no source-range gaps or overlaps;
++- aggregate 10,000 events per sample;
++- unique deterministic seeds;
++- input-shard path and SHA256 provenance;
++- exact canonical-v2 and explicit-W event counts;
++- exact inserted-W count;
++- actual HepMC3 event counts via `pyhepmc`;
++- closure limits and warning policies.
++
++The collector merges shards in source-event order and requires exactly 10,000
++HepMC3 events in every merged sample before producing downstream Spin-15
++inputs.
+diff --git a/scripts/qis/run_next_production_gate.sh b/scripts/qis/run_next_production_gate.sh
+index ffd9103..1e5a014 100755
+--- a/scripts/qis/run_next_production_gate.sh
++++ b/scripts/qis/run_next_production_gate.sh
+@@ -1,32 +1,46 @@
+ #!/usr/bin/env bash
+-# Ordered driver for the 10k-per-sample shower + Spin-15 qualification gate.
+-#
+-# This script intentionally uses explicit phases because HTCondor jobs complete
+-# asynchronously.  Run one phase, wait for jobs to finish, then run the next.
+-
++# Ordered driver for the sharded 10k-per-sample shower + Spin-15 gate.
+ set -euo pipefail
+ 
+ REPO=${REPO:-/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol}
+ SC_QIS_CONFIG=${SC_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_sc_v1.yaml}
+ ISO_QIS_CONFIG=${ISO_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_iso_v1.yaml}
+ ISO_PRODUCTION_CONFIG=${ISO_PRODUCTION_CONFIG:-$REPO/configs/production/production_500GeV_ISR_iso_validation_v1.csv}
++SHOWER_TOTAL_JOBS=${SHOWER_TOTAL_JOBS:-160}
++SHOWER_TOTAL_EVENTS_PER_SAMPLE=${SHOWER_TOTAL_EVENTS_PER_SAMPLE:-10000}
++SHOWER_SHARD_MODE=${SHOWER_SHARD_MODE:-resume}
++SHOWER_SUBMIT_MODE=${SHOWER_SUBMIT_MODE:-resume}
+ 
+ usage() {
+   cat <<'USAGE'
+ Usage: run_next_production_gate.sh PHASE
+ 
+ Phases:
+-  preflight               Check software, configs, and authoritative manifests.
+-  submit-iso-production   Submit the matched 8x10k isotropic WHIZARD controls.
+-  collect-iso-production  Validate and merge completed isotropic WHIZARD jobs.
+-  submit-showers          Submit SC and ISO 10k explicit-W v3 shower jobs.
+-  validate-showers        Strictly validate SC and ISO shower products.
+-  collect-showers         Merge SC and ISO HepMC products by sample.
++  preflight               Check software, configs, manifests, and sharding tests.
++  submit-iso-production   Submit the matched isotropic WHIZARD controls.
++  collect-iso-production  Validate/finalize/merge isotropic WHIZARD output.
++  plan-showers            Print the global job and event-shard plan.
++  prepare-shower-shards   Create disjoint LHE shards; read only requested events.
++  smoke-sharded-worker    Run one full 1-event local worker smoke test.
++  submit-showers          Submit all prepared SC and ISO shower shards.
++  validate-showers        Strictly validate every shard and aggregate counts.
++  collect-showers         Merge validated HepMC shards by sample.
+   spin15                  Build distributions and run the strict Spin-15 gate.
+-  status                  Print expected paths and current file counts.
++  status                  Print paths, expected counts, and current products.
++
++Adjustable environment variables:
++  SHOWER_TOTAL_JOBS=160
++      Total SC+ISO Condor jobs.  Must be divisible by the number of selected
++      samples.  With 16 samples, 160 means 10 jobs/sample and 1000 events/job.
++
++  SHOWER_TOTAL_EVENTS_PER_SAMPLE=10000
++      Total disjoint source events selected for each sample.
++
++  SHOWER_SHARD_MODE=resume|force
++      Resume/revalidate existing deterministic input shards, or rebuild them.
+ 
+-The script never waits for Condor jobs.  Use condor_q between submission and
+-collection/validation phases.
++  SHOWER_SUBMIT_MODE=resume|force
++      Submit only missing/invalid outputs, or replace all shard outputs.
+ USAGE
+ }
+ 
+@@ -51,6 +65,106 @@ ISO_MANIFEST=$(read_yaml_value "$ISO_QIS_CONFIG" campaign.source_manifest)
+ SC_ROOT=$(read_yaml_value "$SC_QIS_CONFIG" campaign.output_root)
+ ISO_ROOT=$(read_yaml_value "$ISO_QIS_CONFIG" campaign.output_root)
+ 
++calculate_shower_plan() {
++  local assignments
++  assignments=$(python3 - \
++    "$SC_MANIFEST" \
++    "$ISO_MANIFEST" \
++    "$SHOWER_TOTAL_JOBS" \
++    "$SHOWER_TOTAL_EVENTS_PER_SAMPLE" <<'PY'
++import csv
++import shlex
++import sys
++from pathlib import Path
++
++sc_manifest = Path(sys.argv[1])
++iso_manifest = Path(sys.argv[2])
++total_jobs = int(sys.argv[3])
++events_per_sample = int(sys.argv[4])
++
++def count_samples(path: Path) -> int:
++    if not path.is_file():
++        raise SystemExit(f"missing manifest: {path}")
++    with path.open(newline="") as stream:
++        rows = [row for row in csv.DictReader(stream) if row.get("status") == "success"]
++    if not rows:
++        raise SystemExit(f"no successful samples in {path}")
++    ids = {row["sample_id"] for row in rows}
++    if len(ids) != len(rows):
++        raise SystemExit(f"duplicate sample rows in {path}")
++    return len(ids)
++
++sc_samples = count_samples(sc_manifest)
++iso_samples = count_samples(iso_manifest)
++total_samples = sc_samples + iso_samples
++if total_jobs <= 0:
++    raise SystemExit("SHOWER_TOTAL_JOBS must be positive")
++if events_per_sample <= 0:
++    raise SystemExit("SHOWER_TOTAL_EVENTS_PER_SAMPLE must be positive")
++if total_jobs % total_samples:
++    raise SystemExit(
++        f"SHOWER_TOTAL_JOBS={total_jobs} is not divisible by "
++        f"the {total_samples} selected samples"
++    )
++jobs_per_sample = total_jobs // total_samples
++if jobs_per_sample > events_per_sample:
++    raise SystemExit(
++        f"jobs_per_sample={jobs_per_sample} exceeds events_per_sample={events_per_sample}"
++    )
++values = {
++    "SC_SAMPLES": sc_samples,
++    "ISO_SAMPLES": iso_samples,
++    "TOTAL_SAMPLES": total_samples,
++    "JOBS_PER_SAMPLE": jobs_per_sample,
++    "SC_JOBS": sc_samples * jobs_per_sample,
++    "ISO_JOBS": iso_samples * jobs_per_sample,
++    "EVENTS_PER_SAMPLE": events_per_sample,
++    "EVENTS_PER_JOB_MIN": events_per_sample // jobs_per_sample,
++    "EVENTS_PER_JOB_MAX": (events_per_sample + jobs_per_sample - 1) // jobs_per_sample,
++}
++for key, value in values.items():
++    print(f"{key}={shlex.quote(str(value))}")
++PY
++)
++  eval "$assignments"
++}
++
++print_shower_plan() {
++  calculate_shower_plan
++  cat <<EOF
++SHARDED SHOWER PLAN
++  Total samples:            $TOTAL_SAMPLES
++  SC samples:               $SC_SAMPLES
++  ISO samples:              $ISO_SAMPLES
++  Requested total jobs:     $SHOWER_TOTAL_JOBS
++  Jobs per sample:          $JOBS_PER_SAMPLE
++  SC jobs:                  $SC_JOBS
++  ISO jobs:                 $ISO_JOBS
++  Events per sample:        $EVENTS_PER_SAMPLE
++  Events per job:           $EVENTS_PER_JOB_MIN..$EVENTS_PER_JOB_MAX
++  SC output root:           $SC_ROOT/shower
++  ISO output root:          $ISO_ROOT/shower
++EOF
++}
++
++mode_argument() {
++  case "$1" in
++    resume) echo --resume;;
++    force) echo --force;;
++    *) echo "ERROR: mode must be resume or force, got $1" >&2; return 2;;
++  esac
++}
++
++count_matching_files() {
++  local directory=$1
++  local pattern=$2
++  if [[ -d $directory ]]; then
++    find "$directory" -type f -name "$pattern" | wc -l
++  else
++    echo 0
++  fi
++}
++
+ case "$PHASE" in
+   preflight)
+     source setup_lxplus.sh
+@@ -63,17 +177,20 @@ case "$PHASE" in
+       "$ISO_QIS_CONFIG" \
+       "$ISO_PRODUCTION_CONFIG" \
+       scripts/production/make_production_sindarin.py \
++      scripts/showering/prepare_lhe_shards.py \
++      scripts/showering/submit_showering.py \
++      scripts/showering/run_pythia_shard.sh \
+       scripts/showering/canonicalize_whizard_lhe_for_pythia.py \
+       scripts/showering/insert_explicit_w_resonances.py \
+       scripts/showering/augment_shower_metadata.py \
++      scripts/showering/validate_showering.py \
++      scripts/showering/collect_showering.py \
++      scripts/showering/smoke_test_sharded_worker.sh \
+       scripts/qis/plot_spin15_distributions.py \
+       scripts/qis/validate_spin15_gate.py; do
+       [[ -r $path ]] || { echo "ERROR: missing $path" >&2; exit 1; }
+     done
+-    [[ -f $SC_MANIFEST ]] || {
+-      echo "ERROR: missing SC manifest: $SC_MANIFEST" >&2
+-      exit 1
+-    }
++    [[ -f $SC_MANIFEST ]] || { echo "ERROR: missing SC manifest: $SC_MANIFEST" >&2; exit 1; }
+     if [[ -f $ISO_MANIFEST ]]; then
+       echo "ISO manifest: present"
+     else
+@@ -85,15 +202,23 @@ case "$PHASE" in
+       --check
+     python3 -m pytest -q \
+       tests/qis/test_spin15_observables.py \
+-      tests/qis/test_lhe_smoke.py
++      tests/qis/test_lhe_smoke.py \
++      tests/qis/test_lhe_sharding.py
++    bash -n scripts/showering/run_pythia_shard.sh
++    python3 -m py_compile \
++      scripts/showering/prepare_lhe_shards.py \
++      scripts/showering/submit_showering.py \
++      scripts/showering/augment_shower_metadata.py \
++      scripts/showering/validate_showering.py \
++      scripts/showering/collect_showering.py
++    if [[ -f $ISO_MANIFEST ]]; then
++      print_shower_plan
++    fi
+     echo "PREFLIGHT PASS"
+     ;;
+ 
+   submit-iso-production)
+     source setup_lxplus.sh
+-
+-    # Templates are generated artifacts.  Rebuild them from the authoritative
+-    # ISO production CSV before creating the Condor submission.
+     python3 scripts/production/make_production_sindarin.py \
+       --config "$ISO_PRODUCTION_CONFIG" \
+       --output-dir "$REPO/sindarin/production" \
+@@ -107,35 +232,23 @@ from pathlib import Path
+ config = Path(sys.argv[1])
+ template_dir = Path(sys.argv[2])
+ failures = []
+-
+ with config.open(newline="") as stream:
+     rows = [
+-        row
+-        for row in csv.DictReader(stream)
+-        if row.get("enabled", "").strip().lower()
+-        in {"1", "true", "yes", "on"}
++        row for row in csv.DictReader(stream)
++        if row.get("enabled", "").strip().lower() in {"1", "true", "yes", "on"}
+     ]
+-
+ if len(rows) != 8:
+     failures.append(f"expected 8 enabled ISO samples, found {len(rows)}")
+-
+ for row in rows:
+     sample_id = row["sample_id"].strip()
+-    spin_correlated = row["spin_correlated"].strip().lower()
+-
+     if "_iso_" not in sample_id:
+         failures.append(f"{sample_id}: sample_id is missing '_iso_'")
+-    if spin_correlated not in {"0", "false", "no", "off"}:
+-        failures.append(
+-            f"{sample_id}: spin_correlated={row['spin_correlated']!r}, "
+-            "expected false"
+-        )
+-
++    if row["spin_correlated"].strip().lower() not in {"0", "false", "no", "off"}:
++        failures.append(f"{sample_id}: spin_correlated must be false")
+     template = template_dir / f"{sample_id}.sin.in"
+     if not template.is_file():
+         failures.append(f"{sample_id}: missing template {template}")
+         continue
+-
+     text = template.read_text()
+     for required in (
+         "! META spin_mode=iso",
+@@ -144,16 +257,12 @@ for row in rows:
+         "?polarized_events = true",
+     ):
+         if required not in text:
+-            failures.append(
+-                f"{sample_id}: template is missing {required!r}"
+-            )
+-
++            failures.append(f"{sample_id}: missing {required!r}")
+ if failures:
+     print("ISO TEMPLATE AUDIT FAILURES:", file=sys.stderr)
+     for failure in failures:
+         print(f"  - {failure}", file=sys.stderr)
+     raise SystemExit(1)
+-
+ print(f"ISO TEMPLATE AUDIT PASS: {len(rows)} templates")
+ PY
+ 
+@@ -165,85 +274,77 @@ PY
+ 
+   collect-iso-production)
+     source setup_lxplus.sh
+-
+-    # Condor workers stage raw LHE files and run metadata.  Build the campaign
+-    # manifests before validation, then execute the same normalization and
+-    # finalization sequence used by the authoritative SC production.
+-    python3 scripts/production/make_production_manifest.py \
+-      --config "$ISO_PRODUCTION_CONFIG"
+-
++    python3 scripts/production/make_production_manifest.py --config "$ISO_PRODUCTION_CONFIG"
+     python3 scripts/production/validate_production_outputs.py \
+-      --config "$ISO_PRODUCTION_CONFIG" \
+-      --stage raw \
+-      --scan-events 0 \
+-      --strict
+-
+-    python3 scripts/production/calibrate_decay_normalization.py \
+-      --config "$ISO_PRODUCTION_CONFIG"
+-
++      --config "$ISO_PRODUCTION_CONFIG" --stage raw --scan-events 0 --strict
++    python3 scripts/production/calibrate_decay_normalization.py --config "$ISO_PRODUCTION_CONFIG"
+     python3 scripts/production/finalize_forced_decay_lhe.py \
+-      --config "$ISO_PRODUCTION_CONFIG" \
+-      --overwrite
+-
+-    python3 scripts/production/make_production_manifest.py \
+-      --config "$ISO_PRODUCTION_CONFIG"
+-
++      --config "$ISO_PRODUCTION_CONFIG" --overwrite
++    python3 scripts/production/make_production_manifest.py --config "$ISO_PRODUCTION_CONFIG"
+     python3 scripts/production/collect_production.py \
+-      --config "$ISO_PRODUCTION_CONFIG" \
+-      --source final \
+-      --merge \
+-      --overwrite
++      --config "$ISO_PRODUCTION_CONFIG" --source final --merge --overwrite
++    python3 scripts/production/make_production_manifest.py --config "$ISO_PRODUCTION_CONFIG"
++    python3 scripts/production/validate_production_outputs.py \
++      --config "$ISO_PRODUCTION_CONFIG" --stage final --scan-events 0 \
++      --require-merged --strict
++    [[ -f $ISO_MANIFEST ]] || { echo "ERROR: ISO manifest was not created: $ISO_MANIFEST" >&2; exit 1; }
++    echo "ISO PRODUCTION COLLECTION PASS"
++    ;;
+ 
+-    # Refresh merged paths/checksums and run strict final validation.
+-    python3 scripts/production/make_production_manifest.py \
+-      --config "$ISO_PRODUCTION_CONFIG"
++  plan-showers)
++    print_shower_plan
++    ;;
+ 
+-    python3 scripts/production/validate_production_outputs.py \
+-      --config "$ISO_PRODUCTION_CONFIG" \
+-      --stage final \
+-      --scan-events 0 \
+-      --require-merged \
+-      --strict
++  prepare-shower-shards)
++    source setup_lxplus.sh
++    print_shower_plan
++    shard_mode=$(mode_argument "$SHOWER_SHARD_MODE")
++    python3 scripts/showering/prepare_lhe_shards.py \
++      --config "$SC_QIS_CONFIG" \
++      --jobs-per-sample "$JOBS_PER_SAMPLE" \
++      --total-events-per-sample "$EVENTS_PER_SAMPLE" \
++      "$shard_mode"
++    python3 scripts/showering/prepare_lhe_shards.py \
++      --config "$ISO_QIS_CONFIG" \
++      --jobs-per-sample "$JOBS_PER_SAMPLE" \
++      --total-events-per-sample "$EVENTS_PER_SAMPLE" \
++      "$shard_mode"
++    ;;
+ 
+-    [[ -f $ISO_MANIFEST ]] || {
+-      echo "ERROR: ISO manifest was not created: $ISO_MANIFEST" >&2
+-      exit 1
+-    }
+-    echo "ISO PRODUCTION COLLECTION PASS"
++  smoke-sharded-worker)
++    scripts/showering/smoke_test_sharded_worker.sh
+     ;;
+ 
+   submit-showers)
+     source setup_lxplus.sh
+-    [[ -f $SC_MANIFEST ]] || { echo "ERROR: missing $SC_MANIFEST" >&2; exit 1; }
+-    [[ -f $ISO_MANIFEST ]] || { echo "ERROR: missing $ISO_MANIFEST" >&2; exit 1; }
++    print_shower_plan
++    submit_mode=$(mode_argument "$SHOWER_SUBMIT_MODE")
+     python3 scripts/showering/submit_showering.py \
+       --config "$SC_QIS_CONFIG" \
++      --expected-jobs "$SC_JOBS" \
++      "$submit_mode" \
+       --submit
+     python3 scripts/showering/submit_showering.py \
+       --config "$ISO_QIS_CONFIG" \
++      --expected-jobs "$ISO_JOBS" \
++      "$submit_mode" \
+       --submit
+     ;;
+ 
+   validate-showers)
+     source setup_lxplus.sh
+     python3 scripts/showering/validate_showering.py \
+-      --config "$SC_QIS_CONFIG" \
+-      --strict \
+-      --checksums
++      --config "$SC_QIS_CONFIG" --strict --checksums
+     python3 scripts/showering/validate_showering.py \
+-      --config "$ISO_QIS_CONFIG" \
+-      --strict \
+-      --checksums
++      --config "$ISO_QIS_CONFIG" --strict --checksums
+     ;;
+ 
+   collect-showers)
+     source setup_lxplus.sh
+     python3 scripts/showering/collect_showering.py \
+-      --config "$SC_QIS_CONFIG" \
+-      --overwrite
++      --config "$SC_QIS_CONFIG" --overwrite
+     python3 scripts/showering/collect_showering.py \
+-      --config "$ISO_QIS_CONFIG" \
+-      --overwrite
++      --config "$ISO_QIS_CONFIG" --overwrite
+     ;;
+ 
+   spin15)
+@@ -256,24 +357,17 @@ PY
+     ;;
+ 
+   status)
+-    cat <<EOF
+-SC manifest:
+-  $SC_MANIFEST
+-ISO manifest:
+-  $ISO_MANIFEST
+-SC shower root:
+-  $SC_ROOT/shower
+-ISO shower root:
+-  $ISO_ROOT/shower
+-EOF
++    print_shower_plan
+     for label in SC ISO; do
+       root=$SC_ROOT
+-      [[ $label == ISO ]] && root=$ISO_ROOT
++      expected_jobs=$SC_JOBS
++      [[ $label == ISO ]] && { root=$ISO_ROOT; expected_jobs=$ISO_JOBS; }
+       echo
+-      echo "$label counts"
+-      find "$root/shower/hepmc3" -name '*.hepmc3' 2>/dev/null | wc -l | xargs echo "  shower files:"
+-      find "$root/shower/metadata" -name '*.json' 2>/dev/null | wc -l | xargs echo "  metadata files:"
+-      find "$root/shower/hepmc3_merged" -name '*.hepmc3' 2>/dev/null | wc -l | xargs echo "  merged files:"
++      echo "$label counts (expected shower shards: $expected_jobs)"
++      echo "  input LHE shards: $(count_matching_files "$root/shower/input_shards" '*.lhe')"
++      echo "  shower files:     $(count_matching_files "$root/shower/hepmc3" '*.hepmc3')"
++      echo "  metadata files:   $(count_matching_files "$root/shower/metadata" '*.json')"
++      echo "  merged files:     $(count_matching_files "$root/shower/hepmc3_merged" '*.hepmc3')"
+     done
+     ;;
+ 
+diff --git a/scripts/qis/run_spin15_qualification_gate.sh b/scripts/qis/run_spin15_qualification_gate.sh
+index 5e21415..c9117b3 100755
+--- a/scripts/qis/run_spin15_qualification_gate.sh
++++ b/scripts/qis/run_spin15_qualification_gate.sh
+@@ -1,7 +1,7 @@
+ #!/usr/bin/env bash
+ #
+ # Build and validate the complete 15-observable ttbar polarization/spin package
+-# for the 10k-per-sample production qualification.
++# for the sharded 10k-per-sample production qualification.
+ #
+ # Preconditions:
+ #   1. SC and ISO authoritative LHE manifests exist.
+@@ -61,7 +61,7 @@ SC_QIS_ROOT=$(read_yaml_value "$SC_CONFIG" campaign.output_root)
+ ISO_QIS_ROOT=$(read_yaml_value "$ISO_CONFIG" campaign.output_root)
+ SC_HEPMC_ROOT=${SC_HEPMC_ROOT:-$SC_QIS_ROOT/shower/hepmc3_merged}
+ ISO_HEPMC_ROOT=${ISO_HEPMC_ROOT:-$ISO_QIS_ROOT/shower/hepmc3_merged}
+-OUT=${OUT:-/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/spin15_gate_10k_v1}
++OUT=${OUT:-/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/spin15_gate_10k_sharded_v2}
+ 
+ [[ -f $SC_MANIFEST ]] || die "missing SC manifest: $SC_MANIFEST"
+ [[ -f $ISO_MANIFEST ]] || die "missing ISO manifest: $ISO_MANIFEST"
+diff --git a/scripts/showering/augment_shower_metadata.py b/scripts/showering/augment_shower_metadata.py
+index fe3eb91..4d083dc 100755
+--- a/scripts/showering/augment_shower_metadata.py
++++ b/scripts/showering/augment_shower_metadata.py
+@@ -1,12 +1,5 @@
+ #!/usr/bin/env python3
+-"""Augment qis_lhe_to_hepmc3 metadata with LHE-preparation provenance.
+-
+-The C++ converter records PYTHIA/HepMC execution details.  This helper adds the
+-framework-owned WHIZARD compatibility transformations and warning accounting so
+-that production metadata points back to the authoritative source LHE rather
+-than only to a temporary prepared file.
+-"""
+-
++"""Augment shower metadata with deterministic LHE-shard provenance."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -38,47 +31,83 @@ def warning_count(text: str, message: str) -> int:
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--metadata", required=True, type=Path)
+-    parser.add_argument(
+-        "--source-lhe",
+-        required=True,
+-        type=Path,
+-        help="Readable source copy used for checksum calculation.",
+-    )
+-    parser.add_argument(
+-        "--source-lhe-path",
+-        help="Authoritative persistent source path to store in metadata.",
+-    )
++    parser.add_argument("--input-shard", required=True, type=Path)
++    parser.add_argument("--input-shard-path", required=True)
++    parser.add_argument("--input-shard-expected-sha256", required=True)
++    parser.add_argument("--parent-lhe-path", required=True)
++    parser.add_argument("--source-event-start", required=True, type=int)
++    parser.add_argument("--source-event-stop-exclusive", required=True, type=int)
++    parser.add_argument("--expected-events", required=True, type=int)
+     parser.add_argument("--canonical-summary", required=True, type=Path)
+     parser.add_argument("--explicit-w-summary", required=True, type=Path)
+     parser.add_argument("--worker-log", required=True, type=Path)
+     parser.add_argument(
+-        "--qed-shower-by-gamma",
+-        required=True,
+-        choices=("on", "off"),
++        "--qed-shower-by-gamma", required=True, choices=("on", "off")
+     )
+     parser.add_argument("--output", type=Path)
+     args = parser.parse_args()
+ 
+     for path in (
+         args.metadata,
+-        args.source_lhe,
++        args.input_shard,
+         args.canonical_summary,
+         args.explicit_w_summary,
+         args.worker_log,
+     ):
+         if not path.is_file():
+             raise FileNotFoundError(path)
++    if args.source_event_start < 0:
++        raise ValueError("source-event-start must be non-negative")
++    if args.source_event_stop_exclusive <= args.source_event_start:
++        raise ValueError("source-event-stop-exclusive must exceed start")
++    if (
++        args.source_event_stop_exclusive - args.source_event_start
++        != args.expected_events
++    ):
++        raise ValueError("source event range does not match expected-events")
+ 
+     metadata = json.loads(args.metadata.read_text())
+     canonical = json.loads(args.canonical_summary.read_text())
+     explicit_w = json.loads(args.explicit_w_summary.read_text())
+     log_text = args.worker_log.read_text(errors="replace")
++    actual_shard_sha = sha256(args.input_shard)
++    if actual_shard_sha != args.input_shard_expected_sha256:
++        raise ValueError(
++            "input shard checksum changed between submit and metadata stages"
++        )
++
++    accepted = int(metadata.get("accepted_events", -1))
++    requested = int(metadata.get("requested_events", -1))
++    canonical_events = int(canonical.get("total_events", -1))
++    explicit_events = int(explicit_w.get("total_events", -1))
++    if not (
++        accepted
++        == requested
++        == canonical_events
++        == explicit_events
++        == args.expected_events
++    ):
++        raise ValueError(
++            "event-count contract failure: "
++            f"accepted={accepted} requested={requested} "
++            f"canonical={canonical_events} explicit_w={explicit_events} "
++            f"expected={args.expected_events}"
++        )
+ 
+     metadata.update(
+         {
+-            "source_lhe_path": args.source_lhe_path or str(args.source_lhe),
+-            "source_lhe_sha256": sha256(args.source_lhe),
+-            "prepared_lhe_policy": "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3",
++            "source_lhe_path": args.parent_lhe_path,
++            "input_shard_lhe_path": args.input_shard_path,
++            "input_shard_lhe_sha256": actual_shard_sha,
++            "source_event_range": {
++                "start": args.source_event_start,
++                "stop_exclusive": args.source_event_stop_exclusive,
++                "events": args.expected_events,
++            },
++            "prepared_lhe_policy": (
++                "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3"
++            ),
++            "preparation_event_limit_verified": True,
+             "qed_shower_by_gamma": args.qed_shower_by_gamma == "on",
+             "photon_conversion_policy": (
+                 "pythia_default_on"
+@@ -115,10 +144,10 @@ def main() -> int:
+     temporary = output.with_name(f".{output.name}.partial")
+     temporary.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
+     temporary.replace(output)
+-
+     print(
+         "METADATA AUGMENTED "
+-        f"events={canonical.get('total_events')} "
++        f"events={args.expected_events} "
++        f"range=[{args.source_event_start},{args.source_event_stop_exclusive}) "
+         f"inserted_w={explicit_w.get('inserted_w_resonances')} "
+         f"qed_shower_by_gamma={args.qed_shower_by_gamma} "
+         f"output={output}"
+diff --git a/scripts/showering/collect_showering.py b/scripts/showering/collect_showering.py
+index 824c2a5..d68f114 100755
+--- a/scripts/showering/collect_showering.py
++++ b/scripts/showering/collect_showering.py
+@@ -1,18 +1,31 @@
+ #!/usr/bin/env python3
+-"""Collect or merge HepMC3 shower shards using pyhepmc."""
++"""Merge validated HepMC3 shower shards in deterministic source-event order."""
+ from __future__ import annotations
+ 
+ import argparse
++import csv
++import hashlib
+ import json
++from collections import defaultdict
+ from pathlib import Path
+ from typing import Any
+ 
+ import yaml
+ 
+ 
+-def configured_root(path: Path) -> Path:
++def load_config(path: Path) -> tuple[Path, int]:
+     payload: dict[str, Any] = yaml.safe_load(path.read_text()) or {}
+-    return Path(str(payload["campaign"]["output_root"])) / "shower"
++    root = Path(str(payload["campaign"]["output_root"])) / "shower"
++    total_events = int(payload.get("showering", {}).get("total_events_per_sample", 10000))
++    return root, total_events
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as stream:
++        for block in iter(lambda: stream.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
+ 
+ 
+ def merge_hepmc(inputs: list[Path], output: Path) -> int:
+@@ -23,7 +36,7 @@ def merge_hepmc(inputs: list[Path], output: Path) -> int:
+     except ImportError as exc:
+         raise RuntimeError("pyhepmc is required to merge HepMC3 files") from exc
+     output.parent.mkdir(parents=True, exist_ok=True)
+-    temporary = output.with_name(f".{output.name}.partial")
++    temporary = output.with_name(f".{output.stem}.partial{output.suffix}")
+     temporary.unlink(missing_ok=True)
+     events = 0
+     try:
+@@ -34,6 +47,8 @@ def merge_hepmc(inputs: list[Path], output: Path) -> int:
+                         event.event_number = events
+                         writer.write(event)
+                         events += 1
++        if not temporary.is_file() or temporary.stat().st_size <= 0:
++            raise RuntimeError(f"empty merged temporary output: {temporary}")
+         temporary.replace(output)
+     except Exception:
+         temporary.unlink(missing_ok=True)
+@@ -43,28 +58,130 @@ def merge_hepmc(inputs: list[Path], output: Path) -> int:
+ 
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--config", type=Path, default=Path("configs/qis/level_a_500GeV_ISR_sc_v1.yaml"))
++    parser.add_argument("--config", required=True, type=Path)
+     parser.add_argument("--root", type=Path)
++    parser.add_argument("--shard-manifest", type=Path)
+     parser.add_argument("--overwrite", action="store_true")
+     args = parser.parse_args()
+-    root = args.root or configured_root(args.config)
++
++    config_root, total_events_per_sample = load_config(args.config)
++    root = args.root or config_root
++    manifest_path = args.shard_manifest or root / "manifests/lhe_shard_manifest.csv"
++    if not manifest_path.is_file():
++        raise FileNotFoundError(manifest_path)
++    with manifest_path.open(newline="") as stream:
++        rows = [row for row in csv.DictReader(stream) if row.get("status") == "ready"]
++    if not rows:
++        raise ValueError(f"no ready rows in {manifest_path}")
++
++    by_sample: dict[str, list[dict[str, str]]] = defaultdict(list)
++    for row in rows:
++        by_sample[row["sample_id"]].append(row)
++
+     records: list[dict[str, object]] = []
+-    for sample_dir in sorted((root / "hepmc3").glob("*")):
+-        if not sample_dir.is_dir():
+-            continue
+-        inputs = sorted(sample_dir.glob("*.hepmc3"))
+-        output = root / "hepmc3_merged" / f"{sample_dir.name}.hepmc3"
++    for sample, sample_rows in sorted(by_sample.items()):
++        ordered = sorted(sample_rows, key=lambda row: int(row["shard_index"]))
++        expected_indices = list(range(len(ordered)))
++        indices = [int(row["shard_index"]) for row in ordered]
++        if indices != expected_indices:
++            raise ValueError(f"non-contiguous shard indices for {sample}: {indices}")
++        starts = [int(row["source_event_start"]) for row in ordered]
++        stops = [int(row["source_event_stop_exclusive"]) for row in ordered]
++        if starts[0] != 0 or stops[-1] != total_events_per_sample:
++            raise ValueError(f"incomplete source range for {sample}: [{starts[0]},{stops[-1]})")
++        if any(stops[i] != starts[i + 1] for i in range(len(ordered) - 1)):
++            raise ValueError(f"gap/overlap in source ranges for {sample}")
++
++        inputs: list[Path] = []
++        accepted_sum = 0
++        for row in ordered:
++            shard = row["shard_id"]
++            requested = int(row["requested_events"])
++            source = root / "hepmc3" / sample / f"{sample}__{shard}.hepmc3"
++            metadata_path = root / "metadata" / sample / f"{sample}__{shard}.json"
++            if not source.is_file() or source.stat().st_size <= 0:
++                raise FileNotFoundError(source)
++            if not metadata_path.is_file():
++                raise FileNotFoundError(metadata_path)
++            metadata = json.loads(metadata_path.read_text())
++            accepted = int(metadata.get("accepted_events", 0))
++            if metadata.get("status") != "success" or int(metadata.get("return_code", 1)) != 0:
++                raise RuntimeError(f"invalid shower metadata for {sample}/{shard}")
++            if accepted != requested:
++                raise RuntimeError(
++                    f"event-count mismatch for {sample}/{shard}: "
++                    f"accepted={accepted} requested={requested}"
++                )
++            accepted_sum += accepted
++            inputs.append(source)
++        if accepted_sum != total_events_per_sample:
++            raise RuntimeError(
++                f"aggregate accepted count for {sample}: "
++                f"{accepted_sum}, expected {total_events_per_sample}"
++            )
++
++        output = root / "hepmc3_merged" / f"{sample}.hepmc3"
+         if output.exists() and not args.overwrite:
+             raise FileExistsError(f"merged output exists: {output}; use --overwrite")
+         events = merge_hepmc(inputs, output)
+-        records.append({"sample_id": sample_dir.name, "inputs": [str(x) for x in inputs], "output": str(output), "events": events})
+-        print(f"WROTE {output} events={events}")
+-    if not records:
+-        raise RuntimeError(f"no sample directories found under {root / 'hepmc3'}")
+-    manifest = root / "manifests/shower_collection.json"
+-    manifest.parent.mkdir(parents=True, exist_ok=True)
+-    manifest.write_text(json.dumps(records, indent=2, sort_keys=True) + "\n")
+-    print(f"Wrote {manifest}")
++        if events != total_events_per_sample:
++            output.unlink(missing_ok=True)
++            raise RuntimeError(
++                f"merged event count for {sample}: {events}, "
++                f"expected {total_events_per_sample}"
++            )
++        record = {
++            "sample_id": sample,
++            "shards": len(inputs),
++            "source_event_start": starts[0],
++            "source_event_stop_exclusive": stops[-1],
++            "events": events,
++            "inputs": [str(path) for path in inputs],
++            "output": str(output),
++            "output_sha256": sha256(output),
++        }
++        records.append(record)
++        print(f"WROTE {output} shards={len(inputs)} events={events}")
++
++    manifest_dir = root / "manifests"
++    manifest_dir.mkdir(parents=True, exist_ok=True)
++    json_path = manifest_dir / "shower_collection.json"
++    json_path.write_text(json.dumps(records, indent=2, sort_keys=True) + "\n")
++    csv_path = manifest_dir / "shower_collection.csv"
++    with csv_path.open("w", newline="") as stream:
++        writer = csv.DictWriter(
++            stream,
++            fieldnames=[
++                "sample_id",
++                "shards",
++                "source_event_start",
++                "source_event_stop_exclusive",
++                "events",
++                "output",
++                "output_sha256",
++            ],
++        )
++        writer.writeheader()
++        for record in records:
++            writer.writerow({key: record[key] for key in writer.fieldnames})
++    md_path = manifest_dir / "shower_collection.md"
++    md_path.write_text(
++        "# Sharded shower collection\n\n"
++        f"- Samples: **{len(records)}**\n"
++        f"- Events per sample: **{total_events_per_sample}**\n\n"
++        "| Sample | Shards | Events | Output |\n"
++        "|---|---:|---:|---|\n"
++        + "\n".join(
++            f"| `{record['sample_id']}` | {record['shards']} | "
++            f"{record['events']} | `{record['output']}` |"
++            for record in records
++        )
++        + "\n"
++    )
++    print(f"Wrote {json_path}")
++    print(f"Wrote {csv_path}")
++    print(f"Wrote {md_path}")
++    print(f"SHOWER COLLECTION PASS samples={len(records)}")
+     return 0
+ 
+ 
+diff --git a/scripts/showering/prepare_lhe_shards.py b/scripts/showering/prepare_lhe_shards.py
+new file mode 100755
+index 0000000..79f49d1
+--- /dev/null
++++ b/scripts/showering/prepare_lhe_shards.py
+@@ -0,0 +1,446 @@
++#!/usr/bin/env python3
++"""Create deterministic, disjoint LHE input shards for shower qualification.
++
++Only the requested leading event window is read from each authoritative merged
++LHE file.  Unused source events are never copied, canonicalized, or passed to
++PYTHIA.  Every shard carries an explicit half-open source-event range and a
++SHA256 checksum in ``manifests/lhe_shard_manifest.csv``.
++"""
++from __future__ import annotations
++
++import argparse
++import csv
++import datetime as dt
++import fnmatch
++import gzip
++import hashlib
++import json
++import os
++import re
++import shutil
++from contextlib import ExitStack
++from dataclasses import dataclass
++from pathlib import Path
++from typing import Any, Iterator, TextIO
++
++import yaml
++
++MANIFEST_FIELDS = [
++    "schema_version",
++    "campaign_id",
++    "sample_id",
++    "source_lhe_path",
++    "source_size_bytes",
++    "source_mtime_ns",
++    "selected_event_window_sha256",
++    "shard_id",
++    "shard_index",
++    "source_event_start",
++    "source_event_stop_exclusive",
++    "requested_events",
++    "shard_lhe_path",
++    "shard_lhe_size_bytes",
++    "shard_lhe_sha256",
++    "status",
++    "created_utc",
++]
++
++
++@dataclass(frozen=True)
++class ShardPlan:
++    index: int
++    start: int
++    stop: int
++
++    @property
++    def shard_id(self) -> str:
++        return f"shard_{self.index:04d}"
++
++    @property
++    def events(self) -> int:
++        return self.stop - self.start
++
++
++def load_yaml(path: Path) -> dict[str, Any]:
++    payload = yaml.safe_load(path.read_text()) or {}
++    if not isinstance(payload, dict):
++        raise ValueError(f"configuration root must be a mapping: {path}")
++    return payload
++
++
++def open_text(path: Path) -> TextIO:
++    if path.suffix == ".gz":
++        return gzip.open(path, "rt", encoding="utf-8", errors="strict", newline="")
++    return path.open("r", encoding="utf-8", errors="strict", newline="")
++
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as stream:
++        for block in iter(lambda: stream.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
++
++
++def balanced_plan(total_events: int, shards: int) -> list[ShardPlan]:
++    if total_events <= 0:
++        raise ValueError("total_events must be positive")
++    if shards <= 0:
++        raise ValueError("shards must be positive")
++    if shards > total_events:
++        raise ValueError(
++            f"cannot create {shards} non-empty shards from {total_events} events"
++        )
++    base, remainder = divmod(total_events, shards)
++    plans: list[ShardPlan] = []
++    start = 0
++    for index in range(shards):
++        count = base + (1 if index < remainder else 0)
++        stop = start + count
++        plans.append(ShardPlan(index=index, start=start, stop=stop))
++        start = stop
++    assert start == total_events
++    return plans
++
++
++def rewrite_prefix(prefix: str, event_count: int) -> str:
++    rewritten = re.sub(
++        r'(<xsecinfo\b[^>]*\bneve=")[^"]*(")',
++        rf"\g<1>{event_count}\g<2>",
++        prefix,
++        count=1,
++    )
++    if not rewritten.endswith("\n"):
++        rewritten += "\n"
++    return rewritten
++
++
++def existing_rows_valid(
++    rows: list[dict[str, str]],
++    *,
++    source: Path,
++    plans: list[ShardPlan],
++) -> bool:
++    if len(rows) != len(plans):
++        return False
++    stat = source.stat()
++    by_index = {int(row["shard_index"]): row for row in rows}
++    for plan in plans:
++        row = by_index.get(plan.index)
++        if row is None:
++            return False
++        output = Path(row["shard_lhe_path"])
++        if (
++            row.get("source_lhe_path") != str(source)
++            or int(row.get("source_size_bytes", -1)) != stat.st_size
++            or int(row.get("source_mtime_ns", -1)) != stat.st_mtime_ns
++            or int(row.get("source_event_start", -1)) != plan.start
++            or int(row.get("source_event_stop_exclusive", -1)) != plan.stop
++            or int(row.get("requested_events", -1)) != plan.events
++            or not output.is_file()
++            or output.stat().st_size <= 0
++            or sha256(output) != row.get("shard_lhe_sha256")
++        ):
++            return False
++    return True
++
++
++def write_sample_shards(
++    *,
++    campaign_id: str,
++    sample_id: str,
++    source: Path,
++    output_dir: Path,
++    plans: list[ShardPlan],
++    created_utc: str,
++) -> list[dict[str, str]]:
++    stat = source.stat()
++    output_dir.mkdir(parents=True, exist_ok=True)
++    temporary_dir = output_dir / f".partial_{os.getpid()}"
++    if temporary_dir.exists():
++        shutil.rmtree(temporary_dir)
++    temporary_dir.mkdir(parents=True)
++
++    outputs = [
++        output_dir / f"{sample_id}__{plan.shard_id}.lhe"
++        for plan in plans
++    ]
++    temporaries = [temporary_dir / output.name for output in outputs]
++    selected_digest = hashlib.sha256()
++    prefix_lines: list[str] = []
++    first_event_line: str | None = None
++
++    try:
++        with open_text(source) as input_stream:
++            for line in input_stream:
++                if line.strip() == "<event>":
++                    first_event_line = line
++                    break
++                prefix_lines.append(line)
++                selected_digest.update(line.encode())
++
++            if first_event_line is None:
++                raise ValueError(f"no <event> block found in {source}")
++            if not any(
++                line.strip().startswith("<LesHouchesEvents")
++                for line in prefix_lines
++            ):
++                raise ValueError(f"not an LHE document: {source}")
++
++            prefix = "".join(prefix_lines)
++            with ExitStack() as stack:
++                streams = [
++                    stack.enter_context(
++                        temporary.open("w", encoding="utf-8", newline="")
++                    )
++                    for temporary in temporaries
++                ]
++                for stream, plan in zip(streams, plans):
++                    stream.write(rewrite_prefix(prefix, plan.events))
++                    stream.write(
++                        "<!-- qis deterministic shower input shard\n"
++                        f"     source={source}\n"
++                        f"     source_event_start={plan.start}\n"
++                        f"     source_event_stop_exclusive={plan.stop}\n"
++                        f"     requested_events={plan.events}\n"
++                        "-->\n"
++                    )
++
++                event_index = 0
++                pending_start = first_event_line
++                plan_index = 0
++                while event_index < plans[-1].stop:
++                    if pending_start is None:
++                        for line in input_stream:
++                            if line.strip() == "<event>":
++                                pending_start = line
++                                break
++                            if line.strip() == "</LesHouchesEvents>":
++                                break
++                    if pending_start is None:
++                        raise ValueError(
++                            f"{source} contains only {event_index} readable events; "
++                            f"{plans[-1].stop} required"
++                        )
++
++                    while not (
++                        plans[plan_index].start
++                        <= event_index
++                        < plans[plan_index].stop
++                    ):
++                        plan_index += 1
++                    output_stream = streams[plan_index]
++
++                    output_stream.write(pending_start)
++                    selected_digest.update(pending_start.encode())
++                    pending_start = None
++                    closed = False
++                    for line in input_stream:
++                        output_stream.write(line)
++                        selected_digest.update(line.encode())
++                        if line.strip() == "</event>":
++                            closed = True
++                            break
++                    if not closed:
++                        raise ValueError(
++                            f"truncated <event> block {event_index} in {source}"
++                        )
++                    event_index += 1
++
++                for stream in streams:
++                    stream.write("</LesHouchesEvents>\n")
++
++        for temporary in temporaries:
++            if not temporary.is_file() or temporary.stat().st_size <= 0:
++                raise RuntimeError(f"empty temporary shard: {temporary}")
++        for temporary, output in zip(temporaries, outputs):
++            temporary.replace(output)
++
++        selected_sha = selected_digest.hexdigest()
++        rows: list[dict[str, str]] = []
++        for plan, output in zip(plans, outputs):
++            rows.append(
++                {
++                    "schema_version": "2",
++                    "campaign_id": campaign_id,
++                    "sample_id": sample_id,
++                    "source_lhe_path": str(source),
++                    "source_size_bytes": str(stat.st_size),
++                    "source_mtime_ns": str(stat.st_mtime_ns),
++                    "selected_event_window_sha256": selected_sha,
++                    "shard_id": plan.shard_id,
++                    "shard_index": str(plan.index),
++                    "source_event_start": str(plan.start),
++                    "source_event_stop_exclusive": str(plan.stop),
++                    "requested_events": str(plan.events),
++                    "shard_lhe_path": str(output),
++                    "shard_lhe_size_bytes": str(output.stat().st_size),
++                    "shard_lhe_sha256": sha256(output),
++                    "status": "ready",
++                    "created_utc": created_utc,
++                }
++            )
++        return rows
++    except Exception:
++        for output in outputs:
++            output.unlink(missing_ok=True)
++        raise
++    finally:
++        shutil.rmtree(temporary_dir, ignore_errors=True)
++
++def main() -> int:
++    repo = Path(__file__).resolve().parents[2]
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--config", required=True, type=Path)
++    parser.add_argument("--manifest", type=Path)
++    parser.add_argument("--output-root", type=Path)
++    parser.add_argument("--jobs-per-sample", required=True, type=int)
++    parser.add_argument("--total-events-per-sample", type=int)
++    parser.add_argument("--sample", action="append", default=[])
++    parser.add_argument("--resume", action="store_true")
++    parser.add_argument("--force", action="store_true")
++    args = parser.parse_args()
++
++    if args.resume and args.force:
++        raise ValueError("--resume and --force are mutually exclusive")
++
++    config = load_yaml(args.config)
++    campaign_cfg = config.get("campaign", {})
++    shower_cfg = config.get("showering", {})
++    if not isinstance(campaign_cfg, dict) or not isinstance(shower_cfg, dict):
++        raise ValueError("campaign and showering sections must be mappings")
++
++    manifest = (
++        args.manifest
++        or Path(str(campaign_cfg.get("source_manifest", "")))
++    ).expanduser()
++    campaign_output = Path(str(campaign_cfg.get("output_root", ""))).expanduser()
++    root = (args.output_root or campaign_output / "shower").expanduser()
++    total_events = (
++        args.total_events_per_sample
++        if args.total_events_per_sample is not None
++        else int(shower_cfg.get("total_events_per_sample", 10000))
++    )
++    if not str(root).startswith("/eos/") and not str(root).startswith("/tmp/"):
++        raise ValueError(f"output root must be on EOS or under /tmp: {root}")
++    plans = balanced_plan(total_events, args.jobs_per_sample)
++
++    if not manifest.is_file():
++        raise FileNotFoundError(manifest)
++    with manifest.open(newline="") as stream:
++        records = list(csv.DictReader(stream))
++    required = {"sample_id", "status", "merged_final_lhe_path"}
++    if not records or not required.issubset(records[0]):
++        raise ValueError(f"manifest missing columns {sorted(required)}: {manifest}")
++    records = [row for row in records if row.get("status") == "success"]
++    if args.sample:
++        records = [
++            row
++            for row in records
++            if any(
++                fnmatch.fnmatch(row["sample_id"], pattern)
++                for pattern in args.sample
++            )
++        ]
++    if not records:
++        raise ValueError("no successful samples match the selection")
++
++    shard_root = root / "input_shards"
++    manifest_dir = root / "manifests"
++    manifest_path = manifest_dir / "lhe_shard_manifest.csv"
++    existing: list[dict[str, str]] = []
++    if manifest_path.is_file():
++        with manifest_path.open(newline="") as stream:
++            existing = list(csv.DictReader(stream))
++        if not args.resume and not args.force:
++            raise FileExistsError(
++                f"shard manifest exists: {manifest_path}; use --resume or --force"
++            )
++
++    if args.force:
++        shutil.rmtree(shard_root, ignore_errors=True)
++        existing = []
++
++    created_utc = dt.datetime.now(dt.timezone.utc).isoformat()
++    all_rows: list[dict[str, str]] = []
++    reused = 0
++    written = 0
++    for row in sorted(records, key=lambda item: item["sample_id"]):
++        sample = row["sample_id"]
++        source = Path(row["merged_final_lhe_path"])
++        if not source.is_file():
++            raise FileNotFoundError(
++                f"authoritative merged LHE missing for {sample}: {source}"
++            )
++        previous = [item for item in existing if item.get("sample_id") == sample]
++        if args.resume and existing_rows_valid(previous, source=source, plans=plans):
++            all_rows.extend(sorted(previous, key=lambda item: int(item["shard_index"])))
++            reused += len(previous)
++            print(f"REUSE {sample}: {len(previous)} validated shards")
++            continue
++        sample_dir = shard_root / sample
++        shutil.rmtree(sample_dir, ignore_errors=True)
++        generated = write_sample_shards(
++            campaign_id=str(
++                campaign_cfg.get("source_campaign_id", row.get("campaign_id", ""))
++            ),
++            sample_id=sample,
++            source=source,
++            output_dir=sample_dir,
++            plans=plans,
++            created_utc=created_utc,
++        )
++        all_rows.extend(generated)
++        written += len(generated)
++        print(
++            f"WROTE {sample}: shards={len(generated)} "
++            f"events={sum(int(item['requested_events']) for item in generated)}"
++        )
++
++    all_rows.sort(key=lambda item: (item["sample_id"], int(item["shard_index"])))
++    manifest_dir.mkdir(parents=True, exist_ok=True)
++    temporary = manifest_path.with_name(f".{manifest_path.name}.partial")
++    with temporary.open("w", newline="") as stream:
++        writer = csv.DictWriter(stream, fieldnames=MANIFEST_FIELDS)
++        writer.writeheader()
++        writer.writerows(all_rows)
++    temporary.replace(manifest_path)
++
++    plan = {
++        "schema_version": 2,
++        "created_utc": created_utc,
++        "config": str(args.config.resolve()),
++        "source_manifest": str(manifest),
++        "output_root": str(root),
++        "samples": len(records),
++        "jobs_per_sample": args.jobs_per_sample,
++        "requested_jobs": len(all_rows),
++        "total_events_per_sample": total_events,
++        "total_events": total_events * len(records),
++        "events_per_shard_min": min(plan.events for plan in plans),
++        "events_per_shard_max": max(plan.events for plan in plans),
++        "source_read_policy": "prefix_plus_first_requested_events_only",
++        "manifest": str(manifest_path),
++        "written_shards": written,
++        "reused_shards": reused,
++    }
++    plan_json = manifest_dir / "lhe_shard_plan.json"
++    plan_json.write_text(json.dumps(plan, indent=2, sort_keys=True) + "\n")
++    plan_md = manifest_dir / "lhe_shard_plan.md"
++    plan_md.write_text(
++        "# LHE shower-shard plan\n\n"
++        + "\n".join(f"- {key}: `{value}`" for key, value in plan.items())
++        + "\n"
++    )
++    print(f"Wrote {manifest_path}")
++    print(f"Wrote {plan_json}")
++    print(
++        f"SHARD PREPARATION PASS samples={len(records)} "
++        f"jobs={len(all_rows)} jobs_per_sample={args.jobs_per_sample} "
++        f"events_per_sample={total_events}"
++    )
++    return 0
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/scripts/showering/run_pythia_shard.sh b/scripts/showering/run_pythia_shard.sh
+index 93e35d0..018e083 100755
+--- a/scripts/showering/run_pythia_shard.sh
++++ b/scripts/showering/run_pythia_shard.sh
+@@ -3,37 +3,41 @@ set -euo pipefail
+ 
+ usage() {
+   cat <<'USAGE'
+-Usage: run_pythia_shard.sh --input LHE --output-root EOS_DIR --sample-id ID
+-       --campaign-id ID --seed N --executable PATH --settings PATH [options]
++Usage: run_pythia_shard.sh --input LHE_SHARD --input-sha256 SHA256
++       --parent-lhe AUTHORITATIVE_LHE --source-event-start N
++       --source-event-stop N --output-root EOS_DIR --sample-id ID
++       --campaign-id ID --shard-id ID --seed N --max-events N
++       --executable PATH --settings PATH [options]
+ 
+ Options:
+-  --repo-root PATH               Authoritative project root on the shared filesystem
+-  --shard-id ID                  Output shard ID (default: merged)
+-  --max-events N                 Maximum events, -1 for all (default: -1)
+-  --key4hep-setup PATH           Project environment setup script
+-  --qed-shower-by-gamma on|off   PYTHIA gamma->fermion shower switch (default: on)
++  --repo-root PATH               Authoritative project root on shared storage.
++  --key4hep-setup PATH           Project environment setup script.
++  --qed-shower-by-gamma on|off   PYTHIA gamma->fermion shower switch.
+ USAGE
+ }
+ 
+-INPUT= OUTPUT_ROOT= SAMPLE_ID= CAMPAIGN_ID= SEED= EXECUTABLE= SETTINGS=
+-PROJECT_ROOT=
+-SHARD_ID=merged
+-MAX_EVENTS=-1
++INPUT= INPUT_SHA256= PARENT_LHE= SOURCE_EVENT_START= SOURCE_EVENT_STOP=
++OUTPUT_ROOT= SAMPLE_ID= CAMPAIGN_ID= SHARD_ID= SEED= MAX_EVENTS=
++EXECUTABLE= SETTINGS= PROJECT_ROOT=
+ KEY4HEP_SETUP=${KEY4HEP_SETUP:-}
+ QED_SHOWER_BY_GAMMA=on
+ 
+ while (($#)); do
+   case "$1" in
+     --input) INPUT=$2; shift 2;;
++    --input-sha256) INPUT_SHA256=$2; shift 2;;
++    --parent-lhe) PARENT_LHE=$2; shift 2;;
++    --source-event-start) SOURCE_EVENT_START=$2; shift 2;;
++    --source-event-stop) SOURCE_EVENT_STOP=$2; shift 2;;
+     --output-root) OUTPUT_ROOT=$2; shift 2;;
+     --sample-id) SAMPLE_ID=$2; shift 2;;
+     --campaign-id) CAMPAIGN_ID=$2; shift 2;;
++    --shard-id) SHARD_ID=$2; shift 2;;
+     --seed) SEED=$2; shift 2;;
++    --max-events) MAX_EVENTS=$2; shift 2;;
+     --executable) EXECUTABLE=$2; shift 2;;
+     --settings) SETTINGS=$2; shift 2;;
+     --repo-root) PROJECT_ROOT=$2; shift 2;;
+-    --shard-id) SHARD_ID=$2; shift 2;;
+-    --max-events) MAX_EVENTS=$2; shift 2;;
+     --key4hep-setup) KEY4HEP_SETUP=$2; shift 2;;
+     --qed-shower-by-gamma) QED_SHOWER_BY_GAMMA=$2; shift 2;;
+     -h|--help) usage; exit 0;;
+@@ -41,23 +45,34 @@ while (($#)); do
+   esac
+ done
+ 
+-for value in INPUT OUTPUT_ROOT SAMPLE_ID CAMPAIGN_ID SEED EXECUTABLE SETTINGS; do
++for value in \
++  INPUT INPUT_SHA256 PARENT_LHE SOURCE_EVENT_START SOURCE_EVENT_STOP \
++  OUTPUT_ROOT SAMPLE_ID CAMPAIGN_ID SHARD_ID SEED MAX_EVENTS \
++  EXECUTABLE SETTINGS; do
+   [[ -n ${!value} ]] || { echo "ERROR: missing $value" >&2; exit 2; }
+ done
+ [[ $QED_SHOWER_BY_GAMMA == on || $QED_SHOWER_BY_GAMMA == off ]] \
+   || { echo "ERROR: --qed-shower-by-gamma must be on or off" >&2; exit 2; }
+-[[ -r $INPUT ]] || { echo "ERROR: unreadable LHE: $INPUT" >&2; exit 3; }
+-[[ -x $EXECUTABLE ]] || { echo "ERROR: shower executable is not executable: $EXECUTABLE" >&2; exit 4; }
++[[ $MAX_EVENTS =~ ^[0-9]+$ ]] && (( MAX_EVENTS > 0 )) \
++  || { echo "ERROR: --max-events must be positive" >&2; exit 2; }
++[[ $SOURCE_EVENT_START =~ ^[0-9]+$ && $SOURCE_EVENT_STOP =~ ^[0-9]+$ ]] \
++  || { echo "ERROR: source event range must be non-negative integers" >&2; exit 2; }
++(( SOURCE_EVENT_STOP - SOURCE_EVENT_START == MAX_EVENTS )) \
++  || { echo "ERROR: source range/count mismatch" >&2; exit 2; }
++[[ $INPUT_SHA256 =~ ^[0-9a-fA-F]{64}$ ]] \
++  || { echo "ERROR: invalid --input-sha256" >&2; exit 2; }
++[[ -r $INPUT ]] || { echo "ERROR: unreadable LHE shard: $INPUT" >&2; exit 3; }
++[[ -r $PARENT_LHE ]] || { echo "ERROR: unreadable parent LHE: $PARENT_LHE" >&2; exit 3; }
++[[ -x $EXECUTABLE ]] \
++  || { echo "ERROR: shower executable is not executable: $EXECUTABLE" >&2; exit 4; }
+ [[ -r $SETTINGS ]] || { echo "ERROR: unreadable settings: $SETTINGS" >&2; exit 5; }
+-[[ $OUTPUT_ROOT == /eos/* ]] || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
++[[ $OUTPUT_ROOT == /eos/* ]] \
++  || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
+ 
+ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+-
+-# HTCondor may spool the wrapper itself into the execution scratch directory.
+-# In that case BASH_SOURCE points at scratch, not at the project checkout.
+-# Prefer the explicit shared-filesystem project root supplied by the submitter.
+ if [[ -n $PROJECT_ROOT ]]; then
+-  [[ -d $PROJECT_ROOT ]]     || { echo "ERROR: project root does not exist: $PROJECT_ROOT" >&2; exit 7; }
++  [[ -d $PROJECT_ROOT ]] \
++    || { echo "ERROR: project root does not exist: $PROJECT_ROOT" >&2; exit 7; }
+   REPO_ROOT=$(cd -- "$PROJECT_ROOT" && pwd)
+ else
+   REPO_ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
+@@ -67,13 +82,13 @@ HELPER_DIR="$REPO_ROOT/scripts/showering"
+ CANONICALIZER="$HELPER_DIR/canonicalize_whizard_lhe_for_pythia.py"
+ EXPLICIT_W_ADAPTER="$HELPER_DIR/insert_explicit_w_resonances.py"
+ METADATA_AUGMENTER="$HELPER_DIR/augment_shower_metadata.py"
+-
+ for helper in "$CANONICALIZER" "$EXPLICIT_W_ADAPTER" "$METADATA_AUGMENTER"; do
+   [[ -x $helper ]] || { echo "ERROR: missing executable helper: $helper" >&2; exit 7; }
+ done
+ 
+ if [[ -n $KEY4HEP_SETUP ]]; then
+-  [[ -r $KEY4HEP_SETUP ]] || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 8; }
++  [[ -r $KEY4HEP_SETUP ]] \
++    || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 8; }
+   nounset_was_on=0
+   errexit_was_on=0
+   case $- in *u*) nounset_was_on=1; set +u;; esac
+@@ -83,17 +98,17 @@ if [[ -n $KEY4HEP_SETUP ]]; then
+   setup_rc=$?
+   (( errexit_was_on == 0 )) || set -e
+   (( nounset_was_on == 0 )) || set -u
+-  (( setup_rc == 0 )) || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 8; }
++  (( setup_rc == 0 )) \
++    || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 8; }
+ fi
+ 
+ export PYTHONDONTWRITEBYTECODE=1
+-
+ SCRATCH_BASE=${_CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}}
+ WORK=$(mktemp -d "$SCRATCH_BASE/qis_shower_${SAMPLE_ID}_${SHARD_ID}_XXXXXX")
+ cleanup(){ rm -rf "$WORK"; }
+ trap cleanup EXIT
+ 
+-LOCAL_SOURCE=$WORK/source_whizard.lhe
++LOCAL_SOURCE=$WORK/source_shard.lhe
+ LOCAL_V2=$WORK/canonical_v2.lhe
+ LOCAL_V2_SUMMARY=$WORK/canonical_v2.summary.json
+ LOCAL_V3=$WORK/explicit_w_v3.lhe
+@@ -103,6 +118,9 @@ LOCAL_META=$WORK/output.hepmc3.metadata.json
+ LOCAL_LOG=$WORK/pythia.log
+ 
+ cp -p "$INPUT" "$LOCAL_SOURCE"
++actual_sha=$(sha256sum "$LOCAL_SOURCE" | awk '{print $1}')
++[[ $actual_sha == "$INPUT_SHA256" ]] \
++  || { echo "ERROR: input shard checksum mismatch" >&2; exit 9; }
+ 
+ python3 "$CANONICALIZER" \
+   --input "$LOCAL_SOURCE" \
+@@ -114,6 +132,39 @@ python3 "$EXPLICIT_W_ADAPTER" \
+   --output "$LOCAL_V3" \
+   --summary "$LOCAL_V3_SUMMARY"
+ 
++python3 - \
++  "$LOCAL_V2_SUMMARY" \
++  "$LOCAL_V3_SUMMARY" \
++  "$MAX_EVENTS" <<'PY'
++import json
++import sys
++from pathlib import Path
++
++canonical = json.loads(Path(sys.argv[1]).read_text())
++explicit_w = json.loads(Path(sys.argv[2]).read_text())
++expected = int(sys.argv[3])
++canonical_events = int(canonical.get("total_events", -1))
++explicit_events = int(explicit_w.get("total_events", -1))
++inserted_w = int(explicit_w.get("inserted_w_resonances", -1))
++if canonical_events != expected:
++    raise SystemExit(
++        f"canonicalizer processed {canonical_events} events; expected {expected}"
++    )
++if explicit_events != expected:
++    raise SystemExit(
++        f"explicit-W adapter processed {explicit_events} events; expected {expected}"
++    )
++if inserted_w != 2 * expected:
++    raise SystemExit(
++        f"explicit-W adapter inserted {inserted_w} W resonances; "
++        f"expected {2 * expected}"
++    )
++print(
++    "PREPARATION EVENT LIMIT PASS "
++    f"events={expected} inserted_w={inserted_w}"
++)
++PY
++
+ PYTHIA_OVERRIDES=()
+ if [[ $QED_SHOWER_BY_GAMMA == off ]]; then
+   PYTHIA_OVERRIDES+=(--set "TimeShower:QEDshowerByGamma = off")
+@@ -134,19 +185,23 @@ set +e
+   2>&1 | tee "$LOCAL_LOG"
+ shower_rc=${PIPESTATUS[0]}
+ set -e
+-
+ if (( shower_rc != 0 )); then
+   echo "ERROR: PYTHIA/HepMC conversion failed rc=$shower_rc" >&2
+   exit "$shower_rc"
+ fi
+ 
+-[[ -s $LOCAL_OUT ]] || { echo "ERROR: missing/empty local HepMC output" >&2; exit 9; }
+-[[ -s $LOCAL_META ]] || { echo "ERROR: missing/empty local metadata" >&2; exit 10; }
++[[ -s $LOCAL_OUT ]] || { echo "ERROR: missing/empty local HepMC output" >&2; exit 10; }
++[[ -s $LOCAL_META ]] || { echo "ERROR: missing/empty local metadata" >&2; exit 11; }
+ 
+ python3 "$METADATA_AUGMENTER" \
+   --metadata "$LOCAL_META" \
+-  --source-lhe "$LOCAL_SOURCE" \
+-  --source-lhe-path "$INPUT" \
++  --input-shard "$LOCAL_SOURCE" \
++  --input-shard-path "$INPUT" \
++  --input-shard-expected-sha256 "$INPUT_SHA256" \
++  --parent-lhe-path "$PARENT_LHE" \
++  --source-event-start "$SOURCE_EVENT_START" \
++  --source-event-stop-exclusive "$SOURCE_EVENT_STOP" \
++  --expected-events "$MAX_EVENTS" \
+   --canonical-summary "$LOCAL_V2_SUMMARY" \
+   --explicit-w-summary "$LOCAL_V3_SUMMARY" \
+   --worker-log "$LOCAL_LOG" \
+@@ -162,11 +217,10 @@ for directory in "$FINAL_DIR" "$META_DIR" "$LOG_DIR" "$PREP_DIR"; do
+     [[ -d $directory ]] && break
+     sleep "$attempt"
+   done
+-  [[ -d $directory ]] || { echo "ERROR: cannot prepare $directory" >&2; exit 11; }
++  [[ -d $directory ]] || { echo "ERROR: cannot prepare $directory" >&2; exit 12; }
+ done
+ 
+ BASE=${SAMPLE_ID}__${SHARD_ID}
+-
+ stage_atomic() {
+   local source=$1
+   local destination=$2
+@@ -185,6 +239,5 @@ stage_atomic "$LOCAL_V3_SUMMARY" "$PREP_DIR/${BASE}.explicit_w_v3.json"
+ 
+ echo "STAGED $FINAL_DIR/${BASE}.hepmc3"
+ echo "METADATA $META_DIR/${BASE}.json"
+-echo "PREPARATION $PREP_DIR/${BASE}.canonical_v2.json"
+-echo "PREPARATION $PREP_DIR/${BASE}.explicit_w_v3.json"
++echo "SOURCE_RANGE [$SOURCE_EVENT_START,$SOURCE_EVENT_STOP) events=$MAX_EVENTS"
+ echo "POLICY explicit_w_v3 qed_shower_by_gamma=$QED_SHOWER_BY_GAMMA repo=$REPO_ROOT"
+diff --git a/scripts/showering/smoke_test_sharded_worker.sh b/scripts/showering/smoke_test_sharded_worker.sh
+new file mode 100755
+index 0000000..1076fe9
+--- /dev/null
++++ b/scripts/showering/smoke_test_sharded_worker.sh
+@@ -0,0 +1,86 @@
++#!/usr/bin/env bash
++set -euo pipefail
++
++REPO=${REPO:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)}
++cd "$REPO"
++source "$REPO/setup_lxplus.sh"
++
++SOURCE=${SOURCE:-$REPO/tests/qis/data/smoke_lhe/ee_ttbar_epmum_LR100_sc_ISR_500GeV.lhe}
++[[ -r $SOURCE ]] || { echo "ERROR: missing smoke LHE: $SOURCE" >&2; exit 1; }
++[[ -x $REPO/build/qis_lhe_to_hepmc3 ]] \
++  || { echo "ERROR: missing shower executable" >&2; exit 1; }
++
++STAMP=$(date -u +%Y%m%dT%H%M%SZ)
++LOCAL=$(mktemp -d "/tmp/${USER}/qis_sharded_worker_smoke_XXXXXX")
++EOS_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/sharded_worker_smoke_${STAMP}
++cleanup() {
++  rm -rf "$LOCAL"
++  rm -rf "$EOS_ROOT"
++}
++trap cleanup EXIT
++
++python3 - "$REPO" "$SOURCE" "$LOCAL" <<'PY'
++import importlib.util
++import sys
++from pathlib import Path
++
++repo = Path(sys.argv[1])
++source = Path(sys.argv[2])
++local = Path(sys.argv[3])
++script = repo / "scripts/showering/prepare_lhe_shards.py"
++spec = importlib.util.spec_from_file_location("prepare_lhe_shards_smoke", script)
++assert spec and spec.loader
++module = importlib.util.module_from_spec(spec)
++sys.modules[spec.name] = module
++spec.loader.exec_module(module)
++rows = module.write_sample_shards(
++    campaign_id="sharded_worker_smoke",
++    sample_id="ee_ttbar_epmum_LR100_sc_ISR_500GeV",
++    source=source,
++    output_dir=local / "input_shards",
++    plans=module.balanced_plan(1, 1),
++    created_utc="smoke",
++)
++(local / "row.json").write_text(__import__("json").dumps(rows[0], indent=2) + "\n")
++PY
++
++ROW=$LOCAL/row.json
++SHARD=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["shard_lhe_path"])' "$ROW")
++SHA=$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1]))["shard_lhe_sha256"])' "$ROW")
++
++"$REPO/scripts/showering/run_pythia_shard.sh" \
++  --input "$SHARD" \
++  --input-sha256 "$SHA" \
++  --parent-lhe "$SOURCE" \
++  --source-event-start 0 \
++  --source-event-stop 1 \
++  --output-root "$EOS_ROOT/shower" \
++  --sample-id ee_ttbar_epmum_LR100_sc_ISR_500GeV \
++  --campaign-id sharded_worker_smoke \
++  --shard-id shard_0000 \
++  --seed 994001 \
++  --max-events 1 \
++  --executable "$REPO/build/qis_lhe_to_hepmc3" \
++  --settings "$REPO/configs/pythia/level_a.cmnd" \
++  --key4hep-setup "$REPO/setup_lxplus.sh" \
++  --repo-root "$REPO" \
++  --qed-shower-by-gamma on
++
++META="$EOS_ROOT/shower/metadata/ee_ttbar_epmum_LR100_sc_ISR_500GeV/ee_ttbar_epmum_LR100_sc_ISR_500GeV__shard_0000.json"
++python3 - "$META" <<'PY'
++import json
++import sys
++from pathlib import Path
++path = Path(sys.argv[1])
++data = json.loads(path.read_text())
++assert data["status"] == "success"
++assert data["return_code"] == 0
++assert data["accepted_events"] == 1
++assert data["requested_events"] == 1
++assert data["preparation_event_limit_verified"] is True
++assert data["source_event_range"] == {"start": 0, "stop_exclusive": 1, "events": 1}
++assert data["preparation"]["canonical_v2"]["total_events"] == 1
++assert data["preparation"]["explicit_w_v3"]["total_events"] == 1
++assert data["preparation"]["explicit_w_v3"]["inserted_w_resonances"] == 2
++print(f"SHARDED WORKER SMOKE PASS: {path}")
++PY
+diff --git a/scripts/showering/submit_showering.py b/scripts/showering/submit_showering.py
+index aabb7f9..bb50ce7 100755
+--- a/scripts/showering/submit_showering.py
++++ b/scripts/showering/submit_showering.py
+@@ -1,10 +1,5 @@
+ #!/usr/bin/env python3
+-"""Prepare reproducible HTCondor jobs for PYTHIA8 showering.
+-
+-The submit-side program owns the persistent EOS namespace and Condor control
+-files.  Workers read authoritative LHE files from EOS, copy them to scratch,
+-run the C++ shower executable, and atomically stage HepMC3 plus metadata.
+-"""
++"""Prepare reproducible HTCondor jobs from deterministic LHE shard manifests."""
+ from __future__ import annotations
+ 
+ import argparse
+@@ -17,7 +12,6 @@ import os
+ import shlex
+ import shutil
+ import subprocess
+-import sys
+ from pathlib import Path
+ from typing import Any
+ 
+@@ -25,80 +19,141 @@ import yaml
+ 
+ 
+ def load_yaml(path: Path) -> dict[str, Any]:
+-    with path.open() as stream:
+-        payload = yaml.safe_load(stream) or {}
++    payload = yaml.safe_load(path.read_text()) or {}
+     if not isinstance(payload, dict):
+         raise ValueError(f"configuration root must be a mapping: {path}")
+     return payload
+ 
+ 
+-def successful_metadata(path: Path, output: Path) -> bool:
+-    if not path.is_file() or not output.is_file() or output.stat().st_size <= 0:
++def successful_metadata(
++    metadata_path: Path,
++    output_path: Path,
++    requested_events: int,
++) -> bool:
++    if (
++        not metadata_path.is_file()
++        or not output_path.is_file()
++        or output_path.stat().st_size <= 0
++    ):
+         return False
+     try:
+-        data = json.loads(path.read_text())
++        data = json.loads(metadata_path.read_text())
+     except (OSError, json.JSONDecodeError):
+         return False
+     return (
+         data.get("status") == "success"
+         and int(data.get("return_code", 1)) == 0
+-        and int(data.get("accepted_events", 0)) > 0
++        and int(data.get("accepted_events", 0)) == requested_events
++        and int(data.get("requested_events", -1)) == requested_events
+     )
+ 
+ 
++
++def sha256(path: Path) -> str:
++    digest = hashlib.sha256()
++    with path.open("rb") as stream:
++        for block in iter(lambda: stream.read(1024 * 1024), b""):
++            digest.update(block)
++    return digest.hexdigest()
++
+ def deterministic_seed(base: int, sample_id: str, shard_id: str) -> int:
+     digest = hashlib.sha256(f"{sample_id}:{shard_id}".encode()).digest()
+     offset = int.from_bytes(digest[:4], "big") % 800_000_000
+-    seed = 1 + ((base + offset - 1) % 900_000_000)
+-    return seed
++    return 1 + ((base + offset - 1) % 900_000_000)
++
++
++def positive_int(name: str, value: int) -> int:
++    if value <= 0:
++        raise ValueError(f"{name} must be positive, got {value}")
++    return value
+ 
+ 
+ def main() -> int:
+     repo = Path(__file__).resolve().parents[2]
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument("--config", type=Path, default=repo / "configs/qis/level_a_500GeV_ISR_sc_v1.yaml")
+-    parser.add_argument("--manifest", type=Path, help="Override campaign sample manifest")
+-    parser.add_argument("--output-root", type=Path, help="Override shower output root")
+-    parser.add_argument("--executable", type=Path, help="Override qis_lhe_to_hepmc3 executable")
+-    parser.add_argument("--settings", type=Path, help="Override PYTHIA command file")
+-    parser.add_argument("--key4hep-setup", type=Path, default=repo / "setup_lxplus.sh")
+-    parser.add_argument("--sample", action="append", default=[], help="Glob pattern; repeatable")
+-    parser.add_argument("--max-events", type=int)
+-    parser.add_argument("--seed-base", type=int, default=5_100_000)
++    parser.add_argument("--config", required=True, type=Path)
++    parser.add_argument("--shard-manifest", type=Path)
++    parser.add_argument("--output-root", type=Path)
++    parser.add_argument("--executable", type=Path)
++    parser.add_argument("--settings", type=Path)
++    parser.add_argument(
++        "--key4hep-setup", type=Path, default=repo / "setup_lxplus.sh"
++    )
++    parser.add_argument("--sample", action="append", default=[])
++    parser.add_argument("--expected-jobs", type=int)
++    parser.add_argument("--seed-base", type=int)
++    parser.add_argument("--request-cpus", type=int)
++    parser.add_argument("--request-memory-mb", type=int)
++    parser.add_argument("--request-disk-gb", type=int)
++    parser.add_argument("--job-flavour")
+     parser.add_argument("--submit", action="store_true")
+     parser.add_argument("--resume", action="store_true")
+     parser.add_argument("--force", action="store_true")
+-    parser.add_argument("--job-flavour", default="tomorrow")
+-    parser.add_argument("--request-memory-mb", type=int, default=3000)
+-    parser.add_argument("--request-disk-gb", type=int, default=6)
+     args = parser.parse_args()
+ 
++    if args.resume and args.force:
++        raise ValueError("--resume and --force are mutually exclusive")
++
+     config = load_yaml(args.config)
+     campaign_cfg = config.get("campaign", {})
+     shower_cfg = config.get("showering", {})
++    resource_cfg = shower_cfg.get("resources", {})
+     if not isinstance(campaign_cfg, dict) or not isinstance(shower_cfg, dict):
+-        raise ValueError("campaign and showering configuration sections must be mappings")
++        raise ValueError("campaign and showering sections must be mappings")
++    if not isinstance(resource_cfg, dict):
++        raise ValueError("showering.resources must be a mapping")
+ 
+-    manifest = (args.manifest or Path(str(campaign_cfg.get("source_manifest", "")))).expanduser()
+     campaign_output = Path(str(campaign_cfg.get("output_root", ""))).expanduser()
+     output_root = (args.output_root or campaign_output / "shower").expanduser()
+-    executable = (args.executable or repo / str(shower_cfg.get("executable", "build/qis_lhe_to_hepmc3"))).expanduser()
+-    settings = (args.settings or repo / str(shower_cfg.get("settings_file", "configs/pythia/level_a.cmnd"))).expanduser()
+-    max_events = args.max_events if args.max_events is not None else int(shower_cfg.get("events_per_job", -1))
++    shard_manifest = (
++        args.shard_manifest
++        or output_root / "manifests/lhe_shard_manifest.csv"
++    ).expanduser()
++    executable = (
++        args.executable
++        or repo / str(shower_cfg.get("executable", "build/qis_lhe_to_hepmc3"))
++    ).expanduser()
++    settings = (
++        args.settings
++        or repo / str(shower_cfg.get("settings_file", "configs/pythia/level_a.cmnd"))
++    ).expanduser()
++    seed_base = (
++        args.seed_base
++        if args.seed_base is not None
++        else int(shower_cfg.get("seed_base", 5_100_000))
++    )
++    request_cpus = positive_int(
++        "request_cpus",
++        args.request_cpus
++        if args.request_cpus is not None
++        else int(resource_cfg.get("request_cpus", 1)),
++    )
++    request_memory_mb = positive_int(
++        "request_memory_mb",
++        args.request_memory_mb
++        if args.request_memory_mb is not None
++        else int(resource_cfg.get("request_memory_mb", 1000)),
++    )
++    request_disk_gb = positive_int(
++        "request_disk_gb",
++        args.request_disk_gb
++        if args.request_disk_gb is not None
++        else int(resource_cfg.get("request_disk_gb", 2)),
++    )
++    job_flavour = args.job_flavour or str(
++        resource_cfg.get("job_flavour", "workday")
++    )
+     qed_shower_by_gamma = (
+         "on" if bool(shower_cfg.get("qed_shower_by_gamma", True)) else "off"
+     )
+-    preparation_policy = str(
++    expected_policy = str(
+         shower_cfg.get(
+             "lhe_preparation_policy",
+             "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3",
+         )
+     )
+-    if preparation_policy != "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3":
+-        raise ValueError(
+-            "unsupported showering.lhe_preparation_policy: "
+-            f"{preparation_policy}"
+-        )
++    if expected_policy != "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3":
++        raise ValueError(f"unsupported LHE preparation policy: {expected_policy}")
+ 
+     wrapper = repo / "scripts/showering/run_pythia_shard.sh"
+     runtime_helpers = (
+@@ -107,9 +162,11 @@ def main() -> int:
+         repo / "scripts/showering/insert_explicit_w_resonances.py",
+         repo / "scripts/showering/augment_shower_metadata.py",
+     )
+-
+-    if not manifest.is_file():
+-        raise FileNotFoundError(f"sample manifest not found: {manifest}")
++    if not shard_manifest.is_file():
++        raise FileNotFoundError(
++            f"LHE shard manifest not found: {shard_manifest}; "
++            "run prepare_lhe_shards.py first"
++        )
+     if not settings.is_file():
+         raise FileNotFoundError(f"PYTHIA settings not found: {settings}")
+     if not args.key4hep_setup.is_file():
+@@ -123,29 +180,81 @@ def main() -> int:
+             raise PermissionError(f"runtime helper is not executable: {helper}")
+     if not str(output_root).startswith("/eos/"):
+         raise ValueError(f"output root must be on EOS: {output_root}")
+-    if max_events == 0 or max_events < -1:
+-        raise ValueError("max-events must be -1 or positive")
+-    if args.resume and args.force:
+-        raise ValueError("--resume and --force are mutually exclusive")
+ 
+-    with manifest.open(newline="") as stream:
++    with shard_manifest.open(newline="") as stream:
+         records = list(csv.DictReader(stream))
+-    required = {"sample_id", "status", "merged_final_lhe_path"}
++    required = {
++        "campaign_id",
++        "sample_id",
++        "source_lhe_path",
++        "shard_id",
++        "shard_index",
++        "source_event_start",
++        "source_event_stop_exclusive",
++        "requested_events",
++        "shard_lhe_path",
++        "shard_lhe_sha256",
++        "status",
++    }
+     if not records or not required.issubset(records[0]):
+-        raise ValueError(f"manifest missing required columns {sorted(required)}: {manifest}")
+-    records = [row for row in records if row.get("status") == "success"]
++        raise ValueError(
++            f"shard manifest missing columns {sorted(required)}: {shard_manifest}"
++        )
++    records = [row for row in records if row.get("status") == "ready"]
+     if args.sample:
+-        records = [row for row in records if any(fnmatch.fnmatch(row["sample_id"], pattern) for pattern in args.sample)]
++        records = [
++            row
++            for row in records
++            if any(
++                fnmatch.fnmatch(row["sample_id"], pattern)
++                for pattern in args.sample
++            )
++        ]
+     if not records:
+-        raise ValueError("no successful manifest rows match the selection")
++        raise ValueError("no ready LHE shard rows match the selection")
++    if args.expected_jobs is not None and len(records) != args.expected_jobs:
++        raise ValueError(
++            f"shard manifest provides {len(records)} jobs; "
++            f"expected {args.expected_jobs}"
++        )
++
++    campaign_ids = {row["campaign_id"] for row in records}
++    if len(campaign_ids) != 1:
++        raise ValueError(f"mixed campaign IDs in shard manifest: {campaign_ids}")
++    campaign_id = next(iter(campaign_ids))
++
++    seen_keys: set[tuple[str, str]] = set()
++    for row in records:
++        key = (row["sample_id"], row["shard_id"])
++        if key in seen_keys:
++            raise ValueError(f"duplicate shard row: {key}")
++        seen_keys.add(key)
++        requested = int(row["requested_events"])
++        start = int(row["source_event_start"])
++        stop = int(row["source_event_stop_exclusive"])
++        if requested <= 0 or stop - start != requested:
++            raise ValueError(f"invalid event range/count for {key}: {row}")
++        shard_lhe = Path(row["shard_lhe_path"])
++        if not shard_lhe.is_file() or shard_lhe.stat().st_size <= 0:
++            raise FileNotFoundError(f"missing/empty LHE shard for {key}: {shard_lhe}")
++        actual_sha = sha256(shard_lhe)
++        if actual_sha != row["shard_lhe_sha256"]:
++            raise ValueError(
++                f"LHE shard checksum mismatch for {key}: "
++                f"manifest={row['shard_lhe_sha256']} actual={actual_sha}"
++            )
+ 
+     stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+     control = repo / "condor/runtime_submissions/qis_shower" / stamp
+     provenance = output_root / "manifests/submissions" / stamp
+     persistent_dirs = [
+-        output_root / "hepmc3", output_root / "metadata", output_root / "logs",
+-        output_root / "preparation", output_root / "manifests",
+-        output_root / "validation", provenance,
++        output_root / "hepmc3",
++        output_root / "metadata",
++        output_root / "logs",
++        output_root / "preparation",
++        output_root / "manifests",
++        output_root / "validation",
++        provenance,
+     ]
+     local_dirs = [control, control / "stdout", control / "stderr"]
+     for directory in (*persistent_dirs, *local_dirs):
+@@ -154,57 +263,85 @@ def main() -> int:
+     jobs: list[dict[str, str]] = []
+     skipped: list[dict[str, str]] = []
+     seen_seeds: set[int] = set()
+-    campaign_id = str(campaign_cfg.get("source_campaign_id", records[0].get("campaign_id", "unknown")))
+-
+-    for row in sorted(records, key=lambda item: item["sample_id"]):
++    for row in sorted(
++        records,
++        key=lambda item: (item["sample_id"], int(item["shard_index"])),
++    ):
+         sample = row["sample_id"]
+-        input_lhe = Path(row["merged_final_lhe_path"])
+-        if not input_lhe.is_file():
+-            raise FileNotFoundError(f"authoritative merged LHE missing for {sample}: {input_lhe}")
+-        shard_id = "merged"
++        shard_id = row["shard_id"]
++        requested = int(row["requested_events"])
++        input_lhe = Path(row["shard_lhe_path"])
+         output = output_root / "hepmc3" / sample / f"{sample}__{shard_id}.hepmc3"
+         metadata = output_root / "metadata" / sample / f"{sample}__{shard_id}.json"
+-        if args.resume and successful_metadata(metadata, output):
+-            skipped.append({"sample_id": sample, "reason": "validated output already exists"})
++        if args.resume and successful_metadata(metadata, output, requested):
++            skipped.append(
++                {
++                    "sample_id": sample,
++                    "shard_id": shard_id,
++                    "reason": "validated output already exists",
++                }
++            )
+             continue
+         if not args.force and not args.resume and (output.exists() or metadata.exists()):
+-            raise FileExistsError(f"existing output for {sample}; use --resume or --force")
++            raise FileExistsError(
++                f"existing output for {sample}/{shard_id}; use --resume or --force"
++            )
+         if args.force:
+             output.unlink(missing_ok=True)
+             metadata.unlink(missing_ok=True)
+         for directory in (
+-            output.parent, metadata.parent, output_root / "logs" / sample,
++            output.parent,
++            metadata.parent,
++            output_root / "logs" / sample,
+             output_root / "preparation" / sample,
+-            control / "stdout" / sample, control / "stderr" / sample,
++            control / "stdout" / sample,
++            control / "stderr" / sample,
+         ):
+             directory.mkdir(parents=True, exist_ok=True)
+-        seed = deterministic_seed(args.seed_base, sample, shard_id)
++
++        seed = deterministic_seed(seed_base, sample, shard_id)
+         if seed in seen_seeds:
+             raise RuntimeError(f"deterministic seed collision: {seed}")
+         seen_seeds.add(seed)
+-        jobs.append({
+-            "wrapper": str(wrapper),
+-            "input_lhe": str(input_lhe),
+-            "output_root": str(output_root),
+-            "sample_id": sample,
+-            "campaign_id": campaign_id,
+-            "shard_id": shard_id,
+-            "seed": str(seed),
+-            "max_events": str(max_events),
+-            "shower_executable": str(executable.resolve()),
+-            "settings_file": str(settings.resolve()),
+-            "key4hep_setup": str(args.key4hep_setup.resolve()),
+-            "qed_shower_by_gamma": qed_shower_by_gamma,
+-            "repo_root": str(repo),
+-            "stdout_path": str(control / "stdout" / sample / "$(ClusterId).$(ProcId).out"),
+-            "stderr_path": str(control / "stderr" / sample / "$(ClusterId).$(ProcId).err"),
+-            "event_log": str(control / "qis_shower.condor.log"),
+-            "job_cpus": "1",
+-            "job_memory_mb": str(args.request_memory_mb),
+-            "job_disk_gb": str(args.request_disk_gb),
+-            "job_flavour": args.job_flavour,
+-            "batch_name": f"qis_shower_{campaign_id}",
+-        })
++        jobs.append(
++            {
++                "wrapper": str(wrapper),
++                "input_lhe": str(input_lhe),
++                "parent_lhe": row["source_lhe_path"],
++                "input_lhe_sha256": row["shard_lhe_sha256"],
++                "source_event_start": row["source_event_start"],
++                "source_event_stop": row["source_event_stop_exclusive"],
++                "output_root": str(output_root),
++                "sample_id": sample,
++                "campaign_id": campaign_id,
++                "shard_id": shard_id,
++                "seed": str(seed),
++                "max_events": str(requested),
++                "shower_executable": str(executable.resolve()),
++                "settings_file": str(settings.resolve()),
++                "key4hep_setup": str(args.key4hep_setup.resolve()),
++                "qed_shower_by_gamma": qed_shower_by_gamma,
++                "repo_root": str(repo),
++                "stdout_path": str(
++                    control
++                    / "stdout"
++                    / sample
++                    / f"{shard_id}.$(ClusterId).$(ProcId).out"
++                ),
++                "stderr_path": str(
++                    control
++                    / "stderr"
++                    / sample
++                    / f"{shard_id}.$(ClusterId).$(ProcId).err"
++                ),
++                "event_log": str(control / "qis_shower.condor.log"),
++                "job_cpus": str(request_cpus),
++                "job_memory_mb": str(request_memory_mb),
++                "job_disk_gb": str(request_disk_gb),
++                "job_flavour": job_flavour,
++                "batch_name": f"qis_shower_{campaign_id}",
++            }
++        )
+ 
+     if not jobs:
+         print(f"Prepared jobs: 0\nSkipped jobs: {len(skipped)}")
+@@ -213,13 +350,6 @@ def main() -> int:
+     itemdata = control / "jobs.itemdata"
+     fields = list(jobs[0])
+     with itemdata.open("w", newline="") as stream:
+-        # The submit description already declares the queue variable list:
+-        #
+-        #   queue field1,field2,... from jobs.itemdata
+-        #
+-        # Therefore the itemdata file must contain data rows only. A header
+-        # would be interpreted by HTCondor as a real job, making values such as
+-        # ``repo_root`` literal paths.
+         writer = csv.writer(
+             stream,
+             delimiter=" ",
+@@ -228,10 +358,7 @@ def main() -> int:
+         )
+         for job in jobs:
+             writer.writerow([job[field] for field in fields])
+-
+-    itemdata_rows = [
+-        line for line in itemdata.read_text().splitlines() if line.strip()
+-    ]
++    itemdata_rows = [line for line in itemdata.read_text().splitlines() if line.strip()]
+     if len(itemdata_rows) != len(jobs):
+         raise RuntimeError(
+             f"itemdata row-count mismatch: wrote {len(itemdata_rows)}, "
+@@ -244,21 +371,33 @@ def main() -> int:
+     submit_file = control / "pythia_shower.sub"
+     submit_file.write_text(template.replace("$(itemdata)", str(itemdata)))
+     submission = {
+-        "schema_version": 1,
++        "schema_version": 2,
+         "created_utc": stamp,
+         "config": str(args.config.resolve()),
+-        "manifest": str(manifest),
++        "shard_manifest": str(shard_manifest),
+         "output_root": str(output_root),
+-        "lhe_preparation_policy": preparation_policy,
++        "lhe_preparation_policy": expected_policy,
+         "qed_shower_by_gamma": qed_shower_by_gamma,
+         "jobs": len(jobs),
+         "skipped": len(skipped),
++        "resources": {
++            "request_cpus": request_cpus,
++            "request_memory_mb": request_memory_mb,
++            "request_disk_gb": request_disk_gb,
++            "job_flavour": job_flavour,
++        },
+         "submit_file": str(submit_file),
+         "submitted": False,
+     }
+-    (control / "jobs.json").write_text(json.dumps(jobs, indent=2, sort_keys=True) + "\n")
+-    (control / "skipped.json").write_text(json.dumps(skipped, indent=2, sort_keys=True) + "\n")
+-    (control / "submission.json").write_text(json.dumps(submission, indent=2, sort_keys=True) + "\n")
++    (control / "jobs.json").write_text(
++        json.dumps(jobs, indent=2, sort_keys=True) + "\n"
++    )
++    (control / "skipped.json").write_text(
++        json.dumps(skipped, indent=2, sort_keys=True) + "\n"
++    )
++    (control / "submission.json").write_text(
++        json.dumps(submission, indent=2, sort_keys=True) + "\n"
++    )
+     for file in control.iterdir():
+         if file.is_file():
+             shutil.copy2(file, provenance / file.name)
+@@ -266,6 +405,11 @@ def main() -> int:
+     command = ["condor_submit", str(submit_file)]
+     print(f"Prepared jobs: {len(jobs)}")
+     print(f"Skipped jobs:  {len(skipped)}")
++    print(
++        "Resources:     "
++        f"cpu={request_cpus} memory={request_memory_mb}MB "
++        f"disk={request_disk_gb}GB flavour={job_flavour}"
++    )
+     print(f"Control dir:   {control}")
+     print(f"EOS record:    {provenance}")
+     print(f"Submit file:   {submit_file}")
+@@ -276,7 +420,9 @@ def main() -> int:
+     if result.returncode == 0:
+         submission["submitted"] = True
+         submission["submitted_utc"] = dt.datetime.now(dt.timezone.utc).isoformat()
+-        (control / "submission.json").write_text(json.dumps(submission, indent=2, sort_keys=True) + "\n")
++        (control / "submission.json").write_text(
++            json.dumps(submission, indent=2, sort_keys=True) + "\n"
++        )
+         shutil.copy2(control / "submission.json", provenance / "submission.json")
+     return result.returncode
+ 
+diff --git a/scripts/showering/validate_showering.py b/scripts/showering/validate_showering.py
+index c0d06f9..e8013aa 100755
+--- a/scripts/showering/validate_showering.py
++++ b/scripts/showering/validate_showering.py
+@@ -1,33 +1,27 @@
+ #!/usr/bin/env python3
+-"""Validate PYTHIA8/HepMC3 shower products and preparation provenance."""
++"""Strictly validate sharded PYTHIA8/HepMC3 products and provenance."""
+ from __future__ import annotations
+ 
+ import argparse
+ import csv
+ import hashlib
+ import json
++from collections import defaultdict
+ from pathlib import Path
+ from typing import Any
+ 
+ import yaml
+ 
+-EXPECTED_PREPARATION_POLICY = (
+-    "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3"
+-)
++EXPECTED_POLICY = "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3"
+ 
+ 
+-def configured_root(config_path: Path) -> tuple[Path, int, dict[str, Any]]:
+-    payload: dict[str, Any] = yaml.safe_load(config_path.read_text()) or {}
+-    campaign = payload.get("campaign", {})
+-    inputs = payload.get("inputs", {})
++def load_config(path: Path) -> tuple[Path, dict[str, Any]]:
++    payload: dict[str, Any] = yaml.safe_load(path.read_text()) or {}
++    root = Path(str(payload["campaign"]["output_root"])) / "shower"
+     showering = payload.get("showering", {})
+-    root = Path(str(campaign["output_root"])) / "shower"
+-    expected = (
+-        len(inputs.get("allowed_initial_states", []))
+-        * len(inputs.get("allowed_polarizations", []))
+-        * len(inputs.get("allowed_decay_channels", []))
+-    )
+-    return root, expected, showering
++    if not isinstance(showering, dict):
++        raise ValueError("showering section must be a mapping")
++    return root, showering
+ 
+ 
+ def sha256(path: Path) -> str:
+@@ -38,36 +32,79 @@ def sha256(path: Path) -> str:
+     return digest.hexdigest()
+ 
+ 
++def count_hepmc_events(path: Path) -> int:
++    try:
++        import pyhepmc
++    except ImportError as exc:
++        raise RuntimeError("pyhepmc is required for strict event counting") from exc
++    count = 0
++    with pyhepmc.open(path) as reader:
++        for _ in reader:
++            count += 1
++    return count
++
++
+ def main() -> int:
+     parser = argparse.ArgumentParser(description=__doc__)
+-    parser.add_argument(
+-        "--config",
+-        type=Path,
+-        default=Path("configs/qis/level_a_500GeV_ISR_sc_v1.yaml"),
+-    )
++    parser.add_argument("--config", required=True, type=Path)
+     parser.add_argument("--root", type=Path)
+-    parser.add_argument("--expected", type=int)
++    parser.add_argument("--shard-manifest", type=Path)
+     parser.add_argument("--strict", action="store_true")
+     parser.add_argument("--checksums", action="store_true")
++    parser.add_argument("--skip-hepmc-event-count", action="store_true")
+     args = parser.parse_args()
+ 
+-    config_root, config_expected, shower_cfg = configured_root(args.config)
++    config_root, shower_cfg = load_config(args.config)
+     root = args.root or config_root
+-    expected = args.expected if args.expected is not None else config_expected
+-    expected_qed_gamma = bool(shower_cfg.get("qed_shower_by_gamma", True))
+-    expected_policy = str(
+-        shower_cfg.get("lhe_preparation_policy", EXPECTED_PREPARATION_POLICY)
++    manifest_path = (
++        args.shard_manifest
++        or root / "manifests/lhe_shard_manifest.csv"
+     )
+-    expected_events = int(shower_cfg.get("events_per_job", -1))
++    if not manifest_path.is_file():
++        raise FileNotFoundError(manifest_path)
++    with manifest_path.open(newline="") as stream:
++        manifest_rows = list(csv.DictReader(stream))
++    if not manifest_rows:
++        raise ValueError(f"empty shard manifest: {manifest_path}")
++
++    total_events_per_sample = int(
++        shower_cfg.get("total_events_per_sample", 10000)
++    )
++    expected_qed_gamma = bool(shower_cfg.get("qed_shower_by_gamma", True))
++    expected_policy = str(shower_cfg.get("lhe_preparation_policy", EXPECTED_POLICY))
++
++    expected_by_key: dict[tuple[str, str], dict[str, str]] = {}
++    rows_by_sample: dict[str, list[dict[str, str]]] = defaultdict(list)
++    for row in manifest_rows:
++        if row.get("status") != "ready":
++            continue
++        key = (row["sample_id"], row["shard_id"])
++        if key in expected_by_key:
++            raise ValueError(f"duplicate manifest key: {key}")
++        expected_by_key[key] = row
++        rows_by_sample[row["sample_id"]].append(row)
++    if not expected_by_key:
++        raise ValueError("no ready rows in shard manifest")
+ 
+     metadata_paths = sorted((root / "metadata").glob("*/*.json"))
+     output_paths = sorted((root / "hepmc3").glob("*/*.hepmc3"))
+-    output_by_sample = {path.parent.name: path for path in output_paths}
++    metadata_by_key = {
++        (path.parent.name, path.stem.split("__", 1)[1]): path
++        for path in metadata_paths
++        if "__" in path.stem
++    }
++    output_by_key = {
++        (path.parent.name, path.stem.split("__", 1)[1]): path
++        for path in output_paths
++        if "__" in path.stem
++    }
++
+     checks: list[dict[str, object]] = []
+ 
+     def add(
+         check: str,
+         sample: str,
++        shard: str,
+         passed: bool,
+         value: object,
+         detail: str,
+@@ -76,154 +113,218 @@ def main() -> int:
+             {
+                 "check": check,
+                 "sample_id": sample,
++                "shard_id": shard,
+                 "verdict": "PASS" if passed else "FAIL",
+                 "value": value,
+                 "detail": detail,
+             }
+         )
+ 
++    expected_keys = set(expected_by_key)
++    metadata_keys = set(metadata_by_key)
++    output_keys = set(output_by_key)
+     add(
+         "metadata_count",
+         "—",
+-        len(metadata_paths) == expected,
++        "—",
++        metadata_keys == expected_keys and len(metadata_paths) == len(expected_keys),
+         len(metadata_paths),
+-        f"expected {expected}",
++        f"expected exact key set of {len(expected_keys)} shards",
+     )
+     add(
+         "output_count",
+         "—",
+-        len(output_paths) == expected,
++        "—",
++        output_keys == expected_keys and len(output_paths) == len(expected_keys),
+         len(output_paths),
+-        f"expected {expected}",
++        f"expected exact key set of {len(expected_keys)} shards",
+     )
+ 
+-    warning_totals = {
+-        "me_weight_above_ps": 0,
+-        "negative_dipole_mass": 0,
+-    }
+-
+-    for metadata_path in metadata_paths:
+-        sample = metadata_path.parent.name
+-        try:
+-            data = json.loads(metadata_path.read_text())
+-        except Exception as exc:
+-            add("metadata_parse", sample, False, type(exc).__name__, str(exc))
+-            continue
+-
+-        output = output_by_sample.get(sample)
+-        add(
+-            "metadata_status",
+-            sample,
+-            data.get("status") == "success",
+-            data.get("status"),
+-            "must be success",
++    for sample, rows in sorted(rows_by_sample.items()):
++        ordered = sorted(rows, key=lambda row: int(row["shard_index"]))
++        indices = [int(row["shard_index"]) for row in ordered]
++        starts = [int(row["source_event_start"]) for row in ordered]
++        stops = [int(row["source_event_stop_exclusive"]) for row in ordered]
++        counts = [int(row["requested_events"]) for row in ordered]
++        contiguous = (
++            indices == list(range(len(ordered)))
++            and starts[0] == 0
++            and all(stops[i] == starts[i + 1] for i in range(len(ordered) - 1))
++            and stops[-1] == total_events_per_sample
++            and sum(counts) == total_events_per_sample
++            and all(stop - start == count for start, stop, count in zip(starts, stops, counts))
+         )
+         add(
+-            "return_code",
++            "source_event_partition",
+             sample,
+-            int(data.get("return_code", 1)) == 0,
+-            data.get("return_code"),
+-            "must be zero",
++            "aggregate",
++            contiguous,
++            f"shards={len(ordered)} events={sum(counts)} range=[{starts[0]},{stops[-1]})",
++            f"must partition [0,{total_events_per_sample}) without gaps/overlap",
+         )
+-        accepted = int(data.get("accepted_events", 0))
+-        requested = int(data.get("requested_events", -1))
+-        add("accepted_events", sample, accepted > 0, accepted, "must be positive")
+-        if requested > 0:
+-            add(
+-                "requested_events",
+-                sample,
+-                accepted == requested,
+-                f"{accepted}/{requested}",
+-                "accepted must equal requested",
+-            )
+-        if expected_events > 0:
+-            add(
+-                "configured_events",
+-                sample,
+-                accepted == expected_events,
+-                f"{accepted}/{expected_events}",
+-                "accepted must equal showering.events_per_job",
+-            )
+-        add(
+-            "output_exists",
+-            sample,
+-            output is not None and output.is_file() and output.stat().st_size > 0,
+-            str(output) if output else "missing",
+-            "non-empty HepMC3 required",
++        shard_paths = [Path(row["shard_lhe_path"]) for row in ordered]
++        files_ok = all(
++            path.is_file() and path.stat().st_size > 0
++            for path in shard_paths
+         )
+         add(
+-            "version_metadata",
++            "input_shard_files",
+             sample,
+-            bool(data.get("pythia_version")) and bool(data.get("hepmc_version")),
+-            f"PYTHIA={data.get('pythia_version')} "
+-            f"HepMC={data.get('hepmc_version')}",
+-            "both versions required",
++            "aggregate",
++            files_ok,
++            len([path for path in shard_paths if path.is_file()]),
++            f"expected {len(ordered)} non-empty input shards",
++        )
++        checksum_matches = files_ok and all(
++            sha256(path) == row["shard_lhe_sha256"]
++            for path, row in zip(shard_paths, ordered)
+         )
+         add(
+-            "source_lhe_provenance",
++            "input_shard_checksums_match",
+             sample,
+-            bool(data.get("source_lhe_path"))
+-            and len(str(data.get("source_lhe_sha256", ""))) == 64,
+-            data.get("source_lhe_path", "missing"),
+-            "persistent source path and SHA256 required",
++            "aggregate",
++            checksum_matches,
++            checksum_matches,
++            "every persistent input shard must match its manifest SHA256",
+         )
++        selected_window_digests = {
++            row["selected_event_window_sha256"] for row in ordered
++        }
+         add(
+-            "prepared_lhe_policy",
++            "selected_window_digest_consistent",
+             sample,
+-            data.get("prepared_lhe_policy") == expected_policy,
+-            data.get("prepared_lhe_policy"),
+-            f"expected {expected_policy}",
++            "aggregate",
++            len(selected_window_digests) == 1,
++            len(selected_window_digests),
++            "all shards from one sample must reference one selected-event window",
+         )
++
++    warning_totals = {"me_weight_above_ps": 0, "negative_dipole_mass": 0}
++    accepted_by_sample: dict[str, int] = defaultdict(int)
++    seeds: dict[int, tuple[str, str]] = {}
++
++    for key, manifest_row in sorted(expected_by_key.items()):
++        sample, shard = key
++        metadata_path = metadata_by_key.get(key)
++        output_path = output_by_key.get(key)
++        requested = int(manifest_row["requested_events"])
++        if metadata_path is None:
++            add("metadata_exists", sample, shard, False, "missing", "metadata required")
++            continue
++        try:
++            data = json.loads(metadata_path.read_text())
++        except Exception as exc:
++            add("metadata_parse", sample, shard, False, type(exc).__name__, str(exc))
++            continue
++
++        add("metadata_exists", sample, shard, True, str(metadata_path), "metadata required")
++        add("metadata_status", sample, shard, data.get("status") == "success", data.get("status"), "must be success")
++        add("return_code", sample, shard, int(data.get("return_code", 1)) == 0, data.get("return_code"), "must be zero")
++        add("sample_id", sample, shard, data.get("sample_id") == sample, data.get("sample_id"), sample)
++        add("shard_id", sample, shard, data.get("shard_id") == shard, data.get("shard_id"), shard)
++        accepted = int(data.get("accepted_events", 0))
++        requested_meta = int(data.get("requested_events", -1))
++        accepted_by_sample[sample] += max(accepted, 0)
++        add("accepted_events", sample, shard, accepted == requested, accepted, f"expected {requested}")
++        add("requested_events", sample, shard, requested_meta == requested, requested_meta, f"expected {requested}")
++
+         add(
+-            "qed_shower_by_gamma",
++            "output_exists",
+             sample,
+-            bool(data.get("qed_shower_by_gamma")) == expected_qed_gamma,
+-            data.get("qed_shower_by_gamma"),
+-            f"expected {expected_qed_gamma}",
++            shard,
++            output_path is not None and output_path.is_file() and output_path.stat().st_size > 0,
++            str(output_path) if output_path else "missing",
++            "non-empty HepMC3 required",
+         )
++        if output_path is not None and output_path.is_file() and not args.skip_hepmc_event_count:
++            try:
++                actual_events = count_hepmc_events(output_path)
++            except Exception as exc:
++                add(
++                    "hepmc_event_count",
++                    sample,
++                    shard,
++                    False,
++                    type(exc).__name__,
++                    str(exc),
++                )
++            else:
++                add(
++                    "hepmc_event_count",
++                    sample,
++                    shard,
++                    actual_events == requested,
++                    actual_events,
++                    f"expected {requested}",
++                )
+ 
+-        preparation = data.get("preparation", {})
+-        canonical = preparation.get("canonical_v2", {}) if isinstance(preparation, dict) else {}
+-        explicit_w = preparation.get("explicit_w_v3", {}) if isinstance(preparation, dict) else {}
+-        canonical_events = int(canonical.get("total_events", -1))
+-        v3_events = int(explicit_w.get("total_events", -1))
+-        inserted_w = int(explicit_w.get("inserted_w_resonances", -1))
+         add(
+-            "canonical_v2_events",
++            "version_metadata",
+             sample,
+-            canonical_events == accepted,
+-            canonical_events,
+-            f"must equal accepted events {accepted}",
++            shard,
++            bool(data.get("pythia_version")) and bool(data.get("hepmc_version")),
++            f"PYTHIA={data.get('pythia_version')} HepMC={data.get('hepmc_version')}",
++            "both versions required",
+         )
+         add(
+-            "explicit_w_v3_events",
++            "parent_lhe_provenance",
+             sample,
+-            v3_events == accepted,
+-            v3_events,
+-            f"must equal accepted events {accepted}",
++            shard,
++            data.get("source_lhe_path") == manifest_row["source_lhe_path"],
++            data.get("source_lhe_path"),
++            manifest_row["source_lhe_path"],
+         )
+         add(
+-            "inserted_w_resonances",
++            "input_shard_path",
+             sample,
+-            inserted_w == 2 * accepted,
+-            inserted_w,
+-            f"expected {2 * accepted}",
++            shard,
++            data.get("input_shard_lhe_path") == manifest_row["shard_lhe_path"],
++            data.get("input_shard_lhe_path"),
++            manifest_row["shard_lhe_path"],
+         )
+         add(
+-            "canonical_closure",
++            "input_shard_sha256",
+             sample,
+-            float(canonical.get("max_rel_closure", float("inf"))) <= 1.0e-7,
+-            canonical.get("max_rel_closure"),
+-            "max relative closure must be <= 1e-7",
++            shard,
++            data.get("input_shard_lhe_sha256") == manifest_row["shard_lhe_sha256"],
++            data.get("input_shard_lhe_sha256"),
++            manifest_row["shard_lhe_sha256"],
+         )
++        source_range = data.get("source_event_range", {})
++        expected_range = {
++            "start": int(manifest_row["source_event_start"]),
++            "stop_exclusive": int(manifest_row["source_event_stop_exclusive"]),
++            "events": requested,
++        }
++        add("source_event_range", sample, shard, source_range == expected_range, source_range, str(expected_range))
+         add(
+-            "explicit_w_vertex_closure",
++            "preparation_event_limit_verified",
+             sample,
+-            float(explicit_w.get("max_vertex_rel_closure", float("inf")))
+-            <= 1.0e-7,
+-            explicit_w.get("max_vertex_rel_closure"),
+-            "max relative vertex closure must be <= 1e-7",
++            shard,
++            data.get("preparation_event_limit_verified") is True,
++            data.get("preparation_event_limit_verified"),
++            "must be true",
+         )
++        add("prepared_lhe_policy", sample, shard, data.get("prepared_lhe_policy") == expected_policy, data.get("prepared_lhe_policy"), expected_policy)
++        add("qed_shower_by_gamma", sample, shard, bool(data.get("qed_shower_by_gamma")) == expected_qed_gamma, data.get("qed_shower_by_gamma"), f"expected {expected_qed_gamma}")
++
++        preparation = data.get("preparation", {})
++        canonical = preparation.get("canonical_v2", {}) if isinstance(preparation, dict) else {}
++        explicit_w = preparation.get("explicit_w_v3", {}) if isinstance(preparation, dict) else {}
++        canonical_events = int(canonical.get("total_events", -1))
++        explicit_events = int(explicit_w.get("total_events", -1))
++        inserted_w = int(explicit_w.get("inserted_w_resonances", -1))
++        add("canonical_v2_events", sample, shard, canonical_events == requested, canonical_events, f"expected {requested}; unused parent events must not be processed")
++        add("explicit_w_v3_events", sample, shard, explicit_events == requested, explicit_events, f"expected {requested}")
++        add("inserted_w_resonances", sample, shard, inserted_w == 2 * requested, inserted_w, f"expected {2 * requested}")
++        add("canonical_closure", sample, shard, float(canonical.get("max_rel_closure", float("inf"))) <= 1.0e-7, canonical.get("max_rel_closure"), "must be <=1e-7")
++        add("explicit_w_vertex_closure", sample, shard, float(explicit_w.get("max_vertex_rel_closure", float("inf"))) <= 1.0e-7, explicit_w.get("max_vertex_rel_closure"), "must be <=1e-7")
++
++        seed = int(data.get("seed", -1))
++        duplicate_seed = seed in seeds
++        add("unique_seed", sample, shard, seed > 0 and not duplicate_seed, seed, f"collision with {seeds.get(seed)}" if duplicate_seed else "must be positive and globally unique")
++        if seed > 0 and not duplicate_seed:
++            seeds[seed] = key
+ 
+         warning_counts = data.get("pythia_warning_counts", {})
+         me_warnings = int(warning_counts.get("me_weight_above_ps", -1))
+@@ -232,85 +333,53 @@ def main() -> int:
+             warning_totals["me_weight_above_ps"] += me_warnings
+         if negative_warnings >= 0:
+             warning_totals["negative_dipole_mass"] += negative_warnings
+-        add(
+-            "explicit_w_me_warning_count",
+-            sample,
+-            me_warnings == 0,
+-            me_warnings,
+-            "explicit-W v3 must remove findMEcorr warnings",
+-        )
+-        add(
+-            "negative_dipole_warning_count",
+-            sample,
+-            negative_warnings >= 0
+-            and (expected_qed_gamma or negative_warnings == 0),
+-            negative_warnings,
+-            (
+-                "counted nonfatal gamma-conversion trials"
+-                if expected_qed_gamma
+-                else "must be zero with QEDshowerByGamma=off"
+-            ),
+-        )
++        add("explicit_w_me_warning_count", sample, shard, me_warnings == 0, me_warnings, "must be zero")
++        add("negative_dipole_warning_count", sample, shard, negative_warnings >= 0 and (expected_qed_gamma or negative_warnings == 0), negative_warnings, "counted nonfatal trials" if expected_qed_gamma else "must be zero")
+ 
+-        base = metadata_path.stem
++        base = f"{sample}__{shard}"
+         prep_dir = root / "preparation" / sample
+-        add(
+-            "canonical_summary_staged",
+-            sample,
+-            (prep_dir / f"{base}.canonical_v2.json").is_file(),
+-            str(prep_dir / f"{base}.canonical_v2.json"),
+-            "staged preparation summary required",
+-        )
+-        add(
+-            "explicit_w_summary_staged",
+-            sample,
+-            (prep_dir / f"{base}.explicit_w_v3.json").is_file(),
+-            str(prep_dir / f"{base}.explicit_w_v3.json"),
+-            "staged preparation summary required",
+-        )
++        add("canonical_summary_staged", sample, shard, (prep_dir / f"{base}.canonical_v2.json").is_file(), str(prep_dir / f"{base}.canonical_v2.json"), "required")
++        add("explicit_w_summary_staged", sample, shard, (prep_dir / f"{base}.explicit_w_v3.json").is_file(), str(prep_dir / f"{base}.explicit_w_v3.json"), "required")
++
++    for sample in sorted(rows_by_sample):
++        add("aggregate_accepted_events", sample, "aggregate", accepted_by_sample[sample] == total_events_per_sample, accepted_by_sample[sample], f"expected {total_events_per_sample}")
+ 
+     failures = [row for row in checks if row["verdict"] == "FAIL"]
+     validation_dir = root / "validation"
+     validation_dir.mkdir(parents=True, exist_ok=True)
+     csv_path = validation_dir / "showering_validation.csv"
+     with csv_path.open("w", newline="") as stream:
+-        writer = csv.DictWriter(
+-            stream,
+-            fieldnames=["check", "sample_id", "verdict", "value", "detail"],
+-        )
++        writer = csv.DictWriter(stream, fieldnames=["check", "sample_id", "shard_id", "verdict", "value", "detail"])
+         writer.writeheader()
+         writer.writerows(checks)
+ 
+     if args.checksums:
+         checksum_path = root / "manifests/hepmc3_sha256.txt"
+-        checksum_path.parent.mkdir(parents=True, exist_ok=True)
+-        checksum_path.write_text(
+-            "".join(f"{sha256(path)}  {path}\n" for path in output_paths)
+-        )
++        checksum_path.write_text("".join(f"{sha256(path)}  {path}\n" for path in output_paths))
+ 
+     report = validation_dir / "showering_validation.md"
+     report.write_text(
+-        "# Shower validation\n\n"
++        "# Sharded shower validation\n\n"
+         f"- Root: `{root}`\n"
+-        f"- Expected samples: {expected}\n"
+-        f"- Metadata files: {len(metadata_paths)}\n"
+-        f"- HepMC3 files: {len(output_paths)}\n"
++        f"- Shard manifest: `{manifest_path}`\n"
++        f"- Samples: **{len(rows_by_sample)}**\n"
++        f"- Expected shower jobs: **{len(expected_keys)}**\n"
++        f"- Metadata files: **{len(metadata_paths)}**\n"
++        f"- HepMC3 files: **{len(output_paths)}**\n"
++        f"- Events per sample: **{total_events_per_sample}**\n"
+         f"- Preparation policy: `{expected_policy}`\n"
+-        f"- `TimeShower:QEDshowerByGamma`: "
+-        f"`{'on' if expected_qed_gamma else 'off'}`\n"
+-        f"- Total ME warnings: {warning_totals['me_weight_above_ps']}\n"
+-        f"- Total negative-dipole warnings: "
+-        f"{warning_totals['negative_dipole_mass']}\n"
+-        f"- Checks: {len(checks)}\n"
+-        f"- PASS: {len(checks) - len(failures)}\n"
+-        f"- FAIL: {len(failures)}\n\n"
++        f"- `TimeShower:QEDshowerByGamma`: `{'on' if expected_qed_gamma else 'off'}`\n"
++        f"- Total ME warnings: **{warning_totals['me_weight_above_ps']}**\n"
++        f"- Total negative-dipole warnings: **{warning_totals['negative_dipole_mass']}**\n"
++        f"- Checks: **{len(checks)}**\n"
++        f"- PASS: **{len(checks) - len(failures)}**\n"
++        f"- FAIL: **{len(failures)}**\n\n"
+         + (
+             "All checks passed.\n"
+             if not failures
+             else "## Failures\n\n"
+             + "\n".join(
+-                f"- `{row['sample_id']}` {row['check']}: "
+-                f"{row['value']} ({row['detail']})"
++                f"- `{row['sample_id']}/{row['shard_id']}` {row['check']}: {row['value']} ({row['detail']})"
+                 for row in failures
+             )
+             + "\n"
+@@ -318,10 +387,7 @@ def main() -> int:
+     )
+     print(f"Wrote {csv_path}")
+     print(f"Wrote {report}")
+-    print(
+-        f"Checks={len(checks)} PASS={len(checks)-len(failures)} "
+-        f"FAIL={len(failures)}"
+-    )
++    print(f"Checks={len(checks)} PASS={len(checks)-len(failures)} FAIL={len(failures)}")
+     return 1 if args.strict and failures else 0
+ 
+ 
+diff --git a/tests/qis/test_lhe_sharding.py b/tests/qis/test_lhe_sharding.py
+new file mode 100644
+index 0000000..c711888
+--- /dev/null
++++ b/tests/qis/test_lhe_sharding.py
+@@ -0,0 +1,113 @@
++from __future__ import annotations
++
++import importlib.util
++import re
++import sys
++from pathlib import Path
++
++
++REPO = Path(__file__).resolve().parents[2]
++SCRIPT = REPO / "scripts/showering/prepare_lhe_shards.py"
++SPEC = importlib.util.spec_from_file_location("prepare_lhe_shards", SCRIPT)
++assert SPEC and SPEC.loader
++MODULE = importlib.util.module_from_spec(SPEC)
++sys.modules[SPEC.name] = MODULE
++SPEC.loader.exec_module(MODULE)
++
++
++def make_lhe(path: Path, events: int) -> None:
++    lines = [
++        '<LesHouchesEvents version="2.0">\n',
++        '<header></header>\n',
++        '<init>\n',
++        ' 11 -11 250 250 -1 -1 -1 -1 3 1\n',
++        ' 1.0 0.0 1.0 1\n',
++        f'<xsecinfo neve="{events}" totxsec="1.0" />\n',
++        '</init>\n',
++    ]
++    for index in range(events):
++        lines.extend(
++            [
++                '<event>\n',
++                f' 2 1 1.0 500.0 0.0 0.1 # EVENT_INDEX={index}\n',
++                ' 11 -1 0 0 0 0 0 0 250 250 0 0 9\n',
++                ' -11 -1 0 0 0 0 0 0 -250 250 0 0 9\n',
++                '</event>\n',
++            ]
++        )
++    lines.append('</LesHouchesEvents>\n')
++    path.write_text("".join(lines))
++
++
++def event_markers(path: Path) -> list[int]:
++    return [
++        int(value)
++        for value in re.findall(r"EVENT_INDEX=(\d+)", path.read_text())
++    ]
++
++
++def test_balanced_plan_is_contiguous() -> None:
++    plan = MODULE.balanced_plan(13, 4)
++    assert [item.events for item in plan] == [4, 3, 3, 3]
++    assert [(item.start, item.stop) for item in plan] == [
++        (0, 4),
++        (4, 7),
++        (7, 10),
++        (10, 13),
++    ]
++
++
++def test_streaming_split_reads_only_requested_window(tmp_path: Path) -> None:
++    source = tmp_path / "source.lhe"
++    make_lhe(source, 20)
++    output = tmp_path / "shards"
++    plans = MODULE.balanced_plan(13, 4)
++
++    rows = MODULE.write_sample_shards(
++        campaign_id="test_campaign",
++        sample_id="test_sample",
++        source=source,
++        output_dir=output,
++        plans=plans,
++        created_utc="2026-07-20T00:00:00Z",
++    )
++
++    assert len(rows) == 4
++    assert [int(row["requested_events"]) for row in rows] == [4, 3, 3, 3]
++    assert [int(row["source_event_start"]) for row in rows] == [0, 4, 7, 10]
++    assert [int(row["source_event_stop_exclusive"]) for row in rows] == [4, 7, 10, 13]
++    assert len({row["selected_event_window_sha256"] for row in rows}) == 1
++
++    all_markers: list[int] = []
++    for row in rows:
++        shard = Path(row["shard_lhe_path"])
++        text = shard.read_text()
++        markers = event_markers(shard)
++        all_markers.extend(markers)
++        assert len(markers) == int(row["requested_events"])
++        assert text.count("<event>") == int(row["requested_events"])
++        assert text.rstrip().endswith("</LesHouchesEvents>")
++        assert f'neve="{len(markers)}"' in text
++        assert MODULE.sha256(shard) == row["shard_lhe_sha256"]
++
++    assert all_markers == list(range(13))
++    assert 13 not in all_markers
++    assert 19 not in all_markers
++
++
++def test_existing_rows_validation_detects_tampering(tmp_path: Path) -> None:
++    source = tmp_path / "source.lhe"
++    make_lhe(source, 8)
++    output = tmp_path / "shards"
++    plans = MODULE.balanced_plan(8, 2)
++    rows = MODULE.write_sample_shards(
++        campaign_id="test_campaign",
++        sample_id="test_sample",
++        source=source,
++        output_dir=output,
++        plans=plans,
++        created_utc="2026-07-20T00:00:00Z",
++    )
++    assert MODULE.existing_rows_valid(rows, source=source, plans=plans)
++    Path(rows[0]["shard_lhe_path"]).write_text("corrupt\n")
++    assert not MODULE.existing_rows_valid(rows, source=source, plans=plans)

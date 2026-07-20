@@ -1,0 +1,14 @@
+overlay/condor/qis/pythia_shower.sub
+overlay/configs/qis/qualification_500GeV_ISR_iso_v1.yaml
+overlay/configs/qis/qualification_500GeV_ISR_sc_v1.yaml
+overlay/docs/qis/SHARDED_SHOWERING.md
+overlay/scripts/qis/run_next_production_gate.sh
+overlay/scripts/qis/run_spin15_qualification_gate.sh
+overlay/scripts/showering/augment_shower_metadata.py
+overlay/scripts/showering/collect_showering.py
+overlay/scripts/showering/prepare_lhe_shards.py
+overlay/scripts/showering/run_pythia_shard.sh
+overlay/scripts/showering/smoke_test_sharded_worker.sh
+overlay/scripts/showering/submit_showering.py
+overlay/scripts/showering/validate_showering.py
+overlay/tests/qis/test_lhe_sharding.py

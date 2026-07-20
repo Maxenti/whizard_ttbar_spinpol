@@ -1,0 +1,108 @@
+--- a/scripts/showering/run_pythia_shard.sh
++++ b/scripts/showering/run_pythia_shard.sh
+@@ -7,6 +7,7 @@
+        --campaign-id ID --seed N --executable PATH --settings PATH [options]
+ 
+ Options:
++  --repo-root PATH               Authoritative project root on the shared filesystem
+   --shard-id ID                  Output shard ID (default: merged)
+   --max-events N                 Maximum events, -1 for all (default: -1)
+   --key4hep-setup PATH           Project environment setup script
+@@ -15,6 +16,7 @@
+ }
+ 
+ INPUT= OUTPUT_ROOT= SAMPLE_ID= CAMPAIGN_ID= SEED= EXECUTABLE= SETTINGS=
++PROJECT_ROOT=
+ SHARD_ID=merged
+ MAX_EVENTS=-1
+ KEY4HEP_SETUP=${KEY4HEP_SETUP:-}
+@@ -29,6 +31,7 @@
+     --seed) SEED=$2; shift 2;;
+     --executable) EXECUTABLE=$2; shift 2;;
+     --settings) SETTINGS=$2; shift 2;;
++    --repo-root) PROJECT_ROOT=$2; shift 2;;
+     --shard-id) SHARD_ID=$2; shift 2;;
+     --max-events) MAX_EVENTS=$2; shift 2;;
+     --key4hep-setup) KEY4HEP_SETUP=$2; shift 2;;
+@@ -49,10 +52,21 @@
+ [[ $OUTPUT_ROOT == /eos/* ]] || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
+ 
+ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+-REPO_ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
+-CANONICALIZER="$SCRIPT_DIR/canonicalize_whizard_lhe_for_pythia.py"
+-EXPLICIT_W_ADAPTER="$SCRIPT_DIR/insert_explicit_w_resonances.py"
+-METADATA_AUGMENTER="$SCRIPT_DIR/augment_shower_metadata.py"
++
++# HTCondor may spool the wrapper itself into the execution scratch directory.
++# In that case BASH_SOURCE points at scratch, not at the project checkout.
++# Prefer the explicit shared-filesystem project root supplied by the submitter.
++if [[ -n $PROJECT_ROOT ]]; then
++  [[ -d $PROJECT_ROOT ]]     || { echo "ERROR: project root does not exist: $PROJECT_ROOT" >&2; exit 7; }
++  REPO_ROOT=$(cd -- "$PROJECT_ROOT" && pwd)
++else
++  REPO_ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
++fi
++
++HELPER_DIR="$REPO_ROOT/scripts/showering"
++CANONICALIZER="$HELPER_DIR/canonicalize_whizard_lhe_for_pythia.py"
++EXPLICIT_W_ADAPTER="$HELPER_DIR/insert_explicit_w_resonances.py"
++METADATA_AUGMENTER="$HELPER_DIR/augment_shower_metadata.py"
+ 
+ for helper in "$CANONICALIZER" "$EXPLICIT_W_ADAPTER" "$METADATA_AUGMENTER"; do
+   [[ -x $helper ]] || { echo "ERROR: missing executable helper: $helper" >&2; exit 7; }
+--- a/condor/qis/pythia_shower.sub
++++ b/condor/qis/pythia_shower.sub
+@@ -1,6 +1,6 @@
+ universe = vanilla
+ executable = $(wrapper)
+-arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --qed-shower-by-gamma $(qed_shower_by_gamma)
++arguments = --input $(input_lhe) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --repo-root $(repo_root) --qed-shower-by-gamma $(qed_shower_by_gamma)
+ initialdir = $(repo_root)
+ output = $(stdout_path)
+ error = $(stderr_path)
+--- a/scripts/showering/submit_showering.py
++++ b/scripts/showering/submit_showering.py
+@@ -13,6 +13,7 @@
+ import fnmatch
+ import hashlib
+ import json
++import os
+ import shlex
+ import shutil
+ import subprocess
+@@ -99,6 +100,14 @@
+             f"{preparation_policy}"
+         )
+ 
++    wrapper = repo / "scripts/showering/run_pythia_shard.sh"
++    runtime_helpers = (
++        wrapper,
++        repo / "scripts/showering/canonicalize_whizard_lhe_for_pythia.py",
++        repo / "scripts/showering/insert_explicit_w_resonances.py",
++        repo / "scripts/showering/augment_shower_metadata.py",
++    )
++
+     if not manifest.is_file():
+         raise FileNotFoundError(f"sample manifest not found: {manifest}")
+     if not settings.is_file():
+@@ -107,6 +116,11 @@
+         raise FileNotFoundError(f"environment setup not found: {args.key4hep_setup}")
+     if args.submit and not executable.is_file():
+         raise FileNotFoundError(f"shower executable not built: {executable}")
++    for helper in runtime_helpers:
++        if not helper.is_file():
++            raise FileNotFoundError(f"runtime helper not found: {helper}")
++        if not os.access(helper, os.X_OK):
++            raise PermissionError(f"runtime helper is not executable: {helper}")
+     if not str(output_root).startswith("/eos/"):
+         raise ValueError(f"output root must be on EOS: {output_root}")
+     if max_events == 0 or max_events < -1:
+@@ -169,7 +183,7 @@
+             raise RuntimeError(f"deterministic seed collision: {seed}")
+         seen_seeds.add(seed)
+         jobs.append({
+-            "wrapper": str(repo / "scripts/showering/run_pythia_shard.sh"),
++            "wrapper": str(wrapper),
+             "input_lhe": str(input_lhe),
+             "output_root": str(output_root),
+             "sample_id": sample,

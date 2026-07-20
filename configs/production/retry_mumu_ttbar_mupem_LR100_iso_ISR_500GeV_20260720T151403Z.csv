@@ -1,0 +1,2 @@
+campaign_id,sample_id,enabled,initial_state,beam1,beam2,decay_channel,polarization,beam1_helicity,beam2_helicity,beam1_pol_fraction,beam2_pol_fraction,sqrt_s_GeV,isr_enabled,isr_mass_GeV,isr_alpha,spin_correlated,beam_spectrum,n_shards,events_per_shard,seed_base,request_cpus,request_memory_mb,job_flavour,archive_workspace
+500GeV_ISR_iso_validation_v1,mumu_ttbar_mupem_LR100_iso_ISR_500GeV,true,mumu,e2,E2,mupem,LR100,-1,1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7300000,1,3000,tomorrow,true

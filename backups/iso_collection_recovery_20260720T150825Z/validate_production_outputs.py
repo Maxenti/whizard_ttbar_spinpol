@@ -144,106 +144,19 @@ def main() -> int:
               "PASS" if requested == generated and requested > 0 else "FAIL",
               generated, requested)
 
-        isr_enabled = str(row["input_has_isr"]).lower() == "true"
-        check(
-            checks,
-            "sindarin_isr_enabled",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if isr_enabled else "FAIL",
-            row["input_has_isr"],
-            True,
-        )
-
-        exact_spin_enabled = str(row["input_has_exact_spin"]).lower() == "true"
-        expected_exact_spin = cfg.spin_correlated
-        check(
-            checks,
-            "sindarin_spin_mode",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if exact_spin_enabled == expected_exact_spin else "FAIL",
-            exact_spin_enabled,
-            expected_exact_spin,
-            (
-                "spin-correlated sample requires isotropic_decay=false"
-                if cfg.spin_correlated
-                else "isotropic control requires isotropic_decay=true"
-            ),
-        )
-
-        polarized_events = str(row["input_has_polarized_events"]).lower() == "true"
-        check(
-            checks,
-            "sindarin_polarized_events",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if polarized_events else "FAIL",
-            row["input_has_polarized_events"],
-            True,
-        )
-
-        run_dir = Path(row["run_directory"]) if row.get("run_directory") else None
-        input_path = run_dir / "input.sin" if run_dir else None
-        input_text = (
-            input_path.read_text(errors="replace")
-            if input_path and input_path.exists()
-            else ""
-        )
-        expected_isotropic = "false" if cfg.spin_correlated else "true"
-        isotropic_token = f"?isotropic_decay = {expected_isotropic}"
-        diagonal_token = "?diagonal_decay = false"
-        check(
-            checks,
-            "sindarin_isotropic_decay_contract",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if isotropic_token in input_text else "FAIL",
-            isotropic_token in input_text,
-            isotropic_token,
-            str(input_path or "missing input.sin"),
-        )
-        check(
-            checks,
-            "sindarin_diagonal_decay_disabled",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if diagonal_token in input_text else "FAIL",
-            diagonal_token in input_text,
-            diagonal_token,
-            str(input_path or "missing input.sin"),
-        )
+        for field, name in (
+            ("input_has_isr", "sindarin_isr_enabled"),
+            ("input_has_exact_spin", "sindarin_exact_spin"),
+            ("input_has_polarized_events", "sindarin_polarized_events"),
+        ):
+            ok = str(row[field]).lower() == "true"
+            check(checks, name, "configuration", sample, shard, "PASS" if ok else "FAIL", row[field], True)
 
         log_path = Path(row["log_path"]) if row.get("log_path") else None
         log_text = log_path.read_text(errors="replace") if log_path and log_path.exists() else ""
         exact_decay_count = log_text.count("Decay options: helicity treated exactly")
-        if cfg.spin_correlated:
-            exact_decay_ok = exact_decay_count >= 2
-            exact_decay_limit = ">=2"
-            exact_decay_detail = "spin-correlated decay must be treated exactly"
-        else:
-            exact_decay_ok = True
-            exact_decay_limit = "not required"
-            exact_decay_detail = (
-                "isotropic-decay control is validated by the rendered "
-                "SINDARIN contract"
-            )
-        check(
-            checks,
-            "log_exact_decay_spin",
-            "configuration",
-            sample,
-            shard,
-            "PASS" if exact_decay_ok else "FAIL",
-            exact_decay_count,
-            exact_decay_limit,
-            exact_decay_detail,
-        )
+        check(checks, "log_exact_decay_spin", "configuration", sample, shard,
+              "PASS" if exact_decay_count >= 2 else "FAIL", exact_decay_count, ">=2")
         pol_evidence = log_polarization_evidence(log_text, cfg.polarization)
         check(checks, "log_polarization_evidence", "configuration", sample, shard,
               "PASS" if pol_evidence else "FAIL", pol_evidence, True)
