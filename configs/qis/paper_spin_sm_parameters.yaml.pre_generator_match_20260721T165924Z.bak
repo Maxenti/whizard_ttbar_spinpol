@@ -1,0 +1,15 @@
+# Explicit tree-level input scheme for the independent gamma/Z calculation.
+# These values are intentionally not marked as generator-matched. Before a
+# strict benchmark, replace them with the exact values parsed from the WHIZARD
+# SINDARIN/model logs and set generator_match_reviewed: true.
+alpha_em_inverse: 128.0
+sin2_theta_w: 0.23122
+mass_z_GeV: 91.1876
+width_z_GeV: 2.4952
+mass_top_GeV: 172.5
+mass_electron_GeV: 0.00051099895
+mass_muon_GeV: 0.1056583755
+color_factor: 3.0
+source: explicit_placeholder_to_be_matched_to_whizard
+# Safety lock: the validator will not treat this benchmark as a strict gate.
+generator_match_reviewed: false

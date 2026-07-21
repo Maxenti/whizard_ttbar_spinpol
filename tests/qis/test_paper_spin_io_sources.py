@@ -1,0 +1,1018 @@
+from __future__ import annotations
+
+from copy import deepcopy
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from qis_ttbar.paper_spin.basis import (
+    boost_four_vectors,
+    reconstruct_from_frame,
+    unit,
+)
+from qis_ttbar.paper_spin.io import (
+    frame_to_analyzers,
+    load_config,
+)
+
+
+FOUR_VECTOR_MAP = {
+    "incoming_positive": {
+        "e": "beam_plus_e",
+        "px": "beam_plus_px",
+        "py": "beam_plus_py",
+        "pz": "beam_plus_pz",
+    },
+    "top": {
+        "e": "top_e",
+        "px": "top_px",
+        "py": "top_py",
+        "pz": "top_pz",
+    },
+    "antitop": {
+        "e": "antitop_e",
+        "px": "antitop_px",
+        "py": "antitop_py",
+        "pz": "antitop_pz",
+    },
+    "lepton_positive": {
+        "e": "lepton_plus_e",
+        "px": "lepton_plus_px",
+        "py": "lepton_plus_py",
+        "pz": "lepton_plus_pz",
+    },
+    "lepton_negative": {
+        "e": "lepton_minus_e",
+        "px": "lepton_minus_px",
+        "py": "lepton_minus_py",
+        "pz": "lepton_minus_pz",
+    },
+}
+
+
+def _append_four_vector(
+    row: dict[str, float],
+    stem: str,
+    vector: np.ndarray,
+) -> None:
+    values = np.asarray(
+        vector,
+        dtype=float,
+    ).reshape(4)
+
+    for component, value in zip(
+        ("e", "px", "py", "pz"),
+        values,
+        strict=True,
+    ):
+        row[
+            f"{stem}_{component}"
+        ] = float(value)
+
+
+def _physical_event_frame(
+    system_beta: tuple[
+        float,
+        float,
+        float,
+    ],
+) -> pd.DataFrame:
+    mass_top = 173.1
+
+    top_momentum = np.array(
+        [120.0, 30.0, 80.0]
+    )
+
+    top_energy = float(
+        np.sqrt(
+            mass_top**2
+            + np.dot(
+                top_momentum,
+                top_momentum,
+            )
+        )
+    )
+
+    top_ttbar = np.array(
+        [[top_energy, *top_momentum]]
+    )
+
+    antitop_ttbar = np.array(
+        [[top_energy, *(-top_momentum)]]
+    )
+
+    beam_plus_ttbar = np.array(
+        [[
+            top_energy,
+            0.0,
+            0.0,
+            top_energy,
+        ]]
+    )
+
+    beam_minus_ttbar = np.array(
+        [[
+            top_energy,
+            0.0,
+            0.0,
+            -top_energy,
+        ]]
+    )
+
+    plus_direction = unit(
+        np.array(
+            [[
+                0.3,
+                0.4,
+                np.sqrt(0.75),
+            ]]
+        )
+    )[0]
+
+    minus_direction = unit(
+        np.array(
+            [[
+                -0.2,
+                0.7,
+                np.sqrt(0.47),
+            ]]
+        )
+    )[0]
+
+    lepton_plus_top_rest = np.array(
+        [[
+            50.0,
+            *(50.0 * plus_direction),
+        ]]
+    )
+
+    lepton_minus_antitop_rest = np.array(
+        [[
+            45.0,
+            *(45.0 * minus_direction),
+        ]]
+    )
+
+    top_beta_ttbar = (
+        top_ttbar[:, 1:]
+        / top_ttbar[:, 0, None]
+    )
+
+    antitop_beta_ttbar = (
+        antitop_ttbar[:, 1:]
+        / antitop_ttbar[:, 0, None]
+    )
+
+    lepton_plus_ttbar = boost_four_vectors(
+        lepton_plus_top_rest,
+        top_beta_ttbar,
+    )
+
+    lepton_minus_ttbar = boost_four_vectors(
+        lepton_minus_antitop_rest,
+        antitop_beta_ttbar,
+    )
+
+    beta = np.asarray(
+        [system_beta],
+        dtype=float,
+    )
+
+    vectors = {
+        "beam_plus":
+            boost_four_vectors(
+                beam_plus_ttbar,
+                beta,
+            )[0],
+        "beam_minus":
+            boost_four_vectors(
+                beam_minus_ttbar,
+                beta,
+            )[0],
+        "top":
+            boost_four_vectors(
+                top_ttbar,
+                beta,
+            )[0],
+        "antitop":
+            boost_four_vectors(
+                antitop_ttbar,
+                beta,
+            )[0],
+        "lepton_plus":
+            boost_four_vectors(
+                lepton_plus_ttbar,
+                beta,
+            )[0],
+        "lepton_minus":
+            boost_four_vectors(
+                lepton_minus_ttbar,
+                beta,
+            )[0],
+    }
+
+    row: dict[str, float] = {
+        "event_id": 17,
+        "event_weight": 1.0,
+    }
+
+    for stem, vector in vectors.items():
+        _append_four_vector(
+            row,
+            stem,
+            vector,
+        )
+
+    return pd.DataFrame([row])
+
+
+def _four_vector_config(
+    reviewed: bool = True,
+) -> dict:
+    config = deepcopy(
+        load_config(None)
+    )
+
+    config["convention"].update(
+        {
+            "analyzer_source":
+                "four_vectors",
+            "legacy_map_reviewed":
+                False,
+            "four_vector_reconstruction_reviewed":
+                reviewed,
+            "four_vectors":
+                deepcopy(
+                    FOUR_VECTOR_MAP
+                ),
+            "singular_tolerance":
+                1.0e-10,
+            "singular_policy":
+                "error",
+            "max_orthonormal_residual":
+                1.0e-10,
+            "max_handedness_deviation":
+                1.0e-10,
+        }
+    )
+
+    return config
+
+
+def _paper_axes_and_direct_analyzers(
+    frame: pd.DataFrame,
+) -> tuple[
+    np.ndarray,
+    np.ndarray,
+]:
+    def p4(
+        stem: str,
+    ) -> np.ndarray:
+        return frame[
+            [
+                f"{stem}_e",
+                f"{stem}_px",
+                f"{stem}_py",
+                f"{stem}_pz",
+            ]
+        ].to_numpy(dtype=float)
+
+    beam_plus = p4(
+        "beam_plus"
+    )
+
+    top = p4(
+        "top"
+    )
+
+    antitop = p4(
+        "antitop"
+    )
+
+    lepton_plus = p4(
+        "lepton_plus"
+    )
+
+    lepton_minus = p4(
+        "lepton_minus"
+    )
+
+    ttbar = top + antitop
+
+    beta_ttbar = (
+        ttbar[:, 1:]
+        / ttbar[:, 0, None]
+    )
+
+    beam_plus_ttbar = boost_four_vectors(
+        beam_plus,
+        -beta_ttbar,
+    )
+
+    top_ttbar = boost_four_vectors(
+        top,
+        -beta_ttbar,
+    )
+
+    p_hat = unit(
+        beam_plus_ttbar[:, 1:]
+    )
+
+    k_hat = unit(
+        top_ttbar[:, 1:]
+    )
+
+    cos_theta = np.einsum(
+        "ni,ni->n",
+        p_hat,
+        k_hat,
+    )
+
+    r_hat = unit(
+        p_hat
+        - cos_theta[:, None]
+        * k_hat
+    )
+
+    n_hat = unit(
+        np.cross(
+            p_hat,
+            k_hat,
+        )
+    )
+
+    axes = np.stack(
+        [
+            k_hat,
+            r_hat,
+            n_hat,
+        ],
+        axis=1,
+    )
+
+    lepton_plus_direct = boost_four_vectors(
+        lepton_plus,
+        -(
+            top[:, 1:]
+            / top[:, 0, None]
+        ),
+    )
+
+    lepton_minus_direct = boost_four_vectors(
+        lepton_minus,
+        -(
+            antitop[:, 1:]
+            / antitop[:, 0, None]
+        ),
+    )
+
+    plus = np.einsum(
+        "ni,nai->na",
+        unit(
+            lepton_plus_direct[:, 1:]
+        ),
+        axes,
+    )
+
+    minus = -np.einsum(
+        "ni,nai->na",
+        unit(
+            lepton_minus_direct[:, 1:]
+        ),
+        axes,
+    )
+
+    return plus, minus
+
+
+def test_four_vector_source_matches_canonical_reconstruction():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    config = _four_vector_config(
+        reviewed=True
+    )
+
+    sample = frame_to_analyzers(
+        frame,
+        "memory",
+        config,
+    )
+
+    expected = reconstruct_from_frame(
+        frame,
+        FOUR_VECTOR_MAP,
+        singular_tolerance=1.0e-10,
+    )
+
+    assert np.allclose(
+        sample.plus,
+        expected.plus,
+        atol=1.0e-14,
+        rtol=0.0,
+    )
+
+    assert np.allclose(
+        sample.minus,
+        expected.minus,
+        atol=1.0e-14,
+        rtol=0.0,
+    )
+
+    assert (
+        sample.metadata[
+            "analyzer_source"
+        ]
+        == "four_vectors"
+    )
+
+    assert (
+        sample.metadata[
+            "singular_events"
+        ]
+        == 0
+    )
+
+    assert (
+        sample.event_keys[0]
+        == 17
+    )
+
+
+def test_four_vector_source_has_independent_review_lock():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    config = _four_vector_config(
+        reviewed=False
+    )
+
+    with pytest.raises(
+        RuntimeError,
+        match=(
+            "four_vector_reconstruction_reviewed "
+            "is false"
+        ),
+    ):
+        frame_to_analyzers(
+            frame,
+            "memory",
+            config,
+        )
+
+
+def test_legacy_source_remains_backward_compatible():
+    frame = pd.DataFrame(
+        {
+            "b1k": [1.0],
+            "b1r": [0.0],
+            "b1n": [0.0],
+            "b2k": [0.0],
+            "b2r": [1.0],
+            "b2n": [0.0],
+            "event_id": [7],
+        }
+    )
+
+    sample = frame_to_analyzers(
+        frame,
+        "memory",
+        deepcopy(
+            load_config(None)
+        ),
+    )
+
+    assert np.allclose(
+        sample.plus[0],
+        [1.0, 0.0, 0.0],
+    )
+
+    assert np.allclose(
+        sample.minus[0],
+        [0.0, -1.0, 0.0],
+    )
+
+    assert (
+        sample.metadata[
+            "analyzer_source"
+        ]
+        == "legacy_columns"
+    )
+
+    assert (
+        sample.event_keys[0]
+        == 7
+    )
+
+
+def test_direct_and_sequential_boosts_agree_without_ttbar_recoil():
+    frame = _physical_event_frame(
+        (0.0, 0.0, 0.0)
+    )
+
+    sequential = reconstruct_from_frame(
+        frame,
+        FOUR_VECTOR_MAP,
+        singular_tolerance=1.0e-10,
+    )
+
+    (
+        direct_plus,
+        direct_minus,
+    ) = _paper_axes_and_direct_analyzers(
+        frame
+    )
+
+    assert np.allclose(
+        sequential.plus,
+        direct_plus,
+        atol=1.0e-13,
+        rtol=0.0,
+    )
+
+    assert np.allclose(
+        sequential.minus,
+        direct_minus,
+        atol=1.0e-13,
+        rtol=0.0,
+    )
+
+
+def test_recoil_produces_nonzero_wigner_rotation():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    sequential = reconstruct_from_frame(
+        frame,
+        FOUR_VECTOR_MAP,
+        singular_tolerance=1.0e-10,
+    )
+
+    (
+        direct_plus,
+        direct_minus,
+    ) = _paper_axes_and_direct_analyzers(
+        frame
+    )
+
+    plus_difference = float(
+        np.max(
+            np.abs(
+                sequential.plus
+                - direct_plus
+            )
+        )
+    )
+
+    minus_difference = float(
+        np.max(
+            np.abs(
+                sequential.minus
+                - direct_minus
+            )
+        )
+    )
+
+    assert plus_difference > 1.0e-3
+    assert minus_difference > 1.0e-3
+
+
+def test_exact_axis_only_maps_in_back_to_back_limit():
+    frame = _physical_event_frame(
+        (0.0, 0.0, 0.0)
+    )
+
+    def p4(
+        stem: str,
+    ) -> np.ndarray:
+        return frame[
+            [
+                f"{stem}_e",
+                f"{stem}_px",
+                f"{stem}_py",
+                f"{stem}_pz",
+            ]
+        ].to_numpy(dtype=float)
+
+    beam_plus = p4(
+        "beam_plus"
+    )
+
+    beam_minus = p4(
+        "beam_minus"
+    )
+
+    top = p4(
+        "top"
+    )
+
+    antitop = p4(
+        "antitop"
+    )
+
+    k_hat = unit(
+        top[:, 1:]
+    )
+
+    kbar_hat = unit(
+        antitop[:, 1:]
+    )
+
+    beam_plus_hat = unit(
+        beam_plus[:, 1:]
+    )
+
+    beam_minus_hat = unit(
+        beam_minus[:, 1:]
+    )
+
+    legacy_n = unit(
+        np.cross(
+            beam_minus_hat,
+            k_hat,
+        )
+    )
+
+    legacy_r = unit(
+        np.cross(
+            legacy_n,
+            k_hat,
+        )
+    )
+
+    legacy_rbar = unit(
+        np.cross(
+            legacy_n,
+            kbar_hat,
+        )
+    )
+
+    paper_cos = np.einsum(
+        "ni,ni->n",
+        beam_plus_hat,
+        k_hat,
+    )
+
+    paper_r = unit(
+        beam_plus_hat
+        - paper_cos[:, None]
+        * k_hat
+    )
+
+    paper_n = unit(
+        np.cross(
+            beam_plus_hat,
+            k_hat,
+        )
+    )
+
+    legacy_top_axes = np.stack(
+        [
+            k_hat,
+            legacy_r,
+            legacy_n,
+        ],
+        axis=2,
+    )
+
+    legacy_antitop_axes = np.stack(
+        [
+            kbar_hat,
+            legacy_rbar,
+            legacy_n,
+        ],
+        axis=2,
+    )
+
+    paper_axes = np.stack(
+        [
+            k_hat,
+            paper_r,
+            paper_n,
+        ],
+        axis=2,
+    )
+
+    rotation_plus = np.einsum(
+        "nji,njk->nik",
+        paper_axes,
+        legacy_top_axes,
+    )
+
+    rotation_minus = np.einsum(
+        "nji,njk->nik",
+        paper_axes,
+        legacy_antitop_axes,
+    )
+
+    assert np.allclose(
+        rotation_plus[0],
+        np.diag(
+            [1.0, 1.0, -1.0]
+        ),
+        atol=1.0e-14,
+        rtol=0.0,
+    )
+
+    assert np.allclose(
+        rotation_minus[0],
+        -np.eye(3),
+        atol=1.0e-14,
+        rtol=0.0,
+    )
+
+
+
+def _enable_test_derived_kinematics(
+    config: dict,
+) -> None:
+    config["convention"][
+        "derived_kinematics"
+    ] = {
+        "enabled": True,
+        "reviewed": True,
+        "costheta_column":
+            "paper_cos_theta_t",
+        "overwrite_existing":
+            False,
+        "comparison_tolerance":
+            1.0e-12,
+        "bound_tolerance":
+            1.0e-12,
+    }
+
+
+def _independent_positive_beam_costheta(
+    frame: pd.DataFrame,
+) -> np.ndarray:
+    def p4(
+        stem: str,
+    ) -> np.ndarray:
+        return frame[
+            [
+                f"{stem}_e",
+                f"{stem}_px",
+                f"{stem}_py",
+                f"{stem}_pz",
+            ]
+        ].to_numpy(dtype=float)
+
+    incoming_positive = p4(
+        "beam_plus"
+    )
+
+    top = p4(
+        "top"
+    )
+
+    antitop = p4(
+        "antitop"
+    )
+
+    ttbar = top + antitop
+
+    beta_ttbar = (
+        ttbar[:, 1:]
+        / ttbar[:, 0, None]
+    )
+
+    incoming_positive_ttbar = (
+        boost_four_vectors(
+            incoming_positive,
+            -beta_ttbar,
+        )
+    )
+
+    top_ttbar = boost_four_vectors(
+        top,
+        -beta_ttbar,
+    )
+
+    return np.einsum(
+        "ni,ni->n",
+        unit(
+            incoming_positive_ttbar[
+                :,
+                1:,
+            ]
+        ),
+        unit(
+            top_ttbar[
+                :,
+                1:,
+            ]
+        ),
+    )
+
+
+def test_four_vector_source_attaches_canonical_positive_beam_costheta():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    config = _four_vector_config(
+        reviewed=True
+    )
+
+    _enable_test_derived_kinematics(
+        config
+    )
+
+    sample = frame_to_analyzers(
+        frame,
+        "memory",
+        config,
+    )
+
+    expected = (
+        _independent_positive_beam_costheta(
+            frame
+        )
+    )
+
+    assert (
+        "paper_cos_theta_t"
+        in frame.columns
+    )
+
+    assert np.allclose(
+        frame[
+            "paper_cos_theta_t"
+        ].to_numpy(dtype=float),
+        expected,
+        atol=1.0e-14,
+        rtol=0.0,
+    )
+
+    assert (
+        sample.metadata[
+            "derived_costheta_column"
+        ]
+        == "paper_cos_theta_t"
+    )
+
+    assert (
+        sample.metadata[
+            "derived_costheta_beam_reference"
+        ]
+        == "incoming_positive_lepton"
+    )
+
+    assert (
+        sample.metadata[
+            "derived_costheta_frame"
+        ]
+        == "ttbar_zero_momentum_frame"
+    )
+
+
+def test_four_vector_source_rejects_conflicting_existing_costheta():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    frame[
+        "paper_cos_theta_t"
+    ] = 0.123456789
+
+    config = _four_vector_config(
+        reviewed=True
+    )
+
+    _enable_test_derived_kinematics(
+        config
+    )
+
+    with pytest.raises(
+        ValueError,
+        match=(
+            "already exists.*disagrees"
+        ),
+    ):
+        frame_to_analyzers(
+            frame,
+            "memory",
+            config,
+        )
+
+
+def test_positive_beam_costheta_is_not_forced_to_negative_beam_sign_flip():
+    frame = _physical_event_frame(
+        (0.2, -0.1, 0.05)
+    )
+
+    # Construct a synthetic non-antiparallel negative incoming direction.
+    # The canonical publication angle must continue to use beam_plus.
+    negative_spatial = np.array(
+        [65.0, -35.0, -180.0]
+    )
+
+    frame.loc[
+        0,
+        [
+            "beam_minus_px",
+            "beam_minus_py",
+            "beam_minus_pz",
+        ],
+    ] = negative_spatial
+
+    frame.loc[
+        0,
+        "beam_minus_e",
+    ] = float(
+        np.linalg.norm(
+            negative_spatial
+        )
+    )
+
+    def p4(
+        stem: str,
+    ) -> np.ndarray:
+        return frame[
+            [
+                f"{stem}_e",
+                f"{stem}_px",
+                f"{stem}_py",
+                f"{stem}_pz",
+            ]
+        ].to_numpy(dtype=float)
+
+    top = p4("top")
+    antitop = p4("antitop")
+    incoming_negative = p4(
+        "beam_minus"
+    )
+
+    ttbar = top + antitop
+
+    beta_ttbar = (
+        ttbar[:, 1:]
+        / ttbar[:, 0, None]
+    )
+
+    top_ttbar = boost_four_vectors(
+        top,
+        -beta_ttbar,
+    )
+
+    incoming_negative_ttbar = (
+        boost_four_vectors(
+            incoming_negative,
+            -beta_ttbar,
+        )
+    )
+
+    legacy_negative_beam_costheta = (
+        np.einsum(
+            "ni,ni->n",
+            unit(
+                top_ttbar[:, 1:]
+            ),
+            unit(
+                incoming_negative_ttbar[
+                    :,
+                    1:,
+                ]
+            ),
+        )
+    )
+
+    frame[
+        "cos_theta_t"
+    ] = legacy_negative_beam_costheta
+
+    config = _four_vector_config(
+        reviewed=True
+    )
+
+    _enable_test_derived_kinematics(
+        config
+    )
+
+    frame_to_analyzers(
+        frame,
+        "memory",
+        config,
+    )
+
+    paper_costheta = frame[
+        "paper_cos_theta_t"
+    ].to_numpy(dtype=float)
+
+    sign_flip_residual = (
+        paper_costheta
+        + legacy_negative_beam_costheta
+    )
+
+    assert (
+        np.max(
+            np.abs(
+                sign_flip_residual
+            )
+        )
+        > 1.0e-3
+    )

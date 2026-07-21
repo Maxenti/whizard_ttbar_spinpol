@@ -2,14 +2,6 @@
 # Ordered driver for the sharded 10k-per-sample shower + Spin-15 gate.
 set -euo pipefail
 
-# BEGIN PAPER-SPIN ADDITIVE DISPATCH
-if [[ "${1:-}" == "paper-spin" ]]; then
-  shift
-  exec "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/run_paper_spin_all.sh" "$@"
-fi
-# END PAPER-SPIN ADDITIVE DISPATCH
-
-
 REPO=${REPO:-/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol}
 SC_QIS_CONFIG=${SC_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_sc_v1.yaml}
 ISO_QIS_CONFIG=${ISO_QIS_CONFIG:-$REPO/configs/qis/qualification_500GeV_ISR_iso_v1.yaml}

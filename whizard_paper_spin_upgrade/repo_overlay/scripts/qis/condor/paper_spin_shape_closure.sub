@@ -1,0 +1,20 @@
+universe              = vanilla
+executable            = scripts/qis/condor/run_paper_spin_shape_closure_job.sh
+
+arguments             =
+
+getenv                 = True
+should_transfer_files  = NO
+
+request_cpus           = 1
+request_memory         = 3000MB
+request_disk           = 2000MB
++JobFlavour            = "tomorrow"
+
+log                    = $(log_dir)/paper_spin_shape_closure.log
+output                 = $(log_dir)/$(dataset)__$(sample_id)__$(replica_start)_$(replica_stop).out
+error                  = $(log_dir)/$(dataset)__$(sample_id)__$(replica_start)_$(replica_stop).err
+
+notification           = Never
+
+queue INPUT,CONFIG,REPLICAS,REPLICA_START,REPLICA_STOP,SEED,OUTPUT,dataset,sample_id from $(itemdata)

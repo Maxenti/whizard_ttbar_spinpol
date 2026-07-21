@@ -1,0 +1,5 @@
+Installed UTC: 20260721T151108Z
+Bundle: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/whizard_paper_spin_upgrade
+Backup: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/backups/paper_spin_upgrade_20260721T151108Z
+Baseline output trees modified: no
+Optional run_next gate patch: 1

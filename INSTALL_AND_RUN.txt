@@ -1,0 +1,18 @@
+Repository:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+
+Validated input:
+  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/paper_spin/paper_spin_500GeV_10k_v3
+
+Recommended output:
+  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/paper_spin/paper_spin_500GeV_10k_v3p1
+
+Recommended archive:
+  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/paper_spin/paper_spin_500GeV_10k_v3p1.tar.gz
+
+Extract this tool archive at the repository root using --strip-components=1,
+then run scripts/qis/run_paper_spin_v3p1.sh with the paths above.
+
+The build refuses to overwrite an existing output or archive. It normally takes
+several minutes because it renders 64 differential figures and rewrites the
+full portable checksum manifest.
