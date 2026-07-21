@@ -28,31 +28,122 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def run_info_signature(run_info: object) -> tuple[object, ...]:
+    """Return a deterministic comparison signature for HepMC GenRunInfo."""
+    if run_info is None:
+        return ("none",)
+
+    tools = tuple(
+        (
+            str(tool.name),
+            str(tool.version),
+            str(tool.description),
+        )
+        for tool in run_info.tools
+    )
+
+    weight_names = tuple(str(name) for name in run_info.weight_names)
+
+    attributes: list[tuple[str, str]] = []
+    try:
+        keys = sorted(str(key) for key in run_info.attributes)
+    except Exception:
+        keys = []
+
+    for key in keys:
+        try:
+            value = run_info.attributes[key]
+            attributes.append((key, str(value)))
+        except Exception as exc:
+            attributes.append(
+                (key, f"<unreadable:{type(exc).__name__}>")
+            )
+
+    return (
+        "run_info",
+        weight_names,
+        tools,
+        tuple(attributes),
+    )
+
+
 def merge_hepmc(inputs: list[Path], output: Path) -> int:
+    """Merge shards using one verified canonical GenRunInfo object."""
     if not inputs:
         raise ValueError(f"no input HepMC3 files for {output.stem}")
+
     try:
         import pyhepmc
     except ImportError as exc:
-        raise RuntimeError("pyhepmc is required to merge HepMC3 files") from exc
+        raise RuntimeError(
+            "pyhepmc is required to merge HepMC3 files"
+        ) from exc
+
     output.parent.mkdir(parents=True, exist_ok=True)
-    temporary = output.with_name(f".{output.stem}.partial{output.suffix}")
+
+    temporary = output.with_name(
+        f".{output.stem}.partial{output.suffix}"
+    )
     temporary.unlink(missing_ok=True)
+
     events = 0
+    canonical_run_info = None
+    canonical_run_info_signature = None
+    canonical_source: Path | None = None
+
     try:
         with pyhepmc.open(temporary, "w") as writer:
             for source in inputs:
                 with pyhepmc.open(source) as reader:
                     for event in reader:
+                        current_signature = run_info_signature(
+                            event.run_info
+                        )
+
+                        if canonical_run_info_signature is None:
+                            canonical_run_info = event.run_info
+                            canonical_run_info_signature = (
+                                current_signature
+                            )
+                            canonical_source = source
+                        elif (
+                            current_signature
+                            != canonical_run_info_signature
+                        ):
+                            raise RuntimeError(
+                                "incompatible GenRunInfo while merging "
+                                f"{output.stem}: source={source}, "
+                                f"canonical_source={canonical_source}, "
+                                f"current={current_signature!r}, "
+                                "canonical="
+                                f"{canonical_run_info_signature!r}"
+                            )
+
+                        # All events in one merged HepMC stream must refer to
+                        # the same run-info object, not merely equivalent
+                        # objects loaded independently from each shard.
+                        event.run_info = canonical_run_info
                         event.event_number = events
+
                         writer.write(event)
                         events += 1
-        if not temporary.is_file() or temporary.stat().st_size <= 0:
-            raise RuntimeError(f"empty merged temporary output: {temporary}")
+
+        if not temporary.is_file():
+            raise RuntimeError(
+                f"missing merged temporary output: {temporary}"
+            )
+
+        if temporary.stat().st_size <= 0:
+            raise RuntimeError(
+                f"empty merged temporary output: {temporary}"
+            )
+
         temporary.replace(output)
+
     except Exception:
         temporary.unlink(missing_ok=True)
         raise
+
     return events
 
 

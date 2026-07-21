@@ -11,11 +11,25 @@ import yaml
 from .exceptions import ConfigurationError
 
 
+SUPPORTED_SCHEMA_VERSIONS = frozenset({1, 2})
+
+
 @dataclasses.dataclass(frozen=True)
 class FrameworkConfig:
     path: Path
     data: dict[str, Any]
     sha256: str
+
+    @property
+    def schema_version(self) -> int:
+        """Return the validated integer configuration schema version."""
+        raw = self.data.get("schema_version", 0)
+        if isinstance(raw, bool):
+            raise ConfigurationError("schema_version must be an integer")
+        try:
+            return int(raw)
+        except (TypeError, ValueError) as exc:
+            raise ConfigurationError("schema_version must be an integer") from exc
 
     @property
     def level(self) -> str:
@@ -49,8 +63,16 @@ def load_config(path: str | Path) -> FrameworkConfig:
 
 
 def validate_config(config: FrameworkConfig) -> None:
-    if int(config.data.get("schema_version", 0)) != 1:
-        raise ConfigurationError("schema_version must be 1")
+    schema_version = config.schema_version
+    if schema_version not in SUPPORTED_SCHEMA_VERSIONS:
+        supported = ", ".join(str(value) for value in sorted(SUPPORTED_SCHEMA_VERSIONS))
+        raise ConfigurationError(
+            f"unsupported schema_version {schema_version}; supported versions: {supported}"
+        )
+
+    # Schema 2 is an additive extension used by deterministic sharded showering.
+    # The analysis-facing sections retain the schema-1 contract, so all existing
+    # physics and statistics validation below applies unchanged to both versions.
     if config.level not in {"A", "B", "C"}:
         raise ConfigurationError("level must be A, B, or C")
     if config.level == "A":

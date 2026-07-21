@@ -6,6 +6,10 @@ output = $(stdout_path)
 error = $(stderr_path)
 log = $(event_log)
 should_transfer_files = NO
+# Inherit the Key4HEP runtime prepared once on the submit host.  The worker
+# wrapper verifies WHIZARD_TTBAR_ENV_READY and shared-library resolution before
+# touching the input shard.
+getenv = True
 request_cpus = $(job_cpus)
 request_memory = $(job_memory_mb)MB
 request_disk = $(job_disk_gb)GB

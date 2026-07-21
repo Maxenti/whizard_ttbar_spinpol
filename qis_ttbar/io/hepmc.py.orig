@@ -119,15 +119,15 @@ def _find_decaying_resonance(particles: list, pid: int, label: str):
 
     for candidate in candidates:
         missing: list[str] = []
-        try:
-            _find_descendant(candidate, expected_b, "b")
-        except EventFormatError:
-            missing.append("b")
-
-        try:
-            _find_primary_leptonic_products(candidate, pid)
-        except EventFormatError:
-            missing.append("primary W leptonic pair")
+        for pdgs, product_label in (
+            (expected_b, "b"),
+            (expected_lepton, "charged lepton"),
+            (expected_neutrino, "neutrino"),
+        ):
+            try:
+                _find_descendant(candidate, pdgs, product_label)
+            except EventFormatError:
+                missing.append(product_label)
 
         if not missing:
             compatible.append(candidate)
@@ -166,88 +166,6 @@ def _find_decaying_resonance(particles: list, pid: int, label: str):
     return compatible[0]
 
 
-def _particle_identity(particle) -> int:
-    """Return a stable identity for graph traversal within one event."""
-    identifier = int(getattr(particle, "id", 0))
-    return identifier if identifier != 0 else id(particle)
-
-
-def _copy_chain(root, pid: int) -> list[tuple[int, object]]:
-    """Collect same-PDG resonance copies reachable through direct children."""
-    copies: list[tuple[int, object]] = []
-    stack: list[tuple[int, object]] = [(0, root)]
-    visited: set[int] = set()
-
-    while stack:
-        depth, particle = stack.pop()
-        identity = _particle_identity(particle)
-        if identity in visited:
-            continue
-        visited.add(identity)
-        copies.append((depth, particle))
-
-        same_pid_children = [
-            child
-            for child in _children(particle)
-            if child.pid == pid
-        ]
-        same_pid_children.sort(
-            key=lambda child: int(getattr(child, "id", 0)),
-            reverse=True,
-        )
-        for child in same_pid_children:
-            stack.append((depth + 1, child))
-
-    return copies
-
-
-def _flavour_matched(lepton, neutrino) -> bool:
-    """Return whether l and nu form one charged-current flavour pair."""
-    return abs(int(neutrino.pid)) == abs(int(lepton.pid)) + 1
-
-
-def _direct_leptonic_pairs(
-    resonance,
-    expected_lepton: set[int],
-    expected_neutrino: set[int],
-) -> list[tuple[object, object]]:
-    """Find flavour-consistent l-nu pairs produced at one decay vertex."""
-    children = _children(resonance)
-    leptons = [
-        child for child in children
-        if child.pid in expected_lepton
-    ]
-    neutrinos = [
-        child for child in children
-        if child.pid in expected_neutrino
-    ]
-
-    return [
-        (lepton, neutrino)
-        for lepton in leptons
-        for neutrino in neutrinos
-        if _flavour_matched(lepton, neutrino)
-    ]
-
-
-def _fallback_leptonic_pair(
-    root,
-    expected_lepton: set[int],
-    expected_neutrino: set[int],
-    lepton_label: str,
-    neutrino_label: str,
-):
-    """Support legacy no-W records while rejecting flavour-mismatched pairs."""
-    lepton = _find_descendant(root, expected_lepton, lepton_label)
-    neutrino = _find_descendant(root, expected_neutrino, neutrino_label)
-    if not _flavour_matched(lepton, neutrino):
-        raise EventFormatError(
-            "flavour-mismatched primary leptonic products: "
-            f"lepton PDG={lepton.pid}, neutrino PDG={neutrino.pid}"
-        )
-    return lepton, neutrino
-
-
 def _find_primary_leptonic_products(top, pid: int):
     """Return charged lepton and neutrino from the primary W branch.
 
@@ -257,58 +175,16 @@ def _find_primary_leptonic_products(top, pid: int):
     readable when no explicit W resonance is present.
     """
     _, expected_lepton, expected_neutrino, expected_w = _decay_signature(pid)
+    try:
+        w = _find_descendant(top, {expected_w}, "W")
+    except EventFormatError:
+        w = top
     lepton_label = "positive lepton" if pid == 6 else "negative lepton"
     neutrino_label = "neutrino" if pid == 6 else "antineutrino"
-
-    try:
-        first_w = _find_descendant(top, {expected_w}, "W")
-    except EventFormatError:
-        return _fallback_leptonic_pair(
-            top,
-            expected_lepton,
-            expected_neutrino,
-            lepton_label,
-            neutrino_label,
-        )
-
-    candidates: list[tuple[int, object, object, object]] = []
-    for depth, w_copy in _copy_chain(first_w, expected_w):
-        for lepton, neutrino in _direct_leptonic_pairs(
-            w_copy,
-            expected_lepton,
-            expected_neutrino,
-        ):
-            candidates.append((depth, w_copy, lepton, neutrino))
-
-    if not candidates:
-        raise EventFormatError(
-            "explicit W branch has no direct flavour-consistent "
-            f"{lepton_label}-{neutrino_label} decay pair"
-        )
-
-    # The physical decay is attached to the deepest W status copy.  Earlier
-    # copies may radiate photons whose conversion e+e- pairs are descendants
-    # of the W but are not W-decay products.
-    deepest = max(item[0] for item in candidates)
-    selected = [item for item in candidates if item[0] == deepest]
-
-    if len(selected) != 1:
-        details = [
-            (
-                int(getattr(w_copy, "id", 0)),
-                int(lepton.pid),
-                int(neutrino.pid),
-            )
-            for _, w_copy, lepton, neutrino in selected
-        ]
-        raise EventFormatError(
-            "ambiguous direct leptonic decay pairs on deepest W copy: "
-            f"{details}"
-        )
-
-    _, _, lepton, neutrino = selected[0]
-    return lepton, neutrino
-    
+    return (
+        _find_descendant(w, expected_lepton, lepton_label),
+        _find_descendant(w, expected_neutrino, neutrino_label),
+    )
 
 
 def _find_beam(particles: list, pid: int, label: str):

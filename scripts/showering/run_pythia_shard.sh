@@ -86,7 +86,14 @@ for helper in "$CANONICALIZER" "$EXPLICIT_W_ADAPTER" "$METADATA_AUGMENTER"; do
   [[ -x $helper ]] || { echo "ERROR: missing executable helper: $helper" >&2; exit 7; }
 done
 
-if [[ -n $KEY4HEP_SETUP ]]; then
+# The submit description inherits the already validated Key4HEP runtime
+# environment from the submit host.  This avoids independently sourcing the
+# full Key4HEP/Spack setup in every shard, which is expensive and can create a
+# large simultaneous CVMFS/setup storm for O(100) jobs.
+if [[ ${WHIZARD_TTBAR_ENV_READY:-0} == 1 ]]; then
+  echo "RUNTIME_ENV mode=inherited_submit_host"
+elif [[ -n $KEY4HEP_SETUP ]]; then
+  echo "RUNTIME_ENV mode=worker_fallback_setup"
   [[ -r $KEY4HEP_SETUP ]] \
     || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 8; }
   nounset_was_on=0
@@ -100,6 +107,21 @@ if [[ -n $KEY4HEP_SETUP ]]; then
   (( nounset_was_on == 0 )) || set -u
   (( setup_rc == 0 )) \
     || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 8; }
+else
+  echo "ERROR: no inherited Key4HEP runtime and no fallback setup script" >&2
+  exit 8
+fi
+
+for command in python3 sha256sum ldd; do
+  command -v "$command" >/dev/null 2>&1 \
+    || { echo "ERROR: runtime command missing after environment setup: $command" >&2; exit 8; }
+done
+
+missing_libraries=$(ldd "$EXECUTABLE" 2>&1 | awk '/not found/ {print}')
+if [[ -n $missing_libraries ]]; then
+  echo "ERROR: shower executable has unresolved shared libraries:" >&2
+  printf '%s\n' "$missing_libraries" >&2
+  exit 8
 fi
 
 export PYTHONDONTWRITEBYTECODE=1

@@ -10,6 +10,10 @@ SHOWER_TOTAL_JOBS=${SHOWER_TOTAL_JOBS:-160}
 SHOWER_TOTAL_EVENTS_PER_SAMPLE=${SHOWER_TOTAL_EVENTS_PER_SAMPLE:-10000}
 SHOWER_SHARD_MODE=${SHOWER_SHARD_MODE:-resume}
 SHOWER_SUBMIT_MODE=${SHOWER_SUBMIT_MODE:-resume}
+SHOWER_REQUEST_CPUS=${SHOWER_REQUEST_CPUS:-1}
+SHOWER_REQUEST_MEMORY_MB=${SHOWER_REQUEST_MEMORY_MB:-1000}
+SHOWER_REQUEST_DISK_GB=${SHOWER_REQUEST_DISK_GB:-2}
+SHOWER_JOB_FLAVOUR=${SHOWER_JOB_FLAVOUR:-workday}
 
 usage() {
   cat <<'USAGE'
@@ -41,6 +45,13 @@ Adjustable environment variables:
 
   SHOWER_SUBMIT_MODE=resume|force
       Submit only missing/invalid outputs, or replace all shard outputs.
+
+  SHOWER_REQUEST_CPUS=1
+  SHOWER_REQUEST_MEMORY_MB=1000
+  SHOWER_REQUEST_DISK_GB=2
+  SHOWER_JOB_FLAVOUR=workday
+      Explicit per-shard HTCondor resources.  These values are passed on every
+      submission and therefore override stale configuration or shell defaults.
 USAGE
 }
 
@@ -142,6 +153,10 @@ SHARDED SHOWER PLAN
   ISO jobs:                 $ISO_JOBS
   Events per sample:        $EVENTS_PER_SAMPLE
   Events per job:           $EVENTS_PER_JOB_MIN..$EVENTS_PER_JOB_MAX
+  Per-job CPUs:             $SHOWER_REQUEST_CPUS
+  Per-job memory MB:        $SHOWER_REQUEST_MEMORY_MB
+  Per-job disk GB:          $SHOWER_REQUEST_DISK_GB
+  Job flavour:              $SHOWER_JOB_FLAVOUR
   SC output root:           $SC_ROOT/shower
   ISO output root:          $ISO_ROOT/shower
 EOF
@@ -322,11 +337,19 @@ PY
     python3 scripts/showering/submit_showering.py \
       --config "$SC_QIS_CONFIG" \
       --expected-jobs "$SC_JOBS" \
+      --request-cpus "$SHOWER_REQUEST_CPUS" \
+      --request-memory-mb "$SHOWER_REQUEST_MEMORY_MB" \
+      --request-disk-gb "$SHOWER_REQUEST_DISK_GB" \
+      --job-flavour "$SHOWER_JOB_FLAVOUR" \
       "$submit_mode" \
       --submit
     python3 scripts/showering/submit_showering.py \
       --config "$ISO_QIS_CONFIG" \
       --expected-jobs "$ISO_JOBS" \
+      --request-cpus "$SHOWER_REQUEST_CPUS" \
+      --request-memory-mb "$SHOWER_REQUEST_MEMORY_MB" \
+      --request-disk-gb "$SHOWER_REQUEST_DISK_GB" \
+      --job-flavour "$SHOWER_JOB_FLAVOUR" \
       "$submit_mode" \
       --submit
     ;;

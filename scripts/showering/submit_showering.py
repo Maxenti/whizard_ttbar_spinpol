@@ -173,6 +173,34 @@ def main() -> int:
         raise FileNotFoundError(f"environment setup not found: {args.key4hep_setup}")
     if args.submit and not executable.is_file():
         raise FileNotFoundError(f"shower executable not built: {executable}")
+    if args.submit and os.environ.get("WHIZARD_TTBAR_ENV_READY") != "1":
+        raise RuntimeError(
+            "Key4HEP project environment is not active in the submit shell. "
+            "Run `source setup_lxplus.sh` before submitting.  Shower jobs "
+            "inherit this prepared runtime and do not source the full stack "
+            "independently."
+        )
+    if args.submit:
+        ldd_result = subprocess.run(
+            ["ldd", str(executable.resolve())],
+            text=True,
+            capture_output=True,
+            check=False,
+        )
+        unresolved = [
+            line.strip()
+            for line in (ldd_result.stdout + "\n" + ldd_result.stderr).splitlines()
+            if "not found" in line
+        ]
+        if ldd_result.returncode != 0 or unresolved:
+            detail = "\n".join(unresolved) or (
+                f"ldd returned {ldd_result.returncode}: "
+                f"{ldd_result.stderr.strip()}"
+            )
+            raise RuntimeError(
+                "shower executable does not resolve in the submit runtime:\n"
+                + detail
+            )
     for helper in runtime_helpers:
         if not helper.is_file():
             raise FileNotFoundError(f"runtime helper not found: {helper}")
@@ -387,6 +415,16 @@ def main() -> int:
             "job_flavour": job_flavour,
         },
         "submit_file": str(submit_file),
+        "runtime_environment": {
+            "mode": "inherit_submit_host",
+            "whizard_ttbar_env_ready": os.environ.get(
+                "WHIZARD_TTBAR_ENV_READY", ""
+            ),
+            "python": shutil.which("python3"),
+            "ld_library_path_present": bool(
+                os.environ.get("LD_LIBRARY_PATH")
+            ),
+        },
         "submitted": False,
     }
     (control / "jobs.json").write_text(

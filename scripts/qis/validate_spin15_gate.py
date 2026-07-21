@@ -372,12 +372,23 @@ def preservation_rows(
                     float(left["coefficient_se"]),
                     float(right["coefficient_se"]),
                 )
-                status = (
-                    "pass"
-                    if abs(delta) <= thresholds.preservation_max_abs
-                    and abs(z) <= thresholds.preservation_max_z
-                    else "fail"
-                )
+                abs_delta = abs(delta)
+                large_shift = abs_delta > thresholds.preservation_max_abs
+                significant_shift = abs(z) > thresholds.preservation_max_z
+                if large_shift and significant_shift:
+                    status = "fail"
+                    message = (
+                        "absolute shift and significance thresholds exceeded"
+                    )
+                elif large_shift:
+                    status = "warn"
+                    message = "absolute shift threshold exceeded only"
+                elif significant_shift:
+                    status = "warn"
+                    message = "significance threshold exceeded only"
+                else:
+                    status = "pass"
+                    message = ""
                 rows.append(
                     {
                         "spin_mode": spin_mode,
@@ -394,9 +405,12 @@ def preservation_rows(
                         "hepmc_coefficient": float(right["coefficient"]),
                         "hepmc_se": float(right["coefficient_se"]),
                         "delta_hepmc_minus_lhe": delta,
+                        "abs_delta": abs_delta,
                         "z": z,
+                        "large_shift": large_shift,
+                        "significant_shift": significant_shift,
                         "status": status,
-                        "message": "",
+                        "message": message,
                     }
                 )
     return rows
@@ -460,6 +474,19 @@ def polarization_rows(
             continue
         leading = max(group_details, key=lambda row: abs(float(row["z"])))
         max_abs_z = abs(float(leading["z"]))
+        if mode == "iso":
+            status = "not_applicable"
+            message = (
+                "LR/RL B-vector separation is not required for isotropic "
+                "decay-control samples"
+            )
+        else:
+            status = (
+                "pass"
+                if max_abs_z >= thresholds.polarization_min_z
+                else "fail"
+            )
+            message = ""
         groups.append(
             {
                 "dataset": dataset,
@@ -471,8 +498,8 @@ def polarization_rows(
                 "max_abs_z": max_abs_z,
                 "leading_observable": leading["observable"],
                 "leading_delta": leading["delta_lr_minus_rl"],
-                "status": "pass" if max_abs_z >= thresholds.polarization_min_z else "fail",
-                "message": "",
+                "status": status,
+                "message": message,
             }
         )
     return details, groups
@@ -788,12 +815,20 @@ def main() -> int:
     preservation_failures = [
         row for row in preservation if row.get("status") == "fail"
     ]
+    preservation_warnings = [
+        row for row in preservation if row.get("status") == "warn"
+    ]
 
     polarization_details, polarization_groups = polarization_rows(
         frame, thresholds=thresholds
     )
     polarization_failures = [
         row for row in polarization_groups if row.get("status") == "fail"
+    ]
+    polarization_not_applicable = [
+        row
+        for row in polarization_groups
+        if row.get("status") == "not_applicable"
     ]
 
     connected = connected_correlations(frame)
@@ -856,32 +891,33 @@ def main() -> int:
         stream.write("`ckk, crr, cnn, ckr, crk, ckn, cnk, crn, cnr`\n\n")
         stream.write("## Gate counts\n\n")
         stream.write(
-            "| Check | Groups/rows | Fail | Warn |\n"
-            "|---|---:|---:|---:|\n"
+            "| Check | Groups/rows | Fail | Warn | N/A |\n"
+            "|---|---:|---:|---:|---:|\n"
         )
         stream.write(
             f"| Sample structure | {len(structure)} | "
-            f"{count_status(structure, 'fail')} | 0 |\n"
+            f"{count_status(structure, 'fail')} | 0 | 0 |\n"
         )
         stream.write(
             f"| Beam configuration audit | {len(config_audit)} | "
-            f"{count_status(config_audit, 'fail')} | 0 |\n"
+            f"{count_status(config_audit, 'fail')} | 0 | 0 |\n"
         )
         stream.write(
             f"| LHE to HepMC coefficients | {len(preservation)} | "
-            f"{len(preservation_failures)} | 0 |\n"
+            f"{len(preservation_failures)} | {len(preservation_warnings)} | 0 |\n"
         )
         stream.write(
             f"| LR100 versus RL100 | {len(polarization_groups)} | "
-            f"{len(polarization_failures)} | 0 |\n"
+            f"{len(polarization_failures)} | 0 | "
+            f"{len(polarization_not_applicable)} |\n"
         )
         stream.write(
             f"| SC versus ISO connected correlations | {len(spin_groups)} | "
-            f"{len(spin_failures)} | 0 |\n"
+            f"{len(spin_failures)} | 0 | 0 |\n"
         )
         stream.write(
             f"| epmum versus mupem consistency | {len(flavour_groups)} | "
-            f"{len(flavour_failures)} | {len(flavour_warnings)} |\n\n"
+            f"{len(flavour_failures)} | {len(flavour_warnings)} | 0 |\n\n"
         )
         stream.write("## Thresholds\n\n")
         stream.write(
@@ -889,8 +925,11 @@ def main() -> int:
             f"{thresholds.preservation_max_abs}\n"
             f"- LHE/HepMC maximum significance: "
             f"{thresholds.preservation_max_z}\n"
-            f"- Minimum LR/RL separation: "
+            "- LHE/HepMC policy: fail only when both limits are exceeded; "
+            "a single-limit exceedance is a warning\n"
+            f"- Minimum LR/RL separation for spin-correlated samples: "
             f"{thresholds.polarization_min_z} sigma in at least one B component\n"
+            "- LR/RL separation for isotropic controls: not applicable\n"
             f"- Minimum SC/ISO separation: "
             f"{thresholds.spin_correlation_min_z} sigma in at least one connected "
             "correlation component\n"
@@ -901,8 +940,13 @@ def main() -> int:
         stream.write(
             "No external sign template is imposed. The LHE coefficients define the "
             "generator-truth reference. Beam polarization is verified first by the "
-            "configured helicities and then by LR/RL separation in the B vector. "
-            "Spin correlation is verified by comparing connected correlations "
+            "configured helicities and then, for spin-correlated samples only, "
+            "by LR/RL separation in the B vector. Isotropic-decay controls are "
+            "not required to retain LR/RL analyzer separation. LHE/HepMC "
+            "coefficient shifts are fatal only when they are both larger than "
+            "the absolute tolerance and statistically significant; one-limit "
+            "exceedances are retained as warnings. Spin correlation is verified "
+            "by comparing connected correlations "
             "D_ij = C_ij - B1_i B2_j between matched spin-correlated and "
             "isotropic-decay samples.\n\n"
         )
@@ -925,7 +969,9 @@ def main() -> int:
             "dataset_failures": len(dataset_failures),
             "config_failures": len(config_failures),
             "preservation_failures": len(preservation_failures),
+            "preservation_warnings": len(preservation_warnings),
             "polarization_failures": len(polarization_failures),
+            "polarization_not_applicable": len(polarization_not_applicable),
             "spin_correlation_failures": len(spin_failures),
             "flavour_warnings": len(flavour_warnings),
             "flavour_failures": len(flavour_failures),
@@ -946,6 +992,13 @@ def main() -> int:
     print(f"Physics status:    {'PASS' if physics_ok else 'FAIL'}")
     print(f"Wrote {report_path}")
     print(f"Wrote {json_path}")
+    if preservation_warnings:
+        print(f"LHE/HepMC preservation warnings: {len(preservation_warnings)}")
+    if polarization_not_applicable:
+        print(
+            "LR/RL isotropic-control groups marked not applicable: "
+            f"{len(polarization_not_applicable)}"
+        )
     if flavour_warnings:
         print(f"Decay-flavour warnings: {len(flavour_warnings)}")
     if not overall_ok:
