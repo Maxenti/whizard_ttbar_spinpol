@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "package": "paper_spin_365GeV_lhe_matrix_v1",
+  "purpose": "Prepare, run, and validate the 16-sample 365 GeV ISR WHIZARD LHE matrix.",
+  "profiles": {
+    "pilot_events_per_sample": 1000,
+    "production_events_per_sample": 10000
+  },
+  "file_count": 11,
+  "files": [
+    {
+      "path": "README_365GEV_LHE_MATRIX.md",
+      "sha256": "f39289f7a2e9c34bf5d0ffcc210e6df3ec1bd950d2fc58e5bfb0ebdc260b5266",
+      "size_bytes": 995
+    },
+    {
+      "path": "configs/qis/paper_spin_365GeV_lhe_matrix.yaml",
+      "sha256": "c79bb97a4d969fa26480163e583aa702f17f6c737612c566905fbf79eaabafa6",
+      "size_bytes": 1369
+    },
+    {
+      "path": "docs/qis/paper_spin_365GeV_lhe_matrix.md",
+      "sha256": "ab8cbf4341a9ba469298637bbbe32cd11f1c54f978b86e42b5b5e140ce517d4f",
+      "size_bytes": 3476
+    },
+    {
+      "path": "scripts/qis/collect_365GeV_lhe_matrix.py",
+      "sha256": "db135b614d9e9ce2f6b2632c4fc5570bb07d7340c2466ddd915093971f1548f6",
+      "size_bytes": 12831
+    },
+    {
+      "path": "scripts/qis/paper_spin_365_matrix_common.py",
+      "sha256": "dacebd175a96628a990cd1bd199fe1ffb629c4e17b7dda0de28a675e2fd269fd",
+      "size_bytes": 19743
+    },
+    {
+      "path": "scripts/qis/prepare_365GeV_lhe_matrix.py",
+      "sha256": "6a5f37c2c4fe3fcfdc31955e6eddf5eccc2aebb0459046ef803319ea1a2ae787",
+      "size_bytes": 9585
+    },
+    {
+      "path": "scripts/qis/run_365GeV_lhe_matrix_local.sh",
+      "sha256": "2a23301e6039267913af058504391590cb460eb65dd7914d40852f668b53f2ee",
+      "size_bytes": 1728
+    },
+    {
+      "path": "scripts/qis/run_365GeV_lhe_point.sh",
+      "sha256": "7c46ae2e4cc0f12860c016f8cd728a64a6fa8bb4b3b28c30183c22bc1a6dcd17",
+      "size_bytes": 5426
+    },
+    {
+      "path": "scripts/qis/submit_365GeV_lhe_matrix.sh",
+      "sha256": "07fdfa2a5c078d1089c285da0708c37054e0b4ea40a455fde6e3c2c4dd7360d9",
+      "size_bytes": 3301
+    },
+    {
+      "path": "scripts/qis/validate_365GeV_lhe_sample.py",
+      "sha256": "4e94cba08f4302e3f29ad95faa7186cd75eddc57501798f59f18c67423ed9a02",
+      "size_bytes": 13211
+    },
+    {
+      "path": "tests/qis/test_365GeV_lhe_matrix_package.py",
+      "sha256": "fc8fb829fdc5a08ea6da8091eea70c0e34baa66f68688dd2d5e0488205da2103",
+      "size_bytes": 4709
+    }
+  ]
+}
