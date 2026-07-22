@@ -34,7 +34,25 @@ qis_output/
 *.partial
 *.metadata.json
 
-# Editors and OS
+backups/
+
 *~
 *.swp
 .DS_Store
+*.tar.gz
+*.tar
+*.zip
+*.patch*
+*.patch
+*.diff
+*.diff.gz
+*.diff.bz2
+*.diff.xz
+*.diff.lzma
+*.diff.lz
+*.diff.z
+*.diff.zip
+*.diff.tar
+*.diff.tar.gz
+*.diff.tar.bz2
+*.diff.tar.xz

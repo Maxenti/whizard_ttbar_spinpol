@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "package": "paper_spin_365GeV_smoke_v1p3_fix",
+  "purpose": "Accept templated seed and output-sample assignments, canonicalize campaign metadata, and reject unresolved controlled placeholders before WHIZARD execution.",
+  "files": [
+    {
+      "path": "README_365GEV_V1P3_FIX.md",
+      "sha256": "fa7d3add902ea027a59269072f10a90946b31f1a24db62bcef3c04cd87db6409",
+      "size_bytes": 479
+    },
+    {
+      "path": "docs/qis/paper_spin_365GeV_smoke_v1p3_fix.md",
+      "sha256": "899641fc97186a4d58939105762c80f7fc34a608cf3dac327e80ad22a56210b1",
+      "size_bytes": 1304
+    },
+    {
+      "path": "scripts/qis/prepare_365GeV_smoke.py",
+      "sha256": "76928f224849afe0c3c036cf2d037539ffb973600195b4de2dbccbc979b408bf",
+      "size_bytes": 17888
+    },
+    {
+      "path": "tests/qis/test_365GeV_smoke_package.py",
+      "sha256": "c569b14e956498ef51750a83144f384558fab5cdd6714bc2b6edc2a745f48773",
+      "size_bytes": 5839
+    }
+  ]
+}
