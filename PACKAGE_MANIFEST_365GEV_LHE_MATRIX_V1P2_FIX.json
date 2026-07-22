@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "package_id": "paper_spin_365GeV_lhe_matrix_v1p2_fix",
+  "purpose": "Preserve AFS-visible paths in standard CERN schedd submit descriptors while writing through the runs symlink to EOS.",
+  "scope": "Condor submission orchestration only; no physics or generated-product changes.",
+  "files": [
+    {
+      "path": "README_365GEV_LHE_MATRIX_V1P2_FIX.md",
+      "sha256": "d6676b3bed231d3aae2b346ece8a8a0ceeb7a382ba9d85a84922de7c3c042f62",
+      "size_bytes": 997
+    },
+    {
+      "path": "docs/qis/paper_spin_365GeV_lhe_matrix_v1p2_condor_submit_paths.md",
+      "sha256": "ba305585186e00701a5013c3e6217cc1ab45d9e25a20fd7c3b77513072c5ccb1",
+      "size_bytes": 1139
+    },
+    {
+      "path": "scripts/qis/submit_365GeV_lhe_matrix.sh",
+      "sha256": "ad4e1c4049d03cae3c66d15064406a80f7bb34be815853fb725d06560f6b474c",
+      "size_bytes": 5778
+    },
+    {
+      "path": "tests/qis/test_365GeV_lhe_matrix_condor_paths.py",
+      "sha256": "7bbaac356d136231d4b0e4ca2d66fff3b95621b2f3c053d81698762565b332ac",
+      "size_bytes": 3390
+    }
+  ]
+}
