@@ -47,7 +47,7 @@ REPO=$(cd "$REPO" && pwd)
 if [[ $CAMPAIGN_ROOT != /* ]]; then
   CAMPAIGN_ROOT="$REPO/$CAMPAIGN_ROOT"
 fi
-CAMPAIGN_ROOT=$(cd "$CAMPAIGN_ROOT" && pwd)
+CAMPAIGN_ROOT=$(cd -P "$CAMPAIGN_ROOT" && pwd)
 if [[ $CONFIG != /* ]]; then
   CONFIG="$REPO/$CONFIG"
 fi
@@ -82,7 +82,22 @@ GETENV=${SETTINGS[4]}
 TRANSFER=${SETTINGS[5]}
 
 CONDOR_DIR="$CAMPAIGN_ROOT/condor"
-mkdir -p "$CONDOR_DIR" "$CAMPAIGN_ROOT/logs"
+STDOUT_DIR="$CONDOR_DIR/stdout"
+STDERR_DIR="$CONDOR_DIR/stderr"
+mkdir -p "$CONDOR_DIR" "$STDOUT_DIR" "$STDERR_DIR"
+
+# Fail before submission if the access point cannot create files in the exact
+# directories named by output/error/log.  This catches missing symlink targets,
+# stale campaign roots, and permission problems before any worker starts.
+for directory in "$CONDOR_DIR" "$STDOUT_DIR" "$STDERR_DIR"; do
+  probe="$directory/.write_probe_$$"
+  if ! : > "$probe"; then
+    echo "ERROR: Condor output directory is not writable: $directory" >&2
+    exit 1
+  fi
+  rm -f "$probe"
+done
+
 SUBMIT_FILE="$CONDOR_DIR/lhe_matrix.sub"
 EXTRA_ARGS=
 if ((RERUN)); then
@@ -102,8 +117,8 @@ request_cpus = $REQUEST_CPUS
 request_memory = $REQUEST_MEMORY
 request_disk = $REQUEST_DISK
 
-output = $CAMPAIGN_ROOT/logs/\$(sample_id).out
-error = $CAMPAIGN_ROOT/logs/\$(sample_id).err
+output = $STDOUT_DIR/\$(sample_id).out
+error = $STDERR_DIR/\$(sample_id).err
 log = $CONDOR_DIR/cluster.log
 
 +JobFlavour = "$JOB_FLAVOUR"
@@ -115,7 +130,10 @@ printf '%s\n' \
   "Prepared Condor descriptor:" \
   "  $SUBMIT_FILE" \
   "Samples: 16" \
-  "JobFlavour: $JOB_FLAVOUR"
+  "JobFlavour: $JOB_FLAVOUR" \
+  "Physical campaign root: $CAMPAIGN_ROOT" \
+  "Stdout directory: $STDOUT_DIR" \
+  "Stderr directory: $STDERR_DIR"
 
 if ((SUBMIT_ONLY)); then
   exit 0

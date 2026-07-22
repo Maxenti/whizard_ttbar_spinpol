@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "package": "paper_spin_365GeV_lhe_matrix_v1p1_fix",
+  "files": [
+    "scripts/qis/submit_365GeV_lhe_matrix.sh",
+    "tests/qis/test_365GeV_lhe_matrix_condor_paths.py",
+    "docs/qis/paper_spin_365GeV_lhe_matrix_v1p1_condor_fix.md",
+    "README_365GEV_LHE_MATRIX_V1P1_FIX.md"
+  ],
+  "physics_changes": false,
+  "purpose": "Use stable physical Condor stdout/stderr directories and fail pre-submit when they are not writable."
+}
