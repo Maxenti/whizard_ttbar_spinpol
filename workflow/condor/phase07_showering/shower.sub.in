@@ -1,0 +1,10 @@
+universe = vanilla
+executable = workflow/condor/phase07_showering/shower_job.sh
+arguments = $(lhe) $(config) $(out)
+output = $(logdir)/$(ClusterId).$(ProcId).out
+error = $(logdir)/$(ClusterId).$(ProcId).err
+log = $(logdir)/phase07_shower.log
+request_cpus = 1
+request_memory = 2GB
++JobFlavour = "tomorrow"
+queue lhe,config,out from $(matrix_file)

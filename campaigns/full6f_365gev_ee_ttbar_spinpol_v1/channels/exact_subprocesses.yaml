@@ -1,0 +1,27 @@
+schema: {name: exact_subprocess_matrix, version: 1}
+campaign_id: full6f_365gev_ee_ttbar_spinpol_v1
+dilepton:
+  epmum: [b, bbar, e+, nu_e, mu-, anti_nu_mu]
+  mupem: [b, bbar, mu+, nu_mu, e-, anti_nu_e]
+  epem: [b, bbar, e+, nu_e, e-, anti_nu_e]
+  mupmum: [b, bbar, mu+, nu_mu, mu-, anti_nu_mu]
+semileptonic_hadronic_modes:
+  wplus:
+    Wplus_u_dbar: [u, anti_d]
+    Wplus_u_sbar: [u, anti_s]
+    Wplus_u_bbar: [u, anti_b]
+    Wplus_c_dbar: [c, anti_d]
+    Wplus_c_sbar: [c, anti_s]
+    Wplus_c_bbar: [c, anti_b]
+  wminus:
+    Wminus_ubar_d: [anti_u, d]
+    Wminus_ubar_s: [anti_u, s]
+    Wminus_ubar_b: [anti_u, b]
+    Wminus_cbar_d: [anti_c, d]
+    Wminus_cbar_s: [anti_c, s]
+    Wminus_cbar_b: [anti_c, b]
+semileptonic_families:
+  epjets: {fixed: [b, bbar, e+, nu_e], hadronic_set: wminus}
+  emjets: {fixed: [b, bbar, e-, anti_nu_e], hadronic_set: wplus}
+  mupjets: {fixed: [b, bbar, mu+, nu_mu], hadronic_set: wminus}
+  mumjets: {fixed: [b, bbar, mu-, anti_nu_mu], hadronic_set: wplus}

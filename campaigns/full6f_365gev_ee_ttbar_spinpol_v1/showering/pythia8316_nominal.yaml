@@ -1,0 +1,7 @@
+schema: {name: pythia8316_nominal_profile, version: 1}
+status: static_profile_declared_runtime_not_locked
+pythia_version_required: '8.316'
+input_format: LHE
+output_format: HepMC3
+settings_policy: {read_lhe_init: true, shower_on: true, hadronization_on: true, duplicate_top_w_decay_check_required: true}
+identity_policy: {preserve_global_event_id_attribute: true, write_identity_sidecar: true, fail_on_missing_event_identity: true}

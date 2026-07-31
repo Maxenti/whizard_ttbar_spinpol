@@ -1,0 +1,7 @@
+schema: {name: package2_phase_registry, version: 1}
+phases:
+  phase3: {name: historical_references, validator: scripts/references/validate_phase3_references.py, depends_on: [phase1G, phase2]}
+  phase4: {name: sindarin_rendering, validator: scripts/sindarin/validate_phase4_cards.py, depends_on: [phase3]}
+  phase5: {name: integration_and_seeds, validator: scripts/integration/validate_phase5_integration.py, depends_on: [phase4]}
+  phase6: {name: beam_isr_polarization_normalization, validator: scripts/beam/validate_phase6_beam_and_normalization.py, depends_on: [phase5]}
+  phase7: {name: shower_handoff_hepmc_identity, validator: scripts/showering/validate_phase7_showering.py, depends_on: [phase6]}

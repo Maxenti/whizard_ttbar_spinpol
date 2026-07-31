@@ -1,0 +1,18 @@
+schema: {name: ttbar_spinpol_campaign, version: 1}
+campaign_id: full6f_365gev_ee_ttbar_spinpol_v1
+center_of_mass_energy_GeV: 365.0
+package2_config_version: 1
+contracts:
+  channel_matrix: analysis_contracts/channel_matrix.yaml
+  physics_model: analysis_contracts/physics_model.yaml
+  historical_reference: analysis_contracts/historical_reference_contract.yaml
+  generator_card: analysis_contracts/generator_card_contract.yaml
+  integration: analysis_contracts/integration_contract.yaml
+  seed: analysis_contracts/seed_and_reproducibility_contract.yaml
+  beam: analysis_contracts/beam_isr_polarization_contract.yaml
+  normalization: analysis_contracts/normalization_contract.yaml
+  shower_handoff: analysis_contracts/shower_handoff_contract.yaml
+  hepmc_identity: analysis_contracts/hepmc_event_identity_contract.yaml
+output_roots:
+  rendered_cards: sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1
+  eos_campaign_root: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1

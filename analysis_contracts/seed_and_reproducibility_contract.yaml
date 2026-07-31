@@ -1,0 +1,9 @@
+schema: {name: whizard_ttbar_seed_and_reproducibility_contract, version: 1, status: frozen_phase5}
+seed_policy:
+  algorithm: sha256_namespace_counter_v1
+  integer_range: [1, 2147483646]
+  zero_forbidden: true
+  deterministic_inputs: [campaign_id, sample_id, exact_subprocess_id, stage, shard_index, stream_label]
+  collision_policy: fatal
+  manual_seed_override_allowed: false
+reproducibility_policy: {random_streams_must_be_named: true, shard_seed_matrix_required: true, rerun_same_inputs_must_reproduce_seed_matrix: true}

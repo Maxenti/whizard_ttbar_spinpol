@@ -1,0 +1,5 @@
+schema: {name: integration_profiles, version: 1}
+profiles:
+  static_render_check: {role: card rendering and static validation only, iterations: 0, calls_per_iteration: 0, production_ready: false}
+  qualification_nominal: {role: first real WHIZARD qualification integration, iterations: 6, calls_per_iteration: 20000, target_relative_uncertainty: 0.02, production_ready: false}
+  production_candidate: {role: final candidate after qualification, iterations: null, calls_per_iteration: null, target_relative_uncertainty: null, production_ready: false}

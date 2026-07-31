@@ -1,0 +1,5 @@
+sample_format = lhef
+sample = "${OUTPUT_LHE}"
+n_events = ${N_EVENTS}
+seed = ${GENERATOR_SEED}
+simulate (${PROCESS_NAME})

@@ -1,0 +1,17 @@
+schema: {name: whizard_ttbar_historical_reference_contract, version: 1, status: frozen_phase3}
+campaign_reference: {campaign_id: full6f_365gev_ee_ttbar_spinpol_v1, channel_matrix: analysis_contracts/channel_matrix.yaml, physics_model: analysis_contracts/physics_model.yaml}
+phase_scope:
+  phase: 3
+  purpose: [capture historical FCC-ee/WHIZARD ttbar references, record exact source provenance, compare diagnostic reference outputs]
+reference_classes:
+  mandatory: [whizard_fcc_ee_ttbar_card_or_template, fcc_ee_365gev_top_threshold_or_ttbar_sample_note, whizard_external_pythia_lhe_to_hepmc_example, legacy_local_10k_factorized_controls]
+integrity_policy:
+  source_url_required: true
+  retrieval_utc_required: true
+  local_snapshot_required: true
+  sha256_required: true
+  interpretation_note_required: true
+  never_mutate_snapshot: true
+validation_policy:
+  missing_external_references_status: INCOMPLETE_REFERENCE_LOCK
+  static_schema_pass_is_not_physics_pass: true

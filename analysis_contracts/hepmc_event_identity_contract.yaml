@@ -1,0 +1,6 @@
+schema: {name: whizard_ttbar_hepmc_event_identity_contract, version: 1, status: frozen_phase7}
+identity_fields: [campaign_id, sample_id, exact_subprocess_id, polarization_id, shard_id, generator_event_number, global_event_id]
+global_event_id:
+  algorithm: sha256_joined_identity_fields_v1
+  stable_across: [LHE, PYTHIA8, HepMC3, particle_level_reconstruction, Delphes_W, Delphes_CF]
+requirements: {event_number_may_not_replace_global_id: true, event_number_resequencing_must_preserve_global_id_attribute: true, duplicate_global_id_policy: fatal, missing_global_id_policy: fatal, sidecar_identity_map_allowed: true}

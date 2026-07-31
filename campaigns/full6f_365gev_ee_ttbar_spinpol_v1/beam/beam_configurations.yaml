@@ -1,0 +1,9 @@
+schema: {name: beam_configuration_matrix, version: 1}
+beam_configurations:
+  nominal_365_isr_on_spectrum_pending: {center_of_mass_energy_GeV: 365.0, qed_isr: true, beam_spectrum: fcc_ee_365gev_pending_external_file, production_nominal: true, production_ready: false}
+  monochromatic_isr_on: {center_of_mass_energy_GeV: 365.0, qed_isr: true, beam_spectrum: monochromatic, production_nominal: false}
+  monochromatic_isr_off: {center_of_mass_energy_GeV: 365.0, qed_isr: false, beam_spectrum: monochromatic, production_nominal: false}
+polarizations:
+  unpolarized: {electron_polarization: 0.0, positron_polarization: 0.0}
+  LR100: {electron_polarization: -1.0, positron_polarization: 1.0}
+  RL100: {electron_polarization: 1.0, positron_polarization: -1.0}

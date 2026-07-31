@@ -1,0 +1,2 @@
+beams = e1, E1 => circe1
+sqrts = ${SQRTS_GEV} GeV

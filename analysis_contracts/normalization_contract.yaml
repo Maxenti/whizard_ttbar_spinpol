@@ -1,0 +1,6 @@
+schema: {name: whizard_ttbar_normalization_contract, version: 1, status: frozen_phase6}
+normalization_policy:
+  per_exact_subprocess_required: [cross_section_fb, cross_section_uncertainty_fb, generated_event_count, accepted_event_count, sumw, sumw2, rendered_card_sha256, integration_grid_id]
+  combine_by_raw_counts_forbidden: true
+  weighted_yield_formula: yield = luminosity_fb_inverse * cross_section_fb * selected_weight_fraction
+  unweighted_positive_events_preferred: true

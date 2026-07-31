@@ -1,0 +1,6 @@
+schema: {name: sm_parameter_set, version: 1}
+parameter_set_id: fcc_ee_365_full6f_sm_v1
+status: numerical_values_not_yet_locked
+lock_phase: 3
+production_allowed: false
+required_before_production: [WHIZARD model identifier, top mass and width, W mass and width, Z mass and width, electromagnetic input scheme, CKM matrix]

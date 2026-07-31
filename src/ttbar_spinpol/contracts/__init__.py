@@ -1,0 +1,1 @@
+"""Contract loading, indexing, and cross-validation utilities."""

@@ -1,0 +1,4 @@
+schema: {name: historical_reference_catalog, version: 1}
+status: external_references_not_yet_locked
+references: []
+required_reference_classes: [whizard_fcc_ee_ttbar_card_or_template, fcc_ee_365gev_top_threshold_or_ttbar_sample_note, whizard_external_pythia_lhe_to_hepmc_example, legacy_local_10k_factorized_controls]

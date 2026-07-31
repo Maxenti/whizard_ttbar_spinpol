@@ -1,0 +1,5 @@
+schema: {name: generation_shard_policy, version: 1}
+qualification: {target_events_per_sample_family: 10000, default_events_per_shard: 1000}
+dress_rehearsal: {target_events_per_sample_family: 100000, default_events_per_shard: 5000}
+final: {target_events_per_sample_family: null, locked_by_phase: 11}
+identity_policy: {shard_id_format: '{sample_id}__{exact_subprocess_id}__{stage}__shard{shard_index:05d}', global_event_id_algorithm: sha256_joined_identity_fields_v1}

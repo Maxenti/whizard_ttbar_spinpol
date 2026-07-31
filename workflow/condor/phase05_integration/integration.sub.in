@@ -1,0 +1,10 @@
+universe = vanilla
+executable = workflow/condor/phase05_integration/integration_job.sh
+arguments = $(card) $(outdir)
+output = $(outdir)/condor.out
+error = $(outdir)/condor.err
+log = $(logdir)/phase05_integration.log
+request_cpus = 1
+request_memory = 2GB
++JobFlavour = "tomorrow"
+queue card,outdir from $(matrix_file)

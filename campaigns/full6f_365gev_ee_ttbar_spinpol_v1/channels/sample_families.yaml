@@ -1,0 +1,14 @@
+schema: {name: sample_family_matrix, version: 1}
+required_sample_families:
+  - {sample_id: f6f365_ee_unpol_epmum, channel: epmum, polarization: unpolarized, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_unpol_mupem, channel: mupem, polarization: unpolarized, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_unpol_epem, channel: epem, polarization: unpolarized, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_unpol_mupmum, channel: mupmum, polarization: unpolarized, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_LR100_epmum, channel: epmum, polarization: LR100, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_RL100_epmum, channel: epmum, polarization: RL100, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_LR100_mupem, channel: mupem, polarization: LR100, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_RL100_mupem, channel: mupem, polarization: RL100, topology: prompt_dilepton}
+  - {sample_id: f6f365_ee_unpol_epjets, channel: epjets, polarization: unpolarized, topology: prompt_semileptonic}
+  - {sample_id: f6f365_ee_unpol_emjets, channel: emjets, polarization: unpolarized, topology: prompt_semileptonic}
+  - {sample_id: f6f365_ee_unpol_mupjets, channel: mupjets, polarization: unpolarized, topology: prompt_semileptonic}
+  - {sample_id: f6f365_ee_unpol_mumjets, channel: mumjets, polarization: unpolarized, topology: prompt_semileptonic}

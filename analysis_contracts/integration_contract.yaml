@@ -1,0 +1,9 @@
+schema: {name: whizard_ttbar_integration_contract, version: 1, status: frozen_phase5}
+campaign_reference: {campaign_id: full6f_365gev_ee_ttbar_spinpol_v1, generator_card_contract: analysis_contracts/generator_card_contract.yaml}
+integration_policy:
+  grid_identity_fields: [sample_id, exact_subprocess_id, polarization_id, beam_configuration_id, sm_parameter_set_id, whizard_version, rendered_card_sha256]
+  repeatability_required: true
+  grid_reuse_allowed_only_with_matching_identity: true
+  convergence_metadata_required: [cross_section_fb, cross_section_uncertainty_fb, relative_uncertainty, integration_iterations, effective_calls, whizard_exit_code, log_sha256]
+  no_fake_cross_sections: true
+phase5_gate: {static_matrix_validation_without_whizard: true, production_gate_requires_whizard_logs: true, missing_integration_logs_status: INCOMPLETE_INTEGRATION_PRODUCTS}

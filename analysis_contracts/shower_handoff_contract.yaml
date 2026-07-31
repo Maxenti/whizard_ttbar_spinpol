@@ -1,0 +1,12 @@
+schema: {name: whizard_ttbar_shower_handoff_contract, version: 1, status: frozen_phase7}
+handoff_policy:
+  input_format: LHE
+  shower_generator: PYTHIA
+  shower_version_required: '8.316'
+  output_format: HepMC3
+  external_pythia_required: true
+  event_identity_preservation_required: true
+  event_weights_preservation_required: true
+  duplicate_top_decay_forbidden: true
+  duplicate_W_decay_forbidden: true
+validation_counters_required: [input_events, written_events, failed_events, duplicate_top_decay_candidates, duplicate_W_decay_candidates, momentum_closure_failures, charge_closure_failures]

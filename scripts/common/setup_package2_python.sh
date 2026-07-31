@@ -1,0 +1,2 @@
+REPO=${REPO:-$(pwd)}
+export PYTHONPATH="$REPO/src${PYTHONPATH:+:$PYTHONPATH}"
