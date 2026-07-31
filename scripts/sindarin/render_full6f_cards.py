@@ -8,6 +8,30 @@ from ttbar_spinpol.genchain.checksums import sha256
 from ttbar_spinpol.genchain.process_matrix import load_process_rows, expected_counts
 from ttbar_spinpol.genchain.seed_policy import derive_seed
 from ttbar_spinpol.genchain.yamlio import write_json
+
+WHIZARD_PARTICLE_NAMES = {
+    "e-": "e1",
+    "e+": "E1",
+    "mu-": "e2",
+    "mu+": "E2",
+    "tau-": "e3",
+    "tau+": "E3",
+    "nu_e": "n1",
+    "anti_nu_e": "N1",
+    "nu_mu": "n2",
+    "anti_nu_mu": "N2",
+    "nu_tau": "n3",
+    "anti_nu_tau": "N3",
+    "anti_u": "ubar",
+    "anti_d": "dbar",
+    "anti_s": "sbar",
+    "anti_c": "cbar",
+    "anti_b": "bbar",
+}
+
+def to_whizard_particle(name: str) -> str:
+    return WHIZARD_PARTICLE_NAMES.get(name, name)
+
 POL={'unpolarized':(0.0,0.0),'LR100':(-1.0,1.0),'RL100':(1.0,-1.0)}
 def main() -> int:
     ap=argparse.ArgumentParser(); ap.add_argument('--repo',required=True,type=Path); args=ap.parse_args(); repo=args.repo.resolve()
@@ -15,7 +39,8 @@ def main() -> int:
     for row in rows:
         pol=POL[row.polarization]; seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'render',0,'whizard')
         outdir=output_root/row.sample_id/row.exact_subprocess_id; common_out=outdir/'common'; common_out.mkdir(parents=True,exist_ok=True)
-        context={'SQRTS_GEV':'365.0','ISR_HANDLER':'true','ISR_ENABLED':'true','ELECTRON_POLARIZATION':pol[0],'POSITRON_POLARIZATION':pol[1],'INTEGRATION_ITERATIONS':0,'INTEGRATION_CALLS':0,'PROCESS_NAME':row.process_name,'FINAL_STATE':', '.join(row.final_state),'N_EVENTS':0,'GENERATOR_SEED':seed,'OUTPUT_LHE':f'EOS_OUTPUT_ROOT/{row.sample_id}/{row.exact_subprocess_id}.lhe','PARAMETER_BLOCK':'','COMMON_DIR':str(common_out)}
+        context={'SQRTS_GEV':'365.0','ISR_HANDLER':'true','ISR_ENABLED':'true','ELECTRON_POLARIZATION':pol[0],'POSITRON_POLARIZATION':pol[1],'INTEGRATION_ITERATIONS':0,'INTEGRATION_CALLS':0,'PROCESS_NAME':row.process_name,
+            "SAMPLE_BASENAME": row.process_name,'FINAL_STATE':', '.join(to_whizard_particle(x) for x in row.final_state),'N_EVENTS':0,'GENERATOR_SEED':seed,'OUTPUT_LHE':f'EOS_OUTPUT_ROOT/{row.sample_id}/{row.exact_subprocess_id}.lhe','PARAMETER_BLOCK':'','COMMON_DIR':str(common_out)}
         for inc in ['model','parameters','beams','isr','polarization','integration','event_output','diagnostics']: render_file(template_root/f'common/{inc}.inc.in', common_out/f'{inc}.inc', context)
         template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
         meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
