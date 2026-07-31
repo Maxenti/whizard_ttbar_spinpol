@@ -237,17 +237,27 @@ def localize_card(
     return dst
 
 
-def write_pythia_cmnd(path: Path, events: int) -> None:
+def write_pythia_cmnd(path: Path, events: int, profile: str) -> None:
+    if profile == "full_hadron":
+        hadron_level = "on"
+        description = "full perturbative shower plus hadronization"
+    elif profile == "parton_only":
+        hadron_level = "off"
+        description = "perturbative shower only; hadronization disabled"
+    else:
+        raise BridgeError(f"unsupported PYTHIA profile: {profile}")
+
     path.write_text(
         f"""! Phase 7 canonical-v2 bridge PYTHIA settings.
 ! Input LHE has already been canonicalized from WHIZARD extended ISR-history form.
+! Profile: {profile} ({description})
 
 Main:numberOfEvents = {events}
-Main:timesAllowErrors = 20
+Main:timesAllowErrors = 100
 
 Beams:frameType = 4
 
-HadronLevel:all = on
+HadronLevel:all = {hadron_level}
 PartonLevel:ISR = on
 PartonLevel:FSR = on
 PartonLevel:MPI = off
@@ -399,6 +409,7 @@ def build_summary(
         "commit": commit,
         "runtime_view": runtime_view,
         "run_dir": str(run_dir),
+        "pythia_profile": pythia_config.read_text(encoding="utf-8").split("Profile:", 1)[1].split("\n", 1)[0].strip() if pythia_config.is_file() and "Profile:" in pythia_config.read_text(encoding="utf-8") else "unknown",
         "source_card": str(source_card),
         "raw_lhe": str(raw_lhe),
         "canonical_lhe": str(canon_lhe),
@@ -464,6 +475,7 @@ def write_runtime_note(
         f"HEPMC_OUT={summary.get('hepmc')}",
         f"HEPMC_METADATA={summary.get('metadata')}",
         f"PYTHIA_LOG={summary.get('pythia_log')}",
+        f"PYTHIA_PROFILE={summary.get('pythia_profile')}",
         f"VALIDATOR_LOG={validator_log}",
         f"RAW_LHE_EVENT_COUNT={summary['event_counts'].get('raw_lhe')}",
         f"CANONICAL_LHE_EVENT_COUNT={summary['event_counts'].get('canonical_lhe')}",
@@ -492,6 +504,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=12345)
     parser.add_argument("--events", type=int, default=100)
     parser.add_argument("--iterations", default="3:5000")
+    parser.add_argument(
+        "--pythia-profile",
+        choices=["full_hadron", "parton_only"],
+        default="full_hadron",
+        help="PYTHIA final-state profile. Use parton_only for stable spin/QIS qualification without Lund fragmentation.",
+    )
     parser.add_argument("--output-base", type=Path, default=Path(os.environ.get("TTSP_RUN_BASE", str(DEFAULT_OUTPUT_BASE))))
     parser.add_argument("--build-dir", type=Path, default=None)
     parser.add_argument("--pythia-exec", type=Path, default=None)
@@ -552,6 +570,7 @@ def main() -> int:
     print(f"SHARD_ID={shard_id}")
     print(f"EVENTS={args.events}")
     print(f"ITERATIONS={args.iterations}")
+    print(f"PYTHIA_PROFILE={args.pythia_profile}")
     print(f"RUN_DIR={run_dir}")
     print(f"PYTHIA_EXEC={pythia_exec}")
     print("=" * 100)
@@ -613,7 +632,7 @@ def main() -> int:
         raise BridgeError(f"canonicalizer failed with rc={canon_rc}; see {canon_log}")
 
     pythia_config = run_dir / "pythia8_bridge_canonical_v2.cmnd"
-    write_pythia_cmnd(pythia_config, args.events)
+    write_pythia_cmnd(pythia_config, args.events, args.pythia_profile)
 
     hepmc = run_dir / f"{args.label}.canonical_v2.hepmc3"
     pythia_log = run_dir / "run_external_pythia_canonical_v2.log"

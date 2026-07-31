@@ -47,6 +47,11 @@ def main() -> int:
     parser.add_argument("--only-label", action="append", default=[])
     parser.add_argument("--events", type=int, default=None)
     parser.add_argument("--iterations", default=None)
+    parser.add_argument(
+        "--pythia-profile",
+        choices=["full_hadron", "parton_only"],
+        default=None,
+    )
     parser.add_argument("--continue-on-error", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
@@ -88,6 +93,7 @@ def main() -> int:
         events = args.events if args.events is not None else manifest_events
         iterations = args.iterations if args.iterations is not None else str(record.get("iterations", "3:5000"))
         seed = int(record["seed"])
+        pythia_profile = args.pythia_profile or str(record.get("pythia_profile", "full_hadron"))
         sample_id = record.get("sample_id", f"{label}_canonical_v2")
 
         default_manifest_shard_id = f"bridge_{manifest_events}ev_{label}"
@@ -120,6 +126,8 @@ def main() -> int:
             iterations,
             "--seed",
             str(seed),
+            "--pythia-profile",
+            pythia_profile,
         ]
 
         if args.output_base is not None:
@@ -181,6 +189,7 @@ def main() -> int:
             "events": events,
             "iterations": iterations,
             "seed": seed,
+            "pythia_profile": pythia_profile,
             "sample_id": sample_id,
             "shard_id": shard_id,
             "return_code": proc.returncode,

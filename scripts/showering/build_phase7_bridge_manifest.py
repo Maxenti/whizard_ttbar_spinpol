@@ -73,6 +73,11 @@ def main() -> int:
     parser.add_argument("--base-seed", type=int, default=24682000)
     parser.add_argument("--events", type=int, default=100)
     parser.add_argument("--iterations", default="3:5000")
+    parser.add_argument(
+        "--pythia-profile",
+        choices=["full_hadron", "parton_only"],
+        default="full_hadron",
+    )
     parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
@@ -109,6 +114,7 @@ def main() -> int:
                 "seed": seed,
                 "events": args.events,
                 "iterations": args.iterations,
+                "pythia_profile": args.pythia_profile,
             }
         )
 
