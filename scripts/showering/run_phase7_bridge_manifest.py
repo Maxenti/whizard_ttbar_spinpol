@@ -151,6 +151,28 @@ def main() -> int:
 
         runner_dir = extract_runner_dir(proc.stdout)
 
+        child_summary = None
+        child_summary_path = None
+        runner_status = None
+        event_counts = None
+        warning_counts = None
+        runner_warnings = None
+        runner_errors = None
+
+        if runner_dir:
+            candidate = Path(runner_dir) / "phase7_bridge_summary.json"
+            child_summary_path = str(candidate)
+            if candidate.is_file():
+                try:
+                    child_summary = json.loads(candidate.read_text(encoding="utf-8"))
+                    runner_status = child_summary.get("status")
+                    event_counts = child_summary.get("event_counts")
+                    warning_counts = child_summary.get("warning_counts")
+                    runner_warnings = child_summary.get("warnings")
+                    runner_errors = child_summary.get("errors")
+                except Exception as exc:
+                    runner_errors = [f"could not parse child summary {candidate}: {exc}"]
+
         result = {
             "index": index,
             "label": label,
@@ -163,6 +185,12 @@ def main() -> int:
             "shard_id": shard_id,
             "return_code": proc.returncode,
             "runner_dir": runner_dir,
+            "runner_summary": child_summary_path,
+            "runner_status": runner_status,
+            "event_counts": event_counts,
+            "warning_counts": warning_counts,
+            "runner_warnings": runner_warnings,
+            "runner_errors": runner_errors,
             "log": str(log_path),
         }
 
