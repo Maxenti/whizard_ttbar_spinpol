@@ -9,6 +9,26 @@ from ttbar_spinpol.genchain.process_matrix import load_process_rows, expected_co
 from ttbar_spinpol.genchain.seed_policy import derive_seed
 from ttbar_spinpol.genchain.yamlio import write_json
 
+
+def scrub_unpolarized_polarization_includes(generated_root):
+    """Remove polarization includes from unpolarized generated process cards.
+
+    WHIZARD 3.1.8 rejects the zero-polarization block used in the initial scaffold.
+    Unpolarized cards should omit polarization.inc entirely.
+    """
+    root = Path(generated_root)
+    if not root.exists():
+        return 0
+    changed = 0
+    for card in sorted(root.glob("*_unpol_*/**/process.sin")):
+        lines = card.read_text(encoding="utf-8").splitlines()
+        new_lines = [line for line in lines if "polarization.inc" not in line]
+        if new_lines != lines:
+            card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+            changed += 1
+    return changed
+
+
 WHIZARD_PARTICLE_NAMES = {
     "e-": "e1",
     "e+": "E1",
@@ -45,5 +65,8 @@ def main() -> int:
         template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
         meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
     write_json(output_root/'rendered_cards_manifest.json',{'status':'PASS','counts':expected_counts(rows),'rendered_count':len(rendered),'rendered':rendered})
+    scrubbed = scrub_unpolarized_polarization_includes(output_root)
+    if scrubbed:
+        print(f"UNPOL_POLARIZATION_INCLUDE_SCRUBBED={scrubbed}")
     print(json.dumps({'status':'PASS','rendered_count':len(rendered)},indent=2)); return 0
 if __name__=='__main__': sys.exit(main())

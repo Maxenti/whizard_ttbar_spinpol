@@ -15,6 +15,10 @@ def main() -> int:
         if PLACEHOLDER.search(text): errors.append(f'unresolved placeholder in {card}')
         if f'process {row.process_name}' not in text: errors.append(f'process line missing for {row.exact_subprocess_id}')
 
+        # UNPOLARIZED_POLARIZATION_INCLUDE_LINT
+        if "_unpol_" in str(card) and "polarization.inc" in text:
+            errors.append(f"unpolarized card includes polarization.inc: {card}")
+
         # RUNTIME_PROVEN_PROCESS_LINE_LINT
         for line in text.splitlines():
             stripped = line.strip()
