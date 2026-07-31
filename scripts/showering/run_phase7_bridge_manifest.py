@@ -83,11 +83,23 @@ def main() -> int:
     for index, record in enumerate(records, start=1):
         label = record["label"]
         card = record["card"]
-        events = args.events if args.events is not None else int(record.get("events", 100))
+
+        manifest_events = int(record.get("events", 100))
+        events = args.events if args.events is not None else manifest_events
         iterations = args.iterations if args.iterations is not None else str(record.get("iterations", "3:5000"))
         seed = int(record["seed"])
         sample_id = record.get("sample_id", f"{label}_canonical_v2")
-        shard_id = record.get("shard_id", f"bridge_{events}ev_{label}")
+
+        default_manifest_shard_id = f"bridge_{manifest_events}ev_{label}"
+        manifest_shard_id = str(record.get("shard_id", default_manifest_shard_id))
+
+        # If --events overrides the manifest event count, keep shard/event
+        # bookkeeping consistent for default shard IDs.  Preserve explicitly
+        # customized shard IDs.
+        if args.events is not None and manifest_shard_id == default_manifest_shard_id:
+            shard_id = f"bridge_{events}ev_{label}"
+        else:
+            shard_id = manifest_shard_id
 
         command = [
             sys.executable,
