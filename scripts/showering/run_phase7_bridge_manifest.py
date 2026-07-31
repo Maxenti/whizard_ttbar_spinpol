@@ -145,19 +145,30 @@ def main() -> int:
         print("COMMAND=" + " ".join(command))
         print("=" * 100)
 
-        proc = subprocess.run(
-            command,
-            cwd=str(repo),
-            env=os.environ.copy(),
-            text=True,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-        )
+        child_output_lines = []
+        with log_path.open("w", encoding="utf-8") as log:
+            proc = subprocess.Popen(
+                command,
+                cwd=str(repo),
+                env=os.environ.copy(),
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                bufsize=1,
+            )
 
-        log_path.write_text(proc.stdout, encoding="utf-8")
-        print(proc.stdout, end="")
+            assert proc.stdout is not None
+            for line in proc.stdout:
+                print(line, end="", flush=True)
+                log.write(line)
+                log.flush()
+                child_output_lines.append(line)
 
-        runner_dir = extract_runner_dir(proc.stdout)
+            return_code = proc.wait()
+
+        child_stdout = "".join(child_output_lines)
+
+        runner_dir = extract_runner_dir(child_stdout)
 
         child_summary = None
         child_summary_path = None
@@ -192,7 +203,7 @@ def main() -> int:
             "pythia_profile": pythia_profile,
             "sample_id": sample_id,
             "shard_id": shard_id,
-            "return_code": proc.returncode,
+            "return_code": return_code,
             "runner_dir": runner_dir,
             "runner_summary": child_summary_path,
             "runner_status": runner_status,
@@ -205,7 +216,7 @@ def main() -> int:
 
         summary_records.append(result)
 
-        if proc.returncode != 0:
+        if return_code != 0:
             failures += 1
             if not args.continue_on_error:
                 break
