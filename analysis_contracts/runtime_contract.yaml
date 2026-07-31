@@ -1,0 +1,89 @@
+schema:
+  name: whizard_ttbar_runtime_contract
+  version: 1
+  status: frozen_phase2_interface
+
+campaign_reference:
+  campaign_id: full6f_365gev_ee_ttbar_spinpol_v1
+
+required_components:
+  whizard:
+    required_version: 3.1.8
+    executable_names: [whizard]
+    runtime_probe: "whizard --version"
+  pythia8:
+    required_version: 8.316
+    discovery:
+      - pythia8-config
+      - pkg-config
+      - environment
+  hepmc3:
+    required_major_version: 3
+    discovery:
+      - HepMC3-config
+      - pkg-config
+      - environment
+  compiler:
+    family: gcc_compatible
+    cxx_standard: 17
+  python:
+    minimum_version: "3.9"
+
+environment_capture:
+  required:
+    - utc_timestamp
+    - hostname
+    - operating_system
+    - architecture
+    - shell
+    - path
+    - ld_library_path
+    - python_executable
+    - python_version
+    - compiler_path
+    - compiler_version
+    - whizard_path
+    - whizard_version
+    - pythia8_discovery
+    - pythia8_version
+    - hepmc3_discovery
+    - hepmc3_version
+    - cvmfs_mounts
+    - environment_script_checksums
+    - git_commit
+    - git_dirty_state
+
+abi_validation:
+  required_when_dependencies_available: true
+  checks:
+    - compile_and_link_pythia8
+    - compile_and_link_hepmc3
+    - compile_and_link_combined_driver
+    - execute_minimal_driver
+  static_package1_validation_may_skip_external_abi_checks: true
+  skipped_check_status: NOT_RUN_DEPENDENCY_UNAVAILABLE
+
+reproducibility:
+  runtime_manifest_required: true
+  immutable_environment_snapshot_required: true
+  command_log_required: true
+  checksums_required: true
+  exact_runtime_restore_instructions_required: true
+  production_forbidden_if_runtime_unlocked: true
+
+threading:
+  default:
+    OMP_NUM_THREADS: "1"
+    MKL_NUM_THREADS: "1"
+    OPENBLAS_NUM_THREADS: "1"
+    NUMEXPR_NUM_THREADS: "1"
+    MALLOC_ARENA_MAX: "2"
+
+phase2_gate:
+  pass_requires:
+    - all_required_components_discovered
+    - version_requirements_met
+    - environment_manifest_valid
+    - abi_checks_pass_when_dependencies_available
+    - runtime_restore_documented
+  static_only_result: INCOMPLETE_RUNTIME_VALIDATION
