@@ -10,6 +10,54 @@ from ttbar_spinpol.genchain.seed_policy import derive_seed
 from ttbar_spinpol.genchain.yamlio import write_json
 
 
+def configure_generated_polarization_blocks(generated_root):
+    """Apply WHIZARD-3.1.8-compatible polarization blocks after card rendering.
+
+    Current campaign naming convention:
+      *_unpol_* : omit polarization include entirely
+      *_LR100_* : e- left,  e+ right => @(-1), @(+1)
+      *_RL100_* : e- right, e+ left  => @(+1), @(-1)
+    """
+    root = Path(generated_root)
+    if not root.exists():
+        return {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+
+    counts = {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+
+    for card in sorted(root.glob("**/process.sin")):
+        card_text = card.read_text(encoding="utf-8")
+        card_lines = card_text.splitlines()
+        card_str = str(card)
+
+        if "_unpol_" in card_str:
+            new_lines = [line for line in card_lines if "polarization.inc" not in line]
+            if new_lines != card_lines:
+                card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+                counts["unpol_scrubbed"] += 1
+            continue
+
+        pol = card.parent / "common" / "polarization.inc"
+
+        if "_LR100_" in card_str:
+            pol.write_text(
+                "beams_pol_density = @(-1), @(+1)\n"
+                "beams_pol_fraction = 100%, 100%\n",
+                encoding="utf-8",
+            )
+            counts["lr_written"] += 1
+
+        elif "_RL100_" in card_str:
+            pol.write_text(
+                "beams_pol_density = @(+1), @(-1)\n"
+                "beams_pol_fraction = 100%, 100%\n",
+                encoding="utf-8",
+            )
+            counts["rl_written"] += 1
+
+    return counts
+
+
+
 def scrub_unpolarized_polarization_includes(generated_root):
     """Remove polarization includes from unpolarized generated process cards.
 
@@ -65,8 +113,7 @@ def main() -> int:
         template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
         meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
     write_json(output_root/'rendered_cards_manifest.json',{'status':'PASS','counts':expected_counts(rows),'rendered_count':len(rendered),'rendered':rendered})
-    scrubbed = scrub_unpolarized_polarization_includes(output_root)
-    if scrubbed:
-        print(f"UNPOL_POLARIZATION_INCLUDE_SCRUBBED={scrubbed}")
+    pol_counts = configure_generated_polarization_blocks(output_root)
+    print(f"POLARIZATION_BLOCKS_CONFIGURED={pol_counts}")
     print(json.dumps({'status':'PASS','rendered_count':len(rendered)},indent=2)); return 0
 if __name__=='__main__': sys.exit(main())
