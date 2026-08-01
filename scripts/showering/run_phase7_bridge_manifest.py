@@ -48,6 +48,12 @@ def main() -> int:
     parser.add_argument("--events", type=int, default=None)
     parser.add_argument("--iterations", default=None)
     parser.add_argument(
+        "--timeout-whizard-minutes",
+        type=float,
+        default=None,
+        help="Forwarded timeout for the WHIZARD stage in each child bridge runner.",
+    )
+    parser.add_argument(
         "--pythia-profile",
         choices=["full_hadron", "parton_only"],
         default=None,
