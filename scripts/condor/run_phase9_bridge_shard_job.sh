@@ -4,10 +4,20 @@ set -uo pipefail
 REPO="${1:?missing REPO}"
 MANIFEST="${2:?missing MANIFEST}"
 PROC_ID="${3:?missing PROC_ID}"
-OUT_DIR="${4:?missing OUT_DIR}"
+OUT_ARG="${4:?missing OUT_DIR_OR_TAG}"
 TIMEOUT_MINUTES="${5:-45}"
 
-export REPO MANIFEST PROC_ID OUT_DIR TIMEOUT_MINUTES
+# Standard CERN batch schedds must not use /eos paths directly in the submit
+# description.  For Condor production, pass a short output tag and reconstruct
+# the EOS output path inside the job.  Direct absolute paths remain supported
+# for manual/local tests.
+if [[ "$OUT_ARG" == /* ]]; then
+  OUT_DIR="$OUT_ARG"
+else
+  OUT_DIR="/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/$OUT_ARG"
+fi
+
+export REPO MANIFEST PROC_ID OUT_ARG OUT_DIR TIMEOUT_MINUTES
 
 mkdir -p \
   "$OUT_DIR/logs" \

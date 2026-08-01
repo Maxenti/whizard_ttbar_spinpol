@@ -1,11 +1,11 @@
 universe = vanilla
 
 executable = scripts/condor/run_phase9_bridge_shard_job.sh
-arguments  = $(TTSP_REPO) $(TTSP_MANIFEST) $(ProcId) $(TTSP_OUT_DIR) $(TTSP_TIMEOUT_MINUTES)
+arguments  = $(TTSP_REPO) $(TTSP_MANIFEST) $(ProcId) $(TTSP_OUT_TAG) $(TTSP_TIMEOUT_MINUTES)
 
-output = $(TTSP_OUT_DIR)/condor/stdout/job_$(ProcId).out
-error  = $(TTSP_OUT_DIR)/condor/stderr/job_$(ProcId).err
-log    = $(TTSP_OUT_DIR)/condor/condor.log
+output = $(TTSP_CONDOR_LOG_DIR)/stdout/job_$(ProcId).out
+error  = $(TTSP_CONDOR_LOG_DIR)/stderr/job_$(ProcId).err
+log    = $(TTSP_CONDOR_LOG_DIR)/condor.log
 
 request_cpus   = 1
 request_memory = 4096MB
