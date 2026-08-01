@@ -49,7 +49,7 @@ def main() -> int:
     parser.add_argument("--iterations", default=None)
     parser.add_argument(
         "--timeout-whizard-minutes",
-        type=float,
+        type=int,
         default=None,
         help="Forwarded timeout for the WHIZARD stage in each child bridge runner.",
     )
