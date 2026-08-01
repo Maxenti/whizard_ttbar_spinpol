@@ -1,0 +1,19 @@
+universe = vanilla
+
+executable = scripts/condor/run_phase9_bridge_shard_job.sh
+arguments  = $(REPO) $(MANIFEST) $(ProcId) $(OUT_DIR) $(TIMEOUT_MINUTES)
+
+output = $(OUT_DIR)/condor/stdout/job_$(ProcId).out
+error  = $(OUT_DIR)/condor/stderr/job_$(ProcId).err
+log    = $(OUT_DIR)/condor/condor.log
+
+request_cpus   = 1
+request_memory = 4096MB
+request_disk   = 2048MB
+
++JobFlavour = "tomorrow"
+
+getenv = False
+should_transfer_files = NO
+
+queue $(N_JOBS)
