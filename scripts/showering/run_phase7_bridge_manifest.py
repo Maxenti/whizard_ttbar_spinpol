@@ -133,6 +133,9 @@ def main() -> int:
         if args.output_base is not None:
             command += ["--output-base", str(args.output_base)]
 
+        if args.timeout_whizard_minutes is not None:
+            command += ["--timeout-whizard-minutes", str(args.timeout_whizard_minutes)]
+
         if args.dry_run:
             command.append("--dry-run")
 
