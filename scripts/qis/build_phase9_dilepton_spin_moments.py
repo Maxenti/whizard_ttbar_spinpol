@@ -70,9 +70,12 @@ def beta_of(v):
 def boost(v, beta):
     """Lorentz boost four-vector by velocity beta.
 
-    Convention: boost(v, beta) gives components in a frame moving with +beta
-    relative to the original frame. To go to the rest frame of object P, use
-    beta = -P_vec/P_E.
+    Convention: boost(v, beta) applies
+
+      E' = gamma (E - beta · p)
+
+    With this convention, to transform a lab-frame four-vector into the rest
+    frame of an object with four-momentum P, use beta = P_vec / P_E.
     """
     e, px, py, pz = v
     bx, by, bz = beta
@@ -106,7 +109,7 @@ def boost_axis_to_rest(axis_ttbar, parent_p4_ttbar):
         return None
 
     axis4 = (0.0, axis_ttbar[0], axis_ttbar[1], axis_ttbar[2])
-    axis_parent = boost(axis4, neg_beta(beta_parent))
+    axis_parent = boost(axis4, beta_parent)
     return unit3(spatial(axis_parent))
 
 
@@ -114,7 +117,7 @@ def lepton_dir_in_parent_rest(lepton_lab, parent_lab):
     beta_parent_lab = beta_of(parent_lab)
     if beta_parent_lab is None:
         return None
-    lep_parent = boost(lepton_lab, neg_beta(beta_parent_lab))
+    lep_parent = boost(lepton_lab, beta_parent_lab)
     return unit3(spatial(lep_parent))
 
 
@@ -147,7 +150,7 @@ def compute_event_components(record):
     if beta_ttbar is None:
         return None, ["bad ttbar beta"]
 
-    to_ttbar_rest = neg_beta(beta_ttbar)
+    to_ttbar_rest = beta_ttbar
 
     top_ttbar = boost(top_lab, to_ttbar_rest)
     antitop_ttbar = boost(antitop_lab, to_ttbar_rest)
