@@ -216,6 +216,10 @@ find \
   "$REPO/configs" \
   "$REPO/analysis_contracts" \
   "$CAMPAIGN_DIR" \
+  \( \
+    -path "$CAMPAIGN_DIR/phase10A_production_definition" -o \
+    -path "$CAMPAIGN_DIR/phase10A_production_definition/*" \
+  \) -prune -o \
   -type f \
   \( \
     -iname '*365*' -o \
@@ -230,6 +234,15 @@ find \
   -print 2>/dev/null \
   | sort -u \
   | tee "$AUDIT_DIR/relevant_config_inventory.txt"
+
+if grep -Fq "$AUDIT_ROOT/" "$AUDIT_DIR/relevant_config_inventory.txt"; then
+  echo "PHASE10A_AUDIT_SELF_CAPTURE_STATUS=FAIL"
+  echo "ERROR: audit output was discovered as an input configuration"
+  grep -Fn "$AUDIT_ROOT/" "$AUDIT_DIR/relevant_config_inventory.txt"
+  exit 1
+fi
+
+echo "PHASE10A_AUDIT_SELF_CAPTURE_STATUS=PASS"
 
 while IFS= read -r file; do
   [[ -f "$file" ]] || continue
