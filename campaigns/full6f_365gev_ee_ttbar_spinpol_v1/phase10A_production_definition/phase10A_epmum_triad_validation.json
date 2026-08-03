@@ -1,0 +1,96 @@
+{
+  "checks": [
+    {
+      "check": "common_file_identical",
+      "file": "common/model.inc",
+      "passed": true,
+      "values": {
+        "LR100": "model = SM",
+        "RL100": "model = SM",
+        "unpol": "model = SM"
+      }
+    },
+    {
+      "check": "common_file_identical",
+      "file": "common/beams.inc",
+      "passed": true,
+      "values": {
+        "LR100": "beams = e1, E1 => isr\nsqrts = 365.0 GeV",
+        "RL100": "beams = e1, E1 => isr\nsqrts = 365.0 GeV",
+        "unpol": "beams = e1, E1 => isr\nsqrts = 365.0 GeV"
+      }
+    },
+    {
+      "check": "common_file_identical",
+      "file": "common/isr.inc",
+      "passed": true,
+      "values": {
+        "LR100": "?isr_handler = true\n$isr_handler_mode = \"recoil\"\n?keep_beams = true\n?keep_remnants = true\nisr_mass = me",
+        "RL100": "?isr_handler = true\n$isr_handler_mode = \"recoil\"\n?keep_beams = true\n?keep_remnants = true\nisr_mass = me",
+        "unpol": "?isr_handler = true\n$isr_handler_mode = \"recoil\"\n?keep_beams = true\n?keep_remnants = true\nisr_mass = me"
+      }
+    },
+    {
+      "check": "common_file_identical",
+      "file": "common/integration.inc",
+      "passed": true,
+      "values": {
+        "LR100": "iterations = 0:0\nintegrate (proc_epmum)",
+        "RL100": "iterations = 0:0\nintegrate (proc_epmum)",
+        "unpol": "iterations = 0:0\nintegrate (proc_epmum)"
+      }
+    },
+    {
+      "check": "common_file_identical",
+      "file": "common/event_output.inc",
+      "passed": true,
+      "values": {
+        "LR100": "simulate (proc_epmum) {\n  n_events = 0\n  sample_format = lhef\n  $sample = \"proc_epmum\"\n}",
+        "RL100": "simulate (proc_epmum) {\n  n_events = 0\n  sample_format = lhef\n  $sample = \"proc_epmum\"\n}",
+        "unpol": "simulate (proc_epmum) {\n  n_events = 0\n  sample_format = lhef\n  $sample = \"proc_epmum\"\n}"
+      }
+    },
+    {
+      "check": "expected_process",
+      "passed": true,
+      "state": "unpol"
+    },
+    {
+      "check": "expected_process",
+      "passed": true,
+      "state": "LR100"
+    },
+    {
+      "check": "expected_process",
+      "passed": true,
+      "state": "RL100"
+    },
+    {
+      "check": "polarization_definition",
+      "observed": "polarization = 0.0, 0.0",
+      "passed": true,
+      "state": "unpol"
+    },
+    {
+      "check": "polarization_definition",
+      "observed": "beams_pol_density = @(-1), @(+1)\nbeams_pol_fraction = 100%, 100%",
+      "passed": true,
+      "state": "LR100"
+    },
+    {
+      "check": "polarization_definition",
+      "observed": "beams_pol_density = @(+1), @(-1)\nbeams_pol_fraction = 100%, 100%",
+      "passed": true,
+      "state": "RL100"
+    }
+  ],
+  "failures": [],
+  "generated_root": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1",
+  "interpretation": {
+    "LR100": "electron helicity -1, positron helicity +1",
+    "RL100": "electron helicity +1, positron helicity -1",
+    "unpol": "default unpolarized beams; inactive directory polarization file"
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}
