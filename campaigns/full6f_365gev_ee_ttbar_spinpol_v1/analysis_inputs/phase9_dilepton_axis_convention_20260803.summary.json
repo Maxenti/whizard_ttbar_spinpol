@@ -1,0 +1,154 @@
+{
+  "axis_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_axis_convention_20260803/phase9_dilepton_axis_convention_comparison.csv",
+  "axis_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_axis_convention_20260803/phase9_dilepton_axis_convention_comparison.json",
+  "axis_modes": [
+    "nominal_beam",
+    "effective_status21_beam"
+  ],
+  "basis_component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "inventory": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/analysis_inputs/phase9_parton_only_analysis_inventory_20260803.jsonl",
+  "max_abs_delta": 1.0842021724855044e-18,
+  "n_events": {
+    "LR100_epmum": {
+      "effective_status21_beam": 10000,
+      "nominal_beam": 10000
+    },
+    "unpol_epmum": {
+      "effective_status21_beam": 10000,
+      "nominal_beam": 10000
+    }
+  },
+  "notes": [
+    "Compares spin moments using nominal e- beam axis versus status-21 post-ISR/effective e- beam axis.",
+    "This is a convention diagnostic, not a final physics claim.",
+    "If deltas are negligible relative to statistical errors, nominal-beam convention can be frozen for this Phase 9 truth-candidate product."
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "top_axis_deltas": [
+    {
+      "abs_delta": 1.0842021724855044e-18,
+      "delta_effective_minus_nominal": -1.0842021724855044e-18,
+      "effective_status21_beam": 0.0015479626890127927,
+      "key": "C_nk",
+      "nominal_beam": 0.0015479626890127938,
+      "parent_label": "LR100_epmum"
+    },
+    {
+      "abs_delta": 8.673617379884035e-19,
+      "delta_effective_minus_nominal": 8.673617379884035e-19,
+      "effective_status21_beam": -0.007365843600623561,
+      "key": "C_kn",
+      "nominal_beam": -0.007365843600623562,
+      "parent_label": "LR100_epmum"
+    },
+    {
+      "abs_delta": 2.168404344971009e-19,
+      "delta_effective_minus_nominal": -2.168404344971009e-19,
+      "effective_status21_beam": 0.0010737109703332507,
+      "key": "Bplus_n",
+      "nominal_beam": 0.0010737109703332509,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": 0.2878776381475867,
+      "key": "Bplus_r",
+      "nominal_beam": 0.2878776381475867,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.06993695487624148,
+      "key": "Bplus_k",
+      "nominal_beam": -0.06993695487624148,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": 0.3006683602759056,
+      "key": "Bminus_r",
+      "nominal_beam": 0.3006683602759056,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.005911252817503198,
+      "key": "Bminus_n",
+      "nominal_beam": -0.005911252817503198,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.0613703544022221,
+      "key": "Bminus_k",
+      "nominal_beam": -0.0613703544022221,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": 0.598618819644255,
+      "key": "C_rr",
+      "nominal_beam": 0.598618819644255,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": 0.02894594787087078,
+      "key": "C_rn",
+      "nominal_beam": 0.02894594787087078,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.04816273872728772,
+      "key": "C_rk",
+      "nominal_beam": -0.04816273872728772,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.02534486307798676,
+      "key": "C_nr",
+      "nominal_beam": -0.02534486307798676,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": 0.008772225384372986,
+      "key": "C_nn",
+      "nominal_beam": 0.008772225384372986,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.0711705847711813,
+      "key": "C_nk",
+      "nominal_beam": -0.0711705847711813,
+      "parent_label": "unpol_epmum"
+    },
+    {
+      "abs_delta": 0.0,
+      "delta_effective_minus_nominal": 0.0,
+      "effective_status21_beam": -0.08586468234257677,
+      "key": "C_kr",
+      "nominal_beam": -0.08586468234257677,
+      "parent_label": "unpol_epmum"
+    }
+  ]
+}
