@@ -77,10 +77,17 @@ def horodecki_chsh_max(C: dict[str, float]) -> tuple[float, list[float]]:
 
 
 def as_real_matrix_entries(mat: np.ndarray) -> list[list[float]]:
-    out = []
-    for row in mat:
-        out.append([float(x.real) for x in row])
-    return out
+    return [
+        [float(x.real) for x in row]
+        for row in mat
+    ]
+
+
+def as_imag_matrix_entries(mat: np.ndarray) -> list[list[float]]:
+    return [
+        [float(x.imag) for x in row]
+        for row in mat
+    ]
 
 
 def load_spin_samples(path: Path) -> list[dict[str, Any]]:
@@ -194,6 +201,7 @@ def main() -> int:
             "Bminus": Bminus,
             "C": C,
             "rho_real": as_real_matrix_entries(rho),
+            "rho_imag": as_imag_matrix_entries(rho),
         }
 
         rows.append(row)

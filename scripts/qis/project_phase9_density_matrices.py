@@ -93,9 +93,17 @@ def complex_matrix_from_real_imag(
     real = np.array(real_matrix, dtype=float)
 
     if imag_matrix is None:
-        imag = np.zeros_like(real)
-    else:
-        imag = np.array(imag_matrix, dtype=float)
+        raise ValueError(
+            "raw QIS sample is missing rho_imag; refusing to project a "
+            "real-only approximation of the complex density matrix"
+        )
+
+    imag = np.array(imag_matrix, dtype=float)
+
+    if real.shape != (4, 4) or imag.shape != (4, 4):
+        raise ValueError(
+            f"expected 4x4 rho matrices, got real={real.shape}, imag={imag.shape}"
+        )
 
     return real + 1j * imag
 
@@ -155,6 +163,45 @@ def main() -> int:
             sample["rho_real"],
             sample.get("rho_imag"),
         )
+
+        # Validate that the serialized complex matrix reproduces the metrics
+        # recorded by the upstream raw-QIS builder. This prevents accidental
+        # projection of a truncated or schema-incompatible matrix.
+        reconstructed_raw_eigenvalues = np.linalg.eigvalsh(raw_rho)
+        reconstructed_raw_min_eigenvalue = float(
+            np.min(reconstructed_raw_eigenvalues).real
+        )
+        reconstructed_raw_purity = float(
+            np.trace(raw_rho @ raw_rho).real
+        )
+
+        expected_raw_min_eigenvalue = float(sample["rho_min_eigenvalue"])
+        expected_raw_purity = float(sample["purity_tr_rho2"])
+
+        min_eigenvalue_residual = abs(
+            reconstructed_raw_min_eigenvalue
+            - expected_raw_min_eigenvalue
+        )
+        purity_residual = abs(
+            reconstructed_raw_purity
+            - expected_raw_purity
+        )
+
+        if min_eigenvalue_residual > 1.0e-10:
+            raise ValueError(
+                f"{parent}: serialized rho does not reproduce raw minimum "
+                f"eigenvalue: reconstructed={reconstructed_raw_min_eigenvalue}, "
+                f"expected={expected_raw_min_eigenvalue}, "
+                f"residual={min_eigenvalue_residual}"
+            )
+
+        if purity_residual > 1.0e-10:
+            raise ValueError(
+                f"{parent}: serialized rho does not reproduce raw purity: "
+                f"reconstructed={reconstructed_raw_purity}, "
+                f"expected={expected_raw_purity}, "
+                f"residual={purity_residual}"
+            )
 
         projected_rho, projection = project_density_matrix(raw_rho)
         projected_metrics = projected_qis_metrics(projected_rho)
