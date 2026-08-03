@@ -1,0 +1,25 @@
+{
+  "added_events": 10000,
+  "added_parent_label": "RL100_epmum",
+  "added_records": 20,
+  "events_by_parent_label": {
+    "LR100_epmum": 10000,
+    "RL100_epmum": 10000,
+    "unpol_epjets_Wminus_ubar_d": 10000,
+    "unpol_epmum": 10000
+  },
+  "old_inventory": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/analysis_inputs/phase9_parton_only_analysis_inventory_20260803.jsonl",
+  "output_jsonl": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/analysis_inputs/phase9_parton_only_analysis_inventory_with_RL100_20260803.jsonl",
+  "records_by_parent_label": {
+    "LR100_epmum": 20,
+    "RL100_epmum": 20,
+    "unpol_epjets_Wminus_ubar_d": 20,
+    "unpol_epmum": 1
+  },
+  "rl100_collect_summary": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/phase9_10k_parton_only_RL100_epmum_20shard_submitfix_20260803T180533Z/phase9_10k_RL100_epmum_20shard_summary.json",
+  "rl100_condor_out_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/phase9_10k_parton_only_RL100_epmum_20shard_submitfix_20260803T180533Z",
+  "schema_version": 1,
+  "status": "PASS",
+  "total_events": 40000,
+  "total_records": 61
+}

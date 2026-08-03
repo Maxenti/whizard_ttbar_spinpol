@@ -10,7 +10,7 @@ from pathlib import Path
 from typing import Any
 
 COMPONENTS = ("r", "n", "k")
-DILEPTON_PARENTS = {"unpol_epmum", "LR100_epmum"}
+DILEPTON_PARENTS = {"unpol_epmum", "LR100_epmum", "RL100_epmum"}
 SQRTS_GEV = 365.0
 
 

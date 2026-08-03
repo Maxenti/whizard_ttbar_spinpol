@@ -13,8 +13,18 @@ from typing import Any
 PARENT_ORDER = {
     "unpol_epmum": 0,
     "LR100_epmum": 1,
-    "unpol_epjets_Wminus_ubar_d": 2,
+    "RL100_epmum": 2,
+    "unpol_epjets_Wminus_ubar_d": 3,
 }
+
+
+def is_dilepton_epmum(parent_label: str) -> bool:
+    return parent_label in {"unpol_epmum", "LR100_epmum", "RL100_epmum"}
+
+
+def is_semileptonic_wminus_ubar_d(parent_label: str) -> bool:
+    return parent_label == "unpol_epjets_Wminus_ubar_d"
+
 
 
 @dataclass(frozen=True)
@@ -264,7 +274,7 @@ def extract_event(record: dict[str, Any], event_index: int, particles: list[Part
     ubar = None
     dquark = None
 
-    if parent in {"unpol_epmum", "LR100_epmum"}:
+    if is_dilepton_epmum(parent):
         mum = select_particle(particles, 13, (1, 23))
         numubar = select_particle(particles, -14, (1, 23))
 
@@ -278,7 +288,7 @@ def extract_event(record: dict[str, Any], event_index: int, particles: list[Part
         if numubar is not None:
             objects["anti_nu_mu"] = {"pid": numubar.pid, "status": numubar.status, **p4(numubar)}
 
-    elif parent == "unpol_epjets_Wminus_ubar_d":
+    elif is_semileptonic_wminus_ubar_d(parent):
         ubar = select_particle(particles, -2, (23, 1))
         dquark = select_particle(particles, 1, (23, 1))
 
@@ -305,7 +315,7 @@ def extract_event(record: dict[str, Any], event_index: int, particles: list[Part
         observables["top_candidate_eta"] = eta(top)
         observables["top_candidate_phi"] = phi(top)
 
-        if parent in {"unpol_epmum", "LR100_epmum"} and mum is not None and numubar is not None:
+        if is_dilepton_epmum(parent) and mum is not None and numubar is not None:
             wminus = add4(v4_particle(mum), v4_particle(numubar))
             antitop = add4(v4_particle(bbar), v4_particle(mum), v4_particle(numubar))
             ttbar = add4(top, antitop)
