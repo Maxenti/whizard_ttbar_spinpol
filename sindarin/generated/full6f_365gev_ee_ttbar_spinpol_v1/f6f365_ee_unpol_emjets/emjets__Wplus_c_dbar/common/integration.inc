@@ -1,5 +1,5 @@
 ! Explicit WHIZARD hard-process seed. This assignment must precede
 ! integration so the integration grid and generated events are replayable.
-seed = ${GENERATOR_SEED}
-iterations = ${INTEGRATION_ITERATIONS}:${INTEGRATION_CALLS}
-integrate (${PROCESS_NAME})
+seed = 264965862
+iterations = 0:0
+integrate (proc_emjets_Wplus_c_dbar)

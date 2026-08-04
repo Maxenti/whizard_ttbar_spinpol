@@ -1,0 +1,6 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/isr.inc")
+process proc_epem = e1, E1 => b, bbar, E1, n1, e1, N1
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/event_output.inc")
