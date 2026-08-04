@@ -119,12 +119,16 @@ isr_alpha = {cfg.isr_alpha:.12g}
 
 model = SM
 
+! Explicit WHIZARD hard-process seed. This must precede every integration
+! so decay grids, production grids, and generated events are reproducible.
+seed = __SEED__
+
 process tt_prod = {cfg.beam1}, {cfg.beam2} => t, tbar
 {t_process}
 {tbar_process}
 
-! Integrate decay processes before defining collider beams.  This ordering is
-! required by the validated WHIZARD 3.1.5 workflow for separate decay grids.
+! Integrate decay processes before defining collider beams. This ordering is
+! retained from the validated separate-decay-grid production workflow.
 integrate (t_decay) {{
   iterations = 3:5000, 3:20000
 }}
@@ -151,7 +155,6 @@ integrate (tt_prod) {{
 unstable t    (t_decay)
 unstable tbar (tbar_decay)
 
-seed = __SEED__
 n_events = __N_EVENTS__
 sample_format = lhef
 $sample = "__OUTPUT_SAMPLE__"
@@ -166,6 +169,21 @@ def validate_template(text: str, cfg: SampleConfig) -> None:
     for token in TOKENS:
         if token not in text:
             raise ValueError(f"template for {cfg.sample_id} is missing token {token}")
+
+    seed_position = text.index("seed = __SEED__")
+    first_integrate_position = text.index("integrate (")
+
+    if seed_position >= first_integrate_position:
+        raise ValueError(
+            f"template for {cfg.sample_id} places seed after the first "
+            "integration; the WHIZARD seed must precede all integrations"
+        )
+
+    if text.count("seed = __SEED__") != 1:
+        raise ValueError(
+            f"template for {cfg.sample_id} must contain exactly one "
+            "WHIZARD seed assignment"
+        )
 
     spin_mode = "sc" if cfg.spin_correlated else "iso"
     isotropic = "false" if cfg.spin_correlated else "true"

@@ -35,12 +35,16 @@
 
 model = SM
 
+! Explicit WHIZARD hard-process seed. This must precede every integration
+! so decay grids, production grids, and generated events are reproducible.
+seed = __SEED__
+
 process tt_prod = e1, E1 => t, tbar
 process t_decay    = t    => b,    E2, n2
 process tbar_decay = tbar => bbar, e1, N1
 
-! Integrate decay processes before defining collider beams.  This ordering is
-! required by the validated WHIZARD 3.1.5 workflow for separate decay grids.
+! Integrate decay processes before defining collider beams. This ordering is
+! retained from the validated separate-decay-grid production workflow.
 integrate (t_decay) {
   iterations = 3:5000, 3:20000
 }
@@ -72,7 +76,6 @@ integrate (tt_prod) {
 unstable t    (t_decay)
 unstable tbar (tbar_decay)
 
-seed = __SEED__
 n_events = __N_EVENTS__
 sample_format = lhef
 $sample = "__OUTPUT_SAMPLE__"
