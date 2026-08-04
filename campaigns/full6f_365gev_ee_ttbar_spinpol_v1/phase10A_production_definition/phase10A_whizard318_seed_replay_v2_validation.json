@@ -1,0 +1,87 @@
+{
+  "checks": {
+    "all_event_counts_match": true,
+    "all_metadata_seeds_match_requested": true,
+    "all_rendered_seeds_match_requested": true,
+    "all_runs_successful": true,
+    "all_seeds_precede_integrations": true,
+    "all_whizard_versions_are_3_1_8": true,
+    "different_seed_changes_raw_lhe": true,
+    "different_seed_rng_sequences_differ": true,
+    "same_seed_raw_lhe_byte_identical": true,
+    "same_seed_rng_sequences_identical": true
+  },
+  "replay_root": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z",
+  "runner": "scripts/production/run_production_shard.sh",
+  "runs": {
+    "A": {
+      "console_log": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_A/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/console.log",
+      "generated_events": 50,
+      "input_card": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_A/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/input.sin",
+      "metadata": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_A/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/run_metadata.json",
+      "metadata_seed": 310001,
+      "raw_lhe": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_A/lhe_raw/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV__shard_0000.lhe",
+      "raw_lhe_sha256": "d1ad95ee766a41a273f445b2bed98ab036736ea2df425d7ceab46403672934d9",
+      "rendered_seed": 310001,
+      "reported_rng_seeds": [
+        15089,
+        15090,
+        15091,
+        15092
+      ],
+      "requested_seed": 310001,
+      "seed_precedes_all_integrations": true,
+      "status": "success",
+      "whizard_version": "WHIZARD 3.1.8\nCopyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter\n              ---------------------------------------                \nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "B": {
+      "console_log": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_B/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/console.log",
+      "generated_events": 50,
+      "input_card": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_B/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/input.sin",
+      "metadata": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_B/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/run_metadata.json",
+      "metadata_seed": 310001,
+      "raw_lhe": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_B/lhe_raw/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV__shard_0000.lhe",
+      "raw_lhe_sha256": "d1ad95ee766a41a273f445b2bed98ab036736ea2df425d7ceab46403672934d9",
+      "rendered_seed": 310001,
+      "reported_rng_seeds": [
+        15089,
+        15090,
+        15091,
+        15092
+      ],
+      "requested_seed": 310001,
+      "seed_precedes_all_integrations": true,
+      "status": "success",
+      "whizard_version": "WHIZARD 3.1.8\nCopyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter\n              ---------------------------------------                \nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    },
+    "C": {
+      "console_log": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_C/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/console.log",
+      "generated_events": 50,
+      "input_card": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_C/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/input.sin",
+      "metadata": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_C/runs/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/shard_0000/run_metadata.json",
+      "metadata_seed": 310002,
+      "raw_lhe": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/run_C/lhe_raw/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV/phase10A_seed_replay_ee_epmum_LR100_sc_365GeV__shard_0000.lhe",
+      "raw_lhe_sha256": "67388f27a34d019a23f210fd2b9147e09fac1603a6bf191ed828ed2c21cc2df7",
+      "rendered_seed": 310002,
+      "reported_rng_seeds": [
+        15090,
+        15091,
+        15092,
+        15093
+      ],
+      "requested_seed": 310002,
+      "seed_precedes_all_integrations": true,
+      "status": "success",
+      "whizard_version": "WHIZARD 3.1.8\nCopyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter\n              ---------------------------------------                \nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+    }
+  },
+  "runtime_policy": {
+    "external_setup": "environments/setup_lcg_devkey_head_fri_ttsp.sh",
+    "required_whizard_version": "3.1.8",
+    "worker_environment_setup_skipped": true
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "template": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_v2_whizard318_20260804T145003Z/ee_ttbar_epmum_LR100_sc_ISR_365GeV_seed_replay_v2.sin.in",
+  "test": "WHIZARD 3.1.8 complete-seed replay with pre-integration seed"
+}

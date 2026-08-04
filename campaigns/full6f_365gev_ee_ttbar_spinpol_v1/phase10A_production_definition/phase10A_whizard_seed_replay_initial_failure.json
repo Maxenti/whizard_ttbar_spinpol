@@ -1,0 +1,61 @@
+{
+  "checks": {
+    "different_seed_changes_output": true,
+    "same_seed_byte_identical": false
+  },
+  "observed_lhe_sha256": {
+    "A": "e2d4e3f1fff7224bf581e3ff5f59e09d19579efa1778d0a8101c0f37583983df",
+    "B": "2b7c047179986c9bce4755df205cf59a44e390e1665529ea27b239a5d9ecf261",
+    "C": "7539d9561c48a7d06e3d31681c41893ff2daaf6c33085756cafb6733ab68ed25"
+  },
+  "observed_rng_sequences": {
+    "A": {
+      "integration": [
+        21241,
+        21242,
+        21243
+      ],
+      "simulation": 15089
+    },
+    "B": {
+      "integration": [
+        2669,
+        2670,
+        2671
+      ],
+      "simulation": 15089
+    },
+    "C": {
+      "integration": [
+        21130,
+        21131,
+        21132
+      ],
+      "simulation": 15090
+    }
+  },
+  "replay_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_smoke_20260804T143656Z",
+  "requested_seeds": {
+    "A": 310001,
+    "B": 310001,
+    "C": 310002
+  },
+  "required_corrections": [
+    "Place seed = __SEED__ before the first integrate statement.",
+    "Pin and validate WHIZARD 3.1.8 in the production worker.",
+    "Repeat same-seed and different-seed replay after both corrections."
+  ],
+  "root_causes": [
+    {
+      "code": "LATE_SEED_ASSIGNMENT",
+      "description": "The Sindarin seed assignment occurred after all integrations. It controlled event simulation but not decay or production integration grids."
+    },
+    {
+      "code": "RUNTIME_VERSION_MISMATCH",
+      "description": "The production runner initialized Key4HEP WHIZARD 3.1.5, whereas the frozen Phase 9 baseline used WHIZARD 3.1.8."
+    }
+  ],
+  "schema_version": 1,
+  "status": "FAIL_DIAGNOSTIC",
+  "test": "Initial WHIZARD seed replay"
+}
