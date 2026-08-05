@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "production_id": "phase10_production_v1",
+  "physics_definition": {
+    "hard_process": "direct_full_six_fermion",
+    "initial_state": "e1,E1",
+    "center_of_mass_energy_GeV": 365.0,
+    "channel": "epmum",
+    "isr_enabled": true,
+    "beam_spectrum": "none",
+    "whizard_version": "3.1.8",
+    "parameter_profile": "phase10A_whizard_sm_parameter_baseline"
+  },
+  "production_defaults": {
+    "n_shards": 25,
+    "events_per_shard": 10000,
+    "integration_iterations": "5:50000",
+    "archive_workspace": 0,
+    "timeout_minutes": 720,
+    "request_cpus": 1,
+    "request_memory_mb": 6000,
+    "request_disk_mb": 6000,
+    "job_flavour": "tomorrow"
+  },
+  "samples": [
+    {
+      "sample_id": "f6f365_ee_unpol_epmum",
+      "subprocess_id": "epmum",
+      "polarization": "unpol",
+      "source_card": "sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/process.sin"
+    },
+    {
+      "sample_id": "f6f365_ee_LR100_epmum",
+      "subprocess_id": "epmum",
+      "polarization": "LR100",
+      "source_card": "sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin"
+    },
+    {
+      "sample_id": "f6f365_ee_RL100_epmum",
+      "subprocess_id": "epmum",
+      "polarization": "RL100",
+      "source_card": "sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/process.sin"
+    }
+  ]
+}
