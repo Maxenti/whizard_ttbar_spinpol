@@ -1,0 +1,5 @@
+campaign_id,sample_id,enabled,initial_state,beam1,beam2,decay_channel,polarization,beam1_helicity,beam2_helicity,beam1_pol_fraction,beam2_pol_fraction,sqrt_s_GeV,isr_enabled,isr_mass_GeV,isr_alpha,spin_correlated,beam_spectrum,n_shards,events_per_shard,seed_base,request_cpus,request_memory_mb,job_flavour,archive_workspace
+paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_LR100_sc_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510001,1,3000,tomorrow,true
+paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_RL100_sc_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510003,1,3000,tomorrow,true
+paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_LR100_sc_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510005,1,3000,tomorrow,true
+paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_RL100_sc_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510007,1,3000,tomorrow,true

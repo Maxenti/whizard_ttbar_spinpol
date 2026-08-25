@@ -1,0 +1,127 @@
+Phase 11 excess-weight root-cause study
+Resonance / envelope matrix
+======================================
+
+Purpose
+-------
+
+Determine whether the rare catastrophic generation excess-weight
+events are driven primarily by:
+
+  1. unrestricted six-fermion resonance structure / phase-space mapping;
+  2. insufficient statistics in the final max_abs_f-estimation pass;
+  3. unstable late adaptive integration;
+  4. a combination of these effects.
+
+
+Fixed numerical configuration
+-----------------------------
+
+WHIZARD:
+  3.1.8 qualified Phase-11 runtime
+
+Integrator:
+  VAMP2
+
+RNG:
+  rng_stream
+
+VAMP parallel method:
+  simple
+
+MPI ranks:
+  1
+
+OpenMP threads:
+  1
+
+Integration seed:
+  1740114216
+
+ISR:
+  unchanged from current Phase-11 baseline
+
+Polarization:
+  unchanged LR100 configuration
+
+
+Physics variants
+----------------
+
+U:
+  unrestricted current six-fermion process
+
+W:
+  same six-fermion process with:
+    W+ -> e+ nue
+    W- -> mu- numubar
+
+WT:
+  same six-fermion process with:
+    W+ -> e+ nue
+    W- -> mu- numubar
+    t  -> b W+
+    tbar -> bbar W-
+
+W and WT use:
+  ?resonance_history = true
+  resonance_on_shell_limit = 10
+  resonance_background_factor = 0
+
+
+Integration matrix
+------------------
+
+W_G2:
+  W restricted
+  5:50000:"gw",3:200000:""
+
+WT_G2:
+  WT restricted
+  5:50000:"gw",3:200000:""
+
+U_2M:
+  unrestricted
+  5:50000:"gw",1:2000000:""
+
+W_2M:
+  W restricted
+  5:50000:"gw",1:2000000:""
+
+WT_2M:
+  WT restricted
+  5:50000:"gw",1:2000000:""
+
+WT_W23:
+  WT restricted
+  10:100000:"gw",10:200000:""
+
+
+Interpretation rules
+--------------------
+
+Existing G2_S0 is the baseline U_G2 comparison.
+
+No result from this diagnostic matrix is automatically authorized
+as a production grid.
+
+In particular:
+  - do not select the numerically prettiest grid after observing results;
+  - do not promote a restricted grid without a separate physics-definition
+    decision;
+  - do not interpret successful execution as integration qualification.
+
+WT_W23 is specifically allowed to fail or destabilize.
+Its purpose is to test whether the FCC-style resonance restrictions
+change the previously observed deep-adaptation instability.
+
+The 2M tests specifically investigate whether one large final fixed
+iteration provides a more robust serialized max_abs_f state than
+several smaller fixed iterations.
+
+After integration:
+  1. inspect all per-iteration trajectories;
+  2. classify technical and adaptive stability;
+  3. inspect serialized PHS/VG2 structure and hashes;
+  4. only technically qualified grids proceed to matched generation
+     envelope stress using predetermined RNG streams.

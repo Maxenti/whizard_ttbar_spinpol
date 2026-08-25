@@ -1,0 +1,55 @@
+PHASE-11E EXACT FINAL-CHAIN REHEARSAL PLAN
+==========================================
+
+Purpose:
+Exercise the intended Phase-12 production chain before full production.
+
+Hard process:
+WT-restricted e+e- -> b bbar e+ nu_e mu- anti-nu_mu
+sqrt(s) = 365 GeV
+LR100
+SM + ISR
+
+Integration:
+A07/F3
+
+Frozen production grid:
+S0
+
+WHIZARD generation:
+4 shards x 25,000 events = 100,000 events
+MPI ranks = 4
+OMP_NUM_THREADS = 1
+VAMP2 parallel method = simple
+RNG method = rng_stream
+
+WHIZARD seeds:
+311191001-311191004
+
+Downstream:
+WHIZARD canonical merged LHE
+ -> WHIZARD extended-ISR canonicalization
+ -> explicit-W topology adapter
+ -> PYTHIA8
+ -> HepMC3
+
+PYTHIA seeds:
+611191001-611191004
+
+Required final conditions:
+- all 4 frozen-S0 generation shards technically PASS
+- no frozen-grid mutation
+- no new-grid initialization
+- no VAMP2 serialized-pass mismatch
+- 100,000 unique WHIZARD events
+- zero cross-shard duplicates
+- all 4 PYTHIA/HepMC3 shards return success
+- accepted PYTHIA events = requested events
+- canonical-v2 event counts = requested
+- explicit-W-v3 event counts = requested
+- HepMC3 output exists and is nonempty
+- distinct deterministic PYTHIA seeds
+- final provenance/checksums complete
+
+The exact np4 worker SHA used by 11E is frozen only after the 11D np4
+smoke passes.

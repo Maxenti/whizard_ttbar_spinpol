@@ -1,0 +1,93 @@
+{
+  "basis": "rnk_common_v1_nominal_beam_phase9",
+  "bootstrap": {
+    "method": "event-level resampling within each parent_label; recompute Bplus/Bminus/C, raw rho, PSD trace-one projection, and raw/projected diagnostics",
+    "n_bootstrap": 500,
+    "seed": 36520260803
+  },
+  "component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "notes": [
+    "Raw and projected observables are retained for each bootstrap replica.",
+    "Projection uses nearest PSD trace-one Frobenius projection.",
+    "CHSH remains the raw correlation-tensor Horodecki observable.",
+    "Projected concurrence and negativity are calculated from the projected density matrix.",
+    "Projection-required fraction measures how often the unconstrained raw estimator lies outside the PSD state space."
+  ],
+  "projected_bootstrap_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_projected_bootstrap_20260803/phase9_projected_qis_bootstrap_observables.csv",
+  "projected_bootstrap_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_projected_bootstrap_20260803/phase9_projected_qis_bootstrap_observables.json",
+  "samples": [
+    {
+      "central_projected_concurrence": 0.0,
+      "central_projected_min_eigenvalue": -7.522932346209727e-17,
+      "central_projected_negativity": 0.0,
+      "central_projected_purity": 0.42621225086582376,
+      "central_projection_distance": 0.002214544121434007,
+      "central_raw_chsh": 1.4532054162128283,
+      "central_raw_min_eigenvalue": -0.0019178514669633505,
+      "n_events": 10000,
+      "parent_label": "unpol_epmum",
+      "projected_concurrence_p50": 0.0,
+      "projected_concurrence_p84": 0.022247473904820063,
+      "projected_negativity_p50": 0.0,
+      "projected_negativity_p84": 0.01103863768541397,
+      "projected_psd_fraction": 1.0,
+      "projected_purity_se": 0.009000605208447976,
+      "projection_required_fraction": 0.592,
+      "raw_chsh_se": 0.058932031610249284,
+      "raw_chsh_violation_fraction": 0.0,
+      "raw_psd_fraction": 0.408,
+      "status": "PASS"
+    },
+    {
+      "central_projected_concurrence": 0.0,
+      "central_projected_min_eigenvalue": 0.0025867768466829202,
+      "central_projected_negativity": 0.0,
+      "central_projected_purity": 0.6357687006913513,
+      "central_projection_distance": 2.6921768234137273e-16,
+      "central_raw_chsh": 1.3013138353937026,
+      "central_raw_min_eigenvalue": 0.0025867768466830013,
+      "n_events": 10000,
+      "parent_label": "LR100_epmum",
+      "projected_concurrence_p50": 0.007937047254003675,
+      "projected_concurrence_p84": 0.03619819640774297,
+      "projected_negativity_p50": 0.0023535130954055014,
+      "projected_negativity_p84": 0.010790882487763548,
+      "projected_psd_fraction": 1.0,
+      "projected_purity_se": 0.015052338000351788,
+      "projection_required_fraction": 0.484,
+      "raw_chsh_se": 0.05650063010232231,
+      "raw_chsh_violation_fraction": 0.0,
+      "raw_psd_fraction": 0.516,
+      "status": "PASS"
+    },
+    {
+      "central_projected_concurrence": 0.0,
+      "central_projected_min_eigenvalue": 0.006567748273433938,
+      "central_projected_negativity": 0.0,
+      "central_projected_purity": 0.6210601951220276,
+      "central_projection_distance": 5.716769973731422e-16,
+      "central_raw_chsh": 1.2913881802363825,
+      "central_raw_min_eigenvalue": 0.006567748273434037,
+      "n_events": 10000,
+      "parent_label": "RL100_epmum",
+      "projected_concurrence_p50": 0.0,
+      "projected_concurrence_p84": 0.00686015134794875,
+      "projected_negativity_p50": 0.0,
+      "projected_negativity_p84": 0.0020204147637624625,
+      "projected_psd_fraction": 1.0,
+      "projected_purity_se": 0.014530711336556758,
+      "projection_required_fraction": 0.314,
+      "raw_chsh_se": 0.05495577443514074,
+      "raw_chsh_violation_fraction": 0.0,
+      "raw_psd_fraction": 0.686,
+      "status": "PASS"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "truth_jsonl": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_parton_truth_observables_with_RL100_20260803/phase9_parton_truth_observables_with_RL100.jsonl"
+}

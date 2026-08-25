@@ -1,0 +1,7 @@
+mode	family	seed_name	seed	iterations	worker
+G1_S0	G1	S0	1740114216	5:50000:"gw",5:100000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G1_S0.sh
+G1_S1	G1	S1	1751949026	5:50000:"gw",5:100000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G1_S1.sh
+G1_S2	G1	S2	1885084773	5:50000:"gw",5:100000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G1_S2.sh
+G2_S0	G2	S0	1740114216	5:50000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G2_S0.sh
+G2_S1	G2	S1	1751949026	5:50000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G2_S1.sh
+G2_S2	G2	S2	1885084773	5:50000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/candidate_A_stress_v1/run_G2_S2.sh

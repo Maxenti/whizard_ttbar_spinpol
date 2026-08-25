@@ -1,0 +1,207 @@
+WHIZARD310_COMMIT=12ebc9611300306a5e216b62d43e14768dc7c4c4
+
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15455:Allocate an integrator according to the variable [[$integration_method]].
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15481:    integration_method = &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15482:         var_list%get_sval (var_str ("$integration_method"))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15635:    select case (char (var_list%get_sval (var_str ("$vamp_parallel_method"))))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15758:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15774:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15790:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/mci/mci.nw:15835:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:2866:    call local%append_string (var_str ("$integration_method"), intrinsic=.true.)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:2876:    call local%set_string (var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7249:  mpi_logging = (("vamp2" == char (var_list%get_sval (var_str ("$integration_method"))) .and. &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7420:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7440:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7509:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7591:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7685:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7708:    call global%write (u, vars = [var_str ("$integration_method")], &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7767:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7790:    call global%write (u, vars = [var_str ("$integration_method")], &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7850:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:7942:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:8071:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:8178:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:8198:         var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:8268:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:9862:    integration_method_saved = local%get_sval (var_str ("$integration_method"))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:9865:    call local%set_string (var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:9876:    call local%set_string (var_str ("$integration_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:9877:            integration_method_saved, is_known = .true.)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:14678:       (simulation%local%get_sval (var_str ("$integration_method")) == "vamp2" &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:15820:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:15920:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16021:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16129:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16246:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16389:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16550:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16728:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:16922:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:17080:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:17298:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:17454:    call global%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:25387:  mpi_logging = (("vamp2" == char (var_list%get_sval (var_str ("$integration_method"))) &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:28102:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:28374:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:28702:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:28802:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:28984:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:29524:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:30094:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/whizard-core/whizard.nw:30800:    call global%var_list%set_string (var_str ("$integration_method"),&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/variables/variables.nw:4483:    call var_list%append_string (var_str ("$rng_method"), var_str ("tao"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/variables/variables.nw:4804:    call var_list%append_string (var_str ("$integration_method"), var_str ("vamp"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/variables/variables.nw:4995:    call var_list%append_string (var_str ("$vamp_parallel_method"), var_str ("simple"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2304:[[$rng_method]], using the current seed in the global record.  (If the
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2333:    rng_method = var_list%get_sval (var_str ("$rng_method"))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2467:    if (var_list%contains (var_str ("$rng_method"))) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2468:       rng_method = var_list%get_sval (var_str ("$rng_method"))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2470:       rng_method = "unit_test"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2496:    if (var_list%contains (var_str ("$rng_method"))) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2497:       rng_method = var_list%get_sval (var_str ("$rng_method"))
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2499:       rng_method = "tao"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2536:         var_str ("$rng_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2551:         var_str ("$rng_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/src/rng/rng.nw:2564:         var_str ("$rng_method"), &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lcio_6.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_8.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_2.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_4.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hepmc_9.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_6.sin:18:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe2_2.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ewa_4.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/parton_shower_2.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lcio_7.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_5.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_1.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe2_1.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/vamp2_1.sin:18:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/gaussian_2.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_5.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hepmc_10.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_8.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_4.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qcdtest_3.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_eff_2.sin:23:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_5.sin:18:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lcio_10.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/energy_scan_1.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_photons_3.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ewa_2.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_9.sin:11:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ep_3.sin:29:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ewa_3.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_1.sin:19:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_9.sin:21:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_7.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia6_4.sin:24:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/nlo_9.sin:29:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/nlo_9.sin:30:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_9.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ep_2.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_events_1.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_4.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_12.sin:51:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_12.sin:52:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia8_1.sin:20:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia8_1.sin:21:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_9.sin:18:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_photons_1.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/select_2.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_10.sin:11:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_12.sin:20:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/rambo_vamp_2.sin:18:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_weights_2.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_13.sin:49:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_13.sin:50:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/static_1.exe.sin:27:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_8.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/alphas.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qcdtest_5.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/process_log.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hepmc_5.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_setup_1.sin:18:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hadronize_1.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_14.sin:46:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/openloops_14.sin:47:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pdf_builtin.sin:32:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_5.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_10.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_photons_2.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_10.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_3.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qcdtest_1.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_3.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_4.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/vamp2_3.sin:21:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_1.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_4.sin:19:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ewa_1.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/select_1.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_eff_1.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_6.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_setup_4.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_events_2.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/rambo_vamp_1.sin:18:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_2.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_failed_1.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_2.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia6_1.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/gaussian_1.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhef_5.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_photons_4.sin:26:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_3.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lcio_8.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/nlo_10.sin:29:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/nlo_10.sin:30:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hepmc_8.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_8.sin:21:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/parton_shower_1.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhapdf5.sin:29:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_10.sin:17:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_dump_1.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia6_3.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_6.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_events_3.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_11.sin:2:# Compare results from $integration_method = "vamp" and "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_11.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_11.sin:26:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia8_2.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qcdtest_2.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/testproc_7.sin:19:$integration_method = "midpoint"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_setup_2.sin:17:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_7.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/event_weights_1.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_1.sin:18:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/reweight_7.sin:10:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/static_2.exe.sin:27:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/qedtest_2.sin:20:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/smtest_12.sin:23:integrate (smtest_12d) { iterations = 1:10  $integration_method = "midpoint" }
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/vamp2_2.sin:18:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_photons_5.sin:26:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/hepmc_7.sin:7:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/ep_1.sin:23:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/pythia6_2.sin:21:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lcio_9.sin:6:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/circe1_3.sin:22:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/lhapdf6.sin:29:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/functional_tests/beam_setup_3.sin:19:$integration_method = "vamp"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_3.sin:34:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_3.sin:35:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_settings.sin:53:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_settings.sin:54:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_2.sin:34:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_2.sin:35:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_1.sin:34:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_1.sin:35:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_real_partition.sin:28:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_real_partition.sin:29:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_settings_ew.sin:51:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_settings_ew.sin:52:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_4.sin:34:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_nlo/nlo_ppzj_sim_4.sin:35:$integration_method = "vamp2"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_ilc/ilc_settings.sin:50:$rng_method = "rng_stream"
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.0/share/tests/ext_tests_ilc/ilc_settings.sin:56:$integration_method = "vamp2"

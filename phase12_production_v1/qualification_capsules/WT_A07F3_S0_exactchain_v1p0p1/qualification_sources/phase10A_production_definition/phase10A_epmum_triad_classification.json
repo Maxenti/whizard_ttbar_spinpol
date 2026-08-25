@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "status": "PASS_WITH_OPEN_PRODUCTION_DECISIONS",
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "scope": [
+    "f6f365_ee_unpol_epmum",
+    "f6f365_ee_LR100_epmum",
+    "f6f365_ee_RL100_epmum"
+  ],
+  "common_card_settings": {
+    "initial_state": ["e1", "E1"],
+    "final_state": ["b", "bbar", "E1", "n1", "e2", "N2"],
+    "model": "SM",
+    "sqrts_GeV": 365.0,
+    "beam_structure": "e1, E1 => isr",
+    "isr_handler": true,
+    "isr_handler_mode": "recoil",
+    "keep_beams": true,
+    "keep_remnants": true,
+    "isr_mass": "me",
+    "sample_format": "lhef",
+    "sample_name": "proc_epmum"
+  },
+  "beam_states": {
+    "unpol_epmum": {
+      "process_includes_polarization_file": false,
+      "effective_definition": "WHIZARD default unpolarized beams",
+      "directory_polarization_file": "polarization = 0.0, 0.0",
+      "directory_polarization_file_is_active": false
+    },
+    "LR100_epmum": {
+      "process_includes_polarization_file": true,
+      "electron_helicity": -1,
+      "positron_helicity": 1,
+      "electron_polarization_fraction": 1.0,
+      "positron_polarization_fraction": 1.0
+    },
+    "RL100_epmum": {
+      "process_includes_polarization_file": true,
+      "electron_helicity": 1,
+      "positron_helicity": -1,
+      "electron_polarization_fraction": 1.0,
+      "positron_polarization_fraction": 1.0
+    }
+  },
+  "runtime_overrides": {
+    "rendered_iterations": "0:0",
+    "rendered_n_events": 0,
+    "phase9_nominal_iterations": "5:50000",
+    "values_supplied_by": "campaign JSONL manifest and canonical_v2 runtime runner"
+  },
+  "classification": {
+    "intended_differences": [
+      "beam polarization state",
+      "polarization include presence for polarized cards"
+    ],
+    "no_accidental_triad_differences_observed": [
+      "process definition",
+      "model",
+      "collision energy",
+      "ISR settings",
+      "integration placeholder",
+      "event placeholder",
+      "LHE output format"
+    ],
+    "open_production_decisions": [
+      "make the unpolarized state explicit using validated WHIZARD syntax",
+      "freeze Standard Model parameter values rather than relying silently on model defaults",
+      "freeze top, W, and Z mass and width conventions",
+      "freeze the electroweak input scheme",
+      "freeze the integration schedule in the production record",
+      "freeze event counts and seed derivation rules",
+      "decide whether an FCC-ee beam-energy-spread or beamstrahlung model is included",
+      "replace or document absolute AFS include paths",
+      "freeze the PYTHIA8 and HepMC3 downstream profiles"
+    ]
+  },
+  "decision": "Card triad passes structural-difference classification but is not yet production-qualified."
+}

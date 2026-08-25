@@ -1,0 +1,119 @@
+     1	#!/usr/bin/env python3
+     2	"""Render static SINDARIN cards for all exact subprocess rows."""
+     3	from __future__ import annotations
+     4	import argparse,json,sys
+     5	from pathlib import Path
+     6	from ttbar_spinpol.genchain.card_renderer import render_file
+     7	from ttbar_spinpol.genchain.checksums import sha256
+     8	from ttbar_spinpol.genchain.process_matrix import load_process_rows, expected_counts
+     9	from ttbar_spinpol.genchain.seed_policy import derive_seed
+    10	from ttbar_spinpol.genchain.yamlio import write_json
+    11	
+    12	
+    13	def configure_generated_polarization_blocks(generated_root):
+    14	    """Apply WHIZARD-3.1.8-compatible polarization blocks after card rendering.
+    15	
+    16	    Current campaign naming convention:
+    17	      *_unpol_* : omit polarization include entirely
+    18	      *_LR100_* : e- left,  e+ right => @(-1), @(+1)
+    19	      *_RL100_* : e- right, e+ left  => @(+1), @(-1)
+    20	    """
+    21	    root = Path(generated_root)
+    22	    if not root.exists():
+    23	        return {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+    24	
+    25	    counts = {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+    26	
+    27	    for card in sorted(root.glob("**/process.sin")):
+    28	        card_text = card.read_text(encoding="utf-8")
+    29	        card_lines = card_text.splitlines()
+    30	        card_str = str(card)
+    31	
+    32	        if "_unpol_" in card_str:
+    33	            new_lines = [line for line in card_lines if "polarization.inc" not in line]
+    34	            if new_lines != card_lines:
+    35	                card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    36	                counts["unpol_scrubbed"] += 1
+    37	            continue
+    38	
+    39	        pol = card.parent / "common" / "polarization.inc"
+    40	
+    41	        if "_LR100_" in card_str:
+    42	            pol.write_text(
+    43	                "beams_pol_density = @(-1), @(+1)\n"
+    44	                "beams_pol_fraction = 100%, 100%\n",
+    45	                encoding="utf-8",
+    46	            )
+    47	            counts["lr_written"] += 1
+    48	
+    49	        elif "_RL100_" in card_str:
+    50	            pol.write_text(
+    51	                "beams_pol_density = @(+1), @(-1)\n"
+    52	                "beams_pol_fraction = 100%, 100%\n",
+    53	                encoding="utf-8",
+    54	            )
+    55	            counts["rl_written"] += 1
+    56	
+    57	    return counts
+    58	
+    59	
+    60	
+    61	def scrub_unpolarized_polarization_includes(generated_root):
+    62	    """Remove polarization includes from unpolarized generated process cards.
+    63	
+    64	    WHIZARD 3.1.8 rejects the zero-polarization block used in the initial scaffold.
+    65	    Unpolarized cards should omit polarization.inc entirely.
+    66	    """
+    67	    root = Path(generated_root)
+    68	    if not root.exists():
+    69	        return 0
+    70	    changed = 0
+    71	    for card in sorted(root.glob("*_unpol_*/**/process.sin")):
+    72	        lines = card.read_text(encoding="utf-8").splitlines()
+    73	        new_lines = [line for line in lines if "polarization.inc" not in line]
+    74	        if new_lines != lines:
+    75	            card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    76	            changed += 1
+    77	    return changed
+    78	
+    79	
+    80	WHIZARD_PARTICLE_NAMES = {
+    81	    "e-": "e1",
+    82	    "e+": "E1",
+    83	    "mu-": "e2",
+    84	    "mu+": "E2",
+    85	    "tau-": "e3",
+    86	    "tau+": "E3",
+    87	    "nu_e": "n1",
+    88	    "anti_nu_e": "N1",
+    89	    "nu_mu": "n2",
+    90	    "anti_nu_mu": "N2",
+    91	    "nu_tau": "n3",
+    92	    "anti_nu_tau": "N3",
+    93	    "anti_u": "ubar",
+    94	    "anti_d": "dbar",
+    95	    "anti_s": "sbar",
+    96	    "anti_c": "cbar",
+    97	    "anti_b": "bbar",
+    98	}
+    99	
+   100	def to_whizard_particle(name: str) -> str:
+   101	    return WHIZARD_PARTICLE_NAMES.get(name, name)
+   102	
+   103	POL={'unpolarized':(0.0,0.0),'LR100':(-1.0,1.0),'RL100':(1.0,-1.0)}
+   104	def main() -> int:
+   105	    ap=argparse.ArgumentParser(); ap.add_argument('--repo',required=True,type=Path); args=ap.parse_args(); repo=args.repo.resolve()
+   106	    template_root=repo/'sindarin/templates/full6f_365gev_v1'; output_root=repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'; rows=load_process_rows(repo); rendered=[]
+   107	    for row in rows:
+   108	        pol=POL[row.polarization]; seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'render',0,'whizard')
+   109	        outdir=output_root/row.sample_id/row.exact_subprocess_id; common_out=outdir/'common'; common_out.mkdir(parents=True,exist_ok=True)
+   110	        context={'SQRTS_GEV':'365.0','ISR_HANDLER':'true','ISR_ENABLED':'true','ELECTRON_POLARIZATION':pol[0],'POSITRON_POLARIZATION':pol[1],'INTEGRATION_ITERATIONS':0,'INTEGRATION_CALLS':0,'PROCESS_NAME':row.process_name,
+   111	            "SAMPLE_BASENAME": row.process_name,'FINAL_STATE':', '.join(to_whizard_particle(x) for x in row.final_state),'N_EVENTS':0,'GENERATOR_SEED':seed,'OUTPUT_LHE':f'EOS_OUTPUT_ROOT/{row.sample_id}/{row.exact_subprocess_id}.lhe','PARAMETER_BLOCK':'','COMMON_DIR':str(common_out)}
+   112	        for inc in ['model','parameters','beams','isr','polarization','integration','event_output','diagnostics']: render_file(template_root/f'common/{inc}.inc.in', common_out/f'{inc}.inc', context)
+   113	        template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
+   114	        meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
+   115	    write_json(output_root/'rendered_cards_manifest.json',{'status':'PASS','counts':expected_counts(rows),'rendered_count':len(rendered),'rendered':rendered})
+   116	    pol_counts = configure_generated_polarization_blocks(output_root)
+   117	    print(f"POLARIZATION_BLOCKS_CONFIGURED={pol_counts}")
+   118	    print(json.dumps({'status':'PASS','rendered_count':len(rendered)},indent=2)); return 0
+   119	if __name__=='__main__': sys.exit(main())

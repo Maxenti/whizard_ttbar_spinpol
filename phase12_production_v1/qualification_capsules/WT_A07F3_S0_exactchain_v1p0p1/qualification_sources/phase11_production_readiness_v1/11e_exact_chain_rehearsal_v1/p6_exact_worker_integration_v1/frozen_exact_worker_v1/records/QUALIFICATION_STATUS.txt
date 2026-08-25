@@ -1,0 +1,18 @@
+PHASE-11E P6 FROZEN EXACT-WORKER V1
+===================================
+
+Qualification status:
+- full 25000-event preparation byte regression versus P5 = PASS
+- exact worker 1 event = PASS
+- exact worker 100 events = PASS
+- exact worker 25000 events = PASS
+- 25000-event prepared LHE exactly matches P5-qualified prepared LHE
+- 25000-event PYTHIA warning/error trajectory exactly reproduces P5
+- HepMC physics records exactly reproduce P5
+- full HepMC byte differences are provenance-only campaign/shard attributes
+
+Explicit-W synthesis is disabled.
+WHIZARD-selected event-dependent resonance histories are preserved.
+
+This code snapshot is the candidate for the final Phase-11E 4x25000
+HTCondor exact-chain rehearsal.

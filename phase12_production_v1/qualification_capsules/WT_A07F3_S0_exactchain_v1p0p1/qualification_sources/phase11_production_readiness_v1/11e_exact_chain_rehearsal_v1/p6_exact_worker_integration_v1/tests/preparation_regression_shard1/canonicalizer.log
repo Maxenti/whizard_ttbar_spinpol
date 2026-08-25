@@ -1,0 +1,1 @@
+CANONICALIZATION SUCCESS events=25000 canonicalized=25000 already_canonical=0 removed_bridges=50000 promoted_beams=50000 rewired_isr_photons=50000 removed_sqme_prc=25000 max_abs_closure_GeV=9.408836e-09 output=/tmp/cglenn/p6_preparation_regression_shard1/canonical_isr.lhe

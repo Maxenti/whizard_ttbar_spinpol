@@ -1,0 +1,24 @@
+PHASE-11E P6 ONE-EVENT ATTEMPT 1
+=================================
+
+Result: INFRASTRUCTURE/SHELL FAILURE BEFORE EVENT PROCESSING
+
+Failure:
+run_pythia_shard.p6_candidate.sh reported bad substitution while assigning
+SCRATCH_BASE.
+
+Broken form:
+SCRATCH_BASE=${
+  _CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}
+}
+
+Correct form:
+SCRATCH_BASE=${_CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}}
+
+No scratch workspace was created.
+Canonicalization was not run.
+Serialization was not run.
+PYTHIA was not run.
+No HepMC events were produced.
+
+Validation-only PYTHIA seed 711260001 remains unused and may be reused.

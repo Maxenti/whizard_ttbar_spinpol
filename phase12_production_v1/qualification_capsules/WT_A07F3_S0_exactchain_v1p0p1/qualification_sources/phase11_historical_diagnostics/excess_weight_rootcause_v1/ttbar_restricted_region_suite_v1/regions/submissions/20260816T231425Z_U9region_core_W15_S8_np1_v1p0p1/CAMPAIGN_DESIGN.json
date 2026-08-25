@@ -1,0 +1,22 @@
+{
+  "schema": "phase11_unrestricted_region_partition_v1",
+  "physics": "unrestricted full6f matrix element with disjoint kinematic top-mass regions",
+  "profile": "core",
+  "top_mass_GeV": 172.5,
+  "windows": [
+    [
+      "W15",
+      15.0
+    ]
+  ],
+  "total_nodes": 432,
+  "recipes": [
+    "M0",
+    "M1",
+    "M2"
+  ],
+  "seeds": 8,
+  "regions": 9,
+  "original_source_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+  "output_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/20260816T231425Z_U9region_core_W15_S8_np1_v1p0p1"
+}

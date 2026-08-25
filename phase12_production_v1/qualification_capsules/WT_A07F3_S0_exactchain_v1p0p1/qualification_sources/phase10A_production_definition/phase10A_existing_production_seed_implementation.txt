@@ -1,0 +1,591 @@
+================================================================
+production_common.py
+================================================================
+    35	    "decay_channel",
+    36	    "polarization",
+    37	    "beam1_helicity",
+    38	    "beam2_helicity",
+    39	    "beam1_pol_fraction",
+    40	    "beam2_pol_fraction",
+    41	    "sqrt_s_GeV",
+    42	    "isr_enabled",
+    43	    "isr_mass_GeV",
+    44	    "isr_alpha",
+    45	    "spin_correlated",
+    46	    "beam_spectrum",
+    47	    "n_shards",
+    48	    "events_per_shard",
+    49	    "seed_base",
+    50	    "request_cpus",
+    51	    "request_memory_mb",
+    52	    "job_flavour",
+    53	    "archive_workspace",
+    54	]
+    55	
+    56	
+    57	@dataclass(frozen=True)
+    58	class SampleConfig:
+    59	    campaign_id: str
+    60	    sample_id: str
+    61	    enabled: bool
+    62	    initial_state: str
+    63	    beam1: str
+    64	    beam2: str
+    65	    decay_channel: str
+    66	    polarization: str
+    67	    beam1_helicity: int
+    68	    beam2_helicity: int
+    69	    beam1_pol_fraction: float
+    70	    beam2_pol_fraction: float
+    71	    sqrt_s_GeV: float
+    72	    isr_enabled: bool
+    73	    isr_mass_GeV: float
+    74	    isr_alpha: float
+    75	    spin_correlated: bool
+    76	    beam_spectrum: str
+    77	    n_shards: int
+    78	    events_per_shard: int
+    79	    seed_base: int
+    80	    request_cpus: int
+    81	    request_memory_mb: int
+    82	    job_flavour: str
+    83	    archive_workspace: bool
+    84	
+    85	    @property
+    86	    def template_name(self) -> str:
+    87	        return f"{self.sample_id}.sin.in"
+    88	
+    89	    def shard_seed(self, shard_index: int) -> int:
+    90	        if shard_index < 0 or shard_index >= self.n_shards:
+    91	            raise ValueError(
+    92	                f"shard index {shard_index} outside [0, {self.n_shards}) "
+    93	                f"for {self.sample_id}"
+    94	            )
+    95	        return self.seed_base + shard_index
+    96	
+    97	    def shard_label(self, shard_index: int) -> str:
+    98	        return f"shard_{shard_index:04d}"
+    99	
+   100	    def output_sample_name(self, shard_index: int) -> str:
+   101	        return f"{self.sample_id}__{self.shard_label(shard_index)}"
+   102	
+   103	
+   104	@dataclass(frozen=True)
+   105	class IntegrationResult:
+   106	    value: float
+   107	    error: float
+   108	    source_line: str
+   109	
+   110	
+   200	                cfg = SampleConfig(
+   201	                    campaign_id=row["campaign_id"].strip(),
+   202	                    sample_id=row["sample_id"].strip(),
+   203	                    enabled=parse_bool(row["enabled"]),
+   204	                    initial_state=row["initial_state"].strip(),
+   205	                    beam1=row["beam1"].strip(),
+   206	                    beam2=row["beam2"].strip(),
+   207	                    decay_channel=row["decay_channel"].strip(),
+   208	                    polarization=row["polarization"].strip(),
+   209	                    beam1_helicity=int(row["beam1_helicity"]),
+   210	                    beam2_helicity=int(row["beam2_helicity"]),
+   211	                    beam1_pol_fraction=float(row["beam1_pol_fraction"]),
+   212	                    beam2_pol_fraction=float(row["beam2_pol_fraction"]),
+   213	                    sqrt_s_GeV=float(row["sqrt_s_GeV"]),
+   214	                    isr_enabled=parse_bool(row["isr_enabled"]),
+   215	                    isr_mass_GeV=float(row["isr_mass_GeV"]),
+   216	                    isr_alpha=float(row["isr_alpha"]),
+   217	                    spin_correlated=parse_bool(row["spin_correlated"]),
+   218	                    beam_spectrum=row["beam_spectrum"].strip(),
+   219	                    n_shards=int(row["n_shards"]),
+   220	                    events_per_shard=int(row["events_per_shard"]),
+   221	                    seed_base=int(row["seed_base"]),
+   222	                    request_cpus=int(row["request_cpus"]),
+   223	                    request_memory_mb=int(row["request_memory_mb"]),
+   224	                    job_flavour=row["job_flavour"].strip(),
+   225	                    archive_workspace=parse_bool(row["archive_workspace"]),
+   226	                )
+   227	            except Exception as exc:
+   228	                raise ValueError(f"invalid configuration row {line_no}: {exc}") from exc
+   229	            if cfg.enabled or include_disabled:
+   230	                configs.append(cfg)
+   231	    validate_configs(configs)
+   232	    return configs
+   233	
+   234	
+   235	def validate_configs(configs: Sequence[SampleConfig]) -> None:
+   236	    if not configs:
+   237	        raise ValueError("configuration contains no enabled samples")
+   238	    campaigns = {cfg.campaign_id for cfg in configs}
+   239	    if len(campaigns) != 1:
+   240	        raise ValueError(f"configuration must contain exactly one campaign_id, got {campaigns}")
+   241	    seen_ids: set[str] = set()
+   242	    used_seeds: dict[int, str] = {}
+   243	    for cfg in configs:
+   244	        if cfg.sample_id in seen_ids:
+   245	            raise ValueError(f"duplicate sample_id: {cfg.sample_id}")
+   246	        seen_ids.add(cfg.sample_id)
+   247	        if cfg.initial_state not in {"ee", "mumu"}:
+   248	            raise ValueError(f"unsupported initial_state for {cfg.sample_id}: {cfg.initial_state}")
+   249	        if cfg.decay_channel not in {"epmum", "mupem"}:
+   250	            raise ValueError(f"unsupported decay_channel for {cfg.sample_id}: {cfg.decay_channel}")
+   251	        if cfg.polarization not in {"LR100", "RL100"}:
+   252	            raise ValueError(f"unsupported polarization for {cfg.sample_id}: {cfg.polarization}")
+   253	        if cfg.beam1_helicity not in {-1, 1} or cfg.beam2_helicity not in {-1, 1}:
+   254	            raise ValueError(f"beam helicities must be +/-1 for {cfg.sample_id}")
+   255	        if not 0.0 <= cfg.beam1_pol_fraction <= 1.0:
+   256	            raise ValueError(f"invalid beam1_pol_fraction for {cfg.sample_id}")
+   257	        if not 0.0 <= cfg.beam2_pol_fraction <= 1.0:
+   258	            raise ValueError(f"invalid beam2_pol_fraction for {cfg.sample_id}")
+   259	        if cfg.n_shards <= 0 or cfg.events_per_shard <= 0:
+   260	            raise ValueError(f"n_shards and events_per_shard must be positive for {cfg.sample_id}")
+   261	        if cfg.request_cpus <= 0 or cfg.request_memory_mb <= 0:
+   262	            raise ValueError(f"invalid Condor resources for {cfg.sample_id}")
+   263	        if cfg.isr_mass_GeV <= 0 or cfg.isr_alpha <= 0:
+   264	            raise ValueError(f"invalid ISR mass/alpha for {cfg.sample_id}")
+   265	        if not cfg.isr_enabled:
+   266	            raise ValueError(f"production-v1 requires ISR enabled for {cfg.sample_id}")
+   267	        expected_spin_token = "_sc_" if cfg.spin_correlated else "_iso_"
+   268	        if expected_spin_token not in cfg.sample_id:
+   269	            raise ValueError(
+   270	                f"sample_id spin token does not match spin_correlated={cfg.spin_correlated}: "
+   271	                f"{cfg.sample_id}"
+   272	            )
+   273	        for shard in range(cfg.n_shards):
+   274	            seed = cfg.shard_seed(shard)
+   275	            owner = used_seeds.get(seed)
+   276	            if owner is not None:
+   277	                raise ValueError(f"duplicate seed {seed}: {owner} and {cfg.sample_id}/shard_{shard:04d}")
+   278	            used_seeds[seed] = f"{cfg.sample_id}/shard_{shard:04d}"
+   279	
+   280	
+   281	def filter_configs(configs: Sequence[SampleConfig], patterns: Sequence[str]) -> list[SampleConfig]:
+   282	    if not patterns:
+   283	        return list(configs)
+   284	    import fnmatch
+   285	
+   286	    selected = [cfg for cfg in configs if any(fnmatch.fnmatch(cfg.sample_id, p) for p in patterns)]
+   287	    if not selected:
+   288	        raise ValueError(f"no samples matched patterns: {patterns}")
+   289	    return selected
+   290	
+   291	
+   292	def campaign_root(output_root: Path, campaign_id: str, *, smoke: bool = False) -> Path:
+   293	    suffix = "_smoke" if smoke else ""
+   294	    return output_root / "production" / f"{campaign_id}{suffix}"
+   295	
+
+================================================================
+make_production_sindarin.py
+================================================================
+    80	?keep_remnants = true
+    81	isr_mass = {cfg.isr_mass_GeV:.12g} GeV
+    82	isr_alpha = {cfg.isr_alpha:.12g}
+    83	""".strip() if cfg.isr_enabled else ""
+    84	
+    85	    return f"""! ======================================================================
+    86	! WHIZARD polarized, {decay_description} ttbar production template
+    87	! ======================================================================
+    88	! META campaign_id={cfg.campaign_id}
+    89	! META sample_id={cfg.sample_id}
+    90	! META initial_state={cfg.initial_state}
+    91	! META sqrt_s_GeV={cfg.sqrt_s_GeV:g}
+    92	! META decay_channel={cfg.decay_channel}
+    93	! META polarization={cfg.polarization}
+    94	! META beam1_helicity={cfg.beam1_helicity}
+    95	! META beam2_helicity={cfg.beam2_helicity}
+    96	! META beam1_pol_fraction={cfg.beam1_pol_fraction:g}
+    97	! META beam2_pol_fraction={cfg.beam2_pol_fraction:g}
+    98	! META spin_mode={spin_mode}
+    99	! META isr_enabled={str(cfg.isr_enabled).lower()}
+   100	! META isr_mass_GeV={cfg.isr_mass_GeV:.12g}
+   101	! META isr_alpha={cfg.isr_alpha:.12g}
+   102	! META beam_spectrum={cfg.beam_spectrum}
+   103	! META model=SM
+   104	! META seed=__SEED__
+   105	! META requested_events=__N_EVENTS__
+   106	! META shard_label=__SHARD_LABEL__
+   107	!
+   108	! Production:
+   109	!   {cfg.beam1} {cfg.beam2} -> t tbar
+   110	!
+   111	! Forced decay assignment:
+   112	!   {t_text}
+   113	!   {tbar_text}
+   114	!
+   115	! The raw LHE header contains the inclusive polarized ttbar production
+   116	! cross section because each forced decay table has one configured channel.
+   117	! The workflow preserves raw LHE and creates separately normalized final LHE.
+   118	! ======================================================================
+   119	
+   120	model = SM
+   121	
+   122	process tt_prod = {cfg.beam1}, {cfg.beam2} => t, tbar
+   123	{t_process}
+   124	{tbar_process}
+   125	
+   126	! Integrate decay processes before defining collider beams.  This ordering is
+   127	! required by the validated WHIZARD 3.1.5 workflow for separate decay grids.
+   128	integrate (t_decay) {{
+   129	  iterations = 3:5000, 3:20000
+   130	}}
+   131	
+   132	integrate (tbar_decay) {{
+   133	  iterations = 3:5000, 3:20000
+   134	}}
+   135	
+   136	sqrts = {cfg.sqrt_s_GeV:g} GeV
+   137	{beam_line}
+   138	{isr_block}
+   139	
+   140	beams_pol_density  = @({cfg.beam1_helicity:+d}), @({cfg.beam2_helicity:+d})
+   141	beams_pol_fraction = {percent(cfg.beam1_pol_fraction)}, {percent(cfg.beam2_pol_fraction)}
+   142	
+   143	?diagonal_decay = {diagonal}
+   144	?isotropic_decay = {isotropic}
+   145	
+   146	integrate (tt_prod) {{
+   147	  iterations = 5:20000, 5:50000
+   148	  ?polarized_events = true
+   149	}}
+   150	
+   151	unstable t    (t_decay)
+   152	unstable tbar (tbar_decay)
+   153	
+   154	seed = __SEED__
+   155	n_events = __N_EVENTS__
+   156	sample_format = lhef
+   157	$sample = "__OUTPUT_SAMPLE__"
+   158	
+   159	simulate (tt_prod) {{
+   160	  ?polarized_events = true
+   161	}}
+   162	"""
+   163	
+   164	
+   165	def validate_template(text: str, cfg: SampleConfig) -> None:
+   166	    for token in TOKENS:
+   167	        if token not in text:
+   168	            raise ValueError(f"template for {cfg.sample_id} is missing token {token}")
+   169	
+   170	    spin_mode = "sc" if cfg.spin_correlated else "iso"
+   171	    isotropic = "false" if cfg.spin_correlated else "true"
+   172	    expected_sample_tag = "_sc_" if cfg.spin_correlated else "_iso_"
+   173	
+   174	    if expected_sample_tag not in cfg.sample_id:
+   175	        raise ValueError(
+
+================================================================
+run_production_shard.sh
+================================================================
+     1	#!/usr/bin/env bash
+     2	# Run one WHIZARD production shard in local/Condor scratch and stage products to EOS.
+     3	set -euo pipefail
+     4	
+     5	usage() {
+     6	  cat <<'EOF'
+     7	Usage:
+     8	  run_production_shard.sh \
+     9	    --sample-id ID --initial-state ee|mumu --decay-channel epmum|mupem \
+    10	    --polarization LR100|RL100 --shard-index N --seed N --events N \
+    11	    --campaign-root /eos/... --template FILE \
+    12	    [--archive-workspace 0|1] [--force]
+    13	
+    14	The template must contain __SHARD_LABEL__, __OUTPUT_SAMPLE__, __SEED__, and
+    15	__N_EVENTS__.  WHIZARD runs entirely in local scratch.  Persistent files are
+    16	staged atomically to the EOS campaign root.
+    17	EOF
+    18	}
+    19	
+    20	SAMPLE_ID=""
+    21	INITIAL_STATE=""
+    22	DECAY_CHANNEL=""
+    23	POLARIZATION=""
+    24	SHARD_INDEX=""
+    25	SEED=""
+    26	EVENTS=""
+    27	CAMPAIGN_ROOT=""
+    28	TEMPLATE=""
+    29	ARCHIVE_WORKSPACE=1
+    30	FORCE=0
+    31	
+    32	while [[ $# -gt 0 ]]; do
+    33	  case "$1" in
+    34	    --sample-id) SAMPLE_ID=${2:?}; shift 2 ;;
+    35	    --initial-state) INITIAL_STATE=${2:?}; shift 2 ;;
+    36	    --decay-channel) DECAY_CHANNEL=${2:?}; shift 2 ;;
+    37	    --polarization) POLARIZATION=${2:?}; shift 2 ;;
+    38	    --shard-index) SHARD_INDEX=${2:?}; shift 2 ;;
+    39	    --seed) SEED=${2:?}; shift 2 ;;
+    40	    --events) EVENTS=${2:?}; shift 2 ;;
+    41	    --campaign-root) CAMPAIGN_ROOT=${2:?}; shift 2 ;;
+    42	    --template) TEMPLATE=${2:?}; shift 2 ;;
+    43	    --archive-workspace) ARCHIVE_WORKSPACE=${2:?}; shift 2 ;;
+    44	    --force) FORCE=1; shift ;;
+    45	    --no-force) FORCE=0; shift ;;
+    46	    -h|--help) usage; exit 0 ;;
+    47	    *) echo "ERROR: unknown argument: $1" >&2; usage >&2; exit 2 ;;
+    48	  esac
+    49	done
+    50	
+    51	for var in SAMPLE_ID INITIAL_STATE DECAY_CHANNEL POLARIZATION SHARD_INDEX SEED EVENTS CAMPAIGN_ROOT TEMPLATE; do
+    52	  if [[ -z ${!var:-} ]]; then
+    53	    echo "ERROR: missing required value: $var" >&2
+    54	    usage >&2
+    55	    exit 2
+    56	  fi
+    57	done
+    58	
+    59	[[ "$INITIAL_STATE" == "ee" || "$INITIAL_STATE" == "mumu" ]] || {
+    60	  echo "ERROR: invalid initial state: $INITIAL_STATE" >&2; exit 3;
+    61	}
+    62	[[ "$DECAY_CHANNEL" == "epmum" || "$DECAY_CHANNEL" == "mupem" ]] || {
+    63	  echo "ERROR: invalid decay channel: $DECAY_CHANNEL" >&2; exit 3;
+    64	}
+    65	[[ "$POLARIZATION" == "LR100" || "$POLARIZATION" == "RL100" ]] || {
+    66	  echo "ERROR: invalid polarization: $POLARIZATION" >&2; exit 3;
+    67	}
+    68	[[ "$SHARD_INDEX" =~ ^[0-9]+$ && "$SEED" =~ ^[0-9]+$ && "$EVENTS" =~ ^[1-9][0-9]*$ ]] || {
+    69	  echo "ERROR: shard index, seed and events must be non-negative integers (events > 0)" >&2; exit 3;
+    70	}
+    71	[[ "$ARCHIVE_WORKSPACE" == "0" || "$ARCHIVE_WORKSPACE" == "1" ]] || {
+    72	  echo "ERROR: --archive-workspace must be 0 or 1" >&2; exit 3;
+    73	}
+    74	[[ -f "$TEMPLATE" ]] || { echo "ERROR: missing SINDARIN template: $TEMPLATE" >&2; exit 4; }
+    75	
+    76	CANONICAL_CAMPAIGN_ROOT=$(readlink -m "$CAMPAIGN_ROOT")
+    77	case "$CANONICAL_CAMPAIGN_ROOT" in
+    78	  /eos/*) ;;
+    79	  *)
+    80	    if [[ ${WHIZARD_ALLOW_NON_EOS_OUTPUT:-0} != 1 ]]; then
+    81	      echo "ERROR: campaign root is not on EOS: $CAMPAIGN_ROOT -> $CANONICAL_CAMPAIGN_ROOT" >&2
+    82	      exit 5
+    83	    fi
+    84	    ;;
+    85	esac
+    86	
+    87	SHARD_LABEL=$(printf 'shard_%04d' "$SHARD_INDEX")
+    88	OUTPUT_SAMPLE="${SAMPLE_ID}__${SHARD_LABEL}"
+    89	RUN_DIR="$CAMPAIGN_ROOT/runs/$SAMPLE_ID/$SHARD_LABEL"
+    90	RAW_LHE_DIR="$CAMPAIGN_ROOT/lhe_raw/$SAMPLE_ID"
+    91	FINAL_LHE_DIR="$CAMPAIGN_ROOT/lhe/$SAMPLE_ID"
+    92	LOG_DIR="$CAMPAIGN_ROOT/logs/$SAMPLE_ID"
+    93	FAILURE_DIR="$CAMPAIGN_ROOT/failed/$SAMPLE_ID/$SHARD_LABEL"
+    94	
+    95	if [[ -e "$RUN_DIR" || \
+    96	      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe" || \
+    97	      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef" || \
+    98	      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" || \
+    99	      -e "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef.gz" || \
+   100	      -e "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe" || \
+   101	      -e "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" ]]; then
+   102	  if [[ $FORCE -eq 1 ]]; then
+   103	    rm -rf "$RUN_DIR" "$FAILURE_DIR"
+   104	    rm -f "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe" "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef" \
+   105	          "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" "$RAW_LHE_DIR/${OUTPUT_SAMPLE}.lhef.gz"
+   106	    rm -f "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe" "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz" \
+   107	          "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.normalization.json" \
+   108	          "$FINAL_LHE_DIR/${OUTPUT_SAMPLE}.lhe.gz.normalization.json"
+   109	    rm -f "$CAMPAIGN_ROOT/lhe_merged/raw/${SAMPLE_ID}.lhe" \
+   110	          "$CAMPAIGN_ROOT/lhe_merged/raw/${SAMPLE_ID}.lhe.gz" \
+   111	          "$CAMPAIGN_ROOT/lhe_merged/final/${SAMPLE_ID}.lhe" \
+   112	          "$CAMPAIGN_ROOT/lhe_merged/final/${SAMPLE_ID}.lhe.gz"
+   113	  else
+   114	    echo "ERROR: persistent output already exists for $SAMPLE_ID/$SHARD_LABEL" >&2
+   115	    echo "Use --force only for an intentional replacement." >&2
+   165	mkdir -p "$SCRATCH_BASE"
+   166	WORK_DIR=$(mktemp -d "$SCRATCH_BASE/whizard_${OUTPUT_SAMPLE}_XXXXXX")
+   167	PACKAGE_DIR=$(mktemp -d "$SCRATCH_BASE/whizard_stage_${OUTPUT_SAMPLE}_XXXXXX")
+   168	KEEP_SCRATCH=0
+   169	
+   170	cleanup() {
+   171	  rc=$?
+   172	  if [[ $KEEP_SCRATCH -eq 0 ]]; then
+   173	    rm -rf "$WORK_DIR" "$PACKAGE_DIR"
+   174	  else
+   175	    echo "Scratch preserved: $WORK_DIR" >&2
+   176	    echo "Staging preserved: $PACKAGE_DIR" >&2
+   177	  fi
+   178	  exit "$rc"
+   179	}
+   180	trap cleanup EXIT
+   181	
+   182	cp "$TEMPLATE" "$WORK_DIR/template.sin.in"
+   183	python3 - "$WORK_DIR/template.sin.in" "$WORK_DIR/input.sin" \
+   184	  "$SHARD_LABEL" "$OUTPUT_SAMPLE" "$SEED" "$EVENTS" <<'PY_RENDER'
+   185	from pathlib import Path
+   186	import re
+   187	import sys
+   188	src, dst, shard, output_sample, seed, events = sys.argv[1:]
+   189	text = Path(src).read_text()
+   190	replacements = {
+   191	    "__SHARD_LABEL__": shard,
+   192	    "__OUTPUT_SAMPLE__": output_sample,
+   193	    "__SEED__": seed,
+   194	    "__N_EVENTS__": events,
+   195	}
+   196	for key, value in replacements.items():
+   197	    if key not in text:
+   198	        raise SystemExit(f"missing template token: {key}")
+   199	    text = text.replace(key, value)
+   200	unresolved = sorted(set(re.findall(r"__[A-Z][A-Z0-9_]*__", text)))
+   201	if unresolved:
+   202	    raise SystemExit(f"unresolved template token(s): {unresolved}")
+   203	Path(dst).write_text(text)
+   204	PY_RENDER
+   205	
+   206	START_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+   207	env | sort > "$WORK_DIR/environment.txt"
+   208	whizard --version > "$WORK_DIR/whizard_version.txt" 2>&1 || true
+   209	
+   210	set +e
+   211	(
+   212	  cd "$WORK_DIR"
+   213	  set -o pipefail
+   214	  whizard input.sin 2>&1 | tee console.log
+   215	)
+   216	WHIZARD_RC=$?
+   217	set -e
+   218	END_UTC=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+   219	
+   220	mapfile -t LHE_CANDIDATES < <(
+   250	        if line.lstrip().startswith('<event'):
+   251	            count += 1
+   252	print(count)
+   253	PY_COUNT
+   254	)
+   255	  LHE_SHA256=$(sha256sum "$LHE_SOURCE" | awk '{print $1}')
+   256	fi
+   257	
+   258	STATUS=success
+   259	if [[ $WHIZARD_RC -ne 0 ]]; then STATUS=whizard_failed; fi
+   260	if [[ -z "$LHE_SOURCE" ]]; then STATUS=missing_lhe; fi
+   261	if [[ "$GENERATED_EVENTS" -ne "$EVENTS" ]]; then STATUS=event_count_mismatch; fi
+   262	
+   263	python3 - "$PACKAGE_DIR/run_metadata.json" <<PY_METADATA
+   264	import json, os, socket
+   265	payload = {
+   266	  "sample_id": ${SAMPLE_ID@Q},
+   267	  "initial_state": ${INITIAL_STATE@Q},
+   268	  "decay_channel": ${DECAY_CHANNEL@Q},
+   269	  "polarization": ${POLARIZATION@Q},
+   270	  "shard_index": int(${SHARD_INDEX@Q}),
+   271	  "shard_label": ${SHARD_LABEL@Q},
+   272	  "output_sample": ${OUTPUT_SAMPLE@Q},
+   273	  "seed": int(${SEED@Q}),
+   274	  "requested_events": int(${EVENTS@Q}),
+   275	  "generated_events": int(${GENERATED_EVENTS@Q}),
+   276	  "status": ${STATUS@Q},
+   277	  "whizard_return_code": int(${WHIZARD_RC@Q}),
+   278	  "start_utc": ${START_UTC@Q},
+   279	  "end_utc": ${END_UTC@Q},
+   280	  "hostname": socket.gethostname(),
+   281	  "cluster_id": os.environ.get("CLUSTER", os.environ.get("ClusterId", "")),
+   282	  "process_id": os.environ.get("PROCESS", os.environ.get("ProcId", "")),
+   283	  "campaign_root": ${CAMPAIGN_ROOT@Q},
+   284	  "scratch_directory": ${WORK_DIR@Q},
+   285	  "lhe_source_name": ${LHE_SOURCE@Q},
+   286	  "lhe_sha256": ${LHE_SHA256@Q},
+   287	  "archive_workspace": bool(int(${ARCHIVE_WORKSPACE@Q})),
+   288	}
+   289	with open(${PACKAGE_DIR@Q} + "/run_metadata.json", "w") as stream:
+   290	    json.dump(payload, stream, indent=2, sort_keys=True)
+   291	    stream.write("\n")
+   292	PY_METADATA
+   293	
+   294	cp "$WORK_DIR/input.sin" "$PACKAGE_DIR/input.sin"
+   295	cp "$WORK_DIR/template.sin.in" "$PACKAGE_DIR/template.sin.in"
+
+================================================================
+submit_production.py
+================================================================
+   185	                if args.resume and success:
+   186	                    skipped.append(
+   187	                        {
+   188	                            "sample_id": cfg.sample_id,
+   189	                            "shard_label": label,
+   190	                            "reason": "already_successful",
+   191	                        }
+   192	                    )
+   193	                    continue
+   194	                raise FileExistsError(
+   195	                    f"output exists for {cfg.sample_id}/{label} with status={status}; "
+   196	                    "use --resume to skip successful shards or --force to replace"
+   197	                )
+   198	            events = args.smoke_events if args.smoke else cfg.events_per_shard
+   199	            jobs.append(
+   200	                {
+   201	                    "sample_id": cfg.sample_id,
+   202	                    "initial_state": cfg.initial_state,
+   203	                    "decay_channel": cfg.decay_channel,
+   204	                    "polarization": cfg.polarization,
+   205	                    "shard_index": idx,
+   206	                    "shard_label": label,
+   207	                    "seed": cfg.shard_seed(idx),
+   208	                    "events": events,
+   209	                    "template_path": str(template),
+   210	                    "template_basename": template.name,
+   211	                    "request_cpus": cfg.request_cpus,
+   212	                    "job_memory_mb": cfg.request_memory_mb,
+   213	                    "job_flavour": cfg.job_flavour,
+   214	                    "archive_workspace": int(cfg.archive_workspace),
+   215	                    "force_flag": "--force" if args.force else "--no-force",
+   216	                }
+   217	            )
+   218	
+   219	    if args.max_jobs is not None:
+   220	        jobs = jobs[: args.max_jobs]
+   221	    if not jobs:
+   222	        print("No jobs remain after selection/resume filtering.")
+   223	        return 0
+   224	
+   225	    stamp = utc_now().replace(":", "").replace("-", "")
+   226	    control_campaign = f"{campaign_id}{'_smoke' if args.smoke else ''}"
+   227	
+   228	    # Live Condor control files belong on AFS/local storage.  Persistent
+   229	    # production products and provenance remain in the EOS campaign tree.
+   230	    submission_dir = (
+   231	        args.submission_root.expanduser().resolve()
+   232	        / control_campaign
+   233	        / stamp
+   234	    )
+   235	    provenance_dir = root / "manifests" / "submissions" / stamp
+   236	
+   237	    stdout_root = submission_dir / "stdout"
+   238	    stderr_root = submission_dir / "stderr"
+   239	
+   240	    for path in (
+   241	        submission_dir,
+   242	        provenance_dir,
+   243	        stdout_root,
+   244	        stderr_root,
+   245	    ):
+   246	        path.mkdir(parents=True, exist_ok=True)
+   247	    for cfg in configs:
+   248	        (stdout_root / cfg.sample_id).mkdir(parents=True, exist_ok=True)
+   249	        (stderr_root / cfg.sample_id).mkdir(parents=True, exist_ok=True)
+   250	
+   251	    itemdata = submission_dir / "jobs.itemdata"
+   252	    columns = [
+   253	        "sample_id",
+   254	        "initial_state",
+   255	        "decay_channel",
+   256	        "polarization",
+   257	        "shard_index",
+   258	        "shard_label",
+   259	        "seed",
+   260	        "events",
+   261	        "template_path",
+   262	        "template_basename",
+   263	        "request_cpus",
+   264	        "job_memory_mb",
+   265	        "job_flavour",
+   266	        "archive_workspace",
+   267	        "force_flag",
+   268	    ]
+   269	    with itemdata.open("w") as stream:
+   270	        for job in jobs:
+   271	            values = [str(job[column]) for column in columns]
+   272	            if any(any(ch.isspace() for ch in value) for value in values):
+   273	                raise ValueError(f"Condor itemdata values may not contain whitespace: {values}")
+   274	            stream.write(" ".join(values) + "\n")
+   275	

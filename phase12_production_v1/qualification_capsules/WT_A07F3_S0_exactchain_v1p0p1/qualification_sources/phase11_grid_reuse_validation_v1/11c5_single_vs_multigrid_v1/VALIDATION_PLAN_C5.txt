@@ -1,0 +1,156 @@
+Phase 11C.5 fresh-holdout single-grid vs multi-grid validation
+==============================================================
+
+Purpose
+-------
+
+Determine whether event generation from the predetermined frozen
+G2_S0 grid is statistically compatible with generation from the
+independently qualified G2_S1 and G2_S2 integration grids.
+
+C.5 is a fresh validation following diagnosis of the C.4
+pooled-IQR-normalized quantile metric.
+
+C.4 remains formally FAIL and is not reclassified.
+
+
+Samples
+-------
+
+Fresh validation-only samples:
+
+  S0_C:
+    grid = G2_S0
+    events = 10000
+
+  S0_D:
+    grid = G2_S0
+    events = 10000
+
+  S1_B:
+    grid = G2_S1
+    events = 10000
+
+  S2_B:
+    grid = G2_S2
+    events = 10000
+
+SINGLE:
+  S0_C + S0_D
+  N = 20000
+
+MULTI:
+  S1_B + S2_B
+  N = 20000
+
+All RNG seeds must be disjoint from:
+  - all previous Phase-11 validation samples
+  - future Phase-12 production seeds
+
+
+Generation recipe
+-----------------
+
+For every shard:
+
+  restore immutable frozen integration workspace
+
+  seed = SHARD_RNG_SEED
+
+  integrate(process)
+
+  do NOT explicitly reseed
+
+  simulate(process)
+
+
+Structural gates
+----------------
+
+Require:
+  WHIZARD_RC = 0
+  requested event count = written event count
+  workspace unchanged
+  no new grid initialization
+  canonical PHS/VG2 hashes unchanged
+  unit LHE event weights
+  expected six-fermion final-state content
+  expected ISR photon record structure
+  no parser issues
+  all observables finite
+  every component contains unique raw-event hashes
+  zero exact-event overlap between every pair of components
+
+
+Observable suite
+----------------
+
+Use the same 24 observables frozen for Phase 11C.4.
+
+No observable may be added or removed after C.5 holdout results
+are inspected.
+
+
+Hypothesis-test gate
+--------------------
+
+For every observable:
+
+  two-sample KS test
+  existing quantile-binned chi-square test
+
+48 tests total.
+
+Apply Holm-Bonferroni correction with:
+  familywise alpha = 0.01
+
+Require:
+  zero Holm-rejected tests.
+
+
+Practical-equivalence gates
+---------------------------
+
+For every observable require:
+
+  |SMD| <= 0.05
+
+and:
+
+  KS_D <= 0.02
+
+Interpretation of KS_D <= 0.02:
+
+  the SINGLE and MULTI empirical cumulative event fractions may
+  differ by no more than 2 percentage points at any threshold.
+
+
+Quantile diagnostics
+--------------------
+
+Continue reporting:
+  q05
+  q50
+  q95
+  raw SINGLE-MULTI quantile shifts
+
+The old:
+  |Delta Q| / pooled_IQR <= 0.10
+
+criterion is NOT a C.5 gate.
+
+Quantile information is retained for diagnostic interpretation only.
+
+
+Final C.5 result
+----------------
+
+C.5 PASS requires all structural, hypothesis-test, and
+practical-equivalence gates to pass.
+
+No candidate grid may be substituted after holdout results are seen.
+
+If C.5 FAILS under these frozen criteria:
+  do not cherry-pick G2_S1 or G2_S2;
+  reassess the integration prescription and qualify a fresh
+  predetermined candidate.

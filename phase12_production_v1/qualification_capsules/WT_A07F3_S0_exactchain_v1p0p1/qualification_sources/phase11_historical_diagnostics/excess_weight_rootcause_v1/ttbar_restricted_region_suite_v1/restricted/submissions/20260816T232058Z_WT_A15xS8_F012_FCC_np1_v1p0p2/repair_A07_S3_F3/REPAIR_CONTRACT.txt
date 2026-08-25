@@ -1,0 +1,32 @@
+Original DAG:
+6053426
+
+Original failed node:
+C_A07_S3_F3
+
+Original Condor execution:
+6054024.0
+
+Failure classification:
+INFRASTRUCTURE / EOS-FUSE SHARED-PARENT DIRECTORY-CREATION RACE
+
+Repair policy:
+One isolated replay only.
+
+Physics/configuration preserved exactly:
+mode=A07_S3_F3
+parent_mode=A07_S3
+adaptive_id=A07
+fixed_id=F3
+seed_id=S3
+output_root=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2
+campaign_dir=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2
+
+F3 schedule:
+10:200000:""
+
+The repair reuses the existing frozen A07_S3 parent integration artifacts
+and the original frozen campaign configuration.
+
+This is a technical replacement for an execution lost before WHIZARD
+integration began. It is not a stochastic numerical retry-until-pass.

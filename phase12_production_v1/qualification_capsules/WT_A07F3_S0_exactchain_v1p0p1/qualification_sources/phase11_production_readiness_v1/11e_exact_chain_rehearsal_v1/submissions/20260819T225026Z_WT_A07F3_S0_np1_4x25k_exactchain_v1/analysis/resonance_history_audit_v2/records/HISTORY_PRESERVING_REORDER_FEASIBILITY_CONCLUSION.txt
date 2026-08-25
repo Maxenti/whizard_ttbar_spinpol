@@ -1,0 +1,46 @@
+PHASE-11E HISTORY-PRESERVING REORDER FEASIBILITY
+=================================================
+
+Input:
+100000 qualified S0 Phase-11E WHIZARD events after canonical-v2 ISR
+normalization with only the final daughter-contiguity assertion disabled.
+
+Result:
+TOTAL_EVENTS=100000
+FEASIBLE_EVENTS=100000
+FAILED_EVENTS=0
+
+GREEDY_PASS=100000
+FALLBACK_PASS=0
+
+ALREADY_VALID_ORIGINAL_ORDER=234
+REORDERED_EVENTS=99766
+
+TOTAL_MOVED_PARTICLES=216708
+MAX_PARTICLE_DISPLACEMENT=4
+
+All 16 observed resonance-history classes:
+PASS with zero failures.
+
+Interpretation:
+Every event can be converted to a strict PYTHIA-compatible daughter-range
+serialization using particle-row reordering plus mother-index remapping only.
+
+No event requires:
+- adding a resonance
+- removing a resonance
+- modifying a four-vector
+- modifying a particle ID
+- modifying a status
+- modifying a color tag
+- modifying an event weight
+- changing the selected WHIZARD resonance graph
+
+Production decision:
+Preserve the qualified A07/F3 S0 hard-process sample and implement a
+history-preserving serializer between ISR canonicalization and PYTHIA8.
+
+The grouped-source diagnostic branch is not promoted to production.
+
+The legacy explicit-W insertion adapter is not used for this Phase-12 source
+unless future evidence independently requires it.

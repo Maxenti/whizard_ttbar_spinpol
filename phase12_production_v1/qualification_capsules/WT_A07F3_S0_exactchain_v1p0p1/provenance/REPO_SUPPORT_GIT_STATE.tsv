@@ -1,0 +1,15 @@
+path	git_status
+scripts/production/audit_full6f_lhe_weights.py	?? scripts/production/audit_full6f_lhe_weights.py;
+scripts/production/audit_full6f_whizard_logs.py	?? scripts/production/audit_full6f_whizard_logs.py;
+scripts/production/build_phase11_lr_integration_qualification.py	?? scripts/production/build_phase11_lr_integration_qualification.py;
+scripts/production/closeout_phase10_full6f_365gev.sh	?? scripts/production/closeout_phase10_full6f_365gev.sh;
+scripts/production/collect_full6f_production.py	?? scripts/production/collect_full6f_production.py;
+scripts/production/merge_mpi_lhe.py	?? scripts/production/merge_mpi_lhe.py;
+scripts/production/run_full6f_production_shard.sh	 M scripts/production/run_full6f_production_shard.sh;
+scripts/production/run_whizard_failfast.py	?? scripts/production/run_whizard_failfast.py;
+scripts/production/validate_phase10A_full6f_worker_replay.py	?? scripts/production/validate_phase10A_full6f_worker_replay.py;
+scripts/condor/run_full6f_production_job.sh	 M scripts/condor/run_full6f_production_job.sh;
+scripts/condor/run_full6f_production_job_encoded_iterations.sh	?? scripts/condor/run_full6f_production_job_encoded_iterations.sh;
+scripts/sindarin/render_full6f_cards.py	
+scripts/sindarin/validate_phase4_cards.py	
+environments/setup_whizard_3p1p8_mpi_qualified.sh	?? environments/setup_whizard_3p1p8_mpi_qualified.sh;

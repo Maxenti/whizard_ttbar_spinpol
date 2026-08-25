@@ -1,0 +1,7 @@
+WT11C_STATUS=INCOMPLETE_TECHNICAL
+S0: gate=FAIL technical=FAIL events=0 excess_fraction=nan avg_excess=nan max_excess=nan
+S1: gate=FAIL technical=FAIL events=0 excess_fraction=nan avg_excess=nan max_excess=nan
+S2: gate=FAIL technical=FAIL events=0 excess_fraction=nan avg_excess=nan max_excess=nan
+WT11C_GLOBAL_UNIQUE_EVENTS=50000
+WT11C_DUPLICATE_EVENT_HASHES=0
+WT11C_NEXT_ACTION=Rerun only technical-failure modes with the SAME mode/grid/seed; do not substitute RNG seeds.

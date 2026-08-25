@@ -1,0 +1,22 @@
+Phase 11C.5 validation-only RNG seed ledger
+===========================================
+
+Reserved C.5 holdout seeds:
+
+  S0_C  211160001
+  S0_D  211160002
+  S1_B  211160101
+  S2_B  211160102
+
+These seeds are:
+  - disjoint from earlier Phase-11 validation seeds;
+  - validation-only;
+  - not permitted for Phase-12 production.
+
+Reserve the entire range:
+
+  211160000--211160999
+
+for Phase-11C.5 validation / diagnostics only.
+
+Phase-12 production seed allocation must exclude this range.

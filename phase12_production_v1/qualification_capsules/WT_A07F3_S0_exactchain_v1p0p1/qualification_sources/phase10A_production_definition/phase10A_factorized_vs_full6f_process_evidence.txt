@@ -1,0 +1,43 @@
+================================================================
+FACTORIZED PRODUCTION TEMPLATES
+================================================================
+
+FILE=sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_365GeV.sin.in
+
+FILE=sindarin/production/ee_ttbar_epmum_RL100_sc_ISR_365GeV.sin.in
+
+================================================================
+FULL-SIX-FERMION PHASE 9 CARDS
+================================================================
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/process.sin:4:process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/process.sin:4:process proc_mupem = e1, E1 => b, bbar, E2, n2, e1, N1
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/process.sin:4:process proc_epem = e1, E1 => b, bbar, E1, n1, e1, N1
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/process.sin:4:process proc_mupmum = e1, E1 => b, bbar, E2, n2, e2, N2
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin:5:process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/process.sin:5:process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/process.sin:5:process proc_mupem = e1, E1 => b, bbar, E2, n2, e1, N1
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/process.sin:5:process proc_mupem = e1, E1 => b, bbar, E2, n2, e1, N1
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/process.sin:4:process proc_epjets_Wminus_ubar_d = e1, E1 => b, bbar, E1, n1, ubar, d
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/process.sin:4:process proc_epjets_Wminus_ubar_s = e1, E1 => b, bbar, E1, n1, ubar, s
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/process.sin:4:process proc_epjets_Wminus_ubar_b = e1, E1 => b, bbar, E1, n1, ubar, b
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/process.sin:4:process proc_epjets_Wminus_cbar_d = e1, E1 => b, bbar, E1, n1, cbar, d
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/process.sin:4:process proc_epjets_Wminus_cbar_s = e1, E1 => b, bbar, E1, n1, cbar, s
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/process.sin:4:process proc_epjets_Wminus_cbar_b = e1, E1 => b, bbar, E1, n1, cbar, b
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/process.sin:4:process proc_emjets_Wplus_u_dbar = e1, E1 => b, bbar, e1, N1, u, dbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/process.sin:4:process proc_emjets_Wplus_u_sbar = e1, E1 => b, bbar, e1, N1, u, sbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/process.sin:4:process proc_emjets_Wplus_u_bbar = e1, E1 => b, bbar, e1, N1, u, bbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/process.sin:4:process proc_emjets_Wplus_c_dbar = e1, E1 => b, bbar, e1, N1, c, dbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/process.sin:4:process proc_emjets_Wplus_c_sbar = e1, E1 => b, bbar, e1, N1, c, sbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/process.sin:4:process proc_emjets_Wplus_c_bbar = e1, E1 => b, bbar, e1, N1, c, bbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/process.sin:4:process proc_mupjets_Wminus_ubar_d = e1, E1 => b, bbar, E2, n2, ubar, d
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/process.sin:4:process proc_mupjets_Wminus_ubar_s = e1, E1 => b, bbar, E2, n2, ubar, s
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/process.sin:4:process proc_mupjets_Wminus_ubar_b = e1, E1 => b, bbar, E2, n2, ubar, b
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/process.sin:4:process proc_mupjets_Wminus_cbar_d = e1, E1 => b, bbar, E2, n2, cbar, d
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/process.sin:4:process proc_mupjets_Wminus_cbar_s = e1, E1 => b, bbar, E2, n2, cbar, s
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/process.sin:4:process proc_mupjets_Wminus_cbar_b = e1, E1 => b, bbar, E2, n2, cbar, b
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/process.sin:4:process proc_mumjets_Wplus_u_dbar = e1, E1 => b, bbar, e2, N2, u, dbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/process.sin:4:process proc_mumjets_Wplus_u_sbar = e1, E1 => b, bbar, e2, N2, u, sbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/process.sin:4:process proc_mumjets_Wplus_u_bbar = e1, E1 => b, bbar, e2, N2, u, bbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/process.sin:4:process proc_mumjets_Wplus_c_dbar = e1, E1 => b, bbar, e2, N2, c, dbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/process.sin:4:process proc_mumjets_Wplus_c_sbar = e1, E1 => b, bbar, e2, N2, c, sbar
+sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/process.sin:4:process proc_mumjets_Wplus_c_bbar = e1, E1 => b, bbar, e2, N2, c, bbar

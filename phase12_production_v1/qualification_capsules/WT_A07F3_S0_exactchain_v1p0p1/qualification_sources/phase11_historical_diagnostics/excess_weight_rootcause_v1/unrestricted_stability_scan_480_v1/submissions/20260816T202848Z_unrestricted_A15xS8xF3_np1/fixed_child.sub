@@ -1,0 +1,21 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/run_fixed_child.sh
+arguments = --mode $(mode) --parent-mode $(parent_mode) --adaptive-id $(adaptive_id) --fixed-id $(fixed_id) --seed-id $(seed_id) --campaign-dir /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1 --output-root /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/20260816T202848Z_unrestricted_A15xS8xF3_np1
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1
+should_transfer_files = NO
+getenv = True
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 6000MB
+
++JobFlavour = "tomorrow"
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = logs/fixed.$(ClusterId).log
+
+notification = Never
+queue

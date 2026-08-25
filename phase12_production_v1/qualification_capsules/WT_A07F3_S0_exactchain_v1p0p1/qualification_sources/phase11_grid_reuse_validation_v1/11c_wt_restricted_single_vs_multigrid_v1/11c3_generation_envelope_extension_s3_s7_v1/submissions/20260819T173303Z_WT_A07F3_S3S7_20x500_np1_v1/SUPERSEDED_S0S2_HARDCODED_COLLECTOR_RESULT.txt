@@ -1,0 +1,36 @@
+PHASE-11C S3-S7 COLLECTOR SUPERSESSION NOTE
+=============================================
+
+Superseded result directory:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c3_generation_envelope_extension_s3_s7_v1/submissions/20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1/analysis/envelope_result_v1
+
+Reason:
+The collector used for the first S3-S7 collection was inherited from the
+S0-S2 WT generation-envelope campaign and retained a hard-coded aggregate
+grid set of S0, S1, S2.
+
+The S3-S7 campaign itself is NOT invalid.
+
+Independent campaign checks before collection established:
+- 100/100 normal HTCondor return-value-0 terminations
+- 100/100 technical worker PASS
+- 100/100 expected LHE files
+- 20/20 technical PASS for each S3-S7
+- 10,000 events per grid
+- no VAMP2 parameter-mismatch/discarded-pass/new-grid markers
+- no workspace mutation
+- no new-grid initialization
+
+The misconfigured collector nevertheless successfully performed the global
+LHE audit across the actual S3-S7 files and reported:
+- 50,000 globally unique events
+- 0 duplicate event hashes
+
+Its S0/S1/S2 aggregate rows and INCOMPLETE_TECHNICAL status are artifacts
+of the hard-coded grid list and MUST NOT be interpreted as a campaign or
+physics failure.
+
+No WHIZARD jobs are to be rerun.
+
+A separate S3-S7-aware collector/result directory supersedes the aggregate
+decision from this result while preserving the original files as provenance.

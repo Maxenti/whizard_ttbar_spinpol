@@ -1,0 +1,73 @@
+{
+  "basis": "rnk_common_v1_nominal_beam_phase9",
+  "notes": [
+    "Raw and projected density matrices are both retained.",
+    "Projection is a physicality correction, not a substitute for reporting raw estimator behavior.",
+    "CHSH depends only on the original moment correlation tensor in the current raw product and is therefore retained from the raw calculation.",
+    "Projected concurrence and negativity are calculated from the projected density matrix."
+  ],
+  "projected_qis_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_projected_20260803/phase9_projected_density_matrix_qis_observables.csv",
+  "projected_qis_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_projected_20260803/phase9_projected_density_matrix_qis_observables.json",
+  "projection_method": {
+    "name": "nearest_psd_trace_one_frobenius",
+    "steps": [
+      "Hermitize rho.",
+      "Diagonalize the Hermitian matrix.",
+      "Project its eigenvalue vector onto the probability simplex.",
+      "Reconstruct and normalize the projected matrix."
+    ]
+  },
+  "raw_qis_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_observables_20260803/phase9_density_matrix_qis_observables.json",
+  "samples": [
+    {
+      "n_events": 10000,
+      "parent_label": "LR100_epmum",
+      "projected_concurrence": 0.0,
+      "projected_is_positive_semidefinite": true,
+      "projected_negativity": 0.0,
+      "projected_purity": 0.635768700691351,
+      "projected_rho_min_eigenvalue": 0.0025867768466826054,
+      "projection_frobenius_distance": 2.1313109415966461e-16,
+      "raw_chsh": 1.3013138353937006,
+      "raw_concurrence": 0.0,
+      "raw_negativity": 0.0,
+      "raw_purity": 0.635768700691351,
+      "raw_rho_min_eigenvalue": 0.0025867768466825126,
+      "raw_was_positive_semidefinite": true
+    },
+    {
+      "n_events": 10000,
+      "parent_label": "RL100_epmum",
+      "projected_concurrence": 0.0,
+      "projected_is_positive_semidefinite": true,
+      "projected_negativity": 0.0,
+      "projected_purity": 0.6210601951220289,
+      "projected_rho_min_eigenvalue": 0.006567748273433547,
+      "projection_frobenius_distance": 4.013731378848175e-16,
+      "raw_chsh": 1.2913881802363834,
+      "raw_concurrence": 0.0,
+      "raw_negativity": 0.0,
+      "raw_purity": 0.6210601951220287,
+      "raw_rho_min_eigenvalue": 0.006567748273433659,
+      "raw_was_positive_semidefinite": true
+    },
+    {
+      "n_events": 10000,
+      "parent_label": "unpol_epmum",
+      "projected_concurrence": 0.0,
+      "projected_is_positive_semidefinite": true,
+      "projected_negativity": 0.0,
+      "projected_purity": 0.42621225086582304,
+      "projected_rho_min_eigenvalue": -8.632205017183931e-18,
+      "projection_frobenius_distance": 0.002214544121432963,
+      "raw_chsh": 1.4532054162128223,
+      "raw_concurrence": 0.0,
+      "raw_negativity": 0.0,
+      "raw_purity": 0.4274957227161305,
+      "raw_rho_min_eigenvalue": -0.0019178514669623953,
+      "raw_was_positive_semidefinite": false
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS"
+}

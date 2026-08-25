@@ -1,0 +1,5433 @@
+ process proc_epmum_i1
+
+! List of subprocesses with particle bincodes:
+! 128 64     1   2 4   8      16   32
+!  e- e+ => e+ nue b mu- numubar bbar
+! 128 64     1   2 4   8      16   32
+
+   md5sum_process    = "EDA2889828B526F7D29EAF1B33CB14DE"
+   md5sum_model_par  = "7656C90A0B2C4325AD911301DACF50EB"
+   md5sum_phs_config = "C62BEABB36D30DEAF073A3EF6AF0EF64"
+   sqrts         =  3.650000000000E+02
+   m_threshold_s =  5.000000000000E+01
+   m_threshold_t =  1.000000000000E+02
+   off_shell = 2
+   t_channel = 6
+   keep_nonresonant = T
+
+ ! Multiplicity = 2, 4 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #1
+ ! Channel #1
+   tree  3 7 24 56 63
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #2
+ ! Channel #2
+   tree  3 7 24 56 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+ ! Channel #3
+   tree  3 24 56 60 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+ ! Channel #4
+   tree  3 24 56 59 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 2, 3 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #3
+ ! Channel #5
+   tree  3 7 24 56 63
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #4
+ ! Channel #6
+   tree  3 7 24 56 63
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+ ! Channel #7
+   tree  3 7 24 39 63
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+ ! Channel #8
+   tree  3 7 24 31 63
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #5
+ ! Channel #9
+   tree  3 7 24 56 63
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+ ! Channel #10
+   tree  3 7 24 39 63
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+ ! Channel #11
+   tree  3 7 24 31 63
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #6
+ ! Channel #12
+   tree  3 24 27 36 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+ ! Channel #13
+   tree  3 24 36 39 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+ ! Channel #14
+   tree  3 24 36 60 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #7
+ ! Channel #15
+   tree  3 24 27 36 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+ ! Channel #16
+   tree  3 24 36 39 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+ ! Channel #17
+   tree  3 24 36 60 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+
+ ! Multiplicity = 2, 3 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #8
+ ! Channel #18
+   tree  3 24 27 36 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #19
+   tree  3 24 27 36 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        25 ! H
+   map  36 s_channel        23 ! Z
+ ! Channel #20
+   tree  24 25 27 36 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #21
+   tree  24 26 27 36 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #9
+ ! Channel #22
+   tree  3 24 27 36 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        25 ! H
+ ! Channel #23
+   tree  3 24 27 31 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        25 ! H
+ ! Channel #24
+   tree  3 24 27 59 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        25 ! H
+
+ ! Multiplicity = 2, 3 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #10
+ ! Channel #25
+   tree  3 7 24 56 63
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #11
+ ! Channel #26
+   tree  3 7 24 56 63
+   map   3 s_channel        24 ! W+
+   map  56 s_channel        -6 ! tbar
+ ! Channel #27
+   tree  3 24 56 60 63
+   map   3 s_channel        24 ! W+
+   map  56 s_channel        -6 ! tbar
+ ! Channel #28
+   tree  3 24 56 59 63
+   map   3 s_channel        24 ! W+
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 2, 2 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #12
+ ! Channel #29
+   tree  3 7 24 56 63
+   map   7 s_channel         6 ! t
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 2, 3 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #13
+ ! Channel #30
+   tree  3 24 27 36 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #31
+   tree  3 24 27 36 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        25 ! H
+   map  36 s_channel        23 ! Z
+ ! Channel #32
+   tree  3 11 27 36 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #33
+   tree  3 19 27 36 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #14
+ ! Channel #34
+   tree  3 24 27 36 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        25 ! H
+ ! Channel #35
+   tree  3 24 27 31 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        25 ! H
+ ! Channel #36
+   tree  3 24 27 59 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        25 ! H
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  s-channel graph
+ grove #15
+ ! Channel #37
+   tree  3 24 36 39 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+ ! Channel #38
+   tree  3 24 36 60 63
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  s-channel graph
+ grove #16
+ ! Channel #39
+   tree  3 24 36 39 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+ ! Channel #40
+   tree  3 36 39 47 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+ ! Channel #41
+   tree  3 36 39 55 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+
+ ! Multiplicity = 1, 2 resonances,  2 logs,  0 off-shell,  s-channel graph
+ grove #17
+ ! Channel #42
+   tree  3 24 36 39 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #43
+   tree  3 36 39 47 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #44
+   tree  3 36 39 55 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 2, 2 resonances,  1 logs,  1 off-shell,  s-channel graph
+ grove #18
+ ! Channel #45
+   tree  3 24 36 39 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #46
+   tree  3 24 36 60 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #47
+   tree  24 36 37 39 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #48
+   tree  3 36 44 60 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  2 off-shell,  s-channel graph
+ grove #19
+ ! Channel #49
+   tree  3 24 36 39 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #50
+   tree  24 36 37 39 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #51
+   tree  3 36 39 47 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #52
+   tree  3 36 39 55 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #53
+   tree  36 37 39 47 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+ ! Channel #54
+   tree  36 37 39 55 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+
+ ! Multiplicity = 1, 2 resonances,  1 logs,  0 off-shell,  s-channel graph
+ grove #20
+ ! Channel #55
+   tree  3 24 36 39 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #56
+   tree  3 24 36 60 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #57
+   tree  3 19 36 55 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #58
+   tree  24 36 37 39 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #59
+   tree  3 36 44 60 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #60
+   tree  3 36 44 47 63
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #61
+   tree  3 36 39 47 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #62
+   tree  3 36 39 55 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #63
+   tree  36 37 39 47 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #64
+   tree  36 37 39 55 63
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 1, 2 resonances,  1 logs,  0 off-shell,  s-channel graph
+ grove #21
+ ! Channel #65
+   tree  3 24 36 39 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #66
+   tree  3 24 36 60 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #67
+   tree  24 26 36 62 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #68
+   tree  24 36 37 39 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #69
+   tree  24 36 37 61 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  63 s_channel        23 ! Z
+ ! Channel #70
+   tree  3 36 44 60 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #71
+   tree  24 36 60 61 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #72
+   tree  24 36 60 62 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #73
+   tree  36 44 60 61 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #74
+   tree  36 44 60 62 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  s-channel graph
+ grove #22
+ ! Channel #75
+   tree  3 24 36 60 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+ ! Channel #76
+   tree  24 36 60 61 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+ ! Channel #77
+   tree  24 36 60 62 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+
+ ! Multiplicity = 1, 2 resonances,  2 logs,  0 off-shell,  s-channel graph
+ grove #23
+ ! Channel #78
+   tree  3 24 36 60 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #79
+   tree  24 36 60 61 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #80
+   tree  24 36 60 62 63
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  2 off-shell,  s-channel graph
+ grove #24
+ ! Channel #81
+   tree  3 24 36 60 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #82
+   tree  3 36 44 60 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #83
+   tree  24 36 60 61 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #84
+   tree  24 36 60 62 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #85
+   tree  36 44 60 61 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+ ! Channel #86
+   tree  36 44 60 62 63
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+
+ ! Multiplicity = 2, 2 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #25
+ ! Channel #87
+   tree  3 7 24 39 63
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+ ! Channel #88
+   tree  3 24 56 60 63
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+ ! Channel #89
+   tree  24 36 37 39 63
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+ ! Channel #90
+   tree  24 36 38 39 63
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+ ! Channel #91
+   tree  3 36 44 60 63
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+ ! Channel #92
+   tree  3 36 52 60 63
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 1 resonance,   0 logs,  2 off-shell,  s-channel graph
+ grove #26
+ ! Channel #93
+   tree  3 7 24 39 63
+   map  39 s_channel        24 ! W+
+ ! Channel #94
+   tree  24 36 37 39 63
+   map  39 s_channel        24 ! W+
+ ! Channel #95
+   tree  24 36 38 39 63
+   map  39 s_channel        24 ! W+
+ ! Channel #96
+   tree  3 7 39 47 63
+   map  39 s_channel        24 ! W+
+ ! Channel #97
+   tree  3 7 39 55 63
+   map  39 s_channel        24 ! W+
+ ! Channel #98
+   tree  36 37 39 47 63
+   map  39 s_channel        24 ! W+
+ ! Channel #99
+   tree  36 37 39 55 63
+   map  39 s_channel        24 ! W+
+ ! Channel #100
+   tree  36 38 39 47 63
+   map  39 s_channel        24 ! W+
+ ! Channel #101
+   tree  36 38 39 55 63
+   map  39 s_channel        24 ! W+
+
+ ! Multiplicity = 1, 2 resonances,  0 logs,  0 off-shell,  s-channel graph
+ grove #27
+ ! Channel #102
+   tree  3 7 24 39 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #103
+   tree  24 36 37 39 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #104
+   tree  24 36 38 39 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #105
+   tree  3 7 39 47 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #106
+   tree  3 7 39 55 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #107
+   tree  36 37 39 47 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #108
+   tree  36 37 39 55 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #109
+   tree  36 38 39 47 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+ ! Channel #110
+   tree  36 38 39 55 63
+   map  39 s_channel        24 ! W+
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 2, 2 resonances,  0 logs,  1 off-shell,  s-channel graph
+ grove #28
+ ! Channel #111
+   tree  3 11 27 36 63
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #112
+   tree  3 19 27 36 63
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #113
+   tree  24 25 27 36 63
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+ ! Channel #114
+   tree  24 26 27 36 63
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        25 ! H
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #29
+ ! Channel #115
+   tree  3 24 27 31 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+ ! Channel #116
+   tree  3 24 27 59 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+ ! Channel #117
+   tree  24 25 27 31 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+ ! Channel #118
+   tree  24 25 27 59 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+ ! Channel #119
+   tree  24 26 27 31 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+ ! Channel #120
+   tree  24 26 27 59 63
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+
+ ! Multiplicity = 3, 1 resonance,   0 logs,  2 off-shell,  s-channel graph
+ grove #30
+ ! Channel #121
+   tree  3 24 56 60 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #122
+   tree  3 36 44 60 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #123
+   tree  3 36 52 60 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #124
+   tree  24 56 60 61 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #125
+   tree  24 56 60 62 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #126
+   tree  36 44 60 61 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #127
+   tree  36 44 60 62 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #128
+   tree  36 52 60 61 63
+   map  60 s_channel       -24 ! W-
+ ! Channel #129
+   tree  36 52 60 62 63
+   map  60 s_channel       -24 ! W-
+
+ ! Multiplicity = 1, 2 resonances,  0 logs,  0 off-shell,  s-channel graph
+ grove #31
+ ! Channel #130
+   tree  3 24 56 60 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #131
+   tree  3 36 44 60 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #132
+   tree  3 36 52 60 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #133
+   tree  24 56 60 61 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #134
+   tree  24 56 60 62 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #135
+   tree  36 44 60 61 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #136
+   tree  36 44 60 62 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #137
+   tree  36 52 60 61 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+ ! Channel #138
+   tree  36 52 60 62 63
+   map  60 s_channel       -24 ! W-
+   map  63 s_channel        23 ! Z
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  s-channel graph
+ grove #32
+ ! Channel #139
+   tree  3 24 27 31 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+ ! Channel #140
+   tree  3 24 27 59 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+ ! Channel #141
+   tree  3 11 27 31 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+ ! Channel #142
+   tree  3 11 27 59 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+ ! Channel #143
+   tree  3 19 27 31 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+ ! Channel #144
+   tree  3 19 27 59 63
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+
+ ! Multiplicity = 3, 1 resonance,   0 logs,  2 off-shell,  s-channel graph
+ grove #33
+ ! Channel #145
+   tree  3 11 27 31 63
+   map  27 s_channel        23 ! Z
+ ! Channel #146
+   tree  3 11 27 59 63
+   map  27 s_channel        23 ! Z
+ ! Channel #147
+   tree  3 19 27 31 63
+   map  27 s_channel        23 ! Z
+ ! Channel #148
+   tree  3 19 27 59 63
+   map  27 s_channel        23 ! Z
+ ! Channel #149
+   tree  24 25 27 31 63
+   map  27 s_channel        23 ! Z
+ ! Channel #150
+   tree  24 25 27 59 63
+   map  27 s_channel        23 ! Z
+ ! Channel #151
+   tree  24 26 27 31 63
+   map  27 s_channel        23 ! Z
+ ! Channel #152
+   tree  24 26 27 59 63
+   map  27 s_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #34
+ ! Channel #153
+   tree  24 26 36 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  65 t_channel        22 ! A
+ ! Channel #154
+   tree  24 26 36 37 101
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 101 t_channel        22 ! A
+ ! Channel #155
+   tree  24 26 36 37 154
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 154 t_channel        22 ! A
+ ! Channel #156
+   tree  24 26 36 62 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #35
+ ! Channel #157
+   tree  24 26 36 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 t_channel        22 ! A
+ ! Channel #158
+   tree  24 36 38 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 t_channel        22 ! A
+ ! Channel #159
+   tree  24 36 60 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 t_channel        22 ! A
+ ! Channel #160
+   tree  24 26 36 37 101
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 101 t_channel        22 ! A
+ ! Channel #161
+   tree  24 26 36 37 154
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 154 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  1 t-channel line
+ grove #36
+ ! Channel #162
+   tree  24 36 60 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #163
+   tree  24 36 60 62 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  1 off-shell,  1 t-channel line
+ grove #37
+ ! Channel #164
+   tree  24 36 60 62 65
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #165
+   tree  36 44 60 62 65
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #166
+   tree  24 36 60 62 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 190 t_channel        22 ! A
+ ! Channel #167
+   tree  36 44 60 62 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #38
+ ! Channel #168
+   tree  24 36 60 62 65
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #39
+ ! Channel #169
+   tree  24 56 60 62 65
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  65 t_channel        22 ! A
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  1 t-channel line
+ grove #40
+ ! Channel #170
+   tree  24 56 60 62 65
+   map  56 s_channel        -6 ! tbar
+   map  65 t_channel        22 ! A
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  1 off-shell,  1 t-channel line
+ grove #41
+ ! Channel #171
+   tree  24 56 60 62 65
+   map  60 s_channel       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #172
+   tree  36 44 60 62 65
+   map  60 s_channel       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #173
+   tree  36 52 60 62 65
+   map  60 s_channel       -24 ! W-
+   map  65 t_channel        22 ! A
+ ! Channel #174
+   tree  24 56 60 62 190
+   map  60 s_channel       -24 ! W-
+   map 190 t_channel        22 ! A
+ ! Channel #175
+   tree  36 44 60 62 190
+   map  60 s_channel       -24 ! W-
+   map 190 t_channel        22 ! A
+ ! Channel #176
+   tree  36 52 60 62 190
+   map  60 s_channel       -24 ! W-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  1 t-channel line
+ grove #42
+ ! Channel #177
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #178
+   tree  3 24 36 39 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #179
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #180
+   tree  3 24 36 60 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 2, 2 resonances,  2 logs,  0 off-shell,  1 t-channel line
+ grove #43
+ ! Channel #181
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #182
+   tree  3 36 44 60 67
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #183
+   tree  3 24 36 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #184
+   tree  24 36 37 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #185
+   tree  3 24 36 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #186
+   tree  24 36 37 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #187
+   tree  3 24 36 60 188
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #188
+   tree  3 36 44 60 188
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #44
+ ! Channel #189
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  67 t_channel        12 ! nue
+ ! Channel #190
+   tree  3 36 44 60 67
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  67 t_channel        12 ! nue
+ ! Channel #191
+   tree  3 24 36 60 188
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 188 t_channel        12 ! nue
+ ! Channel #192
+   tree  3 36 44 60 188
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #45
+ ! Channel #193
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #194
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #46
+ ! Channel #195
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #196
+   tree  3 36 44 60 67
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #197
+   tree  3 36 52 60 67
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #198
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 152 t_channel        12 ! nue
+ ! Channel #199
+   tree  3 36 44 60 188
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 188 t_channel        12 ! nue
+ ! Channel #200
+   tree  3 36 52 60 188
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #47
+ ! Channel #201
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #202
+   tree  3 24 56 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #203
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 152 t_channel        12 ! nue
+ ! Channel #204
+   tree  3 7 24 39 152
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #48
+ ! Channel #205
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  67 t_channel        12 ! nue
+ ! Channel #206
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #49
+ ! Channel #207
+   tree  3 24 36 60 67
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        25 ! H
+   map  67 t_channel        12 ! nue
+ ! Channel #208
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        25 ! H
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #50
+ ! Channel #209
+   tree  3 24 56 60 67
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 2 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #51
+ ! Channel #210
+   tree  3 24 56 60 67
+   map   3 s_channel        24 ! W+
+   map  56 s_channel        -6 ! tbar
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 2, 2 resonances,  1 logs,  0 off-shell,  1 t-channel line
+ grove #52
+ ! Channel #211
+   tree  3 24 56 60 67
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #212
+   tree  3 36 44 60 67
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #213
+   tree  3 36 52 60 67
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #214
+   tree  3 7 24 39 103
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #215
+   tree  24 36 37 39 103
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #216
+   tree  24 36 38 39 103
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #217
+   tree  3 7 24 39 152
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #218
+   tree  24 36 37 39 152
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #219
+   tree  24 36 38 39 152
+   map  24 s_channel       -24 ! W-
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #220
+   tree  3 24 56 60 188
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #221
+   tree  3 36 44 60 188
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #222
+   tree  3 36 52 60 188
+   map   3 s_channel        24 ! W+
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  1 t-channel line
+ grove #53
+ ! Channel #223
+   tree  3 24 36 60 67
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #224
+   tree  3 24 36 60 188
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  1 off-shell,  1 t-channel line
+ grove #54
+ ! Channel #225
+   tree  3 24 36 60 67
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #226
+   tree  3 36 44 60 67
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #227
+   tree  3 24 36 60 188
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #228
+   tree  3 36 44 60 188
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #55
+ ! Channel #229
+   tree  3 24 36 60 67
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #230
+   tree  24 36 37 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #231
+   tree  24 36 38 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #232
+   tree  3 24 36 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 t_channel        12 ! nue
+ ! Channel #233
+   tree  24 36 37 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 t_channel        12 ! nue
+ ! Channel #234
+   tree  24 36 38 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #56
+ ! Channel #235
+   tree  3 24 36 60 67
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  67 t_channel        12 ! nue
+ ! Channel #236
+   tree  3 24 36 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #57
+ ! Channel #237
+   tree  3 24 56 60 67
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  1 t-channel line
+ grove #58
+ ! Channel #238
+   tree  3 24 56 60 67
+   map  56 s_channel        -6 ! tbar
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  1 off-shell,  1 t-channel line
+ grove #59
+ ! Channel #239
+   tree  3 24 56 60 67
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #240
+   tree  3 36 44 60 67
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #241
+   tree  3 36 52 60 67
+   map  60 s_channel       -24 ! W-
+   map  67 t_channel        12 ! nue
+ ! Channel #242
+   tree  3 24 56 60 188
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #243
+   tree  3 36 44 60 188
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+ ! Channel #244
+   tree  3 36 52 60 188
+   map  60 s_channel       -24 ! W-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  1 t-channel line
+ grove #60
+ ! Channel #245
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #246
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #61
+ ! Channel #247
+   tree  3 24 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #248
+   tree  24 25 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #249
+   tree  24 26 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #250
+   tree  24 25 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #251
+   tree  24 26 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #252
+   tree  3 24 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #253
+   tree  24 25 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #254
+   tree  24 26 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #255
+   tree  24 25 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #256
+   tree  24 26 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 2 resonances,  2 logs,  0 off-shell,  1 t-channel line
+ grove #62
+ ! Channel #257
+   tree  3 24 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #258
+   tree  24 25 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #259
+   tree  24 26 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #260
+   tree  3 24 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #261
+   tree  24 25 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #262
+   tree  24 26 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #263
+   tree  3 24 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #264
+   tree  24 25 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #265
+   tree  24 26 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #266
+   tree  3 24 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #267
+   tree  24 25 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #268
+   tree  24 26 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #63
+ ! Channel #269
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #270
+   tree  3 11 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #271
+   tree  3 19 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #272
+   tree  3 11 27 36 91
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #273
+   tree  3 19 27 36 91
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #274
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #275
+   tree  3 11 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #276
+   tree  3 19 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #277
+   tree  3 11 27 36 155
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #278
+   tree  3 19 27 36 155
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 2 resonances,  2 logs,  0 off-shell,  1 t-channel line
+ grove #64
+ ! Channel #279
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #280
+   tree  3 11 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #281
+   tree  3 19 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #282
+   tree  3 24 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #283
+   tree  3 11 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #284
+   tree  3 19 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #285
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #286
+   tree  3 11 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #287
+   tree  3 19 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #288
+   tree  3 24 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #289
+   tree  3 11 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #290
+   tree  3 19 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  0 off-shell,  1 t-channel line
+ grove #65
+ ! Channel #291
+   tree  3 11 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #292
+   tree  3 19 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #293
+   tree  24 25 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #294
+   tree  24 26 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 100 t_channel        11 ! e-
+ ! Channel #295
+   tree  3 11 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #296
+   tree  3 19 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #297
+   tree  24 25 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #298
+   tree  24 26 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #299
+   tree  3 11 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #300
+   tree  3 19 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #301
+   tree  24 25 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #302
+   tree  24 26 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 164 t_channel        11 ! e-
+ ! Channel #303
+   tree  3 11 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #304
+   tree  3 19 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #305
+   tree  24 25 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #306
+   tree  24 26 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 infrared         22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 3 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #66
+ ! Channel #307
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #308
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #67
+ ! Channel #309
+   tree  3 24 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #310
+   tree  24 25 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #311
+   tree  24 26 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #312
+   tree  24 25 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #313
+   tree  24 26 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #314
+   tree  3 24 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #315
+   tree  24 25 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #316
+   tree  24 26 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #317
+   tree  24 25 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #318
+   tree  24 26 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 2, 3 resonances,  1 logs,  0 off-shell,  1 t-channel line
+ grove #68
+ ! Channel #319
+   tree  3 24 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #320
+   tree  24 25 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #321
+   tree  24 26 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #322
+   tree  3 24 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #323
+   tree  24 25 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #324
+   tree  24 26 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #325
+   tree  3 24 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #326
+   tree  24 25 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #327
+   tree  24 26 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #328
+   tree  3 24 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #329
+   tree  24 25 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #330
+   tree  24 26 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #69
+ ! Channel #331
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #332
+   tree  3 11 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #333
+   tree  3 19 27 36 100
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #334
+   tree  3 11 27 36 91
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #335
+   tree  3 19 27 36 91
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #336
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #337
+   tree  3 11 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #338
+   tree  3 19 27 36 164
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #339
+   tree  3 11 27 36 155
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #340
+   tree  3 19 27 36 155
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 2, 3 resonances,  1 logs,  0 off-shell,  1 t-channel line
+ grove #70
+ ! Channel #341
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #342
+   tree  3 11 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #343
+   tree  3 19 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #344
+   tree  3 24 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #345
+   tree  3 11 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #346
+   tree  3 19 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #347
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #348
+   tree  3 11 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #349
+   tree  3 19 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #350
+   tree  3 24 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #351
+   tree  3 11 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #352
+   tree  3 19 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 2, 2 resonances,  1 logs,  0 off-shell,  1 t-channel line
+ grove #71
+ ! Channel #353
+   tree  3 11 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #354
+   tree  3 19 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #355
+   tree  24 25 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #356
+   tree  24 26 27 36 100
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #357
+   tree  3 11 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #358
+   tree  3 19 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #359
+   tree  24 25 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #360
+   tree  24 26 27 36 91
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #361
+   tree  3 11 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #362
+   tree  3 19 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #363
+   tree  24 25 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #364
+   tree  24 26 27 36 164
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #365
+   tree  3 11 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #366
+   tree  3 19 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #367
+   tree  24 25 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #368
+   tree  24 26 27 36 155
+   map  27 s_channel        23 ! Z
+   map  36 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #72
+ ! Channel #369
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 100 t_channel        11 ! e-
+ ! Channel #370
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 164 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 2 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #73
+ ! Channel #371
+   tree  3 24 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #372
+   tree  24 25 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #373
+   tree  24 26 27 36 100
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #374
+   tree  3 24 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #375
+   tree  24 25 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #376
+   tree  24 26 27 36 91
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #377
+   tree  3 24 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #378
+   tree  24 25 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #379
+   tree  24 26 27 36 164
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #380
+   tree  3 24 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #381
+   tree  24 25 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #382
+   tree  24 26 27 36 155
+   map  24 s_channel       -24 ! W-
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 2 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #74
+ ! Channel #383
+   tree  3 24 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #384
+   tree  3 11 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #385
+   tree  3 19 27 36 100
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #386
+   tree  3 24 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #387
+   tree  3 11 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #388
+   tree  3 19 27 36 91
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #389
+   tree  3 24 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #390
+   tree  3 11 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #391
+   tree  3 19 27 36 164
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #392
+   tree  3 24 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #393
+   tree  3 11 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #394
+   tree  3 19 27 36 155
+   map   3 s_channel        24 ! W+
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  1 off-shell,  1 t-channel line
+ grove #75
+ ! Channel #395
+   tree  3 11 27 36 100
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #396
+   tree  3 19 27 36 100
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #397
+   tree  24 25 27 36 100
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #398
+   tree  24 26 27 36 100
+   map  27 s_channel        23 ! Z
+   map 100 t_channel        11 ! e-
+ ! Channel #399
+   tree  3 11 27 36 91
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #400
+   tree  3 19 27 36 91
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #401
+   tree  24 25 27 36 91
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #402
+   tree  24 26 27 36 91
+   map  27 s_channel        23 ! Z
+   map  91 t_channel        11 ! e-
+ ! Channel #403
+   tree  3 11 27 36 164
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #404
+   tree  3 19 27 36 164
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #405
+   tree  24 25 27 36 164
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #406
+   tree  24 26 27 36 164
+   map  27 s_channel        23 ! Z
+   map 164 t_channel        11 ! e-
+ ! Channel #407
+   tree  3 11 27 36 155
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #408
+   tree  3 19 27 36 155
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #409
+   tree  24 25 27 36 155
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #410
+   tree  24 26 27 36 155
+   map  27 s_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #76
+ ! Channel #411
+   tree  24 25 36 38 89
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  89 t_channel        24 ! W+
+ ! Channel #412
+   tree  24 25 36 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 t_channel        24 ! W+
+ ! Channel #413
+   tree  24 36 37 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 t_channel        24 ! W+
+ ! Channel #414
+   tree  24 36 60 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 t_channel        24 ! W+
+ ! Channel #415
+   tree  24 25 36 38 166
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #77
+ ! Channel #416
+   tree  3 24 27 36 91
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+ ! Channel #417
+   tree  3 24 27 36 155
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #78
+ ! Channel #418
+   tree  3 24 27 36 91
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+ ! Channel #419
+   tree  3 24 36 39 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+ ! Channel #420
+   tree  3 24 27 36 155
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+ ! Channel #421
+   tree  3 24 36 60 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  1 t-channel line
+ grove #79
+ ! Channel #422
+   tree  3 24 36 39 103
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #423
+   tree  3 24 36 39 152
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  39 radiation        24 ! W+
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  1 off-shell,  1 t-channel line
+ grove #80
+ ! Channel #424
+   tree  3 24 36 39 103
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #425
+   tree  24 36 37 39 103
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #426
+   tree  3 24 36 39 152
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #427
+   tree  24 36 37 39 152
+   map  36 infrared         22 ! A
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #81
+ ! Channel #428
+   tree  3 24 36 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 103 t_channel        12 ! nue
+ ! Channel #429
+   tree  24 36 37 39 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 103 t_channel        12 ! nue
+ ! Channel #430
+   tree  3 24 36 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 t_channel        12 ! nue
+ ! Channel #431
+   tree  24 36 37 39 152
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #82
+ ! Channel #432
+   tree  3 24 36 39 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+ ! Channel #433
+   tree  3 24 36 60 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #83
+ ! Channel #434
+   tree  3 7 24 39 103
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #84
+ ! Channel #435
+   tree  3 7 24 39 103
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  1 off-shell,  1 t-channel line
+ grove #85
+ ! Channel #436
+   tree  3 7 24 39 103
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #437
+   tree  24 36 37 39 103
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #438
+   tree  24 36 38 39 103
+   map  39 s_channel        24 ! W+
+   map 103 t_channel        12 ! nue
+ ! Channel #439
+   tree  3 7 24 39 152
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #440
+   tree  24 36 37 39 152
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+ ! Channel #441
+   tree  24 36 38 39 152
+   map  39 s_channel        24 ! W+
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  1 t-channel line
+ grove #86
+ ! Channel #442
+   tree  24 36 37 61 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #443
+   tree  24 36 37 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  1 t-channel line
+ grove #87
+ ! Channel #444
+   tree  24 36 60 61 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #445
+   tree  24 36 60 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  1 off-shell,  1 t-channel line
+ grove #88
+ ! Channel #446
+   tree  24 36 60 61 125
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #447
+   tree  36 44 60 61 125
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #448
+   tree  24 36 60 61 130
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 130 t_channel        24 ! W+
+ ! Channel #449
+   tree  36 44 60 61 130
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 3, 1 resonance,   1 logs,  1 off-shell,  1 t-channel line
+ grove #89
+ ! Channel #450
+   tree  24 56 60 61 125
+   map  60 s_channel       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #451
+   tree  36 44 60 61 125
+   map  60 s_channel       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #452
+   tree  36 52 60 61 125
+   map  60 s_channel       -24 ! W-
+   map 125 t_channel        24 ! W+
+ ! Channel #453
+   tree  24 56 60 61 130
+   map  60 s_channel       -24 ! W-
+   map 130 t_channel        24 ! W+
+ ! Channel #454
+   tree  36 44 60 61 130
+   map  60 s_channel       -24 ! W-
+   map 130 t_channel        24 ! W+
+ ! Channel #455
+   tree  36 52 60 61 130
+   map  60 s_channel       -24 ! W-
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #90
+ ! Channel #456
+   tree  24 36 38 65 89
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 t_channel        24 ! W+
+ ! Channel #457
+   tree  24 36 37 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #458
+   tree  24 36 37 130 154
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 154 t_channel        22 ! A
+ ! Channel #459
+   tree  24 36 38 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #91
+ ! Channel #460
+   tree  24 36 38 65 89
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  89 t_channel        24 ! W+
+ ! Channel #461
+   tree  24 36 37 101 125
+   map  24 s_channel       -24 ! W-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #462
+   tree  24 36 37 130 154
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 154 t_channel        22 ! A
+ ! Channel #463
+   tree  24 36 38 166 190
+   map  24 s_channel       -24 ! W-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #92
+ ! Channel #464
+   tree  24 36 38 65 89
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 t_channel        24 ! W+
+ ! Channel #465
+   tree  36 44 60 65 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #466
+   tree  36 52 60 65 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #467
+   tree  24 36 37 101 125
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #468
+   tree  24 36 37 130 154
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 154 t_channel        22 ! A
+ ! Channel #469
+   tree  36 44 60 130 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #470
+   tree  36 52 60 130 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #471
+   tree  24 36 38 166 190
+   map  36 s_channel        23 ! Z
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #93
+ ! Channel #472
+   tree  24 26 36 65 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #473
+   tree  24 26 36 100 101
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 t_channel        22 ! A
+ ! Channel #474
+   tree  24 26 36 164 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 190 t_channel        22 ! A
+ ! Channel #475
+   tree  24 26 36 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #94
+ ! Channel #476
+   tree  24 26 36 65 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #477
+   tree  24 26 36 100 101
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 t_channel        22 ! A
+ ! Channel #478
+   tree  24 26 36 164 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 190 t_channel        22 ! A
+ ! Channel #479
+   tree  24 26 36 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #95
+ ! Channel #480
+   tree  24 26 36 65 91
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #481
+   tree  24 26 36 100 101
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 101 t_channel        22 ! A
+ ! Channel #482
+   tree  24 26 36 164 190
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 190 t_channel        22 ! A
+ ! Channel #483
+   tree  24 26 36 154 155
+   map  24 s_channel       -24 ! W-
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #96
+ ! Channel #484
+   tree  24 26 36 65 91
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #485
+   tree  24 26 36 100 101
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 t_channel        22 ! A
+ ! Channel #486
+   tree  24 26 36 164 190
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 190 t_channel        22 ! A
+ ! Channel #487
+   tree  24 26 36 154 155
+   map  36 infrared         22 ! A
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #97
+ ! Channel #488
+   tree  24 26 36 65 91
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  91 t_channel        11 ! e-
+ ! Channel #489
+   tree  24 26 36 100 101
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 t_channel        22 ! A
+ ! Channel #490
+   tree  24 26 36 164 190
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 190 t_channel        22 ! A
+ ! Channel #491
+   tree  24 26 36 154 155
+   map  36 s_channel        23 ! Z
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  2 t-channel lines
+ grove #98
+ ! Channel #492
+   tree  24 36 60 65 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #493
+   tree  24 36 60 130 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 3, 1 resonance,   3 logs,  0 off-shell,  2 t-channel lines
+ grove #99
+ ! Channel #494
+   tree  24 36 60 65 125
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #495
+   tree  36 44 60 65 125
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #496
+   tree  24 36 60 130 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #497
+   tree  36 44 60 130 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #100
+ ! Channel #498
+   tree  24 36 60 65 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #499
+   tree  36 44 60 65 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #500
+   tree  24 36 37 101 125
+   map  36 infrared         22 ! A
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #501
+   tree  24 36 37 130 154
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 154 t_channel        22 ! A
+ ! Channel #502
+   tree  24 36 60 130 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #503
+   tree  36 44 60 130 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #101
+ ! Channel #504
+   tree  24 36 60 65 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #102
+ ! Channel #505
+   tree  24 36 60 65 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #103
+ ! Channel #506
+   tree  24 56 60 65 125
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  2 t-channel lines
+ grove #104
+ ! Channel #507
+   tree  24 56 60 65 125
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  0 off-shell,  2 t-channel lines
+ grove #105
+ ! Channel #508
+   tree  24 56 60 65 125
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #509
+   tree  36 44 60 65 125
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #510
+   tree  36 52 60 65 125
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #511
+   tree  24 56 60 130 190
+   map  60 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #512
+   tree  36 44 60 130 190
+   map  60 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #513
+   tree  36 52 60 130 190
+   map  60 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  2 t-channel lines
+ grove #106
+ ! Channel #514
+   tree  24 36 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #515
+   tree  24 36 60 188 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  60 radiation       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 3, 1 resonance,   3 logs,  0 off-shell,  2 t-channel lines
+ grove #107
+ ! Channel #516
+   tree  24 36 60 65 67
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #517
+   tree  36 44 60 65 67
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #518
+   tree  24 36 60 188 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #519
+   tree  36 44 60 188 190
+   map  36 infrared         22 ! A
+   map  60 s_channel       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #108
+ ! Channel #520
+   tree  24 36 60 65 67
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #521
+   tree  36 44 60 65 67
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #522
+   tree  24 36 37 101 103
+   map  36 infrared         22 ! A
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #523
+   tree  24 36 37 152 154
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 154 t_channel        23 ! Z
+ ! Channel #524
+   tree  24 36 60 188 190
+   map  36 infrared         22 ! A
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #525
+   tree  36 44 60 188 190
+   map  36 infrared         22 ! A
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #109
+ ! Channel #526
+   tree  24 36 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #527
+   tree  24 36 38 65 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #528
+   tree  24 36 37 101 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #529
+   tree  24 36 37 152 154
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 154 t_channel        23 ! Z
+ ! Channel #530
+   tree  24 36 38 152 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #110
+ ! Channel #531
+   tree  24 36 60 65 67
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #532
+   tree  36 44 60 65 67
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #533
+   tree  36 52 60 65 67
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #534
+   tree  24 36 38 65 103
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #535
+   tree  24 36 37 101 103
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #536
+   tree  24 36 37 152 154
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 154 t_channel        23 ! Z
+ ! Channel #537
+   tree  24 36 38 152 190
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #538
+   tree  36 44 60 188 190
+   map  36 s_channel        23 ! Z
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #539
+   tree  36 52 60 188 190
+   map  36 s_channel        23 ! Z
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #111
+ ! Channel #540
+   tree  24 36 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #541
+   tree  24 56 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #542
+   tree  24 36 38 65 103
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #543
+   tree  24 36 37 101 103
+   map  24 s_channel       -24 ! W-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #544
+   tree  24 36 37 152 154
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 154 t_channel        23 ! Z
+ ! Channel #545
+   tree  24 36 38 152 190
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #112
+ ! Channel #546
+   tree  24 36 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #113
+ ! Channel #547
+   tree  24 36 60 65 67
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #114
+ ! Channel #548
+   tree  24 56 60 65 67
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 1 resonance,   2 logs,  1 off-shell,  2 t-channel lines
+ grove #115
+ ! Channel #549
+   tree  24 56 60 65 67
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 1 resonance,   2 logs,  0 off-shell,  2 t-channel lines
+ grove #116
+ ! Channel #550
+   tree  24 56 60 65 67
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #551
+   tree  36 44 60 65 67
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #552
+   tree  36 52 60 65 67
+   map  60 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 t_channel        12 ! nue
+ ! Channel #553
+   tree  24 56 60 188 190
+   map  60 s_channel       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #554
+   tree  36 44 60 188 190
+   map  60 s_channel       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+ ! Channel #555
+   tree  36 52 60 188 190
+   map  60 s_channel       -24 ! W-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #117
+ ! Channel #556
+   tree  24 26 36 65 101
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+ ! Channel #557
+   tree  24 26 36 154 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  2 t-channel lines
+ grove #118
+ ! Channel #558
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #559
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #560
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #561
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  2 logs,  0 off-shell,  2 t-channel lines
+ grove #119
+ ! Channel #562
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #563
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #564
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #565
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #120
+ ! Channel #566
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #567
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #568
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #569
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #121
+ ! Channel #570
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #571
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #572
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #573
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #122
+ ! Channel #574
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #575
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #576
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #577
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #123
+ ! Channel #578
+   tree  3 24 36 67 91
+   map   3 s_channel        24 ! W+
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #579
+   tree  3 24 36 100 103
+   map   3 s_channel        24 ! W+
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #580
+   tree  3 24 36 152 155
+   map   3 s_channel        24 ! W+
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #581
+   tree  3 24 36 164 188
+   map   3 s_channel        24 ! W+
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  2 logs,  0 off-shell,  2 t-channel lines
+ grove #124
+ ! Channel #582
+   tree  3 24 36 67 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #583
+   tree  3 24 36 152 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #125
+ ! Channel #584
+   tree  3 24 36 67 103
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #585
+   tree  3 24 36 152 188
+   map   3 s_channel        24 ! W+
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #126
+ ! Channel #586
+   tree  3 24 36 67 103
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #587
+   tree  3 24 36 152 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #127
+ ! Channel #588
+   tree  3 24 36 67 103
+   map   3 s_channel        24 ! W+
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #589
+   tree  3 24 36 152 188
+   map   3 s_channel        24 ! W+
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #128
+ ! Channel #590
+   tree  3 24 36 67 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #591
+   tree  3 24 36 100 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #592
+   tree  3 24 36 152 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #593
+   tree  3 24 36 164 188
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #129
+ ! Channel #594
+   tree  3 24 36 67 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #595
+   tree  3 24 36 100 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #596
+   tree  3 24 36 152 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #597
+   tree  3 24 36 164 188
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #130
+ ! Channel #598
+   tree  3 24 36 67 91
+   map  24 s_channel       -24 ! W-
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #599
+   tree  3 24 36 100 103
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #600
+   tree  3 24 36 152 155
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #601
+   tree  3 24 36 164 188
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #131
+ ! Channel #602
+   tree  3 24 36 67 91
+   map  36 infrared         22 ! A
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #603
+   tree  3 24 36 100 103
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #604
+   tree  3 24 36 152 155
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #605
+   tree  3 24 36 164 188
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #132
+ ! Channel #606
+   tree  3 24 36 67 91
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #607
+   tree  3 24 36 100 103
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 103 t_channel        12 ! nue
+ ! Channel #608
+   tree  3 24 36 152 155
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 155 t_channel        11 ! e-
+ ! Channel #609
+   tree  3 24 36 164 188
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #133
+ ! Channel #610
+   tree  3 24 36 67 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #611
+   tree  3 24 36 152 188
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #134
+ ! Channel #612
+   tree  3 24 36 67 103
+   map  36 s_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #613
+   tree  3 24 36 152 188
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #135
+ ! Channel #614
+   tree  3 24 36 67 103
+   map  24 s_channel       -24 ! W-
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #615
+   tree  3 24 36 152 188
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 188 t_channel        12 ! nue
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #136
+ ! Channel #616
+   tree  24 25 36 100 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 125 t_channel        24 ! W+
+ ! Channel #617
+   tree  24 25 36 89 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #618
+   tree  24 25 36 130 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 155 t_channel        11 ! e-
+ ! Channel #619
+   tree  24 25 36 164 166
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #137
+ ! Channel #620
+   tree  24 25 36 100 125
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 125 t_channel        24 ! W+
+ ! Channel #621
+   tree  24 25 36 89 91
+   map  36 infrared         22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #622
+   tree  24 25 36 130 155
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 155 t_channel        11 ! e-
+ ! Channel #623
+   tree  24 25 36 164 166
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #138
+ ! Channel #624
+   tree  24 25 36 100 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 125 t_channel        24 ! W+
+ ! Channel #625
+   tree  24 25 36 89 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #626
+   tree  24 25 36 130 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 155 t_channel        11 ! e-
+ ! Channel #627
+   tree  24 25 36 164 166
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #139
+ ! Channel #628
+   tree  24 25 36 100 125
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 125 t_channel        24 ! W+
+ ! Channel #629
+   tree  24 25 36 89 91
+   map  36 s_channel        23 ! Z
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #630
+   tree  24 25 36 130 155
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 155 t_channel        11 ! e-
+ ! Channel #631
+   tree  24 25 36 164 166
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #140
+ ! Channel #632
+   tree  24 25 36 100 125
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 125 t_channel        24 ! W+
+ ! Channel #633
+   tree  24 25 36 89 91
+   map  24 s_channel       -24 ! W-
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #634
+   tree  24 25 36 130 155
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 155 t_channel        11 ! e-
+ ! Channel #635
+   tree  24 25 36 164 166
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #141
+ ! Channel #636
+   tree  24 25 36 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #637
+   tree  24 25 36 130 166
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  2 t-channel lines
+ grove #142
+ ! Channel #638
+   tree  24 25 36 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #639
+   tree  24 25 36 130 166
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #143
+ ! Channel #640
+   tree  24 25 36 89 125
+   map  24 s_channel       -24 ! W-
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #641
+   tree  24 25 36 130 166
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #144
+ ! Channel #642
+   tree  24 25 36 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  89 u_channel        24 ! W+
+ ! Channel #643
+   tree  24 25 36 130 166
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+ ! Channel #644
+   tree  24 36 60 130 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  2 t-channel lines
+ grove #145
+ ! Channel #645
+   tree  24 25 36 89 125
+   map  36 infrared         22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #646
+   tree  24 25 36 130 166
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  2 t-channel lines
+ grove #146
+ ! Channel #647
+   tree  24 25 36 89 125
+   map  36 s_channel        23 ! Z
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #648
+   tree  24 25 36 130 166
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 t_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #147
+ ! Channel #649
+   tree  24 36 37 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #650
+   tree  24 36 37 130 154
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 154 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  2 t-channel lines
+ grove #148
+ ! Channel #651
+   tree  24 36 37 101 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #652
+   tree  24 36 37 152 154
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 154 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #149
+ ! Channel #653
+   tree  24 26 65 69 101
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 t_channel        22 ! A
+ ! Channel #654
+   tree  24 26 65 97 101
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 t_channel        22 ! A
+ ! Channel #655
+   tree  24 26 154 158 190
+   map  24 s_channel       -24 ! W-
+   map 154 u_channel        22 ! A
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #656
+   tree  24 26 154 186 190
+   map  24 s_channel       -24 ! W-
+   map 154 u_channel        22 ! A
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #150
+ ! Channel #657
+   tree  24 26 65 69 101
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 t_channel        22 ! A
+ ! Channel #658
+   tree  24 26 65 97 101
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 t_channel        22 ! A
+ ! Channel #659
+   tree  24 26 154 158 190
+   map 154 u_channel        22 ! A
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #660
+   tree  24 26 154 186 190
+   map 154 u_channel        22 ! A
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  3 t-channel lines
+ grove #151
+ ! Channel #661
+   tree  24 56 65 69 125
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  3 t-channel lines
+ grove #152
+ ! Channel #662
+   tree  24 56 65 69 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+
+ ! Multiplicity = 4, 1 resonance,   2 logs,  1 off-shell,  3 t-channel lines
+ grove #153
+ ! Channel #663
+   tree  24 56 65 69 125
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #154
+ ! Channel #664
+   tree  36 38 65 73 89
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 t_channel        24 ! W+
+ ! Channel #665
+   tree  36 52 65 73 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #666
+   tree  36 44 65 109 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #667
+   tree  36 37 101 109 125
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #668
+   tree  36 37 130 146 154
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 t_channel        22 ! A
+ ! Channel #669
+   tree  36 44 130 146 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+ ! Channel #670
+   tree  36 52 130 182 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+ ! Channel #671
+   tree  36 38 166 182 190
+   map  36 s_channel        23 ! Z
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #155
+ ! Channel #672
+   tree  36 38 65 73 89
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 t_channel        24 ! W+
+ ! Channel #673
+   tree  36 52 65 73 125
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #674
+   tree  36 44 65 109 125
+   map  65 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #675
+   tree  36 37 101 109 125
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #676
+   tree  36 37 130 146 154
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 t_channel        22 ! A
+ ! Channel #677
+   tree  36 44 130 146 190
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+ ! Channel #678
+   tree  36 52 130 182 190
+   map 130 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+ ! Channel #679
+   tree  36 38 166 182 190
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  3 t-channel lines
+ grove #156
+ ! Channel #680
+   tree  24 36 65 89 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #681
+   tree  24 36 100 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #682
+   tree  24 36 130 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #683
+   tree  24 36 164 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  3 t-channel lines
+ grove #157
+ ! Channel #684
+   tree  24 36 65 89 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #685
+   tree  24 36 100 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #686
+   tree  24 36 130 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #687
+   tree  24 36 164 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #158
+ ! Channel #688
+   tree  24 36 65 89 91
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #689
+   tree  24 36 100 101 125
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #690
+   tree  24 36 130 154 155
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #691
+   tree  24 36 164 166 190
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  3 t-channel lines
+ grove #159
+ ! Channel #692
+   tree  24 36 65 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #693
+   tree  24 36 130 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  3 t-channel lines
+ grove #160
+ ! Channel #694
+   tree  24 36 65 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #695
+   tree  24 36 130 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #161
+ ! Channel #696
+   tree  24 36 65 89 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #697
+   tree  24 36 130 166 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  3 t-channel lines
+ grove #162
+ ! Channel #698
+   tree  24 36 65 89 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  3 t-channel lines
+ grove #163
+ ! Channel #699
+   tree  24 36 65 89 91
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #700
+   tree  24 36 100 101 125
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #701
+   tree  24 36 130 154 155
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #702
+   tree  24 36 164 166 190
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #164
+ ! Channel #703
+   tree  24 36 65 89 91
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #704
+   tree  24 36 100 101 125
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #705
+   tree  24 36 130 154 155
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #706
+   tree  24 36 164 166 190
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #165
+ ! Channel #707
+   tree  24 36 65 89 91
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #708
+   tree  24 36 100 101 125
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #709
+   tree  24 36 130 154 155
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #710
+   tree  24 36 164 166 190
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  3 t-channel lines
+ grove #166
+ ! Channel #711
+   tree  24 36 65 89 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #712
+   tree  24 36 130 166 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #167
+ ! Channel #713
+   tree  24 36 65 89 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #714
+   tree  24 36 130 166 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #168
+ ! Channel #715
+   tree  24 36 65 89 125
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #716
+   tree  24 36 130 166 190
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  3 t-channel lines
+ grove #169
+ ! Channel #717
+   tree  24 36 65 89 125
+   map  36 s_channel        25 ! H
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #170
+ ! Channel #718
+   tree  24 56 65 121 125
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  3 t-channel lines
+ grove #171
+ ! Channel #719
+   tree  24 56 65 121 125
+   map  56 s_channel        -6 ! tbar
+   map  65 u_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  3 t-channel lines
+ grove #172
+ ! Channel #720
+   tree  36 44 65 109 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #721
+   tree  36 37 101 109 125
+   map  36 infrared         22 ! A
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #722
+   tree  36 37 130 146 154
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 t_channel        22 ! A
+ ! Channel #723
+   tree  36 44 130 146 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  3 t-channel lines
+ grove #173
+ ! Channel #724
+   tree  24 36 65 67 91
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #725
+   tree  24 36 100 101 103
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #726
+   tree  24 36 152 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #727
+   tree  24 36 164 188 190
+   map  24 s_channel       -24 ! W-
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  3 t-channel lines
+ grove #174
+ ! Channel #728
+   tree  24 36 65 67 91
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #729
+   tree  24 36 100 101 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #730
+   tree  24 36 152 154 155
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #731
+   tree  24 36 164 188 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #175
+ ! Channel #732
+   tree  24 36 65 67 91
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #733
+   tree  24 36 100 101 103
+   map  24 s_channel       -24 ! W-
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #734
+   tree  24 36 152 154 155
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #735
+   tree  24 36 164 188 190
+   map  24 s_channel       -24 ! W-
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  3 t-channel lines
+ grove #176
+ ! Channel #736
+   tree  24 36 65 67 91
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #737
+   tree  24 36 100 101 103
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #738
+   tree  24 36 152 154 155
+   map  36 infrared         22 ! A
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #739
+   tree  24 36 164 188 190
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #177
+ ! Channel #740
+   tree  24 36 65 67 91
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #741
+   tree  24 36 100 101 103
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #742
+   tree  24 36 152 154 155
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #743
+   tree  24 36 164 188 190
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #178
+ ! Channel #744
+   tree  24 36 65 67 91
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map  91 t_channel        11 ! e-
+ ! Channel #745
+   tree  24 36 100 101 103
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #746
+   tree  24 36 152 154 155
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #747
+   tree  24 36 164 188 190
+   map 164 u_channel        11 ! e-
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  3 logs,  0 off-shell,  3 t-channel lines
+ grove #179
+ ! Channel #748
+   tree  24 36 65 67 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #749
+   tree  24 36 152 188 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #180
+ ! Channel #750
+   tree  24 36 65 67 103
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #751
+   tree  24 36 152 188 190
+   map  36 s_channel        23 ! Z
+   map 152 u_channel        12 ! nue
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #181
+ ! Channel #752
+   tree  24 36 65 67 103
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #753
+   tree  24 36 152 188 190
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #182
+ ! Channel #754
+   tree  24 36 65 67 103
+   map  65 u_channel        23 ! Z
+   map  67 u_channel        12 ! nue
+   map 103 t_channel        12 ! nue
+ ! Channel #755
+   tree  24 36 152 188 190
+   map 152 u_channel        12 ! nue
+   map 188 u_channel        12 ! nue
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  3 t-channel lines
+ grove #183
+ ! Channel #756
+   tree  36 38 65 81 89
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 t_channel        24 ! W+
+ ! Channel #757
+   tree  36 44 65 81 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #758
+   tree  36 52 65 117 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #759
+   tree  36 37 101 117 125
+   map  36 s_channel        23 ! Z
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #760
+   tree  36 37 130 138 154
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 t_channel        23 ! Z
+ ! Channel #761
+   tree  36 52 130 138 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+ ! Channel #762
+   tree  36 44 130 174 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+ ! Channel #763
+   tree  36 38 166 174 190
+   map  36 s_channel        23 ! Z
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  3 t-channel lines
+ grove #184
+ ! Channel #764
+   tree  36 38 65 81 89
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 t_channel        24 ! W+
+ ! Channel #765
+   tree  36 44 65 81 125
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #766
+   tree  36 52 65 117 125
+   map  65 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #767
+   tree  36 37 101 117 125
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #768
+   tree  36 37 130 138 154
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 t_channel        23 ! Z
+ ! Channel #769
+   tree  36 52 130 138 190
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+ ! Channel #770
+   tree  36 44 130 174 190
+   map 130 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+ ! Channel #771
+   tree  36 38 166 174 190
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  3 t-channel lines
+ grove #185
+ ! Channel #772
+   tree  36 44 65 81 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #773
+   tree  36 37 101 117 125
+   map  36 infrared         22 ! A
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #774
+   tree  36 37 130 138 154
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 t_channel        23 ! Z
+ ! Channel #775
+   tree  36 44 130 174 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #186
+ ! Channel #776
+   tree  24 36 65 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #187
+ ! Channel #777
+   tree  24 36 65 101 103
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+ ! Channel #778
+   tree  24 36 65 101 125
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #188
+ ! Channel #779
+   tree  24 65 69 101 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #780
+   tree  24 65 97 101 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #781
+   tree  24 130 154 158 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #782
+   tree  24 130 154 186 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #189
+ ! Channel #783
+   tree  24 65 69 101 125
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #784
+   tree  24 65 97 101 125
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 125 t_channel        24 ! W+
+ ! Channel #785
+   tree  24 130 154 158 190
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #786
+   tree  24 130 154 186 190
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        22 ! A
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #190
+ ! Channel #787
+   tree  24 65 69 101 103
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #788
+   tree  24 65 97 101 103
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #789
+   tree  24 152 154 158 190
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #790
+   tree  24 152 154 186 190
+   map  24 s_channel       -24 ! W-
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #191
+ ! Channel #791
+   tree  24 65 69 101 103
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #792
+   tree  24 65 97 101 103
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 103 t_channel        12 ! nue
+ ! Channel #793
+   tree  24 152 154 158 190
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #794
+   tree  24 152 154 186 190
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  4 t-channel lines
+ grove #192
+ ! Channel #795
+   tree  24 65 69 101 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+ ! Channel #796
+   tree  24 65 97 101 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+ ! Channel #797
+   tree  24 65 97 121 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  4 t-channel lines
+ grove #193
+ ! Channel #798
+   tree  36 65 73 89 91
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #799
+   tree  36 100 101 109 125
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #800
+   tree  36 130 146 154 155
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #801
+   tree  36 164 166 182 190
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #194
+ ! Channel #802
+   tree  36 65 73 89 91
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #803
+   tree  36 100 101 109 125
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #804
+   tree  36 130 146 154 155
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #805
+   tree  36 164 166 182 190
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #195
+ ! Channel #806
+   tree  36 65 73 89 91
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #807
+   tree  36 100 101 109 125
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #808
+   tree  36 130 146 154 155
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        22 ! A
+   map 155 t_channel        11 ! e-
+ ! Channel #809
+   tree  36 164 166 182 190
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  4 t-channel lines
+ grove #196
+ ! Channel #810
+   tree  36 65 73 89 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #811
+   tree  36 130 166 182 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #197
+ ! Channel #812
+   tree  36 65 73 89 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #813
+   tree  36 130 166 182 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #198
+ ! Channel #814
+   tree  36 65 73 89 125
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #815
+   tree  36 130 166 182 190
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  4 t-channel lines
+ grove #199
+ ! Channel #816
+   tree  36 65 73 89 125
+   map  36 s_channel        25 ! H
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  4 t-channel lines
+ grove #200
+ ! Channel #817
+   tree  36 65 73 109 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #818
+   tree  36 130 146 182 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #201
+ ! Channel #819
+   tree  36 65 73 109 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #820
+   tree  36 130 146 182 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #202
+ ! Channel #821
+   tree  36 65 73 109 125
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #822
+   tree  36 130 146 182 190
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  4 t-channel lines
+ grove #203
+ ! Channel #823
+   tree  24 65 89 121 125
+   map  24 s_channel       -24 ! W-
+   map  65 u_channel        22 ! A
+   map  89 u_channel        24 ! W+
+ ! Channel #824
+   tree  24 130 134 166 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #825
+   tree  24 130 134 158 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #826
+   tree  24 130 154 158 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+ ! Channel #827
+   tree  24 130 154 186 190
+   map  24 s_channel       -24 ! W-
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  4 t-channel lines
+ grove #204
+ ! Channel #828
+   tree  36 65 81 89 91
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #829
+   tree  36 100 101 117 125
+   map  36 infrared         22 ! A
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #830
+   tree  36 130 138 154 155
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #831
+   tree  36 164 166 174 190
+   map  36 infrared         22 ! A
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #205
+ ! Channel #832
+   tree  36 65 81 89 91
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #833
+   tree  36 100 101 117 125
+   map  36 s_channel        23 ! Z
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #834
+   tree  36 130 138 154 155
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #835
+   tree  36 164 166 174 190
+   map  36 s_channel        23 ! Z
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #206
+ ! Channel #836
+   tree  36 65 81 89 91
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map  91 t_channel        11 ! e-
+ ! Channel #837
+   tree  36 100 101 117 125
+   map 100 u_channel        11 ! e-
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #838
+   tree  36 130 138 154 155
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+   map 155 t_channel        11 ! e-
+ ! Channel #839
+   tree  36 164 166 174 190
+   map 164 u_channel        11 ! e-
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  4 t-channel lines
+ grove #207
+ ! Channel #840
+   tree  36 65 81 89 125
+   map  36 infrared         22 ! A
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #841
+   tree  36 130 166 174 190
+   map  36 infrared         22 ! A
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #208
+ ! Channel #842
+   tree  36 65 81 89 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #843
+   tree  36 130 166 174 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #209
+ ! Channel #844
+   tree  36 65 81 89 125
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+   map 125 t_channel        24 ! W+
+ ! Channel #845
+   tree  36 130 166 174 190
+   map 130 u_channel        24 ! W+
+   map 166 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  4 t-channel lines
+ grove #210
+ ! Channel #846
+   tree  36 65 81 89 125
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+ ! Channel #847
+   tree  36 130 138 154 190
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   4 logs,  0 off-shell,  4 t-channel lines
+ grove #211
+ ! Channel #848
+   tree  36 65 81 117 125
+   map  36 s_channel        23 ! Z
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #849
+   tree  36 130 138 174 190
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  4 logs,  1 off-shell,  4 t-channel lines
+ grove #212
+ ! Channel #850
+   tree  36 65 81 117 125
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #851
+   tree  36 130 138 174 190
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  4 t-channel lines
+ grove #213
+ ! Channel #852
+   tree  36 65 101 109 125
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+   map 125 t_channel        24 ! W+
+ ! Channel #853
+   tree  36 65 101 117 125
+   map  36 s_channel        25 ! H
+   map  65 u_channel        23 ! Z
+   map 125 t_channel        24 ! W+
+ ! Channel #854
+   tree  36 130 166 174 190
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  5 t-channel lines
+ grove #214
+ ! Channel #855
+   tree  65 69 101 109 125
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #856
+   tree  65 97 101 109 125
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        22 ! A
+   map 109 u_channel        13 ! mu-
+   map 125 t_channel        24 ! W+
+ ! Channel #857
+   tree  130 146 154 158 190
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        22 ! A
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #858
+   tree  130 146 154 186 190
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        22 ! A
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  5 logs,  0 off-shell,  5 t-channel lines
+ grove #215
+ ! Channel #859
+   tree  65 69 101 117 125
+   map  65 u_channel        22 ! A
+   map  69 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #860
+   tree  65 97 101 117 125
+   map  65 u_channel        22 ! A
+   map  97 u_channel         5 ! b
+   map 101 u_channel        23 ! Z
+   map 117 u_channel        14 ! numu
+   map 125 t_channel        24 ! W+
+ ! Channel #861
+   tree  130 138 154 158 190
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+   map 158 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+ ! Channel #862
+   tree  130 138 154 186 190
+   map 130 u_channel        24 ! W+
+   map 138 u_channel        14 ! numu
+   map 154 u_channel        23 ! Z
+   map 186 u_channel         5 ! b
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  5 t-channel lines
+ grove #216
+ ! Channel #863
+   tree  65 73 89 121 125
+   map  65 u_channel        22 ! A
+   map  73 u_channel        13 ! mu-
+   map  89 u_channel        24 ! W+
+ ! Channel #864
+   tree  130 134 166 182 190
+   map 130 u_channel        24 ! W+
+   map 182 u_channel        13 ! mu-
+   map 190 t_channel        22 ! A
+
+ ! Multiplicity = 6, no resonances,  3 logs,  2 off-shell,  5 t-channel lines
+ grove #217
+ ! Channel #865
+   tree  65 81 89 121 125
+   map  65 u_channel        23 ! Z
+   map  81 u_channel        14 ! numu
+   map  89 u_channel        24 ! W+
+ ! Channel #866
+   tree  130 134 166 174 190
+   map 130 u_channel        24 ! W+
+   map 174 u_channel        14 ! numu
+   map 190 t_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #218
+ ! Channel #867
+   tree  24 36 60 61 130
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #219
+ ! Channel #868
+   tree  24 56 60 61 130
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  1 t-channel line
+ grove #220
+ ! Channel #869
+   tree  24 56 60 61 130
+   map  56 s_channel        -6 ! tbar
+   map 130 t_channel        24 ! W+
+
+ ! Multiplicity = 3, 3 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #221
+ ! Channel #870
+   tree  3 7 24 39 152
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 2 resonances,  1 logs,  1 off-shell,  1 t-channel line
+ grove #222
+ ! Channel #871
+   tree  3 7 24 39 152
+   map   7 s_channel         6 ! t
+   map  24 s_channel       -24 ! W-
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  1 t-channel line
+ grove #223
+ ! Channel #872
+   tree  3 7 24 39 152
+   map   3 s_channel        24 ! W+
+   map   7 s_channel         6 ! t
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  1 t-channel line
+ grove #224
+ ! Channel #873
+   tree  3 7 24 39 152
+   map   7 s_channel         6 ! t
+   map 152 t_channel        12 ! nue
+
+ ! Multiplicity = 3, 3 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #225
+ ! Channel #874
+   tree  3 24 56 60 188
+   map   3 s_channel        24 ! W+
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 3, 2 resonances,  0 logs,  2 off-shell,  1 t-channel line
+ grove #226
+ ! Channel #875
+   tree  3 24 56 60 188
+   map   3 s_channel        24 ! W+
+   map  56 s_channel        -6 ! tbar
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #227
+ ! Channel #876
+   tree  24 36 60 130 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  2 t-channel lines
+ grove #228
+ ! Channel #877
+   tree  24 56 60 130 190
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  2 t-channel lines
+ grove #229
+ ! Channel #878
+   tree  24 56 60 130 190
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #230
+ ! Channel #879
+   tree  24 56 130 134 190
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+ ! Channel #880
+   tree  24 56 130 186 190
+   map  24 s_channel       -24 ! W-
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 1 resonance,   1 logs,  2 off-shell,  3 t-channel lines
+ grove #231
+ ! Channel #881
+   tree  24 56 130 134 190
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+ ! Channel #882
+   tree  24 56 130 186 190
+   map  56 s_channel        -6 ! tbar
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  3 t-channel lines
+ grove #232
+ ! Channel #883
+   tree  24 36 130 154 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #233
+ ! Channel #884
+   tree  24 36 130 154 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        23 ! Z
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  3 t-channel lines
+ grove #234
+ ! Channel #885
+   tree  24 36 130 154 190
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 4, 2 resonances,  1 logs,  2 off-shell,  3 t-channel lines
+ grove #235
+ ! Channel #886
+   tree  24 36 130 166 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+
+ ! Multiplicity = 4, 2 resonances,  2 logs,  1 off-shell,  3 t-channel lines
+ grove #236
+ ! Channel #887
+   tree  24 36 152 154 190
+   map  24 s_channel       -24 ! W-
+   map  36 s_channel        25 ! H
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  3 t-channel lines
+ grove #237
+ ! Channel #888
+   tree  24 36 152 154 190
+   map  36 s_channel        25 ! H
+   map 152 u_channel        12 ! nue
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   3 logs,  1 off-shell,  4 t-channel lines
+ grove #238
+ ! Channel #889
+   tree  36 130 146 154 190
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 146 u_channel        13 ! mu-
+   map 154 u_channel        23 ! Z
+
+ ! Multiplicity = 5, 1 resonance,   2 logs,  2 off-shell,  4 t-channel lines
+ grove #239
+ ! Channel #890
+   tree  36 130 166 182 190
+   map  36 s_channel        25 ! H
+   map 130 u_channel        24 ! W+
+   map 190 t_channel        22 ! A

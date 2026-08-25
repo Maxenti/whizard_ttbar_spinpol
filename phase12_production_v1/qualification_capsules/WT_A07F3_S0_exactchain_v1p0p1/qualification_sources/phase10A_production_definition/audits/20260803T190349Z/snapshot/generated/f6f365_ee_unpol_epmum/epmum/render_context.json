@@ -1,0 +1,17 @@
+{
+  "channel": "epmum",
+  "exact_subprocess_id": "epmum",
+  "final_state": [
+    "b",
+    "bbar",
+    "e+",
+    "nu_e",
+    "mu-",
+    "anti_nu_mu"
+  ],
+  "generator_seed": 3087664,
+  "polarization": "unpolarized",
+  "process_sin_sha256": "ea89a50a3b817a404689ca0f92d92809f5f0d94d4a87734e47d96377f72c4891",
+  "sample_id": "f6f365_ee_unpol_epmum",
+  "topology": "prompt_dilepton"
+}

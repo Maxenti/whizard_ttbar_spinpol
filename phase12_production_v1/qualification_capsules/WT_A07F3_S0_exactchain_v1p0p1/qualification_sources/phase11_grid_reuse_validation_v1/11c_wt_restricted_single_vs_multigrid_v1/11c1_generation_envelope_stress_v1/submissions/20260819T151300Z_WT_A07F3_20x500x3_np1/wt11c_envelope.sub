@@ -1,0 +1,24 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/submissions/20260819T151300Z_WT_A07F3_20x500x3_np1/run_wt11c_envelope.sh
+
+arguments =   --repo /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol   --mode $(mode)   --checkpoint-kind $(checkpoint_kind)   --workspace-tar $(workspace_tar)   --expected-vg2-sha $(vg2_sha)   --expected-phs-sha $(phs_sha)   --source-card /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source/process.sin   --output-root /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/20260819T151300Z_WT_A07F3_20x500x3_np1   --grid-seed $(grid_seed)   --pre-integration-seed $(shard_seed)   --generation-seed $(metadata_seed)   --events $(events)
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/submissions/20260819T151300Z_WT_A07F3_20x500x3_np1
+
+should_transfer_files = NO
+getenv = False
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 3000MB
+
++JobFlavour = "workday"
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = condor.log
+
+notification = Never
+
+queue mode, grid_label, checkpoint_kind, workspace_tar, vg2_sha, phs_sha, grid_seed, shard_seed, metadata_seed, events from /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/submissions/20260819T151300Z_WT_A07F3_20x500x3_np1/itemdata.tsv

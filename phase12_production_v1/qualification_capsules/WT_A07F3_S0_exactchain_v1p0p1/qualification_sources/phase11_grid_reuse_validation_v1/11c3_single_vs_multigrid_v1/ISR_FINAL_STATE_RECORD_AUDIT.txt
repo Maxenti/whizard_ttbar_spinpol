@@ -1,0 +1,56 @@
+Phase 11C ISR final-state record audit
+======================================
+
+Sample audited:
+  S0_A
+  grid = G2_S0
+  generation seed = 211120001
+  events = 10000
+
+Required six-fermion content
+----------------------------
+
+All 10000 events contain exactly one each of:
+
+  b
+  bbar
+  e+
+  nue
+  mu-
+  numubar
+
+Result:
+  BAD_REQUIRED_CONTENT = 0
+
+Additional status=1 records
+---------------------------
+
+All 10000 events contain exactly two additional status=1 photons.
+
+Universal status=1 signature:
+
+  (-14, -11, -5, 5, 12, 13, 22, 22)
+
+Thus:
+
+  FINAL_STATE_MULTIPLICITIES = {8: 10000}
+  EXTRA_FINAL_MULTIPLICITIES = {2: 10000}
+  EXTRA_FINAL_SIGNATURE      = (22, 22)
+
+Interpretation
+--------------
+
+The sample was generated with ISR enabled. The LHE therefore contains
+the six required fermions plus two photon records.
+
+The Phase 11C physics validator is intentionally based on the six
+required fermions. Its original particle-selection behavior is retained:
+
+  * exactly one required particle of each of the six required PDGs;
+  * additional final-state species are not used when reconstructing
+    the six-fermion observables.
+
+No requirement for exactly six total status=1 records is imposed.
+
+No statistical validation criterion was changed as a result of this
+audit.

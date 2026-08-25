@@ -1,0 +1,59 @@
+PHASE-11E P6 EXACT-WORKER 100-EVENT QUALIFICATION
+=================================================
+
+Status: PASS
+
+Validation-only PYTHIA seed:
+711260100
+
+Worker:
+- return code = 0
+
+Canonical preparation:
+- events = 100
+- removed bridge particles = 200
+- promoted beam particles = 200
+- rewired ISR photons = 200
+- removed sqme_prc tags = 100
+- max absolute closure = 6.320533e-09 GeV
+
+History serialization:
+- events = 100
+- particles = 1388
+- reordered events = 99
+- moved particles = 204
+- max displacement = 2
+
+Strict validation:
+PARTICLE_CONTENT_PRESERVATION=PASS
+MOTHER_INDEX_REMAP=PASS
+MOTHER_BEFORE_CHILD=PASS
+DAUGHTER_CONTIGUITY=PASS
+HISTORY_SERIALIZATION_VALIDATION=PASS
+
+Prepared LHE SHA256:
+7b6699d058006f595ebc8c4fc51be56c6ac38658beff70eeb333d24ea725e059
+
+Prepared LHE byte-regression against P5-qualified reference:
+PASS
+
+PYTHIA/HepMC:
+- attempted = 100
+- accepted = 100
+- failed = 0
+- HepMC events = 100
+- bad-weight events = 0
+- MEC-above-PS warnings = 3
+- recoverable hadronization retries = 0
+- unknown error occurrences = 0
+
+Metadata gate: PASS
+HepMC gate: PASS
+History-presence diagnostic: PASS
+
+EOS output:
+/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_tests_v1/20260821T143924Z_P6_100_EVENT
+
+Conclusion:
+P6 exact-worker qualification passes at 100 events.
+Proceed to full 25000-event shard qualification without changing the candidate.

@@ -1,0 +1,17 @@
+{
+  "channel": "mupem",
+  "exact_subprocess_id": "mupem",
+  "final_state": [
+    "b",
+    "bbar",
+    "mu+",
+    "nu_mu",
+    "e-",
+    "anti_nu_e"
+  ],
+  "generator_seed": 674267363,
+  "polarization": "LR100",
+  "process_sin_sha256": "aa7d2b844b1d627ddb24f59da25543fa8434ac6717ada60cafe80fbf864d98da",
+  "sample_id": "f6f365_ee_LR100_mupem",
+  "topology": "prompt_dilepton"
+}

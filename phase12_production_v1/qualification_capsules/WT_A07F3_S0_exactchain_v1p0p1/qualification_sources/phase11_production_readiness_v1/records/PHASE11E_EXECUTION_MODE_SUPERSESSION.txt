@@ -1,0 +1,54 @@
+PHASE-11E EXECUTION-MODE SUPERSESSION
+=====================================
+
+Supersedes only the MPI execution-mode portion of:
+PHASE11E_EXACT_CHAIN_REHEARSAL_PLAN.txt
+
+Original proposed generation:
+MPI ranks = 4
+OMP_NUM_THREADS = 1
+
+Final generation architecture:
+MPI ranks = 1
+OMP_NUM_THREADS = 1
+
+Campaign parallelism:
+independent HTCondor jobs
+
+Reason:
+The Phase-11D np4 smoke exposed a shared-working-directory race during
+dynamic compilation of WHIZARD resonance-history subprocess library
+proc_epmum_R.
+
+The failure occurred before event generation.
+
+The frozen S0 integration state remained unchanged:
+WORKSPACE_UNCHANGED=1
+NEW_GRID_INIT_COUNT=0
+
+The np1 frozen-grid generation architecture has already passed the full
+Phase-11C single-grid versus multi-grid holdout.
+
+Therefore intra-job MPI generation is not needed for Phase 12.
+
+Final Phase-11E WHIZARD rehearsal:
+4 independent shards
+25,000 events/shard
+100,000 events total
+
+Grid:
+S0 / WT_A07F3
+
+WHIZARD seeds:
+311191001
+311191002
+311191003
+311191004
+
+OMP_NUM_THREADS=1
+
+Final Phase-12 default shard size:
+25,000 hard-process events/job.
+
+Retry rule:
+technical retries reuse the same shard identity and same RNG seed.

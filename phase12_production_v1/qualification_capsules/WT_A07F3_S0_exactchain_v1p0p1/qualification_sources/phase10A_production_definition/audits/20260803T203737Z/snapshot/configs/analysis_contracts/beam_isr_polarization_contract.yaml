@@ -1,0 +1,10 @@
+schema: {name: whizard_ttbar_beam_isr_polarization_contract, version: 1, status: frozen_phase6}
+beam_model: {nominal_center_of_mass_energy_GeV: 365.0, nominal_beam_spectrum_required_for_final: true, monochromatic_controls: [monochromatic_isr_on, monochromatic_isr_off]}
+isr_policy: {qed_isr_required_for_nominal: true, no_isr_control_not_nominal: true}
+polarization_policy:
+  convention: P = (N_R - N_L) / (N_R + N_L)
+  states:
+    unpolarized: {electron_polarization: 0.0, positron_polarization: 0.0}
+    LR100: {electron_polarization: -1.0, positron_polarization: 1.0}
+    RL100: {electron_polarization: 1.0, positron_polarization: -1.0}
+  equal_event_counts_not_physical_mixture: true

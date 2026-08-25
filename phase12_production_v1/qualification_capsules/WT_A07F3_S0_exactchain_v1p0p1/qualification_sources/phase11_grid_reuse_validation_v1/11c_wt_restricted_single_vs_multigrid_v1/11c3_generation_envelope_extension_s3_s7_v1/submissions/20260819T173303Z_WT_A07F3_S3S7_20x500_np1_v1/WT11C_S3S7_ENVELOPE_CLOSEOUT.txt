@@ -1,0 +1,90 @@
+WT PHASE-11C S3-S7 GENERATION-ENVELOPE QUALIFICATION CLOSEOUT
+================================================================
+
+Campaign:
+20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1
+
+Condor cluster:
+6064368
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum.
+
+Frozen-grid checkpoint:
+WT_A07F3
+
+Serialized integration prescription:
+10:100000:"gw", 10:200000:""
+
+Grid set:
+S3
+S4
+S5
+S6
+S7
+
+Campaign:
+20 independent generation streams per grid.
+500 accepted events per job.
+10,000 events per grid.
+
+Total:
+100 jobs.
+50,000 diagnostic events.
+
+Required technical result:
+100/100 technical PASS.
+No workspace mutation.
+No new-grid initialization.
+No VAMP2 parameter mismatch.
+No discarded serialized pass.
+Frozen PHS/VG2 hashes preserved.
+
+Required envelope gates, per grid:
+excess_fraction <= 0.01
+aggregate_average_excess <= 0.01
+maximum_excess <= 10
+
+Required LHE result:
+50,000 total events.
+50,000 globally unique events.
+0 exact duplicate event hashes.
+unit weights valid.
+expected final state valid.
+
+Authoritative collector directory:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c3_generation_envelope_extension_s3_s7_v1/submissions/20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1/analysis/envelope_result_v1
+
+WT11C_RESULT.json SHA256:
+105a72dfd2a9256a3db1027726836d70214ecd23378a07b6f20b2b5b31213eb9
+
+RESULT_OUTPUTS.sha256 SHA256:
+fa52f8dfab37aac6e48551a5a12a01d3cc281c78605e48e09fa4d50e7c327970
+
+Conclusion:
+S3-S7 are generation-envelope qualified if and only if the authoritative
+collector result stored above is PASS_ALL_GRIDS.
+
+Combined with the previously qualified S0-S2 campaign, this establishes
+generation-envelope qualification for all eight WT A07/F3 grids S0-S7.
+
+The S0-S7 generation-envelope events are diagnostic only and are excluded
+from the final Phase-11C physics holdout.
+
+Next:
+Freeze and execute the final SINGLE-versus-MULTI physics architecture
+holdout using fresh validation-only RNG seeds.
+
+SINGLE:
+S0 only
+64 x 1000 = 64,000 events
+
+MULTI:
+S1 = 10 x 1000
+S2 =  9 x 1000
+S3 =  9 x 1000
+S4 =  9 x 1000
+S5 =  9 x 1000
+S6 =  9 x 1000
+S7 =  9 x 1000
+Total = 64,000 events

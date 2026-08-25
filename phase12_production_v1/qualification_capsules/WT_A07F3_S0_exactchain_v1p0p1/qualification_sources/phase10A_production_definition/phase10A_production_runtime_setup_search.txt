@@ -1,0 +1,11 @@
+scripts/production/make_production_sindarin.py:127:! required by the validated WHIZARD 3.1.5 workflow for separate decay grids.
+scripts/production/run_production_shard.sh:121:  KEY4HEP_SETUP=${KEY4HEP_SETUP:-/cvmfs/sw.hsf.org/key4hep/setup.sh}
+scripts/production/submit_production.py:68:        default=os.environ.get("KEY4HEP_SETUP", "/cvmfs/sw.hsf.org/key4hep/setup.sh"),
+scripts/production/README.md:562:The installed WHIZARD 3.1.5 build is the authority. The smoke campaign exists specifically to verify that both electron and muon ISR configurations parse and generate valid records before full production.
+scripts/analysis/README.md:22:source /cvmfs/sw.hsf.org/key4hep/setup.sh
+scripts/qis/condor/run_365GeV_qis_bootstrap_condor_job.sh:114:source /cvmfs/sw.hsf.org/key4hep/setup.sh \
+scripts/qis/condor/run_365GeV_qis_bootstrap_condor_job.sh:115:  -r 2026-04-08
+scripts/qis/condor/prepare_365GeV_qis_bootstrap_campaign.py:515:        "key4hep_release": "2026-04-08",
+scripts/qis/validate_365GeV_threshold_inputs.py:204:        "SM parameters match the frozen WHIZARD 3.1.5 generator scheme",
+configs/qis/paper_spin_sm_parameters.yaml:1:# Tree-level Standard Model inputs matched to the WHIZARD 3.1.5 built-in
+configs/qis/paper_spin_365GeV_sm_parameters.yaml:1:# WHIZARD 3.1.5 built-in SM alpha_internal/on-shell values inherited from the

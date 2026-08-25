@@ -1,0 +1,1424 @@
+
+================================================================
+FILE=scripts/sindarin/render_full6f_cards.py
+================================================================
+     1	#!/usr/bin/env python3
+     2	"""Render static SINDARIN cards for all exact subprocess rows."""
+     3	from __future__ import annotations
+     4	import argparse,json,sys
+     5	from pathlib import Path
+     6	from ttbar_spinpol.genchain.card_renderer import render_file
+     7	from ttbar_spinpol.genchain.checksums import sha256
+     8	from ttbar_spinpol.genchain.process_matrix import load_process_rows, expected_counts
+     9	from ttbar_spinpol.genchain.seed_policy import derive_seed
+    10	from ttbar_spinpol.genchain.yamlio import write_json
+    11	
+    12	
+    13	def configure_generated_polarization_blocks(generated_root):
+    14	    """Apply WHIZARD-3.1.8-compatible polarization blocks after card rendering.
+    15	
+    16	    Current campaign naming convention:
+    17	      *_unpol_* : omit polarization include entirely
+    18	      *_LR100_* : e- left,  e+ right => @(-1), @(+1)
+    19	      *_RL100_* : e- right, e+ left  => @(+1), @(-1)
+    20	    """
+    21	    root = Path(generated_root)
+    22	    if not root.exists():
+    23	        return {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+    24	
+    25	    counts = {"unpol_scrubbed": 0, "lr_written": 0, "rl_written": 0}
+    26	
+    27	    for card in sorted(root.glob("**/process.sin")):
+    28	        card_text = card.read_text(encoding="utf-8")
+    29	        card_lines = card_text.splitlines()
+    30	        card_str = str(card)
+    31	
+    32	        if "_unpol_" in card_str:
+    33	            new_lines = [line for line in card_lines if "polarization.inc" not in line]
+    34	            if new_lines != card_lines:
+    35	                card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    36	                counts["unpol_scrubbed"] += 1
+    37	            continue
+    38	
+    39	        pol = card.parent / "common" / "polarization.inc"
+    40	
+    41	        if "_LR100_" in card_str:
+    42	            pol.write_text(
+    43	                "beams_pol_density = @(-1), @(+1)\n"
+    44	                "beams_pol_fraction = 100%, 100%\n",
+    45	                encoding="utf-8",
+    46	            )
+    47	            counts["lr_written"] += 1
+    48	
+    49	        elif "_RL100_" in card_str:
+    50	            pol.write_text(
+    51	                "beams_pol_density = @(+1), @(-1)\n"
+    52	                "beams_pol_fraction = 100%, 100%\n",
+    53	                encoding="utf-8",
+    54	            )
+    55	            counts["rl_written"] += 1
+    56	
+    57	    return counts
+    58	
+    59	
+    60	
+    61	def scrub_unpolarized_polarization_includes(generated_root):
+    62	    """Remove polarization includes from unpolarized generated process cards.
+    63	
+    64	    WHIZARD 3.1.8 rejects the zero-polarization block used in the initial scaffold.
+    65	    Unpolarized cards should omit polarization.inc entirely.
+    66	    """
+    67	    root = Path(generated_root)
+    68	    if not root.exists():
+    69	        return 0
+    70	    changed = 0
+    71	    for card in sorted(root.glob("*_unpol_*/**/process.sin")):
+    72	        lines = card.read_text(encoding="utf-8").splitlines()
+    73	        new_lines = [line for line in lines if "polarization.inc" not in line]
+    74	        if new_lines != lines:
+    75	            card.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    76	            changed += 1
+    77	    return changed
+    78	
+    79	
+    80	WHIZARD_PARTICLE_NAMES = {
+    81	    "e-": "e1",
+    82	    "e+": "E1",
+    83	    "mu-": "e2",
+    84	    "mu+": "E2",
+    85	    "tau-": "e3",
+    86	    "tau+": "E3",
+    87	    "nu_e": "n1",
+    88	    "anti_nu_e": "N1",
+    89	    "nu_mu": "n2",
+    90	    "anti_nu_mu": "N2",
+    91	    "nu_tau": "n3",
+    92	    "anti_nu_tau": "N3",
+    93	    "anti_u": "ubar",
+    94	    "anti_d": "dbar",
+    95	    "anti_s": "sbar",
+    96	    "anti_c": "cbar",
+    97	    "anti_b": "bbar",
+    98	}
+    99	
+   100	def to_whizard_particle(name: str) -> str:
+   101	    return WHIZARD_PARTICLE_NAMES.get(name, name)
+   102	
+   103	POL={'unpolarized':(0.0,0.0),'LR100':(-1.0,1.0),'RL100':(1.0,-1.0)}
+   104	def main() -> int:
+   105	    ap=argparse.ArgumentParser(); ap.add_argument('--repo',required=True,type=Path); args=ap.parse_args(); repo=args.repo.resolve()
+   106	    template_root=repo/'sindarin/templates/full6f_365gev_v1'; output_root=repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'; rows=load_process_rows(repo); rendered=[]
+   107	    for row in rows:
+   108	        pol=POL[row.polarization]; seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'render',0,'whizard')
+   109	        outdir=output_root/row.sample_id/row.exact_subprocess_id; common_out=outdir/'common'; common_out.mkdir(parents=True,exist_ok=True)
+   110	        context={'SQRTS_GEV':'365.0','ISR_HANDLER':'true','ISR_ENABLED':'true','ELECTRON_POLARIZATION':pol[0],'POSITRON_POLARIZATION':pol[1],'INTEGRATION_ITERATIONS':0,'INTEGRATION_CALLS':0,'PROCESS_NAME':row.process_name,
+   111	            "SAMPLE_BASENAME": row.process_name,'FINAL_STATE':', '.join(to_whizard_particle(x) for x in row.final_state),'N_EVENTS':0,'GENERATOR_SEED':seed,'OUTPUT_LHE':f'EOS_OUTPUT_ROOT/{row.sample_id}/{row.exact_subprocess_id}.lhe','PARAMETER_BLOCK':'','COMMON_DIR':str(common_out)}
+   112	        for inc in ['model','parameters','beams','isr','polarization','integration','event_output','diagnostics']: render_file(template_root/f'common/{inc}.inc.in', common_out/f'{inc}.inc', context)
+   113	        template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
+   114	        meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
+   115	    write_json(output_root/'rendered_cards_manifest.json',{'status':'PASS','counts':expected_counts(rows),'rendered_count':len(rendered),'rendered':rendered})
+   116	    pol_counts = configure_generated_polarization_blocks(output_root)
+   117	    print(f"POLARIZATION_BLOCKS_CONFIGURED={pol_counts}")
+   118	    print(json.dumps({'status':'PASS','rendered_count':len(rendered)},indent=2)); return 0
+   119	if __name__=='__main__': sys.exit(main())
+
+================================================================
+FILE=scripts/showering/run_phase7_canonical_bridge.py
+================================================================
+     1	#!/usr/bin/env python3
+     2	"""Run a WHIZARD -> canonical-v2 LHE -> PYTHIA8 -> HepMC3 Phase 7 bridge.
+     3	
+     4	This runner is the scripted version of the manually validated Phase 7 bridge:
+     5	
+     6	  generated process.sin + common/
+     7	  -> local bridge SINDARIN card
+     8	  -> WHIZARD low-stat LHE
+     9	  -> canonicalize_whizard_lhe_for_pythia_v2.py
+    10	  -> run_external_pythia.sh using the project qis_lhe_to_hepmc3 driver
+    11	  -> validate_phase7_showering.py
+    12	  -> runtime summary, JSON summary, SHA256SUMS
+    13	
+    14	It intentionally does not modify the authoritative generated SINDARIN cards.
+    15	"""
+    16	
+    17	from __future__ import annotations
+    18	
+    19	import argparse
+    20	import hashlib
+    21	import json
+    22	import os
+    23	import re
+    24	import shutil
+    25	import subprocess
+    26	import sys
+    27	import time
+    28	from datetime import datetime, timezone
+    29	from pathlib import Path
+    30	from typing import Mapping
+    31	
+    32	
+    33	DEFAULT_CAMPAIGN_ID = "full6f_365gev_ee_ttbar_spinpol_v1"
+    34	DEFAULT_RUNTIME_VIEW = "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/setup.sh"
+    35	DEFAULT_OUTPUT_BASE = Path("/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs")
+    36	
+    37	
+    38	class BridgeError(RuntimeError):
+    39	    """Raised for a controlled bridge failure."""
+    40	
+    41	
+    42	def utc_stamp() -> str:
+    43	    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    44	
+    45	
+    46	def utc_iso() -> str:
+    47	    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    48	
+    49	
+    50	def run_text(
+    51	    command: list[str],
+    52	    *,
+    53	    cwd: Path,
+    54	    env: Mapping[str, str] | None = None,
+    55	) -> str:
+    56	    completed = subprocess.run(
+    57	        command,
+    58	        cwd=str(cwd),
+    59	        env=dict(env) if env is not None else None,
+    60	        text=True,
+    61	        stdout=subprocess.PIPE,
+    62	        stderr=subprocess.STDOUT,
+    63	        check=True,
+    64	    )
+    65	    return completed.stdout.strip()
+    66	
+    67	
+    68	def run_logged(
+    69	    command: list[str],
+    70	    *,
+    71	    cwd: Path,
+    72	    log_path: Path,
+    73	    env: Mapping[str, str],
+    74	    timeout_seconds: int | None = None,
+    75	) -> int:
+    76	    log_path.parent.mkdir(parents=True, exist_ok=True)
+    77	
+    78	    print()
+    79	    print("=" * 100)
+    80	    print(f"RUN_LOGGED_CWD={cwd}")
+    81	    print("RUN_LOGGED_COMMAND=" + " ".join(command))
+    82	    print(f"RUN_LOGGED_LOG={log_path}")
+    83	    print("=" * 100)
+    84	
+    85	    with log_path.open("w", encoding="utf-8") as log:
+    86	        proc = subprocess.Popen(
+    87	            command,
+    88	            cwd=str(cwd),
+    89	            env=dict(env),
+    90	            stdout=subprocess.PIPE,
+    91	            stderr=subprocess.STDOUT,
+    92	            text=True,
+    93	            errors="replace",
+    94	            bufsize=1,
+    95	        )
+    96	
+    97	        start = time.monotonic()
+    98	        assert proc.stdout is not None
+    99	
+   100	        try:
+   101	            for line in proc.stdout:
+   102	                print(line, end="")
+   103	                log.write(line)
+   104	                log.flush()
+   105	
+   106	                if timeout_seconds is not None and time.monotonic() - start > timeout_seconds:
+   107	                    proc.kill()
+   108	                    message = (
+   109	                        f"\nERROR: command timed out after {timeout_seconds} seconds\n"
+   110	                    )
+   111	                    print(message, end="")
+   112	                    log.write(message)
+   113	                    return 124
+   114	
+   115	            return proc.wait()
+   116	        finally:
+   117	            if proc.poll() is None:
+   118	                proc.kill()
+   119	
+   120	
+   121	def count_lhe_events(path: Path) -> int:
+   122	    return sum(
+   123	        1
+   124	        for line in path.open("r", encoding="utf-8", errors="replace")
+   125	        if "<event>" in line
+   126	    )
+   127	
+   128	
+   129	def count_hepmc_events(path: Path) -> int:
+   130	    return sum(
+   131	        1
+   132	        for line in path.open("r", encoding="utf-8", errors="replace")
+   133	        if line.startswith("E ")
+   134	    )
+   135	
+   136	
+   137	def load_json(path: Path) -> dict:
+   138	    return json.loads(path.read_text(encoding="utf-8"))
+   139	
+   140	
+   141	def command_exists(command: str, env: Mapping[str, str]) -> bool:
+   142	    resolved = shutil.which(command, path=env.get("PATH"))
+   143	    return resolved is not None
+   144	
+   145	
+   146	def ensure_pythonpath(env: dict[str, str], repo: Path) -> None:
+   147	    src = str(repo / "src")
+   148	    old = env.get("PYTHONPATH", "")
+   149	    pieces = [p for p in old.split(":") if p]
+   150	    if src not in pieces:
+   151	        pieces.insert(0, src)
+   152	    env["PYTHONPATH"] = ":".join(pieces)
+   153	
+   154	
+   155	def localize_card(
+   156	    *,
+   157	    source_card: Path,
+   158	    source_common: Path,
+   159	    run_dir: Path,
+   160	    events: int,
+   161	    iterations: str,
+   162	    sample_basename: str,
+   163	) -> Path:
+   164	    if not source_card.is_file():
+   165	        raise BridgeError(f"missing source card: {source_card}")
+   166	    if not source_common.is_dir():
+   167	        raise BridgeError(f"missing source common directory: {source_common}")
+   168	
+   169	    run_dir.mkdir(parents=True, exist_ok=False)
+   170	
+   171	    shutil.copy2(source_card, run_dir / "process.original.sin")
+   172	    shutil.copytree(source_common, run_dir / "common")
+   173	
+   174	    src = run_dir / "process.original.sin"
+   175	    dst = run_dir / "process.bridge.sin"
+   176	
+   177	    text = src.read_text(encoding="utf-8")
+   178	
+   179	    def repl_include(match: re.Match[str]) -> str:
+   180	        return f'include("common/{Path(match.group(1)).name}")'
+   181	
+   182	    text = re.sub(
+   183	        r'(?m)^\s*include\("([^"]*/common/[^"]+)"\)\s*$',
+   184	        repl_include,
+   185	        text,
+   186	    )
+   187	
+   188	    kept: list[str] = []
+   189	    for line in text.splitlines():
+   190	        m = re.match(r'\s*include\("common/([^"]+)"\)\s*$', line)
+   191	        if m:
+   192	            inc = run_dir / "common" / m.group(1)
+   193	            if inc.exists() and inc.read_text(encoding="utf-8").strip() == "":
+   194	                print(f"DROPPING_EMPTY_INCLUDE={inc}")
+   195	                continue
+   196	        kept.append(line)
+   197	
+   198	    dst.write_text("\n".join(kept) + "\n", encoding="utf-8")
+   199	
+   200	    integration = run_dir / "common" / "integration.inc"
+   201	    if not integration.is_file():
+   202	        raise BridgeError(f"missing integration include: {integration}")
+   203	
+   204	    t = integration.read_text(encoding="utf-8")
+   205	    t, n_iter = re.subn(
+   206	        r"(?m)^(\s*iterations\s*=\s*).*$",
+   207	        rf"\g<1>{iterations}",
+   208	        t,
+   209	    )
+   210	    if n_iter == 0:
+   211	        t = f"iterations = {iterations}\n" + t
+   212	    integration.write_text(t, encoding="utf-8")
+   213	
+   214	    event_output = run_dir / "common" / "event_output.inc"
+   215	    if not event_output.is_file():
+   216	        raise BridgeError(f"missing event-output include: {event_output}")
+   217	
+   218	    t = event_output.read_text(encoding="utf-8")
+   219	    t, n_events = re.subn(
+   220	        r"(?m)^(\s*n_events\s*=\s*).*$",
+   221	        rf"\g<1>{events}",
+   222	        t,
+   223	    )
+   224	    t, n_sample = re.subn(
+   225	        r'(?m)^(\s*\$sample\s*=\s*).*$',
+   226	        rf'\g<1>"{sample_basename}"',
+   227	        t,
+   228	    )
+   229	
+   230	    if n_events == 0:
+   231	        raise BridgeError(f"could not find n_events assignment in {event_output}")
+   232	    if n_sample == 0:
+   233	        raise BridgeError(f"could not find $sample assignment in {event_output}")
+   234	
+   235	    event_output.write_text(t, encoding="utf-8")
+   236	
+   237	    return dst
+   238	
+   239	
+   240	def write_pythia_cmnd(path: Path, events: int, profile: str) -> None:
+   241	    if profile == "full_hadron":
+   242	        hadron_level = "on"
+   243	        description = "full perturbative shower plus hadronization"
+   244	    elif profile == "parton_only":
+   245	        hadron_level = "off"
+   246	        description = "perturbative shower only; hadronization disabled"
+   247	    else:
+   248	        raise BridgeError(f"unsupported PYTHIA profile: {profile}")
+   249	
+   250	    path.write_text(
+   251	        f"""! Phase 7 canonical-v2 bridge PYTHIA settings.
+   252	! Input LHE has already been canonicalized from WHIZARD extended ISR-history form.
+   253	! Profile: {profile} ({description})
+   254	
+   255	Main:numberOfEvents = {events}
+   256	Main:timesAllowErrors = 100
+   257	
+   258	Beams:frameType = 4
+   259	
+   260	HadronLevel:all = {hadron_level}
+   261	PartonLevel:ISR = on
+   262	PartonLevel:FSR = on
+   263	PartonLevel:MPI = off
+   264	
+   265	Next:numberShowInfo = 1
+   266	Next:numberShowProcess = 1
+   267	Next:numberShowEvent = 0
+   268	
+   269	Stat:showProcessLevel = on
+   270	Stat:showErrors = on
+   271	""",
+   272	        encoding="utf-8",
+   273	    )
+   274	
+   275	
+   276	def write_sha256sums(run_dir: Path) -> None:
+   277	    rows: list[tuple[str, str]] = []
+   278	
+   279	    for path in sorted(run_dir.rglob("*")):
+   280	        if not path.is_file():
+   281	            continue
+   282	        rel = path.relative_to(run_dir).as_posix()
+   283	        if rel == "SHA256SUMS.txt":
+   284	            continue
+   285	
+   286	        h = hashlib.sha256()
+   287	        with path.open("rb") as f:
+   288	            for chunk in iter(lambda: f.read(1024 * 1024), b""):
+   289	                h.update(chunk)
+   290	        rows.append((h.hexdigest(), rel))
+   291	
+   292	    with (run_dir / "SHA256SUMS.txt").open("w", encoding="utf-8") as out:
+   293	        for digest, rel in rows:
+   294	            out.write(f"{digest}  {rel}\n")
+   295	
+   296	
+   297	def count_pattern(path: Path, pattern: str) -> int:
+   298	    if not path.is_file():
+   299	        return 0
+   300	    text = path.read_text(encoding="utf-8", errors="replace")
+   301	    return len(re.findall(pattern, text, flags=re.IGNORECASE))
+   302	
+   303	
+   304	def build_summary(
+   305	    *,
+   306	    repo: Path,
+   307	    run_dir: Path,
+   308	    label: str,
+   309	    source_card: Path,
+   310	    raw_lhe: Path,
+   311	    canon_lhe: Path,
+   312	    canon_summary_path: Path,
+   313	    hepmc: Path,
+   314	    metadata_path: Path,
+   315	    pythia_log: Path,
+   316	    pythia_profile: str,
+   317	    whizard_rc: int,
+   318	    canon_rc: int,
+   319	    pythia_rc: int,
+   320	    validator_rc: int,
+   321	    env: Mapping[str, str],
+   322	    runtime_view: str,
+   323	) -> dict:
+   324	    canon_summary = load_json(canon_summary_path) if canon_summary_path.is_file() else {}
+   325	    metadata = load_json(metadata_path) if metadata_path.is_file() else {}
+   326	
+   327	    warning_counts = {
+   328	        "negative_dipole_mass": count_pattern(
+   329	            pythia_log,
+   330	            r"Warning in SimpleTimeShower::pTnext: negative dipole mass",
+   331	        ),
+   332	        "ministring_fragmentation_failed": count_pattern(
+   333	            pythia_log,
+   334	            r"ministring fragmentation failed",
+   335	        ),
+   336	        "hadronlevel_failed_try_again": count_pattern(
+   337	            pythia_log,
+   338	            r"hadronLevel failed; try again",
+   339	        ),
+   340	        "range_check": count_pattern(pythia_log, r"range_check"),
+   341	        "fatal": count_pattern(pythia_log, r"fatal"),
+   342	        "segmentation": count_pattern(pythia_log, r"segmentation"),
+   343	    }
+   344	
+   345	    errors: list[str] = []
+   346	    warnings: list[str] = []
+   347	
+   348	    if whizard_rc != 0:
+   349	        errors.append(f"WHIZARD returned nonzero rc={whizard_rc}")
+   350	    if canon_rc != 0:
+   351	        errors.append(f"canonicalizer returned nonzero rc={canon_rc}")
+   352	    if pythia_rc != 0:
+   353	        errors.append(f"PYTHIA/HepMC driver returned nonzero rc={pythia_rc}")
+   354	    if validator_rc != 0:
+   355	        errors.append(f"Phase 7 validator returned nonzero rc={validator_rc}")
+   356	
+   357	    raw_events = count_lhe_events(raw_lhe) if raw_lhe.is_file() else None
+   358	    canon_events = count_lhe_events(canon_lhe) if canon_lhe.is_file() else None
+   359	    hepmc_events = count_hepmc_events(hepmc) if hepmc.is_file() else None
+   360	
+   361	    if raw_events != canon_events:
+   362	        errors.append(f"raw/canonical LHE event count mismatch: {raw_events} != {canon_events}")
+   363	
+   364	    if metadata:
+   365	        if metadata.get("status") != "success":
+   366	            errors.append(f"metadata status is not success: {metadata.get('status')}")
+   367	        if metadata.get("return_code") != 0:
+   368	            errors.append(f"metadata return_code is not 0: {metadata.get('return_code')}")
+   369	        if metadata.get("accepted_events") != hepmc_events:
+   370	            errors.append(
+   371	                f"metadata accepted_events != HepMC event count: "
+   372	                f"{metadata.get('accepted_events')} != {hepmc_events}"
+   373	            )
+   374	        if metadata.get("failed_events", 0) != 0:
+   375	            warnings.append(f"metadata failed_events nonzero: {metadata.get('failed_events')}")
+   376	        if metadata.get("pythia_version") != "8.316":
+   377	            errors.append(f"unexpected PYTHIA version: {metadata.get('pythia_version')}")
+   378	        if metadata.get("hepmc_version") != "3.03.01":
+   379	            errors.append(f"unexpected HepMC3 version: {metadata.get('hepmc_version')}")
+   380	
+   381	    if warning_counts["range_check"] or warning_counts["fatal"] or warning_counts["segmentation"]:
+   382	        errors.append(f"fatal-like PYTHIA log patterns observed: {warning_counts}")
+   383	
+   384	    if (
+   385	        warning_counts["negative_dipole_mass"]
+   386	        or warning_counts["ministring_fragmentation_failed"]
+   387	        or warning_counts["hadronlevel_failed_try_again"]
+   388	    ):
+   389	        warnings.append(f"PYTHIA runtime warning patterns observed: {warning_counts}")
+   390	
+   391	    status = "FAIL" if errors else ("PASS_WITH_RUNTIME_WARNINGS" if warnings else "PASS")
+   392	
+   393	    try:
+   394	        commit = run_text(["git", "rev-parse", "HEAD"], cwd=repo, env=env)
+   395	    except Exception:
+   396	        commit = "UNKNOWN"
+   397	
+   398	    try:
+   399	        branch = run_text(["git", "branch", "--show-current"], cwd=repo, env=env)
+   400	    except Exception:
+   401	        branch = "UNKNOWN"
+   402	
+   403	    return {
+   404	        "schema_version": 1,
+   405	        "phase_name": "phase7_canonical_bridge_runner",
+   406	        "status": status,
+   407	        "label": label,
+   408	        "repo": str(repo),
+   409	        "branch": branch,
+   410	        "commit": commit,
+   411	        "runtime_view": runtime_view,
+   412	        "run_dir": str(run_dir),
+   413	        "pythia_profile": pythia_profile,
+   414	        "source_card": str(source_card),
+   415	        "raw_lhe": str(raw_lhe),
+   416	        "canonical_lhe": str(canon_lhe),
+   417	        "canonical_summary": str(canon_summary_path),
+   418	        "hepmc": str(hepmc),
+   419	        "metadata": str(metadata_path),
+   420	        "pythia_log": str(pythia_log),
+   421	        "return_codes": {
+   422	            "whizard": whizard_rc,
+   423	            "canonicalizer": canon_rc,
+   424	            "pythia": pythia_rc,
+   425	            "validator": validator_rc,
+   426	        },
+   427	        "event_counts": {
+   428	            "raw_lhe": raw_events,
+   429	            "canonical_lhe": canon_events,
+   430	            "hepmc": hepmc_events,
+   431	        },
+   432	        "canonical_summary_data": canon_summary,
+   433	        "metadata_data": metadata,
+   434	        "warning_counts": warning_counts,
+   435	        "errors": errors,
+   436	        "warnings": warnings,
+   437	    }
+   438	
+   439	
+   440	def write_runtime_note(
+   441	    *,
+   442	    run_dir: Path,
+   443	    summary: dict,
+   444	    env: Mapping[str, str],
+   445	    repo: Path,
+   446	    pythia_exec: Path,
+   447	    pythia_config: Path,
+   448	    validator_log: Path,
+   449	) -> None:
+   450	    def safe_command_output(command: list[str]) -> str:
+   451	        try:
+   452	            return run_text(command, cwd=repo, env=env)
+   453	        except Exception as exc:
+   454	            return f"UNAVAILABLE: {exc}"
+   455	
+   456	    lines = [
+   457	        f"REPO={repo}",
+   458	        f"COMMIT={summary.get('commit')}",
+   459	        f"BRANCH={summary.get('branch')}",
+   460	        f"DATE_UTC={utc_iso()}",
+   461	        f"HOST={safe_command_output(['hostname'])}",
+   462	        f"VIEW={summary.get('runtime_view')}",
+   463	        f"WHIZARD={safe_command_output(['bash', '-lc', 'command -v whizard'])}",
+   464	        f"WHIZARD_VERSION={safe_command_output(['bash', '-lc', 'whizard --version | head -1'])}",
+   465	        f"PYTHIA8_CONFIG={safe_command_output(['bash', '-lc', 'command -v pythia8-config'])}",
+   466	        f"PYTHIA8_VERSION={safe_command_output(['pythia8-config', '--version'])}",
+   467	        f"HEPMC3_CONFIG={safe_command_output(['bash', '-lc', 'command -v HepMC3-config'])}",
+   468	        f"HEPMC3_VERSION={safe_command_output(['HepMC3-config', '--version'])}",
+   469	        f"SHOWER_DRIVER={pythia_exec}",
+   470	        f"LABEL={summary.get('label')}",
+   471	        f"SOURCE_CARD={summary.get('source_card')}",
+   472	        f"RAW_LHE={summary.get('raw_lhe')}",
+   473	        f"CANONICAL_LHE={summary.get('canonical_lhe')}",
+   474	        f"CANONICAL_SUMMARY={summary.get('canonical_summary')}",
+   475	        f"PYTHIA_CONFIG={pythia_config}",
+   476	        f"HEPMC_OUT={summary.get('hepmc')}",
+   477	        f"HEPMC_METADATA={summary.get('metadata')}",
+   478	        f"PYTHIA_LOG={summary.get('pythia_log')}",
+   479	        f"PYTHIA_PROFILE={summary.get('pythia_profile')}",
+   480	        f"VALIDATOR_LOG={validator_log}",
+   481	        f"RAW_LHE_EVENT_COUNT={summary['event_counts'].get('raw_lhe')}",
+   482	        f"CANONICAL_LHE_EVENT_COUNT={summary['event_counts'].get('canonical_lhe')}",
+   483	        f"HEPMC_EVENT_COUNT={summary['event_counts'].get('hepmc')}",
+   484	        f"WHIZARD_BRIDGE_RC={summary['return_codes'].get('whizard')}",
+   485	        f"CANON_RC={summary['return_codes'].get('canonicalizer')}",
+   486	        f"PYTHIA_CANON_V2_RC={summary['return_codes'].get('pythia')}",
+   487	        f"PHASE7_VALIDATE_RUNTIME_BRIDGE_RC={summary['return_codes'].get('validator')}",
+   488	        f"PHASE7_BRIDGE_STATUS={summary.get('status')}",
+   489	        "NOTES=Phase 7 canonical-v2 bridge runner output. PASS_WITH_RUNTIME_WARNINGS is acceptable for bridge proof but not final production shower certification.",
+   490	    ]
+   491	
+   492	    (run_dir / "RUNTIME_PHASE7_BRIDGE.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+   493	
+   494	
+   495	def parse_args() -> argparse.Namespace:
+   496	    parser = argparse.ArgumentParser(
+   497	        description="Run one Phase 7 canonical-v2 WHIZARD/PYTHIA/HepMC bridge sample."
+   498	    )
+   499	    parser.add_argument("--repo", type=Path, default=Path(os.environ.get("REPO", ".")).resolve())
+   500	    parser.add_argument("--card", type=Path, required=True)
+   501	    parser.add_argument("--label", required=True)
+   502	    parser.add_argument("--sample-id", default=None)
+   503	    parser.add_argument("--campaign-id", default=DEFAULT_CAMPAIGN_ID)
+   504	    parser.add_argument("--shard-id", default=None)
+   505	    parser.add_argument("--seed", type=int, default=12345)
+   506	    parser.add_argument("--events", type=int, default=100)
+   507	    parser.add_argument("--iterations", default="3:5000")
+   508	    parser.add_argument(
+   509	        "--pythia-profile",
+   510	        choices=["full_hadron", "parton_only"],
+   511	        default="full_hadron",
+   512	        help="PYTHIA final-state profile. Use parton_only for stable spin/QIS qualification without Lund fragmentation.",
+   513	    )
+   514	    parser.add_argument("--output-base", type=Path, default=Path(os.environ.get("TTSP_RUN_BASE", str(DEFAULT_OUTPUT_BASE))))
+   515	    parser.add_argument("--build-dir", type=Path, default=None)
+   516	    parser.add_argument("--pythia-exec", type=Path, default=None)
+   517	    parser.add_argument("--timeout-whizard-minutes", type=int, default=120)
+   518	    parser.add_argument("--runtime-view", default=DEFAULT_RUNTIME_VIEW)
+   519	    parser.add_argument("--dry-run", action="store_true")
+   520	    return parser.parse_args()
+   521	
+   522	
+   523	def main() -> int:
+   524	    args = parse_args()
+   525	
+   526	    repo = args.repo.resolve()
+   527	    card = args.card.resolve()
+   528	    output_base = args.output_base
+   529	    build_dir = args.build_dir or (repo / "build-lcg-devkey-fri")
+   530	    pythia_exec = args.pythia_exec or (build_dir / "qis_lhe_to_hepmc3")
+   531	
+   532	    sample_id = args.sample_id or f"{args.label}_canonical_v2"
+   533	    shard_id = args.shard_id or f"bridge_{args.events}ev_{args.label}"
+   534	
+   535	    env = dict(os.environ)
+   536	    ensure_pythonpath(env, repo)
+   537	
+   538	    if not repo.is_dir():
+   539	        raise BridgeError(f"repo does not exist: {repo}")
+   540	    if not card.is_file():
+   541	        raise BridgeError(f"card does not exist: {card}")
+   542	    if not pythia_exec.is_file():
+   543	        raise BridgeError(f"PYTHIA/HepMC driver does not exist: {pythia_exec}")
+   544	    if not command_exists("whizard", env):
+   545	        raise BridgeError("whizard is not available in PATH; source the pinned runtime first")
+   546	    if not command_exists("pythia8-config", env):
+   547	        raise BridgeError("pythia8-config is not available in PATH; source the pinned runtime first")
+   548	    if not command_exists("HepMC3-config", env):
+   549	        raise BridgeError("HepMC3-config is not available in PATH; source the pinned runtime first")
+   550	
+   551	    canonicalizer = repo / "scripts/showering/canonicalize_whizard_lhe_for_pythia_v2.py"
+   552	    wrapper = repo / "scripts/showering/run_external_pythia.sh"
+   553	    validator = repo / "scripts/showering/validate_phase7_showering.py"
+   554	
+   555	    for path, label in [
+   556	        (canonicalizer, "canonicalizer"),
+   557	        (wrapper, "external PYTHIA wrapper"),
+   558	        (validator, "Phase 7 validator"),
+   559	    ]:
+   560	        if not path.is_file():
+   561	            raise BridgeError(f"missing {label}: {path}")
+   562	
+   563	    run_dir = output_base / f"phase7_bridge_{args.label}_{utc_stamp()}"
+   564	
+   565	    print("=" * 100)
+   566	    print("PHASE7_CANONICAL_BRIDGE_RUNNER")
+   567	    print(f"REPO={repo}")
+   568	    print(f"CARD={card}")
+   569	    print(f"LABEL={args.label}")
+   570	    print(f"SAMPLE_ID={sample_id}")
+   571	    print(f"SHARD_ID={shard_id}")
+   572	    print(f"EVENTS={args.events}")
+   573	    print(f"ITERATIONS={args.iterations}")
+   574	    print(f"PYTHIA_PROFILE={args.pythia_profile}")
+   575	    print(f"RUN_DIR={run_dir}")
+   576	    print(f"PYTHIA_EXEC={pythia_exec}")
+   577	    print("=" * 100)
+   578	
+   579	    if args.dry_run:
+   580	        print("DRY_RUN=1")
+   581	        return 0
+   582	
+   583	    source_common = card.parent / "common"
+   584	
+   585	    bridge_card = localize_card(
+   586	        source_card=card,
+   587	        source_common=source_common,
+   588	        run_dir=run_dir,
+   589	        events=args.events,
+   590	        iterations=args.iterations,
+   591	        sample_basename="bridge_raw",
+   592	    )
+   593	
+   594	    whizard_log = run_dir / "whizard_bridge.log"
+   595	    whizard_rc = run_logged(
+   596	        ["whizard", bridge_card.name],
+   597	        cwd=run_dir,
+   598	        log_path=whizard_log,
+   599	        env=env,
+   600	        timeout_seconds=args.timeout_whizard_minutes * 60,
+   601	    )
+   602	    (run_dir / "whizard_bridge.rc").write_text(f"WHIZARD_BRIDGE_RC={whizard_rc}\n", encoding="utf-8")
+   603	
+   604	    if whizard_rc != 0:
+   605	        raise BridgeError(f"WHIZARD failed with rc={whizard_rc}; see {whizard_log}")
+   606	
+   607	    raw_lhe = run_dir / "bridge_raw.lhe"
+   608	    if not raw_lhe.is_file() or raw_lhe.stat().st_size == 0:
+   609	        raise BridgeError(f"raw WHIZARD LHE not produced: {raw_lhe}")
+   610	
+   611	    canon_lhe = run_dir / f"{args.label}.canonical_v2.lhe"
+   612	    canon_summary = run_dir / f"{args.label}.canonical_v2.summary.json"
+   613	
+   614	    canon_log = run_dir / "canonicalize.log"
+   615	    canon_rc = run_logged(
+   616	        [
+   617	            sys.executable,
+   618	            str(canonicalizer),
+   619	            "--input",
+   620	            str(raw_lhe),
+   621	            "--output",
+   622	            str(canon_lhe),
+   623	            "--summary",
+   624	            str(canon_summary),
+   625	        ],
+   626	        cwd=repo,
+   627	        log_path=canon_log,
+   628	        env=env,
+   629	    )
+   630	    (run_dir / "canonicalize.rc").write_text(f"CANON_RC={canon_rc}\n", encoding="utf-8")
+   631	
+   632	    if canon_rc != 0:
+   633	        raise BridgeError(f"canonicalizer failed with rc={canon_rc}; see {canon_log}")
+   634	
+   635	    pythia_config = run_dir / "pythia8_bridge_canonical_v2.cmnd"
+   636	    write_pythia_cmnd(pythia_config, args.events, args.pythia_profile)
+   637	
+   638	    hepmc = run_dir / f"{args.label}.canonical_v2.hepmc3"
+   639	    pythia_log = run_dir / "run_external_pythia_canonical_v2.log"
+   640	
+   641	    pythia_env = dict(env)
+   642	    pythia_env.update(
+   643	        {
+   644	            "PYTHIA_EXEC": str(pythia_exec),
+   645	            "SAMPLE_ID": sample_id,
+   646	            "CAMPAIGN_ID": args.campaign_id,
+   647	            "SHARD_ID": shard_id,
+   648	            "MAX_EVENTS": str(args.events),
+   649	            "SEED": str(args.seed),
+   650	        }
+   651	    )
+   652	
+   653	    pythia_rc = run_logged(
+   654	        [
+   655	            "bash",
+   656	            str(wrapper),
+   657	            "--config",
+   658	            str(pythia_config),
+   659	            "--lhe",
+   660	            str(canon_lhe),
+   661	            "--out",
+   662	            str(hepmc),
+   663	        ],
+   664	        cwd=repo,
+   665	        log_path=pythia_log,
+   666	        env=pythia_env,
+   667	    )
+   668	    (run_dir / "pythia_canonical_v2.rc").write_text(
+   669	        f"PYTHIA_CANON_V2_RC={pythia_rc}\n",
+   670	        encoding="utf-8",
+   671	    )
+   672	
+   673	    if pythia_rc != 0:
+   674	        raise BridgeError(f"PYTHIA/HepMC bridge failed with rc={pythia_rc}; see {pythia_log}")
+   675	
+   676	    validator_log = run_dir / "phase7_validate_runtime_bridge.log"
+   677	    metadata = Path(str(hepmc) + ".metadata.json")
+   678	
+   679	    validator_rc = run_logged(
+   680	        [
+   681	            sys.executable,
+   682	            str(validator),
+   683	            "--repo",
+   684	            str(repo),
+   685	            "--lhe",
+   686	            str(canon_lhe),
+   687	            "--canonical-summary",
+   688	            str(canon_summary),
+   689	            "--hepmc",
+   690	            str(hepmc),
+   691	            "--metadata",
+   692	            str(metadata),
+   693	        ],
+   694	        cwd=repo,
+   695	        log_path=validator_log,
+   696	        env=env,
+   697	    )
+   698	    (run_dir / "phase7_validate_runtime_bridge.rc").write_text(
+   699	        f"PHASE7_VALIDATE_RUNTIME_BRIDGE_RC={validator_rc}\n",
+   700	        encoding="utf-8",
+   701	    )
+   702	
+   703	    if validator_rc != 0:
+   704	        raise BridgeError(f"Phase 7 validator failed with rc={validator_rc}; see {validator_log}")
+   705	
+   706	    summary = build_summary(
+   707	        repo=repo,
+   708	        run_dir=run_dir,
+   709	        label=args.label,
+   710	        source_card=card,
+   711	        raw_lhe=raw_lhe,
+   712	        canon_lhe=canon_lhe,
+   713	        canon_summary_path=canon_summary,
+   714	        hepmc=hepmc,
+   715	        metadata_path=metadata,
+   716	        pythia_log=pythia_log,
+   717	        pythia_profile=args.pythia_profile,
+   718	        whizard_rc=whizard_rc,
+   719	        canon_rc=canon_rc,
+   720	        pythia_rc=pythia_rc,
+   721	        validator_rc=validator_rc,
+   722	        env=env,
+   723	        runtime_view=args.runtime_view,
+   724	    )
+   725	
+   726	    (run_dir / "phase7_bridge_summary.json").write_text(
+   727	        json.dumps(summary, indent=2, sort_keys=True) + "\n",
+   728	        encoding="utf-8",
+   729	    )
+   730	
+   731	    write_runtime_note(
+   732	        run_dir=run_dir,
+   733	        summary=summary,
+   734	        env=env,
+   735	        repo=repo,
+   736	        pythia_exec=pythia_exec,
+   737	        pythia_config=pythia_config,
+   738	        validator_log=validator_log,
+   739	    )
+   740	
+   741	    write_sha256sums(run_dir)
+   742	
+   743	    print()
+   744	    print("=" * 100)
+   745	    print(f"PHASE7_BRIDGE_RUNNER_STATUS={summary['status']}")
+   746	    print(f"PHASE7_BRIDGE_RUNNER_RUN_DIR={run_dir}")
+   747	    print(f"RAW_LHE_EVENTS={summary['event_counts'].get('raw_lhe')}")
+   748	    print(f"CANONICAL_LHE_EVENTS={summary['event_counts'].get('canonical_lhe')}")
+   749	    print(f"HEPMC_EVENTS={summary['event_counts'].get('hepmc')}")
+   750	    print(f"WARNING_COUNTS={summary['warning_counts']}")
+   751	    if summary["warnings"]:
+   752	        print("WARNINGS:")
+   753	        for warning in summary["warnings"]:
+   754	            print(f"  - {warning}")
+   755	    if summary["errors"]:
+   756	        print("ERRORS:")
+   757	        for error in summary["errors"]:
+   758	            print(f"  - {error}")
+   759	    print("=" * 100)
+   760	
+   761	    return 0 if summary["status"] in {"PASS", "PASS_WITH_RUNTIME_WARNINGS"} else 1
+   762	
+   763	
+   764	if __name__ == "__main__":
+   765	    try:
+   766	        sys.exit(main())
+   767	    except BridgeError as exc:
+   768	        print(f"ERROR: {exc}", file=sys.stderr)
+   769	        sys.exit(1)
+
+================================================================
+FILE=scripts/showering/build_phase7_bridge_manifest.py
+================================================================
+     1	#!/usr/bin/env python3
+     2	"""Build JSONL manifests for Phase 7 canonical-v2 bridge runs."""
+     3	
+     4	from __future__ import annotations
+     5	
+     6	import argparse
+     7	import json
+     8	import os
+     9	from pathlib import Path
+    10	
+    11	
+    12	CAMPAIGN_ID = "full6f_365gev_ee_ttbar_spinpol_v1"
+    13	GENERATED_SUBDIR = "sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1"
+    14	
+    15	REPRESENTATIVE_RELATIVE_CARDS = [
+    16	    "f6f365_ee_unpol_epmum/epmum/process.sin",
+    17	    "f6f365_ee_LR100_epmum/epmum/process.sin",
+    18	    "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/process.sin",
+    19	]
+    20	
+    21	
+    22	def derive_label(card: Path, generated_root: Path) -> str:
+    23	    rel = card.relative_to(generated_root)
+    24	    family = rel.parts[0]
+    25	    channel_dir = rel.parts[1]
+    26	
+    27	    prefix = "f6f365_ee_"
+    28	    family_tail = family[len(prefix):] if family.startswith(prefix) else family
+    29	
+    30	    if "_" in family_tail:
+    31	        pol, family_channel = family_tail.split("_", 1)
+    32	    else:
+    33	        pol, family_channel = "unknown", family_tail
+    34	
+    35	    clean_channel = channel_dir.replace("__", "_")
+    36	
+    37	    if channel_dir == family_channel:
+    38	        return family_tail
+    39	
+    40	    if channel_dir.startswith(family_channel + "__"):
+    41	        return f"{pol}_{clean_channel}"
+    42	
+    43	    return f"{family_tail}_{clean_channel}"
+    44	
+    45	
+    46	def derive_category(label: str) -> str:
+    47	    pol = "polarized" if label.startswith(("LR100", "RL100")) else "unpolarized"
+    48	    topology = "semileptonic" if "jets" in label else "dilepton"
+    49	    return f"{topology}_{pol}"
+    50	
+    51	
+    52	def discover_cards(generated_root: Path, mode: str) -> list[Path]:
+    53	    if mode == "representative":
+    54	        cards = [generated_root / rel for rel in REPRESENTATIVE_RELATIVE_CARDS]
+    55	        missing = [str(card) for card in cards if not card.is_file()]
+    56	        if missing:
+    57	            raise FileNotFoundError("missing representative cards:\n" + "\n".join(missing))
+    58	        return cards
+    59	
+    60	    cards = sorted(generated_root.glob("**/process.sin"))
+    61	    cards = [card for card in cards if "/common/" not in card.as_posix()]
+    62	    if not cards:
+    63	        raise FileNotFoundError(f"no process.sin cards found under {generated_root}")
+    64	    return cards
+    65	
+    66	
+    67	def main() -> int:
+    68	    parser = argparse.ArgumentParser()
+    69	    parser.add_argument("--repo", type=Path, default=Path(os.environ.get("REPO", ".")).resolve())
+    70	    parser.add_argument("--campaign-id", default=CAMPAIGN_ID)
+    71	    parser.add_argument("--generated-root", type=Path, default=None)
+    72	    parser.add_argument("--mode", choices=["representative", "all"], default="representative")
+    73	    parser.add_argument("--base-seed", type=int, default=24682000)
+    74	    parser.add_argument("--events", type=int, default=100)
+    75	    parser.add_argument("--iterations", default="3:5000")
+    76	    parser.add_argument(
+    77	        "--pythia-profile",
+    78	        choices=["full_hadron", "parton_only"],
+    79	        default="full_hadron",
+    80	    )
+    81	    parser.add_argument("--output", type=Path, default=None)
+    82	    args = parser.parse_args()
+    83	
+    84	    repo = args.repo.resolve()
+    85	    generated_root = args.generated_root or (repo / GENERATED_SUBDIR)
+    86	    generated_root = generated_root.resolve()
+    87	
+    88	    if args.output is None:
+    89	        out_dir = repo / "campaigns" / args.campaign_id / "showering"
+    90	        out_dir.mkdir(parents=True, exist_ok=True)
+    91	        output = out_dir / f"phase7_bridge_manifest_{args.mode}.jsonl"
+    92	    else:
+    93	        output = args.output
+    94	        output.parent.mkdir(parents=True, exist_ok=True)
+    95	
+    96	    cards = discover_cards(generated_root, args.mode)
+    97	
+    98	    records = []
+    99	    for i, card in enumerate(cards):
+   100	        label = derive_label(card, generated_root)
+   101	        category = derive_category(label)
+   102	        seed = args.base_seed + i
+   103	
+   104	        records.append(
+   105	            {
+   106	                "schema_version": 1,
+   107	                "campaign_id": args.campaign_id,
+   108	                "bridge_policy": "canonical_v2",
+   109	                "label": label,
+   110	                "category": category,
+   111	                "card": str(card),
+   112	                "sample_id": f"{label}_canonical_v2",
+   113	                "shard_id": f"bridge_{args.events}ev_{label}",
+   114	                "seed": seed,
+   115	                "events": args.events,
+   116	                "iterations": args.iterations,
+   117	                "pythia_profile": args.pythia_profile,
+   118	            }
+   119	        )
+   120	
+   121	    with output.open("w", encoding="utf-8") as f:
+   122	        for record in records:
+   123	            f.write(json.dumps(record, sort_keys=True) + "\n")
+   124	
+   125	    print(f"PHASE7_BRIDGE_MANIFEST={output}")
+   126	    print(f"MODE={args.mode}")
+   127	    print(f"RECORDS={len(records)}")
+   128	    for record in records:
+   129	        print(f"{record['label']}  {record['category']}  seed={record['seed']}")
+   130	    return 0
+   131	
+   132	
+   133	if __name__ == "__main__":
+   134	    raise SystemExit(main())
+
+================================================================
+FILE=scripts/showering/run_phase7_bridge_manifest.py
+================================================================
+     1	#!/usr/bin/env python3
+     2	"""Run a Phase 7 canonical bridge manifest."""
+     3	
+     4	from __future__ import annotations
+     5	
+     6	import argparse
+     7	import json
+     8	import os
+     9	import re
+    10	import subprocess
+    11	import sys
+    12	from datetime import datetime, timezone
+    13	from pathlib import Path
+    14	
+    15	
+    16	def utc_stamp() -> str:
+    17	    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    18	
+    19	
+    20	def load_manifest(path: Path) -> list[dict]:
+    21	    records = []
+    22	    with path.open("r", encoding="utf-8") as f:
+    23	        for line_number, line in enumerate(f, start=1):
+    24	            stripped = line.strip()
+    25	            if not stripped or stripped.startswith("#"):
+    26	                continue
+    27	            try:
+    28	                records.append(json.loads(stripped))
+    29	            except json.JSONDecodeError as exc:
+    30	                raise RuntimeError(f"{path}:{line_number}: invalid JSONL: {exc}") from exc
+    31	    return records
+    32	
+    33	
+    34	def extract_runner_dir(log_text: str) -> str | None:
+    35	    matches = re.findall(r"PHASE7_BRIDGE_RUNNER_RUN_DIR=(.+)", log_text)
+    36	    return matches[-1].strip() if matches else None
+    37	
+    38	
+    39	def main() -> int:
+    40	    parser = argparse.ArgumentParser()
+    41	    parser.add_argument("--repo", type=Path, default=Path(os.environ.get("REPO", ".")).resolve())
+    42	    parser.add_argument("--manifest", type=Path, required=True)
+    43	    parser.add_argument("--runner", type=Path, default=None)
+    44	    parser.add_argument("--output-base", type=Path, default=None)
+    45	    parser.add_argument("--log-dir", type=Path, default=None)
+    46	    parser.add_argument("--limit", type=int, default=None)
+    47	    parser.add_argument("--only-label", action="append", default=[])
+    48	    parser.add_argument("--events", type=int, default=None)
+    49	    parser.add_argument("--iterations", default=None)
+    50	    parser.add_argument(
+    51	        "--timeout-whizard-minutes",
+    52	        type=int,
+    53	        default=None,
+    54	        help="Forwarded timeout for the WHIZARD stage in each child bridge runner.",
+    55	    )
+    56	    parser.add_argument(
+    57	        "--pythia-profile",
+    58	        choices=["full_hadron", "parton_only"],
+    59	        default=None,
+    60	    )
+    61	    parser.add_argument("--continue-on-error", action="store_true")
+    62	    parser.add_argument("--dry-run", action="store_true")
+    63	    args = parser.parse_args()
+    64	
+    65	    repo = args.repo.resolve()
+    66	    manifest = args.manifest.resolve()
+    67	    runner = args.runner or (repo / "scripts/showering/run_phase7_canonical_bridge.py")
+    68	    runner = runner.resolve()
+    69	
+    70	    if not manifest.is_file():
+    71	        raise RuntimeError(f"manifest not found: {manifest}")
+    72	    if not runner.is_file():
+    73	        raise RuntimeError(f"runner not found: {runner}")
+    74	
+    75	    records = load_manifest(manifest)
+    76	
+    77	    if args.only_label:
+    78	        wanted = set(args.only_label)
+    79	        records = [record for record in records if record.get("label") in wanted]
+    80	
+    81	    if args.limit is not None:
+    82	        records = records[: args.limit]
+    83	
+    84	    if not records:
+    85	        raise RuntimeError("manifest selection is empty")
+    86	
+    87	    stamp = utc_stamp()
+    88	    log_dir = args.log_dir or (repo / "inspection_outputs" / f"phase7_bridge_manifest_run_{stamp}")
+    89	    log_dir.mkdir(parents=True, exist_ok=True)
+    90	
+    91	    summary_records = []
+    92	    failures = 0
+    93	
+    94	    for index, record in enumerate(records, start=1):
+    95	        label = record["label"]
+    96	        card = record["card"]
+    97	
+    98	        manifest_events = int(record.get("events", 100))
+    99	        events = args.events if args.events is not None else manifest_events
+   100	        iterations = args.iterations if args.iterations is not None else str(record.get("iterations", "3:5000"))
+   101	        seed = int(record["seed"])
+   102	        pythia_profile = args.pythia_profile or str(record.get("pythia_profile", "full_hadron"))
+   103	        sample_id = record.get("sample_id", f"{label}_canonical_v2")
+   104	
+   105	        default_manifest_shard_id = f"bridge_{manifest_events}ev_{label}"
+   106	        manifest_shard_id = str(record.get("shard_id", default_manifest_shard_id))
+   107	
+   108	        # If --events overrides the manifest event count, keep shard/event
+   109	        # bookkeeping consistent for default shard IDs.  Preserve explicitly
+   110	        # customized shard IDs.
+   111	        if args.events is not None and manifest_shard_id == default_manifest_shard_id:
+   112	            shard_id = f"bridge_{events}ev_{label}"
+   113	        else:
+   114	            shard_id = manifest_shard_id
+   115	
+   116	        command = [
+   117	            sys.executable,
+   118	            str(runner),
+   119	            "--repo",
+   120	            str(repo),
+   121	            "--card",
+   122	            card,
+   123	            "--label",
+   124	            label,
+   125	            "--sample-id",
+   126	            sample_id,
+   127	            "--shard-id",
+   128	            shard_id,
+   129	            "--events",
+   130	            str(events),
+   131	            "--iterations",
+   132	            iterations,
+   133	            "--seed",
+   134	            str(seed),
+   135	            "--pythia-profile",
+   136	            pythia_profile,
+   137	        ]
+   138	
+   139	        if args.output_base is not None:
+   140	            command += ["--output-base", str(args.output_base)]
+   141	
+   142	        if args.timeout_whizard_minutes is not None:
+   143	            command += ["--timeout-whizard-minutes", str(args.timeout_whizard_minutes)]
+   144	
+   145	        if args.dry_run:
+   146	            command.append("--dry-run")
+   147	
+   148	        log_path = log_dir / f"{index:03d}_{label}.log"
+   149	
+   150	        print("=" * 100)
+   151	        print(f"MANIFEST_INDEX={index}")
+   152	        print(f"LABEL={label}")
+   153	        print(f"LOG={log_path}")
+   154	        print("COMMAND=" + " ".join(command))
+   155	        print("=" * 100)
+   156	
+   157	        child_output_lines = []
+   158	        with log_path.open("w", encoding="utf-8") as log:
+   159	            proc = subprocess.Popen(
+   160	                command,
+   161	                cwd=str(repo),
+   162	                env=os.environ.copy(),
+   163	                text=True,
+   164	                stdout=subprocess.PIPE,
+   165	                stderr=subprocess.STDOUT,
+   166	                bufsize=1,
+   167	            )
+   168	
+   169	            assert proc.stdout is not None
+   170	            for line in proc.stdout:
+   171	                print(line, end="", flush=True)
+   172	                log.write(line)
+   173	                log.flush()
+   174	                child_output_lines.append(line)
+   175	
+   176	            return_code = proc.wait()
+   177	
+   178	        child_stdout = "".join(child_output_lines)
+   179	
+   180	        runner_dir = extract_runner_dir(child_stdout)
+   181	
+   182	        child_summary = None
+   183	        child_summary_path = None
+   184	        runner_status = None
+   185	        event_counts = None
+   186	        warning_counts = None
+   187	        runner_warnings = None
+   188	        runner_errors = None
+   189	
+   190	        if runner_dir:
+   191	            candidate = Path(runner_dir) / "phase7_bridge_summary.json"
+   192	            child_summary_path = str(candidate)
+   193	            if candidate.is_file():
+   194	                try:
+   195	                    child_summary = json.loads(candidate.read_text(encoding="utf-8"))
+   196	                    runner_status = child_summary.get("status")
+   197	                    event_counts = child_summary.get("event_counts")
+   198	                    warning_counts = child_summary.get("warning_counts")
+   199	                    runner_warnings = child_summary.get("warnings")
+   200	                    runner_errors = child_summary.get("errors")
+   201	                except Exception as exc:
+   202	                    runner_errors = [f"could not parse child summary {candidate}: {exc}"]
+   203	
+   204	        result = {
+   205	            "index": index,
+   206	            "label": label,
+   207	            "category": record.get("category"),
+   208	            "card": card,
+   209	            "events": events,
+   210	            "iterations": iterations,
+   211	            "seed": seed,
+   212	            "pythia_profile": pythia_profile,
+   213	            "sample_id": sample_id,
+   214	            "shard_id": shard_id,
+   215	            "return_code": return_code,
+   216	            "runner_dir": runner_dir,
+   217	            "runner_summary": child_summary_path,
+   218	            "runner_status": runner_status,
+   219	            "event_counts": event_counts,
+   220	            "warning_counts": warning_counts,
+   221	            "runner_warnings": runner_warnings,
+   222	            "runner_errors": runner_errors,
+   223	            "log": str(log_path),
+   224	        }
+   225	
+   226	        summary_records.append(result)
+   227	
+   228	        if return_code != 0:
+   229	            failures += 1
+   230	            if not args.continue_on_error:
+   231	                break
+   232	
+   233	    status = "PASS" if failures == 0 else "FAIL"
+   234	
+   235	    summary = {
+   236	        "schema_version": 1,
+   237	        "phase_name": "phase7_bridge_manifest_run",
+   238	        "status": status,
+   239	        "repo": str(repo),
+   240	        "manifest": str(manifest),
+   241	        "runner": str(runner),
+   242	        "log_dir": str(log_dir),
+   243	        "selected_records": len(records),
+   244	        "completed_records": len(summary_records),
+   245	        "failures": failures,
+   246	        "records": summary_records,
+   247	    }
+   248	
+   249	    summary_path = log_dir / "manifest_run_summary.json"
+   250	    summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+   251	
+   252	    print("=" * 100)
+   253	    print(f"PHASE7_BRIDGE_MANIFEST_STATUS={status}")
+   254	    print(f"PHASE7_BRIDGE_MANIFEST_LOG_DIR={log_dir}")
+   255	    print(f"PHASE7_BRIDGE_MANIFEST_SUMMARY={summary_path}")
+   256	    print(f"FAILURES={failures}")
+   257	    print("=" * 100)
+   258	
+   259	    return 0 if failures == 0 else 1
+   260	
+   261	
+   262	if __name__ == "__main__":
+   263	    raise SystemExit(main())
+
+================================================================
+FILE=scripts/showering/build_phase9_sharded_manifest.py
+================================================================
+     1	#!/usr/bin/env python3
+     2	import argparse
+     3	import json
+     4	from pathlib import Path
+     5	
+     6	
+     7	def load_jsonl(path: Path):
+     8	    records = []
+     9	    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), start=1):
+    10	        line = line.strip()
+    11	        if not line:
+    12	            continue
+    13	        try:
+    14	            records.append(json.loads(line))
+    15	        except json.JSONDecodeError as exc:
+    16	            raise SystemExit(f"ERROR: invalid JSON on {path}:{line_no}: {exc}") from exc
+    17	    return records
+    18	
+    19	
+    20	def main() -> int:
+    21	    parser = argparse.ArgumentParser()
+    22	    parser.add_argument("--source-manifest", type=Path, required=True)
+    23	    parser.add_argument("--output", type=Path, required=True)
+    24	    parser.add_argument("--label", action="append", required=True)
+    25	    parser.add_argument("--events-per-shard", type=int, default=500)
+    26	    parser.add_argument("--shards-per-label", type=int, default=20)
+    27	    parser.add_argument("--base-seed", type=int, default=24700000)
+    28	    parser.add_argument("--iterations", default=None)
+    29	    parser.add_argument("--pythia-profile", default="parton_only", choices=["parton_only", "full_hadron"])
+    30	    args = parser.parse_args()
+    31	
+    32	    source_records = load_jsonl(args.source_manifest)
+    33	    by_label = {record["label"]: record for record in source_records}
+    34	
+    35	    missing = [label for label in args.label if label not in by_label]
+    36	    if missing:
+    37	        raise SystemExit(f"ERROR: missing source labels: {missing}")
+    38	
+    39	    output_records = []
+    40	
+    41	    for sample_index, parent_label in enumerate(args.label):
+    42	        base = by_label[parent_label]
+    43	
+    44	        for shard_index in range(args.shards_per_label):
+    45	            suffix = f"s{shard_index:03d}"
+    46	            record = dict(base)
+    47	
+    48	            record["schema_version"] = 1
+    49	            record["parent_label"] = parent_label
+    50	            record["label"] = f"{parent_label}_{suffix}"
+    51	            record["sample_id"] = f"{base['sample_id']}_{suffix}"
+    52	            record["shard_id"] = f"bridge_{args.events_per_shard}ev_{parent_label}_{suffix}"
+    53	            record["shard_index"] = shard_index
+    54	            record["n_shards"] = args.shards_per_label
+    55	            record["events"] = args.events_per_shard
+    56	            record["seed"] = args.base_seed + 1000 * sample_index + shard_index
+    57	            record["iterations"] = args.iterations if args.iterations is not None else base.get("iterations", "5:50000")
+    58	            record["pythia_profile"] = args.pythia_profile
+    59	            record["phase9_note"] = "Condor shard manifest for WHIZARD unweighting stability and parton-only bridge qualification"
+    60	
+    61	            output_records.append(record)
+    62	
+    63	    args.output.parent.mkdir(parents=True, exist_ok=True)
+    64	
+    65	    with args.output.open("w", encoding="utf-8") as handle:
+    66	        for record in output_records:
+    67	            handle.write(json.dumps(record, sort_keys=True) + "\n")
+    68	
+    69	    print(f"WROTE={args.output}")
+    70	    print(f"RECORDS={len(output_records)}")
+    71	    for index, record in enumerate(output_records):
+    72	        print(
+    73	            f"{index:4d}  {record['label']:55s} "
+    74	            f"events={record['events']} seed={record['seed']} "
+    75	            f"profile={record['pythia_profile']}"
+    76	        )
+    77	
+    78	    return 0
+    79	
+    80	
+    81	if __name__ == "__main__":
+    82	    raise SystemExit(main())
+
+================================================================
+FILE=sindarin/templates/full6f_365gev_v1/common/integration.inc.in
+================================================================
+     1	iterations = ${INTEGRATION_ITERATIONS}:${INTEGRATION_CALLS}
+     2	integrate (${PROCESS_NAME})
+
+================================================================
+FILE=sindarin/templates/full6f_365gev_v1/common/event_output.inc.in
+================================================================
+     1	simulate (${PROCESS_NAME}) {
+     2	  n_events = ${N_EVENTS}
+     3	  sample_format = lhef
+     4	  $sample = "${SAMPLE_BASENAME}"
+     5	}
+
+================================================================
+FILE=sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in
+================================================================
+     1	include("${COMMON_DIR}/model.inc")
+     2	include("${COMMON_DIR}/beams.inc")
+     3	include("${COMMON_DIR}/isr.inc")
+     4	include("${COMMON_DIR}/polarization.inc")
+     5	process ${PROCESS_NAME} = e1, E1 => ${FINAL_STATE}
+     6	include("${COMMON_DIR}/integration.inc")
+     7	include("${COMMON_DIR}/event_output.inc")
+
+================================================================
+FILE=sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in
+================================================================
+     1	include("${COMMON_DIR}/model.inc")
+     2	include("${COMMON_DIR}/beams.inc")
+     3	include("${COMMON_DIR}/isr.inc")
+     4	include("${COMMON_DIR}/polarization.inc")
+     5	process ${PROCESS_NAME} = e1, E1 => ${FINAL_STATE}
+     6	include("${COMMON_DIR}/integration.inc")
+     7	include("${COMMON_DIR}/event_output.inc")

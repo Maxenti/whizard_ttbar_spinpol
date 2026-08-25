@@ -1,0 +1,23 @@
+PHASE 11C WT VALIDATION RNG RESERVATION
+=======================================
+
+Generation-envelope stress:
+
+S0:
+311170001--311170020
+
+S1:
+311171001--311171020
+
+S2:
+311172001--311172020
+
+Reserved WT Phase-11C diagnostic range:
+311170000--311179999
+
+Reserved WT Phase-11C physics-holdout range:
+311180000--311189999
+
+None of these seeds may be used in Phase 12 production.
+
+Technical retries must reuse the exact original validation seed.

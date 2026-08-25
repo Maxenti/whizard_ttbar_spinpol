@@ -1,0 +1,33 @@
+Phase 11C.5G eight-shard generation-envelope summary
+====================================================
+
+grid    sample   shard seed   efficiency   excess%   max excess   avg excess   gate
+
+G2_S0   S0_A     211120001      2.32       0.300       2.653       0.001733    PASS
+G2_S0   S0_Bv2   211120002      2.28       0.350       2.685       0.001554    PASS
+G2_S0   S0_C     211160001      2.34       0.350       5.718       0.002382    PASS
+G2_S0   S0_D     211160002      2.32       0.330       4.123       0.002541    PASS
+
+G2_S1   S1_A     211120101      1.48       0.380       7.256       0.002853    PASS
+G2_S1   S1_B     211160101      1.45       0.420    4938.000       0.496500    FAIL
+
+G2_S2   S2_A     211120102      2.07       0.310       4.079       0.001376    PASS
+G2_S2   S2_B     211160102      2.08       0.250      61.870       0.007643    FAIL
+
+
+Observed pattern
+----------------
+
+1. G2_S0 passes four independent 10k shards.
+
+2. G2_S1 has one passing and one catastrophically failing shard.
+
+3. G2_S2 has one passing and one failing shard.
+
+4. Excess-event fractions remain at the few-per-mille level for all
+   shards.
+
+5. Failure is driven by excess-weight severity rather than a large
+   increase in the number of excess events.
+
+6. C5 holdout attempt #1 was aborted before physics unblinding.

@@ -1,0 +1,29 @@
+PHASE-11E PYTHIA PREFLIGHT FIX
+==============================
+
+No PYTHIA jobs were submitted.
+
+The initial HTCondor dry-run exposed two submit-layer problems:
+
+1. pythia_itemdata.tsv contained a header row, and HTCondor queue-from
+   treated that header as a fifth job.
+
+2. Two argument separators were missing in pythia_rehearsal.sub:
+
+   $(source_stop)--output-root
+
+   $(max_events)--executable
+
+Observed consequence:
+- dry-run materialized 5 jobs rather than 4
+- ProcId 0 used literal column names as argument values
+- some real-job arguments were concatenated
+
+Physics/sample products were not affected.
+No PYTHIA/HepMC3 job was submitted.
+
+Corrective action:
+- preserve the human-readable headered TSV
+- generate a separate headerless HTCondor queue TSV
+- rewrite submit arguments with explicit whitespace
+- repeat dry-run and require exactly four jobs

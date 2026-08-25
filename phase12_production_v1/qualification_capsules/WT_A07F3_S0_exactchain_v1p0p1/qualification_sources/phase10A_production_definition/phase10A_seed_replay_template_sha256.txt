@@ -1,0 +1,2 @@
+277587bd29bdcd0ce9996054fc9c4f666115f74f600b2a18d9217ed5662eb946  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_500GeV.sin.in
+178572b9ce798d771a60c4d33642730240be3d8948380ae3fd7c415c5e95f198  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase10A_seed_replay_smoke_20260804T143656Z/ee_ttbar_epmum_LR100_sc_ISR_365GeV_seed_replay.sin.in

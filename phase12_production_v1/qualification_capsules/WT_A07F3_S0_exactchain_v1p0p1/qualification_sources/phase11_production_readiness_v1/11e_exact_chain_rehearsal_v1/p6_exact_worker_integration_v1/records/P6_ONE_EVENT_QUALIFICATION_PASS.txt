@@ -1,0 +1,36 @@
+PHASE-11E P6 EXACT-WORKER ONE-EVENT QUALIFICATION
+=================================================
+
+Status: PASS
+
+Attempt 1:
+- failed before scratch creation due malformed Bash parameter expansion
+- no preparation executed
+- PYTHIA not invoked
+- zero staged files
+
+Retry 1:
+- validation-only PYTHIA seed = 711260001
+- worker return code = 0
+- canonicalization = PASS
+- history serialization = PASS
+- strict serialization validation = PASS
+- PYTHIA accepted = 1 / 1
+- PYTHIA failed events = 0
+- HepMC events = 1
+- bad-weight events = 0
+- metadata gate = PASS
+- HepMC gate = PASS
+- explicit-W adapter = disabled
+
+Prepared one-event LHE SHA256:
+af42e582db5d1c337581e8f30ad43dfc193a3abefce5c800d0ffbe4b0d25d9a6
+
+That SHA256 exactly matches the P5-qualified serialized one-event reference.
+
+EOS output:
+/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_tests_v1/20260821T143400Z_P6_ONE_EVENT_RETRY1
+
+Conclusion:
+The corrected P6 worker passes the complete automatic one-event chain.
+Proceed to the 100-event exact-worker qualification without code changes.

@@ -1,0 +1,24 @@
+# Tree-level Standard Model inputs matched to the WHIZARD 3.1.5 built-in
+# SM model and default alpha_internal parameter scheme used for the qualified
+# samples.
+#
+# The weak mixing angle uses the on-shell definition:
+#
+#   sin^2(theta_W) = 1 - mW^2 / mZ^2
+#
+# with mW = 80.419 GeV and mZ = 91.1882 GeV.
+
+alpha_em_inverse: 132.5049458125
+sin2_theta_w: 0.22224994472998416
+
+mass_z_GeV: 91.1882
+width_z_GeV: 2.443
+mass_top_GeV: 173.1
+
+mass_electron_GeV: 0.00051099895
+mass_muon_GeV: 0.1056583755
+
+color_factor: 3.0
+
+source: whizard_3_1_5_builtin_SM_default_alpha_internal_on_shell
+generator_match_reviewed: true

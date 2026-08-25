@@ -1,0 +1,56 @@
+    type is (mci_vamp2_instance_t)
+       instance%event_generated = .false.
+       call instance%set_workspace (sampler)
+       call mci%integrator%generate_weighted (&
+            & instance%func, mci%rng, instance%event_x)
+       instance%event_weight = mci%integrator%get_evt_weight ()
+       instance%event_excess = 0
+       instance%n_events = instance%n_events + 1
+       instance%event_generated = .true.
+    end select
+  end subroutine mci_vamp2_generate_weighted_event
+
+  module subroutine mci_vamp2_generate_unweighted_event (mci, instance, sampler)
+    class(mci_vamp2_t), intent(inout) :: mci
+    class(mci_instance_t), intent(inout), target :: instance
+    class(mci_sampler_t), intent(inout), target :: sampler
+    if (.not. mci%integrator_defined) then
+       call msg_bug ("VAMP2: generate unweighted event: undefined integrator")
+    end if
+    select type (instance)
+    type is (mci_vamp2_instance_t)
+       instance%event_generated = .false.
+       call instance%set_workspace (sampler)
+       generate: do
+          call mci%integrator%generate_unweighted (&
+               & instance%func, mci%rng, instance%event_x, &
+               & opt_event_rescale = instance%event_rescale_f_max)
+          instance%event_excess = mci%integrator%get_evt_weight_excess ()
+          if (signal_is_pending ()) return
+          if (sampler%is_valid ()) exit generate
+       end do generate
+       if (mci%integrator%get_evt_weight () < 0._default) then
+          if (.not. mci%negative_weights) then
+             call msg_fatal ("VAMP2: cannot sample negative weights!")
+          end if
+          instance%event_weight = -1._default
+       else
+          instance%event_weight = 1._default
+       end if
+       instance%n_events = instance%n_events + 1
+       instance%event_generated = .true.
+    end select
+  end subroutine mci_vamp2_generate_unweighted_event
+
+  module subroutine mci_vamp2_rebuild_event (mci, instance, sampler, state)
+    class(mci_vamp2_t), intent(inout) :: mci
+    class(mci_instance_t), intent(inout) :: instance
+    class(mci_sampler_t), intent(inout) :: sampler
+    class(mci_state_t), intent(in) :: state
+    call msg_bug ("VAMP2: rebuild event not implemented yet.")
+  end subroutine mci_vamp2_rebuild_event
+
+  module subroutine mci_vamp2_instance_write (object, unit, pacify)
+    class(mci_vamp2_instance_t), intent(in) :: object
+    integer, intent(in), optional :: unit
+    logical, intent(in), optional :: pacify

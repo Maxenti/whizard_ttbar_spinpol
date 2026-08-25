@@ -1,0 +1,31 @@
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_sc_v1.csv
+================================================================
+     1	campaign_id,sample_id,enabled,initial_state,beam1,beam2,decay_channel,polarization,beam1_helicity,beam2_helicity,beam1_pol_fraction,beam2_pol_fraction,sqrt_s_GeV,isr_enabled,isr_mass_GeV,isr_alpha,spin_correlated,beam_spectrum,n_shards,events_per_shard,seed_base,request_cpus,request_memory_mb,job_flavour,archive_workspace
+     2	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_LR100_sc_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510001,1,3000,tomorrow,true
+     3	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_RL100_sc_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510003,1,3000,tomorrow,true
+     4	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_LR100_sc_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510005,1,3000,tomorrow,true
+     5	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_RL100_sc_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,1,10000,36510007,1,3000,tomorrow,true
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_iso_v1.csv
+================================================================
+     1	campaign_id,sample_id,enabled,initial_state,beam1,beam2,decay_channel,polarization,beam1_helicity,beam2_helicity,beam1_pol_fraction,beam2_pol_fraction,sqrt_s_GeV,isr_enabled,isr_mass_GeV,isr_alpha,spin_correlated,beam_spectrum,n_shards,events_per_shard,seed_base,request_cpus,request_memory_mb,job_flavour,archive_workspace
+     2	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_LR100_iso_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510002,1,3000,tomorrow,true
+     3	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_RL100_iso_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510004,1,3000,tomorrow,true
+     4	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_LR100_iso_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510006,1,3000,tomorrow,true
+     5	paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_RL100_iso_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510008,1,3000,tomorrow,true
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_250k_v1.csv
+================================================================
+     1	campaign_id,sample_id,enabled,initial_state,beam1,beam2,decay_channel,polarization,beam1_helicity,beam2_helicity,beam1_pol_fraction,beam2_pol_fraction,sqrt_s_GeV,isr_enabled,isr_mass_GeV,isr_alpha,spin_correlated,beam_spectrum,n_shards,events_per_shard,seed_base,request_cpus,request_memory_mb,job_flavour,archive_workspace
+     2	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_LR100_sc_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,25,10000,365251000,1,3000,tomorrow,true
+     3	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_LR100_iso_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365252000,1,3000,tomorrow,true
+     4	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_RL100_sc_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,25,10000,365253000,1,3000,tomorrow,true
+     5	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_RL100_iso_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365254000,1,3000,tomorrow,true
+     6	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_LR100_sc_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,25,10000,365255000,1,3000,tomorrow,true
+     7	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_LR100_iso_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365256000,1,3000,tomorrow,true
+     8	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_RL100_sc_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,true,none,25,10000,365257000,1,3000,tomorrow,true
+     9	paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_RL100_iso_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365258000,1,3000,tomorrow,true

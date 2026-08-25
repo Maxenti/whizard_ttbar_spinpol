@@ -1,0 +1,123 @@
+| Writing log to 'whizard.log'
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'mpi_main_smoke.sin'
+| Switching to model 'SM', scheme 'default'
+| Process library 'default_lib': recorded process 'mupair'
+sqrts =  2.500000000000E+02
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        mupair_i1.f90,.mod,.lo
+  OMEGA     mupair_i1.f90
+[1/1] e- e+ -> mu- mu+ ... allowed. [time: 0.23 secs, total: 0.23 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.23 secs]
+SUMMARY: 6 fusions, 2 propagators, 2 diagrams
+SUMMARY: 4 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 8189
+| Initializing integration for process mupair:
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 2.500000000000E+02 GeV
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 'mupair.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'mupair'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'mupair_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'mupair'
+| Integrate: iterations = 2:1000
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Integrator: Using VAMP channel equivalences
+| Integrator: 1000 initial calls, 20 bins, stratified = T
+| Integrator: VAMP
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+   1        784  1.7600922E+03  3.54E+00    0.20    0.06*  39.13
+   2        784  1.7676720E+03  3.56E+00    0.20    0.06   39.29
+|-----------------------------------------------------------------------------|
+   2       1568  1.7638567E+03  2.51E+00    0.14    0.06   39.29    2.28   2
+|=============================================================================|
+| There were no errors and    1 warning(s).
+| WHIZARD run finished.
+|=============================================================================|

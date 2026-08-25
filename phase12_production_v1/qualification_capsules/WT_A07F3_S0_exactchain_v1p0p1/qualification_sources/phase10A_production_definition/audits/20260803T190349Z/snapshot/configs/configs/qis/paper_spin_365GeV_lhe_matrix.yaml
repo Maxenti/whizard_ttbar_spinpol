@@ -1,0 +1,49 @@
+schema_version: 1
+campaign_family: paper_spin_365GeV_lhe_matrix
+source_sqrt_s_GeV: 500
+nominal_sqrt_s_GeV: 365
+template_root: sindarin/production
+
+profiles:
+  pilot:
+    campaign_id: paper_spin_365GeV_lhe_matrix_pilot_v1
+    events_per_sample: 1000
+    seed_base: 3651000
+    output_root: runs/paper_spin_365GeV_lhe_matrix_pilot_v1
+    condor_job_flavour: workday
+  production_10k:
+    campaign_id: paper_spin_365GeV_lhe_matrix_10k_v1
+    events_per_sample: 10000
+    seed_base: 36510000
+    output_root: runs/paper_spin_365GeV_lhe_matrix_10k_v1
+    condor_job_flavour: tomorrow
+
+matrix:
+  initial_states: [ee, mumu]
+  decay_channels: [epmum, mupem]
+  polarizations: [LR100, RL100]
+  spin_modes: [sc, iso]
+  isr: true
+
+validation:
+  expected_samples: 16
+  require_exact_event_count: true
+  nominal_energy_tolerance_GeV: 1.0e-9
+  threshold_tolerance_GeV: 1.0e-6
+  maximum_mtt_above_nominal_GeV: 1.0e-6
+  maximum_top_decay_closure_residual_GeV: 1.0e-6
+  maximum_nonfinite_weights: 0
+  maximum_negative_weights: 0
+  maximum_relative_cross_section_error: 0.005
+  maximum_consistency_pull: 5.0
+  require_isr_energy_spread: true
+  minimum_isr_energy_loss_GeV: 1.0e-6
+  nominal_top_mass_GeV: 173.1
+  record_quantiles: [0.0, 0.01, 0.05, 0.5, 0.95, 0.99, 1.0]
+
+condor:
+  request_cpus: 1
+  request_memory: 2500MB
+  request_disk: 2500MB
+  getenv: true
+  should_transfer_files: NO

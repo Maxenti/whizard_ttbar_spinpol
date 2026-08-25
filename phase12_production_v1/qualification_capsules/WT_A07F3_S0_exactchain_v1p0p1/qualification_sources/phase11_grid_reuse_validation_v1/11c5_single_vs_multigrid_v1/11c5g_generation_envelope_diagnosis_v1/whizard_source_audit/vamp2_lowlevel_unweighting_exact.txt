@@ -1,0 +1,96 @@
+      integer :: i
+      self%event_prepared = .false.
+      do i = 1, self%config%n_channel
+         func%wi(i) = self%weight(i)
+         func%grids(i) = self%integrator(i)%get_grid ()
+      end do
+      if (any (self%integrator%get_max_abs_f () > 0)) then
+         self%event_weight = self%weight * self%integrator%get_max_abs_f ()
+      else
+         self%event_weight = self%weight
+      end if
+      self%event_weight = self%event_weight / sum (self%event_weight)
+      self%event_prepared = .true.
+    end subroutine prepare_event
+
+  end subroutine vamp2_generate_weighted_event
+
+  module subroutine vamp2_generate_unweighted_event (self, func, rng, &
+       x, opt_event_rescale)
+    class(vamp2_t), intent(inout) :: self
+    class(vamp2_func_t), intent(inout) :: func
+    class(rng_t), intent(inout) :: rng
+    real(default), dimension(self%config%n_dim), intent(out)  :: x
+    real(default), intent(in), optional :: opt_event_rescale
+    integer :: ch, i
+    real(default) :: r, max_abs_f, event_rescale
+    event_rescale = 1._default
+    if (present (opt_event_rescale)) then
+       event_rescale = opt_event_rescale
+    end if
+    if (.not. self%event_prepared) then
+       call prepare_event ()
+    else
+       if (.not. allocated (func%grids)) then
+          call prepare_event ()
+       else
+          if (any ([(.not. allocated (func%grids(i)%xi),i=1,size(func%grids))])) then
+             call prepare_event ()
+          end if
+       end if
+    end if
+    generate: do
+       call rng%generate (r)
+       nchannel: do ch = 1, self%config%n_channel
+          r = r - self%event_weight(ch)
+          if (r <= 0._default) exit nchannel
+       end do nchannel
+       ch = min (ch, self%config%n_channel)
+       call func%set_channel (ch)
+       call self%integrator(ch)%generate_weighted (func, rng, x)
+       self%result%evt_weight = self%integrator(ch)%get_evt_weight ()
+       max_abs_f = self%integrator(ch)%get_max_abs_f ()
+       self%result%evt_weight_excess = 0._default
+       if (abs(self%result%evt_weight) > max_abs_f) then
+          self%result%evt_weight_excess = abs(self%result%evt_weight) / max_abs_f - 1._default
+          exit generate
+       end if
+       call rng%generate (r)
+       ! Do not use division, because max_abs_f could be zero.
+       if (event_rescale * max_abs_f * r <= abs(self%result%evt_weight)) then
+          exit generate
+       end if
+    end do generate
+  contains
+    subroutine prepare_event ()
+      integer :: i
+      self%event_prepared = .false.
+      do i = 1, self%config%n_channel
+         func%wi(i) = self%weight(i)
+         func%grids(i) = self%integrator(i)%get_grid ()
+      end do
+      if (any (self%integrator%get_max_abs_f () > 0)) then
+         self%event_weight = self%weight * self%integrator%get_max_abs_f ()
+      else
+         self%event_weight = self%weight
+      end if
+      self%event_weight = self%event_weight / sum (self%event_weight)
+      self%event_prepared = .true.
+    end subroutine prepare_event
+
+  end subroutine vamp2_generate_unweighted_event
+
+  module subroutine vamp2_write_grids (self, unit)
+    class(vamp2_t), intent(in) :: self
+    integer, intent(in), optional :: unit
+    integer :: u
+    integer :: ch
+    u = given_output_unit (unit)
+    write (u, descr_fmt) "begin type(vamp2_t)"
+    write (u, integer_fmt) "n_channel =", self%config%n_channel
+    write (u, integer_fmt) "n_dim =", self%config%n_dim
+    write (u, integer_fmt) "n_calls_min_ch =", self%config%n_calls_min_per_channel
+    write (u, integer_fmt) "n_calls_thres =", self%config%n_calls_threshold
+    write (u, integer_fmt) "n_chains =", self%config%n_chains
+    write (u, logical_fmt) "stratified =", self%config%stratified
+    write (u, double_fmt) "alpha =", self%config%alpha

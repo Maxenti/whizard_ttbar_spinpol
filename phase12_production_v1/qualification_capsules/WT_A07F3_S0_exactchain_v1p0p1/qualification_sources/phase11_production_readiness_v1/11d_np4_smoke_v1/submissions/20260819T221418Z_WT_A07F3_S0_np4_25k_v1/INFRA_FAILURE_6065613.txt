@@ -1,0 +1,65 @@
+PHASE-11D NP4 SMOKE — INFRASTRUCTURE FAILURE RECORD
+===================================================
+
+Original cluster:
+6065613
+
+Mode:
+S0_NP4_SMOKE_25K
+
+Grid:
+S0 / WT_A07F3
+
+WHIZARD seed:
+311190001
+
+Requested events:
+25000
+
+Requested MPI ranks:
+4
+
+Observed result:
+Condor normal termination, return value 2.
+
+stderr:
+ERROR: MPI LHE merger missing: /pool/condor/dir_2366097/merge_mpi_lhe.py
+
+Cause:
+The patched worker derived merge_mpi_lhe.py relative to
+${BASH_SOURCE[0]}.
+
+HTCondor materialized the executable inside its execute-node scratch
+directory:
+
+/pool/condor/dir_2366097/
+
+Therefore the worker searched for:
+
+/pool/condor/dir_2366097/merge_mpi_lhe.py
+
+rather than the merger stored beside the authoritative AFS submission
+copy.
+
+Evidence that this was pre-generation infrastructure failure:
+- RemoteUserCpu = 0
+- RemoteSysCpu = 0
+- no mpirun execution markers
+- no WHIZARD generation output
+- no persistent EOS output directory
+- no reuse_checks.txt
+- no generation_diagnostics.txt
+- no merged LHE
+- no frozen-grid mutation evidence
+
+Physics interpretation:
+NONE.
+
+This attempt does not test S0, A07/F3, MPI generation, or event physics.
+
+Corrective action:
+Reference the already-qualified merge_mpi_lhe.py from a stable canonical
+AFS path and repeat the SAME smoke identity, S0 grid, RNG seed 311190001,
+and 25000-event request.
+
+The RNG seed must not be replaced.

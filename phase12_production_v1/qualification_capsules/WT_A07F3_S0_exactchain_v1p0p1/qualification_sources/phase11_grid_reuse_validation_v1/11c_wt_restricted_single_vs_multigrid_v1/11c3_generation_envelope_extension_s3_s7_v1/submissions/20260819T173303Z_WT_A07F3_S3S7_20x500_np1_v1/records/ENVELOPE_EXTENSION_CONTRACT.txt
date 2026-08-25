@@ -1,0 +1,73 @@
+WT PHASE-11C S3-S7 GENERATION-ENVELOPE QUALIFICATION CONTRACT
+================================================================
+
+Purpose:
+Complete pre-holdout generation-envelope qualification for WT A07/F3
+reference grids S3-S7.
+
+No S0-S2 rerun is required. Their existing 10,000-event/grid envelope
+qualification remains authoritative.
+
+Grid set:
+S3
+S4
+S5
+S6
+S7
+
+Per-grid campaign:
+20 independent rng_stream generation jobs.
+500 accepted unweighted events per job.
+10,000 events per grid.
+
+Total:
+100 jobs.
+50,000 diagnostic events.
+
+Checkpoint:
+WT_A07F3
+
+Serialized grid history:
+10:100000:"gw", 10:200000:""
+
+Technical requirements, every job:
+WHIZARD_RC=0
+STATUS=PASS
+EVENTS_WRITTEN=500
+WORKSPACE_UNCHANGED=1
+NEW_GRID_INIT_COUNT=0
+PHS hash unchanged
+VG2 hash unchanged
+no VAMP2 parameter mismatch
+no discarded serialized pass
+no new-grid initialization
+
+Per-grid generation-envelope gates:
+20/20 technically valid jobs
+10,000 accepted events
+excess_fraction <= 0.01
+aggregate_average_excess <= 0.01
+maximum_excess <= 10
+
+LHE requirements:
+exact requested event count
+unit-weight events
+expected final state
+all event hashes unique
+zero exact duplicates
+
+Use policy:
+These events are diagnostic only.
+Do not inspect/use them for SINGLE-vs-MULTI physics distributions.
+Do not reuse them in the final physics holdout.
+
+Failure policy:
+A technical execution failure may be replayed only with exactly the same
+grid and RNG seed.
+
+A genuine generation-envelope failure is not repaired by choosing another
+existing grid or RNG stream.
+
+Holdout eligibility:
+A grid may enter the final MULTI holdout only after both integration
+qualification and this generation-envelope qualification pass.

@@ -1,0 +1,153 @@
+schema_version: 1
+
+campaign:
+  name: paper_spin_365GeV
+  nominal_sqrt_s_GeV: 365.0
+  inherited_baseline: paper-spin-500gev-v3p1
+  physics_scope: polarized_tree_level_continuum_ttbar_near_threshold
+  threshold_resummation_included: false
+  nonresonant_backgrounds_included: false
+
+convention:
+  name: lepton_collider_paper_v1
+  analyzer_source: four_vectors
+  legacy_map_reviewed: false
+  four_vector_reconstruction_reviewed: true
+
+  plus_columns: [b1k, b1r, b1n]
+  minus_columns: [b2k, b2r, b2n]
+
+  plus_component_transform:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, -1.0]
+
+  minus_component_transform:
+    - [-1.0, 0.0, 0.0]
+    - [0.0, -1.0, 0.0]
+    - [0.0, 0.0, -1.0]
+
+  raw_plus_sign: 1.0
+  raw_minus_sign: 1.0
+
+  max_norm_deviation: 1.0e-6
+  max_orthonormal_residual: 1.0e-10
+  max_handedness_deviation: 1.0e-10
+  renormalize_within_tolerance: false
+  singular_tolerance: 1.0e-10
+  singular_policy: error
+
+  four_vectors:
+    incoming_positive: {e: beam_plus_e, px: beam_plus_px, py: beam_plus_py, pz: beam_plus_pz}
+    top: {e: top_e, px: top_px, py: top_py, pz: top_pz}
+    antitop: {e: antitop_e, px: antitop_px, py: antitop_py, pz: antitop_pz}
+    lepton_positive: {e: lepton_plus_e, px: lepton_plus_px, py: lepton_plus_py, pz: lepton_plus_pz}
+    lepton_negative: {e: lepton_minus_e, px: lepton_minus_px, py: lepton_minus_py, pz: lepton_minus_pz}
+
+  derived_kinematics:
+    enabled: true
+    reviewed: true
+    costheta_column: paper_cos_theta_t
+    overwrite_existing: false
+    comparison_tolerance: 1.0e-12
+    bound_tolerance: 1.0e-12
+
+weights:
+  candidates: [weight, event_weight, nominal_weight]
+  allow_negative: false
+
+event_key_candidates:
+  - event_index
+  - event_id
+  - event
+  - event_number
+  - source_event_index
+
+histograms:
+  enabled: true
+  bins: 20
+
+shape_fit:
+  enabled: true
+  calculate_covariance: true
+  max_iterations: 2000
+  gradient_tolerance: 1.0e-8
+
+bootstrap:
+  replicas: 1000
+  seed: 20260722
+
+analytic_benchmark:
+  enabled: true
+  mode: event_conditioned
+  sm_parameters: paper_spin_365GeV_sm_parameters.yaml
+  quadrature_points: 256
+  kinematics_map_reviewed: true
+  sqrt_s_column: mtt_GeV
+  costheta_column: paper_cos_theta_t
+  costheta_sign: 1.0
+  sqrt_s_candidates: [mtt_GeV, sqrt_s_hat_GeV, ttbar_mass_GeV, m_tt_GeV]
+  costheta_candidates:
+    - paper_cos_theta_t
+    - top_costheta_beam_plus
+    - costheta_top_beam_plus
+    - cos_theta_top_beam_plus
+  weight_candidates: [weight, event_weight, nominal_weight]
+
+validation:
+  expected_samples: 32
+  polarization_min_z: 5.0
+  spin_correlation_min_z: 5.0
+  flavour_consistency_max_z: 5.0
+  lepton_universality_max_z: 5.0
+
+  # Retained for compatibility with the frozen 500 GeV validator schema.
+  preservation_max_abs: 0.02
+  preservation_max_z: 5.0
+
+  lhe_hepmc_expected_paired_groups: 16
+  lhe_hepmc_expected_common_events_per_group: 10000
+  shower_migration_reference_max_abs: 0.02
+  shower_migration_reference_max_z: 5.0
+
+  iso_null_max_chi2_per_dof: 4.0
+  moment_marginal_max_abs: 0.03
+  trace_closure_max_abs: 0.03
+  synthetic_max_abs_pull: 5.0
+  analytic_max_z: 5.0
+
+# Initial near-threshold binning. The pilot audit must be used to replace the
+# mtt edges before the full 10k campaign if occupancy is poor.
+differential:
+  enabled: true
+  variables:
+    - name: costheta_top_beam_plus
+      column: paper_cos_theta_t
+      candidates:
+        - paper_cos_theta_t
+        - top_costheta_beam_plus
+        - costheta_top_beam_plus
+        - cos_theta_top_beam_plus
+      sign: 1.0
+      mapping_reviewed: true
+      edges: [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+      minimum_events: 100
+
+    - name: mtt_GeV
+      column: mtt_GeV
+      candidates: [mtt_GeV, sqrt_s_hat_GeV, ttbar_mass_GeV, m_tt_GeV]
+      sign: 1.0
+      mapping_reviewed: true
+      edges: [346.0, 348.0, 350.0, 352.0, 354.0, 356.0, 358.0, 360.0, 362.0, 364.0, 365.1]
+      minimum_events: 100
+
+basis_reconstruction_audit:
+  enabled: true
+  mapping_reviewed: true
+  singular_tolerance: 1.0e-10
+  four_vectors:
+    incoming_positive: {e: beam_plus_e, px: beam_plus_px, py: beam_plus_py, pz: beam_plus_pz}
+    top: {e: top_e, px: top_px, py: top_py, pz: top_pz}
+    antitop: {e: antitop_e, px: antitop_px, py: antitop_py, pz: antitop_pz}
+    lepton_positive: {e: lepton_plus_e, px: lepton_plus_px, py: lepton_plus_py, pz: lepton_plus_pz}
+    lepton_negative: {e: lepton_minus_e, px: lepton_minus_px, py: lepton_minus_py, pz: lepton_minus_pz}

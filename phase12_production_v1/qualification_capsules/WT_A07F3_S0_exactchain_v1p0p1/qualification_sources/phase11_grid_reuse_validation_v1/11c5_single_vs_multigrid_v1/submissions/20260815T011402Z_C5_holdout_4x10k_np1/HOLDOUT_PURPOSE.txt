@@ -1,0 +1,65 @@
+Phase 11C.5 fresh holdout generation
+====================================
+
+Campaign:
+  full6f_365gev_ee_ttbar_spinpol_v1
+
+Purpose:
+  Fresh holdout validation of the predetermined G2_S0 production-grid
+  candidate against independently qualified G2_S1 and G2_S2 grids.
+
+Fresh holdout components:
+
+  S0_C:
+    frozen grid = G2_S0
+    shard seed  = 211160001
+    events      = 10000
+
+  S0_D:
+    frozen grid = G2_S0
+    shard seed  = 211160002
+    events      = 10000
+
+  S1_B:
+    frozen grid = G2_S1
+    shard seed  = 211160101
+    events      = 10000
+
+  S2_B:
+    frozen grid = G2_S2
+    shard seed  = 211160102
+    events      = 10000
+
+Final validation composition:
+
+  SINGLE = S0_C + S0_D = 20000
+
+  MULTI  = S1_B + S2_B = 20000
+
+Generation recipe:
+  restore immutable frozen G2 workspace
+  assign unique shard RNG seed before integrate(process)
+  reuse frozen integration state
+  do not explicitly reseed before simulate(process)
+
+Holdout policy:
+  These events were not used to design the C.5 decision rule.
+
+  Before the frozen C.5 validator is run, only generation integrity,
+  structural record integrity, weights, event hashes and exact-event
+  overlap may be inspected.
+
+  Physics distributions, observable comparisons, KS values, SMDs,
+  quantiles or plots must not be inspected before the one-shot
+  C.5 holdout validation.
+
+Frozen C.5 plan:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/VALIDATION_PLAN_C5.txt
+
+Frozen C.5 validator:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py
+
+Validation-only seed range reserved:
+  211160000--211160999
+
+This seed range must not be used in Phase 12.

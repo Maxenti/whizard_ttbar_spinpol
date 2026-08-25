@@ -1,0 +1,61 @@
+PHASE-11E P6 EXACT-WORKER INTEGRATION CONTRACT
+===============================================
+
+Authoritative hard-process input:
+Qualified A07/F3 S0 raw WHIZARD LHE.
+
+Required automatic preparation:
+
+raw WHIZARD LHE
+    |
+    v
+canonical ISR normalization
+    - remove WHIZARD ISR bridge leptons
+    - promote physical incoming beams
+    - rewire ISR photons
+    - preserve all surviving particle content and four-vectors
+    |
+    v
+history-preserving serialization
+    - preserve exactly the WHIZARD-selected resonance history
+    - add zero resonances
+    - remove zero resonances
+    - reorder particle rows only
+    - remap MOTHUP only
+    |
+    v
+strict validation
+    - valid mother indices
+    - mother before child
+    - contiguous direct-daughter ranges
+    - particle-content preservation
+    - momentum closure
+    |
+    v
+PYTHIA8
+    |
+    v
+HepMC3
+
+NOT USED FOR THIS PRODUCTION MODE:
+insert_explicit_w_resonances.py
+
+Reason:
+The qualified 100k WHIZARD sample intentionally contains event-dependent
+full, partial, and continuum-like resonance histories. These correlate
+strongly with resonance virtuality and must be preserved rather than
+synthetically completed.
+
+Qualification already completed:
+- hard-process S0 qualification
+- 100k resonance-history audit
+- 100k serializer feasibility
+- 100k serializer implementation
+- PYTHIA P1
+- PYTHIA P2 all 16 history classes
+- PYTHIA P3 100 events
+- PYTHIA P4 1000 events
+- PYTHIA P5 25000 events
+
+Next gate:
+P6 = 4 x 25000 through the exact corrected automatic worker.

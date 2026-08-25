@@ -1,0 +1,435 @@
+================================================================
+VALIDATOR HASH
+================================================================
+6ca54d4cce6b33044deb005b6cf7ebeb1437c33105bf7d48e586ff3b20b3ce9a  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py
+
+================================================================
+FUNCTION DEFINITIONS
+================================================================
+111:def utc_now_iso() -> str:
+115:def sha256_file(path: Path, chunk_size: int = 8 * 1024 * 1024) -> str:
+126:def write_json(path: Path, obj: Any) -> None:
+130:def require_regular_nonempty_file(path: Path, label: str) -> None:
+142:def add(*vecs: np.ndarray) -> np.ndarray:
+146:def p3(v: np.ndarray) -> np.ndarray:
+150:def pt(v: np.ndarray) -> float:
+154:def mass(v: np.ndarray) -> float:
+159:def eta(v: np.ndarray) -> float:
+166:def phi(v: np.ndarray) -> float:
+170:def rapidity(v: np.ndarray) -> float:
+178:def unit(x: np.ndarray) -> np.ndarray:
+186:def boost_to_rest(v: np.ndarray, parent: np.ndarray) -> np.ndarray:
+213:def wrapped_abs_dphi(phi1: float, phi2: float) -> float:
+218:def cos_opening(a: np.ndarray, b: np.ndarray) -> float:
+229:def parse_event_block(lines: list[str]) -> dict[str, Any]:
+296:def compute_observables(x: dict[str, np.ndarray]) -> dict[str, float]:
+361:def read_lhe(path: str | Path) -> dict[str, Any]:
+466:def quantile_chi2(a: np.ndarray, b: np.ndarray, n_bins: int = QUANTILE_CHI2_BINS) -> tuple[float, float, int]:
+491:def effect_metrics(a: np.ndarray, b: np.ndarray) -> dict[str, float]:
+553:def holm_bonferroni(records: list[dict[str, Any]], alpha: float = FAMILYWISE_ALPHA) -> tuple[list[bool], list[float]]:
+579:def compare(a: dict[str, np.ndarray], b: dict[str, np.ndarray], label: str) -> list[dict[str, Any]]:
+613:def expected_final_signature() -> tuple[int, ...]:
+620:def structural_audit(data: dict[str, dict[str, Any]]) -> tuple[list[str], list[dict[str, Any]], list[dict[str, Any]]]:
+732:def empirical_cdf_difference(a: np.ndarray, b: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+741:def make_overlays(single: dict[str, np.ndarray], multi: dict[str, np.ndarray], outdir: Path) -> None:
+795:def make_summary_plots(primary: list[dict[str, Any]], plotdir: Path) -> None:
+831:def write_tsv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str] | None = None) -> None:
+843:def write_output_hash_manifest(outdir: Path) -> None:
+858:def run_self_test() -> int:
+910:def parse_args() -> argparse.Namespace:
+930:def main() -> int:
+
+================================================================
+INPUT / MAIN BLOCK 900-1145
+================================================================
+    print(f"SMD_ABS_MAX={SMD_ABS_MAX}")
+    print(f"KS_D_MAX={KS_D_MAX}")
+    return 0
+
+
+# ---------------------------------------------------------------------------
+# Main validation
+# ---------------------------------------------------------------------------
+
+
+def parse_args() -> argparse.Namespace:
+    ap = argparse.ArgumentParser(
+        description="Phase 11C.5 fresh-holdout single-grid vs multi-grid validator"
+    )
+    ap.add_argument("--self-test", action="store_true", help="run internal deterministic unit checks and exit")
+    ap.add_argument(
+        "--validation-mode",
+        choices=["holdout", "diagnostic"],
+        default="holdout",
+        help="diagnostic mode can never emit a C.5 PASS",
+    )
+    ap.add_argument("--s0-c")
+    ap.add_argument("--s0-d")
+    ap.add_argument("--s1-b")
+    ap.add_argument("--s2-b")
+    ap.add_argument("--validation-plan")
+    ap.add_argument("--outdir")
+    return ap.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+
+    if args.self_test:
+        return run_self_test()
+
+    required_cli = {
+        "--s0-c": args.s0_c,
+        "--s0-d": args.s0_d,
+        "--s1-b": args.s1_b,
+        "--s2-b": args.s2_b,
+        "--validation-plan": args.validation_plan,
+        "--outdir": args.outdir,
+    }
+    missing = [flag for flag, value in required_cli.items() if not value]
+    if missing:
+        raise SystemExit("missing required arguments: " + ", ".join(missing))
+
+    plan_path = Path(args.validation_plan).resolve()
+    require_regular_nonempty_file(plan_path, "validation plan")
+
+    component_paths = {
+        "S0_C": Path(args.s0_c).resolve(),
+        "S0_D": Path(args.s0_d).resolve(),
+        "S1_B": Path(args.s1_b).resolve(),
+        "S2_B": Path(args.s2_b).resolve(),
+    }
+    for name, path in component_paths.items():
+        require_regular_nonempty_file(path, f"{name} input")
+
+    if len(set(component_paths.values())) != len(component_paths):
+        raise SystemExit("structural setup error: component input paths are not all distinct")
+
+    outdir = Path(args.outdir).resolve()
+    if outdir.exists():
+        raise SystemExit(f"refusing to overwrite existing output directory: {outdir}")
+    outdir.mkdir(parents=True, exist_ok=False)
+    plotdir = outdir / "plots"
+    plotdir.mkdir(parents=True, exist_ok=False)
+
+    start_time = utc_now_iso()
+    script_path = Path(__file__).resolve()
+
+    provenance = {
+        "schema_version": SCHEMA_VERSION,
+        "validator_name": VALIDATOR_NAME,
+        "validator_version": VALIDATOR_VERSION,
+        "validation_mode": args.validation_mode,
+        "started_utc": start_time,
+        "argv": sys.argv,
+        "hostname": platform.node(),
+        "python_version": platform.python_version(),
+        "numpy_version": np.__version__,
+        "scipy_version": scipy.__version__,
+        "matplotlib_version": matplotlib.__version__,
+        "script_path": str(script_path),
+        "script_sha256": sha256_file(script_path),
+        "validation_plan_path": str(plan_path),
+        "validation_plan_sha256": sha256_file(plan_path),
+        "frozen_constants": {
+            "expected_events_per_component": EXPECTED_EVENTS_PER_COMPONENT,
+            "familywise_alpha": FAMILYWISE_ALPHA,
+            "smd_abs_max": SMD_ABS_MAX,
+            "ks_D_max": KS_D_MAX,
+            "quantile_chi2_bins": QUANTILE_CHI2_BINS,
+            "unit_weight_atol": UNIT_WEIGHT_ATOL,
+            "observable_count": len(OBSERVABLES),
+            "holm_test_count": 2 * len(OBSERVABLES),
+        },
+    }
+
+    data: dict[str, dict[str, Any]] = {}
+    for name in SAMPLE_ORDER:
+        path = component_paths[name]
+        print(f"Reading {name}: {path}")
+        data[name] = read_lhe(path)
+
+    structural_failures, component_summary, overlap_rows = structural_audit(data)
+
+    write_tsv(outdir / "component_summary.tsv", component_summary)
+    write_tsv(outdir / "event_overlap.tsv", overlap_rows)
+
+    final_state_rows: list[dict[str, Any]] = []
+    for name in SAMPLE_ORDER:
+        for signature, count in sorted(data[name]["final_state_counts"].items()):
+            final_state_rows.append(
+                {
+                    "sample": name,
+                    "status1_pdg_signature": ",".join(str(x) for x in signature),
+                    "count": int(count),
+                }
+            )
+    write_tsv(
+        outdir / "final_state_signatures.tsv",
+        final_state_rows,
+        fieldnames=["sample", "status1_pdg_signature", "count"],
+    )
+
+    event_hash_dir = outdir / "event_hashes"
+    event_hash_dir.mkdir(parents=False, exist_ok=False)
+    for name in SAMPLE_ORDER:
+        (event_hash_dir / f"{name}.event_sha256.tsv").write_text(
+            "event_index\tsha256\n"
+            + "".join(
+                f"{i}\t{digest}\n"
+                for i, digest in enumerate(data[name]["hashes"], start=1)
+            )
+        )
+
+    parse_issue_rows: list[dict[str, Any]] = []
+    for name in SAMPLE_ORDER:
+        for issue in data[name]["issues"]:
+            parse_issue_rows.append(
+                {
+                    "sample": name,
+                    "event_index": issue["event_index"],
+                    "error": issue["error"],
+                }
+            )
+    write_tsv(
+        outdir / "parse_issues.tsv",
+        parse_issue_rows,
+        fieldnames=["sample", "event_index", "error"],
+    )
+
+    input_manifest = {
+        name: {
+            "path": data[name]["path"],
+            "file_size_bytes": data[name]["file_size_bytes"],
+            "sha256": data[name]["file_sha256"],
+            "events_seen": data[name]["events_seen"],
+            "unique_event_hashes": len(set(data[name]["hashes"])),
+        }
+        for name in SAMPLE_ORDER
+    }
+    write_json(outdir / "INPUT_MANIFEST.json", input_manifest)
+    (outdir / "INPUT_FILE_SHA256SUMS.txt").write_text(
+        "".join(
+            f"{data[name]['file_sha256']}  {data[name]['path']}\n"
+            for name in SAMPLE_ORDER
+        )
+    )
+
+    # A structural failure blocks all physics-statistical evaluation. This
+    # prevents malformed or overlapping samples from yielding a misleading
+    # physics PASS/FAIL result.
+    if structural_failures:
+        result = {
+            "schema_version": SCHEMA_VERSION,
+            "validator_version": VALIDATOR_VERSION,
+            "validation_mode": args.validation_mode,
+            "gate": "FAIL" if args.validation_mode == "holdout" else "DIAGNOSTIC_ONLY",
+            "physics_evaluation_performed": False,
+            "structural_failures": structural_failures,
+            "hypothesis_failures": [],
+            "practical_equivalence_failures": [],
+            "thresholds": {
+                "familywise_alpha": FAMILYWISE_ALPHA,
+                "abs_smd_max": SMD_ABS_MAX,
+                "ks_D_max": KS_D_MAX,
+            },
+            "observable_groups": OBSERVABLE_GROUPS,
+            "samples": component_summary,
+        }
+        write_json(outdir / "VALIDATION_RESULT.json", result)
+        provenance["finished_utc"] = utc_now_iso()
+        provenance["result_gate"] = result["gate"]
+        write_json(outdir / "VALIDATION_PROVENANCE.json", provenance)
+
+        with (outdir / "VALIDATION_SUMMARY.txt").open("w") as f:
+            top = "FAIL" if args.validation_mode == "holdout" else "DIAGNOSTIC_ONLY"
+            f.write(f"PHASE11C5_SINGLE_VS_MULTIGRID={top}\n\n")
+            f.write("Physics evaluation performed: NO\n")
+            f.write(f"Structural failures: {len(structural_failures)}\n")
+            for failure in structural_failures:
+                f.write(f"  {failure}\n")
+
+        write_output_hash_manifest(outdir)
+        print("PHASE11C5_SINGLE_VS_MULTIGRID=" + ("FAIL" if args.validation_mode == "holdout" else "DIAGNOSTIC_ONLY"))
+        print(f"Structural failures: {len(structural_failures)}")
+        print("Physics evaluation performed: NO")
+        return 2 if args.validation_mode == "holdout" else 0
+
+    single = {
+        obs: np.concatenate([data["S0_C"]["arrays"][obs], data["S0_D"]["arrays"][obs]])
+        for obs in OBSERVABLES
+    }
+    multi = {
+        obs: np.concatenate([data["S1_B"]["arrays"][obs], data["S2_B"]["arrays"][obs]])
+        for obs in OBSERVABLES
+    }
+
+    primary = compare(single, multi, "SINGLE_S0CD_vs_MULTI_S1B_S2B")
+    internal_s0 = compare(data["S0_C"]["arrays"], data["S0_D"]["arrays"], "S0_C_vs_S0_D")
+    internal_multi = compare(data["S1_B"]["arrays"], data["S2_B"]["arrays"], "S1_B_vs_S2_B")
+
+    p_records: list[dict[str, Any]] = []
+    for row in primary:
+        p_records.append({"observable": row["observable"], "test": "KS", "p_value": row["ks_p"]})
+        p_records.append({"observable": row["observable"], "test": "CHI2", "p_value": row["chi2_p"]})
+
+    if len(p_records) != 48:
+        raise RuntimeError(f"internal invariant broken: expected 48 hypothesis tests, got {len(p_records)}")
+
+    rejected, adjusted = holm_bonferroni(p_records, alpha=FAMILYWISE_ALPHA)
+    for rec, reject, adj in zip(p_records, rejected, adjusted):
+        rec["holm_reject"] = bool(reject)
+        rec["holm_adjusted_p"] = float(adj)
+
+    lookup = {(r["observable"], r["test"]): r for r in p_records}
+
+    practical_failures: list[str] = []
+    smd_failures: list[str] = []
+    ks_d_failures: list[str] = []
+
+    for row in primary:
+
+================================================================
+RESULT / GATING BLOCK 1145-1285
+================================================================
+    for row in primary:
+        obs = row["observable"]
+        row["ks_holm_reject"] = lookup[(obs, "KS")]["holm_reject"]
+        row["ks_holm_adjusted_p"] = lookup[(obs, "KS")]["holm_adjusted_p"]
+        row["chi2_holm_reject"] = lookup[(obs, "CHI2")]["holm_reject"]
+        row["chi2_holm_adjusted_p"] = lookup[(obs, "CHI2")]["holm_adjusted_p"]
+
+        row["smd_pass"] = abs(row["smd"]) <= SMD_ABS_MAX
+        row["ks_D_pass"] = row["ks_D"] <= KS_D_MAX
+        row["quantile_diagnostics_gate"] = "NOT_GATING_IN_C5"
+
+        if not row["smd_pass"]:
+            msg = f"{obs}: |SMD|={abs(row['smd']):.6g} > {SMD_ABS_MAX:.6g}"
+            smd_failures.append(msg)
+            practical_failures.append(msg)
+        if not row["ks_D_pass"]:
+            msg = f"{obs}: KS_D={row['ks_D']:.6g} > {KS_D_MAX:.6g}"
+            ks_d_failures.append(msg)
+            practical_failures.append(msg)
+
+    hypothesis_failures = [
+        f"{r['observable']}:{r['test']}"
+        for r in p_records
+        if r["holm_reject"]
+    ]
+
+    holdout_pass = not structural_failures and not hypothesis_failures and not practical_failures
+    reported_gate = (
+        ("PASS" if holdout_pass else "FAIL")
+        if args.validation_mode == "holdout"
+        else "DIAGNOSTIC_ONLY"
+    )
+
+    write_tsv(outdir / "observable_comparison.tsv", primary)
+    write_tsv(outdir / "component_diagnostics.tsv", internal_s0 + internal_multi)
+    write_tsv(outdir / "hypothesis_tests.tsv", p_records)
+
+    npz: dict[str, np.ndarray] = {}
+    for sample in SAMPLE_ORDER:
+        for obs in OBSERVABLES:
+            npz[f"{sample}__{obs}"] = data[sample]["arrays"][obs]
+    np.savez_compressed(outdir / "component_observables.npz", **npz)
+
+    make_overlays(single, multi, plotdir)
+    make_summary_plots(primary, plotdir)
+
+    result = {
+        "schema_version": SCHEMA_VERSION,
+        "validator_version": VALIDATOR_VERSION,
+        "validation_mode": args.validation_mode,
+        "gate": reported_gate,
+        "holdout_rule_would_pass": bool(holdout_pass),
+        "physics_evaluation_performed": True,
+        "familywise_alpha": FAMILYWISE_ALPHA,
+        "holm_test_count": len(p_records),
+        "structural_failures": structural_failures,
+        "hypothesis_failures": hypothesis_failures,
+        "practical_equivalence_failures": practical_failures,
+        "smd_failures": smd_failures,
+        "ks_D_failures": ks_d_failures,
+        "observable_groups": OBSERVABLE_GROUPS,
+        "thresholds": {
+            "abs_smd_max": SMD_ABS_MAX,
+            "ks_D_max": KS_D_MAX,
+            "old_abs_quantile_shift_over_iqr_gate": "REMOVED_FROM_C5_DECISION_RULE",
+        },
+        "quantile_diagnostics": {
+            "reported_quantiles": [0.05, 0.50, 0.95],
+            "raw_shifts_reported": True,
+            "iqr_normalized_shifts_reported_for_diagnosis_only": True,
+            "gating": False,
+        },
+        "samples": component_summary,
+    }
+    write_json(outdir / "VALIDATION_RESULT.json", result)
+
+    with (outdir / "VALIDATION_SUMMARY.txt").open("w") as f:
+        f.write(f"PHASE11C5_SINGLE_VS_MULTIGRID={reported_gate}\n\n")
+        if args.validation_mode == "diagnostic":
+            f.write("IMPORTANT: diagnostic mode cannot constitute a Phase-11C.5 PASS.\n")
+            f.write(f"Holdout rule would pass on these diagnostic inputs: {'YES' if holdout_pass else 'NO'}\n\n")
+
+        f.write("Physics evaluation performed: YES\n")
+        f.write(f"Structural failures: {len(structural_failures)}\n")
+        for failure in structural_failures:
+            f.write(f"  {failure}\n")
+
+        f.write(f"\nHolm-rejected tests: {len(hypothesis_failures)} / {len(p_records)}\n")
+        for failure in hypothesis_failures:
+            f.write(f"  {failure}\n")
+
+        f.write(f"\nPractical-equivalence failures: {len(practical_failures)}\n")
+        for failure in practical_failures:
+            f.write(f"  {failure}\n")
+
+        f.write(f"\nSMD failures: {len(smd_failures)} (limit |SMD| <= {SMD_ABS_MAX})\n")
+        f.write(f"KS_D failures: {len(ks_d_failures)} (limit KS_D <= {KS_D_MAX})\n")
+        f.write("q05/q50/q95 shifts: DIAGNOSTIC ONLY; NOT A C.5 GATE\n")
+
+        f.write("\nLargest |SMD| values:\n")
+        for row in sorted(primary, key=lambda r: abs(r["smd"]), reverse=True)[:10]:
+            f.write(
+                f"  {row['observable']:28s} SMD={row['smd']:+.6f} "
+                f"KS_D={row['ks_D']:.6f} KS_p={row['ks_p']:.6g}\n"
+            )
+
+        f.write("\nLargest KS_D values:\n")
+        for row in sorted(primary, key=lambda r: r["ks_D"], reverse=True)[:10]:
+            f.write(
+                f"  {row['observable']:28s} KS_D={row['ks_D']:.6f} "
+                f"SMD={row['smd']:+.6f} KS_p={row['ks_p']:.6g}\n"
+            )
+
+    provenance["finished_utc"] = utc_now_iso()
+    provenance["result_gate"] = reported_gate
+    provenance["holdout_rule_would_pass"] = bool(holdout_pass)
+    provenance["input_manifest"] = input_manifest
+    write_json(outdir / "VALIDATION_PROVENANCE.json", provenance)
+
+    write_output_hash_manifest(outdir)
+
+    print(f"PHASE11C5_SINGLE_VS_MULTIGRID={reported_gate}")
+    if args.validation_mode == "diagnostic":
+        print("DIAGNOSTIC_MODE=YES")
+        print(f"HOLDOUT_RULE_WOULD_PASS={'YES' if holdout_pass else 'NO'}")
+    print(f"Structural failures: {len(structural_failures)}")
+    print(f"Holm-rejected tests: {len(hypothesis_failures)} / {len(p_records)}")
+    print(f"Practical-equivalence failures: {len(practical_failures)}")
+    print(f"SMD failures: {len(smd_failures)}")
+    print(f"KS_D failures: {len(ks_d_failures)}")
+
+    print("\nLargest |SMD| values:")
+    for row in sorted(primary, key=lambda r: abs(r["smd"]), reverse=True)[:10]:
+        print(f"  {row['observable']:28s} {row['smd']:+.6f}")
+
+    print("\nLargest KS_D values:")
+    for row in sorted(primary, key=lambda r: r["ks_D"], reverse=True)[:10]:
+        print(f"  {row['observable']:28s} {row['ks_D']:.6f}")
+
+    if args.validation_mode == "diagnostic":
+        return 0

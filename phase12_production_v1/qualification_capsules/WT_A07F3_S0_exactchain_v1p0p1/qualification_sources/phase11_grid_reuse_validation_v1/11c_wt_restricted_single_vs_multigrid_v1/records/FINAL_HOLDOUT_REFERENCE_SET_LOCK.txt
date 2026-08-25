@@ -1,0 +1,48 @@
+PHASE-11C FINAL HOLDOUT REFERENCE-SET LOCK
+=============================================
+
+Predetermined SINGLE grid:
+S0
+
+The original SINGLE_GRID_SELECTION_LOCK remains unchanged and authoritative
+for the selection of S0.
+
+Final MULTI reference family:
+S1
+S2
+S3
+S4
+S5
+S6
+S7
+
+Reason for extending the reference from S1/S2 to S1-S7:
+The full A07/F3 integration family contains eight independently integrated
+VG2 realizations S0-S7.
+
+All eight passed integration qualification.
+
+S3-S7 were subsequently subjected to the same generation-envelope
+qualification depth already applied to S0-S2:
+20 independent generation streams and 10,000 events per grid.
+
+S3-S7 all passed the frozen generation-envelope gates.
+
+Therefore all seven non-candidate family members are now eligible to form
+a stronger multi-grid reference.
+
+Reference-set selection rule:
+Use every qualified non-candidate A07/F3 grid.
+
+No reference grid may be dropped because of its generation efficiency,
+excess-weight behavior, or eventual physics-distribution comparison.
+
+Final architecture:
+
+SINGLE:
+S0 only
+
+MULTI:
+S1 + S2 + S3 + S4 + S5 + S6 + S7
+
+This reference-set definition is frozen before final holdout generation.

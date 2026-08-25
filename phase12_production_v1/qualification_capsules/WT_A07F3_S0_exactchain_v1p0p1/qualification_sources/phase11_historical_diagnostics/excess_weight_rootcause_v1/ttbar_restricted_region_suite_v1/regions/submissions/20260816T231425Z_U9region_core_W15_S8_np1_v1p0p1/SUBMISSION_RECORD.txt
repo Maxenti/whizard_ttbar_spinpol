@@ -1,0 +1,7 @@
+Phase 11 ttbar restricted/region suite campaign
+===============================================
+DAGMan cluster: 6053131
+Schedd: bigbird102.cern.ch
+Campaign directory: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T231425Z_U9region_core_W15_S8_np1_v1p0p1
+DAG nodes: 432
+Submission UTC: 2026-08-16T23:15:06Z

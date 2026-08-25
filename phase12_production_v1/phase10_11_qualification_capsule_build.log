@@ -1,0 +1,78 @@
+
+================================================================
+PHASE 10/11 QUALIFICATION CAPSULE — PREFLIGHT
+================================================================
+REQUIRED_PHASE_ROOTS=PASS
+BASE_PHASE12_COMMIT=a48e46e802d6c29e70666022a9b8777766714492
+HEAD_MATCHES_BASE_PHASE12=PASS
+
+================================================================
+COPYING AUTHORITATIVE QUALIFICATION TREES
+================================================================
+COPIED_TREE category=phase10A_production_definition files=981 bytes=8206545 skipped=24
+COPIED_TREE category=phase11A_integration_qualification files=18 bytes=17061 skipped=0
+COPIED_TREE category=phase11_mpi_integration_qualification files=1 bytes=3495 skipped=0
+COPIED_TREE category=mpi_qualification files=321 bytes=5355420 skipped=66
+COPIED_TREE category=phase11_grid_reuse_validation files=1662 bytes=52227536 skipped=28
+COPIED_TREE category=phase11_production_readiness files=780 bytes=15855197 skipped=128
+COPIED_TREE category=phase11_historical_diagnostics files=5795 bytes=36176804 skipped=116
+
+================================================================
+COPYING QUALIFIED MPI PROVENANCE
+================================================================
+COPIED_TREE category=provenance_phase11_mpi_worker_qualified_20260811T210006Z files=9 bytes=87273 skipped=0
+COPIED_TREE category=provenance_phase11_mpi_worker_pre_smoke_20260811T194828Z files=8 bytes=66528 skipped=0
+COPIED_TREE category=provenance_phase11_mpi_rank_merge_pre_regression_20260811T202402Z files=9 bytes=82837 skipped=0
+
+================================================================
+COPYING REPOSITORY SUPPORT SOURCES
+================================================================
+REQUIRED_SUPPORT_FILES=PASS
+COPIED_TREE category=current_sindarin_template_support files=29 bytes=5132 skipped=0
+COPIED_TREE category=optional_scripts_reproducibility files=4 bytes=32393 skipped=0
+COPIED_TREE category=optional_condor_production files=439 bytes=4385677 skipped=0
+COPIED_TREE category=optional_condor_pilots files=4 bytes=4092 skipped=0
+COPIED_TREE category=optional_condor_streams files=5 bytes=26983 skipped=0
+
+================================================================
+WRITING QUALIFICATION CONTRACT
+================================================================
+
+================================================================
+CAPTURING BUILD PROVENANCE
+================================================================
+
+================================================================
+EXTRACTING EXTERNAL PATH REFERENCES
+================================================================
+EXTERNAL_PATH_REFERENCES=21752
+
+================================================================
+WRITING VERIFIER
+================================================================
+
+================================================================
+CAPSULE SIZE GATE
+================================================================
+CAPSULE_BYTES=133162841
+CAPSULE_SIZE_GATE=PASS
+
+================================================================
+WRITING SHA256 MANIFEST
+================================================================
+REQUIRED_PATH_GATE=PASS
+SYMLINK_GATE=PASS
+SHA256_FILES_CHECKED=10090
+SHA256_MANIFEST_GATE=PASS
+SOURCE_MANIFEST_ROWS=10079
+SOURCE_MANIFEST_GATE=PASS
+QUALIFICATION_CAPSULE_VERIFY=PASS
+
+================================================================
+PUBLISHING QUALIFICATION CAPSULE
+================================================================
+QUALIFICATION_CAPSULE_PUBLISHED=PASS
+
+QUALIFICATION_CAPSULE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/qualification_capsules/WT_A07F3_S0_exactchain_v1p0p1
+
+NEXT=stage-and-audit-qualification-capsule

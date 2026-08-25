@@ -1,0 +1,125 @@
+WHIZARD318_COMMIT=cdd6517ac503227c1a4c16ce62ecce889f99f31f
+
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/matching/matching.nw:800:      ! print *, " resetting ycut to ", Y(matching%settings%mlm_nmaxMEjets)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:482:[[max_abs_f]].
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:497:     real(default) :: max_abs_f = 0._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:498:     real(default) :: max_abs_f_pos = 0._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:499:     real(default) :: max_abs_f_neg = 0._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:558:         & "Maximum absolute overall value  = ", self%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:561:         & "Maximum absolute positive value = ", self%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:564:         & "Maximum absolute negative value = ", self%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:588:  procedure, public :: update_efficiency => vegas_result_update_efficiency
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:595:    module subroutine vegas_result_update_efficiency (result, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:603:    end subroutine vegas_result_update_efficiency
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:643:  module subroutine vegas_result_update_efficiency (result, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:651:    result%max_abs_f_pos = n_calls * max_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:652:    result%max_abs_f_neg = n_calls * max_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:653:    result%max_abs_f = &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:654:         & max (result%max_abs_f_pos, result%max_abs_f_neg)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:666:    if (result%max_abs_f > 0.) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:668:            & / result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:670:  end subroutine vegas_result_update_efficiency
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:672:@ %def vegas_result_update, vegas_result_update_efficiency
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:692:    result%max_abs_f = 0
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:693:    result%max_abs_f_pos = 0
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:694:    result%max_abs_f_neg = 0
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:740:    call MPI_Isend (self%max_abs_f, 1, MPI_DOUBLE_PRECISION, receiver, tag + 11,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:742:    call MPI_Isend (self%max_abs_f_pos, 1, MPI_DOUBLE_PRECISION, receiver, tag + 12,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:744:    call MPI_Isend (self%max_abs_f_neg, 1, MPI_DOUBLE_PRECISION, receiver, tag + 13,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:793:    call MPI_Irecv (self%max_abs_f, 1, MPI_DOUBLE_PRECISION, sender, tag + 11,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:795:    call MPI_Irecv (self%max_abs_f_pos, 1, MPI_DOUBLE_PRECISION, sender, tag + 12,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:797:    call MPI_Irecv (self%max_abs_f_neg, 1, MPI_DOUBLE_PRECISION, sender, tag + 13,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1386:  procedure, public :: get_max_abs_f => vegas_get_max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1388:    elemental module function vegas_get_max_abs_f (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1390:      real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1391:    end function vegas_get_max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1393:  elemental module function vegas_get_max_abs_f (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1395:    real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1396:    max_abs_f = 0.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1397:    if (self%result%max_abs_f > 0.) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1398:       max_abs_f = self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1400:  end function vegas_get_max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1402:@ %def vegas_get_max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1420:    sum_abs_f = self%result%efficiency_pos * self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1426:    sum_abs_f = self%result%efficiency_neg * self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1433:  procedure, public :: get_max_abs_f_pos => vegas_get_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1435:    elemental module function vegas_get_max_abs_f_pos (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1437:      real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1438:    end function vegas_get_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1440:  elemental module function vegas_get_max_abs_f_pos (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1442:    real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1443:    max_abs_f = 0.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1444:    if (self%result%max_abs_f_pos > 0.) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1445:       max_abs_f = self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1447:  end function vegas_get_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1449:@ %def vegas_get_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1452:  procedure, public :: get_max_abs_f_neg => vegas_get_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1454:    elemental module function vegas_get_max_abs_f_neg (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1456:      real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1457:    end function vegas_get_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1459:  elemental module function vegas_get_max_abs_f_neg (self) result (max_abs_f)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1461:    real(default) :: max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1462:    max_abs_f = 0.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1463:    if (self%result%max_abs_f_neg > 0.) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1464:       max_abs_f = self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1466:  end function vegas_get_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1468:@ %def vegas_get_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1612:@ Reset the cumulative result, and efficiency and max. grid values.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1627:Furthermore, reset the results. The maximal size of the grid remains.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1802:    real(default) :: sum_abs_f_pos, max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1803:    real(default) :: sum_abs_f_neg, max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1831:       max_abs_f_pos = 0.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1833:       max_abs_f_neg = 0.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1852:                   max_abs_f_pos = max(abs (fval), max_abs_f_pos)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1855:                   max_abs_f_neg = max(abs (fval), max_abs_f_neg)
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1885:         call result%update_efficiency (n_calls = self%config%n_calls, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:1886:              max_pos = max_abs_f_pos, max_neg = max_abs_f_neg, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2034:    real(default) :: root_sum_abs_f_pos, root_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2035:    real(default) :: root_sum_abs_f_neg, root_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2041:    root_max_abs_f_pos = 0._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2049:    call MPI_Ireduce (max_abs_f_pos, root_max_abs_f_pos, 1, MPI_DOUBLE_PRECISION,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2051:    call MPI_Ireduce (max_abs_f_neg, root_max_abs_f_neg, 1, MPI_DOUBLE_PRECISION,&
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2065:    if (rank == 0) max_abs_f_pos = root_max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2066:    if (rank == 0) max_abs_f_neg = root_max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2234:         if (abs(result%evt_weight) > result%max_abs_f) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2236:                 & abs(result%evt_weight) / result%max_abs_f - 1._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2240:         ! Do not use division, because max_abs_f could be zero.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2241:         if (result%max_abs_f * r <= abs(result%evt_weight)) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2301:    write (u, double_fmt) "max_abs_f =", self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2302:    write (u, double_fmt) "max_abs_f_pos =", self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2303:    write (u, double_fmt) "max_abs_f_neg =", self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2394:    read (unit, double_fmt) buffer, self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2395:    read (unit, double_fmt) buffer, self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2396:    read (unit, double_fmt) buffer, self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2484:    write (unit) self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2485:    write (unit) self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2486:    write (unit) self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2550:    read (unit) self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2551:    read (unit) self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:2552:    read (unit) self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4962:    real(default) :: max_abs_f_pos, max_abs_f_neg, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4966:    call compute_efficiency (max_pos = max_abs_f_pos, max_neg = max_abs_f_neg, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4969:    call self%result%update_efficiency (n_calls  = 1, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4970:         max_pos = max_abs_f_pos, max_neg = max_abs_f_neg, &
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4997:      max_abs_f_pos = dot_product (self%weight, self%integrator%get_max_abs_f_pos ())
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:4998:      max_abs_f_neg = dot_product (self%weight, self%integrator%get_max_abs_f_neg ())
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5095:    real(default) :: r, max_abs_f, event_rescale
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5121:       max_abs_f = self%integrator(ch)%get_max_abs_f ()
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5123:       if (abs(self%result%evt_weight) > max_abs_f) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5124:          self%result%evt_weight_excess = abs(self%result%evt_weight) / max_abs_f - 1._default
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5128:       ! Do not use division, because max_abs_f could be zero.
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5129:       if (event_rescale * max_abs_f * r <= abs(self%result%evt_weight)) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5167:    if (any (self%integrator%get_max_abs_f () > 0)) then
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5168:       self%event_weight = self%weight * self%integrator%get_max_abs_f ()
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5227:    write (u, double_fmt) "max_abs_f =", self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5228:    write (u, double_fmt) "max_abs_f_pos =", self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5229:    write (u, double_fmt) "max_abs_f_neg =", self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5294:    read (unit, double_fmt) buffer, self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5295:    read (unit, double_fmt) buffer, self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5296:    read (unit, double_fmt) buffer, self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5360:    write (unit) self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5361:    write (unit) self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5362:    write (unit) self%result%max_abs_f_neg
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5408:    read (unit) self%result%max_abs_f
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5409:    read (unit) self%result%max_abs_f_pos
+/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8/src/vegas/vegas.nw:5410:    read (unit) self%result%max_abs_f_neg

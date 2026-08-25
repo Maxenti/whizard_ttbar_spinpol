@@ -1,0 +1,298 @@
+AlmaLinux/RockyLinux/RHEL 9 detected
+Setting up the Key4hep software stack release latest-opt from CVMFS
+Use the following command to reproduce the current environment: 
+
+        source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2026-04-08
+
+If you have any issues, comments or requests, open an issue at https://github.com/key4hep/key4hep-spack/issues
+Tip: A new -d flag can be used to access debug builds, otherwise the default is the optimized build
+| Writing log to 'whizard.log'
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.5
+|=============================================================================|
+| Reading model file '/cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/whizard/3.1.5-nmagsz/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/whizard/3.1.5-nmagsz/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'input.sin'
+| Switching to model 'SM', scheme 'default'
+| Process library 'default_lib': recorded process 'tt_prod'
+| Process library 'default_lib': recorded process 't_decay'
+| Process library 'default_lib': recorded process 'tbar_decay'
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        tt_prod_i1.f90,.mod,.lo
+  RM        t_decay_i1.f90,.mod,.lo
+  RM        tbar_decay_i1.f90,.mod,.lo
+  OMEGA     tt_prod_i1.f90
+[1/1] e- e+ -> t tbar ... allowed. [time: 0.32 secs, total: 0.32 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.32 secs]
+SUMMARY: 6 fusions, 2 propagators, 2 diagrams
+SUMMARY: 4 vertices
+  OMEGA     t_decay_i1.f90
+[1/1] t -> b mu+ numu ... allowed. [time: 0.32 secs, total: 0.32 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.32 secs]
+SUMMARY: 3 fusions, 1 propagators, 1 diagrams
+SUMMARY: 1 vertices
+  OMEGA     tbar_decay_i1.f90
+[1/1] tbar -> bbar e- nuebar ... allowed. [time: 0.32 secs, total: 0.32 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.32 secs]
+SUMMARY: 3 fusions, 1 propagators, 1 diagrams
+SUMMARY: 1 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 29118
+| Initializing integration for process t_decay:
+| Beam structure: [any particles]
+| Beam data (decay):
+|   t  (mass = 1.7310000E+02 GeV)
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 't_decay.i1.phs'
+| ------------------------------------------------------------------------
+| Process [decay]: 't_decay'
+|   Library name  = 'default_lib'
+|   Process index = 2
+|   Process components:
+|     1: 't_decay_i1':   t => b, mu+, numu [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 5 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 't_decay'
+| Integrate: iterations = 3:5000:"gw", 3:20000
+| Integrator: 2 chains, 2 channels, 5 dimensions
+| Integrator: Using VAMP channel equivalences
+| Integrator: 5000 initial calls, 20 bins, stratified = T
+| Integrator: VAMP
+|=============================================================================|
+| It      Calls  Integral[GeV] Error[GeV]  Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+   1       5000  1.6451101E-01  1.49E-03    0.91    0.64*  38.14
+   2       4999  1.6329273E-01  8.55E-04    0.52    0.37*  62.31
+   3       4998  1.6333267E-01  6.36E-04    0.39    0.28*  60.99
+|-----------------------------------------------------------------------------|
+   3      14997  1.6344345E-01  4.83E-04    0.30    0.36   60.99    0.29   3
+|-----------------------------------------------------------------------------|
+   4      19999  1.6405660E-01  3.12E-04    0.19    0.27*  58.74
+   5      19999  1.6342132E-01  3.13E-04    0.19    0.27   57.13
+   6      19999  1.6314488E-01  3.11E-04    0.19    0.27*  56.09
+|-----------------------------------------------------------------------------|
+   6      59997  1.6354067E-01  1.80E-04    0.11    0.27   56.09    2.25   3
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 29119
+| Initializing integration for process tbar_decay:
+| Beam structure: [any particles]
+| Beam data (decay):
+|   tbar  (mass = 1.7310000E+02 GeV)
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 'tbar_decay.i1.phs'
+| ------------------------------------------------------------------------
+| Process [decay]: 'tbar_decay'
+|   Library name  = 'default_lib'
+|   Process index = 3
+|   Process components:
+|     1: 'tbar_decay_i1':   tbar => bbar, e-, nuebar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 5 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'tbar_decay'
+| Integrate: iterations = 3:5000:"gw", 3:20000
+| Integrator: 2 chains, 2 channels, 5 dimensions
+| Integrator: Using VAMP channel equivalences
+| Integrator: 5000 initial calls, 20 bins, stratified = T
+| Integrator: VAMP
+|=============================================================================|
+| It      Calls  Integral[GeV] Error[GeV]  Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+   1       5000  1.6307903E-01  1.49E-03    0.92    0.65*  37.83
+   2       4999  1.6359863E-01  8.39E-04    0.51    0.36*  62.98
+   3       4998  1.6312420E-01  6.14E-04    0.38    0.27*  65.09
+|-----------------------------------------------------------------------------|
+   3      14997  1.6326869E-01  4.70E-04    0.29    0.35   65.09    0.11   3
+|-----------------------------------------------------------------------------|
+   4      19999  1.6353478E-01  3.00E-04    0.18    0.26*  65.18
+   5      19999  1.6332837E-01  3.05E-04    0.19    0.26   63.79
+   6      19999  1.6366675E-01  3.03E-04    0.19    0.26*  63.92
+|-----------------------------------------------------------------------------|
+   6      59997  1.6351085E-01  1.75E-04    0.11    0.26   63.92    0.31   3
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+sqrts =  3.650000000000E+02
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+isr_alpha =  7.297352569300E-03
+?diagonal_decay = false
+?isotropic_decay = true
+?polarized_events = true
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 29120
+| Initializing integration for process tt_prod:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 'tt_prod.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'tt_prod'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'tt_prod_i1':   e-, e+ => t, tbar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 1 channels, 2 dimensions
+| Phase space: found 1 channel, collected in 1 grove.
+| Phase space: Using 1 equivalence between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'tt_prod'
+| Integrate: iterations = 5:20000:"gw", 5:50000
+| Integrator: 1 chains, 1 channels, 4 dimensions
+| Integrator: Using VAMP channel equivalences
+| Integrator: 20000 initial calls, 20 bins, stratified = T
+| Integrator: VAMP
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+   1      20000  4.2175728E+02  5.14E-01    0.12    0.17*  28.00
+   2      20000  4.2177282E+02  3.14E-01    0.07    0.11*  43.48
+   3      20000  4.2223797E+02  2.38E-01    0.06    0.08*  40.26
+   4      20000  4.2220427E+02  1.87E-01    0.04    0.06*  33.31
+   5      20000  4.2201470E+02  2.16E-01    0.05    0.07   40.78
+|-----------------------------------------------------------------------------|
+   5     100000  4.2208748E+02  1.11E-01    0.03    0.08   40.78    0.58   5
+|-----------------------------------------------------------------------------|
+   6      48384  4.2222766E+02  1.60E-01    0.04    0.08   42.37
+   7      48384  4.2195977E+02  1.61E-01    0.04    0.08   42.24
+   8      48384  4.2241883E+02  1.63E-01    0.04    0.08   42.29
+   9      48384  4.2219746E+02  1.61E-01    0.04    0.08*  42.27
+  10      48384  4.2217599E+02  1.61E-01    0.04    0.08*  42.26
+|-----------------------------------------------------------------------------|
+  10     241920  4.2219508E+02  7.20E-02    0.02    0.08   42.26    1.02   5
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:01s
+| Unstable particle t: computed branching ratios:
+|   t_decay: 1.0000000E+00   b, mu+, numu
+|   Total width = 1.6354067E-01 GeV (computed)
+|               = 1.5230000E+00 GeV (preset)
+|   Decay options: isotropic
+| Unstable particle tbar: computed branching ratios:
+|   tbar_decay: 1.0000000E+00   bbar, e-, nuebar
+|   Total width = 1.6351085E-01 GeV (computed)
+|               = 1.5230000E+00 GeV (preset)
+|   Decay options: isotropic
+seed = 365258013
+n_events = 10000
+$sample = "ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013"
+?polarized_events = true
+| Starting simulation for process 'tt_prod'
+| Simulate: using integration grids from file 'tt_prod.m1.vg'
+| Simulate: activating decays
+| Simulate: activating ISR handler
+| Simulate: ISR/EPA handler mode: pair recoil
+| Simulate: using integration grids from file 't_decay.m1.vg'
+| Simulate: using integration grids from file 'tbar_decay.m1.vg'
+| RNG: Initializing TAO random-number generator
+| RNG: Setting seed for random-number generator to 25885
+| OpenMP: Using 1 thread
+| Simulation: requested number of events = 10000
+|             corr. to luminosity [fb-1] =   2.3686E+01
+| Events: writing to LHEF file 'ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013.lhe'
+| Events: writing to raw file 'ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013.evx'
+| Events: generating 10000 unweighted, polarized events ...
+| Events: event normalization mode '1'
+|         ... event sample complete.
+| Events: actual unweighting efficiency =  42.89 %
+| Events: closing LHEF file 'ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013.lhe'
+| Events: closing raw file 'ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013.evx'
+| There were no errors and    3 warning(s).
+| WHIZARD run finished.
+|=============================================================================|
+Completed ee_ttbar_mupem_RL100_iso_ISR_365GeV/shard_0013: events=10000 seed=365258013
+Run metadata: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/runs/ee_ttbar_mupem_RL100_iso_ISR_365GeV/shard_0013/run_metadata.json
+Raw LHE: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/lhe_raw/ee_ttbar_mupem_RL100_iso_ISR_365GeV/ee_ttbar_mupem_RL100_iso_ISR_365GeV__shard_0013.lhe

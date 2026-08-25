@@ -1,0 +1,2 @@
+beams = e1, E1 => isr
+sqrts = ${SQRTS_GEV} GeV

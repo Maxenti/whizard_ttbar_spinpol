@@ -1,0 +1,2 @@
+rsync: [receiver] mkstemp "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/runs/ee_ttbar_epmum_LR100_sc_ISR_365GeV/.shard_0018.partial.local.0.131/.console.log.FAzD1u" failed: Input/output error (5)
+rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1327) [sender=3.2.5]

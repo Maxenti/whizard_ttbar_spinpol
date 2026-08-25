@@ -1,0 +1,4 @@
+fixed_id	suffix_schedule	total_calls	purpose
+F0	3:200000:""	600000	current_G2_style_three_200k_fixed_iterations
+F1	1:600000:""	600000	same_fixed_budget_one_iteration
+F2	1:2000000:""	2000000	deep_final_envelope_estimation

@@ -1,0 +1,15 @@
+Phase 11 unrestricted integration-stability scan v1
+
+This campaign is diagnostic. No single Axx/Sx/Fx result may be promoted
+because it looks numerically favorable. Qualification is by prescription
+family across all eight predetermined adaptive seeds.
+
+The adaptive and fixed stages are intentionally separated. Each F0/F1/F2
+sibling restores the byte-identical adaptive-parent PHS/VG2 workspace.
+The fixed-stage worker requests the complete stored adaptive prefix plus
+the fixed suffix, so VAMP2 must reuse the stored prefix and compute only
+the missing fixed iterations. A child fails if WHIZARD initializes a new
+grid rather than reusing the parent workspace.
+
+Do not replace failed physics seeds with new seeds. Technical reruns, if
+needed, must use the identical node configuration.

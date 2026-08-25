@@ -1,0 +1,467 @@
+schema:
+  name: "whizard_ttbar_qis_observables"
+  version: 1
+  status: "frozen_phase1d"
+
+campaign_reference:
+  campaign_id: "full6f_365gev_ee_ttbar_spinpol_v1"
+  physics_model: "analysis_contracts/physics_model.yaml"
+  state_contract: "analysis_contracts/top_spin_state_definition.yaml"
+  basis_contract: "analysis_contracts/spin_basis_conventions.yaml"
+  steering_contract: "analysis_contracts/steering_definition.yaml"
+
+scope:
+  primary_state_type: "effective_two_qubit_ttbar_spin_state"
+
+  required_observable_classes:
+    - "state physicality"
+    - "local polarization"
+    - "state mixedness and entropy"
+    - "two-qubit entanglement"
+    - "optimized CHSH nonlocality"
+    - "singlet-oriented diagnostics"
+    - "two-way EPR steering"
+
+  primary_component_order:
+    - "r"
+    - "n"
+    - "k"
+
+input_state_policy:
+  central_value_state:
+    estimator: "constrained_physical_estimator"
+    required_properties:
+      - "Hermitian"
+      - "positive semidefinite"
+      - "unit trace"
+
+  raw_linear_state:
+    permitted_use:
+      - "closure diagnostics"
+      - "bias diagnostics"
+      - "raw-to-physical estimator comparison"
+
+    prohibited_use:
+      - "primary entanglement claim"
+      - "primary CHSH claim"
+      - "primary steering claim"
+
+  numerical_stabilization:
+    hermitian_symmetrization:
+      formula: "rho <- (rho + rho_dagger) / 2"
+      permitted: true
+      correction_norm_must_be_reported: true
+
+    tiny_eigenvalue_clipping:
+      permitted: true
+      maximum_negative_eigenvalue_magnitude: 1.0e-12
+      renormalize_trace_after_clipping: true
+
+    large_negative_eigenvalue_policy: "fail_state_validation"
+
+  logarithm_base: 2
+
+density_matrix_convention:
+  formula: >
+    rho = 1/4 [
+      I tensor I
+      + Bplus_i sigma_i tensor I
+      + Bminus_j I tensor sigma_j
+      + C_ij sigma_i tensor sigma_j
+    ]
+
+  subsystem_order:
+    first: "top"
+    second: "antitop"
+
+  pauli_component_order:
+    - "r"
+    - "n"
+    - "k"
+
+  reduced_states:
+    top: "rho_top = Tr_antitop(rho)"
+    antitop: "rho_antitop = Tr_top(rho)"
+
+state_physicality_observables:
+  trace:
+    symbol: "Tr_rho"
+    formula: "trace(rho)"
+    expected_value: 1.0
+
+  hermiticity_residual:
+    symbol: "delta_H"
+    formula: "FrobeniusNorm(rho - rho_dagger)"
+
+  eigenvalues:
+    symbol: "lambda_rho"
+    ordering: "ascending"
+
+  minimum_eigenvalue:
+    symbol: "lambda_min"
+    formula: "min(eigenvalues(rho))"
+
+  purity:
+    symbol: "P"
+    formula: "trace(rho squared)"
+    physical_range:
+      minimum: 0.25
+      maximum: 1.0
+
+  rank:
+    symbol: "rank_rho"
+    numerical_threshold: 1.0e-10
+
+local_polarization_observables:
+  top_vector:
+    symbol: "Bplus"
+    components:
+      - "Bplus_r"
+      - "Bplus_n"
+      - "Bplus_k"
+
+  antitop_vector:
+    symbol: "Bminus"
+    components:
+      - "Bminus_r"
+      - "Bminus_n"
+      - "Bminus_k"
+
+  top_magnitude:
+    symbol: "P_top"
+    formula: "sqrt(Bplus dot Bplus)"
+    physical_range:
+      minimum: 0.0
+      maximum: 1.0
+
+  antitop_magnitude:
+    symbol: "P_antitop"
+    formula: "sqrt(Bminus dot Bminus)"
+    physical_range:
+      minimum: 0.0
+      maximum: 1.0
+
+entropy_and_information:
+  von_neumann_entropy:
+    symbol: "S_rho"
+    formula: "-sum_i lambda_i log2(lambda_i)"
+    zero_eigenvalue_convention: "0 log2(0) = 0"
+
+  top_entropy:
+    symbol: "S_top"
+    formula: "S(rho_top)"
+
+  antitop_entropy:
+    symbol: "S_antitop"
+    formula: "S(rho_antitop)"
+
+  quantum_mutual_information:
+    symbol: "I_top_antitop"
+    formula: "S_top + S_antitop - S_rho"
+    interpretation: "total quantum and classical correlation"
+
+  normalized_linear_entropy:
+    symbol: "S_linear"
+    formula: "(4/3) * (1 - trace(rho squared))"
+    physical_range:
+      minimum: 0.0
+      maximum: 1.0
+
+partial_transpose_and_negativity:
+  partial_transpose_subsystem: "antitop"
+
+  partial_transpose:
+    symbol: "rho_TB"
+    definition: >
+      Matrix transpose on the antitop subsystem in the declared
+      top tensor antitop computational basis.
+
+  partial_transpose_eigenvalues:
+    symbol: "lambda_PT"
+    ordering: "ascending"
+
+  minimum_partial_transpose_eigenvalue:
+    symbol: "lambda_PT_min"
+    formula: "min(eigenvalues(rho_TB))"
+
+  negativity:
+    symbol: "N"
+    formula: "(trace_norm(rho_TB) - 1) / 2"
+    equivalent_formula: "sum_i max(0, -lambda_PT_i)"
+    physical_range:
+      minimum: 0.0
+      maximum: 0.5
+
+  logarithmic_negativity:
+    symbol: "E_N"
+    formula: "log2(trace_norm(rho_TB))"
+    equivalent_formula: "log2(2 N + 1)"
+    physical_range:
+      minimum: 0.0
+      maximum: 1.0
+
+  two_qubit_interpretation:
+    ppt_is_necessary_and_sufficient_for_separability: true
+
+  entanglement_conditions:
+    negativity: "N > 0"
+    partial_transpose: "lambda_PT_min < 0"
+
+concurrence:
+  symbol: "C_conc"
+
+  spin_flip:
+    formula: >
+      rho_tilde =
+      (sigma_y tensor sigma_y)
+      rho_complex_conjugate
+      (sigma_y tensor sigma_y)
+
+  eigenvalue_construction:
+    matrix: "rho rho_tilde"
+    values: >
+      Let mu_i be the nonnegative square roots of the four eigenvalues of
+      rho rho_tilde, sorted in descending order.
+
+  formula: "max(0, mu_1 - mu_2 - mu_3 - mu_4)"
+
+  physical_range:
+    minimum: 0.0
+    maximum: 1.0
+
+  entanglement_condition: "C_conc > 0"
+
+chsh_nonlocality:
+  correlation_matrix: "C"
+
+  horodecki_matrix:
+    formula: "U = transpose(C) C"
+
+  eigenvalues:
+    notation:
+      - "m_1"
+      - "m_2"
+      - "m_3"
+
+    ordering: "descending"
+
+  maximal_chsh_value:
+    symbol: "S_CHSH_max"
+    formula: "2 sqrt(m_1 + m_2)"
+    physical_range:
+      minimum: 0.0
+      maximum: 2.8284271247461903
+
+  violation_margin:
+    symbol: "Delta_CHSH"
+    formula: "S_CHSH_max - 2"
+
+  violation_condition: "S_CHSH_max > 2"
+
+  optimized_measurements:
+    required_for_reported_maximum: true
+
+    construction: >
+      The optimal local measurement planes are obtained from the two dominant
+      eigenvectors of transpose(C) C and the corresponding transformed
+      directions on the opposite subsystem.
+
+    output_required:
+      - "optimal top measurement directions"
+      - "optimal antitop measurement directions"
+      - "two dominant Horodecki eigenvalues"
+
+singlet_oriented_diagnostics:
+  trace_correlation_parameter:
+    symbol: "D"
+    formula: "trace(C) / 3"
+
+  opening_angle_relation:
+    formula: "D = -3 weighted_mean(uplus dot uminus)"
+    required_basis: "rnk_common_v1"
+
+  singlet_fidelity:
+    symbol: "F_singlet"
+    formula: "(1 - trace(C)) / 4"
+
+  singlet_witness:
+    operator: "W_singlet = I/2 - projector(singlet)"
+    expectation_symbol: "w_singlet"
+    expectation_formula: "(1 + trace(C)) / 4"
+    entanglement_condition: "w_singlet < 0"
+
+  interpretation_limit: >
+    The singlet witness detects singlet-oriented entanglement but is not a
+    complete entanglement test for arbitrary two-qubit states.
+
+basis_dependence:
+  invariant_under_arbitrary_local_unitaries:
+    - "density-matrix eigenvalues"
+    - "purity"
+    - "von Neumann entropy"
+    - "mutual information"
+    - "concurrence"
+    - "negativity"
+    - "logarithmic negativity"
+    - "maximal CHSH value"
+
+  invariant_under_common_identical_rotation_only:
+    - "trace(C)"
+    - "D"
+    - "singlet fidelity"
+    - "singlet witness expectation"
+
+  basis_dependent:
+    - "individual Bplus components"
+    - "individual Bminus components"
+    - "individual C matrix components"
+    - "fixed-axis nonoptimized Bell expressions"
+    - "fixed-axis steering measurement sets"
+
+uncertainty_propagation:
+  primary_method: "stratified_event_bootstrap"
+
+  bootstrap_unit: "generated event"
+
+  preserve_strata:
+    sample_family: true
+    exact_flavour_subprocess: true
+    beam_polarization: true
+    detector_material_branch: true
+
+  per_replica_pipeline:
+    - "resample generated events within each stratum"
+    - "recompute angular sufficient statistics or likelihood"
+    - "reconstruct raw state"
+    - "reconstruct constrained physical state"
+    - "recompute every nonlinear QIS observable"
+    - "record estimator and solver status"
+
+  required_intervals:
+    central_68_percent: true
+    central_95_percent: true
+
+  preferred_point_summary:
+    central_value: "nominal full-sample estimator"
+    bootstrap_location: "median"
+    interval_type: "percentile"
+
+  boundary_observables:
+    - "concurrence"
+    - "negativity"
+    - "CHSH violation margin"
+    - "steering robustness"
+
+  boundary_reporting:
+    required:
+      - "fraction of bootstrap replicas at the physical boundary"
+      - "median"
+      - "central 68 percent interval"
+      - "central 95 percent interval"
+
+  covariance_outputs:
+    required:
+      - "15 by 15 state-parameter covariance"
+      - "QIS-observable covariance"
+      - "state-parameter to QIS cross-covariance when practical"
+
+claim_thresholds:
+  numerical_zero_tolerance: 1.0e-10
+
+  entanglement_central_value:
+    sufficient_conditions:
+      - "negativity > numerical_zero_tolerance"
+      - "concurrence > numerical_zero_tolerance"
+      - "lambda_PT_min < -numerical_zero_tolerance"
+      - "singlet witness expectation < -numerical_zero_tolerance"
+
+  statistically_supported_entanglement:
+    confidence_level: 0.95
+
+    sufficient_conditions:
+      - "95 percent lower bound on negativity is above zero"
+      - "95 percent lower bound on concurrence is above zero"
+      - "95 percent upper bound on lambda_PT_min is below zero"
+      - "95 percent upper bound on singlet witness is below zero"
+
+  statistically_supported_chsh_violation:
+    confidence_level: 0.95
+    condition: "95 percent lower bound on S_CHSH_max exceeds 2"
+
+  steering_claim:
+    source: "analysis_contracts/steering_definition.yaml"
+
+paired_detector_comparisons:
+  application: "tungsten versus carbon-fiber Delphes branches"
+
+  event_pairing_required: true
+  common_bootstrap_indices_required: true
+
+  replicate_level_operations:
+    - "compute each QIS observable independently for W and CF"
+    - "compute CF minus W difference within the same replica"
+    - "compute ratio only when denominator policy is satisfied"
+
+  required_outputs:
+    - "W observable distribution"
+    - "CF observable distribution"
+    - "paired CF minus W distribution"
+    - "paired covariance"
+    - "paired confidence interval"
+
+  prohibition: >
+    Independent W and CF bootstrap resampling must not be used for a paired
+    detector-material comparison.
+
+reference_self_tests:
+  maximally_mixed_state:
+    purity: 0.25
+    concurrence: 0.0
+    negativity: 0.0
+    maximal_chsh: 0.0
+
+  pure_product_state:
+    purity: 1.0
+    concurrence: 0.0
+    negativity: 0.0
+    maximal_chsh: 2.0
+
+  singlet_state:
+    purity: 1.0
+    concurrence: 1.0
+    negativity: 0.5
+    logarithmic_negativity: 1.0
+    maximal_chsh: 2.8284271247461903
+    trace_C: -3.0
+    singlet_fidelity: 1.0
+    singlet_witness: -0.5
+
+  werner_state:
+    definition: "rho(v) = v rho_singlet + (1-v) I/4"
+
+    analytic_relations:
+      purity: "(1 + 3 v squared) / 4"
+      concurrence: "max(0, (3 v - 1) / 2)"
+      negativity: "max(0, (3 v - 1) / 4)"
+      maximal_chsh: "2 sqrt(2) v"
+
+required_output_metadata:
+  - "state estimator"
+  - "state contract version"
+  - "basis_id"
+  - "top-object definition"
+  - "phase-space selection"
+  - "event weights and normalization"
+  - "bootstrap configuration"
+  - "physicality diagnostics"
+  - "observable implementation version"
+  - "solver status where applicable"
+
+prohibited_practices:
+  - "computing primary QIS claims from an unphysical raw state"
+  - "clipping large negative eigenvalues without reporting a failure"
+  - "using symmetric Gaussian errors for strongly bounded observables by default"
+  - "combining bootstrap histogram bins independently"
+  - "averaging nonlinear QIS observables instead of first combining states"
+  - "claiming Bell nonlocality from S_CHSH_max less than or equal to 2"
+  - "treating a singlet witness as a complete entanglement criterion"

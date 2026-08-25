@@ -1,0 +1,8 @@
+Submitting job(s)...............................................................................................................................................................................................................................................................................................................................................................................................................
+399 job(s) submitted to cluster 11909853.
+Prepared jobs: 399
+Skipped jobs:  1
+Resources:     cpu=1 memory=1000MB disk=2GB flavour=tomorrow
+Control dir:   /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/qis_shower/20260727T205816116133Z
+EOS record:    /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/qis/qualification/paper_spin_365GeV_ee_iso_explicitW_gammaOn_250k_sharded_v1/shower/manifests/submissions/20260727T205816116133Z
+Submit file:   /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/qis_shower/20260727T205816116133Z/pythia_shower.sub

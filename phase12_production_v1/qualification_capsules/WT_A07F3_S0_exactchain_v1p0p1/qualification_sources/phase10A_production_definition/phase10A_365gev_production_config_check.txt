@@ -1,0 +1,31 @@
+
+================================================================
+CONFIG=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_sc_v1.csv
+================================================================
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_RL100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_LR100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_RL100_sc_ISR_365GeV.sin.in
+Validated 4 production template(s)
+
+================================================================
+CONFIG=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_iso_v1.csv
+================================================================
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_RL100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_LR100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_RL100_iso_ISR_365GeV.sin.in
+Validated 4 production template(s)
+
+================================================================
+CONFIG=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_250k_v1.csv
+================================================================
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_RL100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_RL100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_LR100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_LR100_iso_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_RL100_sc_ISR_365GeV.sin.in
+CHECK /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_RL100_iso_ISR_365GeV.sin.in
+Validated 8 production template(s)

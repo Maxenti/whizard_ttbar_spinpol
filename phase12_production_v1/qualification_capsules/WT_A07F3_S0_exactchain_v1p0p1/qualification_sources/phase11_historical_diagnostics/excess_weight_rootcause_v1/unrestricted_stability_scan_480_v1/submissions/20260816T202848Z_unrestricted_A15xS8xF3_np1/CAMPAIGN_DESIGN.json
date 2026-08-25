@@ -1,0 +1,22 @@
+{
+  "schema": "phase11_unrestricted_stability_scan_480_v1",
+  "physics": "unrestricted full6f e- e+ -> b bbar e+ nue mu- numubar",
+  "sqrt_s_GeV": 365,
+  "polarization": "LR100",
+  "integrator": "VAMP2",
+  "rng_method": "rng_stream",
+  "vamp_parallel_method": "simple",
+  "mpi_ranks": 1,
+  "omp_threads": 1,
+  "adaptive_prescriptions": 15,
+  "seed_replicas": 8,
+  "fixed_prescriptions": 3,
+  "adaptive_parent_jobs": 120,
+  "fixed_child_jobs": 360,
+  "total_dag_nodes": 480,
+  "original_source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+  "original_source_card_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+  "frozen_source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin",
+  "frozen_source_card_sha256": "b5f63d66f6ba89d1a965c09fbe430b3049f4673f8308e609610068d1f1106810",
+  "output_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/20260816T202848Z_unrestricted_A15xS8xF3_np1"
+}

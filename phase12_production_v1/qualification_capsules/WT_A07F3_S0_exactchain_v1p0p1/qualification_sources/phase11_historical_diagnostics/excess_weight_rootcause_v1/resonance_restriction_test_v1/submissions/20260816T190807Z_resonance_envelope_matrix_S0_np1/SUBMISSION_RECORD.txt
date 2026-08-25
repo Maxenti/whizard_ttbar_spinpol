@@ -1,0 +1,39 @@
+Phase 11 excess-weight root-cause study
+Resonance/envelope integration matrix
+=====================================
+
+Cluster:
+  20200513
+
+Tag:
+  20260816T190807Z_resonance_envelope_matrix_S0_np1
+
+Submission directory:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/submissions/20260816T190807Z_resonance_envelope_matrix_S0_np1
+
+Output root:
+  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/20260816T190807Z_resonance_envelope_matrix_S0_np1
+
+Integration seed:
+  1740114216
+
+Numerical configuration:
+  WHIZARD 3.1.8
+  VAMP2
+  rng_stream
+  simple VAMP balancing
+  MPI ranks = 1
+  OMP threads = 1
+
+Jobs:
+  Proc 0  W_G2
+  Proc 1  WT_G2
+  Proc 2  U_2M
+  Proc 3  W_2M
+  Proc 4  WT_2M
+  Proc 5  WT_W23
+
+Purpose:
+  diagnostic only
+
+No matrix member is automatically authorized as a production grid.

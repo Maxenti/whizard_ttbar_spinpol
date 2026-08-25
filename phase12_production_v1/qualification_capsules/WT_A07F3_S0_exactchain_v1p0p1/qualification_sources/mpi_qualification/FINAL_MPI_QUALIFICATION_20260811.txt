@@ -1,0 +1,148 @@
+WHIZARD 3.1.8 MPI/VAMP2 QUALIFICATION
+=====================================
+
+Date:
+  2026-08-11
+
+Qualified custom WHIZARD:
+  local/whizard-3.1.8-mpi-omp-qualified-20260811
+
+Reference:
+  CERN LCG WHIZARD 3.1.8
+
+SOFTWARE QUALIFICATION
+----------------------
+
+Build:
+  PASS
+
+WHIZARD unit tests:
+  PASS
+
+Functional tests:
+  PASS
+
+Stock/custom ordinary-VAMP fixed-seed comparison:
+  EXACT PRINTED MATCH
+  PASS
+
+MPI/VAMP2 FUNCTIONAL QUALIFICATION
+----------------------------------
+
+MPI runtime:
+  PASS
+
+VAMP2:
+  PASS
+
+rng_stream:
+  PASS
+
+Simple request balancing:
+  PASS
+
+Same-rank fixed-seed reproducibility:
+  BITWISE PASS
+
+np=1 vs np=4 numerical trajectory:
+  PASS
+
+Cross-rank serialized-grid differences:
+  Last-bit floating-point differences only
+  NON-BLOCKING
+
+Parallel event RNG substreams:
+  SOURCE-CONFIRMED
+
+FULL-6F 365 GEV SCALING
+-----------------------
+
+Process:
+  e- e+ -> b bbar e+ nue mu- numubar
+
+sqrt(s):
+  365 GeV
+
+Beam configuration:
+  LR100
+
+ISR:
+  enabled
+  recoil mode
+
+Integration schedule:
+  2:100000:"gw",2:200000:""
+
+SIMPLE BALANCING RESULTS
+
+ ranks   wall_s    speedup   efficiency
+     1   1233.60    1.0000     1.0000
+     2    723.36    1.7054     0.8527
+     4    439.96    2.8039     0.7010
+     8    291.13    4.2373     0.5297
+    16    236.32    5.2200     0.3263
+
+All rank counts returned:
+
+  calls       = 399984
+  integral    = 12.489024 fb
+  error       = 0.168 fb
+
+Physics rank consistency:
+  PASS
+
+LOAD-BALANCING COMPARISON
+-------------------------
+
+ simple np=8:
+   291.13 s
+
+ load np=8:
+   449.87 s
+   54.53% slower than simple
+
+ simple np=16:
+   236.32 s
+
+ load np=16:
+   337.28 s
+   42.72% slower than simple
+
+Physics result remained unchanged.
+
+LOAD mode:
+  REJECTED FOR PRODUCTION
+
+FINAL PRODUCTION CONFIGURATION
+------------------------------
+
+Integration:
+  VAMP2
+
+RNG:
+  rng_stream
+
+Parallel balancing:
+  simple
+
+MPI ranks:
+  8
+
+OpenMP threads per rank:
+  1
+
+Reason:
+  8 ranks gives a 4.24x speedup over serial while maintaining a
+  reasonable resource/turnaround compromise.
+
+  Moving from 8 to 16 ranks doubles allocated cores but reduces
+  wall time by only 18.8% (291.13 s -> 236.32 s).
+
+  Load balancing is substantially slower than simple balancing
+  at both tested rank counts.
+
+32-rank benchmark:
+  NOT WARRANTED
+
+MPI optimization/qualification:
+  CLOSED

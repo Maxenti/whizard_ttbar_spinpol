@@ -1,0 +1,85 @@
+WT PHASE-11C S0-S2 GENERATION-ENVELOPE QUALIFICATION CLOSEOUT
+===============================================================
+
+Campaign:
+20260819T163807Z_WT_A07F3_20x500x3_np1_reusefix_v1
+
+Condor cluster:
+6064039
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum.
+
+Frozen-grid checkpoint:
+WT_A07F3
+
+Serialized integration prescription:
+10:100000:"gw", 10:200000:""
+
+Campaign size:
+S0 = 20 x 500 = 10,000 events
+S1 = 20 x 500 = 10,000 events
+S2 = 20 x 500 = 10,000 events
+
+Total:
+60 jobs
+30,000 events
+
+Technical result:
+60/60 normal Condor termination return value 0.
+60/60 technical worker PASS.
+No workspace mutation.
+No new-grid initialization.
+No VAMP2 parameter-mismatch or discarded-pass markers.
+
+Generation-envelope result:
+
+S0:
+  events = 10000
+  excess_fraction = 0.002400
+  aggregate_average_excess = 0.000610
+  maximum_excess = 1.051
+  status = PASS
+
+S1:
+  events = 10000
+  excess_fraction = 0.003100
+  aggregate_average_excess = 0.000614
+  maximum_excess = 1.026
+  status = PASS
+
+S2:
+  events = 10000
+  excess_fraction = 0.002500
+  aggregate_average_excess = 0.000582
+  maximum_excess = 0.8482
+  status = PASS
+
+Frozen gates:
+excess_fraction <= 0.01
+aggregate_average_excess <= 0.01
+maximum_excess <= 10
+
+Authoritative collector:
+WT11C_STATUS=PASS_ALL_GRIDS
+WT11C_GLOBAL_UNIQUE_EVENTS=30000
+WT11C_DUPLICATE_EVENT_HASHES=0
+
+Collector directory:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/submissions/20260819T163807Z_WT_A07F3_20x500x3_np1_reusefix_v1/analysis/envelope_result_v1
+
+WT11C_RESULT.json SHA256:
+dcdb2f473903cfb168f84d0dba67d1e31a6c65d0c705fadf7f1359bb3eedb1a5
+
+RESULT_OUTPUTS.sha256 SHA256:
+860999c16c04706bcade9a3f583a59c103a74b2181a1abd7b1b1cb43be0a87f4
+
+Conclusion:
+S0, S1, and S2 are generation-envelope qualified.
+
+These 30,000 events are validation/diagnostic events and must not enter
+the final Phase-11C single-grid versus multi-grid physics holdout.
+
+Next:
+Qualify S3-S7 at the same depth of 20 generation streams and
+10,000 events per grid.

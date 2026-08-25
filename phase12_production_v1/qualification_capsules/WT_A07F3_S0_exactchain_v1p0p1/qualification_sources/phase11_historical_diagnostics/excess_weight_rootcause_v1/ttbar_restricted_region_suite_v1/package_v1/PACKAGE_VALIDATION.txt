@@ -1,0 +1,18 @@
+PACKAGE_STATIC_VALIDATION=PASS
+MOCK_PREPARE_restricted_main=496_PASS
+MOCK_PREPARE_region_core=432_PASS
+MOCK_PREPARE_region_extended=720_PASS
+MOCK_PREPARE_region_historical_fcc=144_PASS
+MOCK_PREPARE_region_window_scan=432_PASS
+MOCK_PHYSICS_PATCH_VALIDATION=PASS
+REGION_OUTPUT_ROOT_PARENT_CHILD_CONTRACT=PASS
+REGION_CORE_RESTRICTION_COUNT=0_PASS
+RESTRICTED_WT_RESTRICTION_COUNT=1_PASS
+REGION_II_W15_CUT_CONSTRUCTION=PASS
+GENERIC_DAG_SUBMIT_HELPER=PASS
+ARCHIVE_EXTRACTION_AND_INTERNAL_SHA_CHECK=PASS
+
+IMPORTANT: real WHIZARD 3.1.8 parser/runtime smoke tests cannot be executed
+inside this offline build container.  They are mandatory in
+preflight_restricted_scan.sh and preflight_region_scan.sh on lxplus before
+condor_submit_dag is allowed by the documented runbook.

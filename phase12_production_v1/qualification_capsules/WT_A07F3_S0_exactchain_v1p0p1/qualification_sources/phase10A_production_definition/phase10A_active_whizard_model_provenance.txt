@@ -1,0 +1,6 @@
+WHIZARD_VERSION=WHIZARD 3.1.8
+WHIZARD_BIN=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD_PREFIX=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt
+
+f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede  /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl
+f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd  /cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl

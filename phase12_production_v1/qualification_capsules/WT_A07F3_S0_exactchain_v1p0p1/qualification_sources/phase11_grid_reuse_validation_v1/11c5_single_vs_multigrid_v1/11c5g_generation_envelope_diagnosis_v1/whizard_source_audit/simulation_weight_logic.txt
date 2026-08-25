@@ -1,0 +1,1608 @@
+66-  use dispatch_transforms, only: dispatch_evt_hadrons
+67-  use dispatch_transforms, only: dispatch_evt_nlo
+68-
+69-  use integrations
+70-
+71-  implicit none
+72-
+73-contains
+74-
+75-  module subroutine counter_write (counter, unit)
+76-    class(counter_t), intent(in) :: counter
+77-    integer, intent(in), optional :: unit
+78-    integer :: u
+79-    u = given_output_unit (unit)
+80-1   format (3x,A,I0)
+81-2   format (5x,A,I0)
+82-3   format (5x,A,ES19.12)
+83-    write (u, 1)  "Events total      = ", counter%total
+84-    write (u, 2)  "generated       = ", counter%generated
+85-    write (u, 2)  "read            = ", counter%read
+86:    write (u, 2)  "positive weight = ", counter%positive
+87:    write (u, 2)  "negative weight = ", counter%negative
+88:    write (u, 2)  "zero weight     = ", counter%zero
+89:    write (u, 2)  "excess weight   = ", counter%excess
+90:    if (counter%excess /= 0) then
+91:       write (u, 3)  "max excess      = ", counter%max_excess
+92:       write (u, 3)  "avg excess      = ", counter%sum_excess / counter%total
+93-    end if
+94-    write (u, 1)  "Events dropped    = ", counter%dropped
+95-  end subroutine counter_write
+96-
+97:  module subroutine counter_show_excess (counter)
+98-    class(counter_t), intent(in) :: counter
+99:    if (counter%excess > 0) then
+100-       write (msg_buffer, "(A,1x,I0,1x,A,1x,'(',F7.3,' %)')") &
+101:            "Encountered events with excess weight:", counter%excess, &
+102:            "events", 100 * counter%excess / real (counter%total)
+103-       call msg_warning ()
+104-       write (msg_buffer, "(A,ES10.3)") &
+105:            "Maximum excess weight =", counter%max_excess
+106-       call msg_message ()
+107-       write (msg_buffer, "(A,ES10.3)") &
+108:            "Average excess weight =", counter%sum_excess / counter%total
+109-       call msg_message ()
+110-    end if
+111:  end subroutine counter_show_excess
+112-
+113-  module subroutine counter_show_dropped (counter)
+114-    class(counter_t), intent(in) :: counter
+115-    if (counter%dropped > 0) then
+116-       write (msg_buffer, "(A,1x,I0,1x,'(',A,1x,I0,')')") &
+117:            "Dropped events (weight zero) =", &
+118-            counter%dropped, "total", counter%dropped + counter%total
+119-       call msg_message ()
+120-       write (msg_buffer, "(A,ES15.8)") &
+121:            "All event weights must be rescaled by f =", &
+122-            real (counter%total, default) &
+123-            / real (counter%dropped + counter%total, default)
+124-       call msg_warning ()
+125-    end if
+126-  end subroutine counter_show_dropped
+127-
+128-  module subroutine counter_show_mean_and_variance (counter)
+129-    class(counter_t), intent(in) :: counter
+130:    if (counter%reproduce_xsection .and. counter%nlo_weight_counter > 1) then
+131:       print *,  "Reconstructed cross-section from event weights: "
+132-       print *,  counter%mean, '+-', &
+133:            sqrt (counter%varsq / (counter%nlo_weight_counter - 1))
+134-    end if
+135-  end subroutine counter_show_mean_and_variance
+136-
+137-  module subroutine counter_record &
+138:       (counter, weight, excess, n_dropped, from_file)
+139-    class(counter_t), intent(inout) :: counter
+140:    real(default), intent(in), optional :: weight, excess
+141-    integer, intent(in), optional :: n_dropped
+142-    logical, intent(in), optional :: from_file
+143-    counter%total = counter%total + 1
+144-    if (present (from_file)) then
+145-       if (from_file) then
+146-          counter%read = counter%read + 1
+147-       else
+148-          counter%generated = counter%generated + 1
+149-       end if
+150-    else
+151-       counter%generated = counter%generated + 1
+152-    end if
+153:    if (present (weight)) then
+154:       if (weight > 0) then
+155-          counter%positive = counter%positive + 1
+156:       else if (weight < 0) then
+157-          counter%negative = counter%negative + 1
+158-       else
+159-          counter%zero = counter%zero + 1
+160-       end if
+161-    else
+162-       counter%positive = counter%positive + 1
+163-    end if
+164:    if (present (excess)) then
+165:       if (excess > 0) then
+166:          counter%excess = counter%excess + 1
+167:          counter%max_excess = max (counter%max_excess, excess)
+168:          counter%sum_excess = counter%sum_excess + excess
+169-       end if
+170-    end if
+171-    if (present (n_dropped)) then
+172-       counter%dropped = counter%dropped + n_dropped
+173-    end if
+174-  end subroutine counter_record
+175-
+176-  module subroutine counter_allreduce_record (counter)
+177-    class(counter_t), intent(inout) :: counter
+178-    integer :: read, generated
+179:    integer :: positive, negative, zero, excess, dropped
+180:    real(default) :: max_excess, sum_excess
+181-    read = counter%read
+182-    generated = counter%generated
+183-    positive = counter%positive
+184-    negative = counter%negative
+185-    zero = counter%zero
+186:    excess = counter%excess
+187:    max_excess = counter%max_excess
+188:    sum_excess = counter%sum_excess
+189-    dropped = counter%dropped
+190-    call MPI_ALLREDUCE (read, counter%read, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+191-    call MPI_ALLREDUCE (generated, counter%generated, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+192-    call MPI_ALLREDUCE (positive, counter%positive, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+193-    call MPI_ALLREDUCE (negative, counter%negative, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+194-    call MPI_ALLREDUCE (zero, counter%zero, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+195:    call MPI_ALLREDUCE (excess, counter%excess, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+196:    call MPI_ALLREDUCE (max_excess, counter%max_excess, 1, MPI_DOUBLE_PRECISION, MPI_MAX, MPI_COMM_WORLD)
+197:    call MPI_ALLREDUCE (sum_excess, counter%sum_excess, 1, MPI_DOUBLE_PRECISION, MPI_SUM, MPI_COMM_WORLD)
+198-    call MPI_ALLREDUCE (dropped, counter%dropped, 1, MPI_INTEGER, MPI_SUM, MPI_COMM_WORLD)
+199:    !! \todo{sbrass - Implement allreduce of mean and variance, relevant for weighted events.}
+200-  end subroutine counter_allreduce_record
+201-
+202:  module subroutine counter_record_mean_and_variance (counter, weight, i_nlo)
+203-    class(counter_t), intent(inout) :: counter
+204:    real(default), intent(in) :: weight
+205-    integer, intent(in) :: i_nlo
+206:    real(default), save :: weight_buffer = 0._default
+207-    integer, save :: nlo_count = 1
+208-    if (.not. counter%reproduce_xsection) return
+209-    if (i_nlo == 1) then
+210:       call flush_weight_buffer (weight_buffer, nlo_count)
+211:       weight_buffer = weight
+212-       nlo_count = 1
+213-    else
+214:       weight_buffer = weight_buffer + weight
+215-       nlo_count = nlo_count + 1
+216-    end if
+217-  contains
+218:    subroutine flush_weight_buffer (w, n_nlo)
+219-      real(default), intent(in) :: w
+220-      integer, intent(in) :: n_nlo
+221-      integer :: n
+222-      real(default) :: mean_new
+223:      counter%nlo_weight_counter = counter%nlo_weight_counter + 1
+224-      !!! Minus 1 to take into account offset from initialization
+225:      n = counter%nlo_weight_counter - 1
+226-      if (n > 0) then
+227-         mean_new = counter%mean + (w / n_nlo - counter%mean) / n
+228-         if (n > 1) &
+229-            counter%varsq = counter%varsq - counter%varsq / (n - 1) + &
+230-               n * (mean_new - counter%mean)**2
+231-         counter%mean = mean_new
+232-      end if
+233:    end subroutine flush_weight_buffer
+234-  end subroutine counter_record_mean_and_variance
+235-
+236-  module subroutine mci_set_write (object, unit, pacified)
+237-    class(mci_set_t), intent(in) :: object
+238-    integer, intent(in), optional :: unit
+239-    logical, intent(in), optional :: pacified
+240-    logical :: pacify
+241-    integer :: u, i
+242-    u = given_output_unit (unit)
+243-    pacify = .false.;  if (present (pacified))  pacify = pacified
+244-    write (u, "(3x,A)")  "Components:"
+245-    do i = 1, object%n_components
+246-       write (u, "(5x,I0,A,A,A)")  object%i_component(i), &
+247-            ": '", char (object%component_id(i)), "'"
+248-    end do
+249-    if (object%has_integral) then
+250-       if (pacify) then
+251-          write (u, "(3x,A," // FMT_15 // ")")  "Integral  = ", object%integral
+252-          write (u, "(3x,A," // FMT_15 // ")")  "Error     = ", object%error
+253:          write (u, "(3x,A,F9.6)")  "Weight    =", object%weight_mci
+254-       else
+255-          write (u, "(3x,A," // FMT_19 // ")")  "Integral  = ", object%integral
+256-          write (u, "(3x,A," // FMT_19 // ")")  "Error     = ", object%error
+257:          write (u, "(3x,A,F13.10)")  "Weight    =", object%weight_mci
+258-       end if
+259-    else
+260-       write (u, "(3x,A)")  "Integral  = [undefined]"
+261-    end if
+262-    call object%counter%write (u)
+263-  end subroutine mci_set_write
+264-
+265-  module subroutine mci_set_init (object, i_mci, process)
+266-    class(mci_set_t), intent(out) :: object
+267-    integer, intent(in) :: i_mci
+268-    type(process_t), intent(in), target :: process
+269-    integer :: i
+270-    call process%get_i_component (i_mci, object%i_component)
+271-    object%n_components = size (object%i_component)
+272-    allocate (object%component_id (object%n_components))
+273-    do i = 1, size (object%component_id)
+274-       object%component_id(i) = &
+275-            process%get_component_id (object%i_component(i))
+276-    end do
+277-    if (process%has_integral (i_mci)) then
+278-       object%integral = process%get_integral (i_mci)
+279-       object%error = process%get_error (i_mci)
+280-       object%has_integral = .true.
+281-    end if
+282-  end subroutine mci_set_init
+283-
+284-  subroutine prepare_process &
+285-       (process, process_id, use_process, integrate, local, global)
+286-    type(process_t), pointer, intent(out) :: process
+287-    type(string_t), intent(in) :: process_id
+288-    logical, intent(in) :: use_process, integrate
+289-    type(rt_data_t), intent(inout), target :: local
+290-    type(rt_data_t), intent(inout), optional, target :: global
+291-    type(rt_data_t), pointer :: current
+292-    if (debug_on) call msg_debug (D_CORE, "prepare_process")
+293-    if (debug_on) call msg_debug (D_CORE, "global present", present (global))
+294-    if (present (global)) then
+295-       current => global
+296-    else
+297-       current => local
+--
+341-               // char (process_id) // "': enabled for rescan only")
+342-    end if
+343-  end subroutine prepare_process
+344-
+345-  module subroutine entry_write_config (object, unit, pacified)
+346-    class(entry_t), intent(in) :: object
+347-    integer, intent(in), optional :: unit
+348-    logical, intent(in), optional :: pacified
+349-    logical :: pacify
+350-    integer :: u, i
+351-    u = given_output_unit (unit)
+352-    pacify = .false.;  if (present (pacified))  pacify = pacified
+353-    write (u, "(3x,A,A,A)")  "Process   = '", char (object%process_id), "'"
+354-    write (u, "(3x,A,A,A)")  "Library   = '", char (object%library), "'"
+355-    write (u, "(3x,A,A,A)")  "Run       = '", char (object%run_id), "'"
+356-    write (u, "(3x,A,L1)")   "is valid  = ", object%valid
+357-    if (object%has_integral) then
+358-       if (pacify) then
+359-          write (u, "(3x,A," // FMT_15 // ")")  "Integral  = ", object%integral
+360-          write (u, "(3x,A," // FMT_15 // ")")  "Error     = ", object%error
+361:          write (u, "(3x,A,F9.6)")  "Weight    =", object%process_weight
+362-       else
+363-          write (u, "(3x,A," // FMT_19 // ")")  "Integral  = ", object%integral
+364-          write (u, "(3x,A," // FMT_19 // ")")  "Error     = ", object%error
+365:          write (u, "(3x,A,F13.10)")  "Weight    =", object%process_weight
+366-       end if
+367-    else
+368-       write (u, "(3x,A)")  "Integral  = [undefined]"
+369-    end if
+370-    write (u, "(3x,A,I0)")   "MCI sets  = ", object%n_mci
+371-    call object%counter%write (u)
+372-    do i = 1, size (object%mci_sets)
+373-       write (u, "(A)")
+374-       write (u, "(1x,A,I0,A)")  "MCI set #", i, ":"
+375-       call object%mci_sets(i)%write (u, pacified)
+376-    end do
+377-    if (object%resonant_subprocess_set%is_active ()) then
+378-       write (u, "(A)")
+379-       call object%write_resonant_subprocess_data (u)
+380-    end if
+381-    if (allocated (object%core_safe)) then
+382-       do i = 1, size (object%core_safe)
+383-          write (u, "(1x,A,I0,A)")  "Saved process-component core #", i, ":"
+384-          call object%core_safe(i)%core%write (u)
+385-       end do
+386-    end if
+387-  end subroutine entry_write_config
+388-
+389-  module subroutine entry_final (object)
+390-    class(entry_t), intent(inout) :: object
+391-    integer :: i
+392-    if (associated (object%instance)) then
+393-       do i = 1, object%n_mci
+394-          call object%instance%final_simulation (i)
+395-       end do
+396-       call object%instance%final ()
+397-       deallocate (object%instance)
+398-    end if
+399-    call object%event_t%final ()
+400-  end subroutine entry_final
+401-
+402-  module subroutine entry_copy_entry (entry1, entry2)
+403-    class(entry_t), intent(in), target :: entry1
+404-    type(entry_t), intent(inout), target :: entry2
+405-    call entry1%event_t%clone (entry2%event_t)
+406-    entry2%process_id = entry1%process_id
+407-    entry2%library = entry1%library
+408-    entry2%run_id = entry1%run_id
+409-    entry2%has_integral = entry1%has_integral
+410-    entry2%integral = entry1%integral
+411-    entry2%error = entry1%error
+412:    entry2%process_weight = entry1%process_weight
+413-    entry2%valid = entry1%valid
+414-    entry2%counter = entry1%counter
+415-    entry2%n_in = entry1%n_in
+416-    entry2%n_mci = entry1%n_mci
+417-    if (allocated (entry1%mci_sets)) then
+418-       allocate (entry2%mci_sets (size (entry1%mci_sets)))
+419-       entry2%mci_sets = entry1%mci_sets
+420-    end if
+421-    entry2%mci_selector = entry1%mci_selector
+422-    if (allocated (entry1%core_safe)) then
+423-       allocate (entry2%core_safe (size (entry1%core_safe)))
+424-       entry2%core_safe = entry1%core_safe
+425-    end if
+426-    entry2%model => entry1%model
+427-    entry2%qcd = entry1%qcd
+428-  end subroutine entry_copy_entry
+429-
+430-  module subroutine entry_init &
+431-       (entry, process_id, &
+432-       use_process, integrate, generate, update_sqme, &
+433-       support_resonance_history, &
+434-       local, global, n_alt)
+435-    class(entry_t), intent(inout), target :: entry
+436-    type(string_t), intent(in) :: process_id
+437-    logical, intent(in) :: use_process, integrate, generate, update_sqme
+438-    logical, intent(in) :: support_resonance_history
+439-    type(rt_data_t), intent(inout), target :: local
+440-    type(rt_data_t), intent(inout), optional, target :: global
+441-    integer, intent(in), optional :: n_alt
+442-    type(process_t), pointer :: process, master_process
+443-    type(process_instance_t), pointer :: process_instance
+444-    type(process_library_t), pointer :: prclib_saved
+445-    integer :: i
+446-    logical :: res_include_trivial
+447-    logical :: combined_integration
+448-    integer :: selected_mci
+449-    selected_mci = 0
+450-    if (debug_on) call msg_debug (D_CORE, "entry_init")
+451-    if (debug_on) call msg_debug (D_CORE, "process_id", process_id)
+452-    call prepare_process &
+--
+636-    entry%n_in = prclib%get_n_in (id)
+637-  end subroutine entry_import_process_def_characteristics
+638-
+639-  module subroutine entry_import_process_results (entry, process)
+640-    class(entry_t), intent(inout) :: entry
+641-    type(process_t), intent(in), target :: process
+642-    if (process%has_integral ()) then
+643-       entry%integral = process%get_integral ()
+644-       entry%error = process%get_error ()
+645-       call entry%set_sigma (entry%integral)
+646-       entry%has_integral = .true.
+647-    end if
+648-  end subroutine entry_import_process_results
+649-
+650-  module subroutine entry_prepare_expressions (entry, local)
+651-    class(entry_t), intent(inout) :: entry
+652-    type(rt_data_t), intent(in), target :: local
+653-    type(eval_tree_factory_t) :: expr_factory
+654-    call expr_factory%init (local%pn%selection_lexpr)
+655-    call entry%set_selection (expr_factory)
+656:    call expr_factory%init (local%pn%reweight_expr)
+657:    call entry%set_reweight (expr_factory)
+658-    call expr_factory%init (local%pn%analysis_lexpr)
+659-    call entry%set_analysis (expr_factory)
+660-  end subroutine entry_prepare_expressions
+661-
+662-  module subroutine entry_setup_additional_entries (entry)
+663-    class(entry_t), intent(inout), target :: entry
+664-    type(entry_t), pointer :: current_entry
+665-    integer :: i, n_phs
+666-    type(evt_nlo_t), pointer :: evt
+667-    integer :: mode
+668-    evt => null ()
+669-    select type (pcm => entry%instance%pcm)
+670-    type is (pcm_nlo_t)
+671-       n_phs = pcm%region_data%n_phs
+672-    end select
+673-    select type (entry)
+674-    type is (entry_t)
+675-       current_entry => entry
+676-       current_entry%first => entry
+677-       call get_nlo_evt_ptr (current_entry, evt, mode)
+678-       if (mode > EVT_NLO_SEPARATE_BORNLIKE) then
+679-          allocate (evt%particle_set_nlo (n_phs + 1))
+680-          evt%event_deps%n_phs = n_phs
+681-          evt%qcd = entry%qcd
+682-          do i = 1, n_phs
+683-             allocate (current_entry%next)
+684-             current_entry%next%first => current_entry%first
+685-             current_entry => current_entry%next
+686-             call entry%copy_entry (current_entry)
+687-             current_entry%i_event = i
+688-          end do
+689-       else
+690-          allocate (evt%particle_set_nlo (1))
+691-       end if
+692-    end select
+693-  contains
+694-    subroutine get_nlo_evt_ptr (entry, evt, mode)
+695-      type(entry_t), intent(in), target :: entry
+696-      type(evt_nlo_t), intent(out), pointer :: evt
+697-      integer, intent(out) :: mode
+--
+851-    if (enable_shower) then
+852-       call dispatch_evt_shower (evt, var_list, local%model, &
+853-            local%fallback_model, local%os_data, local%beam_structure, &
+854-            process)
+855-       call entry%import_transform (evt)
+856-    end if
+857-
+858-    if (local%get_lval (var_str ("?hadronization_active"))) then
+859-       call dispatch_evt_hadrons (evt, var_list, local%fallback_model)
+860-       call entry%import_transform (evt)
+861-    end if
+862-
+863-  end subroutine entry_setup_event_transforms
+864-
+865-  subroutine event_transforms_check (entry, process, local)
+866-    class(entry_t), intent(in) :: entry
+867-    type(process_t), intent(in), target :: process
+868-    type(rt_data_t), intent(in), target :: local
+869-
+870-    if (local%get_lval (var_str ("?fixed_order_nlo_events"))) then
+871:       if (local%get_lval (var_str ("?unweighted"))) then
+872-          call msg_fatal ("NLO fixed-order events have to be generated with &
+873:               &?unweighted = false")
+874-       end if
+875-       select case (char (local%get_sval (var_str ("$sample_normalization"))))
+876-       case ("sigma", "auto")
+877-       case default
+878-          call msg_fatal ("NLO fixed-order events: only &
+879-               &$sample_normalization = 'sigma' is supported.")
+880-       end select
+881-       if (process%contains_unstable (local%model)) then
+882-          call msg_fatal ("NLO fixed-order events: unstable final-state &
+883-               &particles not supported yet")
+884-       end if
+885-       if (entry%resonant_subprocess_set%is_active ()) then
+886-          call msg_fatal ("NLO fixed-order events: resonant subprocess &
+887-               &insertion not supported")
+888-       end if
+889-       if (local%get_lval (var_str ("?isr_handler")) &
+890-            .or. local%get_lval (var_str ("?epa_handler"))) then
+891-          call msg_fatal ("NLO fixed-order events: ISR handler for &
+892-               &photon-pT generation not supported yet")
+893-       end if
+894-    end if
+895-
+896-    if (process%contains_unstable (local%model) &
+897-         .and. entry%resonant_subprocess_set%is_active ()) then
+898-       call msg_fatal ("Simulation: resonant subprocess insertion with &
+899-            &unstable final-state particles not supported")
+900-    end if
+901-
+902-  end subroutine event_transforms_check
+903-
+904:  module subroutine entry_init_mci_selector (entry, negative_weights)
+905-    class(entry_t), intent(inout), target :: entry
+906:    logical, intent(in), optional :: negative_weights
+907-    type(entry_t), pointer :: current_entry
+908-    integer :: i, j, k
+909-    if (debug_on) call msg_debug (D_CORE, "entry_init_mci_selector")
+910-    if (entry%has_integral) then
+911-       select type (entry)
+912-       type is (entry_t)
+913-          current_entry => entry
+914-          do j = 1, current_entry%count_nlo_entries ()
+915-             if (j > 1) current_entry => current_entry%get_next ()
+916-             do k = 1, size(current_entry%mci_sets%integral)
+917-                if (debug_on)  call msg_debug &
+918-                     (D_CORE, "current_entry%mci_sets(k)%integral", &
+919-                     current_entry%mci_sets(k)%integral)
+920-             end do
+921-             call current_entry%mci_selector%init &
+922:                  (current_entry%mci_sets%integral, negative_weights)
+923-             do i = 1, current_entry%n_mci
+924:                current_entry%mci_sets(i)%weight_mci = &
+925:                   current_entry%mci_selector%get_weight (i)
+926-             end do
+927-          end do
+928-       end select
+929-    end if
+930-  end subroutine entry_init_mci_selector
+931-
+932-  module function entry_select_mci (entry) result (i_mci)
+933-    class(entry_t), intent(inout) :: entry
+934-    integer :: i_mci
+935-    if (debug_on) call msg_debug2 (D_CORE, "entry_select_mci")
+936-    i_mci = entry%process%extract_active_component_mci ()
+937-    if (i_mci == 0) call entry%mci_selector%generate (entry%rng, i_mci)
+938-    if (debug_on) call msg_debug2 (D_CORE, "i_mci", i_mci)
+939-  end function entry_select_mci
+940-
+941-  module subroutine entry_record (entry, i_mci, from_file)
+942-    class(entry_t), intent(inout) :: entry
+943-    integer, intent(in) :: i_mci
+944-    logical, intent(in), optional :: from_file
+945:    real(default) :: weight, excess
+946-    integer :: n_dropped
+947:    weight = entry%get_weight_prc ()
+948:    excess = entry%get_excess_prc ()
+949-    n_dropped = entry%get_n_dropped ()
+950:    call entry%counter%record (weight, excess, n_dropped, from_file)
+951-    if (i_mci > 0) then
+952:       call entry%mci_sets(i_mci)%counter%record (weight, excess)
+953-    end if
+954-  end subroutine entry_record
+955-
+956-  module subroutine entry_update_process &
+957-       (entry, model, qcd, helicity_selection, saved)
+958-    class(entry_t), intent(inout) :: entry
+959-    class(model_data_t), intent(in), optional, target :: model
+960-    type(qcd_t), intent(in), optional :: qcd
+961-    type(helicity_selection_t), intent(in), optional :: helicity_selection
+962-    logical, intent(in), optional :: saved
+963-    type(process_t), pointer :: process
+964-    class(prc_core_t), allocatable :: core
+965-    integer :: i, n_terms
+966-    class(model_data_t), pointer :: model_local
+967-    type(qcd_t) :: qcd_local
+968-    logical :: use_saved
+969-    if (present (model)) then
+970-       model_local => model
+971-    else
+972-       model_local => entry%model
+973-    end if
+974-    if (present (qcd)) then
+975-       qcd_local = qcd
+976-    else
+977-       qcd_local = entry%qcd
+978-    end if
+979-    use_saved = .true.;  if (present (saved))  use_saved = saved
+980-    process => entry%get_process_ptr ()
+981-    n_terms = process%get_n_terms ()
+982-    if (use_saved)  allocate (entry%core_safe (n_terms))
+983-    do i = 1, n_terms
+984-       if (process%has_matrix_element (i, is_term_index = .true.)) then
+985-          call process%extract_core (i, core)
+986-          if (use_saved) then
+987-             call dispatch_core_update (core, &
+988-                  model_local, helicity_selection, qcd_local, &
+989-                  entry%core_safe(i)%core)
+990-          else
+991-             call dispatch_core_update (core, &
+992-                  model_local, helicity_selection, qcd_local)
+--
+1198-    type(particle_set_t) :: pset
+1199-    call entry%get_hard_particle_set (pset)
+1200-    call alt_entry%set_hard_particle_set (pset)
+1201-    call pset%final ()
+1202-  end subroutine entry_fill_particle_set
+1203-
+1204-  module subroutine simulation_write (object, unit, testflag)
+1205-    class(simulation_t), intent(in) :: object
+1206-    integer, intent(in), optional :: unit
+1207-    logical, intent(in), optional :: testflag
+1208-    logical :: pacified
+1209-    integer :: u, i
+1210-    u = given_output_unit (unit)
+1211-    pacified = object%pacify;  if (present (testflag))  pacified = testflag
+1212-    call write_separator (u, 2)
+1213-    write (u, "(1x,A,A,A)")  "Event sample: '", char (object%sample_id), "'"
+1214-    write (u, "(3x,A,I0)")  "Processes    = ", object%n_prc
+1215-    if (object%n_alt > 0) then
+1216-       write (u, "(3x,A,I0)")  "Alt.wgts     = ", object%n_alt
+1217-    end if
+1218:    write (u, "(3x,A,L1)")  "Unweighted   = ", object%unweighted
+1219-    write (u, "(3x,A,A)")   "Event norm   = ", &
+1220-         char (event_normalization_string (object%norm_mode))
+1221:    write (u, "(3x,A,L1)")  "Neg. weights = ", object%negative_weights
+1222-    write (u, "(3x,A,L1)")  "Res. history = ", object%support_resonance_history
+1223-    write (u, "(3x,A,L1)")  "Respect sel. = ", object%respect_selection
+1224-    write (u, "(3x,A,L1)")  "Update sqme  = ", object%update_sqme
+1225:    write (u, "(3x,A,L1)")  "Update wgt   = ", object%update_weight
+1226-    write (u, "(3x,A,L1)")  "Update event = ", object%update_event
+1227-    write (u, "(3x,A,L1)")  "Recov. beams = ", object%recover_beams
+1228-    write (u, "(3x,A,L1)")  "Pacify       = ", object%pacify
+1229:    write (u, "(3x,A,I0)")  "Max. tries   = ", object%n_max_tries
+1230-    if (object%has_integral) then
+1231-       if (pacified) then
+1232-          write (u, "(3x,A," // FMT_15 // ")")  &
+1233-               "Integral     = ", object%integral
+1234-          write (u, "(3x,A," // FMT_15 // ")")  &
+1235-               "Error        = ", object%error
+1236-       else
+1237-          write (u, "(3x,A," // FMT_19 // ")")  &
+1238-               "Integral     = ", object%integral
+1239-          write (u, "(3x,A," // FMT_19 // ")")  &
+1240-               "Error        = ", object%error
+1241-       end if
+1242-    else
+1243-       write (u, "(3x,A)")  "Integral     = [undefined]"
+1244-    end if
+1245-    write (u, "(3x,A,L1)")  "Sim. valid   = ", object%valid
+1246-    write (u, "(3x,A,I0)")  "Ev.file ver. = ", object%version
+1247-    if (object%md5sum_prc /= "") then
+1248-       write (u, "(3x,A,A,A)")  "MD5 sum (proc)   = '", object%md5sum_prc, "'"
+1249-    end if
+1250-    if (object%md5sum_cfg /= "") then
+1251-       write (u, "(3x,A,A,A)")  "MD5 sum (config) = '", object%md5sum_cfg, "'"
+1252-    end if
+1253-    write (u, "(3x,A,I0)")  "Events requested  = ", object%n_evt_requested
+1254-    if (object%event_index_offset /= 0) then
+1255-       write (u, "(3x,A,I0)")  "Event index offset= ", object%event_index_offset
+1256-    end if
+1257-    if (object%event_index_set) then
+1258-       write (u, "(3x,A,I0)")  "Event index       = ", object%event_index
+1259-    end if
+1260-    if (object%split_n_evt > 0 .or. object%split_n_kbytes > 0) then
+1261-       write (u, "(3x,A,I0)")  "Events per file   = ", object%split_n_evt
+1262-       write (u, "(3x,A,I0)")  "KBytes per file   = ", object%split_n_kbytes
+1263-       write (u, "(3x,A,I0)")  "First file index  = ", object%split_index
+1264-    end if
+1265-    call object%counter%write (u)
+1266-    call write_separator (u)
+1267-    if (object%i_prc /= 0) then
+1268-       write (u, "(1x,A)")  "Current event:"
+1269-       write (u, "(3x,A,I0,A,A)")  "Process #", &
+1270-            object%i_prc, ": ", &
+1271-            char (object%entry(object%i_prc)%process_id)
+1272-       write (u, "(3x,A,I0)")  "MCI set #", object%i_mci
+1273:       write (u, "(3x,A," // FMT_19 // ")")  "Weight    = ", object%weight
+1274:       if (.not. vanishes (object%excess)) &
+1275:            write (u, "(3x,A," // FMT_19 // ")")  "Excess    = ", object%excess
+1276:       write (u, "(3x,A,I0)")  "Zero-weight events dropped = ", object%n_dropped
+1277-    else
+1278-       write (u, "(1x,A,I0,A,A)")  "Current event: [undefined]"
+1279-    end if
+1280-    call write_separator (u)
+1281-    if (allocated (object%rng)) then
+1282-       call object%rng%write (u)
+1283-    else
+1284-       write (u, "(3x,A)")  "Random-number generator: [undefined]"
+1285-    end if
+1286-    if (allocated (object%entry)) then
+1287-       do i = 1, size (object%entry)
+1288-          if (i == 1) then
+1289-             call write_separator (u, 2)
+1290-          else
+1291-             call write_separator (u)
+1292-          end if
+1293-          write (u, "(1x,A,I0,A)") "Process #", i, ":"
+1294-          call object%entry(i)%write_config (u, pacified)
+1295-       end do
+1296-    end if
+1297-    call write_separator (u, 2)
+1298-  end subroutine simulation_write
+1299-
+1300-  module subroutine simulation_write_event_unit &
+1301-       (object, unit, i_prc, verbose, testflag)
+1302-    class(simulation_t), intent(in) :: object
+1303-    integer, intent(in), optional :: unit
+1304-    logical, intent(in), optional :: verbose
+1305-    integer, intent(in), optional :: i_prc
+1306-    logical, intent(in), optional :: testflag
+1307-    logical :: pacified
+1308-    integer :: current
+1309-    pacified = .false.;  if (present(testflag)) pacified = testflag
+1310-    pacified = pacified .or. object%pacify
+1311-    if (present (i_prc)) then
+1312-       current = i_prc
+1313-    else
+1314-       current = object%i_prc
+1315-    end if
+1316-    if (current > 0) then
+--
+1368-
+1369-  module subroutine simulation_write_process_data &
+1370-       (object, unit, i_prc, &
+1371-       show_process, show_instance, verbose)
+1372-    class(simulation_t), intent(in) :: object
+1373-    integer, intent(in), optional :: unit
+1374-    integer, intent(in), optional :: i_prc
+1375-    logical, intent(in), optional :: show_process
+1376-    logical, intent(in), optional :: show_instance
+1377-    logical, intent(in), optional :: verbose
+1378-    integer :: i
+1379-    if (present (i_prc)) then
+1380-       i = i_prc
+1381-    else
+1382-       i = object%i_prc
+1383-    end if
+1384-    call object%entry(i)%write_process_data &
+1385-         (unit, show_process, show_instance, verbose)
+1386-  end subroutine simulation_write_process_data
+1387-
+1388:  module subroutine simulation_show_efficiency (simulation)
+1389-    class(simulation_t), intent(inout) :: simulation
+1390-    integer :: n_events, n_calls
+1391-    real(default) :: eff
+1392-    n_events = simulation%counter%generated
+1393-    n_calls = sum (simulation%entry%get_actual_calls_total ())
+1394-    if (n_calls > 0) then
+1395-       eff = real (n_events, kind=default) / n_calls
+1396-       write (msg_buffer, "(A,1x,F6.2,1x,A)") &
+1397:            "Events: actual unweighting efficiency =", 100 * eff, "%"
+1398-       call msg_message ()
+1399-    end if
+1400:  end subroutine simulation_show_efficiency
+1401-
+1402-  module subroutine simulation_compute_md5sum (simulation)
+1403-    class(simulation_t), intent(inout) :: simulation
+1404-    type(process_t), pointer :: process
+1405-    type(string_t) :: buffer
+1406-    integer :: j, i, n_mci, i_mci, n_component, i_component
+1407-    if (simulation%md5sum_prc == "") then
+1408-       buffer = ""
+1409-       do i = 1, simulation%n_prc
+1410-          if (.not. simulation%entry(i)%valid) cycle
+1411-          process => simulation%entry(i)%get_process_ptr ()
+1412-          if (associated (process)) then
+1413-             n_component = process%get_n_components ()
+1414-             do i_component = 1, n_component
+1415-                if (process%has_matrix_element (i_component)) then
+1416-                   buffer = buffer // process%get_md5sum_prc (i_component)
+1417-                end if
+1418-             end do
+1419-          end if
+1420-       end do
+1421-       simulation%md5sum_prc = md5sum (char (buffer))
+1422-    end if
+1423-    if (simulation%md5sum_cfg == "") then
+1424-       buffer = ""
+1425-       do i = 1, simulation%n_prc
+1426-          if (.not. simulation%entry(i)%valid) cycle
+1427-          process => simulation%entry(i)%get_process_ptr ()
+1428-          if (associated (process)) then
+1429-             n_mci = process%get_n_mci ()
+1430-             do i_mci = 1, n_mci
+1431-                buffer = buffer // process%get_md5sum_mci (i_mci)
+1432-             end do
+1433-          end if
+1434-       end do
+1435-       simulation%md5sum_cfg = md5sum (char (buffer))
+1436-    end if
+1437-    do j = 1, simulation%n_alt
+1438-       if (simulation%md5sum_alt(j) == "") then
+1439-          buffer = ""
+1440-          do i = 1, simulation%n_prc
+--
+1472-    type(string_t), dimension(:), intent(in) :: process_id
+1473-    logical, intent(in) :: integrate, generate
+1474-    type(rt_data_t), intent(inout), target :: local
+1475-    type(rt_data_t), intent(inout), optional, target :: global
+1476-    type(rt_data_t), dimension(:), intent(inout), optional, target :: alt_env
+1477-    class(rng_factory_t), allocatable :: rng_factory
+1478-    integer :: next_rng_seed
+1479-    type(string_t) :: norm_string, version_string
+1480-    logical :: use_process
+1481-    integer :: i, j
+1482-    type(string_t) :: sample_suffix
+1483-    integer :: rank, n_size
+1484-    sample_suffix = ""
+1485-    call mpi_get_comm_id (n_size, rank)
+1486-    if (n_size > 1) then
+1487-       sample_suffix = var_str ("_") // str (rank)
+1488-    end if
+1489-    simulation%local => local
+1490-    simulation%sample_id = &
+1491-         local%get_sval (var_str ("$sample"))
+1492:    simulation%unweighted = &
+1493:         local%get_lval (var_str ("?unweighted"))
+1494:    simulation%negative_weights = &
+1495:         local%get_lval (var_str ("?negative_weights"))
+1496-    simulation%support_resonance_history = &
+1497-         local%get_lval (var_str ("?resonance_history"))
+1498-    simulation%respect_selection = &
+1499-         local%get_lval (var_str ("?sample_select"))
+1500-    version_string = &
+1501-         local%get_sval (var_str ("$event_file_version"))
+1502-    norm_string = &
+1503-         local%get_sval (var_str ("$sample_normalization"))
+1504-    simulation%norm_mode = &
+1505:         event_normalization_mode (norm_string, simulation%unweighted)
+1506-    simulation%pacify = &
+1507-         local%get_lval (var_str ("?sample_pacify"))
+1508-    simulation%event_index_offset = &
+1509-         local%get_ival (var_str ("event_index_offset"))
+1510:    simulation%n_max_tries = &
+1511:         local%get_ival (var_str ("sample_max_tries"))
+1512-    simulation%split_n_evt = &
+1513-         local%get_ival (var_str ("sample_split_n_evt"))
+1514-    simulation%split_n_kbytes = &
+1515-         local%get_ival (var_str ("sample_split_n_kbytes"))
+1516-    simulation%split_index = &
+1517-         local%get_ival (var_str ("sample_split_index"))
+1518-    simulation%update_sqme = &
+1519-         local%get_lval (var_str ("?update_sqme"))
+1520:    simulation%update_weight = &
+1521:         local%get_lval (var_str ("?update_weight"))
+1522-    simulation%update_event = &
+1523-         local%get_lval (var_str ("?update_event"))
+1524-    simulation%recover_beams = &
+1525-         local%get_lval (var_str ("?recover_beams"))
+1526-    simulation%counter%reproduce_xsection = &
+1527:         local%get_lval (var_str ("?check_event_weights_against_xsection"))
+1528-    use_process = &
+1529-         integrate .or. generate &
+1530-         .or. simulation%update_sqme &
+1531:         .or. simulation%update_weight &
+1532-         .or. simulation%update_event &
+1533-         .or. present (alt_env)
+1534-    select case (size (process_id))
+1535-    case (0)
+1536-       call msg_error ("Simulation: no process selected")
+1537-    case (1)
+1538-       write (msg_buffer, "(A,A,A)") &
+1539-            "Starting simulation for process '", &
+1540-            char (process_id(1)), "'"
+1541-       call msg_message ()
+1542-    case default
+1543-       write (msg_buffer, "(A,A,A)") &
+1544-            "Starting simulation for processes '", &
+1545-            char (process_id(1)), "' etc."
+1546-       call msg_message ()
+1547-    end select
+1548-    select case (char (version_string))
+1549-    case ("", "2.2.4")
+1550-       simulation%version = 2
+1551-    case ("2.2")
+1552-       simulation%version = 1
+1553-    case default
+1554-       simulation%version = 0
+1555-    end select
+1556-    if (simulation%version == 0) then
+1557-       call msg_fatal ("Event file format '" &
+1558-            // char (version_string) &
+1559-            // "' is not compatible with this version.")
+1560-    end if
+1561-    simulation%n_prc = size (process_id)
+1562-    allocate (simulation%entry (simulation%n_prc))
+1563-    if (present (alt_env)) then
+1564-       simulation%n_alt = size (alt_env)
+1565-       do i = 1, simulation%n_prc
+1566-          call simulation%entry(i)%init (process_id(i), &
+1567-               use_process, integrate, generate, &
+1568-               simulation%update_sqme, &
+1569-               simulation%support_resonance_history, &
+1570-               local, global, simulation%n_alt)
+1571-          if (signal_is_pending ())  return
+--
+1615-       do i = 2, rank + 1
+1616-          select type (rng => simulation%rng)
+1617-          type is (rng_stream_t)
+1618-             call rng%next_substream ()
+1619-             if (i == rank) &
+1620-                call msg_message ("Simulate: Advance RNG for parallel event generation")
+1621-          class default
+1622-             call rng%write ()
+1623-             call msg_bug ("Parallel event generation: random-number generator &
+1624-                    &must be 'rng_stream'.")
+1625-          end select
+1626-       end do
+1627-!    end if
+1628-    if (all (simulation%entry%has_integral)) then
+1629-       simulation%integral = sum (simulation%entry%integral)
+1630-       simulation%error = sqrt (sum (simulation%entry%error ** 2))
+1631-       simulation%has_integral = .true.
+1632-       if (integrate .and. generate) then
+1633-          do i = 1, simulation%n_prc
+1634-             if (simulation%entry(i)%integral < 0 .and. .not. &
+1635:                  simulation%negative_weights) then
+1636-                call msg_fatal ("Integral of process '" // &
+1637-                     char (process_id (i)) // "'is negative.")
+1638-             end if
+1639-          end do
+1640-       end if
+1641-    else
+1642-       if (integrate .and. generate) &
+1643-            call msg_error ("Simulation contains undefined integrals.")
+1644-    end if
+1645-    if (simulation%integral > 0 .or. &
+1646:         (simulation%integral < 0 .and. simulation%negative_weights)) then
+1647-       simulation%valid = .true.
+1648-    else if (generate) then
+1649-       call msg_error ("Simulate: " &
+1650-            // "sum of process integrals must be positive; skipping.")
+1651-       simulation%valid = .false.
+1652-    else
+1653-       simulation%valid = .true.
+1654-    end if
+1655-    if (simulation%sample_id == "") then
+1656-       simulation%sample_id = simulation%get_default_sample_name ()
+1657-    end if
+1658-    simulation%sample_id = simulation%sample_id // sample_suffix
+1659-    if (simulation%valid)  call simulation%compute_md5sum ()
+1660-  end subroutine simulation_init
+1661-
+1662-  module subroutine simulation_compute_n_events (simulation, n_events)
+1663-    class(simulation_t), intent(in) :: simulation
+1664-    integer, intent(out) :: n_events
+1665-    real(default) :: lumi, x_events_lumi
+1666-    integer :: n_events_lumi
+1667-    logical :: is_scattering
+1668-    n_events = &
+1669-         simulation%local%get_ival (var_str ("n_events"))
+1670-    lumi = &
+1671-         simulation%local%get_rval (var_str ("luminosity"))
+1672:    if (simulation%unweighted) then
+1673-       is_scattering = simulation%entry(1)%n_in == 2
+1674-       if (is_scattering) then
+1675-          x_events_lumi = abs (simulation%integral * lumi)
+1676-          if (x_events_lumi < huge (n_events)) then
+1677-             n_events_lumi = nint (x_events_lumi)
+1678-          else
+1679-             call msg_message ("Simulation: luminosity too large, &
+1680-                  &limiting number of events")
+1681-             n_events_lumi = huge (n_events)
+1682-          end if
+1683-          if (n_events_lumi > n_events) then
+1684-             call msg_message ("Simulation: using n_events as computed from &
+1685-                  &luminosity value")
+1686-             n_events = n_events_lumi
+1687-          else
+1688-             write (msg_buffer, "(A,1x,I0)") &
+1689-                  "Simulation: requested number of events =", n_events
+1690-             call msg_message ()
+1691-             if (.not. vanishes (simulation%integral)) then
+1692-                write (msg_buffer, "(A,1x,ES11.4)") &
+1693-                     "            corr. to luminosity [fb-1] = ", &
+1694-                     n_events / simulation%integral
+1695-                call msg_message ()
+1696-             end if
+1697-          end if
+1698-       end if
+1699-    end if
+1700-  end subroutine simulation_compute_n_events
+1701-
+1702-  module subroutine simulation_setup_openmp (simulation)
+1703-    class(simulation_t), intent(inout) :: simulation
+1704-
+1705-    call openmp_set_num_threads_verbose &
+1706-         (simulation%local%get_ival (var_str ("openmp_num_threads")), &
+1707-         simulation%local%get_lval (var_str ("?openmp_logging")))
+1708-
+1709-  end subroutine simulation_setup_openmp
+1710-
+1711-  module subroutine simulation_prepare_event_streams (sim, es_array)
+1712-    class(simulation_t), intent(inout) :: sim
+--
+1770-            sample_fmt, sim%local, &
+1771-            data = data, &
+1772-            checkpoint = checkpoint, &
+1773-            callback = callback)
+1774-    end if
+1775-  end subroutine simulation_prepare_event_streams
+1776-
+1777-  module function simulation_get_n_nlo_entries &
+1778-       (simulation, i_prc) result (n_extra)
+1779-    class(simulation_t), intent(in) :: simulation
+1780-    integer, intent(in) :: i_prc
+1781-    integer :: n_extra
+1782-    n_extra = simulation%entry(i_prc)%count_nlo_entries ()
+1783-  end function simulation_get_n_nlo_entries
+1784-
+1785-  module subroutine simulation_init_process_selector (simulation)
+1786-    class(simulation_t), intent(inout) :: simulation
+1787-    integer :: i
+1788-    if (simulation%has_integral) then
+1789-       call simulation%process_selector%init (simulation%entry%integral, &
+1790:            negative_weights = simulation%negative_weights)
+1791-       do i = 1, simulation%n_prc
+1792-          associate (entry => simulation%entry(i))
+1793-            if (.not. entry%valid) then
+1794-               call msg_warning ("Process '" // char (entry%process_id) // &
+1795-                    "': matrix element vanishes, no events can be generated.")
+1796-               cycle
+1797-            end if
+1798:            call entry%init_mci_selector (simulation%negative_weights)
+1799:            entry%process_weight = simulation%process_selector%get_weight (i)
+1800-          end associate
+1801-       end do
+1802-    end if
+1803-  end subroutine simulation_init_process_selector
+1804-
+1805-  module function simulation_select_prc (simulation) result (i_prc)
+1806-    class(simulation_t), intent(inout) :: simulation
+1807-    integer :: i_prc
+1808-    call simulation%process_selector%generate (simulation%rng, i_prc)
+1809-  end function simulation_select_prc
+1810-
+1811-  module function simulation_select_mci (simulation) result (i_mci)
+1812-    class(simulation_t), intent(inout) :: simulation
+1813-    integer :: i_mci
+1814-    i_mci = 0
+1815-    if (simulation%i_prc /= 0) then
+1816-       i_mci = simulation%entry(simulation%i_prc)%select_mci ()
+1817-    end if
+1818-  end function simulation_select_mci
+1819-
+1820-  module subroutine simulation_set_n_events_requested (simulation, n)
+1821-    class(simulation_t), intent(inout) :: simulation
+1822-    integer, intent(in) :: n
+1823-
+1824-    simulation%n_evt_requested = n
+1825-
+1826-  end subroutine simulation_set_n_events_requested
+1827-
+1828-  module function simulation_get_n_events_requested (simulation) result (n)
+1829-    class(simulation_t), intent(in) :: simulation
+1830-    integer :: n
+1831-
+1832-    n = simulation%n_evt_requested
+1833-
+1834-  end function simulation_get_n_events_requested
+1835-
+1836-  module subroutine simulation_generate (simulation, es_array)
+1837-    class(simulation_t), intent(inout), target :: simulation
+1838-    type(event_stream_array_t), intent(inout), optional :: es_array
+1839-
+--
+1842-
+1843-    call simulation%before_first_event (begin_it, end_it, es_array)
+1844-    do i = begin_it, end_it
+1845-       call simulation%next_event (es_array)
+1846-    end do
+1847-    call simulation%after_last_event (begin_it, end_it)
+1848-
+1849-  end subroutine simulation_generate
+1850-
+1851-  module subroutine simulation_before_first_event (simulation, &
+1852-       begin_it, end_it, es_array)
+1853-    class(simulation_t), intent(inout), target :: simulation
+1854-    integer, intent(out) :: begin_it
+1855-    integer, intent(out) :: end_it
+1856-    type(event_stream_array_t), intent(inout), optional :: es_array
+1857-
+1858-    integer :: n_evt_requested
+1859-    logical :: has_input
+1860-    integer :: n_events_print
+1861-    logical :: is_leading_order
+1862:    logical :: is_weighted
+1863-    logical :: is_polarized
+1864-
+1865-    n_evt_requested = simulation%n_evt_requested
+1866-    n_events_print = n_evt_requested * simulation%get_n_nlo_entries (1)
+1867-    is_leading_order = (n_events_print == n_evt_requested)
+1868-
+1869-    has_input = .false.
+1870-    if (present (es_array)) has_input = es_array%has_input ()
+1871-
+1872:    is_weighted = .not. simulation%entry(1)%config%unweighted
+1873-    is_polarized = simulation%entry(1)%config%factorization_mode &
+1874-         /= FM_IGNORE_HELICITY
+1875-
+1876-    call simulation%startup_message_generate ( &
+1877-         has_input = has_input, &
+1878:         is_weighted = is_weighted, &
+1879-         is_polarized = is_polarized, &
+1880-         is_leading_order = is_leading_order, &
+1881-         n_events = n_events_print)
+1882-
+1883-    call simulation%entry%set_n (n_evt_requested)
+1884-    if (simulation%n_alt > 0)  call simulation%alt_entry%set_n (n_evt_requested)
+1885-    call simulation%init_event_index ()
+1886-
+1887-    begin_it = 1
+1888-    end_it = n_evt_requested
+1889-    call simulation%init_event_loop_mpi (n_evt_requested, begin_it, end_it)
+1890-
+1891-  end subroutine simulation_before_first_event
+1892-
+1893-  module subroutine simulation_startup_message_generate (simulation, &
+1894:     has_input, is_weighted, is_polarized, is_leading_order, n_events)
+1895-    class(simulation_t), intent(in) :: simulation
+1896-    logical, intent(in) :: has_input
+1897:    logical, intent(in) :: is_weighted
+1898-    logical, intent(in) :: is_polarized
+1899-    logical, intent(in) :: is_leading_order
+1900-    integer, intent(in) :: n_events
+1901-
+1902-    type(string_t) :: str1, str2, str3, str4
+1903-
+1904-    if (has_input) then
+1905-       str1 = "Events: reading"
+1906-    else
+1907-       str1 = "Events: generating"
+1908-    end if
+1909:    if (is_weighted) then
+1910:       str2 = "weighted"
+1911-    else
+1912:       str2 = "unweighted"
+1913-    end if
+1914-    if (is_polarized) then
+1915-       str3 = ", polarized"
+1916-    else
+1917-       str3 = ", unpolarized"
+1918-    end if
+1919-    str4 = ""
+1920-    if (.not. is_leading_order) str4 = " NLO"
+1921-
+1922-    write (msg_buffer, "(A,1X,I0,1X,A,1X,A)")  char (str1), n_events, &
+1923-            char (str2) // char(str3) // char(str4), "events ..."
+1924-    call msg_message ()
+1925-
+1926-    write (msg_buffer, "(A,1x,A)") "Events: event normalization mode", &
+1927-         char (event_normalization_string (simulation%norm_mode))
+1928-    call msg_message ()
+1929-
+1930-  end subroutine simulation_startup_message_generate
+1931-
+1932-  module subroutine simulation_next_event &
+1933-       (simulation, es_array, event_handle_out, event_handle_in)
+1934-    class(simulation_t), intent(inout) :: simulation
+1935-    type(event_stream_array_t), intent(inout), optional :: es_array
+1936-    class(event_handle_t), intent(inout), optional :: event_handle_out
+1937-    class(event_handle_t), intent(inout), optional :: event_handle_in
+1938-
+1939-    type(entry_t), pointer :: current_entry
+1940-    logical :: generate_new
+1941-    logical :: passed
+1942-    integer :: j, k
+1943-
+1944-    call simulation%increment_event_index ()
+1945-
+1946-    if (present (es_array)) then
+1947-       call simulation%read_event &
+1948-            (es_array, .true., generate_new, event_handle_in)
+1949-    else
+1950-       generate_new = .true.
+1951-    end if
+1952-
+1953-    if (generate_new) then
+1954-       simulation%i_prc = simulation%select_prc ()
+1955-       simulation%i_mci = simulation%select_mci ()
+1956-
+1957-       associate (entry => simulation%entry(simulation%i_prc))
+1958-
+1959-         entry%instance%i_mci = simulation%i_mci
+1960-         call entry%set_active_real_components ()
+1961-         current_entry => entry%get_first ()
+1962-
+1963-         do k = 1, current_entry%count_nlo_entries ()
+1964-            if (k > 1) then
+1965-               current_entry => current_entry%get_next ()
+1966-               current_entry%particle_set => current_entry%first%particle_set
+1967-               current_entry%particle_set_is_valid &
+1968-                    = current_entry%first%particle_set_is_valid
+1969-            end if
+1970:            do j = 1, simulation%n_max_tries
+1971-               if (.not. current_entry%valid)  call msg_warning &
+1972-                    ("Process '" // char (current_entry%process_id) // "': " // &
+1973-                    "matrix element vanishes, no events can be generated.")
+1974-               call current_entry%generate (simulation%i_mci, i_nlo = k)
+1975-               if (signal_is_pending ()) return
+1976-               call simulation%counter%record_mean_and_variance &
+1977:                    (current_entry%weight_prc, k)
+1978-               if (current_entry%has_valid_particle_set ()) exit
+1979-            end do
+1980-         end do
+1981-         if (entry%is_nlo ()) call entry%reset_nlo_counter ()
+1982-
+1983-         if (.not. entry%has_valid_particle_set ()) then
+1984-            write (msg_buffer, "(A,I0,A)")  "Simulation: failed to &
+1985-                 &generate valid event after ", &
+1986:                 simulation%n_max_tries, " tries (sample_max_tries)"
+1987-            call msg_fatal ()
+1988-         end if
+1989-
+1990-         current_entry => entry%get_first ()
+1991-         do k = 1, current_entry%count_nlo_entries ()
+1992-            if (k > 1) current_entry => current_entry%get_next ()
+1993-            call current_entry%set_index (simulation%get_event_index ())
+1994-            call current_entry%evaluate_expressions ()
+1995-         end do
+1996-         if (signal_is_pending ()) return
+1997-
+1998-         simulation%n_dropped = entry%get_n_dropped ()
+1999-         if (entry%passed_selection ()) then
+2000:            simulation%weight = entry%get_weight_ref ()
+2001:            simulation%excess = entry%get_excess_prc ()
+2002-         end if
+2003-         call simulation%counter%record &
+2004:              (simulation%weight, simulation%excess, simulation%n_dropped)
+2005-         call entry%record (simulation%i_mci)
+2006-
+2007-       end associate
+2008-
+2009-    else
+2010-
+2011-       associate (entry => simulation%entry(simulation%i_prc))
+2012-
+2013-         call simulation%set_event_index (entry%get_index ())
+2014-         call entry%accept_sqme_ref ()
+2015:         call entry%accept_weight_ref ()
+2016-         call entry%check ()
+2017-         call entry%evaluate_expressions ()
+2018-         if (signal_is_pending ()) return
+2019-
+2020-         simulation%n_dropped = entry%get_n_dropped ()
+2021-         if (entry%passed_selection ()) then
+2022:            simulation%weight = entry%get_weight_ref ()
+2023:            simulation%excess = entry%get_excess_prc ()
+2024-         end if
+2025-         call simulation%counter%record &
+2026:              (simulation%weight, simulation%excess, simulation%n_dropped, &
+2027-              from_file=.true.)
+2028-         call entry%record (simulation%i_mci, from_file=.true.)
+2029-
+2030-       end associate
+2031-
+2032-    end if
+2033-
+2034-    call simulation%calculate_alt_entries ()
+2035-    if (simulation%pacify)  call pacify (simulation)
+2036-    if (signal_is_pending ()) return
+2037-
+2038-    if (simulation%respect_selection) then
+2039-       passed = simulation%entry(simulation%i_prc)%passed_selection ()
+2040-    else
+2041-       passed = .true.
+2042-    end if
+2043-    if (present (es_array)) then
+2044-       call simulation%write_event (es_array, passed, event_handle_out)
+2045-    end if
+2046-
+2047-  end subroutine simulation_next_event
+2048-
+2049-  module subroutine simulation_after_last_event (simulation, begin_it, end_it)
+2050-    class(simulation_t), intent(inout) :: simulation
+2051-    integer, intent(in) :: begin_it, end_it
+2052-
+2053-    call msg_message ("        ... event sample complete.")
+2054-    call simulation%final_event_loop_mpi (begin_it, end_it)
+2055-
+2056:    if (simulation%unweighted)  call simulation%show_efficiency ()
+2057:    call simulation%counter%show_excess ()
+2058-    call simulation%counter%show_dropped ()
+2059-    call simulation%counter%show_mean_and_variance ()
+2060-
+2061-  end subroutine simulation_after_last_event
+2062-
+2063-  module subroutine simulation_activate_extra_logging (simulation)
+2064-    class(simulation_t), intent(in) :: simulation
+2065-    logical :: mpi_logging
+2066-    integer :: rank, n_size
+2067-    call mpi_get_comm_id (n_size, rank)
+2068-    mpi_logging = &
+2069-         (simulation%local%get_sval (var_str ("$integration_method")) == "vamp2" &
+2070-         .and. n_size > 1) &
+2071-         .or. simulation%local%get_lval (var_str ("?mpi_logging"))
+2072-    call mpi_set_logging (mpi_logging)
+2073-  end subroutine simulation_activate_extra_logging
+2074-
+2075-  module subroutine simulation_init_event_loop_mpi &
+2076-       (simulation, n_events, begin_it, end_it)
+2077-    class(simulation_t), intent(inout) :: simulation
+2078-    integer, intent(in) :: n_events
+2079-    integer, intent(out) :: begin_it, end_it
+2080-
+2081-    integer :: rank, n_workers
+2082-
+2083-    call MPI_COMM_SIZE (MPI_COMM_WORLD, n_workers)
+2084-    if (n_workers < 2) then
+2085-       begin_it = 1; end_it = n_events
+2086-       return
+2087-    end if
+2088-    call MPI_COMM_RANK (MPI_COMM_WORLD, rank)
+2089-    if (rank == 0) then
+2090-       call compute_and_scatter_intervals (n_events, begin_it, end_it)
+2091-    else
+2092-       call retrieve_intervals (begin_it, end_it)
+2093-    end if
+2094-
+2095-    !! Event index starts by 0 (before incrementing when the first event gets generated/read in).
+2096-    !! Proof: event_index_offset in [0, N], start_it in [1, N].
+2097-    simulation%event_index_offset = simulation%event_index_offset + (begin_it - 1)
+--
+2141-
+2142-    integer :: n_workers, n_events_local, n_events_global
+2143-
+2144-    call MPI_Barrier (MPI_COMM_WORLD)
+2145-    call MPI_COMM_SIZE (MPI_COMM_WORLD, n_workers)
+2146-    if (n_workers < 2) return
+2147-    n_events_local = end_it - begin_it + 1
+2148-    call MPI_ALLREDUCE (n_events_local, n_events_global, 1, &
+2149-         MPI_INTEGER, MPI_SUM,&
+2150-         & MPI_COMM_WORLD)
+2151-    write (msg_buffer, "(2(A,1X,I0))") &
+2152-         "MPI: Number of generated events locally", n_events_local, &
+2153-         " and in world", n_events_global
+2154-    call msg_message ()
+2155-    call simulation%counter%allreduce_record ()
+2156-
+2157-  end subroutine simulation_final_event_loop_mpi
+2158-
+2159-  module subroutine simulation_calculate_alt_entries (simulation)
+2160-    class(simulation_t), intent(inout) :: simulation
+2161:    real(default) :: sqme_prc, weight_prc, factor
+2162:    real(default), dimension(:), allocatable :: sqme_alt, weight_alt
+2163-    integer :: n_alt, i, j
+2164-    i = simulation%i_prc
+2165-    n_alt = simulation%n_alt
+2166-    if (n_alt == 0)  return
+2167:    allocate (sqme_alt (n_alt), weight_alt (n_alt))
+2168-    associate (entry => simulation%entry(i))
+2169-      do j = 1, n_alt
+2170-         if (signal_is_pending ())  return
+2171:         if (simulation%update_weight) then
+2172:            factor = entry%get_kinematical_weight ()
+2173-         else
+2174-            sqme_prc = entry%get_sqme_prc ()
+2175:            weight_prc = entry%get_weight_prc ()
+2176-            if (sqme_prc /= 0) then
+2177:               factor = weight_prc / sqme_prc
+2178-            else
+2179-               factor = 0
+2180-            end if
+2181-         end if
+2182-         associate (alt_entry => simulation%alt_entry(i,j))
+2183-           call alt_entry%update_process (saved=.false.)
+2184-           call alt_entry%select &
+2185-                (entry%get_i_mci (), entry%get_i_term (), entry%get_channel ())
+2186-           call alt_entry%fill_particle_set (entry)
+2187-           call alt_entry%recalculate &
+2188-                (update_sqme = .true., &
+2189-                recover_beams = simulation%recover_beams, &
+2190:                weight_factor = factor)
+2191-           if (signal_is_pending ())  return
+2192-           call alt_entry%accept_sqme_prc ()
+2193-           call alt_entry%update_normalization ()
+2194:           call alt_entry%accept_weight_prc ()
+2195-           call alt_entry%check ()
+2196-           call alt_entry%set_index (simulation%get_event_index ())
+2197-           call alt_entry%evaluate_expressions ()
+2198-           if (signal_is_pending ())  return
+2199-           sqme_alt(j) = alt_entry%get_sqme_ref ()
+2200-           if (alt_entry%passed_selection ()) then
+2201:              weight_alt(j) = alt_entry%get_weight_ref ()
+2202-           end if
+2203-         end associate
+2204-      end do
+2205-      call entry%update_process (saved=.false.)
+2206:      call entry%set (sqme_alt = sqme_alt, weight_alt = weight_alt)
+2207-      call entry%check ()
+2208-      call entry%store_alt_values ()
+2209-    end associate
+2210-  end subroutine simulation_calculate_alt_entries
+2211-
+2212-  module subroutine simulation_update_processes (simulation, &
+2213-       model, qcd, helicity_selection)
+2214-    class(simulation_t), intent(inout) :: simulation
+2215-    class(model_data_t), intent(in), optional, target :: model
+2216-    type(qcd_t), intent(in), optional :: qcd
+2217-    type(helicity_selection_t), intent(in), optional :: helicity_selection
+2218-    integer :: i
+2219-    do i = 1, simulation%n_prc
+2220-       call simulation%entry(i)%update_process &
+2221-            (model, qcd, helicity_selection)
+2222-    end do
+2223-  end subroutine simulation_update_processes
+2224-
+2225-  module subroutine simulation_restore_processes (simulation)
+2226-    class(simulation_t), intent(inout) :: simulation
+2227-    integer :: i
+2228-    do i = 1, simulation%n_prc
+2229-       call simulation%entry(i)%restore_process ()
+2230-    end do
+2231-  end subroutine simulation_restore_processes
+2232-
+2233-  module subroutine simulation_rescan (simulation, n, es_array, global)
+2234-    class(simulation_t), intent(inout) :: simulation
+2235-    integer, intent(in) :: n
+2236-    type(event_stream_array_t), intent(inout) :: es_array
+2237-    type(rt_data_t), intent(inout) :: global
+2238-    type(qcd_t) :: qcd
+2239-    type(string_t) :: str1, str2, str3
+2240-    logical :: complete, check_match
+2241-    str1 = "Rescanning"
+2242:    if (simulation%entry(1)%config%unweighted) then
+2243:       str2 = "unweighted"
+2244-    else
+2245:       str2 = "weighted"
+2246-    end if
+2247-    simulation%n_evt_requested = n
+2248-    call simulation%entry%set_n (n)
+2249:    if (simulation%update_sqme .or. simulation%update_weight) then
+2250-       call dispatch_qcd (qcd, global%get_var_list_ptr (), global%os_data)
+2251-       call simulation%update_processes &
+2252-            (global%model, qcd, global%get_helicity_selection ())
+2253-       str3 = "(process parameters updated) "
+2254-    else
+2255-       str3 = ""
+2256-    end if
+2257-    write (msg_buffer, "(A,1x,A,1x,A,A,A)")  char (str1), char (str2), &
+2258-         "events ", char (str3), "..."
+2259-    call msg_message ()
+2260-    call simulation%init_event_index ()
+2261-    check_match = .not. global%var_list%get_lval (var_str ("?rescan_force"))
+2262-    do
+2263-       call simulation%increment_event_index ()
+2264-       call simulation%read_event (es_array, .false., complete)
+2265-       if (complete)  exit
+2266-       if (simulation%update_event &
+2267-            .or. simulation%update_sqme &
+2268:            .or. simulation%update_weight) then
+2269-          call simulation%recalculate (check_match = check_match)
+2270-          if (signal_is_pending ())  return
+2271-          associate (entry => simulation%entry(simulation%i_prc))
+2272-            call entry%update_normalization ()
+2273-            if (simulation%update_event) then
+2274-               call entry%evaluate_transforms ()
+2275-            end if
+2276-            call entry%check ()
+2277-            call entry%evaluate_expressions ()
+2278-            if (signal_is_pending ())  return
+2279-            simulation%n_dropped = entry%get_n_dropped ()
+2280:            simulation%weight = entry%get_weight_prc ()
+2281-            call simulation%counter%record &
+2282:                 (simulation%weight, n_dropped=simulation%n_dropped, from_file=.true.)
+2283-            call entry%record (simulation%i_mci, from_file=.true.)
+2284-          end associate
+2285-       else
+2286-          associate (entry => simulation%entry(simulation%i_prc))
+2287-            call entry%accept_sqme_ref ()
+2288:            call entry%accept_weight_ref ()
+2289-            call entry%check ()
+2290-            call entry%evaluate_expressions ()
+2291-            if (signal_is_pending ())  return
+2292-            simulation%n_dropped = entry%get_n_dropped ()
+2293:            simulation%weight = entry%get_weight_ref ()
+2294-            call simulation%counter%record &
+2295:                 (simulation%weight, n_dropped=simulation%n_dropped, from_file=.true.)
+2296-            call entry%record (simulation%i_mci, from_file=.true.)
+2297-          end associate
+2298-       end if
+2299-       call simulation%calculate_alt_entries ()
+2300-       if (signal_is_pending ())  return
+2301-       call simulation%write_event (es_array)
+2302-    end do
+2303-    call simulation%counter%show_dropped ()
+2304:    if (simulation%update_sqme .or. simulation%update_weight) then
+2305-       call simulation%restore_processes ()
+2306-    end if
+2307-  end subroutine simulation_rescan
+2308-
+2309-  module subroutine simulation_init_event_index (simulation)
+2310-    class(simulation_t), intent(inout) :: simulation
+2311-    call simulation%set_event_index (simulation%event_index_offset)
+2312-  end subroutine simulation_init_event_index
+2313-
+2314-  module subroutine simulation_increment_event_index (simulation)
+2315-    class(simulation_t), intent(inout) :: simulation
+2316-    if (simulation%event_index_set) then
+2317-       simulation%event_index = simulation%event_index + 1
+2318-    end if
+2319-  end subroutine simulation_increment_event_index
+2320-
+2321-  module subroutine simulation_set_event_index (simulation, i)
+2322-    class(simulation_t), intent(inout) :: simulation
+2323-    integer, intent(in) :: i
+2324-    simulation%event_index = i
+2325-    simulation%event_index_set = .true.
+2326-  end subroutine simulation_set_event_index
+2327-
+2328-  module function simulation_get_event_index (simulation) result (i)
+2329-    class(simulation_t), intent(in) :: simulation
+2330-    integer :: i
+2331-    if (simulation%event_index_set) then
+2332-       i = simulation%event_index
+2333-    else
+2334-       i = 0
+2335-    end if
+2336-  end function simulation_get_event_index
+2337-
+2338-  module function simulation_get_process_index (simulation) result (i_prc)
+2339-    class(simulation_t), intent(in), target :: simulation
+2340-    integer :: i_prc
+2341-
+2342-    i_prc = simulation%i_prc
+2343-
+2344-  end function simulation_get_process_index
+--
+2496-    i_prc = simulation%i_prc
+2497-    associate (entry => simulation%entry(i_prc))
+2498-      if (entry%selected_i_mci /= 0) then
+2499-         i_mci0 = entry%selected_i_mci
+2500-         i_mci1 = i_mci0
+2501-      else
+2502-         i_mci0 = 1
+2503-         i_mci1 = entry%process%get_n_mci ()
+2504-      end if
+2505-      SCAN_COMP: do i_mci = i_mci0, i_mci1
+2506-         i_comp = entry%process%get_master_component (i_mci)
+2507-         call entry%process%reset_selected_cores ()
+2508-         call entry%process%select_components ([i_comp])
+2509-         i_terms = entry%process%get_component_i_terms (i_comp)
+2510-         SCAN_TERM: do k = 1, size (i_terms)
+2511-            i_term = i_terms(k)
+2512-            call entry%select (i_mci, i_term, entry%selected_channel)
+2513-            if (entry%selected_i_term /= 0 &
+2514-                 .and. entry%selected_i_term /= i_term)  cycle SCAN_TERM
+2515-            call entry%select (i_mci, i_term, entry%selected_channel)
+2516:            if (simulation%update_weight) then
+2517-               call entry%recalculate &
+2518-                    (update_sqme = simulation%update_sqme, &
+2519-                    recover_beams = simulation%recover_beams, &
+2520-                    recover_phs = recover_phs, &
+2521:                    weight_factor = entry%get_kinematical_weight (), &
+2522-                    check_match = check_match, &
+2523-                    success = success)
+2524-            else
+2525-               call entry%recalculate &
+2526-                    (update_sqme = simulation%update_sqme, &
+2527-                    recover_beams = simulation%recover_beams, &
+2528-                    recover_phs = recover_phs, &
+2529-                    check_match = check_match, &
+2530-                    success = success)
+2531-            end if
+2532-            if (success)  exit SCAN_COMP
+2533-         end do SCAN_TERM
+2534-         deallocate (i_terms)
+2535-      end do SCAN_COMP
+2536-      if (.not. success) then
+2537-         call entry%write ()
+2538-         call msg_fatal ("Simulation/recalculate: &
+2539-              &event could not be matched to the specified process")
+2540-      end if
+2541-    end associate
+2542-  end subroutine simulation_recalculate
+2543-
+2544-  module function simulation_get_md5sum_prc (simulation) result (md5sum)
+2545-    class(simulation_t), intent(in) :: simulation
+2546-    character(32) :: md5sum
+2547-    md5sum = simulation%md5sum_prc
+2548-  end function simulation_get_md5sum_prc
+2549-
+2550-  module function simulation_get_md5sum_cfg (simulation) result (md5sum)
+2551-    class(simulation_t), intent(in) :: simulation
+2552-    character(32) :: md5sum
+2553-    md5sum = simulation%md5sum_cfg
+2554-  end function simulation_get_md5sum_cfg
+2555-
+2556-  module function simulation_get_md5sum_alt (simulation, i) result (md5sum)
+2557-    class(simulation_t), intent(in) :: simulation
+2558-    integer, intent(in) :: i
+2559-    character(32) :: md5sum
+2560-    md5sum = simulation%md5sum_alt(i)
+2561-  end function simulation_get_md5sum_alt
+--
+2568-    type(beam_data_t), pointer :: beam_data
+2569-    type(beam_structure_t), pointer :: beam_structure
+2570-    type(flavor_t), dimension(:), allocatable :: flv
+2571-    integer :: n, i
+2572-    logical :: enable_alt, construct_beam_data
+2573-    real(default) :: sqrts
+2574-    class(model_data_t), pointer :: model
+2575-    logical :: decay_rest_frame
+2576-    type(string_t) :: process_id
+2577-    enable_alt = .true.;  if (present (alt))  enable_alt = alt
+2578-    if (debug_on) call msg_debug (D_CORE, "simulation_get_data")
+2579-    if (debug_on) call msg_debug (D_CORE, "alternative setup", enable_alt)
+2580-    if (enable_alt) then
+2581-       call sdata%init (simulation%n_prc, simulation%n_alt)
+2582-       do i = 1, simulation%n_alt
+2583-          sdata%md5sum_alt(i) = simulation%get_md5sum_alt (i)
+2584-       end do
+2585-    else
+2586-       call sdata%init (simulation%n_prc)
+2587-    end if
+2588:    sdata%unweighted = simulation%unweighted
+2589:    sdata%negative_weights = simulation%negative_weights
+2590-    sdata%norm_mode = simulation%norm_mode
+2591-    process => simulation%entry(1)%get_process_ptr ()
+2592-    if (associated (process)) then
+2593-       beam_data => process%get_beam_data_ptr ()
+2594-       construct_beam_data = .false.
+2595-    else
+2596-       n = simulation%entry(1)%n_in
+2597-       sqrts = simulation%local%get_sqrts ()
+2598-       beam_structure => simulation%local%beam_structure
+2599-       call beam_structure%check_against_n_in (n, construct_beam_data)
+2600-       if (construct_beam_data) then
+2601-          allocate (beam_data)
+2602-          model => simulation%local%model
+2603-          decay_rest_frame = &
+2604-               simulation%local%get_lval (var_str ("?decay_rest_frame"))
+2605-          call beam_data%init_structure (beam_structure, &
+2606-               sqrts, model, decay_rest_frame)
+2607-       else
+2608-          beam_data => null ()
+2609-       end if
+2610-    end if
+2611-    if (associated (beam_data)) then
+2612-       n = beam_data%get_n_in ()
+2613-       sdata%n_beam = n
+2614-       allocate (flv (n))
+2615-       flv = beam_data%get_flavor ()
+2616-       sdata%pdg_beam(:n) = flv%get_pdg ()
+2617-       sdata%energy_beam(:n) = beam_data%get_energy ()
+2618-       if (construct_beam_data)  deallocate (beam_data)
+2619-    else
+2620-       n = simulation%entry(1)%n_in
+2621-       sdata%n_beam = n
+2622-       process_id = simulation%entry(1)%process_id
+2623-       call simulation%local%prclib%get_pdg_in_1 &
+2624-            (process_id, sdata%pdg_beam(:n))
+2625-       sdata%energy_beam(:n) = sqrts / n
+2626-    end if
+2627-    do i = 1, simulation%n_prc
+2628-       if (.not. simulation%entry(i)%valid) cycle
+2629-       process => simulation%entry(i)%get_process_ptr ()

@@ -1,0 +1,53 @@
+{
+  "checks": {
+    "effective_iterations": true,
+    "effective_seed": true,
+    "generated_two_events": true,
+    "localized_includes": true,
+    "requested_seed_recorded": true,
+    "whizard_3_1_8": true,
+    "whizard_finished": true
+  },
+  "metadata": {
+    "archive_workspace": false,
+    "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+    "effective_card": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_process.sin",
+    "effective_card_sha256": "7b53e60fd7d85050b6d65f4c39ca93d51609cae608e647fb355133b1d8d0552a",
+    "effective_integration_include": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_common/integration.inc",
+    "effective_integration_include_sha256": "b5eb9b3629225e1b7c353628821fa3066b73d1381cca07954ddee270b5e672e6",
+    "end_utc": "2026-08-04T15:46:49Z",
+    "generated_events": 2,
+    "hostname": "lxplus949.cern.ch",
+    "integration_iterations": "1:8900",
+    "production_mode": "direct_full_six_fermion",
+    "random_streams": {
+      "pythia_seed": null,
+      "whizard_seed": 420001
+    },
+    "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+    "raw_lhe_sha256": "60617f3d4e549a34d83458db3c4139400c5b51ee15d58e328c2c0ecc6fc695c6",
+    "requested_events": 2,
+    "runtime": {
+      "required_whizard_version": "3.1.8",
+      "whizard_binary": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard",
+      "whizard_version": "WHIZARD 3.1.8"
+    },
+    "sample_id": "f6f365_ee_LR100_epmum",
+    "schema_version": 1,
+    "scratch_directory": "/tmp/cglenn/full6f_f6f365_ee_LR100_epmum__epmum__shard_0000_kJsjvD",
+    "shard_index": 0,
+    "shard_label": "shard_0000",
+    "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+    "source_card_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+    "start_utc": "2026-08-04T15:46:34Z",
+    "status": "success",
+    "subprocess_id": "epmum"
+  },
+  "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+  "raw_lhe_sha256": "60617f3d4e549a34d83458db3c4139400c5b51ee15d58e328c2c0ecc6fc695c6",
+  "run_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z/runs/f6f365_ee_LR100_epmum/epmum/shard_0000",
+  "run_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_localized_smoke_20260804T154633Z",
+  "schema_version": 1,
+  "status": "PASS",
+  "test": "Phase 10A direct-full6f worker localized-card smoke"
+}

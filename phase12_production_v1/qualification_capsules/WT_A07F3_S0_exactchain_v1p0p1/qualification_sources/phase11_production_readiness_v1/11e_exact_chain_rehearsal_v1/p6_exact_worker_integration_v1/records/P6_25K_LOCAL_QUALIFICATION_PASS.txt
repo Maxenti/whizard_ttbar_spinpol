@@ -1,0 +1,80 @@
+PHASE-11E P6 EXACT-WORKER 25000-EVENT LOCAL QUALIFICATION
+==========================================================
+
+Status: PASS
+
+Authoritative hard-process shard:
+/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0001/phase11c_S0_11E_0001_seed311191001.lhe
+
+Raw input SHA256:
+9811baf6cd621d12b1b384385d9cbcfef45d3f2701433ebefe05bc892c9b7b69
+
+P5-qualified serialized reference SHA256:
+d244b87903718ec9b1436415344a01c0c16fb816d76db3854c8f8b4c91109baf
+
+Worker preparation:
+- canonical events = 25000
+- canonicalized events = 25000
+- removed bridge particles = 50000
+- promoted beam particles = 50000
+- rewired ISR photons = 50000
+- removed sqme_prc tags = 25000
+- serializer reordered events = 24926
+- serializer moved particles = 54202
+- serializer max displacement = 4
+- particles added = 0
+- particles removed = 0
+- resonances added = 0
+- resonances removed = 0
+
+Strict history serialization:
+PARTICLE_CONTENT_PRESERVATION=PASS
+MOTHER_INDEX_REMAP=PASS
+MOTHER_BEFORE_CHILD=PASS
+DAUGHTER_CONTIGUITY=PASS
+HISTORY_SERIALIZATION_VALIDATION=PASS
+
+Automatic prepared-LHE SHA256:
+d244b87903718ec9b1436415344a01c0c16fb816d76db3854c8f8b4c91109baf
+
+Prepared-LHE byte regression against P5: PASS
+
+PYTHIA reproduction seed:
+711225001
+
+PYTHIA/HepMC:
+- requested = 25000
+- attempted = 25000
+- accepted = 25000
+- failed = 0
+- bad-weight events = 0
+- MEC-above-PS warnings = 1271
+- recoverable error occurrences = 3
+- recovered hadronization retries = 1
+- unknown error occurrences = 0
+
+History-presence diagnostic: PASS
+
+HepMC full-file SHA comparison:
+- full file differs from P5 because provenance attributes intentionally differ
+- physics records E/U/W/V/P are byte-identical
+- all non-attribute records are byte-identical
+- exactly 50000 attribute lines differ
+- 25000 differences are whizard_campaign_id
+- 25000 differences are whizard_shard_id
+
+P5/P6 physics-record SHA256:
+54ec2ea1cee5e1ac82170520e82082c7f4a9f6410af9420daf26d39212ec7b9f
+
+P6_P5_HEPMC_PHYSICS_RECORD_BYTE_GATE=PASS
+
+EOS output:
+/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_tests_v1/20260821T144322Z_P6_25K_EXACT
+
+Conclusion:
+The P6 exact worker reproduces the qualified P5 physics chain from raw
+WHIZARD input through PYTHIA and HepMC at full 25000-event shard scale.
+Whole-file HepMC differences are exclusively intentional campaign/shard
+provenance attributes.
+
+Proceed to the final 4 x 25000 HTCondor P6 rehearsal without code changes.

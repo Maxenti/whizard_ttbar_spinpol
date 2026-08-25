@@ -1,0 +1,19 @@
+Phase 11C.5G-A generation-envelope stress result
+================================================
+
+WT11C_STATUS=PASS_ALL_GRIDS
+WT11C_TOTAL_EVENTS=30000
+WT11C_GLOBAL_UNIQUE_EVENTS=30000
+WT11C_DUPLICATE_EVENT_HASHES=0
+
+Frozen aggregate gates:
+  excess_fraction <= 0.01
+  aggregate_avg_excess <= 0.01
+  global_max_excess <= 10.0
+
+S0: gate=PASS technical=PASS events=10000 excess_events=24 excess_fraction=0.0024 aggregate_avg_excess=0.00060966 global_max_excess=1.051
+S1: gate=PASS technical=PASS events=10000 excess_events=31 excess_fraction=0.0031 aggregate_avg_excess=0.0006139565 global_max_excess=1.026
+S2: gate=PASS technical=PASS events=10000 excess_events=25 excess_fraction=0.0025 aggregate_avg_excess=0.000582345 global_max_excess=0.8482
+
+Next action:
+  Freeze C5G-A PASS and build a fresh C5R holdout using new validation-only seeds; do not reuse stress events for physics.

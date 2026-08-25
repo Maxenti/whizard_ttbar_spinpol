@@ -1,0 +1,98 @@
+PHASE 11C WT GENERATION-ENVELOPE STRESS PLAN
+=============================================
+
+Purpose
+-------
+Qualify event-generation envelope robustness for the already integration-
+qualified WT A07/F3 family before opening the single-grid versus multi-grid
+physics holdout.
+
+Physics
+-------
+WT-restricted 365 GeV LR100 full 2->6 matrix element.
+
+Frozen grids
+------------
+S0:
+  predetermined production-grid candidate
+
+S1:
+  first independent reference grid
+
+S2:
+  second independent reference grid
+
+All are independent members of the qualified A07/F3 family.
+
+The grid identities are frozen before generation. No post-result grid
+substitution is allowed.
+
+Stress ensemble
+---------------
+Per grid:
+  20 independent shards
+  500 accepted unweighted events per shard
+  10,000 events total
+
+Full campaign:
+  3 grids
+  60 jobs
+  30,000 accepted events
+
+Generation-only validation
+--------------------------
+These events are diagnostic-only.
+
+Do NOT inspect or use physics distributions from this stress campaign when
+making the envelope decision.
+
+Technical requirements per shard
+--------------------------------
+- STATUS=PASS
+- WHIZARD_RC=0
+- REUSE_PASS
+- exactly 500 requested and written events
+- workspace unchanged
+- no new grid initialization
+- expected PHS hash unchanged
+- expected VG2 hash unchanged
+- correct frozen grid-construction seed
+- correct validation shard RNG seed
+- exactly one valid LHE
+- unit unweighted LHE event weights
+- correct final-state signature
+- no duplicate exact-event records
+
+Frozen envelope gates per GRID
+------------------------------
+After combining all 20 shards / 10,000 events:
+
+excess_fraction <= 0.01
+
+aggregate_avg_excess <= 0.01
+
+global_max_excess <= 10
+
+All 20 shards must be technically valid.
+
+Decision policy
+---------------
+If S0, S1 and S2 pass:
+  PASS_ALL_GRIDS
+  proceed to fresh single-grid vs multi-grid physics holdout.
+
+If S0 passes but S1 or S2 fails:
+  FAIL_REFERENCE_ONLY
+  S0 remains the predetermined production candidate.
+  The failed reference may NOT be replaced by whichever existing seed looks
+  best. A fresh predetermined reference must be qualified separately.
+
+If S0 fails:
+  FAIL_PRODUCTION_CANDIDATE
+  stop Phase 11C physics holdout and revisit the generation-envelope
+  prescription.
+
+Technical failures:
+  rerun the exact same grid with the exact same shard RNG seed only.
+
+No threshold or decision rule may be changed after submission.

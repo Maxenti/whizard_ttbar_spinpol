@@ -1,0 +1,528 @@
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+|=============================================================================|
+|=============================================================================|
+|                                                                             |
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|                                                                             |
+|=============================================================================|
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                                                             |
+|                                                                             |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                                                             |
+|                                      sWW                                    |
+|                                                                             |
+|                                      WWW                                    |
+|                                        W                                    |
+|                                       sW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                      WWW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                  wWW  WW                                    |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                                  WW   WW                                    |
+|                               wWWWWwww       wWWWWW                         |
+|                                  WW   WW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                     WWWW                      WWWW     WWw                  |
+|                                     WwwwwwwwwWWW                            |
+|                                 WW    WW                                    |
+|                       WWWWww                   WWWW                         |
+|                                                                             |
+|                                                                             |
+|                                 WW    WW                                    |
+|                                                                             |
+|                           WWWwwww              WWWW                         |
+|                                WW     WW                                    |
+|                               wWWWWwww       wWWWWW                         |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|                                WW     WW                                    |
+|                                    WW WW                                    |
+|        Contact: <whizard@desy.de>                                           |
+|                                     WwwwwwwwwWWW                            |
+|           wwwwww              WW      WW                                    |
+|                                    WW WW                                    |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|              WWWWWww          WW      WW                                    |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+|                                                                             |
+|                               WHIZARD 3.1.8
+|=============================================================================|
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'vamp2_repro.sin'
+| Switching to model 'SM', scheme 'default'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+| Reading commands from file 'vamp2_repro.sin'
+| Switching to model 'SM', scheme 'default'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 12345
+| Process library 'default_lib': recorded process 'mupair'
+sqrts =  2.500000000000E+02
+| MPI: wait for master to finish process initialization ...
+| Reading commands from file 'vamp2_repro.sin'
+| Switching to model 'SM', scheme 'default'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 12345
+| Process library 'default_lib': recorded process 'mupair'
+sqrts =  2.500000000000E+02
+| MPI: wait for master to finish process initialization ...
+openmp_num_threads = 1
+seed = 12345
+| Process library 'default_lib': recorded process 'mupair'
+sqrts =  2.500000000000E+02
+| MPI: wait for master to finish process initialization ...
+| Reading commands from file 'vamp2_repro.sin'
+| Switching to model 'SM', scheme 'default'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 12345
+| Process library 'default_lib': recorded process 'mupair'
+sqrts =  2.500000000000E+02
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        mupair_i1.f90,.mod,.lo
+  OMEGA     mupair_i1.f90
+[1/1] e- e+ -> mu- mu+ ... allowed. [time: 0.24 secs, total: 0.24 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.24 secs]
+SUMMARY: 6 fusions, 2 propagators, 2 diagrams
+SUMMARY: 4 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 12345
+| Initializing integration for process mupair:
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 2.500000000000E+02 GeV
+| Phase space: generating configuration ...
+| Phase space: ... success.
+| Phase space: writing configuration file 'mupair.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'mupair'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'mupair_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| MPI: finish process initialization, load slaves ...
+| Integrate: current process library needs compilation
+| Integrate: current process library needs compilation
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 12345
+| Initializing integration for process mupair:
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 2.500000000000E+02 GeV
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 12345
+| MPI: Workers do not build phase space configuration.
+| Initializing integration for process mupair:
+| Phase space: keeping configuration file 'mupair.i1.phs'
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 2.500000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'mupair'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'mupair_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| MPI: Workers do not build phase space configuration.
+| Phase space: keeping configuration file 'mupair.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'mupair'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'mupair_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 12345
+| Initializing integration for process mupair:
+| Beam structure: [any particles]
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)
+|   e+  (mass = 5.1099700E-04 GeV)
+|   sqrts = 2.500000000000E+02 GeV
+| MPI: Workers do not build phase space configuration.
+| Phase space: keeping configuration file 'mupair.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'mupair'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'mupair_i1':   e-, e+ => mu-, mu+ [omega]
+| ------------------------------------------------------------------------
+| Phase space: 2 channels, 2 dimensions
+| Phase space: found 2 channels, collected in 2 groves.
+| Phase space: Using 2 equivalences between channels.
+| Phase space: wood
+Warning: No cuts have been defined.
+| MPI: Using 4 processes.
+| MPI: Using 4 processes.
+| MPI: slave worker #1
+| MPI: Using 4 processes.
+| MPI: slave worker #3
+| MPI: slave worker #2
+| MPI: Using 4 processes.
+| MPI: master worker
+| OpenMP: Using 1 thread
+| OpenMP: Using 1 thread
+| Starting integration for process 'mupair'
+| Starting integration for process 'mupair'
+| OpenMP: Using 1 thread
+| OpenMP: Using 1 thread
+| Integrate: iterations = 5:100000
+| Integrate: iterations = 5:100000
+| Starting integration for process 'mupair'
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'mupair.m1.vg2'
+| Integrator: Write grid header and grids to 'mupair.m1.vg2'
+| Integrate: iterations = 5:100000
+| Integrator: Grid checkpoint after each iteration
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Starting integration for process 'mupair'
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+| Integrate: iterations = 5:100000
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| Integrator: 2 chains, 2 channels, 2 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: VAMP2
+| Integrator: Write grid header and grids to 'mupair.m1.vg2'
+|=============================================================================|
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+| Integrator: Using VAMP2 channel equivalences
+| VAMP2: Initialize new grids and write to file 'mupair.m1.vg2'.
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| Integrator: Write grid header and grids to 'mupair.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: Initialize new grids and write to file 'mupair.m1.vg2'.
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+| VAMP2: set chain: use chained weights.
+| VAMP2: set chain: use chained weights.
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: Initialize new grids and write to file 'mupair.m1.vg2'.
+| VAMP2: set chain: use chained weights.
+| VAMP2: Initialize new grids and write to file 'mupair.m1.vg2'.
+| VAMP2: set chain: use chained weights.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+   1      78400  1.7665595E+03  3.56E-02    0.00    0.01*  39.01
+   1      78400  1.7665595E+03  3.56E-02    0.00    0.01*  39.01
+   1      78400  1.7665595E+03  3.56E-02    0.00    0.01*  39.01
+   1      78400  1.7665595E+03  3.56E-02    0.00    0.01*  39.01
+   2      78400  1.7665308E+03  3.56E-02    0.00    0.01   39.01
+   2      78400  1.7665308E+03  3.56E-02    0.00    0.01   39.01
+   2      78400  1.7665308E+03  3.56E-02    0.00    0.01   39.01
+   2      78400  1.7665308E+03  3.56E-02    0.00    0.01   39.01
+   3      78400  1.7665347E+03  3.55E-02    0.00    0.01*  39.01
+   3      78400  1.7665347E+03  3.55E-02    0.00    0.01*  39.01
+   3      78400  1.7665347E+03  3.55E-02    0.00    0.01*  39.01
+   3      78400  1.7665347E+03  3.55E-02    0.00    0.01*  39.01
+   4      78400  1.7665547E+03  3.60E-02    0.00    0.01   39.01
+   4      78400  1.7665547E+03  3.60E-02    0.00    0.01   39.01
+   4      78400  1.7665547E+03  3.60E-02    0.00    0.01   39.01
+   4      78400  1.7665547E+03  3.60E-02    0.00    0.01   39.01
+   5      78400  1.7664856E+03  3.55E-02    0.00    0.01*  39.01
+   5      78400  1.7664856E+03  3.55E-02    0.00    0.01*  39.01
+   5      78400  1.7664856E+03  3.55E-02    0.00    0.01*  39.01
+   5      78400  1.7664856E+03  3.55E-02    0.00    0.01*  39.01
+|-----------------------------------------------------------------------------|
+   5     392000  1.7665330E+03  1.59E-02    0.00    0.01   39.01    0.68   5
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+   5     392000  1.7665330E+03  1.59E-02    0.00    0.01   39.01    0.68   5
+   5     392000  1.7665330E+03  1.59E-02    0.00    0.01   39.01    0.68   5
+|=============================================================================|
+|=============================================================================|
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+|-----------------------------------------------------------------------------|
+   5     392000  1.7665330E+03  1.59E-02    0.00    0.01   39.01    0.68   5
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| There were no errors and    1 warning(s).
+| There were no errors and    1 warning(s).
+| WHIZARD run finished.
+| WHIZARD run finished.
+|=============================================================================|
+| There were no errors and    1 warning(s).
+|=============================================================================|
+| There were no errors and    1 warning(s).
+| WHIZARD run finished.
+| WHIZARD run finished.
+|=============================================================================|
+|=============================================================================|

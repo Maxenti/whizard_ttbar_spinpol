@@ -1,0 +1,61 @@
+Correction / refinement to A07_S3_F3_INFRA_FAILURE.txt
+
+Node:
+C_A07_S3_F3
+
+Original Condor job:
+6054024.0
+
+Campaign DAG:
+6053426
+
+The original note correctly classified this as an infrastructure/wrapper
+failure rather than a WHIZARD numerical or physics failure.
+
+Subsequent inspection refined the mechanism:
+
+1. run_fixed_child.sh DOES use:
+       mkdir -p "$DEST"
+
+2. For this node:
+       DEST = <campaign output>/fixed/A07_S3/F3
+
+3. The four siblings F0/F1/F2/F3 were submitted concurrently.
+
+4. Failed-node stderr contains only:
+       mkdir: cannot create directory '<...>/fixed/A07_S3': File exists
+
+5. Failed-node stdout is empty.
+
+6. No F3 output directory was created.
+
+7. The shared parent:
+       <...>/fixed/A07_S3
+   is currently a normal EOS/FUSE directory.
+
+8. F0, F1, and F2 subsequently completed normally and contain full
+   fixed-child products.
+
+Therefore the best-supported diagnosis is a transient EOS/FUSE/shared-parent
+directory-creation metadata race during the initial mkdir -p operation.
+
+The failure occurred before meaningful WHIZARD execution and must not be
+classified as a stochastic integration failure.
+
+The precise internal EOS/FUSE race mechanism is not proven; this wording
+supersedes the earlier overly specific description implying use of a plain
+mkdir without -p.
+
+Remediation:
+After the original DAG drains, replay exactly C_A07_S3_F3 in isolation,
+preserving:
+- parent A07_S3 grid,
+- fixed prescription F3,
+- seed identity S3,
+- frozen WT source,
+- qualified WHIZARD runtime,
+- all other campaign physics/configuration.
+
+Do not retry repeatedly. One isolated technical replay is sufficient to
+replace the execution lost to this infrastructure failure, while preserving
+the original failed attempt as provenance.

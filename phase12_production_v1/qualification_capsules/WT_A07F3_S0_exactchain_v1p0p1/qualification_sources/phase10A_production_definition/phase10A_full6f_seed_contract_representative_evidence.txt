@@ -1,0 +1,77 @@
+
+================================================================
+STATE=unpol
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/isr.inc")
+     4	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     5	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/integration.inc")
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/event_output.inc")
+
+--- common/integration.inc ---
+     1	! Explicit WHIZARD hard-process seed. This assignment must precede
+     2	! integration so the integration grid and generated events are replayable.
+     3	seed = 3087664
+     4	iterations = 0:0
+     5	integrate (proc_epmum)
+
+--- render_context.json seed ---
+sample_id=f6f365_ee_unpol_epmum
+exact_subprocess_id=epmum
+polarization=unpolarized
+generator_seed=3087664
+
+================================================================
+STATE=LR100
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc")
+     4	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc")
+     7	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc")
+
+--- common/integration.inc ---
+     1	! Explicit WHIZARD hard-process seed. This assignment must precede
+     2	! integration so the integration grid and generated events are replayable.
+     3	seed = 672175147
+     4	iterations = 0:0
+     5	integrate (proc_epmum)
+
+--- render_context.json seed ---
+sample_id=f6f365_ee_LR100_epmum
+exact_subprocess_id=epmum
+polarization=LR100
+generator_seed=672175147
+
+================================================================
+STATE=RL100
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/isr.inc")
+     4	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/integration.inc")
+     7	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/event_output.inc")
+
+--- common/integration.inc ---
+     1	! Explicit WHIZARD hard-process seed. This assignment must precede
+     2	! integration so the integration grid and generated events are replayable.
+     3	seed = 1812360
+     4	iterations = 0:0
+     5	integrate (proc_epmum)
+
+--- render_context.json seed ---
+sample_id=f6f365_ee_RL100_epmum
+exact_subprocess_id=epmum
+polarization=RL100
+generator_seed=1812360

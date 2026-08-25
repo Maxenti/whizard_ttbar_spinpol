@@ -1,0 +1,74 @@
+Phase 11C pre-results helicity implementation correction
+=========================================================
+
+Status
+------
+
+This correction was performed before inspection of the S1_A or S2_A
+physics distributions and before execution of the primary
+SINGLE-vs-MULTI statistical comparison.
+
+The predetermined validation criteria remain frozen.
+
+Unchanged
+---------
+
+  * observable list
+  * histogram definitions
+  * KS tests
+  * chi-square tests
+  * Holm-Bonferroni correction
+  * familywise alpha
+  * SMD thresholds
+  * quantile/IQR thresholds
+  * SINGLE composition
+  * MULTI composition
+  * particle-selection behavior
+  * event samples
+  * validation decision rule
+
+Correction
+----------
+
+The charged-lepton helicity-frame transformation previously used:
+
+  lab -> parent-top rest frame
+
+while defining the helicity axis from the top direction in the
+ttbar rest frame.
+
+It was corrected to use the frame sequence:
+
+  lab -> ttbar rest frame -> parent-top rest frame
+
+for the charged lepton as well.
+
+This ensures that the charged-lepton direction and the helicity axis
+are evaluated using the same helicity-frame construction when the
+ttbar system has ISR-induced recoil.
+
+Validation
+----------
+
+The implementation correction was checked on the already-existing
+S0_A sample.
+
+Required conditions:
+
+  * event count unchanged;
+  * event hashes unchanged;
+  * parser issues unchanged;
+  * all non-helicity observables exactly unchanged;
+  * only the three helicity observables change;
+  * corrected helicity observables remain finite and inside [-1,+1].
+
+See the terminal/provenance record for the scope-test output.
+
+Original validator SHA256:
+  1e1aab81d3a2be19c81c25cdc150f86b0c56c128be59941f03447a033a4a3dfe
+
+Corrected validator SHA256:
+  c6d499ff0b22e9c46649c80b8659eb8423341ff07ab72d740b885ed3f1d17a71
+
+Original validator backup:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid.py.pre_helicity_fix_20260814T174110Z.bak

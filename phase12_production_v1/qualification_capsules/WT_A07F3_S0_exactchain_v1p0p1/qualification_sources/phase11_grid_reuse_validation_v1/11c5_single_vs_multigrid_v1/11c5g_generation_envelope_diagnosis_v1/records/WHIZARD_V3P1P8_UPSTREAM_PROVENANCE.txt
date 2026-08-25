@@ -1,0 +1,25 @@
+WHIZARD upstream source provenance
+==================================
+
+Repository:
+  https://gitlab.tp.nt.uni-siegen.de/whizard/public.git
+
+Tag:
+  v3.1.8
+
+Annotated tag object:
+  098f7db8c2cf34ebf3cf134f27b94a68ba26bff2
+
+Dereferenced commit:
+  cdd6517ac503227c1a4c16ce62ecce889f99f31f
+
+The Phase-11 qualified runtime reports WHIZARD 3.1.8.
+
+The original temporary build-source tree is no longer present on the
+current lxplus host, but source snapshots from the qualified build are
+preserved under:
+
+  build_logs/whizard-3.1.8-mpi-omp-qualified-20260811/mpi_source_snapshot/
+
+Those snapshots are preferred for the immediate forensic audit.
+The upstream v3.1.8 tag is retained as an independent source reference.

@@ -1,0 +1,120 @@
+Phase 11C.5G source-level diagnosis
+===================================
+
+WHIZARD version:
+  3.1.8
+
+Relevant qualified-build source snapshots:
+  src_vegas_vamp2_sub.f90
+  src_mci_mci_vamp2_sub.f90
+  src_whizard-core_simulations_sub.f90
+
+
+VAMP2 unweighting
+-----------------
+
+For a sampled event with raw event weight w and stored per-channel
+maximum M = max_abs_f:
+
+  if |w| > M:
+
+      event_excess = |w| / M - 1
+
+      the event is immediately accepted.
+
+Otherwise ordinary rejection sampling uses:
+
+  event_rescale * M * r <= |w|
+
+with r uniform on [0,1).
+
+
+Output event weight
+-------------------
+
+After VAMP2 accepts the event, the MCI wrapper assigns:
+
+  +1 for positive events
+  -1 for negative events
+
+The magnitude |w|/M is not retained as the output event weight.
+
+
+Counter semantics
+-----------------
+
+For every generated event:
+
+  counter.total += 1
+
+For positive event excess e:
+
+  counter.excess += 1
+  counter.max_excess = max(counter.max_excess, e)
+  counter.sum_excess += e
+
+Reported average excess is:
+
+  counter.sum_excess / counter.total
+
+
+C5 pathological shards
+-----------------------
+
+S1_B:
+  N = 10000
+  excess events = 42
+  maximum excess = 4938
+  average excess = 0.4965
+
+Therefore:
+  worst raw-weight ratio ~= 4939 * max_abs_f
+  sum excess ~= 4965
+  worst event contributes ~= 99.46% of total excess.
+
+S2_B:
+  N = 10000
+  excess events = 25
+  maximum excess = 61.87
+  average excess = 0.007643
+
+Therefore:
+  worst raw-weight ratio ~= 62.87 * max_abs_f
+  sum excess ~= 76.43
+  worst event contributes ~= 80.95% of total excess.
+
+
+Safety factor
+-------------
+
+VAMP2 event_rescale_f_max defaults to 1.
+
+No C5 campaign safety-factor override was found.
+
+Importantly, the |w| > max_abs_f test occurs BEFORE event_rescale is
+used in the ordinary rejection test.
+
+Therefore increasing the safety factor does not eliminate events that
+already exceed the stored max_abs_f.
+
+
+Conclusion
+----------
+
+The C5 failure is a genuine generation-envelope robustness failure.
+
+It is not:
+  - an LHE parsing issue;
+  - an event-count issue;
+  - a unit-weight serialization issue;
+  - a simple safety-factor configuration problem;
+  - evidence of a SINGLE-vs-MULTI physics disagreement.
+
+Integration convergence and generation-envelope robustness must be
+qualified separately.
+
+No failed C5 reference shard may be replaced by retrying RNG seeds
+until a favorable shard is found.
+
+The next stage is a predetermined generation-envelope stress ensemble
+for the frozen grids, with no physics unblinding.

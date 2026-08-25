@@ -1,0 +1,24 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/showering/run_pythia_shard.sh
+
+arguments = --input $(input_lhe) --input-sha256 $(input_sha256) --parent-lhe $(parent_lhe) --source-event-start $(source_start) --source-event-stop $(source_stop) --output-root /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/shower --sample-id $(sample_id) --campaign-id full6f_365gev_ee_ttbar_spinpol_v1 --shard-id $(shard_id) --seed $(pythia_seed) --max-events $(max_events) --executable /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/build/qis_lhe_to_hepmc3 --settings /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/pythia/level_a.cmnd --key4hep-setup /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/setup_lxplus.sh --repo-root /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol --qed-shower-by-gamma off
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/submissions/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1
+
+should_transfer_files = NO
+getenv = False
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 16000MB
+
++JobFlavour = "nextweek"
+
+output = logs/pythia.$(shard_id).$(ClusterId).$(ProcId).out
+error  = logs/pythia.$(shard_id).$(ClusterId).$(ProcId).err
+log    = pythia.condor.log
+
+notification = Never
+
+queue input_lhe, input_sha256, parent_lhe, source_start, source_stop, sample_id, shard_id, pythia_seed, max_events from pythia_queue.tsv

@@ -1,0 +1,36 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c3_rng_controller_factorial_v1/submissions/20260814T175932Z_G2S0_rng_2x2_100ev/run_rng_factorial.sh
+
+arguments = \
+  --repo /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol \
+  --mode $(mode) \
+  --checkpoint-kind $(checkpoint_kind) \
+  --workspace-tar $(workspace_tar) \
+  --expected-vg2-sha $(vg2_sha) \
+  --expected-phs-sha $(phs_sha) \
+  --source-card /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin \
+  --output-root /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_rng_controller_factorial_v1/20260814T175932Z_G2S0_rng_2x2_100ev \
+  --grid-seed $(grid_seed) \
+  --pre-integration-seed $(pre_seed) \
+  --generation-seed $(post_seed) \
+  --events 100
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c3_rng_controller_factorial_v1/submissions/20260814T175932Z_G2S0_rng_2x2_100ev
+
+should_transfer_files = NO
+getenv = False
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 3000MB
+
++JobFlavour = "microcentury"
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = condor.log
+
+notification = Never
+
+queue mode, checkpoint_kind, workspace_tar, vg2_sha, phs_sha, grid_seed, pre_seed, post_seed from /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c3_rng_controller_factorial_v1/submissions/20260814T175932Z_G2S0_rng_2x2_100ev/itemdata.tsv

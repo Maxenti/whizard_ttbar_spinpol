@@ -1,0 +1,23 @@
+FCC LEGACY 8-SEED SUMMARY
+======================================================================
+
+S0  sigma=11.495036 fb  error=0.010200 fb  calls=1999750
+S1  sigma=11.508669 fb  error=0.010100 fb  calls=1999740
+S2  sigma=11.518021 fb  error=0.010100 fb  calls=1999770
+S3  sigma=11.500931 fb  error=0.010200 fb  calls=1999740
+S4  sigma=11.487461 fb  error=0.010200 fb  calls=1999700
+S5  sigma=11.498294 fb  error=0.010100 fb  calls=1999730
+S6  sigma=11.486819 fb  error=0.010000 fb  calls=1999790
+S7  sigma=11.495382 fb  error=0.010200 fb  calls=1999780
+
+N=8
+MEAN_FB=11.498826625
+MEDIAN_FB=11.496838000
+MIN_FB=11.486819000
+MAX_FB=11.518021000
+RELATIVE_RANGE_PCT=0.271349
+WEIGHTED_MEAN_FB=11.498836764
+WEIGHTED_ERROR_FB=0.003583893
+CHI2=7.542219
+NDF=7
+REDUCED_CHI2=1.077460

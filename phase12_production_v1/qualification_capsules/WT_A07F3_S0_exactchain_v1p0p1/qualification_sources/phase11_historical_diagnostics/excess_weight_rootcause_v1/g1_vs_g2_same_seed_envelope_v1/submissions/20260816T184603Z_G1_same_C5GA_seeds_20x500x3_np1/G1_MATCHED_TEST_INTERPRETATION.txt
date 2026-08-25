@@ -1,0 +1,23 @@
+Phase 11 excess-weight root-cause test:
+G1 versus G2 same-map / same-seed comparison
+================================================
+
+Purpose:
+  Compare G1 and G2 using the exact same 20x500 generation RNG
+  streams per S0/S1/S2.
+
+Known prior fact:
+  For a given integration seed, G1 and G2 have byte-identical
+  sampling-map blocks but different serialized max_abs_f states.
+
+Therefore this test isolates the effect of the stored generation
+envelope much more cleanly than a comparison between independently
+adapted maps.
+
+G1 is NOT being proposed as a replacement production candidate.
+
+The inherited C5G-A collector status strings such as
+FAIL_PRODUCTION_CANDIDATE are not authoritative for this diagnostic.
+Only the per-grid technical and envelope metrics are interpreted.
+
+No post-result promotion of G1 is allowed.

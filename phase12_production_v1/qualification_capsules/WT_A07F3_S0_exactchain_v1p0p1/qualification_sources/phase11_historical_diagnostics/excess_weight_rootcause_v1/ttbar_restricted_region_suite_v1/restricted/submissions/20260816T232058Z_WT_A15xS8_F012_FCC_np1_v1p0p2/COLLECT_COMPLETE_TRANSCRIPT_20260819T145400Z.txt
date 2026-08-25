@@ -1,0 +1,5 @@
+NODE_SUMMARY=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/collected/node_summary.tsv
+ITERATION_ROWS=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/collected/iteration_rows.tsv
+NODES_EXPECTED=496
+NODES_PASS=496
+COLLECT_CAMPAIGN=PASS

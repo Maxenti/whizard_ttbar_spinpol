@@ -1,0 +1,76 @@
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin
+================================================================
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc")
+     4	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc")
+     7	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc")
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/render_context.json
+================================================================
+     1	{
+     2	  "channel": "epmum",
+     3	  "exact_subprocess_id": "epmum",
+     4	  "final_state": [
+     5	    "b",
+     6	    "bbar",
+     7	    "e+",
+     8	    "nu_e",
+     9	    "mu-",
+    10	    "anti_nu_mu"
+    11	  ],
+    12	  "generator_seed": 672175147,
+    13	  "polarization": "LR100",
+    14	  "process_sin_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+    15	  "sample_id": "f6f365_ee_LR100_epmum",
+    16	  "topology": "prompt_dilepton"
+    17	}
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc
+================================================================
+     1	model = SM
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc
+================================================================
+     1	beams = e1, E1 => isr
+     2	sqrts = 365.0 GeV
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc
+================================================================
+     1	?isr_handler = true
+     2	$isr_handler_mode = "recoil"
+     3	?keep_beams = true
+     4	?keep_remnants = true
+     5	isr_mass = me
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc
+================================================================
+     1	beams_pol_density = @(-1), @(+1)
+     2	beams_pol_fraction = 100%, 100%
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc
+================================================================
+     1	! Explicit WHIZARD hard-process seed. This assignment must precede
+     2	! integration so the integration grid and generated events are replayable.
+     3	seed = 672175147
+     4	iterations = 0:0
+     5	integrate (proc_epmum)
+
+================================================================
+FILE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc
+================================================================
+     1	simulate (proc_epmum) {
+     2	  n_events = 0
+     3	  sample_format = lhef
+     4	  $sample = "proc_epmum"
+     5	}

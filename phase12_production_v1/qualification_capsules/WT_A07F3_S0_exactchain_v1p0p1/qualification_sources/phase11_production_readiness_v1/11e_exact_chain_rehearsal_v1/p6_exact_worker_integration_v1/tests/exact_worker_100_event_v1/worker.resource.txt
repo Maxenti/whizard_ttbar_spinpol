@@ -1,0 +1,23 @@
+	Command being timed: "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/candidate/run_pythia_shard.p6_candidate.sh --input /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/tests/exact_worker_100_event_v1/input/raw_S0_0001_first100.lhe --input-sha256 dc6eb79635dfe0072b44ba07dab5b957b9e0ae07c2593bb1cd9ffc292147b858 --parent-lhe /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/whizard_merged/full6f365_ee_LR100_epmum_WT_A07F3_S0.lhe --source-event-start 0 --source-event-stop 100 --output-root /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_tests_v1/20260821T143924Z_P6_100_EVENT --sample-id full6f365_ee_LR100_epmum_WT_A07F3_S0 --campaign-id phase11e_p6_exact_worker_v1 --shard-id P6_100_0001 --seed 711260100 --max-events 100 --executable /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/build/qis_lhe_to_hepmc3 --settings /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/pythia/level_a.cmnd --repo-root /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol --helper-dir /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/candidate --key4hep-setup /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/setup_lxplus.sh --qed-shower-by-gamma off"
+	User time (seconds): 1.27
+	System time (seconds): 1.88
+	Percent of CPU this job got: 18%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:17.30
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 18516
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 229
+	Minor (reclaiming a frame) page faults: 39568
+	Voluntary context switches: 65153
+	Involuntary context switches: 731
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 6192
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

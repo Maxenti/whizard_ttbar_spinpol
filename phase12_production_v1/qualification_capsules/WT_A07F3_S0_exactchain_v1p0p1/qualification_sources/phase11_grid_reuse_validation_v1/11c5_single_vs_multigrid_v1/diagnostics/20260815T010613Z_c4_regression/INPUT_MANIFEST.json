@@ -1,0 +1,30 @@
+{
+  "S0_C": {
+    "events_seen": 10000,
+    "file_size_bytes": 18360304,
+    "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/r0_same_map_maxabsf_v1/20260814T163010Z_R0v2_G1_G2_10k_np1/R0_G2_S0/phase11c_R0_G2_S0_seed211120001.lhe",
+    "sha256": "591918e2fd8ab1b5697d29121c2becc18a970ffd0fc1d730eb1c774846dffd21",
+    "unique_event_hashes": 10000
+  },
+  "S0_D": {
+    "events_seen": 10000,
+    "file_size_bytes": 18360304,
+    "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_s0b_v2_v1/20260814T235258Z_S0Bv2_10k_np1/S0_B_v2/phase11c_S0_B_v2_seed211120002.lhe",
+    "sha256": "4a527d1f4825721c5d9abbb80efe7e14046fde3adea05e9e9f29a11e58fa8bab",
+    "unique_event_hashes": 10000
+  },
+  "S1_B": {
+    "events_seen": 10000,
+    "file_size_bytes": 18360304,
+    "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S1_A/phase11c_S1_A_seed211120101.lhe",
+    "sha256": "92d26efbdc5e323472833b8b009a52bf71f5e5a8782ce6692d3bd0faf2acbc6c",
+    "unique_event_hashes": 10000
+  },
+  "S2_B": {
+    "events_seen": 10000,
+    "file_size_bytes": 18360304,
+    "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S2_A/phase11c_S2_A_seed211120102.lhe",
+    "sha256": "0b46a8b3991e22c891537ba024652f1984a2b57403121a3d42dcfc8e2d8e517b",
+    "unique_event_hashes": 10000
+  }
+}

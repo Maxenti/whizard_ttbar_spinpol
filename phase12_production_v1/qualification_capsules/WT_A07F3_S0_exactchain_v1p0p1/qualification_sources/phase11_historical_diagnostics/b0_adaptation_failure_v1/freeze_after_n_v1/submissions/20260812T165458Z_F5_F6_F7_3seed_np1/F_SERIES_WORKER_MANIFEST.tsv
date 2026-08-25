@@ -1,0 +1,10 @@
+mode	family	seed_name	seed	iterations	worker
+F5_S0	F5	S0	1740114216	5:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F5_S0.sh
+F5_S1	F5	S1	1751949026	5:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F5_S1.sh
+F5_S2	F5	S2	1885084773	5:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F5_S2.sh
+F6_S0	F6	S0	1740114216	6:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F6_S0.sh
+F6_S1	F6	S1	1751949026	6:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F6_S1.sh
+F6_S2	F6	S2	1885084773	6:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F6_S2.sh
+F7_S0	F7	S0	1740114216	7:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F7_S0.sh
+F7_S1	F7	S1	1751949026	7:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F7_S1.sh
+F7_S2	F7	S2	1885084773	7:100000:"gw",3:200000:""	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/run_F7_S2.sh

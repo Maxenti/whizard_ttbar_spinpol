@@ -1,0 +1,9 @@
+include("${COMMON_DIR}/model.inc")
+include("${COMMON_DIR}/parameters.inc")
+include("${COMMON_DIR}/beams.inc")
+include("${COMMON_DIR}/isr.inc")
+include("${COMMON_DIR}/polarization.inc")
+process ${PROCESS_NAME} = e1, E1 => ${FINAL_STATE}
+include("${COMMON_DIR}/diagnostics.inc")
+include("${COMMON_DIR}/integration.inc")
+include("${COMMON_DIR}/event_output.inc")

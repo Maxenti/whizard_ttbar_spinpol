@@ -1,0 +1,19 @@
+universe = vanilla
+
+executable = run_d3_vamp2_tao_np1_v1.sh
+arguments = D3_vamp2_tao_np1 $(out_root)
+
+output = logs/D3_vamp2_tao_np1.$(ClusterId).$(ProcId).out
+error  = logs/D3_vamp2_tao_np1.$(ClusterId).$(ProcId).err
+log    = logs/d3.$(ClusterId).log
+
+request_cpus   = 1
+request_memory = 3000MB
+request_disk   = 6000MB
+
++JobFlavour = "tomorrow"
+
+getenv = True
+should_transfer_files = NO
+
+queue out_root from itemdata.tsv

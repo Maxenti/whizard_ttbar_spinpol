@@ -1,0 +1,7 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/isr.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/sources/U_unrestricted/common/event_output.inc")

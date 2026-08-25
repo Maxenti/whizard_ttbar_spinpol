@@ -1,0 +1,65 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign.env: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/CAMPAIGN_DESIGN.json: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/DECISION_POLICY.txt: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign_manifest.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign.dag: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/adaptive_parent.sub: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/fixed_child.sub: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/adaptive_prescriptions.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/fixed_prescriptions.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/seeds.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/beams.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/diagnostics.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/event_output.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/integration.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/isr.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/model.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/parameters.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/polarization.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/render_context.json: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/collect_results.py: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/preflight_campaign.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/run_adaptive_parent.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/run_fixed_child.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/status_campaign.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/submit_campaign.sh: OK
+===== DAG STATIC BUILD CHECK =====
+
+-----------------------------------------------------------------------
+File for submitting this DAG to HTCondor           : campaign.dag.condor.sub
+Log of DAGMan debugging messages                   : campaign.dag.dagman.out
+Log of HTCondor library output                     : campaign.dag.lib.out
+Log of HTCondor library error messages             : campaign.dag.lib.err
+Log of the life of condor_dagman itself            : campaign.dag.dagman.log
+
+-no_submit given, not submitting DAG to HTCondor. You can do this with:
+"condor_submit campaign.dag.condor.sub"
+-----------------------------------------------------------------------
+===== MYSCHEdd BUMP =====
+Selected best schedd 'bigbird102.cern.ch' for user 'cglenn' in pool 'share'
+===== DAG SUBMISSION =====
+Submitting job(s).
+1 job(s) submitted to cluster 6052520.
+
+-----------------------------------------------------------------------
+File for submitting this DAG to HTCondor           : campaign.dag.condor.sub
+Log of DAGMan debugging messages                   : campaign.dag.dagman.out
+Log of HTCondor library output                     : campaign.dag.lib.out
+Log of HTCondor library error messages             : campaign.dag.lib.err
+Log of the life of condor_dagman itself            : campaign.dag.dagman.log
+
+-----------------------------------------------------------------------
+Phase 11 unrestricted integration-stability scan v1
+===================================================
+DAGMan cluster: 6052520
+Schedd: bigbird102.cern.ch
+Campaign directory: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1
+DAG nodes: 480
+Adaptive parents: 120
+Fixed children: 360
+Submission UTC: 2026-08-16T20:30:17Z
+
+DAG_CLUSTER=6052520
+SCAN_SCHEDD=bigbird102.cern.ch
+CAMPAIGN_SUBMISSION=PASS

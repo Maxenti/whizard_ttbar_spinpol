@@ -1,0 +1,76 @@
+PHASE-11D NP4 GENERATION SMOKE — RETRY1 CLOSEOUT
+================================================
+
+Cluster:
+6065616
+
+Mode:
+S0_NP4_SMOKE_25K
+
+Grid:
+S0 / WT_A07F3
+
+WHIZARD seed:
+311190001
+
+Requested events:
+25000
+
+MPI ranks:
+4
+
+Result:
+FAIL -- technical MPI shared-workspace compilation race.
+
+Observed failure:
+WHIZARD dynamically generated and compiled the resonant subprocess
+library proc_epmum_R concurrently on four MPI ranks sharing one working
+directory.
+
+The ranks simultaneously created, removed, and compiled files including:
+
+proc_epmum_R*_i1.f90
+proc_epmum_R*_i1.mod
+proc_epmum_R*_i1.lo
+
+One rank subsequently failed with:
+
+Fatal Error:
+Cannot open module file
+'opr_proc_epmum_r1_i1_computation.mod'
+
+mpirun then terminated because one rank returned nonzero.
+
+Generation result:
+0 events.
+
+Frozen-grid integrity:
+PASS.
+
+WORKSPACE_UNCHANGED=1
+NEW_GRID_INIT_COUNT=0
+
+PHS unchanged:
+516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+
+VG2 unchanged:
+8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+
+Physics interpretation:
+NONE.
+
+This failure is an execution/filesystem race during dynamic resonant
+subprocess-library compilation, not a failure of S0, A07/F3, VAMP2,
+or the generated physics distribution.
+
+Production decision:
+Do not pursue intra-job MPI generation for the current production.
+
+Use the already-qualified np1 frozen-grid generation architecture and
+obtain campaign-level parallelism through independent HTCondor shards.
+
+Reason:
+np1 generation has already passed the full Phase-11C frozen-grid and
+single-grid-vs-multigrid validation. Event-generation throughput is not
+currently limiting enough to justify introducing and qualifying a new
+per-rank isolated-workspace MPI architecture.

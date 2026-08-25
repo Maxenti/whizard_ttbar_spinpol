@@ -1,0 +1,16 @@
+{
+  "already_valid_events": 49,
+  "input_path": "/tmp/cglenn/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0003_seed311191003.canonical_relaxed.lhe",
+  "max_particle_displacement": 4,
+  "output_path": "/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0003_seed311191003.serialized_v1.lhe",
+  "particles_added": 0,
+  "particles_removed": 0,
+  "reordered_events": 24951,
+  "resonances_added": 0,
+  "resonances_removed": 0,
+  "schema_version": 1,
+  "tool": "reorder_lhe_history_for_pythia_v1",
+  "total_events": 25000,
+  "total_moved_particles": 54071,
+  "total_particles": 345737
+}

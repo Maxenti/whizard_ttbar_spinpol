@@ -1,0 +1,14 @@
+{
+  "already_canonical_events": 0,
+  "canonicalized_events": 25000,
+  "input_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0001/phase11c_S0_11E_0001_seed311191001.lhe",
+  "max_abs_closure_gev": 9.408836376678664e-09,
+  "max_rel_closure": 2.577763390870867e-11,
+  "output_path": "/tmp/cglenn/p6_preparation_regression_shard1/canonical_isr.lhe",
+  "promoted_beam_particles": 50000,
+  "removed_bridge_particles": 50000,
+  "removed_sqme_prc_tags": 25000,
+  "rewired_isr_photons": 50000,
+  "schema_version": 1,
+  "total_events": 25000
+}

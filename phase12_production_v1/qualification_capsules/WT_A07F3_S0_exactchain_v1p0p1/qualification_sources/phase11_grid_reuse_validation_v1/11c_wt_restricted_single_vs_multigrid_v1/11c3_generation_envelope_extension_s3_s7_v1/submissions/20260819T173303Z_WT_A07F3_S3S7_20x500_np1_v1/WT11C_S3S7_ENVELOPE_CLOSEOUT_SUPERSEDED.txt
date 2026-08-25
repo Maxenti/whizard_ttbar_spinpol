@@ -1,0 +1,4 @@
+The original WT11C_S3S7_ENVELOPE_CLOSEOUT.txt was written after a
+collector run whose aggregate grid set was incorrectly hard-coded to
+S0/S1/S2. It is retained as provenance but is NOT authoritative.
+Use the later _v2 closeout produced from the S3-S7-aware collector.

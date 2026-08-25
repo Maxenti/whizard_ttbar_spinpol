@@ -1,0 +1,36 @@
+
+  module subroutine mci_vamp2_instance_compute_weight (mci, c)
+    class(mci_vamp2_instance_t), intent(inout) :: mci
+    integer, intent(in) :: c
+    mci%gi = mci%func%get_probabilities ()
+    mci%mci_weight = mci%func%get_weight ()
+  end subroutine mci_vamp2_instance_compute_weight
+
+  module subroutine mci_vamp2_instance_record_integrand (mci, integrand)
+    class(mci_vamp2_instance_t), intent(inout) :: mci
+    real(default), intent(in) :: integrand
+    mci%integrand = integrand
+    call mci%func%set_integrand (integrand)
+  end subroutine mci_vamp2_instance_record_integrand
+
+  module subroutine mci_vamp2_instance_init_simulation (instance, safety_factor)
+    class(mci_vamp2_instance_t), intent(inout) :: instance
+    real(default), intent(in), optional :: safety_factor
+    if (present (safety_factor)) instance%event_rescale_f_max = safety_factor
+    instance%n_events = 0
+    instance%event_generated = .false.
+    if (instance%event_rescale_f_max /= 1) then
+       write (msg_buffer, "(A,ES10.3,A)") "Simulate: &
+            &applying safety factor ", instance%event_rescale_f_max, &
+            & " to event rejection."
+       call msg_message ()
+    end if
+  end subroutine mci_vamp2_instance_init_simulation
+
+  module subroutine mci_vamp2_instance_final_simulation (instance)
+    class(mci_vamp2_instance_t), intent(inout) :: instance
+    !
+  end subroutine mci_vamp2_instance_final_simulation
+
+  module function mci_vamp2_instance_get_event_weight (mci) result (weight)
+    class(mci_vamp2_instance_t), intent(in) :: mci

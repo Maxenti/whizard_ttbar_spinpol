@@ -1,0 +1,37 @@
+Campaign:
+20260816T230807Z_WT_A15xS8_F012_FCC_np1
+
+DAG cluster:
+6053002
+
+Schedd:
+bigbird102.cern.ch
+
+Status:
+FAILED / SUPERSEDED
+
+Physics preflight:
+PASS
+
+WHIZARD 3.1.8 successfully parsed and initialized the WT-restricted
+full-6f process.
+
+Runtime failure:
+The generated Condor submit descriptors consumed the macro
+
+  $(node_output_root)
+
+but prepare_restricted_scan.py did not define node_output_root in the
+restricted DAG VARS records.
+
+This affected all initially eligible root nodes:
+  120 adaptive parents
+  8 FCC legacy controls
+
+The resulting DAG must not be used for physics qualification and must
+not be rescued.
+
+Resolution:
+Prepare a fresh restricted campaign using suite v1.0.2 or later.
+
+The WT physics definition itself is NOT invalidated by this failure.

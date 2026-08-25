@@ -1,0 +1,39 @@
+FINAL_HOLDOUT_VALIDATOR_WRAPPER=ACTIVE
+QUALIFIED_VALIDATOR=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py
+QUALIFIED_VALIDATOR_SHA256=6ca54d4cce6b33044deb005b6cf7ebeb1437c33105bf7d48e586ff3b20b3ce9a
+ORIGINAL_EXPECTED_EVENTS_PER_COMPONENT=10000
+FINAL_EXPECTED_EVENTS_PER_COMPONENT=32000
+Reading S0_C: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_C.lhe
+Reading S0_D: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_D.lhe
+Reading S1_B: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S1_B.lhe
+Reading S2_B: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S2_B.lhe
+PHASE11C5_SINGLE_VS_MULTIGRID=PASS
+Structural failures: 0
+Holm-rejected tests: 0 / 48
+Practical-equivalence failures: 0
+SMD failures: 0
+KS_D failures: 0
+
+Largest |SMD| values:
+  m_tbar                       -0.013067
+  pt_muminus                   +0.010798
+  energy_muminus               +0.008737
+  eta_eplus                    -0.008038
+  energy_eplus                 +0.007833
+  cos_opening_ll               -0.006369
+  cos_helicity_muminus         +0.006115
+  m_Wminus                     -0.005722
+  cos_helicity_product         -0.004986
+  deltaR_ll                    +0.004607
+
+Largest KS_D values:
+  m_top                        0.007094
+  cos_helicity_product         0.006859
+  pt_muminus                   0.006672
+  m_tt                         0.006547
+  energy_muminus               0.006484
+  energy_eplus                 0.006375
+  pt_tt                        0.005812
+  cos_helicity_muminus         0.005547
+  cos_opening_ll               0.005453
+  abs_y_tt                     0.005391

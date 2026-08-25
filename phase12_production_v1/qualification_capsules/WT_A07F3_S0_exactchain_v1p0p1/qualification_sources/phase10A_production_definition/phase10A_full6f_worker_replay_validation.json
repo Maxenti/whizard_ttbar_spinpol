@@ -1,0 +1,205 @@
+{
+  "checks": {
+    "A_effective_seed_exact": true,
+    "A_event_count": true,
+    "A_localized_process_card": true,
+    "A_metadata_success": true,
+    "A_production_mode_full6f": true,
+    "A_requested_seed_recorded": true,
+    "A_success_marker": true,
+    "A_whizard_finished": true,
+    "A_whizard_version_3_1_8": true,
+    "B_effective_seed_exact": true,
+    "B_event_count": true,
+    "B_localized_process_card": true,
+    "B_metadata_success": true,
+    "B_production_mode_full6f": true,
+    "B_requested_seed_recorded": true,
+    "B_success_marker": true,
+    "B_whizard_finished": true,
+    "B_whizard_version_3_1_8": true,
+    "C_effective_seed_exact": true,
+    "C_event_count": true,
+    "C_localized_process_card": true,
+    "C_metadata_success": true,
+    "C_production_mode_full6f": true,
+    "C_requested_seed_recorded": true,
+    "C_success_marker": true,
+    "C_whizard_finished": true,
+    "C_whizard_version_3_1_8": true,
+    "different_seed_changes_lhe": true,
+    "different_seed_rng_sequences_differ": true,
+    "same_seed_lhe_byte_identical": true,
+    "same_seed_rng_sequences_identical": true
+  },
+  "expected": {
+    "events": 10,
+    "seed_ab": 420101,
+    "seed_c": 420102
+  },
+  "failed_checks": [],
+  "runs": {
+    "A": {
+      "effective_seed_assignments": [
+        420101
+      ],
+      "lhe_event_count": 10,
+      "lhe_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+      "lhe_sha256": "265a928b4bff40f5b82799b6e309723d9928f93373e1eb4eaa271aeff5977412",
+      "localized_process_card": true,
+      "metadata": {
+        "archive_workspace": false,
+        "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+        "effective_card": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_process.sin",
+        "effective_card_sha256": "7b53e60fd7d85050b6d65f4c39ca93d51609cae608e647fb355133b1d8d0552a",
+        "effective_integration_include": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_common/integration.inc",
+        "effective_integration_include_sha256": "8dc8fa9efeb188bc90c5db9d2f7292cc95dcad13d261a2c029a34cf11515b268",
+        "end_utc": "2026-08-04T15:51:40Z",
+        "generated_events": 10,
+        "hostname": "lxplus949.cern.ch",
+        "integration_iterations": "1:8900",
+        "production_mode": "direct_full_six_fermion",
+        "random_streams": {
+          "pythia_seed": null,
+          "whizard_seed": 420101
+        },
+        "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+        "raw_lhe_sha256": "265a928b4bff40f5b82799b6e309723d9928f93373e1eb4eaa271aeff5977412",
+        "requested_events": 10,
+        "runtime": {
+          "required_whizard_version": "3.1.8",
+          "whizard_binary": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard",
+          "whizard_version": "WHIZARD 3.1.8"
+        },
+        "sample_id": "f6f365_ee_LR100_epmum",
+        "schema_version": 1,
+        "scratch_directory": "/tmp/cglenn/full6f_f6f365_ee_LR100_epmum__epmum__shard_0000_eKLhwR",
+        "shard_index": 0,
+        "shard_label": "shard_0000",
+        "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+        "source_card_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+        "start_utc": "2026-08-04T15:51:27Z",
+        "status": "success",
+        "subprocess_id": "epmum"
+      },
+      "metadata_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/run_metadata.json",
+      "rng_sequence": [
+        26885,
+        26886
+      ],
+      "root": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101",
+      "run_dir": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_A_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000",
+      "success_marker": true,
+      "whizard_finished": true
+    },
+    "B": {
+      "effective_seed_assignments": [
+        420101
+      ],
+      "lhe_event_count": 10,
+      "lhe_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+      "lhe_sha256": "265a928b4bff40f5b82799b6e309723d9928f93373e1eb4eaa271aeff5977412",
+      "localized_process_card": true,
+      "metadata": {
+        "archive_workspace": false,
+        "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+        "effective_card": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_process.sin",
+        "effective_card_sha256": "7b53e60fd7d85050b6d65f4c39ca93d51609cae608e647fb355133b1d8d0552a",
+        "effective_integration_include": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_common/integration.inc",
+        "effective_integration_include_sha256": "8dc8fa9efeb188bc90c5db9d2f7292cc95dcad13d261a2c029a34cf11515b268",
+        "end_utc": "2026-08-04T15:51:57Z",
+        "generated_events": 10,
+        "hostname": "lxplus949.cern.ch",
+        "integration_iterations": "1:8900",
+        "production_mode": "direct_full_six_fermion",
+        "random_streams": {
+          "pythia_seed": null,
+          "whizard_seed": 420101
+        },
+        "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+        "raw_lhe_sha256": "265a928b4bff40f5b82799b6e309723d9928f93373e1eb4eaa271aeff5977412",
+        "requested_events": 10,
+        "runtime": {
+          "required_whizard_version": "3.1.8",
+          "whizard_binary": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard",
+          "whizard_version": "WHIZARD 3.1.8"
+        },
+        "sample_id": "f6f365_ee_LR100_epmum",
+        "schema_version": 1,
+        "scratch_directory": "/tmp/cglenn/full6f_f6f365_ee_LR100_epmum__epmum__shard_0000_7hu9jC",
+        "shard_index": 0,
+        "shard_label": "shard_0000",
+        "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+        "source_card_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+        "start_utc": "2026-08-04T15:51:44Z",
+        "status": "success",
+        "subprocess_id": "epmum"
+      },
+      "metadata_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/run_metadata.json",
+      "rng_sequence": [
+        26885,
+        26886
+      ],
+      "root": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101",
+      "run_dir": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_B_seed420101/runs/f6f365_ee_LR100_epmum/epmum/shard_0000",
+      "success_marker": true,
+      "whizard_finished": true
+    },
+    "C": {
+      "effective_seed_assignments": [
+        420102
+      ],
+      "lhe_event_count": 10,
+      "lhe_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+      "lhe_sha256": "c6d310c200bdced1897a45361a140a2d0057504a9d79a7281324b83b5afac083",
+      "localized_process_card": true,
+      "metadata": {
+        "archive_workspace": false,
+        "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+        "effective_card": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_process.sin",
+        "effective_card_sha256": "7b53e60fd7d85050b6d65f4c39ca93d51609cae608e647fb355133b1d8d0552a",
+        "effective_integration_include": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/effective_common/integration.inc",
+        "effective_integration_include_sha256": "d92aa6cd9fcccd16c038f445ad47bf80be81fe985f29e078ddc7885fb683b7a3",
+        "end_utc": "2026-08-04T15:52:15Z",
+        "generated_events": 10,
+        "hostname": "lxplus949.cern.ch",
+        "integration_iterations": "1:8900",
+        "production_mode": "direct_full_six_fermion",
+        "random_streams": {
+          "pythia_seed": null,
+          "whizard_seed": 420102
+        },
+        "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/lhe_raw/f6f365_ee_LR100_epmum/epmum/f6f365_ee_LR100_epmum__epmum__shard_0000.lhe",
+        "raw_lhe_sha256": "c6d310c200bdced1897a45361a140a2d0057504a9d79a7281324b83b5afac083",
+        "requested_events": 10,
+        "runtime": {
+          "required_whizard_version": "3.1.8",
+          "whizard_binary": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard",
+          "whizard_version": "WHIZARD 3.1.8"
+        },
+        "sample_id": "f6f365_ee_LR100_epmum",
+        "schema_version": 1,
+        "scratch_directory": "/tmp/cglenn/full6f_f6f365_ee_LR100_epmum__epmum__shard_0000_ZyQai1",
+        "shard_index": 0,
+        "shard_label": "shard_0000",
+        "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+        "source_card_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+        "start_utc": "2026-08-04T15:52:01Z",
+        "status": "success",
+        "subprocess_id": "epmum"
+      },
+      "metadata_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/runs/f6f365_ee_LR100_epmum/epmum/shard_0000/run_metadata.json",
+      "rng_sequence": [
+        26886,
+        26887
+      ],
+      "root": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102",
+      "run_dir": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_replay_20260804T155121Z/run_C_seed420102/runs/f6f365_ee_LR100_epmum/epmum/shard_0000",
+      "success_marker": true,
+      "whizard_finished": true
+    }
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "test": "Phase 10A full6f worker deterministic replay"
+}

@@ -1,0 +1,9 @@
+Cluster:
+  20196193
+
+ProcId mapping:
+
+  0  S0_C  G2_S0  shard_seed=211160001
+  1  S0_D  G2_S0  shard_seed=211160002
+  2  S1_B  G2_S1  shard_seed=211160101
+  3  S2_B  G2_S2  shard_seed=211160102

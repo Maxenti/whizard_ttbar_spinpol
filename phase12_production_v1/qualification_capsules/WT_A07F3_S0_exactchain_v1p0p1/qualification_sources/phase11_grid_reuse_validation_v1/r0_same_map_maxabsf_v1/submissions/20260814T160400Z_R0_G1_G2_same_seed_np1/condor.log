@@ -1,0 +1,114 @@
+000 (20196148.000.000) 08/14 18:05:08 Job submitted from host: <188.185.72.155:9618?addrs=188.185.72.155-9618+[2001-1458-d00-8--100-95]-9618&alias=bigbird08.cern.ch&noUDP&sock=schedd_5621_1def>
+...
+000 (20196148.001.000) 08/14 18:05:08 Job submitted from host: <188.185.72.155:9618?addrs=188.185.72.155-9618+[2001-1458-d00-8--100-95]-9618&alias=bigbird08.cern.ch&noUDP&sock=schedd_5621_1def>
+...
+040 (20196148.000.000) 08/14 18:05:54 Started transferring input files
+	Transferring to host: <188.185.195.62:9618?addrs=188.185.195.62-9618+[2001-1458-303-22--100-3a]-9618&alias=b9p17p5734.cern.ch&noUDP&sock=slot1_21_4653_3596_27703>
+...
+040 (20196148.000.000) 08/14 18:05:54 Finished transferring input files
+...
+040 (20196148.001.000) 08/14 18:05:55 Started transferring input files
+	Transferring to host: <188.185.195.152:9618?addrs=188.185.195.152-9618+[2001-1458-303-22--100-94]-9618&alias=b9p17p7151.cern.ch&noUDP&sock=slot1_42_6123_f512_26984>
+...
+040 (20196148.001.000) 08/14 18:05:55 Finished transferring input files
+...
+001 (20196148.000.000) 08/14 18:05:55 Job executing on host: <188.185.195.62:9618?addrs=188.185.195.62-9618+[2001-1458-303-22--100-3a]-9618&alias=b9p17p5734.cern.ch&noUDP&sock=startd_3529_2dcf>
+	SlotName: slot1_21@b9p17p5734.cern.ch
+	CondorScratchDir = "/pool/condor/dir_2747404"
+	Cpus = 2
+	Disk = 8194807
+	GPUs = 0
+	Memory = 6000
+...
+001 (20196148.001.000) 08/14 18:05:56 Job executing on host: <188.185.195.152:9618?addrs=188.185.195.152-9618+[2001-1458-303-22--100-94]-9618&alias=b9p17p7151.cern.ch&noUDP&sock=startd_5028_5e46>
+	SlotName: slot1_42@b9p17p7151.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3619541"
+	Cpus = 2
+	Disk = 8194879
+	GPUs = 0
+	Memory = 6000
+...
+006 (20196148.000.000) 08/14 18:06:04 Image size of job updated: 14064
+	14  -  MemoryUsage of job (MB)
+	14064  -  ResidentSetSize of job (KB)
+...
+006 (20196148.001.000) 08/14 18:06:05 Image size of job updated: 13428
+	14  -  MemoryUsage of job (MB)
+	13428  -  ResidentSetSize of job (KB)
+...
+006 (20196148.000.000) 08/14 18:11:05 Image size of job updated: 103508
+	102  -  MemoryUsage of job (MB)
+	103508  -  ResidentSetSize of job (KB)
+...
+006 (20196148.001.000) 08/14 18:11:06 Image size of job updated: 103396
+	101  -  MemoryUsage of job (MB)
+	103396  -  ResidentSetSize of job (KB)
+...
+006 (20196148.000.000) 08/14 18:16:05 Image size of job updated: 114352
+	112  -  MemoryUsage of job (MB)
+	114352  -  ResidentSetSize of job (KB)
+...
+006 (20196148.001.000) 08/14 18:16:06 Image size of job updated: 114240
+	112  -  MemoryUsage of job (MB)
+	114240  -  ResidentSetSize of job (KB)
+...
+006 (20196148.001.000) 08/14 18:21:06 Image size of job updated: 125036
+	123  -  MemoryUsage of job (MB)
+	125036  -  ResidentSetSize of job (KB)
+...
+006 (20196148.000.000) 08/14 18:21:06 Image size of job updated: 125148
+	123  -  MemoryUsage of job (MB)
+	125148  -  ResidentSetSize of job (KB)
+...
+006 (20196148.001.000) 08/14 18:25:01 Image size of job updated: 135880
+	123  -  MemoryUsage of job (MB)
+	125036  -  ResidentSetSize of job (KB)
+...
+006 (20196148.000.000) 08/14 18:25:01 Image size of job updated: 135992
+	123  -  MemoryUsage of job (MB)
+	125148  -  ResidentSetSize of job (KB)
+...
+040 (20196148.001.000) 08/14 18:25:01 Started transferring output files
+...
+040 (20196148.001.000) 08/14 18:25:01 Finished transferring output files
+...
+040 (20196148.000.000) 08/14 18:25:01 Started transferring output files
+...
+040 (20196148.000.000) 08/14 18:25:01 Finished transferring output files
+...
+004 (20196148.001.000) 08/14 18:25:01 Job was evicted. Code 1009 Subcode 0
+	(0) CPU times
+		Usr 0 00:18:33, Sys 0 00:00:07  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	17183  -  Run Bytes Sent By Job
+	13813  -  Run Bytes Received By Job
+	Reason: Claim deactivated
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.99        2         2 
+	   Disk (KB)            : 39680     8192000   8194879 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   123        6000      6000 
+	   TimeExecute (s)      :  1145                       
+	   TimeSlotBusy (s)     :  1147                       
+...
+009 (20196148.001.000) 08/14 18:25:01 Job was aborted.
+	via condor_rm (by user cglenn)
+...
+004 (20196148.000.000) 08/14 18:25:01 Job was evicted. Code 1009 Subcode 0
+	(0) CPU times
+		Usr 0 00:18:39, Sys 0 00:00:05  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	17242  -  Run Bytes Sent By Job
+	13813  -  Run Bytes Received By Job
+	Reason: Claim deactivated
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.99        2         2 
+	   Disk (KB)            : 39680     8192000   8194807 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   123        6000      6000 
+	   TimeExecute (s)      :  1146                       
+	   TimeSlotBusy (s)     :  1148                       
+...
+009 (20196148.000.000) 08/14 18:25:01 Job was aborted.
+	via condor_rm (by user cglenn)
+...

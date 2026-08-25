@@ -1,0 +1,36 @@
+Phase 11C R0 first reuse attempt
+================================
+
+Cluster:
+  20196148
+
+Status:
+  ABORTED BY USER
+
+Reason:
+  The generation-only card omitted an explicit integrate() command.
+
+Observed WHIZARD behavior:
+  simulate(proc_epmum) determined that the fresh process-library instance
+  needed integration.
+
+  Because no explicit iterations prescription was supplied, WHIZARD used
+  its default:
+
+    15:50000:"gw",5:100000:""
+
+  VAMP2 successfully recognized the staged .vg2 and replayed the stored
+  compatible integration prefix, but then began computing additional
+  iterations required by the default prescription.
+
+Scientific consequence:
+  This is not a valid frozen-grid generation-reuse test.
+
+Master workspace:
+  Not affected. Jobs operated on private scratch copies.
+
+Required correction:
+  Explicitly invoke integrate(proc_epmum) with exactly the integration
+  prescription already stored in each workspace, so all requested
+  iterations can be satisfied from the grid/results file and no new
+  numerical integration is performed.

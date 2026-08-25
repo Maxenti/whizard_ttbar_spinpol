@@ -1,0 +1,122 @@
+Phase 11C frozen-grid RNG-controller qualification
+===================================================
+
+Campaign:
+  full6f_365gev_ee_ttbar_spinpol_v1
+
+Process:
+  e- e+ -> b bbar e+ nue mu- numubar
+
+Configuration:
+  sqrt(s) = 365 GeV
+  LR100
+  SM + ISR
+  WHIZARD 3.1.8
+  VAMP2
+  rng_stream
+
+Frozen grid tested:
+  G2_S0
+
+PHS SHA256:
+  20733e0e17025d2c73f73a666c5b62f92c105ca98114231020130b77f5730d5d
+
+VG2 SHA256:
+  87969b9b4cf40b1c31bea520be30da86ea728dba7f20bcea6acf17a207d1c4f6
+
+
+Background
+----------
+
+Two 10000-event jobs using the same frozen G2_S0 state had:
+
+  S0_A:
+    pre-integrate seed = 1740114216
+    pre-simulate seed  = 211120001
+
+  S0_B:
+    pre-integrate seed = 1740114216
+    pre-simulate seed  = 211120002
+
+WHIZARD reported distinct RNG initialization values immediately before
+simulation, but the resulting LHE files were byte-for-byte identical.
+
+Exact-event overlap:
+  S0_A vs S0_B = 10000 / 10000
+
+
+Controlled 2x2 factorial
+------------------------
+
+All jobs used the exact same immutable G2_S0 PHS/VG2 artifacts.
+
+       pre-integrate    pre-simulate
+  P00  211130001       211140001
+  P01  211130001       211140002
+  P10  211130002       211140001
+  P11  211130002       211140002
+
+Each job generated 100 unique events.
+
+Exact-event result:
+
+  P00 vs P01:
+    overlap = 100
+    same-position = 100
+    ordered-identical = YES
+
+  P10 vs P11:
+    overlap = 100
+    same-position = 100
+    ordered-identical = YES
+
+  All comparisons with different pre-integrate seeds:
+    overlap = 0
+    same-position = 0
+    ordered-identical = NO
+
+
+Conclusion
+----------
+
+For this frozen VAMP2 + rng_stream reuse architecture, the RNG seed
+active when integrate(process) initializes/reuses the integration state
+controls the hard-event realization.
+
+Changing the later seed immediately before simulate(process) does not
+change the resulting LHE event sequence.
+
+The frozen PHS/VG2 integration artifacts remained byte-identical under
+changes of the pre-integrate seed:
+
+  WORKSPACE_UNCHANGED = 1
+  NEW_GRID_INIT_COUNT = 0
+
+Therefore the production shard seed must be applied BEFORE the reused
+integrate(process) step.
+
+
+Production consequence
+----------------------
+
+The previous architecture
+
+  seed = GRID_SEED
+  integrate(process)
+
+  seed = GENERATION_SEED
+  simulate(process)
+
+does NOT produce independent shards when the same frozen integration
+workspace is reused.
+
+The production architecture must instead give each generation shard a
+unique RNG seed before integrate(process).
+
+Exact-event duplicate detection is henceforth a mandatory production
+validation gate.
+
+S0_B from the original 11C.3 campaign is excluded because it is an
+exact duplicate of S0_A.
+
+S1_A and S2_A remain valid independent MULTI-reference samples.

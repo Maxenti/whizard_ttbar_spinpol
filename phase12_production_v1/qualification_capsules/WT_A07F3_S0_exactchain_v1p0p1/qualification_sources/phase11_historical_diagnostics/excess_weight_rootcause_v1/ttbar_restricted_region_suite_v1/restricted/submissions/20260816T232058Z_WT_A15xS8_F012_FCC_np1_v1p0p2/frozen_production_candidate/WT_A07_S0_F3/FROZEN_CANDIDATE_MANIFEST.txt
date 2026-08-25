@@ -1,0 +1,59 @@
+PHASE 11C FROZEN SINGLE-GRID CANDIDATE
+======================================
+
+Physics definition:
+WT-restricted full 2->6 matrix element
+
+Campaign:
+20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2
+
+Candidate:
+A07_S0_F3
+
+Adaptive prescription:
+A07 = 10:100000:"gw"
+
+Fixed validation:
+F3 = 10:200000:""
+
+Seed-selection rule:
+S0 is used as the predetermined representative of the qualified family.
+No selection was made based on which of S0-S7 produced the prettiest
+cross section, smallest error, efficiency, or generation behavior.
+
+Family qualification:
+
+A07 adaptive:
+- 8/8 seeds pass
+- relative range = 0.273%
+- reduced chi2 = 0.274
+- weighted cross section = 11.497624 +/- 0.007559 fb
+
+A07/F3:
+- 8/8 seeds pass
+- relative range = 0.323%
+- reduced chi2 = 1.183
+- weighted cross section = 11.497938 +/- 0.004202 fb
+
+Independent FCC-legacy controls:
+- 8/8 PASS
+- weighted cross section approximately 11.498837 +/- 0.003584 fb
+- relative range approximately 0.271%
+- reduced chi2 approximately 1.077
+
+A07/F3 vs FCC legacy:
+- difference approximately -0.000899 fb
+- approximately -0.16 sigma
+- relative difference approximately -0.008%
+
+Interpretation:
+The exact FCC-style WT integration prescription is numerically stable
+across independent integration seeds and independently reproduced by the
+full FCC-legacy controls.
+
+This qualifies the WT-restricted signal definition only. It does not make
+the unrestricted six-fermion process numerically equivalent or physically
+identical.
+
+Next gate:
+Phase 11C single-grid versus multi-grid event-generation validation.

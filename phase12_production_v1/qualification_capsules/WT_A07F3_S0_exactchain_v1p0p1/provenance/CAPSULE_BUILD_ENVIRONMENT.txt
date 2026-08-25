@@ -1,0 +1,7 @@
+recipe_id=WT_A07F3_S0_exactchain_v1p0p1
+base_phase12_tag=phase12-WT_A07F3_S0-exactchain-v1p0p1-frozen
+base_phase12_commit=a48e46e802d6c29e70666022a9b8777766714492
+git_branch=feature/top-qis-framework-v1
+build_utc=2026-08-25T14:12:29Z
+hostname=lxplus9113.cern.ch
+user=cglenn

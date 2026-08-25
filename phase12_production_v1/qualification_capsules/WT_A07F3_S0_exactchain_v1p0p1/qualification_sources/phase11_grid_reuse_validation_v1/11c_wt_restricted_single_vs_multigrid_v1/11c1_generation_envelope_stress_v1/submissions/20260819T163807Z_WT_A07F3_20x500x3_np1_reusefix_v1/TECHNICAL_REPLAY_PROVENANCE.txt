@@ -1,0 +1,49 @@
+WT PHASE-11C GENERATION-ENVELOPE TECHNICAL REPLAY
+=================================================
+
+Superseded campaign:
+20260819T151300Z_WT_A07F3_20x500x3_np1
+
+Superseded Condor cluster:
+6062923
+
+Reason superseded:
+The original campaign incorrectly labeled WT A07/F3 workspaces as
+checkpoint kind G2.
+
+G2 requested:
+5:50000:"gw", 3:200000:""
+
+WHIZARD reported a VAMP2 header parameter mismatch, discarded the serialized
+pass, initialized a new grid, and modified the VG2.
+
+The original 60-job output is therefore technically invalid and excluded
+from Phase-11C qualification.
+
+Correction:
+checkpoint kind = WT_A07F3
+
+WT_A07F3 stored prescription:
+10:100000:"gw", 10:200000:""
+
+Corrected worker SHA256:
+4bbc08fa762bcfe30902b50842290bbb35fe7a46df363d5289ef5f9491e5e25f
+
+The corrected worker was independently qualified with:
+- same-seed exact reproducibility
+- different-seed zero exact-event overlap
+- WORKSPACE_UNCHANGED=1
+- NEW_GRID_INIT_COUNT=0
+- unchanged PHS/VG2
+- 3/3 normal Condor terminations
+
+Replay policy:
+The exact original 60 validation RNG seeds are reused.
+
+No stochastic sample replacement occurred.
+
+The only intended semantic change to job itemdata is:
+G2 -> WT_A07F3
+
+Events:
+20 shards x 500 events x 3 grids = 30,000 requested events.

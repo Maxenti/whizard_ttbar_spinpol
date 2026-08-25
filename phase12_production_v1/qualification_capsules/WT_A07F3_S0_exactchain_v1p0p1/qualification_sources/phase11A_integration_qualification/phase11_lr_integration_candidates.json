@@ -1,0 +1,38 @@
+{
+  "candidate_A_mid": {
+    "campaign_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_integration_qualification_v1/lr100_candidate_A_mid",
+    "events_per_run": 2000,
+    "iterations": "5:50000:\"gw\",5:100000:\"\"",
+    "manifest": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase11A_integration_qualification/full6f_365gev_epmum_lr100_candidate_A_mid.jsonl",
+    "replicates": 3,
+    "seeds": [
+      1740114216,
+      1751949026,
+      1885084773
+    ]
+  },
+  "candidate_B_fcc": {
+    "campaign_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_integration_qualification_v1/lr100_candidate_B_fcc",
+    "events_per_run": 2000,
+    "iterations": "10:100000:\"gw\",10:200000:\"\"",
+    "manifest": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase11A_integration_qualification/full6f_365gev_epmum_lr100_candidate_B_fcc.jsonl",
+    "replicates": 3,
+    "seeds": [
+      552318000,
+      817792967,
+      1737089854
+    ]
+  },
+  "candidate_C_strong": {
+    "campaign_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_integration_qualification_v1/lr100_candidate_C_strong",
+    "events_per_run": 2000,
+    "iterations": "10:200000:\"gw\",10:500000:\"\"",
+    "manifest": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase11A_integration_qualification/full6f_365gev_epmum_lr100_candidate_C_strong.jsonl",
+    "replicates": 3,
+    "seeds": [
+      384382737,
+      546698794,
+      1160386993
+    ]
+  }
+}

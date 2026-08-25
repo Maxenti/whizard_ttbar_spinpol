@@ -1,0 +1,17 @@
+{
+  "channel": "epjets",
+  "exact_subprocess_id": "epjets__Wminus_ubar_s",
+  "final_state": [
+    "b",
+    "bbar",
+    "e+",
+    "nu_e",
+    "anti_u",
+    "s"
+  ],
+  "generator_seed": 1256553496,
+  "polarization": "unpolarized",
+  "process_sin_sha256": "e62eb101785839f727e99b4dc9952d01cf9d1892ab25b3cf46c32dfc40d6c4ed",
+  "sample_id": "f6f365_ee_unpol_epjets",
+  "topology": "prompt_semileptonic"
+}

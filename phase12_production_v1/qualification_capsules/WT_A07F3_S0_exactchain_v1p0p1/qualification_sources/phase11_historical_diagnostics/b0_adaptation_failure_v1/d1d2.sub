@@ -1,0 +1,21 @@
+universe = vanilla
+
+executable = run_d1d2_integration.sh
+
+arguments = $(mode) $(out_root)
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = logs/d1d2.$(ClusterId).log
+
+request_cpus   = 1
+request_memory = 6000MB
+request_disk   = 6000MB
+
++JobFlavour = "tomorrow"
+
+getenv = True
+
+should_transfer_files = NO
+
+queue mode,out_root from itemdata.tsv

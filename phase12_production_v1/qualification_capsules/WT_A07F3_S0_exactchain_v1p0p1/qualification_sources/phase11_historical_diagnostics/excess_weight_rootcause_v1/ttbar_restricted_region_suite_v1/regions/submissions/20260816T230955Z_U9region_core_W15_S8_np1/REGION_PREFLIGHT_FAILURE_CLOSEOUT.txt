@@ -1,0 +1,26 @@
+Campaign:
+20260816T230955Z_U9region_core_W15_S8_np1
+
+Status:
+ABORTED_PRE_SUBMISSION
+
+Reason:
+Real WHIZARD 3.1.8 region-cut smoke test rejected the generated
+three-particle expression:
+
+  combine[b,E1,n1]
+  combine[bbar,e2,N2]
+
+WHIZARD parser reported that combine accepts two particle expressions.
+
+No HTCondor region DAG was submitted.
+No region integration results from this campaign are valid.
+
+Resolution:
+Superseded by phase11_ttbar_restricted_region_suite_v1p0p1,
+which generates nested binary particle combinations:
+
+  combine[combine[b,E1],n1]
+  combine[combine[bbar,e2],N2]
+
+The restricted-WT campaign is unaffected by this region-only issue.

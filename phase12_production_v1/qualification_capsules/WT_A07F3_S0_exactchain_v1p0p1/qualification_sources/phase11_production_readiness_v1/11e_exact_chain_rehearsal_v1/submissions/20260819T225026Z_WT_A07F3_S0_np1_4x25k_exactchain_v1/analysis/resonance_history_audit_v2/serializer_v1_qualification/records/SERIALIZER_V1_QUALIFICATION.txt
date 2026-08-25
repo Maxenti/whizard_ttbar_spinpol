@@ -1,0 +1,50 @@
+PHASE-11E HISTORY-PRESERVING SERIALIZER V1 QUALIFICATION
+=========================================================
+
+Qualified input:
+100000 A07/F3 S0 Phase-11E WHIZARD events after canonical-v2 ISR
+normalization.
+
+Serializer operation:
+- particle-row reorder only
+- MOTHUP remapping only
+
+No change to:
+- PDG ID
+- status
+- color
+- four-vector
+- mass
+- lifetime
+- spin
+- event weight
+- selected resonance graph
+
+Independent feasibility:
+100000 / 100000 events serializable.
+
+Implementation qualification:
+100000 / 100000 events serialized.
+
+Expected aggregate:
+REORDERED_EVENTS=99766
+ALREADY_VALID_EVENTS=234
+TOTAL_MOVED_PARTICLES=216708
+MAX_PARTICLE_DISPLACEMENT=4
+
+Independent output validation:
+- particle-content preservation PASS
+- mother-index remap PASS
+- mother-before-child PASS
+- daughter-contiguity PASS
+- resonance-history pattern preservation PASS
+- stable-final-state preservation PASS
+- all 16 observed history classes represented and preserved
+
+Production status:
+Serializer v1 is qualified as a candidate LHE interface transformation.
+
+It is NOT yet promoted to the production shower worker.
+
+Next gate:
+PYTHIA8 compatibility qualification beginning with small serialized samples.

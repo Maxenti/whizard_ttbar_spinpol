@@ -1,0 +1,34 @@
+{
+  "console_include_paths": [
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc"
+  ],
+  "correction": "Rewrite all process.sin common includes to relative shard-local paths before executing WHIZARD, then validate the complete effective card tree.",
+  "effective_local_values": {
+    "integration_include": "! Explicit WHIZARD hard-process seed. This assignment must precede\n! integration so the integration grid and generated events are replayable.\nseed = 420001\niterations = 3:5000\nintegrate (proc_epmum)\n"
+  },
+  "failed_run_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_smoke_20260804T152050Z/runs/f6f365_ee_LR100_epmum/epmum/shard_0000",
+  "failed_run_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_phase10A_worker_smoke_20260804T152050Z",
+  "failure_stage": "full6f_integration",
+  "memory_failure": false,
+  "observed_whizard_values": {
+    "fatal_error": "Requested integration result is not available",
+    "iterations": "0:0",
+    "seed": 672175147
+  },
+  "phase_space_initialized": true,
+  "process_card_contains_absolute_generated_includes": true,
+  "process_compilation_completed": true,
+  "requested_worker_values": {
+    "events": 10,
+    "iterations": "3:5000",
+    "whizard_seed": 420001
+  },
+  "return_code_file": "1",
+  "root_cause": "The worker copied and modified shard-local common include files, but the copied process.sin retained absolute include paths to the repository-generated common directory. WHIZARD therefore ignored the localized seed, iteration, event-count, and sample-name overrides.",
+  "schema_version": 1,
+  "status": "FAIL_DIAGNOSTIC"
+}

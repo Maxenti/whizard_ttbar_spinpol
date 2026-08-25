@@ -1,0 +1,11 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/isr.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/polarization.inc")
+?resonance_history = true
+resonance_on_shell_limit = 10
+resonance_background_factor = 0
+
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2 {$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"}
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T230807Z_WT_A15xS8_F012_FCC_np1/frozen_source/common/event_output.inc")

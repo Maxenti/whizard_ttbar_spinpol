@@ -1,0 +1,390 @@
+
+================================================================
+RUN_DIR=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z
+================================================================
+
+----------------------------------------------------------------
+FILE=process.bridge.sin
+----------------------------------------------------------------
+     1	include("common/model.inc")
+     2	include("common/beams.inc")
+     3	include("common/isr.inc")
+     4	include("common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("common/integration.inc")
+     7	include("common/event_output.inc")
+
+----------------------------------------------------------------
+FILE=common/integration.inc
+----------------------------------------------------------------
+     1	iterations = 5:50000
+     2	integrate (proc_epmum)
+
+----------------------------------------------------------------
+FILE=common/event_output.inc
+----------------------------------------------------------------
+     1	simulate (proc_epmum) {
+     2	  n_events = 500
+     3	  sample_format = lhef
+     4	  $sample = "bridge_raw"
+     5	}
+
+----------------------------------------------------------------
+FILE=common/diagnostics.inc
+----------------------------------------------------------------
+     1	show (processes)
+     2	show (integrals)
+
+----------------------------------------------------------------
+FILE=RUNTIME_PHASE7_BRIDGE.txt
+----------------------------------------------------------------
+     1	REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+     2	COMMIT=47a48999b8dbb1182a8451e80a5af7c9fe75d4d0
+     3	BRANCH=feature/top-qis-framework-v1
+     4	DATE_UTC=2026-08-01T03:10:45Z
+     5	HOST=b9p16p4634.cern.ch
+     6	VIEW=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/setup.sh
+     7	WHIZARD=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+     8	WHIZARD_VERSION=WHIZARD 3.1.8
+     9	PYTHIA8_CONFIG=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+    10	PYTHIA8_VERSION=8.316
+    11	HEPMC3_CONFIG=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+    12	HEPMC3_VERSION=3.03.01
+    13	SHOWER_DRIVER=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/build-lcg-devkey-fri/qis_lhe_to_hepmc3
+    14	LABEL=LR100_epmum_s000
+    15	SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin
+    16	RAW_LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/bridge_raw.lhe
+    17	CANONICAL_LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe
+    18	CANONICAL_SUMMARY=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.summary.json
+    19	PYTHIA_CONFIG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/pythia8_bridge_canonical_v2.cmnd
+    20	HEPMC_OUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.hepmc3
+    21	HEPMC_METADATA=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.hepmc3.metadata.json
+    22	PYTHIA_LOG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/run_external_pythia_canonical_v2.log
+    23	PYTHIA_PROFILE=parton_only
+    24	VALIDATOR_LOG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/phase7_validate_runtime_bridge.log
+    25	RAW_LHE_EVENT_COUNT=500
+    26	CANONICAL_LHE_EVENT_COUNT=500
+    27	HEPMC_EVENT_COUNT=500
+    28	WHIZARD_BRIDGE_RC=0
+    29	CANON_RC=0
+    30	PYTHIA_CANON_V2_RC=0
+    31	PHASE7_VALIDATE_RUNTIME_BRIDGE_RC=0
+    32	PHASE7_BRIDGE_STATUS=PASS_WITH_RUNTIME_WARNINGS
+    33	NOTES=Phase 7 canonical-v2 bridge runner output. PASS_WITH_RUNTIME_WARNINGS is acceptable for bridge proof but not final production shower certification.
+
+----------------------------------------------------------------
+FILE=phase7_bridge_summary.json
+----------------------------------------------------------------
+{
+    "branch": "feature/top-qis-framework-v1",
+    "canonical_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe",
+    "canonical_summary": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.summary.json",
+    "canonical_summary_data": {
+        "already_canonical_events": 0,
+        "canonicalized_events": 500,
+        "input_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/bridge_raw.lhe",
+        "max_abs_closure_gev": 5.683318704541307e-09,
+        "max_rel_closure": 1.5570736176825497e-11,
+        "output_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe",
+        "promoted_beam_particles": 1000,
+        "removed_bridge_particles": 1000,
+        "removed_sqme_prc_tags": 500,
+        "rewired_isr_photons": 1000,
+        "schema_version": 1,
+        "total_events": 500
+    },
+    "commit": "47a48999b8dbb1182a8451e80a5af7c9fe75d4d0",
+    "errors": [],
+    "event_counts": {
+        "canonical_lhe": 500,
+        "hepmc": 500,
+        "raw_lhe": 500
+    },
+    "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.hepmc3",
+    "label": "LR100_epmum_s000",
+    "metadata": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.hepmc3.metadata.json",
+    "metadata_data": {
+        "accepted_events": 500,
+        "attempted_events": 500,
+        "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+        "error_message": "",
+        "failed_events": 0,
+        "failure_stage": "",
+        "finished_utc": "2026-08-01T03:10:43Z",
+        "hepmc_version": "3.03.01",
+        "host": "b9p16p4634.cern.ch",
+        "input_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe",
+        "input_was_sanitized": false,
+        "last_pythia_event_size": 37,
+        "output_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.hepmc3",
+        "pythia_input_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe",
+        "pythia_version": "8.316",
+        "removed_auxiliary_weight_tags": 0,
+        "requested_events": 500,
+        "return_code": 0,
+        "sample_id": "LR100_epmum_canonical_v2_s000",
+        "schema_version": 1,
+        "seed": 24705000,
+        "settings_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/pythia8_bridge_canonical_v2.cmnd",
+        "shard_id": "bridge_500ev_LR100_epmum_s000",
+        "sigma_gen_mb": 1.3055906079000073e-11,
+        "started_utc": "2026-08-01T03:10:42Z",
+        "status": "success",
+        "weight_sum": 500,
+        "weight_sum2": 500
+    },
+    "phase_name": "phase7_canonical_bridge_runner",
+    "pythia_log": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/run_external_pythia_canonical_v2.log",
+    "pythia_profile": "parton_only",
+    "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/bridge_raw.lhe",
+    "repo": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol",
+    "return_codes": {
+        "canonicalizer": 0,
+        "pythia": 0,
+        "validator": 0,
+        "whizard": 0
+    },
+    "run_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z",
+    "runtime_view": "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/setup.sh",
+    "schema_version": 1,
+    "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+    "status": "PASS_WITH_RUNTIME_WARNINGS",
+    "warning_counts": {
+        "fatal": 0,
+        "hadronlevel_failed_try_again": 0,
+        "ministring_fragmentation_failed": 0,
+        "negative_dipole_mass": 2,
+        "range_check": 0,
+        "segmentation": 0
+    },
+    "warnings": [
+        "PYTHIA runtime warning patterns observed: {'negative_dipole_mass': 2, 'ministring_fragmentation_failed': 0, 'hadronlevel_failed_try_again': 0, 'range_check': 0, 'fatal': 0, 'segmentation': 0}"
+    ]
+}
+
+----------------------------------------------------------------
+FILE=whizard.log
+----------------------------------------------------------------
+45:|        Contact: <whizard@desy.de>                                           |
+47:|  if you use WHIZARD please cite:                                            |
+53:|                               WHIZARD 3.1.8
+55:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+59:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+62:| Switching to model 'SM', scheme 'default'
+65:sqrts =  3.650000000000E+02
+67:| Including Sindarin from 'common/isr.inc'
+68:?isr_handler = true
+69:$isr_handler_mode = "recoil"
+72:isr_mass =  5.109970000000E-04
+73:| End of included 'common/isr.inc'
+74:| Including Sindarin from 'common/polarization.inc'
+75:| End of included 'common/polarization.inc'
+89:| RNG: Setting seed for random-number generator to 16518
+91:| Beam structure: e-, e+ => isr
+92:|   polarization (beam 1):
+94:|   polarization (beam 2):
+96:|   polarization degree = 1.0000000, 1.0000000
+100:|   sqrts = 3.650000000000E+02 GeV
+116:| Beam structure: isr, none => none, isr
+120:| Integrate: iterations = 5:50000
+139:n_events = 500
+142:| Simulate: using integration grids from file 'proc_epmum.m1.vg'
+143:| Simulate: activating ISR handler
+144:| Simulate: ISR/EPA handler mode: pair recoil
+146:| RNG: Setting seed for random-number generator to 16519
+162:| WHIZARD run finished.
+
+================================================================
+RUN_DIR=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z
+================================================================
+
+----------------------------------------------------------------
+FILE=process.bridge.sin
+----------------------------------------------------------------
+     1	include("common/model.inc")
+     2	include("common/beams.inc")
+     3	include("common/isr.inc")
+     4	include("common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("common/integration.inc")
+     7	include("common/event_output.inc")
+
+----------------------------------------------------------------
+FILE=common/integration.inc
+----------------------------------------------------------------
+     1	iterations = 5:50000
+     2	integrate (proc_epmum)
+
+----------------------------------------------------------------
+FILE=common/event_output.inc
+----------------------------------------------------------------
+     1	simulate (proc_epmum) {
+     2	  n_events = 500
+     3	  sample_format = lhef
+     4	  $sample = "bridge_raw"
+     5	}
+
+----------------------------------------------------------------
+FILE=common/diagnostics.inc
+----------------------------------------------------------------
+     1	show (processes)
+     2	show (integrals)
+
+----------------------------------------------------------------
+FILE=RUNTIME_PHASE7_BRIDGE.txt
+----------------------------------------------------------------
+     1	REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+     2	COMMIT=7965c2fa923649cc90c90cbb364383854a9777b1
+     3	BRANCH=feature/top-qis-framework-v1
+     4	DATE_UTC=2026-08-03T18:13:16Z
+     5	HOST=b9p14p7506.cern.ch
+     6	VIEW=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/setup.sh
+     7	WHIZARD=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+     8	WHIZARD_VERSION=WHIZARD 3.1.8
+     9	PYTHIA8_CONFIG=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+    10	PYTHIA8_VERSION=8.316
+    11	HEPMC3_CONFIG=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+    12	HEPMC3_VERSION=3.03.01
+    13	SHOWER_DRIVER=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/build-lcg-devkey-fri/qis_lhe_to_hepmc3
+    14	LABEL=RL100_epmum_s003
+    15	SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/process.sin
+    16	RAW_LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/bridge_raw.lhe
+    17	CANONICAL_LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe
+    18	CANONICAL_SUMMARY=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.summary.json
+    19	PYTHIA_CONFIG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/pythia8_bridge_canonical_v2.cmnd
+    20	HEPMC_OUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.hepmc3
+    21	HEPMC_METADATA=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.hepmc3.metadata.json
+    22	PYTHIA_LOG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/run_external_pythia_canonical_v2.log
+    23	PYTHIA_PROFILE=parton_only
+    24	VALIDATOR_LOG=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/phase7_validate_runtime_bridge.log
+    25	RAW_LHE_EVENT_COUNT=500
+    26	CANONICAL_LHE_EVENT_COUNT=500
+    27	HEPMC_EVENT_COUNT=500
+    28	WHIZARD_BRIDGE_RC=0
+    29	CANON_RC=0
+    30	PYTHIA_CANON_V2_RC=0
+    31	PHASE7_VALIDATE_RUNTIME_BRIDGE_RC=0
+    32	PHASE7_BRIDGE_STATUS=PASS_WITH_RUNTIME_WARNINGS
+    33	NOTES=Phase 7 canonical-v2 bridge runner output. PASS_WITH_RUNTIME_WARNINGS is acceptable for bridge proof but not final production shower certification.
+
+----------------------------------------------------------------
+FILE=phase7_bridge_summary.json
+----------------------------------------------------------------
+{
+    "branch": "feature/top-qis-framework-v1",
+    "canonical_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe",
+    "canonical_summary": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.summary.json",
+    "canonical_summary_data": {
+        "already_canonical_events": 0,
+        "canonicalized_events": 500,
+        "input_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/bridge_raw.lhe",
+        "max_abs_closure_gev": 6.904713245603489e-09,
+        "max_rel_closure": 1.891702259069449e-11,
+        "output_path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe",
+        "promoted_beam_particles": 1000,
+        "removed_bridge_particles": 1000,
+        "removed_sqme_prc_tags": 500,
+        "rewired_isr_photons": 1000,
+        "schema_version": 1,
+        "total_events": 500
+    },
+    "commit": "7965c2fa923649cc90c90cbb364383854a9777b1",
+    "errors": [],
+    "event_counts": {
+        "canonical_lhe": 500,
+        "hepmc": 500,
+        "raw_lhe": 500
+    },
+    "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.hepmc3",
+    "label": "RL100_epmum_s003",
+    "metadata": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.hepmc3.metadata.json",
+    "metadata_data": {
+        "accepted_events": 500,
+        "attempted_events": 500,
+        "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+        "error_message": "",
+        "failed_events": 0,
+        "failure_stage": "",
+        "finished_utc": "2026-08-03T18:13:15Z",
+        "hepmc_version": "3.03.01",
+        "host": "b9p14p7506.cern.ch",
+        "input_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe",
+        "input_was_sanitized": false,
+        "last_pythia_event_size": 19,
+        "output_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.hepmc3",
+        "pythia_input_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe",
+        "pythia_version": "8.316",
+        "removed_auxiliary_weight_tags": 0,
+        "requested_events": 500,
+        "return_code": 0,
+        "sample_id": "RL100_epmum_canonical_v2_s003",
+        "schema_version": 1,
+        "seed": 24800003,
+        "settings_path": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/pythia8_bridge_canonical_v2.cmnd",
+        "shard_id": "bridge_500ev_RL100_epmum_s003",
+        "sigma_gen_mb": 3.815088839599967e-12,
+        "started_utc": "2026-08-03T18:13:14Z",
+        "status": "success",
+        "weight_sum": 500,
+        "weight_sum2": 500
+    },
+    "phase_name": "phase7_canonical_bridge_runner",
+    "pythia_log": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/run_external_pythia_canonical_v2.log",
+    "pythia_profile": "parton_only",
+    "raw_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/bridge_raw.lhe",
+    "repo": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol",
+    "return_codes": {
+        "canonicalizer": 0,
+        "pythia": 0,
+        "validator": 0,
+        "whizard": 0
+    },
+    "run_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z",
+    "runtime_view": "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/setup.sh",
+    "schema_version": 1,
+    "source_card": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/process.sin",
+    "status": "PASS_WITH_RUNTIME_WARNINGS",
+    "warning_counts": {
+        "fatal": 0,
+        "hadronlevel_failed_try_again": 0,
+        "ministring_fragmentation_failed": 0,
+        "negative_dipole_mass": 2,
+        "range_check": 0,
+        "segmentation": 0
+    },
+    "warnings": [
+        "PYTHIA runtime warning patterns observed: {'negative_dipole_mass': 2, 'ministring_fragmentation_failed': 0, 'hadronlevel_failed_try_again': 0, 'range_check': 0, 'fatal': 0, 'segmentation': 0}"
+    ]
+}
+
+----------------------------------------------------------------
+FILE=whizard.log
+----------------------------------------------------------------
+45:|        Contact: <whizard@desy.de>                                           |
+47:|  if you use WHIZARD please cite:                                            |
+53:|                               WHIZARD 3.1.8
+55:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+59:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+62:| Switching to model 'SM', scheme 'default'
+65:sqrts =  3.650000000000E+02
+67:| Including Sindarin from 'common/isr.inc'
+68:?isr_handler = true
+69:$isr_handler_mode = "recoil"
+72:isr_mass =  5.109970000000E-04
+73:| End of included 'common/isr.inc'
+74:| Including Sindarin from 'common/polarization.inc'
+75:| End of included 'common/polarization.inc'
+89:| RNG: Setting seed for random-number generator to 31803
+91:| Beam structure: e-, e+ => isr
+92:|   polarization (beam 1):
+94:|   polarization (beam 2):
+96:|   polarization degree = 1.0000000, 1.0000000
+100:|   sqrts = 3.650000000000E+02 GeV
+116:| Beam structure: isr, none => none, isr
+120:| Integrate: iterations = 5:50000
+139:n_events = 500
+142:| Simulate: using integration grids from file 'proc_epmum.m1.vg'
+143:| Simulate: activating ISR handler
+144:| Simulate: ISR/EPA handler mode: pair recoil
+146:| RNG: Setting seed for random-number generator to 31804
+162:| WHIZARD run finished.

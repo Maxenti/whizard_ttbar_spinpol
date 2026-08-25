@@ -1,0 +1,76 @@
+{
+  "argv": [
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/analysis/final_validator_v1/run_final_holdout_validator.py",
+    "--validation-mode",
+    "holdout",
+    "--s0-c",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_C.lhe",
+    "--s0-d",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_D.lhe",
+    "--s1-b",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S1_B.lhe",
+    "--s2-b",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S2_B.lhe",
+    "--validation-plan",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/records/FINAL_HOLDOUT_ANALYSIS_CONTRACT.txt",
+    "--outdir",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/final_holdout_validation_v1"
+  ],
+  "finished_utc": "2026-08-19T21:55:01+00:00",
+  "frozen_constants": {
+    "expected_events_per_component": 32000,
+    "familywise_alpha": 0.01,
+    "holm_test_count": 48,
+    "ks_D_max": 0.02,
+    "observable_count": 24,
+    "quantile_chi2_bins": 30,
+    "smd_abs_max": 0.05,
+    "unit_weight_atol": 1e-15
+  },
+  "holdout_rule_would_pass": true,
+  "hostname": "lxplus982.cern.ch",
+  "input_manifest": {
+    "S0_C": {
+      "events_seen": 32000,
+      "file_size_bytes": 76062101,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_C.lhe",
+      "sha256": "6adf818e9e9a18b79179fbdc488bf7acd7db47f92174a8a10a857b21e21a5f3d",
+      "unique_event_hashes": 32000
+    },
+    "S0_D": {
+      "events_seen": 32000,
+      "file_size_bytes": 76056351,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S0_D.lhe",
+      "sha256": "d9ab116b496b35dd7e52cb8e90ce4303b6d8dd9a909d9f194c6842864d5592cb",
+      "unique_event_hashes": 32000
+    },
+    "S1_B": {
+      "events_seen": 32000,
+      "file_size_bytes": 76080481,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S1_B.lhe",
+      "sha256": "19b6484e4b46628389db5d4391197374b157f6d32dda45874017dd03cbf596e7",
+      "unique_event_hashes": 32000
+    },
+    "S2_B": {
+      "events_seen": 32000,
+      "file_size_bytes": 76062340,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/merged_components_v1/S2_B.lhe",
+      "sha256": "bd6d3822d78d5bd82c7b25336b40f0930c487e45af8381a668b788cbe6d30cfa",
+      "unique_event_hashes": 32000
+    }
+  },
+  "matplotlib_version": "3.4.3",
+  "numpy_version": "1.23.5",
+  "python_version": "3.9.25",
+  "result_gate": "PASS",
+  "schema_version": 2,
+  "scipy_version": "1.9.3",
+  "script_path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py",
+  "script_sha256": "6ca54d4cce6b33044deb005b6cf7ebeb1437c33105bf7d48e586ff3b20b3ce9a",
+  "started_utc": "2026-08-19T21:54:10+00:00",
+  "validation_mode": "holdout",
+  "validation_plan_path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/records/FINAL_HOLDOUT_ANALYSIS_CONTRACT.txt",
+  "validation_plan_sha256": "627fbc6ae44aa96214b8118e3b0c381be559980bb883b99e68a42d3d95650206",
+  "validator_name": "validate_single_vs_multigrid_c5.py",
+  "validator_version": "phase11c5-v1"
+}

@@ -1,0 +1,478 @@
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+157:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+159:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+194:  mass mtop  width wtop
+244:  mass mZ  width wZ
+251:  mass mW  width wW
+258:  mass mh  width wh
+263:  mass mHH  width wHH
+268:  mass mHA  width wHA
+275:  mass mHpm  width wHpm
+286:  mass msd1  width wsd1
+293:  mass msu1  width wsu1
+299:  mass mss1  width wss1
+305:  mass msc1  width wsc1
+311:  mass msb1  width wsb1
+317:  mass mstop1  width wstop1
+326:  mass msd2  width wsd2
+333:  mass msu2  width wsu2
+339:  mass mss2  width wss2
+345:  mass msc2  width wsc2
+351:  mass msb2  width wsb2
+357:  mass mstop2  width wstop2
+367:  mass mse1  width wse1
+374:  mass msne  width wsne
+380:  mass msmu1  width wsmu1
+386:  mass msnmu  width wsnmu
+392:  mass mstau1  width wstau1
+398:  mass msntau  width wsntau
+407:  mass mse2  width wse2
+413:  mass msmu2  width wsmu2
+419:  mass mstau2  width wstau2
+427:  mass mgg  width wgg
+435:  mass mch1  width wch1
+441:  mass mch2  width wch2
+447:  mass mneu1  width wneu1
+451:  mass mneu2  width wneu2
+455:  mass mneu3  width wneu3
+459:  mass mneu4  width wneu4
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/MSSM.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+167:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+169:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+204:  mass mtop  width wtop
+254:  mass mZ  width wZ
+261:  mass mW  width wW
+268:  mass mh  width wh
+273:  mass mHH  width wHH
+278:  mass mHA  width wHA
+285:  mass mHpm  width wHpm
+295:  mass msd1  width wsd1
+302:  mass msu1  width wsu1
+308:  mass mss1  width wss1
+314:  mass msc1  width wsc1
+320:  mass msb1  width wsb1
+326:  mass mstop1  width wstop1
+335:  mass msd2  width wsd2
+342:  mass msu2  width wsu2
+348:  mass mss2  width wss2
+354:  mass msc2  width wsc2
+360:  mass msb2  width wsb2
+366:  mass mstop2  width wstop2
+376:  mass mse1  width wse1
+383:  mass msne  width wsne
+389:  mass msmu1  width wsmu1
+395:  mass msnmu  width wsnmu
+401:  mass mstau1  width wstau1
+407:  mass msntau  width wsntau
+416:  mass mse2  width wse2
+422:  mass msmu2  width wsmu2
+428:  mass mstau2  width wstau2
+435:  mass mgg  width wgg
+443:  mass mch1  width wch1
+449:  mass mch2  width wch2
+455:  mass mneu1  width wneu1
+459:  mass mneu2  width wneu2
+463:  mass mneu3  width wneu3
+467:  mass mneu4  width wneu4
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/MSSM_CKM.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+163:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+165:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+200:  mass mtop  width wtop
+250:  mass mZ  width wZ
+257:  mass mW  width wW
+264:  mass mh  width wh
+269:  mass mHH  width wHH
+274:  mass mHA  width wHA
+281:  mass mHpm  width wHpm
+292:  mass msd1  width wsd1
+299:  mass msu1  width wsu1
+305:  mass mss1  width wss1
+311:  mass msc1  width wsc1
+317:  mass msb1  width wsb1
+323:  mass mstop1  width wstop1
+332:  mass msd2  width wsd2
+339:  mass msu2  width wsu2
+345:  mass mss2  width wss2
+351:  mass msc2  width wsc2
+357:  mass msb2  width wsb2
+363:  mass mstop2  width wstop2
+373:  mass mse1  width wse1
+380:  mass msne  width wsne
+386:  mass msmu1  width wsmu1
+392:  mass msnmu  width wsnmu
+398:  mass mstau1  width wstau1
+404:  mass msntau  width wsntau
+413:  mass mse2  width wse2
+419:  mass msmu2  width wsmu2
+425:  mass mstau2  width wstau2
+432:  mass mgg  width wgg
+440:  mass mch1  width wch1
+446:  mass mch2  width wch2
+452:  mass mneu1  width wneu1
+456:  mass mneu2  width wneu2
+460:  mass mneu3  width wneu3
+464:  mass mneu4  width wneu4
+471:  mass mgr width wgr
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/MSSM_Grav.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+154:parameter hgg_fac= 1		# Hgg K factor
+166:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+168:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+203:  mass mtop  width wtop
+253:  mass mZ  width wZ
+260:  mass mW  width wW
+267:  mass mh  width wh
+272:  mass mHH  width wHH
+277:  mass mHA  width wHA
+284:  mass mHpm  width wHpm
+295:  mass msd1  width wsd1
+302:  mass msu1  width wsu1
+308:  mass mss1  width wss1
+314:  mass msc1  width wsc1
+320:  mass msb1  width wsb1
+326:  mass mstop1  width wstop1
+335:  mass msd2  width wsd2
+342:  mass msu2  width wsu2
+348:  mass mss2  width wss2
+354:  mass msc2  width wsc2
+360:  mass msb2  width wsb2
+366:  mass mstop2  width wstop2
+376:  mass mse1  width wse1
+383:  mass msne  width wsne
+389:  mass msmu1  width wsmu1
+395:  mass msnmu  width wsnmu
+401:  mass mstau1  width wstau1
+407:  mass msntau  width wsntau
+416:  mass mse2  width wse2
+422:  mass msmu2  width wsmu2
+428:  mass mstau2  width wstau2
+436:  mass mgg  width wgg
+444:  mass mch1  width wch1
+450:  mass mch2  width wch2
+456:  mass mneu1  width wneu1
+460:  mass mneu2  width wneu2
+464:  mass mneu3  width wneu3
+468:  mass mneu4  width wneu4
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/MSSM_Hgg.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+193:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+195:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+230:  mass mtop  width wtop
+280:  mass mZ  width wZ
+287:  mass mW  width wW
+294:  mass mh0_1  width wh0_1
+299:  mass mh0_2  width wh0_2
+304:  mass mh0_3  width wh0_3
+309:  mass mA0_1  width wA0_1
+314:  mass mA0_2  width wA0_2
+321:  mass mHpm  width wHpm
+332:  mass msd1  width wsd1
+339:  mass msu1  width wsu1
+345:  mass mss1  width wss1
+351:  mass msc1  width wsc1
+357:  mass msb1  width wsb1
+363:  mass mstop1  width wstop1
+372:  mass msd2  width wsd2
+379:  mass msu2  width wsu2
+385:  mass mss2  width wss2
+391:  mass msc2  width wsc2
+397:  mass msb2  width wsb2
+403:  mass mstop2  width wstop2
+413:  mass mse1  width wse1
+420:  mass msne  width wsne
+426:  mass msmu1  width wsmu1
+432:  mass msnmu  width wsnmu
+438:  mass mstau1  width wstau1
+444:  mass msntau  width wsntau
+453:  mass mse2  width wse2
+459:  mass msmu2  width wsmu2
+465:  mass mstau2  width wstau2
+473:  mass mgg  width wgg
+481:  mass mch1  width wch1
+487:  mass mch2  width wch2
+493:  mass mneu1  width wneu1
+497:  mass mneu2  width wneu2
+501:  mass mneu3  width wneu3
+505:  mass mneu4  width wneu4
+509:  mass mneu5  width wneu5
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/NMSSM.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+202:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+204:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+239:  mass mtop  width wtop
+289:  mass mZ  width wZ
+296:  mass mW  width wW
+303:  mass mh0_1  width wh0_1
+308:  mass mh0_2  width wh0_2
+313:  mass mh0_3  width wh0_3
+318:  mass mA0_1  width wA0_1
+323:  mass mA0_2  width wA0_2
+330:  mass mHpm  width wHpm
+341:  mass msd1  width wsd1
+348:  mass msu1  width wsu1
+354:  mass mss1  width wss1
+360:  mass msc1  width wsc1
+366:  mass msb1  width wsb1
+372:  mass mstop1  width wstop1
+381:  mass msd2  width wsd2
+388:  mass msu2  width wsu2
+394:  mass mss2  width wss2
+400:  mass msc2  width wsc2
+406:  mass msb2  width wsb2
+412:  mass mstop2  width wstop2
+422:  mass mse1  width wse1
+429:  mass msne  width wsne
+435:  mass msmu1  width wsmu1
+441:  mass msnmu  width wsnmu
+447:  mass mstau1  width wstau1
+453:  mass msntau  width wsntau
+462:  mass mse2  width wse2
+468:  mass msmu2  width wsmu2
+474:  mass mstau2  width wstau2
+482:  mass mgg  width wgg
+490:  mass mch1  width wch1
+496:  mass mch2  width wch2
+502:  mass mneu1  width wneu1
+506:  mass mneu2  width wneu2
+510:  mass mneu3  width wneu3
+514:  mass mneu4  width wneu4
+518:  mass mneu5  width wneu5
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/NMSSM_CKM.mdl
+19:parameter mtop   = 174          # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+193:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+195:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+230:  mass mtop  width wtop
+280:  mass mZ  width wZ
+287:  mass mW  width wW
+294:  mass mh0_1  width wh0_1
+299:  mass mh0_2  width wh0_2
+304:  mass mh0_3  width wh0_3
+309:  mass mA0_1  width wA0_1
+314:  mass mA0_2  width wA0_2
+321:  mass mHpm  width wHpm
+332:  mass msd1  width wsd1
+339:  mass msu1  width wsu1
+345:  mass mss1  width wss1
+351:  mass msc1  width wsc1
+357:  mass msb1  width wsb1
+363:  mass mstop1  width wstop1
+372:  mass msd2  width wsd2
+379:  mass msu2  width wsu2
+385:  mass mss2  width wss2
+391:  mass msc2  width wsc2
+397:  mass msb2  width wsb2
+403:  mass mstop2  width wstop2
+413:  mass mse1  width wse1
+420:  mass msne  width wsne
+426:  mass msmu1  width wsmu1
+432:  mass msnmu  width wsnmu
+438:  mass mstau1  width wstau1
+444:  mass msntau  width wsntau
+453:  mass mse2  width wse2
+459:  mass msmu2  width wsmu2
+465:  mass mstau2  width wstau2
+473:  mass mgg  width wgg
+481:  mass mch1  width wch1
+487:  mass mch2  width wch2
+493:  mass mneu1  width wneu1
+497:  mass mneu2  width wneu2
+501:  mass mneu3  width wneu3
+505:  mass mneu4  width wneu4
+509:  mass mneu5  width wneu5
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/NMSSM_Hgg.mdl
+19:parameter mtop   = 173.1        # t-quark mass
+27:parameter m_zero = 100          # unified scalar mass (SUGRA/AMSB)
+541:derived sw    = sqrt (1-cw*cw)                # sin(theta-W)
+543:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+578:  mass mtop  width wtop
+628:  mass mZ  width wZ
+635:  mass mW  width wW
+642:  mass mh0_1  width wh0_1
+647:  mass mh0_2  width wh0_2
+652:  mass mh0_3  width wh0_3
+657:  mass mh0_4  width wh0_4
+662:  mass mh0_5  width wh0_5
+667:  mass mh0_6  width wh0_6
+672:  mass mh0_7  width wh0_7
+677:  mass mh0_8  width wh0_8
+682:  mass mh0_9  width wh0_9
+687:  mass mA0_1  width wA0_1
+692:  mass mA0_2  width wA0_2
+697:  mass mA0_3  width wA0_3
+702:  mass mA0_4  width wA0_4
+707:  mass mA0_5  width wA0_5
+712:  mass mA0_6  width wA0_6
+717:  mass mA0_7  width wA0_7
+724:  mass mHpm1  width wHpm1
+731:  mass mHpm2  width wHpm2
+738:  mass mHpm3  width wHpm3
+745:  mass mHpm4  width wHpm4
+752:  mass mHpm5  width wHpm5
+762:  mass msd1  width wsd1
+770:  mass msu1  width wsu1
+776:  mass mss1  width wss1
+782:  mass msc1  width wsc1
+788:  mass msb1  width wsb1
+794:  mass mstop1  width wstop1
+803:  mass msd2  width wsd2
+810:  mass msu2  width wsu2
+816:  mass mss2  width wss2
+822:  mass msc2  width wsc2
+828:  mass msb2  width wsb2
+834:  mass mstop2  width wstop2
+844:  mass mse1  width wse1
+851:  mass msne  width wsne
+857:  mass msmu1  width wsmu1
+863:  mass msnmu  width wsnmu
+869:  mass mstau1  width wstau1
+875:  mass msntau  width wsntau
+884:  mass mse2  width wse2
+890:  mass msmu2  width wsmu2
+896:  mass mstau2  width wstau2
+904:  mass mgg  width wgg
+912:  mass mch1  width wch1
+918:  mass mch2  width wch2
+924:  mass mch3  width wch3
+930:  mass mch4  width wch4
+936:  mass mneu1  width wneu1
+940:  mass mneu2  width wneu2
+944:  mass mneu3  width wneu3
+948:  mass mneu4  width wneu4
+952:  mass mneu5  width wneu5
+956:  mass mneu6  width wneu6
+960:  mass mneu7  width wneu7
+964:  mass mneu8  width wneu8
+968:  mass mneu9  width wneu9
+972:  mass mneu10  width wneu10
+976:  mass mneu11  width wneu11
+989:  mass mlq_11  width wlq_11
+996:  mass mlq_12  width wlq_12
+1002:  mass mlq_21  width wlq_21
+1008:  mass mlq_22  width wlq_22
+1014:  mass mlq_31  width wlq_31
+1020:  mass mlq_32  width wlq_32
+1028:  mass mlqino_1 width wlqino_1
+1034:  mass mlqino_2 width wlqino_2
+1040:  mass mlqino_3 width wlqino_3
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/PSSSM.mdl
+19:parameter mtop   = 173.1        # t-quark mass                         
+33:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+35:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+70:  mass mtop  width wtop
+120:  mass mZ  width wZ
+127:  mass mW  width wW
+133:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl
+18:parameter mtop   = 170.9        # t-quark mass                         
+42:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+44:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+79:  mass mtop  width wtop
+129:  mass mZ  width wZ
+136:  mass mW  width wW
+142:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_CKM.mdl
+19:parameter mtop   = 173.1        # t-quark mass                         
+33:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+35:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+70:  mass mtop  width wtop
+120:  mass mZ  width wZ
+127:  mass mW  width wW
+133:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_Higgs.mdl
+19:parameter mtop   = 173.1        # t-quark mass                         
+43:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+45:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+80:  mass mtop  width wtop
+130:  mass mZ  width wZ
+137:  mass mW  width wW
+143:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_Higgs_CKM.mdl
+20:parameter mtop     = 174          # t-quark mass                         
+59:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+64:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+99:  mass mtop  width wtop
+149:  mass mZ  width wZ
+156:  mass mW  width wW
+162:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_ac.mdl
+20:parameter mtop     = 174          # t-quark mass                         
+69:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+75:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+110:  mass mtop  width wtop
+160:  mass mZ  width wZ
+167:  mass mW  width wW
+173:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_ac_CKM.mdl
+20:parameter mtop     = 174          # t-quark mass                         
+46:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+48:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+83:  mass mtop  width wtop
+133:  mass mZ  width wZ
+140:  mass mW  width wW
+146:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_dim6.mdl
+19:parameter mtop   = 173.1        # t-quark mass
+36:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+38:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+73:  mass mtop  width wtop
+123:  mass mZ  width wZ
+130:  mass mW  width wW
+136:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl
+20:parameter mtop   = 174          # t-quark mass                         
+64:parameter wres   = 0 	        # switch for automatic resonance widths (need wkm_* = 0)
+76:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+78:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+113:  mass mtop  width wtop
+163:  mass mZ  width wZ
+170:  mass mW  width wW
+176:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_rx.mdl
+3:model "SM_top"
+18:parameter mtop   = 170.9        # t-quark mass                         
+32:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+34:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+70:  mass mtop  width wtop
+120:  mass mZ  width wZ
+127:  mass mW  width wW
+133:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_top.mdl
+3:model "SM_top_anom"
+18:parameter mtop   = 173.1        # t-quark mass                         
+124:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+126:derived alpha_em_i = 4 * pi / ee**2	      # inverse fine structure constant
+161:  mass mtop  width wtop
+211:  mass mZ  width wZ
+218:  mass mW  width wW
+224:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_top_anom.mdl
+27:parameter alpha_em_i = 125.924  # inverse QED coupling at ttbar threshold
+35:# -2: resummed FF with switchoff function multiplied to all alpha_s
+70:#  9th bit allows to compute the width in the propagator with off-shell momenta: 1/0 * 256
+121:derived ee    = sqrt(4*pi/alpha_em_i)         # em-coupling
+123:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+124:derived v     = mW * sw * sqrt(alpha_em_i/pi) # v (Higgs vev)
+128:external wtop                   # total width: depends on Vtb, wt_inv and masses
+163:  mass mtpole  width wtop
+213:  mass mZ  width wZ
+220:  mass mW  width wW
+226:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_tt_threshold.mdl
+20:parameter mtop   = 174          # t-quark mass                         
+72:parameter wres   = 0 	        # switch for automatic resonance widths (need wkm_* = 0)
+91:derived sw    = sqrt (1-cw**2)                # sin(theta-W)
+93:derived alpha_em_i = 4 * pi / ee**2           # inverse fine structure const
+128:  mass mtop  width wtop
+178:  mass mZ  width wZ
+185:  mass mW  width wW
+191:  mass mH  width wH
+SOURCE_FILE=/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_ul.mdl

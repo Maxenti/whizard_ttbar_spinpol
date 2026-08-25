@@ -1,0 +1,117 @@
+Phase 11C.5G-A generation-envelope stress qualification
+========================================================
+
+Purpose
+-------
+Qualify generation-envelope robustness separately from integration convergence
+and separately from the Phase 11C physics holdout.
+
+Frozen grids under test
+-----------------------
+  S0 = predetermined G2_S0 production candidate
+  S1 = independently integrated G2_S1 reference
+  S2 = independently integrated G2_S2 reference
+
+Stress ensemble
+---------------
+For each frozen grid:
+  20 independent shards
+  500 accepted unweighted events per shard
+  10,000 accepted events total per grid
+
+Total campaign:
+  60 jobs
+  30,000 accepted events
+
+Validation-only RNG seeds
+-------------------------
+  S0: 211170001--211170020
+  S1: 211171001--211171020
+  S2: 211172001--211172020
+
+The full range 211170000--211179999 is reserved for Phase 11C.5G
+diagnostics and must not be used for Phase 12 production.
+
+Generation recipe
+-----------------
+Use the already-qualified Phase 11C.3 worker unchanged.
+For every shard:
+  - restore the frozen G2 workspace;
+  - set the unique shard RNG seed before reused integrate(process);
+  - reuse the serialized integration state;
+  - do not explicitly reseed before simulate(process);
+  - generate 500 events at np1 / one CPU.
+
+No physics-observable validation is performed in this stage.
+Stress events are diagnostic-only and may not be reused in the later C5R
+physics holdout or in Phase 12 production.
+
+Technical validity requirements
+-------------------------------
+Every shard must have:
+  REUSE_PASS
+  STATUS=PASS
+  WHIZARD_RC=0
+  EVENTS_REQUESTED=500
+  EVENTS_WRITTEN=500
+  WORKSPACE_UNCHANGED=1
+  NEW_GRID_INIT_COUNT=0
+  correct grid-construction seed
+  unchanged expected PHS and VG2 hashes
+  correct pre-integration shard RNG seed
+
+The post-run collector also audits, when --audit-lhe is enabled:
+  exactly one LHE per shard
+  exactly 500 events per shard
+  unit LHE event weights
+  expected status-1 final-state signature
+  500 unique event records per shard
+  no exact-event duplicate hashes across all 30,000 events
+
+Frozen envelope gates
+---------------------
+The gates are evaluated per GRID after combining all 20 shards. They are not
+applied independently to each 500-event shard.
+
+For each grid:
+
+  excess_fraction = total excess events / 10000
+  require excess_fraction <= 0.01
+
+  aggregate_avg_excess = sum over shards(avg_excess_shard * events_shard) / 10000
+  require aggregate_avg_excess <= 0.01
+
+  global_max_excess = maximum max_excess over the 20 shards
+  require global_max_excess <= 10
+
+All 20 shards and all 10,000 expected events must be technically valid.
+
+Decision policy
+---------------
+1. Technical failure / missing output:
+   - result = INCOMPLETE_TECHNICAL;
+   - rerun only the failed MODE with the SAME grid and SAME RNG seed;
+   - never replace a technical failure with a new favorable seed.
+
+2. All S0/S1/S2 grid envelope gates pass:
+   - result = PASS_ALL_GRIDS;
+   - freeze the C5G-A result;
+   - proceed to a fresh C5R physics holdout using new validation-only RNG seeds;
+   - do not use any C5G-A stress event in C5R.
+
+3. S0 passes but S1 and/or S2 fails:
+   - result = FAIL_REFERENCE_ONLY;
+   - retain predetermined G2_S0 as production candidate;
+   - S1/S2 may not serve as qualified C5R references;
+   - construct fresh PREDETERMINED independent reference grid(s) and subject
+     them to the same envelope qualification before another holdout;
+   - do not regenerate random reference shards until one happens to pass.
+
+4. S0 fails:
+   - result = FAIL_PRODUCTION_CANDIDATE;
+   - G2_S0 is not generation-envelope qualified;
+   - stop C5R and revisit the integration/envelope prescription before Phase12.
+
+No decision criterion in this plan may be modified after stress generation is
+submitted. The 30k stress sample is diagnostic-only and contains no physics
+unblinding by construction.

@@ -1,0 +1,125 @@
+================================================================
+TRACKED FULL6F RENDERER AND RUNNER REFERENCES
+================================================================
+condor/qis/pythia_shower.sub:3:arguments = --input $(input_lhe) --input-sha256 $(input_lhe_sha256) --parent-lhe $(parent_lhe) --source-event-start $(source_event_start) --source-event-stop $(source_event_stop) --output-root $(output_root) --sample-id $(sample_id) --campaign-id $(campaign_id) --shard-id $(shard_id) --seed $(seed) --max-events $(max_events) --executable $(shower_executable) --settings $(settings_file) --key4hep-setup $(key4hep_setup) --repo-root $(repo_root) --qed-shower-by-gamma $(qed_shower_by_gamma)
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T173033Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T173033Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T173051Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T173051Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T174346Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T174346Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T174353Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1/20260713T174353Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T161055Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T161055Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T161148Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T161148Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T165342Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T165342Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T165418Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T165418Z/whizard_production.sub:12:  --events $(events) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T171426Z/whizard_production.sub:11:  --seed $(seed) \
+condor/runtime_submissions/500GeV_ISR_sc_v1_smoke/20260713T171426Z/whizard_production.sub:12:  --events $(events) \
+condor/whizard_production.sub:11:  --seed $(seed) \
+condor/whizard_production.sub:12:  --events $(events) \
+condor/whizard_production.sub.bak_before_itemdata_memory_fix:11:  --seed $(seed) \
+condor/whizard_production.sub.bak_before_itemdata_memory_fix:12:  --events $(events) \
+condor/whizard_production.sub.bak_before_memory_attr_fix:11:  --seed $(seed) \
+condor/whizard_production.sub.bak_before_memory_attr_fix:12:  --events $(events) \
+scripts/condor/run_phase9_bridge_shard_job.sh:157:    --events "$EVENTS" \
+scripts/condor/run_phase9_bridge_shard_job.sh:158:    --iterations "$ITERATIONS" \
+scripts/condor/run_phase9_bridge_shard_job.sh:159:    --seed "$SEED" \
+scripts/integration/build_integration_matrix.py:11:    for row in load_process_rows(repo): entries.append({'sample_id':row.sample_id,'exact_subprocess_id':row.exact_subprocess_id,'polarization':row.polarization,'process_name':row.process_name,'integration_seed':derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,args.stage,0,'integration'),'rendered_card':f'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/{row.sample_id}/{row.exact_subprocess_id}/process.sin','status':'planned_not_executed'})
+scripts/integration/validate_phase5_integration.py:13:        if not (repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'/row.sample_id/row.exact_subprocess_id/'process.sin').is_file(): errors.append('missing rendered card for '+row.exact_subprocess_id)
+scripts/production/audit_phase10A_production_definition.sh:332:  find "$GENERATED_DIR" -type f -path '*/epmum/process.sin' -print \
+scripts/production/run_production_shard.sh:10:    --polarization LR100|RL100 --shard-index N --seed N --events N \
+scripts/production/run_production_shard.sh:39:    --seed) SEED=${2:?}; shift 2 ;;
+scripts/production/run_production_shard.sh:40:    --events) EVENTS=${2:?}; shift 2 ;;
+scripts/production/run_production_shard.sh.bak_before_eos_directory_race_fix:10:    --polarization LR100|RL100 --shard-index N --seed N --events N \
+scripts/production/run_production_shard.sh.bak_before_eos_directory_race_fix:39:    --seed) SEED=${2:?}; shift 2 ;;
+scripts/production/run_production_shard.sh.bak_before_eos_directory_race_fix:40:    --events) EVENTS=${2:?}; shift 2 ;;
+scripts/production/run_production_shard.sh.bak_before_key4hep_nounset_fix:10:    --polarization LR100|RL100 --shard-index N --seed N --events N \
+scripts/production/run_production_shard.sh.bak_before_key4hep_nounset_fix:39:    --seed) SEED=${2:?}; shift 2 ;;
+scripts/production/run_production_shard.sh.bak_before_key4hep_nounset_fix:40:    --events) EVENTS=${2:?}; shift 2 ;;
+scripts/production/validate_phase10A_epmum_triad.py:20:    "common/integration.inc",
+scripts/production/validate_phase10A_epmum_triad.py:21:    "common/event_output.inc",
+scripts/production/validate_phase10A_epmum_triad.py:92:        process = (root / "process.sin").read_text(encoding="utf-8")
+scripts/production/validate_phase10A_epmum_triad.py:108:        state: (root / "process.sin").read_text(encoding="utf-8")
+scripts/qis/bootstrap_phase9_projected_qis_observables.py:230:    parser.add_argument("--seed", type=int, default=36520260803)
+scripts/qis/bootstrap_phase9_qis_observables.py:150:    ap.add_argument("--seed", type=int, default=36520260803)
+scripts/qis/compare_phase9_dilepton_spin_moments.py:301:    ap.add_argument("--seed", type=int, default=36520260803)
+scripts/qis/condor/run_paper_spin_shape_closure_job.sh:24:  --seed "$SEED" \
+scripts/qis/make_365GeV_ee_source_manifests.py:528:        "--events-per-sample",
+scripts/qis/make_paper_spin_closure_itemdata.py:21:    parser.add_argument("--seed", type=int, default=20260721)
+scripts/qis/prepare_365GeV_lhe_matrix.py:55:    result.add_argument("--events", type=int)
+scripts/qis/prepare_365GeV_lhe_matrix.py:56:    result.add_argument("--seed-base", type=int)
+scripts/qis/run_paper_spin_all.sh:25:  --events "${SYNTHETIC_EVENTS:-200000}" \
+scripts/qis/run_paper_spin_all.sh:26:  --seed "${SYNTHETIC_SEED:-20260721}" \
+scripts/qis/run_paper_spin_closure.py:34:    synthetic.add_argument("--events", type=int, default=200000)
+scripts/qis/run_paper_spin_closure.py:35:    synthetic.add_argument("--seed", type=int, default=20260721)
+scripts/qis/run_paper_spin_closure.py:45:    data.add_argument("--seed", type=int, default=20260721)
+scripts/qis/validate_lxplus_install.sh:48:  --seed 880001 \
+scripts/showering/build_phase7_bridge_manifest.py:16:    "f6f365_ee_unpol_epmum/epmum/process.sin",
+scripts/showering/build_phase7_bridge_manifest.py:17:    "f6f365_ee_LR100_epmum/epmum/process.sin",
+scripts/showering/build_phase7_bridge_manifest.py:18:    "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/process.sin",
+scripts/showering/build_phase7_bridge_manifest.py:60:    cards = sorted(generated_root.glob("**/process.sin"))
+scripts/showering/build_phase7_bridge_manifest.py:63:        raise FileNotFoundError(f"no process.sin cards found under {generated_root}")
+scripts/showering/build_phase7_bridge_manifest.py:74:    parser.add_argument("--events", type=int, default=100)
+scripts/showering/build_phase7_bridge_manifest.py:75:    parser.add_argument("--iterations", default="3:5000")
+scripts/showering/build_phase9_sharded_manifest.py:25:    parser.add_argument("--events-per-shard", type=int, default=500)
+scripts/showering/build_phase9_sharded_manifest.py:28:    parser.add_argument("--iterations", default=None)
+scripts/showering/run_external_pythia.sh:44:  --seed N
+scripts/showering/run_external_pythia.sh:65:    --seed) SEED="$2"; shift 2 ;;
+scripts/showering/run_external_pythia.sh:98:    --seed "$SEED"
+scripts/showering/run_phase7_bridge_manifest.py:48:    parser.add_argument("--events", type=int, default=None)
+scripts/showering/run_phase7_bridge_manifest.py:49:    parser.add_argument("--iterations", default=None)
+scripts/showering/run_phase7_bridge_manifest.py:108:        # If --events overrides the manifest event count, keep shard/event
+scripts/showering/run_phase7_bridge_manifest.py:129:            "--events",
+scripts/showering/run_phase7_bridge_manifest.py:131:            "--iterations",
+scripts/showering/run_phase7_bridge_manifest.py:133:            "--seed",
+scripts/showering/run_phase7_canonical_bridge.py:6:  generated process.sin + common/
+scripts/showering/run_phase7_canonical_bridge.py:200:    integration = run_dir / "common" / "integration.inc"
+scripts/showering/run_phase7_canonical_bridge.py:214:    event_output = run_dir / "common" / "event_output.inc"
+scripts/showering/run_phase7_canonical_bridge.py:505:    parser.add_argument("--seed", type=int, default=12345)
+scripts/showering/run_phase7_canonical_bridge.py:506:    parser.add_argument("--events", type=int, default=100)
+scripts/showering/run_phase7_canonical_bridge.py:507:    parser.add_argument("--iterations", default="3:5000")
+scripts/showering/run_pythia_shard.sh:9:       --campaign-id ID --shard-id ID --seed N --max-events N
+scripts/showering/run_pythia_shard.sh:36:    --seed) SEED=$2; shift 2;;
+scripts/showering/run_pythia_shard.sh:204:  --seed "$SEED" \
+scripts/showering/run_qis_8sample_smoke_matrix_v2.sh:165:      --seed "$seed" \
+scripts/showering/run_qis_8sample_smoke_matrix_v2.sh.bak.20260717T195914Z:150:      --seed "$seed" \
+scripts/showering/run_qis_explicit_w_ab_test.sh:92:    --seed "$SEED" \
+scripts/showering/run_qis_explicit_w_gamma_matrix.sh:171:      --seed "$seed" \
+scripts/showering/run_qis_timeshower_component_isolation.sh:110:    --seed "$SEED" \
+scripts/showering/smoke_test_sharded_worker.sh:61:  --seed 994001 \
+scripts/showering/submit_showering.py:84:    parser.add_argument("--seed-base", type=int)
+scripts/sindarin/render_full6f_cards.py:27:    for card in sorted(root.glob("**/process.sin")):
+scripts/sindarin/render_full6f_cards.py:71:    for card in sorted(root.glob("*_unpol_*/**/process.sin")):
+scripts/sindarin/render_full6f_cards.py:113:        template=template_root/('dilepton/process.sin.in' if row.topology=='prompt_dilepton' else 'semileptonic/process.sin.in'); render_file(template,outdir/'process.sin',context)
+scripts/sindarin/render_full6f_cards.py:114:        meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
+scripts/sindarin/validate_phase4_cards.py:12:        card=outroot/row.sample_id/row.exact_subprocess_id/'process.sin'
+sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:6:include("${COMMON_DIR}/integration.inc")
+sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:7:include("${COMMON_DIR}/event_output.inc")
+sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:6:include("${COMMON_DIR}/integration.inc")
+sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:7:include("${COMMON_DIR}/event_output.inc")
+
+================================================================
+TRACKED CAMPAIGN-SPECIFIC REFERENCES
+================================================================
+scripts/beam/validate_phase6_beam_and_normalization.py:10:    ap=argparse.ArgumentParser(); ap.add_argument('--repo',required=True,type=Path); args=ap.parse_args(); repo=args.repo.resolve(); cfg=load_yaml(repo/'campaigns/full6f_365gev_ee_ttbar_spinpol_v1/beam/beam_configurations.yaml'); errors=[]; beams=cfg.get('beam_configurations',{}); pol=cfg.get('polarizations',{})
+scripts/integration/build_integration_matrix.py:11:    for row in load_process_rows(repo): entries.append({'sample_id':row.sample_id,'exact_subprocess_id':row.exact_subprocess_id,'polarization':row.polarization,'process_name':row.process_name,'integration_seed':derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,args.stage,0,'integration'),'rendered_card':f'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/{row.sample_id}/{row.exact_subprocess_id}/process.sin','status':'planned_not_executed'})
+scripts/integration/derive_seed_matrix.py:16:                seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'qualification',shard,stream)
+scripts/integration/validate_phase5_integration.py:12:        seeds.append(derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'qualification',0,'integration'))
+scripts/integration/validate_phase5_integration.py:13:        if not (repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'/row.sample_id/row.exact_subprocess_id/'process.sin').is_file(): errors.append('missing rendered card for '+row.exact_subprocess_id)
+scripts/production/audit_phase10A_production_definition.sh:5:CAMPAIGN_ID="${CAMPAIGN_ID:-full6f_365gev_ee_ttbar_spinpol_v1}"
+scripts/production/validate_phase10A_epmum_triad.py:32:        r'full6f_365gev_ee_ttbar_spinpol_v1/'
+scripts/showering/build_phase7_bridge_manifest.py:12:CAMPAIGN_ID = "full6f_365gev_ee_ttbar_spinpol_v1"
+scripts/showering/build_phase7_bridge_manifest.py:13:GENERATED_SUBDIR = "sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1"
+scripts/showering/build_phase9_analysis_inventory.py:54:            "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+scripts/showering/build_phase9_analysis_inventory.py:147:                "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+scripts/showering/build_phase9_inventory_with_RL100.py:134:            "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+scripts/showering/run_external_pythia.sh:18:CAMPAIGN_ID="${CAMPAIGN_ID:-full6f_365gev_ee_ttbar_spinpol_v1}"
+scripts/showering/run_phase7_canonical_bridge.py:33:DEFAULT_CAMPAIGN_ID = "full6f_365gev_ee_ttbar_spinpol_v1"
+scripts/sindarin/render_full6f_cards.py:106:    template_root=repo/'sindarin/templates/full6f_365gev_v1'; output_root=repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'; rows=load_process_rows(repo); rendered=[]
+scripts/sindarin/render_full6f_cards.py:108:        pol=POL[row.polarization]; seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'render',0,'whizard')
+scripts/sindarin/validate_phase4_cards.py:10:    ap=argparse.ArgumentParser(); ap.add_argument('--repo',required=True,type=Path); args=ap.parse_args(); repo=args.repo.resolve(); rows=load_process_rows(repo); outroot=repo/'sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1'; errors=[]

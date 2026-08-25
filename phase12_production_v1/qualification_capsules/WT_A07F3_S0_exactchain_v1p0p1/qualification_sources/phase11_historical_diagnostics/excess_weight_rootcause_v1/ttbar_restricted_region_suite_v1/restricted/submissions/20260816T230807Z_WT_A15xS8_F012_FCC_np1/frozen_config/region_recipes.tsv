@@ -1,0 +1,7 @@
+recipe_id	adaptive_id	fixed_id	description	core	extended	historical
+M0	A00	F0	Current Phase11 baseline 5x50k gw + 3x200k fixed	1	1	0
+M1	A07	F0	Deep-adaptation stress 10x100k gw + 3x200k fixed	1	1	0
+M2	A10	F2	Single 1M adaptive + single 2M fixed	1	1	0
+M3	A12	F2	Progressive 250k-500k-1M + 2M fixed; known monolithic stress family	0	1	0
+M4	A14	F2	Single 2M adaptive + single 2M fixed	0	1	0
+MFCC	A07	F3	Exact Winter2023 iteration counts under current VAMP2+rng_stream runtime	0	0	1

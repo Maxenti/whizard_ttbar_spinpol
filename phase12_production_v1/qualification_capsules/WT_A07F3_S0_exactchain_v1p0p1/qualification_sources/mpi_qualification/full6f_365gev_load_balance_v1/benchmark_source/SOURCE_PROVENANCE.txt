@@ -1,0 +1,31 @@
+BENCHMARK=full6f_365gev_scaling_v1
+DATE_UTC=2026-08-11T17:48:06Z
+
+SOURCE_CAMPAIGN=full6f_365gev_ee_ttbar_spinpol_v1
+SOURCE_SAMPLE=f6f365_ee_LR100_epmum
+SOURCE_SUBPROCESS=epmum
+SOURCE_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum
+
+PROCESS:
+e- e+ -> b bbar e+ nue mu- numubar
+
+SQRTS_GEV=365
+POLARIZATION=LR100
+ISR_HANDLER=true
+ISR_HANDLER_MODE=recoil
+SEED=672175147
+
+INTEGRATION_METHOD=vamp2
+RNG_METHOD=rng_stream
+VAMP_PARALLEL_METHOD=simple
+OMP_THREADS=1
+ITERATIONS=2:100000:"gw",2:200000:""
+
+ORIGINAL FILE CHECKSUMS:
+2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin
+44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc
+1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc
+b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc
+34bdffbf1a0ee85ebf4949c76da34360e7fa7143708f51c1e7e08e94b701c7dc  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc
+c5fae66bddb34b163d9ee5936f4f0d9f482fd19ef156b7971e91aa29f64885cb  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc
+4e0723bad53296930c373303d389993c2c4d2147a8c96d175aafb5ab9aa60c18  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc

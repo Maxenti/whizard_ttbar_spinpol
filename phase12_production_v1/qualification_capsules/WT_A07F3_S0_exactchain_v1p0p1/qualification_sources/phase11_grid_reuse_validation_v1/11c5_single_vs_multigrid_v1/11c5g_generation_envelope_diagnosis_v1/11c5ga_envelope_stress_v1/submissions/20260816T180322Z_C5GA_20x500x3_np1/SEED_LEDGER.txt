@@ -1,0 +1,22 @@
+Phase 11C.5G-A validation-only seed ledger
+==========================================
+
+G2_S0:
+  211170001--211170020
+
+G2_S1:
+  211171001--211171020
+
+G2_S2:
+  211172001--211172020
+
+Reserved diagnostic range:
+  211170000--211179999
+
+These seeds are:
+  - diagnostic-only;
+  - excluded from C5R;
+  - excluded from Phase 12 production.
+
+Any technical retry must reuse the same grid and exact same RNG seed.
+A failed envelope shard must not be replaced with a new random seed.

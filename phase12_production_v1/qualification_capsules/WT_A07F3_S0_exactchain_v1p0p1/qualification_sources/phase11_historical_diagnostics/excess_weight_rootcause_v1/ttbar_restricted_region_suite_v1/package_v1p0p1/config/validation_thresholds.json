@@ -1,0 +1,22 @@
+{
+  "schema": "phase11_ttbar_restricted_region_suite_validation_v1",
+  "notes": "Diagnostic predeclared screens; generation-envelope gates remain separate and must not be retroactively changed.",
+  "adaptive": {
+    "max_postfirst_reported_error_pct": 25.0,
+    "max_accuracy": 200.0,
+    "max_normalized_iteration_jump": 12.0,
+    "max_final_relative_error_pct": 3.0
+  },
+  "family": {
+    "max_final_integral_relative_range": 0.1,
+    "max_reduced_chi2": 8.0,
+    "min_technical_pass_fraction": 1.0
+  },
+  "fixed_pair": {
+    "max_abs_normalized_difference": 7.0
+  },
+  "region_closure": {
+    "max_abs_pull": 5.0,
+    "max_abs_relative_difference": 0.03
+  }
+}

@@ -1,0 +1,116 @@
+PHASE-11C FINAL SINGLE-VERSUS-MULTI PHYSICS-ANALYSIS CONTRACT
+================================================================
+
+Question:
+Is event generation from the predetermined frozen WT A07/F3 S0 grid
+statistically compatible with generation from the independent qualified
+S1-S7 A07/F3 grid ensemble?
+
+Arms:
+SINGLE = 64,000 fresh events from S0.
+MULTI  = 64,000 fresh events from S1-S7.
+
+The analysis rule is frozen before final holdout generation.
+
+STRUCTURAL GATES
+----------------
+
+Require:
+- all 128 generation shards technically PASS
+- requested event count equals written event count
+- frozen PHS/VG2 identities unchanged
+- zero new-grid initialization
+- zero VAMP2 parameter-mismatch/discarded-pass markers
+- valid expected final state
+- unit-weight LHE events where required by the generator setup
+- exactly 128,000 total events
+- exactly 128,000 globally unique event hashes
+- zero exact-event overlap between SINGLE and MULTI
+
+
+PHYSICS OBSERVABLE GROUPS
+-------------------------
+
+Inclusive:
+- pt_eplus
+- pt_muminus
+- eta_eplus
+- eta_muminus
+- energy_eplus
+- energy_muminus
+- pt_b
+- pt_bbar
+- eta_b
+- eta_bbar
+
+Resonance / ISR:
+- m_Wplus
+- m_Wminus
+- m_top
+- m_tbar
+- m_bb
+- m_tt
+- pt_tt
+- abs_y_tt
+
+Spin / angular:
+- abs_dphi_ll
+- deltaR_ll
+- cos_opening_ll
+- cos_helicity_eplus
+- cos_helicity_muminus
+- cos_helicity_product
+
+Total:
+24 observables.
+
+
+FROZEN STATISTICAL RULE
+-----------------------
+
+Familywise hypothesis-test alpha:
+0.01
+
+Multiple-testing correction:
+Holm
+
+Expected hypothesis tests:
+48
+
+Practical-equivalence SMD requirement:
+|SMD| <= 0.05 for every observable.
+
+Practical-equivalence KS-distance requirement:
+KS_D <= 0.02 for every observable.
+
+Quantiles:
+q05, q50, and q95 shifts may be reported diagnostically.
+
+The previous pooled-IQR-normalized quantile threshold is NOT a gate.
+
+
+PASS CONDITION
+--------------
+
+PASS requires simultaneously:
+
+1. zero structural failures;
+2. zero Holm-significant distribution failures at familywise alpha 0.01;
+3. zero |SMD| > 0.05 failures;
+4. zero KS_D > 0.02 failures.
+
+No individual observable may be removed after inspection.
+
+No reference grid may be removed after inspection.
+
+No threshold may be relaxed after holdout generation.
+
+A formal FAIL remains a FAIL unless a subsequently identified software or
+infrastructure defect can be demonstrated independently of the observed
+physics result.
+
+The holdout is one-shot.
+
+Before the validator is run, only structural/generation integrity may be
+inspected. Physics distributions, SMDs, KS values, hypothesis-test values,
+quantiles, or plots must not be inspected.

@@ -1,0 +1,32 @@
+PHASE-11F GROUPED EXTERNAL-STATE SOURCE
+======================================
+
+Physics final state:
+unchanged.
+
+Old ordering:
+b, bbar, e+, nue, mu-, numubar
+
+New ordering:
+e+, nue, b, mu-, numubar, bbar
+
+Reason:
+The old interleaved ordering produces non-contiguous top daughter sets in the
+WHIZARD LHE resonance history. PYTHIA/LHA daughter relationships are encoded as
+inclusive first/last index ranges and therefore require contiguous children.
+
+The grouped ordering follows the FCC-ee full-six-fermion ttbar convention:
+
+3+4       ~ W+
+3+4+5     ~ t
+
+6+7       ~ W-
+6+7+8     ~ tbar
+
+The resonance-history settings remain unchanged.
+
+This is a serialization/topology correction, not an intended physics-model
+change.
+
+The old Phase-11 integration grids are not assumed reusable because the
+external-leg ordering changes the process/phase-space representation.

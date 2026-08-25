@@ -1,0 +1,31 @@
+{
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "campaign_root": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase10_production_v1_qualification",
+  "events_per_sample": 100,
+  "events_per_shard": 100,
+  "integration_iterations": "1:8900",
+  "manifest": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition/full6f_365gev_epmum_triad_qualification_manifest.jsonl",
+  "manifest_sha256": "e99d87756f658161a14dc69fe6c43a74db1832b695ca1610bf7e6daf3c9f833d",
+  "n_samples": 3,
+  "n_shards_per_sample": 1,
+  "production_id": "phase10_production_v1",
+  "samples": [
+    {
+      "polarization": "unpol",
+      "sample_id": "f6f365_ee_unpol_epmum"
+    },
+    {
+      "polarization": "LR100",
+      "sample_id": "f6f365_ee_LR100_epmum"
+    },
+    {
+      "polarization": "RL100",
+      "sample_id": "f6f365_ee_RL100_epmum"
+    }
+  ],
+  "schema_version": 1,
+  "seed_stage": "phase10_production_v1_qualification",
+  "status": "PASS",
+  "total_records": 3,
+  "total_requested_events": 300
+}

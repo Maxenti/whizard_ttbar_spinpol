@@ -1,0 +1,82 @@
+{
+  "audit_lhe": true,
+  "duplicate_event_hashes": 0,
+  "expected": {
+    "events_per_grid": 10000,
+    "events_per_shard": 500,
+    "shards_per_grid": 20,
+    "total_events": 30000
+  },
+  "global_unique_events": 30000,
+  "grids": [
+    {
+      "aggregate_avg_excess": 0.00060966,
+      "efficiency_max_percent": 8.28,
+      "efficiency_mean_percent": 7.463500000000001,
+      "efficiency_median_percent": 7.390000000000001,
+      "efficiency_min_percent": 7.07,
+      "excess_events": 24,
+      "excess_fraction": 0.0024,
+      "gate_aggregate_avg_excess": true,
+      "gate_event_count": true,
+      "gate_excess_fraction": true,
+      "gate_global_max_excess": true,
+      "gate_shard_count": true,
+      "global_max_excess": 1.051,
+      "grid": "S0",
+      "grid_gate": true,
+      "n_shards": 20,
+      "technical_pass": true,
+      "total_events": 10000
+    },
+    {
+      "aggregate_avg_excess": 0.0006139565000000001,
+      "efficiency_max_percent": 7.73,
+      "efficiency_mean_percent": 7.297499999999999,
+      "efficiency_median_percent": 7.335,
+      "efficiency_min_percent": 6.87,
+      "excess_events": 31,
+      "excess_fraction": 0.0031,
+      "gate_aggregate_avg_excess": true,
+      "gate_event_count": true,
+      "gate_excess_fraction": true,
+      "gate_global_max_excess": true,
+      "gate_shard_count": true,
+      "global_max_excess": 1.026,
+      "grid": "S1",
+      "grid_gate": true,
+      "n_shards": 20,
+      "technical_pass": true,
+      "total_events": 10000
+    },
+    {
+      "aggregate_avg_excess": 0.000582345,
+      "efficiency_max_percent": 8.28,
+      "efficiency_mean_percent": 7.539499999999999,
+      "efficiency_median_percent": 7.5,
+      "efficiency_min_percent": 7.01,
+      "excess_events": 25,
+      "excess_fraction": 0.0025,
+      "gate_aggregate_avg_excess": true,
+      "gate_event_count": true,
+      "gate_excess_fraction": true,
+      "gate_global_max_excess": true,
+      "gate_shard_count": true,
+      "global_max_excess": 0.8482,
+      "grid": "S2",
+      "grid_gate": true,
+      "n_shards": 20,
+      "technical_pass": true,
+      "total_events": 10000
+    }
+  ],
+  "next_action": "Freeze C5G-A PASS and build a fresh C5R holdout using new validation-only seeds; do not reuse stress events for physics.",
+  "phase": "11C.5G-A",
+  "status": "PASS_ALL_GRIDS",
+  "thresholds": {
+    "max_aggregate_avg_excess": 0.01,
+    "max_excess_fraction": 0.01,
+    "max_global_event_excess": 10.0
+  },
+  "total_events": 30000
+}

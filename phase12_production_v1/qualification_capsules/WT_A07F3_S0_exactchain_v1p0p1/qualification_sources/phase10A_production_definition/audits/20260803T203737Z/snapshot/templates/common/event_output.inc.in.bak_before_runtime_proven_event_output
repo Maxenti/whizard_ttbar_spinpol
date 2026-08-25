@@ -1,0 +1,5 @@
+simulate (${PROCESS_NAME}) {
+  n_events = ${N_EVENTS}
+  sample_format = lhef
+  $sample = "${SAMPLE_BASENAME}"
+}

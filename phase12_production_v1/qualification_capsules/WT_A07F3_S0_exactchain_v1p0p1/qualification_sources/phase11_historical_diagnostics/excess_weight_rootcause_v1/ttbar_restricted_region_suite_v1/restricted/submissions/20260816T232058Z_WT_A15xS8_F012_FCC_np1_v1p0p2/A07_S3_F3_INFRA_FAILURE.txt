@@ -1,0 +1,25 @@
+Node: C_A07_S3_F3
+Original Condor job: 6054024.0
+Campaign DAG: 6053426
+Schedd: bigbird102.cern.ch
+
+Classification:
+INFRASTRUCTURE / WRAPPER DIRECTORY-CREATION RACE
+
+Observed failure:
+mkdir failed because the shared parent fixed/A07_S3 already existed.
+
+Context:
+F0, F1, F2, and F3 siblings for A07/S3 were submitted concurrently.
+They share the parent directory fixed/A07_S3. A plain mkdir therefore
+races among sibling workers. F3 lost the race and exited under set -e.
+
+This failure occurred before meaningful WHIZARD fixed-grid integration and
+is not classified as a numerical/physics failure.
+
+Remediation:
+After the original DAG completes, rerun exactly C_A07_S3_F3 with the
+original seed/configuration using mkdir -p or an otherwise race-safe output
+directory setup.
+
+The original failed attempt is retained as provenance.

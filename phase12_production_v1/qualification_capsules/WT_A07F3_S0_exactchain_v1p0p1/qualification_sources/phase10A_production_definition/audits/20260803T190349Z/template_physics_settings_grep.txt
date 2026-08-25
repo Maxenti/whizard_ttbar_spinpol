@@ -1,0 +1,33 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in:1:beams = e1, E1 => isr
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in:2:sqrts = ${SQRTS_GEV} GeV
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/diagnostics.inc.in:1:show (processes)
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/diagnostics.inc.in:2:show (integrals)
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:1:simulate (${PROCESS_NAME}) {
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:2:  n_events = ${N_EVENTS}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:3:  sample_format = lhef
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:4:  $sample = "${SAMPLE_BASENAME}"
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:5:}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/integration.inc.in:1:iterations = ${INTEGRATION_ITERATIONS}:${INTEGRATION_CALLS}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/integration.inc.in:2:integrate (${PROCESS_NAME})
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in:1:?isr_handler = true
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in:2:$isr_handler_mode = "recoil"
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in:3:?keep_beams = true
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in:4:?keep_remnants = true
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in:5:isr_mass = me
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/model.inc.in:1:model = SM
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/parameters.inc.in:1:${PARAMETER_BLOCK}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/polarization.inc.in:1:polarization = ${ELECTRON_POLARIZATION}, ${POSITRON_POLARIZATION}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:1:include("${COMMON_DIR}/model.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:2:include("${COMMON_DIR}/beams.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:3:include("${COMMON_DIR}/isr.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:4:include("${COMMON_DIR}/polarization.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:5:process ${PROCESS_NAME} = e1, E1 => ${FINAL_STATE}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:6:include("${COMMON_DIR}/integration.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in:7:include("${COMMON_DIR}/event_output.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:1:include("${COMMON_DIR}/model.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:2:include("${COMMON_DIR}/beams.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:3:include("${COMMON_DIR}/isr.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:4:include("${COMMON_DIR}/polarization.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:5:process ${PROCESS_NAME} = e1, E1 => ${FINAL_STATE}
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:6:include("${COMMON_DIR}/integration.inc")
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in:7:include("${COMMON_DIR}/event_output.inc")

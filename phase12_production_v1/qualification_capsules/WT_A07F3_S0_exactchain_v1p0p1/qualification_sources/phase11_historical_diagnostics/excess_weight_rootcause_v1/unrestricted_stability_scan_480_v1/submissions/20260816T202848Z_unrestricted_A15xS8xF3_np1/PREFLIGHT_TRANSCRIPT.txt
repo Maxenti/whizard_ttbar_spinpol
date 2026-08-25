@@ -1,0 +1,837 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign.env: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/CAMPAIGN_DESIGN.json: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/DECISION_POLICY.txt: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign_manifest.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/campaign.dag: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/adaptive_parent.sub: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/fixed_child.sub: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/adaptive_prescriptions.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/fixed_prescriptions.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_config/seeds.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/beams.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/diagnostics.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/event_output.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/integration.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/isr.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/model.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/parameters.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/common/polarization.inc: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/render_context.json: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/collect_results.py: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/preflight_campaign.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/run_adaptive_parent.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/run_fixed_child.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/status_campaign.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/scripts/submit_campaign.sh: OK
+===== MANIFEST CARDINALITY =====
+MANIFEST_CARDINALITY=PASS
+===== REPRESENTATIVE PARENT PREFLIGHTS: S0 FOR ALL 15 Axx =====
+----- A00_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A00_S0
+ADAPTIVE_ID=A00
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=5:50000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A00_S0_SwhuEC
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 5:50000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A01_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A01_S0
+ADAPTIVE_ID=A01
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=2:125000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A01_S0_f7U5li
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 2:125000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A02_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A02_S0
+ADAPTIVE_ID=A02
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:250000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A02_S0_x2Z8UQ
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:250000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A03_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A03_S0
+ADAPTIVE_ID=A03
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=5:100000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A03_S0_2Gmq4n
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 5:100000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A04_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A04_S0
+ADAPTIVE_ID=A04
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=2:250000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A04_S0_CtAAUx
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 2:250000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A05_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A05_S0
+ADAPTIVE_ID=A05
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:500000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A05_S0_D17MEK
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:500000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A06_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A06_S0
+ADAPTIVE_ID=A06
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:100000:"gw",1:200000:"gw",1:400000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A06_S0_1OUR1l
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:100000:"gw",1:200000:"gw",1:400000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A07_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A07_S0
+ADAPTIVE_ID=A07
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=10:100000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A07_S0_KI874e
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 10:100000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A08_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A08_S0
+ADAPTIVE_ID=A08
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=4:250000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A08_S0_QqmDVI
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 4:250000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A09_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A09_S0
+ADAPTIVE_ID=A09
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=2:500000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A09_S0_5lxtcO
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 2:500000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A10_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A10_S0
+ADAPTIVE_ID=A10
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:1000000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A10_S0_634HSM
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:1000000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A11_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A11_S0
+ADAPTIVE_ID=A11
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:100000:"gw",1:300000:"gw",1:600000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A11_S0_rZ0a9d
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:100000:"gw",1:300000:"gw",1:600000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A12_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A12_S0
+ADAPTIVE_ID=A12
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:250000:"gw",1:500000:"gw",1:1000000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A12_S0_GdICtT
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:250000:"gw",1:500000:"gw",1:1000000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A13_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A13_S0
+ADAPTIVE_ID=A13
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=2:1000000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A13_S0_wKNS4s
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 2:1000000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+----- A14_S0 -----
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+============================================================
+PHASE11_UNRESTRICTED_STABILITY_ADAPTIVE_PARENT_V1
+MODE=A14_S0
+ADAPTIVE_ID=A14
+SEED_ID=S0
+ADAPTIVE_SEED=1740114216
+ADAPTIVE_SCHEDULE=1:2000000:"gw"
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1/frozen_source/process.sin
+WORK=/tmp/cglenn_A14_S0_EZdN82
+PREFLIGHT_ONLY=1
+WHIZARD=WHIZARD 3.1.8
+============================================================
+===== EFFECTIVE integration.inc =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1740114216
+
+iterations = 1:2000000:"gw"
+
+integrate (proc_epmum)
+===== EFFECTIVE process.sin =====
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+include("common/integration.inc")
+ADAPTIVE_PARENT_PREFLIGHT=PASS
+===== DAG PARSE / NO-SUBMIT CHECK =====
+
+-----------------------------------------------------------------------
+File for submitting this DAG to HTCondor           : campaign.dag.condor.sub
+Log of DAGMan debugging messages                   : campaign.dag.dagman.out
+Log of HTCondor library output                     : campaign.dag.lib.out
+Log of HTCondor library error messages             : campaign.dag.lib.err
+Log of the life of condor_dagman itself            : campaign.dag.dagman.log
+
+-no_submit given, not submitting DAG to HTCondor. You can do this with:
+"condor_submit campaign.dag.condor.sub"
+-----------------------------------------------------------------------
+CAMPAIGN_PREFLIGHT=PASS

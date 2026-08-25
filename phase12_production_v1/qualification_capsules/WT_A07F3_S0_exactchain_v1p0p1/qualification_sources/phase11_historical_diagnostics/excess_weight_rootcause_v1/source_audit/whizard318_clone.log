@@ -1,0 +1,19 @@
+Cloning into '/tmp/cglenn_phase11_excess_weight_rootcause/whizard-v3.1.8'...
+warning: refs/tags/v3.1.8 098f7db8c2cf34ebf3cf134f27b94a68ba26bff2 is not a commit!
+Note: switching to 'cdd6517ac503227c1a4c16ce62ecce889f99f31f'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+

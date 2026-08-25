@@ -1,0 +1,17 @@
+{
+  "batch_name": "whizard_365ee_250k_smoke_v1",
+  "campaign_id": "paper_spin_365GeV_ee_lhe_matrix_250k_v1",
+  "campaign_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1_smoke",
+  "condor_cluster_id": "",
+  "config": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_365GeV_ee_250k_v1.csv",
+  "created_utc": "2026-07-27T16:01:16Z",
+  "job_count": 8,
+  "jobs_file": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/smoke/paper_spin_365GeV_ee_lhe_matrix_250k_v1_smoke/20260727T160114Z/jobs.itemdata",
+  "key4hep_setup": "/cvmfs/sw.hsf.org/key4hep/setup.sh",
+  "provenance_dir": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1_smoke/manifests/submissions/20260727T160114Z",
+  "skipped_count": 0,
+  "smoke": true,
+  "submission_control_dir": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/smoke/paper_spin_365GeV_ee_lhe_matrix_250k_v1_smoke/20260727T160114Z",
+  "submit_file": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/production/paper_spin_365GeV_ee_lhe_matrix_250k_v1/smoke/paper_spin_365GeV_ee_lhe_matrix_250k_v1_smoke/20260727T160114Z/whizard_production.sub",
+  "submitted": false
+}

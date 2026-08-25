@@ -1,0 +1,9 @@
+Phase 11 unrestricted integration-stability scan v1
+===================================================
+DAGMan cluster: 6052520
+Schedd: bigbird102.cern.ch
+Campaign directory: /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/unrestricted_stability_scan_480_v1/submissions/20260816T202848Z_unrestricted_A15xS8xF3_np1
+DAG nodes: 480
+Adaptive parents: 120
+Fixed children: 360
+Submission UTC: 2026-08-16T20:30:17Z

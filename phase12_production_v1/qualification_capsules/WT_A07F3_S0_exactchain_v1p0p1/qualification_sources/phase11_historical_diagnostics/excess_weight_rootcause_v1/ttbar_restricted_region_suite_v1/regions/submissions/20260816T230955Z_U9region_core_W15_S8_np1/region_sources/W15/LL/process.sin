@@ -1,0 +1,9 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/isr.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/polarization.inc")
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/region_cuts.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/region_sources/W15/LL/common/event_output.inc")

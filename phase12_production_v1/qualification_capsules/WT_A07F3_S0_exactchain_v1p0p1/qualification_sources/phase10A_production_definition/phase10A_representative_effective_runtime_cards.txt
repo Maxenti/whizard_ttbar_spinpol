@@ -1,0 +1,294 @@
+
+================================================================
+RUN_DIR=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z
+================================================================
+
+--- process.bridge.sin ---
+     1	include("common/model.inc")
+     2	include("common/beams.inc")
+     3	include("common/isr.inc")
+     4	include("common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("common/integration.inc")
+     7	include("common/event_output.inc")
+
+--- process.sin ---
+ABSENT_OR_EMPTY
+
+--- whizard.log ---
+3:|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+4:|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+5:|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+6:|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+7:|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+12:|                                       WW                                    |
+13:|                                      sWW                                    |
+14:|                                      WWW                                    |
+15:|                                     wWWW                                    |
+16:|                                    wWWWW                                    |
+17:|                                    WW WW                                    |
+18:|                                    WW WW                                    |
+19:|                                   wWW WW                                    |
+20:|                                  wWW  WW                                    |
+21:|                                  WW   WW                                    |
+22:|                                  WW   WW                                    |
+23:|                                 WW    WW                                    |
+24:|                                 WW    WW                                    |
+25:|                                WW     WW                                    |
+26:|                                WW     WW                                    |
+27:|           wwwwww              WW      WW                                    |
+28:|              WWWWWww          WW      WW                                    |
+29:|                 WWWWWwwwww   WW       WW                                    |
+30:|                     wWWWwwwwwWW       WW                                    |
+31:|                 wWWWWWWWWWWwWWW       WW                                    |
+32:|                wWWWWW       wW        WWWWWWW                               |
+33:|                  WWWW       wW        WW  wWWWWWWWwww                       |
+34:|                   WWWW                      wWWWWWWWwwww                    |
+35:|                     WWWW                      WWWW     WWw                  |
+36:|                       WWWWww                   WWWW                         |
+37:|                           WWWwwww              WWWW                         |
+38:|                               wWWWWwww       wWWWWW                         |
+39:|                                     WwwwwwwwwWWW                            |
+45:|        Contact: <whizard@desy.de>                                           |
+47:|  if you use WHIZARD please cite:                                            |
+53:|                               WHIZARD 3.1.8
+55:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+56:| Preloaded model: SM
+59:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+61:| Including Sindarin from 'common/model.inc'
+62:| Switching to model 'SM', scheme 'default'
+63:| End of included 'common/model.inc'
+65:sqrts =  3.650000000000E+02
+67:| Including Sindarin from 'common/isr.inc'
+68:?isr_handler = true
+69:$isr_handler_mode = "recoil"
+72:isr_mass =  5.109970000000E-04
+73:| End of included 'common/isr.inc'
+74:| Including Sindarin from 'common/polarization.inc'
+75:| End of included 'common/polarization.inc'
+89:| RNG: Setting seed for random-number generator to 16518
+91:| Beam structure: e-, e+ => isr
+92:|   polarization (beam 1):
+94:|   polarization (beam 2):
+96:|   polarization degree = 1.0000000, 1.0000000
+100:|   sqrts = 3.650000000000E+02 GeV
+116:| Beam structure: isr, none => none, isr
+120:| Integrate: iterations = 5:50000
+139:n_events = 500
+143:| Simulate: activating ISR handler
+144:| Simulate: ISR/EPA handler mode: pair recoil
+146:| RNG: Setting seed for random-number generator to 16519
+162:| WHIZARD run finished.
+
+--- whizard_bridge.log ---
+1:| Writing log to 'whizard.log'
+4:|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+5:|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+6:|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+7:|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+8:|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+13:|                                       WW                                    |
+14:|                                      sWW                                    |
+15:|                                      WWW                                    |
+16:|                                     wWWW                                    |
+17:|                                    wWWWW                                    |
+18:|                                    WW WW                                    |
+19:|                                    WW WW                                    |
+20:|                                   wWW WW                                    |
+21:|                                  wWW  WW                                    |
+22:|                                  WW   WW                                    |
+23:|                                  WW   WW                                    |
+24:|                                 WW    WW                                    |
+25:|                                 WW    WW                                    |
+26:|                                WW     WW                                    |
+27:|                                WW     WW                                    |
+28:|           wwwwww              WW      WW                                    |
+29:|              WWWWWww          WW      WW                                    |
+30:|                 WWWWWwwwww   WW       WW                                    |
+31:|                     wWWWwwwwwWW       WW                                    |
+32:|                 wWWWWWWWWWWwWWW       WW                                    |
+33:|                wWWWWW       wW        WWWWWWW                               |
+34:|                  WWWW       wW        WW  wWWWWWWWwww                       |
+35:|                   WWWW                      wWWWWWWWwwww                    |
+36:|                     WWWW                      WWWW     WWw                  |
+37:|                       WWWWww                   WWWW                         |
+38:|                           WWWwwww              WWWW                         |
+39:|                               wWWWWwww       wWWWWW                         |
+40:|                                     WwwwwwwwwWWW                            |
+46:|        Contact: <whizard@desy.de>                                           |
+48:|  if you use WHIZARD please cite:                                            |
+54:|                               WHIZARD 3.1.8
+56:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+57:| Preloaded model: SM
+60:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+62:| Including Sindarin from 'common/model.inc'
+63:| Switching to model 'SM', scheme 'default'
+64:| End of included 'common/model.inc'
+66:sqrts =  3.650000000000E+02
+68:| Including Sindarin from 'common/isr.inc'
+69:?isr_handler = true
+70:$isr_handler_mode = "recoil"
+73:isr_mass =  5.109970000000E-04
+74:| End of included 'common/isr.inc'
+75:| Including Sindarin from 'common/polarization.inc'
+76:| End of included 'common/polarization.inc'
+100:| RNG: Setting seed for random-number generator to 16518
+102:| Beam structure: e-, e+ => isr
+103:|   polarization (beam 1):
+105:|   polarization (beam 2):
+107:|   polarization degree = 1.0000000, 1.0000000
+111:|   sqrts = 3.650000000000E+02 GeV
+127:| Beam structure: isr, none => none, isr
+131:| Integrate: iterations = 5:50000
+150:n_events = 500
+154:| Simulate: activating ISR handler
+155:| Simulate: ISR/EPA handler mode: pair recoil
+157:| RNG: Setting seed for random-number generator to 16519
+173:| WHIZARD run finished.
+
+================================================================
+RUN_DIR=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z
+================================================================
+
+--- process.bridge.sin ---
+     1	include("common/model.inc")
+     2	include("common/beams.inc")
+     3	include("common/isr.inc")
+     4	include("common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("common/integration.inc")
+     7	include("common/event_output.inc")
+
+--- process.sin ---
+ABSENT_OR_EMPTY
+
+--- whizard.log ---
+3:|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+4:|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+5:|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+6:|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+7:|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+12:|                                       WW                                    |
+13:|                                      sWW                                    |
+14:|                                      WWW                                    |
+15:|                                     wWWW                                    |
+16:|                                    wWWWW                                    |
+17:|                                    WW WW                                    |
+18:|                                    WW WW                                    |
+19:|                                   wWW WW                                    |
+20:|                                  wWW  WW                                    |
+21:|                                  WW   WW                                    |
+22:|                                  WW   WW                                    |
+23:|                                 WW    WW                                    |
+24:|                                 WW    WW                                    |
+25:|                                WW     WW                                    |
+26:|                                WW     WW                                    |
+27:|           wwwwww              WW      WW                                    |
+28:|              WWWWWww          WW      WW                                    |
+29:|                 WWWWWwwwww   WW       WW                                    |
+30:|                     wWWWwwwwwWW       WW                                    |
+31:|                 wWWWWWWWWWWwWWW       WW                                    |
+32:|                wWWWWW       wW        WWWWWWW                               |
+33:|                  WWWW       wW        WW  wWWWWWWWwww                       |
+34:|                   WWWW                      wWWWWWWWwwww                    |
+35:|                     WWWW                      WWWW     WWw                  |
+36:|                       WWWWww                   WWWW                         |
+37:|                           WWWwwww              WWWW                         |
+38:|                               wWWWWwww       wWWWWW                         |
+39:|                                     WwwwwwwwwWWW                            |
+45:|        Contact: <whizard@desy.de>                                           |
+47:|  if you use WHIZARD please cite:                                            |
+53:|                               WHIZARD 3.1.8
+55:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+56:| Preloaded model: SM
+59:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+61:| Including Sindarin from 'common/model.inc'
+62:| Switching to model 'SM', scheme 'default'
+63:| End of included 'common/model.inc'
+65:sqrts =  3.650000000000E+02
+67:| Including Sindarin from 'common/isr.inc'
+68:?isr_handler = true
+69:$isr_handler_mode = "recoil"
+72:isr_mass =  5.109970000000E-04
+73:| End of included 'common/isr.inc'
+74:| Including Sindarin from 'common/polarization.inc'
+75:| End of included 'common/polarization.inc'
+89:| RNG: Setting seed for random-number generator to 31803
+91:| Beam structure: e-, e+ => isr
+92:|   polarization (beam 1):
+94:|   polarization (beam 2):
+96:|   polarization degree = 1.0000000, 1.0000000
+100:|   sqrts = 3.650000000000E+02 GeV
+116:| Beam structure: isr, none => none, isr
+120:| Integrate: iterations = 5:50000
+139:n_events = 500
+143:| Simulate: activating ISR handler
+144:| Simulate: ISR/EPA handler mode: pair recoil
+146:| RNG: Setting seed for random-number generator to 31804
+162:| WHIZARD run finished.
+
+--- whizard_bridge.log ---
+1:| Writing log to 'whizard.log'
+4:|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+5:|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+6:|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+7:|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+8:|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+13:|                                       WW                                    |
+14:|                                      sWW                                    |
+15:|                                      WWW                                    |
+16:|                                     wWWW                                    |
+17:|                                    wWWWW                                    |
+18:|                                    WW WW                                    |
+19:|                                    WW WW                                    |
+20:|                                   wWW WW                                    |
+21:|                                  wWW  WW                                    |
+22:|                                  WW   WW                                    |
+23:|                                  WW   WW                                    |
+24:|                                 WW    WW                                    |
+25:|                                 WW    WW                                    |
+26:|                                WW     WW                                    |
+27:|                                WW     WW                                    |
+28:|           wwwwww              WW      WW                                    |
+29:|              WWWWWww          WW      WW                                    |
+30:|                 WWWWWwwwww   WW       WW                                    |
+31:|                     wWWWwwwwwWW       WW                                    |
+32:|                 wWWWWWWWWWWwWWW       WW                                    |
+33:|                wWWWWW       wW        WWWWWWW                               |
+34:|                  WWWW       wW        WW  wWWWWWWWwww                       |
+35:|                   WWWW                      wWWWWWWWwwww                    |
+36:|                     WWWW                      WWWW     WWw                  |
+37:|                       WWWWww                   WWWW                         |
+38:|                           WWWwwww              WWWW                         |
+39:|                               wWWWWwww       wWWWWW                         |
+40:|                                     WwwwwwwwwWWW                            |
+46:|        Contact: <whizard@desy.de>                                           |
+48:|  if you use WHIZARD please cite:                                            |
+54:|                               WHIZARD 3.1.8
+56:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl'
+57:| Preloaded model: SM
+60:| Reading model file '/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl'
+62:| Including Sindarin from 'common/model.inc'
+63:| Switching to model 'SM', scheme 'default'
+64:| End of included 'common/model.inc'
+66:sqrts =  3.650000000000E+02
+68:| Including Sindarin from 'common/isr.inc'
+69:?isr_handler = true
+70:$isr_handler_mode = "recoil"
+73:isr_mass =  5.109970000000E-04
+74:| End of included 'common/isr.inc'
+75:| Including Sindarin from 'common/polarization.inc'
+76:| End of included 'common/polarization.inc'
+100:| RNG: Setting seed for random-number generator to 31803
+102:| Beam structure: e-, e+ => isr
+103:|   polarization (beam 1):
+105:|   polarization (beam 2):
+107:|   polarization degree = 1.0000000, 1.0000000
+111:|   sqrts = 3.650000000000E+02 GeV
+127:| Beam structure: isr, none => none, isr
+131:| Integrate: iterations = 5:50000
+150:n_events = 500
+154:| Simulate: activating ISR handler
+155:| Simulate: ISR/EPA handler mode: pair recoil
+157:| RNG: Setting seed for random-number generator to 31804
+173:| WHIZARD run finished.

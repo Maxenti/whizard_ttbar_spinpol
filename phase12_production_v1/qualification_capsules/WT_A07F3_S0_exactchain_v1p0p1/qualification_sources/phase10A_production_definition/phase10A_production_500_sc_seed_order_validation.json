@@ -1,0 +1,97 @@
+{
+  "checks": [
+    {
+      "exists": true,
+      "first_integrate_position": 1609,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "ee_ttbar_epmum_LR100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1323,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_LR100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1609,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "ee_ttbar_epmum_RL100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1323,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_epmum_RL100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1609,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "ee_ttbar_mupem_LR100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1323,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_LR100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1609,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "ee_ttbar_mupem_RL100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1323,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/ee_ttbar_mupem_RL100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1613,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "mumu_ttbar_epmum_LR100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1327,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/mumu_ttbar_epmum_LR100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1613,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "mumu_ttbar_epmum_RL100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1327,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/mumu_ttbar_epmum_RL100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1613,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "mumu_ttbar_mupem_LR100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1327,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/mumu_ttbar_mupem_LR100_sc_ISR_500GeV.sin.in"
+    },
+    {
+      "exists": true,
+      "first_integrate_position": 1613,
+      "integrate_count": 3,
+      "passed": true,
+      "sample_id": "mumu_ttbar_mupem_RL100_sc_ISR_500GeV",
+      "seed_count": 1,
+      "seed_position": 1327,
+      "seed_precedes_first_integration": true,
+      "template": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production/mumu_ttbar_mupem_RL100_sc_ISR_500GeV.sin.in"
+    }
+  ],
+  "config": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/configs/production/production_500GeV_ISR_sc_v1.csv",
+  "failures": [],
+  "schema_version": 1,
+  "status": "PASS",
+  "template_dir": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/production"
+}

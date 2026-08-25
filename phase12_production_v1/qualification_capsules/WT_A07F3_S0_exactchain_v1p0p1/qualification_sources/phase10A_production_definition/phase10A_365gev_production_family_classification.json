@@ -1,0 +1,50 @@
+{
+  "audited_configurations": {
+    "production_365GeV_ee_250k_v1.csv": {
+      "adopt_for_phase10_full6f": false,
+      "campaign_id": "paper_spin_365GeV_ee_lhe_matrix_250k_v1",
+      "classification": "unadopted_proposal",
+      "events_per_sample": 250000,
+      "hard_process_class": "on_shell_ttbar_plus_unstable_decays",
+      "samples": 8,
+      "spin_modes": [
+        "spin_correlated",
+        "isotropic_decay_control"
+      ],
+      "total_events": 2000000,
+      "tracked_in_git": false
+    },
+    "production_365GeV_ee_iso_v1.csv": {
+      "adopt_for_phase10_full6f": false,
+      "campaign_id": "paper_spin_365GeV_lhe_matrix_10k_v1",
+      "classification": "legacy_control",
+      "events_per_sample": 10000,
+      "hard_process_class": "on_shell_ttbar_plus_unstable_decays",
+      "samples": 4,
+      "spin_mode": "isotropic_decay_control",
+      "total_events": 40000
+    },
+    "production_365GeV_ee_sc_v1.csv": {
+      "adopt_for_phase10_full6f": false,
+      "campaign_id": "paper_spin_365GeV_lhe_matrix_10k_v1",
+      "classification": "legacy_reference",
+      "events_per_sample": 10000,
+      "hard_process_class": "on_shell_ttbar_plus_unstable_decays",
+      "samples": 4,
+      "spin_mode": "spin_correlated",
+      "total_events": 40000
+    }
+  },
+  "authoritative_campaign": {
+    "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+    "hard_process_class": "direct_full_six_fermion_matrix_element",
+    "required_process_example": "e1, E1 => b, bbar, E1, n1, e2, N2",
+    "runtime": "WHIZARD 3.1.8",
+    "seed_requirement": "Explicit WHIZARD seed before all integration statements"
+  },
+  "decision": "The existing 365 GeV production CSV files are structurally valid but are not adopted as the canonical full-six-fermion Phase 10 production definition.",
+  "next_action": "Build the canonical Phase 10 production family from the validated full-six-fermion Sindarin renderer and runner, retaining the factorized production framework only as a comparison workflow.",
+  "physics_reason": "The direct full-six-fermion calculation preserves off-shell, non-resonant, finite-width, and interference contributions that are not generally identical to factorized on-shell ttbar production followed by unstable-particle decays.",
+  "schema_version": 1,
+  "status": "PASS"
+}

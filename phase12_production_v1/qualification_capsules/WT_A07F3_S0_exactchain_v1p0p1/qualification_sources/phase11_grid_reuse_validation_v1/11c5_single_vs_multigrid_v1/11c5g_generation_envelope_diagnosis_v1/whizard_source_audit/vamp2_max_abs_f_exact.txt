@@ -1,0 +1,387 @@
+860-      do ch = 1, self%config%n_channel
+861-         call self%integrator(ch)%allocate_handler (&
+862-              handler_id = ch,&
+863-              handler = vegas_result_handler)
+864-         call req%add_handler (ch, vegas_result_handler)
+865-      end do
+866-    end subroutine init_all_handler
+867-
+868-    subroutine call_all_handler (req)
+869-      class(request_base_t), intent(inout) :: req
+870-      integer :: ch
+871-      if (.not. req%is_master ()) return
+872-      do ch = 1, self%config%n_channel
+873-         select type (req)
+874-         type is (request_simple_t)
+875-            call req%call_handler (handler_id = ch, &
+876-                 source_rank = req%get_request_master (ch))
+877-         end select
+878-      end do
+879-    end subroutine call_all_handler
+880-  end subroutine vamp2_prepare_integrate_iteration
+881-
+882-  module subroutine vamp2_compute_result_and_efficiency (self)
+883-    class(vamp2_t), intent(inout) :: self
+884-    real(default) :: total_integral, total_variance
+885:    real(default) :: max_abs_f_pos, max_abs_f_neg, &
+886-         sum_abs_f_pos, sum_abs_f_neg
+887-    call compute_integral_and_variance (total_integral, total_variance)
+888-    call self%result%update (total_integral, total_variance)
+889:    call compute_efficiency (max_pos = max_abs_f_pos, max_neg = max_abs_f_neg, &
+890-         sum_pos = sum_abs_f_pos, sum_neg = sum_abs_f_neg)
+891-    !! Do not average of number of calls, we have already averaged the efficiencies of all channels.
+892-    call self%result%update_efficiency (n_calls  = 1, &
+893:         max_pos = max_abs_f_pos, max_neg = max_abs_f_neg, &
+894-         sum_pos = sum_abs_f_pos, sum_neg = sum_abs_f_neg)
+895-  contains
+896-    subroutine compute_integral_and_variance (integral, variance)
+897-      real(default), intent(out) :: integral, variance
+898-      real(default) :: sq_integral
+899-      integral = dot_product (self%weight, self%integrator%get_integral ())
+900-      sq_integral = dot_product (self%weight, self%integrator%get_integral ()**2)
+901-      variance = self%config%n_calls * dot_product (self%weight**2, self%integrator%get_variance ())
+902-      variance = sqrt (variance + sq_integral)
+903-      variance = 1._default / self%config%n_calls * &
+904-           & (variance + integral) * (variance - integral)
+905-    end subroutine compute_integral_and_variance
+906-
+907-    !> We compute the weight-averaged sum and maximum of the channel (integration) weights \f$w_{i,c}\f$.
+908-    !!
+909-    !! The averaged integration weight and maximum are
+910-    !! \f[
+911-    !!  \langle w \rangle = \sum_i \alpha_i \frac{\sum_j w_{i, j}}{N_i},
+912-    !! \f]
+913-    !! \f[
+914-    !!  \langle \max w \rangle = \sum_i \alpha_i |\max_j w_{i, j}|.
+915-    !! \f]
+916-    subroutine compute_efficiency (max_pos, max_neg, &
+917-         sum_pos, sum_neg)
+918-      real(default), intent(out) :: max_pos, max_neg
+919-      real(default), intent(out) :: sum_pos, sum_neg
+920:      max_abs_f_pos = dot_product (self%weight, self%integrator%get_max_abs_f_pos ())
+921:      max_abs_f_neg = dot_product (self%weight, self%integrator%get_max_abs_f_neg ())
+922-      sum_abs_f_pos = dot_product (self%weight, &
+923-           self%integrator%get_sum_abs_f_pos () / self%integrator%get_calls ())
+924-      sum_abs_f_neg = dot_product (self%weight, &
+925-           self%integrator%get_sum_abs_f_neg () / self%integrator%get_calls ())
+926-    end subroutine compute_efficiency
+927-  end subroutine vamp2_compute_result_and_efficiency
+928-
+929-  module subroutine vamp2_generate_weighted_event (self, func, rng, x)
+930-    class(vamp2_t), intent(inout) :: self
+931-    class(vamp2_func_t), intent(inout) :: func
+932-    class(rng_t), intent(inout) :: rng
+933-    real(default), dimension(self%config%n_dim), intent(out)  :: x
+934-    integer :: ch, i
+935-    real(default) :: r
+936-    if (.not. self%event_prepared) then
+937-       call prepare_event ()
+938-    else
+939-       if (.not. allocated (func%grids)) then
+940-          call prepare_event ()
+941-       else
+942-          if (any ([(.not. allocated (func%grids(i)%xi),i=1,size(func%grids))])) then
+943-             call prepare_event ()
+944-          end if
+945-       end if
+946-    end if
+947-    call rng%generate (r)
+948-    nchannel: do ch = 1, self%config%n_channel
+949-       r = r - self%event_weight(ch)
+950-       if (r <= 0._default) exit nchannel
+951-    end do nchannel
+952-    ch = min (ch, self%config%n_channel)
+953-    call func%set_channel (ch)
+954-    call self%integrator(ch)%generate_weighted (func, rng, x)
+955-    ! Norm weight by f_max, hidden in event_weight(ch), else by 1
+956-    self%result%evt_weight = self%integrator(ch)%get_evt_weight () &
+957-         * self%weight(ch) / self%event_weight(ch)
+958-  contains
+959-    subroutine prepare_event ()
+960-      integer :: i
+961-      self%event_prepared = .false.
+962-      do i = 1, self%config%n_channel
+963-         func%wi(i) = self%weight(i)
+964-         func%grids(i) = self%integrator(i)%get_grid ()
+965-      end do
+966:      if (any (self%integrator%get_max_abs_f () > 0)) then
+967:         self%event_weight = self%weight * self%integrator%get_max_abs_f ()
+968-      else
+969-         self%event_weight = self%weight
+970-      end if
+971-      self%event_weight = self%event_weight / sum (self%event_weight)
+972-      self%event_prepared = .true.
+973-    end subroutine prepare_event
+974-
+975-  end subroutine vamp2_generate_weighted_event
+976-
+977-  module subroutine vamp2_generate_unweighted_event (self, func, rng, &
+978-       x, opt_event_rescale)
+979-    class(vamp2_t), intent(inout) :: self
+980-    class(vamp2_func_t), intent(inout) :: func
+981-    class(rng_t), intent(inout) :: rng
+982-    real(default), dimension(self%config%n_dim), intent(out)  :: x
+983-    real(default), intent(in), optional :: opt_event_rescale
+984-    integer :: ch, i
+985:    real(default) :: r, max_abs_f, event_rescale
+986-    event_rescale = 1._default
+987-    if (present (opt_event_rescale)) then
+988-       event_rescale = opt_event_rescale
+989-    end if
+990-    if (.not. self%event_prepared) then
+991-       call prepare_event ()
+992-    else
+993-       if (.not. allocated (func%grids)) then
+994-          call prepare_event ()
+995-       else
+996-          if (any ([(.not. allocated (func%grids(i)%xi),i=1,size(func%grids))])) then
+997-             call prepare_event ()
+998-          end if
+999-       end if
+1000-    end if
+1001-    generate: do
+1002-       call rng%generate (r)
+1003-       nchannel: do ch = 1, self%config%n_channel
+1004-          r = r - self%event_weight(ch)
+1005-          if (r <= 0._default) exit nchannel
+1006-       end do nchannel
+1007-       ch = min (ch, self%config%n_channel)
+1008-       call func%set_channel (ch)
+1009-       call self%integrator(ch)%generate_weighted (func, rng, x)
+1010-       self%result%evt_weight = self%integrator(ch)%get_evt_weight ()
+1011:       max_abs_f = self%integrator(ch)%get_max_abs_f ()
+1012-       self%result%evt_weight_excess = 0._default
+1013:       if (abs(self%result%evt_weight) > max_abs_f) then
+1014:          self%result%evt_weight_excess = abs(self%result%evt_weight) / max_abs_f - 1._default
+1015-          exit generate
+1016-       end if
+1017-       call rng%generate (r)
+1018:       ! Do not use division, because max_abs_f could be zero.
+1019:       if (event_rescale * max_abs_f * r <= abs(self%result%evt_weight)) then
+1020-          exit generate
+1021-       end if
+1022-    end do generate
+1023-  contains
+1024-    subroutine prepare_event ()
+1025-      integer :: i
+1026-      self%event_prepared = .false.
+1027-      do i = 1, self%config%n_channel
+1028-         func%wi(i) = self%weight(i)
+1029-         func%grids(i) = self%integrator(i)%get_grid ()
+1030-      end do
+1031:      if (any (self%integrator%get_max_abs_f () > 0)) then
+1032:         self%event_weight = self%weight * self%integrator%get_max_abs_f ()
+1033-      else
+1034-         self%event_weight = self%weight
+1035-      end if
+1036-      self%event_weight = self%event_weight / sum (self%event_weight)
+1037-      self%event_prepared = .true.
+1038-    end subroutine prepare_event
+1039-
+1040-  end subroutine vamp2_generate_unweighted_event
+1041-
+1042-  module subroutine vamp2_write_grids (self, unit)
+1043-    class(vamp2_t), intent(in) :: self
+1044-    integer, intent(in), optional :: unit
+1045-    integer :: u
+1046-    integer :: ch
+1047-    u = given_output_unit (unit)
+1048-    write (u, descr_fmt) "begin type(vamp2_t)"
+1049-    write (u, integer_fmt) "n_channel =", self%config%n_channel
+1050-    write (u, integer_fmt) "n_dim =", self%config%n_dim
+1051-    write (u, integer_fmt) "n_calls_min_ch =", self%config%n_calls_min_per_channel
+1052-    write (u, integer_fmt) "n_calls_thres =", self%config%n_calls_threshold
+1053-    write (u, integer_fmt) "n_chains =", self%config%n_chains
+1054-    write (u, logical_fmt) "stratified =", self%config%stratified
+1055-    write (u, double_fmt) "alpha =", self%config%alpha
+1056-    write (u, double_fmt) "beta =", self%config%beta
+1057-    write (u, integer_fmt) "n_bins_max =", self%config%n_bins_max
+1058-    write (u, integer_fmt) "iterations =", self%config%iterations
+1059-    write (u, integer_fmt) "n_calls =", self%config%n_calls
+1060-    write (u, integer_fmt) "it_start =", self%result%it_start
+1061-    write (u, integer_fmt) "it_num =", self%result%it_num
+1062-    write (u, integer_fmt) "samples =", self%result%samples
+1063-    write (u, double_fmt) "sum_int_wgtd =", self%result%sum_int_wgtd
+1064-    write (u, double_fmt) "sum_wgts =", self%result%sum_wgts
+1065-    write (u, double_fmt) "sum_chi =", self%result%sum_chi
+1066-    write (u, double_fmt) "chi2 =", self%result%chi2
+1067-    write (u, double_fmt) "efficiency =", self%result%efficiency
+1068-    write (u, double_fmt) "efficiency_pos =", self%result%efficiency_pos
+1069-    write (u, double_fmt) "efficiency_neg =", self%result%efficiency_neg
+1070:    write (u, double_fmt) "max_abs_f =", self%result%max_abs_f
+1071:    write (u, double_fmt) "max_abs_f_pos =", self%result%max_abs_f_pos
+1072:    write (u, double_fmt) "max_abs_f_neg =", self%result%max_abs_f_neg
+1073-    write (u, double_fmt) "result =", self%result%result
+1074-    write (u, double_fmt) "std =", self%result%std
+1075-    write (u, descr_fmt) "begin weight"
+1076-    do ch = 1, self%config%n_channel
+1077-       write (u, double_array_fmt) ch, self%weight(ch)
+1078-    end do
+1079-    write (u, descr_fmt) "end weight"
+1080-    if (self%config%n_chains > 0) then
+1081-       write (u, descr_fmt) "begin chain"
+1082-       do ch = 1, self%config%n_channel
+1083-          write (u, integer_array_fmt) ch, self%chain(ch)
+1084-       end do
+1085-       write (u, descr_fmt) "end chain"
+1086-    end if
+1087-    write (u, descr_fmt) "begin integrator"
+1088-    do ch = 1, self%config%n_channel
+1089-       call self%integrator(ch)%write_grid (unit)
+1090-    end do
+1091-    write (u, descr_fmt) "end integrator"
+1092-    write (u, descr_fmt) "end type(vamp2_t)"
+1093-  end subroutine vamp2_write_grids
+1094-
+1095-  module subroutine vamp2_read_grids (self, unit)
+1096-    class(vamp2_t), intent(out) :: self
+1097-    integer, intent(in), optional :: unit
+1098-    integer :: u
+1099-    integer :: ibuffer, jbuffer, ch
+1100-    character(len=80) :: buffer
+1101-    read (unit, descr_fmt) buffer
+1102-    read (unit, integer_fmt) buffer, ibuffer
+1103-    read (unit, integer_fmt) buffer, jbuffer
+1104-    select type (self)
+1105-    type is (vamp2_t)
+1106-       self = vamp2_t (n_channel = ibuffer, n_dim = jbuffer)
+1107-    end select
+1108-    read (unit, integer_fmt) buffer, self%config%n_calls_min_per_channel
+1109-    read (unit, integer_fmt) buffer, self%config%n_calls_threshold
+1110-    read (unit, integer_fmt) buffer, self%config%n_chains
+1111-    read (unit, logical_fmt) buffer, self%config%stratified
+1112-    read (unit, double_fmt) buffer, self%config%alpha
+1113-    read (unit, double_fmt) buffer, self%config%beta
+1114-    read (unit, integer_fmt) buffer, self%config%n_bins_max
+1115-    read (unit, integer_fmt) buffer, self%config%iterations
+1116-    read (unit, integer_fmt) buffer, self%config%n_calls
+1117-    read (unit, integer_fmt) buffer, self%result%it_start
+1118-    read (unit, integer_fmt) buffer, self%result%it_num
+1119-    read (unit, integer_fmt) buffer, self%result%samples
+1120-    read (unit, double_fmt) buffer, self%result%sum_int_wgtd
+1121-    read (unit, double_fmt) buffer, self%result%sum_wgts
+1122-    read (unit, double_fmt) buffer, self%result%sum_chi
+1123-    read (unit, double_fmt) buffer, self%result%chi2
+1124-    read (unit, double_fmt) buffer, self%result%efficiency
+1125-    read (unit, double_fmt) buffer, self%result%efficiency_pos
+1126-    read (unit, double_fmt) buffer, self%result%efficiency_neg
+1127:    read (unit, double_fmt) buffer, self%result%max_abs_f
+1128:    read (unit, double_fmt) buffer, self%result%max_abs_f_pos
+1129:    read (unit, double_fmt) buffer, self%result%max_abs_f_neg
+1130-    read (unit, double_fmt) buffer, self%result%result
+1131-    read (unit, double_fmt) buffer, self%result%std
+1132-    read (unit, descr_fmt) buffer
+1133-    do ch = 1, self%config%n_channel
+1134-       read (unit, double_array_fmt) ibuffer, self%weight(ch)
+1135-    end do
+1136-    read (unit, descr_fmt) buffer
+1137-    if (self%config%n_chains > 0) then
+1138-       read (unit, descr_fmt) buffer
+1139-       do ch = 1, self%config%n_channel
+1140-          read (unit, integer_array_fmt) ibuffer, self%chain(ch)
+1141-       end do
+1142-       read (unit, descr_fmt) buffer
+1143-    end if
+1144-    read (unit, descr_fmt) buffer
+1145-    do ch = 1, self%config%n_channel
+1146-       call self%integrator(ch)%read_grid (unit)
+1147-    end do
+1148-    read (unit, descr_fmt) buffer
+1149-    read (unit, descr_fmt) buffer
+1150-  end subroutine vamp2_read_grids
+1151-
+1152-  module subroutine vamp2_write_binary_grids (self, unit)
+1153-    class(vamp2_t), intent(in) :: self
+1154-    integer, intent(in) :: unit
+1155-    integer :: ch
+1156-    write (unit)
+1157-    write (unit) self%config%n_channel
+1158-    write (unit) self%config%n_dim
+1159-    write (unit) self%config%n_calls_min_per_channel
+1160-    write (unit) self%config%n_calls_threshold
+1161-    write (unit) self%config%n_chains
+1162-    write (unit) self%config%stratified
+1163-    write (unit) self%config%alpha
+1164-    write (unit) self%config%beta
+1165-    write (unit) self%config%n_bins_max
+1166-    write (unit) self%config%iterations
+1167-    write (unit) self%config%n_calls
+1168-    write (unit) self%result%it_start
+1169-    write (unit) self%result%it_num
+1170-    write (unit) self%result%samples
+1171-    write (unit) self%result%sum_int_wgtd
+1172-    write (unit) self%result%sum_wgts
+1173-    write (unit) self%result%sum_chi
+1174-    write (unit) self%result%chi2
+1175-    write (unit) self%result%efficiency
+1176-    write (unit) self%result%efficiency_pos
+1177-    write (unit) self%result%efficiency_neg
+1178:    write (unit) self%result%max_abs_f
+1179:    write (unit) self%result%max_abs_f_pos
+1180:    write (unit) self%result%max_abs_f_neg
+1181-    write (unit) self%result%result
+1182-    write (unit) self%result%std
+1183-    do ch = 1, self%config%n_channel
+1184-       write (unit) ch, self%weight(ch)
+1185-    end do
+1186-    if (self%config%n_chains > 0) then
+1187-       do ch = 1, self%config%n_channel
+1188-          write (unit) ch, self%chain(ch)
+1189-       end do
+1190-    end if
+1191-    do ch = 1, self%config%n_channel
+1192-       call self%integrator(ch)%write_binary_grid (unit)
+1193-    end do
+1194-  end subroutine vamp2_write_binary_grids
+1195-
+1196-  module subroutine vamp2_read_binary_grids (self, unit)
+1197-    class(vamp2_t), intent(out) :: self
+1198-    integer, intent(in) :: unit
+1199-    integer :: ch, ibuffer, jbuffer
+1200-    read (unit)
+1201-    read (unit) ibuffer
+1202-    read (unit) jbuffer
+1203-    select type (self)
+1204-    type is (vamp2_t)
+1205-       self = vamp2_t (n_channel = ibuffer, n_dim = jbuffer)
+1206-    end select
+1207-    read (unit) self%config%n_calls_min_per_channel
+1208-    read (unit) self%config%n_calls_threshold
+1209-    read (unit) self%config%n_chains
+1210-    read (unit) self%config%stratified
+1211-    read (unit) self%config%alpha
+1212-    read (unit) self%config%beta
+1213-    read (unit) self%config%n_bins_max
+1214-    read (unit) self%config%iterations
+1215-    read (unit) self%config%n_calls
+1216-    read (unit) self%result%it_start
+1217-    read (unit) self%result%it_num
+1218-    read (unit) self%result%samples
+1219-    read (unit) self%result%sum_int_wgtd
+1220-    read (unit) self%result%sum_wgts
+1221-    read (unit) self%result%sum_chi
+1222-    read (unit) self%result%chi2
+1223-    read (unit) self%result%efficiency
+1224-    read (unit) self%result%efficiency_pos
+1225-    read (unit) self%result%efficiency_neg
+1226:    read (unit) self%result%max_abs_f
+1227:    read (unit) self%result%max_abs_f_pos
+1228:    read (unit) self%result%max_abs_f_neg
+1229-    read (unit) self%result%result
+1230-    read (unit) self%result%std
+1231-    do ch = 1, self%config%n_channel
+1232-       read (unit) ibuffer, self%weight(ch)
+1233-    end do
+1234-    if (self%config%n_chains > 0) then
+1235-       do ch = 1, self%config%n_channel
+1236-          read (unit) ibuffer, self%chain(ch)
+1237-       end do
+1238-    end if
+1239-    do ch = 1, self%config%n_channel
+1240-       call self%integrator(ch)%read_binary_grid (unit)
+1241-    end do
+1242-  end subroutine vamp2_read_binary_grids
+1243-
+1244-
+1245-end submodule vamp2_s
+1246-

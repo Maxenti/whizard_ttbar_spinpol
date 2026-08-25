@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "all_record_checks": true,
+    "polarization_triad": true,
+    "record_count": true,
+    "sample_count": true,
+    "sample_shard_counts": true,
+    "seeds_unique": true,
+    "shard_index_coverage": true
+  },
+  "expected": {
+    "events_per_shard": 100,
+    "records": 3,
+    "samples": 3,
+    "shards_per_sample": 1
+  },
+  "failures": [],
+  "manifest": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition/full6f_365gev_epmum_triad_qualification_manifest.jsonl",
+  "manifest_sha256": "e99d87756f658161a14dc69fe6c43a74db1832b695ca1610bf7e6daf3c9f833d",
+  "observed": {
+    "records": 3,
+    "sample_counts": {
+      "f6f365_ee_LR100_epmum": 1,
+      "f6f365_ee_RL100_epmum": 1,
+      "f6f365_ee_unpol_epmum": 1
+    },
+    "sample_polarizations": {
+      "f6f365_ee_LR100_epmum": "LR100",
+      "f6f365_ee_RL100_epmum": "RL100",
+      "f6f365_ee_unpol_epmum": "unpol"
+    },
+    "unique_seeds": 3
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

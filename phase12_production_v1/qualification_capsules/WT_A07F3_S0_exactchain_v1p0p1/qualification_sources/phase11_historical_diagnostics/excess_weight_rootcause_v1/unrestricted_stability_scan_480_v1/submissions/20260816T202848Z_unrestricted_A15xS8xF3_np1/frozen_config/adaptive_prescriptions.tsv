@@ -1,0 +1,16 @@
+adaptive_id	schedule	total_calls	updates	purpose
+A00	5:50000:"gw"	250000	5	current_baseline_many_small_updates
+A01	2:125000:"gw"	250000	2	same_budget_two_updates
+A02	1:250000:"gw"	250000	1	same_budget_single_update
+A03	5:100000:"gw"	500000	5	medium_budget_many_updates
+A04	2:250000:"gw"	500000	2	medium_budget_two_updates
+A05	1:500000:"gw"	500000	1	medium_budget_single_update
+A06	1:100000:"gw",1:200000:"gw",1:400000:"gw"	700000	3	progressive_100k_200k_400k
+A07	10:100000:"gw"	1000000	10	historical_aggressive_adaptation_control
+A08	4:250000:"gw"	1000000	4	one_million_four_updates
+A09	2:500000:"gw"	1000000	2	one_million_two_updates
+A10	1:1000000:"gw"	1000000	1	one_million_single_update
+A11	1:100000:"gw",1:300000:"gw",1:600000:"gw"	1000000	3	progressive_one_million
+A12	1:250000:"gw",1:500000:"gw",1:1000000:"gw"	1750000	3	deep_progressive_250k_500k_1m
+A13	2:1000000:"gw"	2000000	2	two_large_updates
+A14	1:2000000:"gw"	2000000	1	single_very_large_update

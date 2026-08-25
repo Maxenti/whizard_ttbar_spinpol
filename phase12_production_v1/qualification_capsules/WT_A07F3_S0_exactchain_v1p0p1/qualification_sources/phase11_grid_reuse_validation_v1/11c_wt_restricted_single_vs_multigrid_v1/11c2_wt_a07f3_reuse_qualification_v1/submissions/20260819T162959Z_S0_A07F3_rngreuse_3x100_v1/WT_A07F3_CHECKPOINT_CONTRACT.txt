@@ -1,0 +1,50 @@
+WT A07/F3 FROZEN-WORKSPACE REUSE CONTRACT
+==========================================
+
+Checkpoint kind:
+WT_A07F3
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum process.
+
+Serialized integration history:
+A07:
+    10:100000:"gw"
+
+followed by F3:
+    10:200000:""
+
+Therefore the frozen-workspace reuse call must use:
+
+    iterations = 10:100000:"gw", 10:200000:""
+    integrate (proc_epmum)
+
+before:
+
+    simulate (proc_epmum)
+
+RNG rule:
+A shard-specific rng_stream seed is installed before integrate(proc_epmum).
+
+There is no explicit reseed between integrate(proc_epmum) and
+simulate(proc_epmum).
+
+Required reuse invariants:
+- WHIZARD_RC = 0
+- NEW_GRID_INIT_COUNT = 0
+- WORKSPACE_UNCHANGED = 1
+- PHS hash before == PHS hash after == frozen PHS hash
+- VG2 hash before == VG2 hash after == frozen VG2 hash
+- exact requested event count written
+
+Background:
+The superseded 60-job campaign accidentally described the WT A07/F3
+workspace as checkpoint kind G2. G2 selected
+
+    5:50000:"gw", 3:200000:""
+
+which produced a VAMP2 header-parameter mismatch, discarded the stored pass,
+initialized a new grid, and modified proc_epmum.m1.vg2.
+
+This new checkpoint kind corrects the semantic mapping without changing the
+already-qualified RNG-controller or workspace-reuse logic.

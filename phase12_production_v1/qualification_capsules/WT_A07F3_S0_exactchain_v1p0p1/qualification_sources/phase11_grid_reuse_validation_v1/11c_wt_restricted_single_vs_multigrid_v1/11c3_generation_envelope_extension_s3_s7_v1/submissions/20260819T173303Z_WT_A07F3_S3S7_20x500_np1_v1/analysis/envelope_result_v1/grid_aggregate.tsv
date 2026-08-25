@@ -1,0 +1,4 @@
+grid	n_shards	technical_pass	total_events	excess_events	excess_fraction	aggregate_avg_excess	global_max_excess	efficiency_min_percent	efficiency_median_percent	efficiency_mean_percent	efficiency_max_percent	gate_shard_count	gate_event_count	gate_excess_fraction	gate_aggregate_avg_excess	gate_global_max_excess	grid_gate
+S0	0	False	0	0	nan	nan	nan	nan	nan	nan	nan	False	False	False	False	False	False
+S1	0	False	0	0	nan	nan	nan	nan	nan	nan	nan	False	False	False	False	False	False
+S2	0	False	0	0	nan	nan	nan	nan	nan	nan	nan	False	False	False	False	False	False

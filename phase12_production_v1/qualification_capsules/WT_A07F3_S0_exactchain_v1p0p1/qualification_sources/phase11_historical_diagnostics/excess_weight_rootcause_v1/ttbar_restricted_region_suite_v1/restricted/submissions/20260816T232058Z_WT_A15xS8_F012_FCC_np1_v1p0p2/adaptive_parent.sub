@@ -1,0 +1,15 @@
+universe = vanilla
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/scripts/run_adaptive_parent.sh
+arguments = --mode $(mode) --adaptive-id $(adaptive_id) --seed-id $(seed_id) --campaign-dir /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2 --output-root $(node_output_root)
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2
+should_transfer_files = NO
+getenv = True
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 6000MB
++JobFlavour = "tomorrow"
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error = logs/$(mode).$(ClusterId).$(ProcId).err
+log = logs/adaptive.$(ClusterId).log
+notification = Never
+queue

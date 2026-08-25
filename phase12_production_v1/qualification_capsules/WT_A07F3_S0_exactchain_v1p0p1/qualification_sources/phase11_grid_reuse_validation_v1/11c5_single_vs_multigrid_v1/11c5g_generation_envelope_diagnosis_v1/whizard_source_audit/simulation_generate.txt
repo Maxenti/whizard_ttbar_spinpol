@@ -1,0 +1,291 @@
+
+  module function simulation_select_mci (simulation) result (i_mci)
+    class(simulation_t), intent(inout) :: simulation
+    integer :: i_mci
+    i_mci = 0
+    if (simulation%i_prc /= 0) then
+       i_mci = simulation%entry(simulation%i_prc)%select_mci ()
+    end if
+  end function simulation_select_mci
+
+  module subroutine simulation_set_n_events_requested (simulation, n)
+    class(simulation_t), intent(inout) :: simulation
+    integer, intent(in) :: n
+
+    simulation%n_evt_requested = n
+
+  end subroutine simulation_set_n_events_requested
+
+  module function simulation_get_n_events_requested (simulation) result (n)
+    class(simulation_t), intent(in) :: simulation
+    integer :: n
+
+    n = simulation%n_evt_requested
+
+  end function simulation_get_n_events_requested
+
+  module subroutine simulation_generate (simulation, es_array)
+    class(simulation_t), intent(inout), target :: simulation
+    type(event_stream_array_t), intent(inout), optional :: es_array
+
+    integer :: begin_it, end_it
+    integer :: i, j, k
+
+    call simulation%before_first_event (begin_it, end_it, es_array)
+    do i = begin_it, end_it
+       call simulation%next_event (es_array)
+    end do
+    call simulation%after_last_event (begin_it, end_it)
+
+  end subroutine simulation_generate
+
+  module subroutine simulation_before_first_event (simulation, &
+       begin_it, end_it, es_array)
+    class(simulation_t), intent(inout), target :: simulation
+    integer, intent(out) :: begin_it
+    integer, intent(out) :: end_it
+    type(event_stream_array_t), intent(inout), optional :: es_array
+
+    integer :: n_evt_requested
+    logical :: has_input
+    integer :: n_events_print
+    logical :: is_leading_order
+    logical :: is_weighted
+    logical :: is_polarized
+
+    n_evt_requested = simulation%n_evt_requested
+    n_events_print = n_evt_requested * simulation%get_n_nlo_entries (1)
+    is_leading_order = (n_events_print == n_evt_requested)
+
+    has_input = .false.
+    if (present (es_array)) has_input = es_array%has_input ()
+
+    is_weighted = .not. simulation%entry(1)%config%unweighted
+    is_polarized = simulation%entry(1)%config%factorization_mode &
+         /= FM_IGNORE_HELICITY
+
+    call simulation%startup_message_generate ( &
+         has_input = has_input, &
+         is_weighted = is_weighted, &
+         is_polarized = is_polarized, &
+         is_leading_order = is_leading_order, &
+         n_events = n_events_print)
+
+    call simulation%entry%set_n (n_evt_requested)
+    if (simulation%n_alt > 0)  call simulation%alt_entry%set_n (n_evt_requested)
+    call simulation%init_event_index ()
+
+    begin_it = 1
+    end_it = n_evt_requested
+    call simulation%init_event_loop_mpi (n_evt_requested, begin_it, end_it)
+
+  end subroutine simulation_before_first_event
+
+  module subroutine simulation_startup_message_generate (simulation, &
+     has_input, is_weighted, is_polarized, is_leading_order, n_events)
+    class(simulation_t), intent(in) :: simulation
+    logical, intent(in) :: has_input
+    logical, intent(in) :: is_weighted
+    logical, intent(in) :: is_polarized
+    logical, intent(in) :: is_leading_order
+    integer, intent(in) :: n_events
+
+    type(string_t) :: str1, str2, str3, str4
+
+    if (has_input) then
+       str1 = "Events: reading"
+    else
+       str1 = "Events: generating"
+    end if
+    if (is_weighted) then
+       str2 = "weighted"
+    else
+       str2 = "unweighted"
+    end if
+    if (is_polarized) then
+       str3 = ", polarized"
+    else
+       str3 = ", unpolarized"
+    end if
+    str4 = ""
+    if (.not. is_leading_order) str4 = " NLO"
+
+    write (msg_buffer, "(A,1X,I0,1X,A,1X,A)")  char (str1), n_events, &
+            char (str2) // char(str3) // char(str4), "events ..."
+    call msg_message ()
+
+    write (msg_buffer, "(A,1x,A)") "Events: event normalization mode", &
+         char (event_normalization_string (simulation%norm_mode))
+    call msg_message ()
+
+  end subroutine simulation_startup_message_generate
+
+  module subroutine simulation_next_event &
+       (simulation, es_array, event_handle_out, event_handle_in)
+    class(simulation_t), intent(inout) :: simulation
+    type(event_stream_array_t), intent(inout), optional :: es_array
+    class(event_handle_t), intent(inout), optional :: event_handle_out
+    class(event_handle_t), intent(inout), optional :: event_handle_in
+
+    type(entry_t), pointer :: current_entry
+    logical :: generate_new
+    logical :: passed
+    integer :: j, k
+
+    call simulation%increment_event_index ()
+
+    if (present (es_array)) then
+       call simulation%read_event &
+            (es_array, .true., generate_new, event_handle_in)
+    else
+       generate_new = .true.
+    end if
+
+    if (generate_new) then
+       simulation%i_prc = simulation%select_prc ()
+       simulation%i_mci = simulation%select_mci ()
+
+       associate (entry => simulation%entry(simulation%i_prc))
+
+         entry%instance%i_mci = simulation%i_mci
+         call entry%set_active_real_components ()
+         current_entry => entry%get_first ()
+
+         do k = 1, current_entry%count_nlo_entries ()
+            if (k > 1) then
+               current_entry => current_entry%get_next ()
+               current_entry%particle_set => current_entry%first%particle_set
+               current_entry%particle_set_is_valid &
+                    = current_entry%first%particle_set_is_valid
+            end if
+            do j = 1, simulation%n_max_tries
+               if (.not. current_entry%valid)  call msg_warning &
+                    ("Process '" // char (current_entry%process_id) // "': " // &
+                    "matrix element vanishes, no events can be generated.")
+               call current_entry%generate (simulation%i_mci, i_nlo = k)
+               if (signal_is_pending ()) return
+               call simulation%counter%record_mean_and_variance &
+                    (current_entry%weight_prc, k)
+               if (current_entry%has_valid_particle_set ()) exit
+            end do
+         end do
+         if (entry%is_nlo ()) call entry%reset_nlo_counter ()
+
+         if (.not. entry%has_valid_particle_set ()) then
+            write (msg_buffer, "(A,I0,A)")  "Simulation: failed to &
+                 &generate valid event after ", &
+                 simulation%n_max_tries, " tries (sample_max_tries)"
+            call msg_fatal ()
+         end if
+
+         current_entry => entry%get_first ()
+         do k = 1, current_entry%count_nlo_entries ()
+            if (k > 1) current_entry => current_entry%get_next ()
+            call current_entry%set_index (simulation%get_event_index ())
+            call current_entry%evaluate_expressions ()
+         end do
+         if (signal_is_pending ()) return
+
+         simulation%n_dropped = entry%get_n_dropped ()
+         if (entry%passed_selection ()) then
+            simulation%weight = entry%get_weight_ref ()
+            simulation%excess = entry%get_excess_prc ()
+         end if
+         call simulation%counter%record &
+              (simulation%weight, simulation%excess, simulation%n_dropped)
+         call entry%record (simulation%i_mci)
+
+       end associate
+
+    else
+
+       associate (entry => simulation%entry(simulation%i_prc))
+
+         call simulation%set_event_index (entry%get_index ())
+         call entry%accept_sqme_ref ()
+         call entry%accept_weight_ref ()
+         call entry%check ()
+         call entry%evaluate_expressions ()
+         if (signal_is_pending ()) return
+
+         simulation%n_dropped = entry%get_n_dropped ()
+         if (entry%passed_selection ()) then
+            simulation%weight = entry%get_weight_ref ()
+            simulation%excess = entry%get_excess_prc ()
+         end if
+         call simulation%counter%record &
+              (simulation%weight, simulation%excess, simulation%n_dropped, &
+              from_file=.true.)
+         call entry%record (simulation%i_mci, from_file=.true.)
+
+       end associate
+
+    end if
+
+    call simulation%calculate_alt_entries ()
+    if (simulation%pacify)  call pacify (simulation)
+    if (signal_is_pending ()) return
+
+    if (simulation%respect_selection) then
+       passed = simulation%entry(simulation%i_prc)%passed_selection ()
+    else
+       passed = .true.
+    end if
+    if (present (es_array)) then
+       call simulation%write_event (es_array, passed, event_handle_out)
+    end if
+
+  end subroutine simulation_next_event
+
+  module subroutine simulation_after_last_event (simulation, begin_it, end_it)
+    class(simulation_t), intent(inout) :: simulation
+    integer, intent(in) :: begin_it, end_it
+
+    call msg_message ("        ... event sample complete.")
+    call simulation%final_event_loop_mpi (begin_it, end_it)
+
+    if (simulation%unweighted)  call simulation%show_efficiency ()
+    call simulation%counter%show_excess ()
+    call simulation%counter%show_dropped ()
+    call simulation%counter%show_mean_and_variance ()
+
+  end subroutine simulation_after_last_event
+
+  module subroutine simulation_activate_extra_logging (simulation)
+    class(simulation_t), intent(in) :: simulation
+    logical :: mpi_logging
+    integer :: rank, n_size
+    call mpi_get_comm_id (n_size, rank)
+    mpi_logging = &
+         (simulation%local%get_sval (var_str ("$integration_method")) == "vamp2" &
+         .and. n_size > 1) &
+         .or. simulation%local%get_lval (var_str ("?mpi_logging"))
+    call mpi_set_logging (mpi_logging)
+  end subroutine simulation_activate_extra_logging
+
+  module subroutine simulation_init_event_loop_mpi &
+       (simulation, n_events, begin_it, end_it)
+    class(simulation_t), intent(inout) :: simulation
+    integer, intent(in) :: n_events
+    integer, intent(out) :: begin_it, end_it
+
+    integer :: rank, n_workers
+
+    call MPI_COMM_SIZE (MPI_COMM_WORLD, n_workers)
+    if (n_workers < 2) then
+       begin_it = 1; end_it = n_events
+       return
+    end if
+    call MPI_COMM_RANK (MPI_COMM_WORLD, rank)
+    if (rank == 0) then
+       call compute_and_scatter_intervals (n_events, begin_it, end_it)
+    else
+       call retrieve_intervals (begin_it, end_it)
+    end if
+
+    !! Event index starts by 0 (before incrementing when the first event gets generated/read in).
+    !! Proof: event_index_offset in [0, N], start_it in [1, N].
+    simulation%event_index_offset = simulation%event_index_offset + (begin_it - 1)
+    call simulation%init_event_index ()
+    write (msg_buffer, "(A,I0,A,I0,A)") &
+          & "MPI: generate events [", begin_it, ":", end_it, "]"

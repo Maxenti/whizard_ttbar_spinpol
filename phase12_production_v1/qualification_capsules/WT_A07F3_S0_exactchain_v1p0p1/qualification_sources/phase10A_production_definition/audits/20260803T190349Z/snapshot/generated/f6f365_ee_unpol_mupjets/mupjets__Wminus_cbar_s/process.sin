@@ -1,0 +1,6 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/isr.inc")
+process proc_mupjets_Wminus_cbar_s = e1, E1 => b, bbar, E2, n2, cbar, s
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/event_output.inc")

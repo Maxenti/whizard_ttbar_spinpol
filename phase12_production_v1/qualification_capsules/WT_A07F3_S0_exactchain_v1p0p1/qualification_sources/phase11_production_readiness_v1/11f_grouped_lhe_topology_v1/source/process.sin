@@ -1,0 +1,16 @@
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/model.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/beams.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/isr.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/polarization.inc")
+
+?resonance_history = true
+resonance_on_shell_limit = 10
+resonance_background_factor = 0
+
+process proc_epmum =
+  e1, E1 => E1, n1, b, e2, N2, bbar
+  {$restrictions =
+    "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/integration.inc")
+include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11f_grouped_lhe_topology_v1/source/common/event_output.inc")

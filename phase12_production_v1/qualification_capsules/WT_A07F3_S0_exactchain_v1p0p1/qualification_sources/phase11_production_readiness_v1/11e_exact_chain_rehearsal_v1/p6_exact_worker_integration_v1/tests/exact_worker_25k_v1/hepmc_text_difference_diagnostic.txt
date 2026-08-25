@@ -1,0 +1,120 @@
+===== FILES =====
+OLD=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/tmp_preservation_20260820/phase11e_pythia_compat_v1/p25k/p25k.hepmc3
+NEW=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_tests_v1/20260821T144322Z_P6_25K_EXACT/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_25K_0001.hepmc3
+OLD_BYTES=570648757
+NEW_BYTES=570423757
+BYTE_DELTA_NEW_MINUS_OLD=-225000
+
+===== GLOBAL COMPARISON =====
+LINE_MISMATCHES=50000
+PHYSICS_RECORD_HASH_OLD=54ec2ea1cee5e1ac82170520e82082c7f4a9f6410af9420daf26d39212ec7b9f
+PHYSICS_RECORD_HASH_NEW=54ec2ea1cee5e1ac82170520e82082c7f4a9f6410af9420daf26d39212ec7b9f
+PHYSICS_RECORDS_BYTE_IDENTICAL=PASS
+NON_ATTRIBUTE_HASH_OLD=9dbf7fb352d258188ec1f27fd9cad686fcea83a430450632b9cbf25578bbd476
+NON_ATTRIBUTE_HASH_NEW=9dbf7fb352d258188ec1f27fd9cad686fcea83a430450632b9cbf25578bbd476
+NON_ATTRIBUTE_RECORDS_BYTE_IDENTICAL=PASS
+
+===== RECORD COUNTS =====
+<BLANK>          old=1 new=1 hash_equal=YES
+A                old=2150204 new=2150204 hash_equal=NO
+E                old=25000 new=25000 hash_equal=YES
+HepMC::Asciiv3-END_EVENT_LISTING old=1 new=1 hash_equal=YES
+HepMC::Asciiv3-START_EVENT_LISTING old=1 new=1 hash_equal=YES
+HepMC::Version   old=1 new=1 hash_equal=YES
+P                old=3466238 new=3466238 hash_equal=YES
+U                old=25000 new=25000 hash_equal=YES
+V                old=735428 new=735428 hash_equal=YES
+W                old=25000 new=25000 hash_equal=YES
+
+===== MISMATCH TYPE PAIRS =====
+A -> A : 50000
+
+===== LINE LENGTH DELTAS (new-old) =====
+-11 bytes : 25000
++2 bytes : 25000
+
+===== ATTRIBUTE KEYS AMONG MISMATCHES =====
+whizard_campaign_id -> whizard_campaign_id : 25000
+whizard_shard_id -> whizard_shard_id : 25000
+
+===== FIRST 20 DIFFERENCES =====
+
+LINE=73
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=76
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=351
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=354
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=679
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=682
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=1010
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=1013
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=1300
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=1303
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=1578
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=1581
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=1759
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=1762
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=1941
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=1944
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=2195
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=2198
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001
+
+LINE=2486
+OLD: A 0 whizard_campaign_id phase11e_pythia_compat_v1
+NEW: A 0 whizard_campaign_id phase11e_p6_exact_worker_v1
+
+LINE=2489
+OLD: A 0 whizard_shard_id serialized_S0_0001_25k
+NEW: A 0 whizard_shard_id P6_25K_0001

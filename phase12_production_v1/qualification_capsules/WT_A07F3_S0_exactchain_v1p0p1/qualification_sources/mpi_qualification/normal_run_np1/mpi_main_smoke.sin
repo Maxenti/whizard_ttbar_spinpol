@@ -1,0 +1,9 @@
+model = SM
+
+process mupair = e1, E1 => e2, E2
+
+sqrts = 250 GeV
+
+iterations = 2:1000
+
+integrate (mupair)

@@ -1,0 +1,442 @@
+schema:
+  name: "whizard_ttbar_top_spin_state_definition"
+  version: 1
+  status: "frozen_phase1c"
+
+campaign_reference:
+  campaign_id: "full6f_365gev_ee_ttbar_spinpol_v1"
+  channel_matrix: "analysis_contracts/channel_matrix.yaml"
+  physics_model: "analysis_contracts/physics_model.yaml"
+  basis_contract: "analysis_contracts/spin_basis_conventions.yaml"
+
+scope:
+  primary_use:
+    - "truth-level top and antitop polarization"
+    - "truth-level spin-correlation matrix"
+    - "two-qubit density-matrix reconstruction"
+    - "entanglement observables"
+    - "Bell and steering qualification"
+    - "response and detector-level closure tests"
+
+  primary_channels:
+    - "epmum"
+    - "mupem"
+    - "epem"
+    - "mupmum"
+
+  primary_analyzers:
+    top_branch: "prompt positively charged lepton"
+    antitop_branch: "prompt negatively charged lepton"
+
+  semileptonic_policy: >
+    Semileptonic samples are not part of the primary fifteen-parameter
+    dilepton density-matrix extraction. They may later support independent
+    polarization, reconstruction, and hadronic-analyzer studies under a
+    separate analyzer-response contract.
+
+physical_interpretation:
+  state_name: "effective_ttbar_spin_density_matrix"
+
+  definition: >
+    The state is an operational effective two-qubit density matrix inferred
+    from angular moments or a constrained likelihood fit to the physical
+    six-fermion final-state distribution in a specified phase-space region.
+
+  literal_stable_top_state: false
+
+  full_six_fermion_qualification: >
+    Because the hard calculation contains off-shell, singly resonant, and
+    nonresonant contributions, the inferred state is conditional on the
+    selected top-object definition, basis construction, event selection,
+    phase-space bin, and analyzer model.
+
+  required_labeling: >
+    Every reported density matrix must identify the top-object definition,
+    basis, phase-space selection, polarization sample, weighting prescription,
+    estimator, and acceptance treatment.
+
+nominal_truth_top_objects:
+  definition_id: "truth_decay_system_v1"
+  role: "canonical_operational_truth_definition"
+
+  top_candidate:
+    four_vector_formula: "q_t = p_b + p_lplus + p_nu"
+    branch_particles:
+      - "b"
+      - "prompt l+"
+      - "associated neutrino"
+
+  antitop_candidate:
+    four_vector_formula: "q_tbar = p_bbar + p_lminus + p_antinu"
+    branch_particles:
+      - "bbar"
+      - "prompt l-"
+      - "associated antineutrino"
+
+  branch_assignment:
+    source: "exact six-fermion flavour and charge labels"
+    generator_history_required: false
+    resonance_history_used_as_primary_assignment: false
+
+  kinematic_treatment:
+    impose_top_mass_constraint: false
+    impose_W_mass_constraint: false
+    rescale_daughter_four_vectors: false
+    force_candidates_on_shell: false
+
+  candidate_masses:
+    top: "sqrt(max(q_t^2, 0))"
+    antitop: "sqrt(max(q_tbar^2, 0))"
+
+  pair_four_vector: "Q = q_t + q_tbar"
+  pair_mass: "m_pair = sqrt(max(Q^2, 0))"
+
+  rationale: >
+    This definition is expressed entirely through observable final-state
+    four-vectors and does not require selecting only diagrams carrying an
+    intermediate top label.
+
+alternative_top_objects:
+  generator_resonance_history:
+    definition_id: "generator_history_top_v1"
+    role: "generator-diagnostic control"
+    nominal_state_definition: false
+
+    limitations:
+      - "history entries are generator dependent"
+      - "history entries are not unique physical observables"
+      - "history entries may not exist for every contributing diagram"
+      - "history-based and daughter-sum four-vectors need not agree"
+
+  pole_projected:
+    definition_id: "pole_projected_top_v1"
+    role: "theory-systematics control"
+    nominal_state_definition: false
+    implementation_locked: false
+
+    requirement: >
+      A pole-projected result may only be used after a documented projection
+      prescription, gauge-consistency study, and comparison with the
+      truth-decay-system definition.
+
+  particle_level_reconstructed:
+    definition_id: "particle_level_top_v1"
+    role: "later fiducial and reconstruction contract"
+    nominal_state_definition: false
+
+  detector_level_reconstructed:
+    definition_id: "detector_level_top_v1"
+    role: "later reconstruction and Delphes response contract"
+    nominal_state_definition: false
+
+density_matrix_parameterization:
+  subsystem_order:
+    first_qubit: "top"
+    second_qubit: "antitop"
+
+  component_order:
+    - "r"
+    - "n"
+    - "k"
+
+  formula: >
+    rho = 1/4 [
+      I tensor I
+      + sum_i Bplus_i sigma_i tensor I
+      + sum_j Bminus_j I tensor sigma_j
+      + sum_ij C_ij sigma_i tensor sigma_j
+    ]
+
+  real_parameter_count: 15
+
+  parameters:
+    top_polarization_vector:
+      symbol: "Bplus"
+      components:
+        - "Bplus_r"
+        - "Bplus_n"
+        - "Bplus_k"
+
+    antitop_polarization_vector:
+      symbol: "Bminus"
+      components:
+        - "Bminus_r"
+        - "Bminus_n"
+        - "Bminus_k"
+
+    correlation_matrix:
+      symbol: "C"
+      row_index: "top component"
+      column_index: "antitop component"
+
+      components:
+        - "C_rr"
+        - "C_rn"
+        - "C_rk"
+        - "C_nr"
+        - "C_nn"
+        - "C_nk"
+        - "C_kr"
+        - "C_kn"
+        - "C_kk"
+
+  normalization:
+    trace_rho: 1.0
+
+charged_lepton_analyzer_convention:
+  top_analyzer:
+    particle: "prompt l+"
+    analyzer_vector: "uplus"
+    analyzer_sign: 1
+    leading_order_analyzing_power: 1.0
+
+  antitop_analyzer:
+    particle: "prompt l-"
+    analyzer_vector: "uminus"
+    analyzer_sign: -1
+    leading_order_analyzing_power_magnitude: 1.0
+
+  analyzer_vectors:
+    uplus: >
+      Unit three-vector of the prompt positive lepton in the
+      truth-reconstructed top-candidate rest frame, expressed in the selected
+      top basis.
+
+    uminus: >
+      Unit three-vector of the prompt negative lepton in the
+      truth-reconstructed antitop-candidate rest frame, expressed in the
+      selected antitop basis.
+
+  angular_distribution: >
+    (1/sigma) d sigma / (d Omega_plus d Omega_minus)
+    = 1/(4 pi)^2 [
+      1
+      + Bplus_i uplus_i
+      - Bminus_j uminus_j
+      - C_ij uplus_i uminus_j
+    ]
+
+  ideal_full_acceptance_moment_relations:
+    top_polarization: "Bplus_i = 3 <uplus_i>"
+    antitop_polarization: "Bminus_j = -3 <uminus_j>"
+    spin_correlation: "C_ij = -9 <uplus_i uminus_j>"
+
+  qualification_requirement: >
+    The ideal moment relations must be verified with generator-level closure
+    tests. Full-six-fermion, finite-width, acceptance, and reconstruction
+    effects must not be assumed to preserve the ideal analyzer response
+    without validation.
+
+weighted_estimators:
+  event_weight_symbol: "w_a"
+
+  weighted_mean: >
+    <f>_w = sum_a w_a f_a / sum_a w_a
+
+  raw_linear_estimators:
+    top_polarization: "Bplus_i_raw = 3 <uplus_i>_w"
+    antitop_polarization: "Bminus_j_raw = -3 <uminus_j>_w"
+    correlation: "C_ij_raw = -9 <uplus_i uminus_j>_w"
+
+  required_weight_metadata:
+    - "sum_w"
+    - "sum_w2"
+    - "generated event count"
+    - "selected event count"
+    - "sample cross section"
+    - "integration uncertainty"
+    - "subprocess identity"
+    - "beam polarization identity"
+
+  signed_weight_policy: >
+    The estimators support signed weights mathematically, but the nominal
+    leading-order production is expected to use positive unweighted events.
+    Any signed-weight sample must report cancellation diagnostics and an
+    effective statistical sample size.
+
+state_estimators:
+  raw_linear_inversion:
+    required: true
+    role: "closure and diagnostic estimator"
+    positivity_enforced: false
+
+  constrained_physical_estimator:
+    required_for_qis_claims: true
+    preferred_method: "positive-semidefinite trace-one likelihood fit"
+
+    constraints:
+      hermitian: true
+      positive_semidefinite: true
+      unit_trace: true
+
+    role: >
+      Primary state used for entanglement, Bell, and steering quantities after
+      acceptance and response treatment.
+
+  nearest_psd_projection:
+    permitted: true
+    role: "diagnostic and qualification fallback"
+    primary_publication_estimator: false
+
+    requirement: >
+      The projection norm and distance between the raw and projected states
+      must be reported. Projection must not replace uncertainty propagation.
+
+physicality_diagnostics:
+  required_for_every_state:
+    - "trace"
+    - "Hermiticity residual"
+    - "four eigenvalues"
+    - "minimum eigenvalue"
+    - "purity"
+    - "raw-to-physical estimator distance"
+    - "condition number or fit-stability diagnostic"
+
+  physical_state_requirements:
+    trace_tolerance: 1.0e-10
+    hermiticity_tolerance: 1.0e-10
+    minimum_eigenvalue_tolerance: -1.0e-10
+
+uncertainty_model:
+  primary_method: "event bootstrap"
+  interval: "central 68 percent"
+
+  bootstrap_unit: "generated event"
+  preserve_sample_strata: true
+  preserve_subprocess_strata: true
+  preserve_polarization_strata: true
+
+  required_outputs:
+    - "covariance matrix of all 15 state parameters"
+    - "bootstrap distribution of density-matrix eigenvalues"
+    - "bootstrap intervals for derived QIS observables"
+    - "number of successful bootstrap replicas"
+    - "number of failed or nonconvergent replicas"
+
+  prohibited:
+    - "treating all 15 fitted parameters as statistically independent"
+    - "bootstrapping histogram bins independently"
+    - "mixing events across W and CF detector branches before paired analysis"
+
+acceptance_and_response:
+  truth_full_phase_space:
+    permitted_for_generator-level closure: true
+
+  fiducial_truth:
+    requires_acceptance_definition: true
+    requires_explicit_state_label: true
+
+  particle_or_detector_level:
+    requires_response_correction_or_forward_model: true
+
+  rule: >
+    A detector-level angular moment is not automatically the production-level
+    spin density matrix. Efficiency, migration, reconstruction ambiguity, and
+    analyzer dilution must be included through unfolding, calibration, or a
+    forward-folded likelihood.
+
+combination_rules:
+  rotate_before_average: true
+
+  basis_rule: >
+    Analyzer vectors or state parameters must be transformed into one common
+    canonical basis before combining events, bins, channels, or samples.
+
+  channel_combination:
+    epmum_and_mupem:
+      permitted: true
+      requirement: >
+        Combine using physical event weights after applying identical
+        top-versus-antitop branch labels and basis conventions.
+
+    same_flavour_with_mixed_flavour:
+      permitted: true
+      requirement: >
+        Combine only after checking identical fiducial definitions, response
+        treatment, weighting, and analyzer conventions.
+
+  polarization_combination:
+    mix_unpolarized_with_LR100_or_RL100: false
+
+    construct_unpolarized_from_helicity_samples:
+      permitted: true
+      requirement: >
+        Use physically correct helicity cross sections and event weights.
+        Equal event counts are not sufficient.
+
+  differential_combination:
+    average_density_matrices_across_bins_without_weights: false
+    average_qis_observables_instead_of_density_matrices: false
+
+    requirement: >
+      When an inclusive state is desired, combine event-level sufficient
+      statistics or weighted density matrices first and then recompute the
+      nonlinear QIS observable.
+
+required_phase_space_labels:
+  - "sample and polarization"
+  - "channel or channel combination"
+  - "top-object definition"
+  - "basis"
+  - "m_pair or effective-energy region"
+  - "top production-angle region"
+  - "fiducial or full-phase-space selection"
+  - "state estimator"
+  - "acceptance or response treatment"
+
+primary_differential_variables:
+  pair_mass:
+    symbol: "m_pair"
+    definition: "sqrt(max((q_t + q_tbar)^2, 0))"
+
+  top_production_angle:
+    symbol: "cos_theta_top"
+    definition: >
+      Cosine of the angle between the incoming hard-process electron direction
+      and the truth-reconstructed top-candidate momentum in the pair rest
+      frame.
+
+  effective_collision_energy:
+    symbol: "sqrt_s_prime"
+    implementation_locked: false
+    lock_phase: 6
+
+opening_angle_trace_observable:
+  canonical_common_axis_definition:
+    cosine: "cos_phi = uplus dot uminus"
+    trace_parameter: "D = trace(C) / 3"
+    ideal_relation: "D = -3 <cos_phi>"
+
+  requirement: >
+    This relation applies only when both analyzer vectors are represented in
+    the canonical common-axis basis defined by the basis contract.
+
+legacy_compatibility:
+  legacy_factorized_10k_controls:
+    retained: true
+    final_physics_state: false
+
+  legacy_cms_mapping:
+    status: "regression_only"
+    component_order:
+      - "r"
+      - "n"
+      - "k"
+
+    reflection_matrix: "diag(1, 1, -1)"
+    opening_angle: "cos_phi_legacy = uplus^T M_legacy uminus"
+    stored_to_legacy_cms: "C_legacy_cms = -C_stored M_legacy^T"
+    trace_relation: "D_legacy = trace(C_legacy_cms)/3"
+
+    warning: >
+      The legacy reflection presentation is not the canonical common-axis
+      Pauli basis. Legacy matrices must be converted explicitly before they
+      are compared with or combined into the new full-six-fermion state.
+
+prohibited_interpretations:
+  - "calling the raw finite-statistics linear inversion automatically physical"
+  - "equating generator history with a unique physical top state"
+  - "combining differently oriented bases without rotation"
+  - "combining helicity samples with equal event-count weighting"
+  - "applying nonlinear QIS observables before density-matrix combination"
+  - "treating detector-level angular moments as acceptance-free production moments"

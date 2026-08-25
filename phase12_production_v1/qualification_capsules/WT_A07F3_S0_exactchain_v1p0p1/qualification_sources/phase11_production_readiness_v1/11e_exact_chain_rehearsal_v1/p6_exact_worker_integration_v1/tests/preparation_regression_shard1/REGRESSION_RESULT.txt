@@ -1,0 +1,21 @@
+PHASE-11E P6 PREPARATION REGRESSION — SHARD 0001
+=================================================
+
+RAW_INPUT
+9811baf6cd621d12b1b384385d9cbcfef45d3f2701433ebefe05bc892c9b7b69  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0001/phase11c_S0_11E_0001_seed311191001.lhe
+
+NEW_CANONICAL
+976450d0c5f558a9290724f33aa87d04751ca2c24bc466d114c2819a7bc88f4e  /tmp/cglenn/p6_preparation_regression_shard1/canonical_isr.lhe
+
+QUALIFIED_RELAXED_CANONICAL
+976450d0c5f558a9290724f33aa87d04751ca2c24bc466d114c2819a7bc88f4e  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/tmp_preservation_20260820/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0001_seed311191001.canonical_relaxed.lhe
+
+NEW_SERIALIZED
+d244b87903718ec9b1436415344a01c0c16fb816d76db3854c8f8b4c91109baf  /tmp/cglenn/p6_preparation_regression_shard1/serialized_v1.lhe
+
+QUALIFIED_P5_SERIALIZED
+d244b87903718ec9b1436415344a01c0c16fb816d76db3854c8f8b4c91109baf  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/tmp_preservation_20260820/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+
+P6_CANONICAL_BYTE_REGRESSION=PASS
+P6_SERIALIZED_BYTE_REGRESSION=PASS
+P6_STRICT_SERIALIZATION_VALIDATION=PASS

@@ -1,0 +1,145 @@
+Phase 11 Candidate-A stress study
+G-series frozen acceptance criteria
+
+Purpose
+=======
+
+The F-series demonstrated that:
+
+  5:100000:"gw",3:200000:""
+
+is not robust across the three predetermined diagnostic seeds.
+
+The earlier Candidate-A prescription used:
+
+  5:50000:"gw",5:100000:""
+
+and appeared robust.
+
+The G-series isolates whether the difference is due to:
+
+  1. adaptive statistics per iteration, or
+  2. strength of the subsequent fixed-grid validation.
+
+
+Families
+========
+
+G1 — exact Candidate-A integration structure:
+
+  5:50000:"gw",5:100000:""
+
+G2 — same Candidate-A adaptation but stronger fixed-grid stress:
+
+  5:50000:"gw",3:200000:""
+
+
+Predetermined seeds
+===================
+
+S0 = 1740114216
+S1 = 1751949026
+S2 = 1885084773
+
+No seed may be removed, replaced, or selected based on observed quality.
+
+
+Execution qualification
+=======================
+
+Execution PASS requires:
+
+  1. WHIZARD return code = 0.
+  2. No fatal execution error.
+  3. Required output artifacts are present.
+  4. EXECUTION_SUCCESS marker is present.
+
+SUCCESS and EXECUTION_SUCCESS refer to program execution only.
+
+Worker metadata must initially record:
+
+  integration_status = UNASSESSED
+
+
+Single-job integration qualification
+====================================
+
+For every fixed-grid iteration:
+
+  - result must be finite,
+  - result must be positive,
+  - quoted uncertainty must be finite and non-negative,
+  - individual relative uncertainty must be < 10%.
+
+For the combined fixed-grid result:
+
+  - relative uncertainty must be < 2%.
+
+For every pair of individual fixed-grid evaluations:
+
+  |sigma_i - sigma_j|
+  -------------------------------- < 3
+  sqrt(error_i^2 + error_j^2)
+
+The combined fixed-grid result must satisfy:
+
+  |sigma_fixed - 12.0403|
+  ------------------------------------ < 3
+  sqrt(error_fixed^2 + 0.0201^2)
+
+where:
+
+  Candidate-A reference =
+    12.0403 +/- 0.0201 fb
+
+
+Family qualification
+====================
+
+A family passes only if:
+
+  S0 PASS
+  AND
+  S1 PASS
+  AND
+  S2 PASS.
+
+
+Predetermined interpretation
+=============================
+
+G1 PASS and G2 PASS:
+  The 5x50k Candidate-A adaptive prescription is robust across the
+  predetermined seeds and survives both the historical-style and stronger
+  frozen-grid validation.
+
+  It becomes the leading prescription for renewed Phase-11 qualification.
+
+G1 PASS and G2 FAIL:
+  The Candidate-A grid can appear healthy under 5x100k fixed validation but
+  fails a stronger 3x200k stress test.
+
+  Historical Candidate-A validation was insufficient to establish robust
+  grid quality.
+
+G1 FAIL and G2 FAIL:
+  Candidate-A robustness is not reproduced across the predetermined seeds.
+
+  We must reconsider the adaptation strategy rather than qualify A.
+
+G1 FAIL and G2 PASS:
+  This is not interpreted as G2 automatically being superior.
+
+  The difference would require additional investigation because both
+  families start from the same adaptive prescription.
+
+G2 vs F5:
+  Both use 3x200k fixed validation.
+
+  G2 uses 5x50k adaptive iterations.
+  F5 uses 5x100k adaptive iterations.
+
+  Therefore their comparison directly tests whether increasing adaptive
+  statistics from 50k to 100k changes grid robustness.
+
+No production grid will be chosen by selecting the most favorable seed.

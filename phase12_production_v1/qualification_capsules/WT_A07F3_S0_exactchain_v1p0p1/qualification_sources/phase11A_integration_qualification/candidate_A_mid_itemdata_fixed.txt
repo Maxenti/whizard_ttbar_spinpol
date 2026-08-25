@@ -1,0 +1,1 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/runtime_submissions/full6f_365gev_phase11_lr100_candidate_A_mid/20260810T160422Z/itemdata_iterations_hex.tsv

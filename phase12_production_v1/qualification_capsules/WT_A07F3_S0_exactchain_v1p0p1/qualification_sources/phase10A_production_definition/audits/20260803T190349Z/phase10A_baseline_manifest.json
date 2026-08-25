@@ -1,0 +1,2127 @@
+{
+  "audit_directory": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition/audits/20260803T190349Z",
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "generated_files": [
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/event_output.inc",
+      "sha256": "4e0723bad53296930c373303d389993c2c4d2147a8c96d175aafb5ab9aa60c18",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/integration.inc",
+      "sha256": "eeb425232ee7523afc6b1e62df80466d08f5bbf38dc12d88357551e17f7861b5",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/parameters.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/common/polarization.inc",
+      "sha256": "34bdffbf1a0ee85ebf4949c76da34360e7fa7143708f51c1e7e08e94b701c7dc",
+      "size_bytes": 65
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/process.sin",
+      "sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+      "size_bytes": 1116
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/render_context.json",
+      "relative_path": "f6f365_ee_LR100_epmum/epmum/render_context.json",
+      "sha256": "d172948e324a8f9ba2ccc87f4e3a95da70ba9cc9def322dfedcf6a27aea3a0f0",
+      "size_bytes": 377
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/beams.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/event_output.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/event_output.inc",
+      "sha256": "143d90822b7ed8f5215ad90f0e5401ffab0390be7fe5c0ecdf2585d61ffd5dd6",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/integration.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/integration.inc",
+      "sha256": "5bdce1bf67f0b27fb3668e7715c75cec8e835013cfd181b433860d5eef34ab8c",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/isr.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/model.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/parameters.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/common/polarization.inc",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/common/polarization.inc",
+      "sha256": "34bdffbf1a0ee85ebf4949c76da34360e7fa7143708f51c1e7e08e94b701c7dc",
+      "size_bytes": 65
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/process.sin",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/process.sin",
+      "sha256": "aa7d2b844b1d627ddb24f59da25543fa8434ac6717ada60cafe80fbf864d98da",
+      "size_bytes": 1116
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_mupem/mupem/render_context.json",
+      "relative_path": "f6f365_ee_LR100_mupem/mupem/render_context.json",
+      "sha256": "7e207e7fcbeebf39b552c96fbbe91614b8ed8e0da3ce2b7cd949339d84aa4d34",
+      "size_bytes": 377
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/beams.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/event_output.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/event_output.inc",
+      "sha256": "4e0723bad53296930c373303d389993c2c4d2147a8c96d175aafb5ab9aa60c18",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/integration.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/integration.inc",
+      "sha256": "eeb425232ee7523afc6b1e62df80466d08f5bbf38dc12d88357551e17f7861b5",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/isr.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/model.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/parameters.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/polarization.inc",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/common/polarization.inc",
+      "sha256": "c225e12093f5ca57489ed8feca098005ec0cd9ff7fe99e0d79c711c61890c69e",
+      "size_bytes": 65
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/process.sin",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/process.sin",
+      "sha256": "07b0e5f83733758c091c823d3c1e92f54862d188e65792a9aebf411084f1940c",
+      "size_bytes": 1116
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/render_context.json",
+      "relative_path": "f6f365_ee_RL100_epmum/epmum/render_context.json",
+      "sha256": "f5c1e0443c7ac247178afe594c2aa5e47918c1bbf0bb991d605dfd608ae9611f",
+      "size_bytes": 375
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/beams.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/event_output.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/event_output.inc",
+      "sha256": "143d90822b7ed8f5215ad90f0e5401ffab0390be7fe5c0ecdf2585d61ffd5dd6",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/integration.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/integration.inc",
+      "sha256": "5bdce1bf67f0b27fb3668e7715c75cec8e835013cfd181b433860d5eef34ab8c",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/isr.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/model.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/parameters.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/common/polarization.inc",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/common/polarization.inc",
+      "sha256": "c225e12093f5ca57489ed8feca098005ec0cd9ff7fe99e0d79c711c61890c69e",
+      "size_bytes": 65
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/process.sin",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/process.sin",
+      "sha256": "77f72ebc8869bdeb2e97a9a404ffc262c3433bbaeb5fabbb53946131c3b20389",
+      "size_bytes": 1116
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_mupem/mupem/render_context.json",
+      "relative_path": "f6f365_ee_RL100_mupem/mupem/render_context.json",
+      "sha256": "7bbf17f96d23a6c56b9b75a45aa5f078e124cb2f236363ad32facb362fa6cc09",
+      "size_bytes": 378
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/event_output.inc",
+      "sha256": "791b383f45cae5353e11a5cd3bb259eed6495f375cf8bd0d82f59105e88e3e02",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/integration.inc",
+      "sha256": "ba6e78722d5898ffc9710494398edbadb6235730b7e15ad6a11e78830e8f8def",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/process.sin",
+      "sha256": "86ba636eb02dc06a0e91dbc93ff1bf813a4a68bd45c535a77c6243f5476f47f6",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_bbar/render_context.json",
+      "sha256": "4616a2b33778faeaabb733ef4edcf010dda4f72c511ffdf39c7266829d249ccc",
+      "size_bytes": 403
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/event_output.inc",
+      "sha256": "928be14c516df42b13333d2b987230745b0dced19fb684c3233d99ff2c2c219b",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/integration.inc",
+      "sha256": "8ae1b06195e444d0824aed655ea17a236bbb5b4bc72efeb87d370455e4186602",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/process.sin",
+      "sha256": "c21610c5c08e3f4b42015af94237b61b1cadeb00081f6cf46d2f5574e50ee9d3",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_dbar/render_context.json",
+      "sha256": "d33e169aa26e6b6ccd32c8db0afff1714e858401b20d4d47fa1113d37f48cd70",
+      "size_bytes": 403
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/event_output.inc",
+      "sha256": "98a7d999845c4acab82d55dfb142115b5c954c2f730c544b950c9dba22bf624d",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/integration.inc",
+      "sha256": "a3848aaf6e2345dbbf67f9142e60b0f259e172af18f7409cd3ad0705856258c8",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/process.sin",
+      "sha256": "3a2dec5e14991842e4e33a25f82a981ae0b87cb0a6ee73b5e1489317be398f5a",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_c_sbar/render_context.json",
+      "sha256": "aeea43f93b91ca886fadbca0161e0eb5dd0be587dc62b91d276ea213853be0de",
+      "size_bytes": 403
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/event_output.inc",
+      "sha256": "608bf0754fe733eea27b931235dd8567971f80feb8f78a4299a8de95badc3464",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/integration.inc",
+      "sha256": "5f28043aff644c23eac5d7b333721165b11ab2e59faaf7a4ca6ef51297450683",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/process.sin",
+      "sha256": "3698d120ca70658945725647e444f817b1172b9a123a73ea9cb4afa71fb0ce9b",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_bbar/render_context.json",
+      "sha256": "5a4f4b9c6da12c357f6ffc97e1d0ce68fdd0f49366776a96f9c39d24caba9183",
+      "size_bytes": 404
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/event_output.inc",
+      "sha256": "60d6a4bdab091a36c605e23987bcd84ed1af69276bd57f8061eca553e56a2237",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/integration.inc",
+      "sha256": "6bcce58694746240a6fa300b17a2112636c3b9a04a060aa98954150a5eab7a88",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/process.sin",
+      "sha256": "30d3da2068bde64b6aafda1b3fa93220eb409743b01e86ff86e3653cf3b797b4",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_dbar/render_context.json",
+      "sha256": "209e2def76d55dc851739c54b348b52173f904ac2875a8ba4e106ccc7dfd8139",
+      "size_bytes": 404
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/event_output.inc",
+      "sha256": "59bd8bfd213c672056bbe72614259172f6b627278e49a9b8e4f34f4779c155ac",
+      "size_bytes": 117
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/integration.inc",
+      "sha256": "26a951e89c73e545191bef4074438ed2e0c7f253a9f50cbe9aa287fbe9f785de",
+      "size_bytes": 54
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/process.sin",
+      "sha256": "99dd20c048ae75fea964094f99837c97ac5fe126b48f1ab02f7496c040334802",
+      "size_bytes": 1031
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_emjets/emjets__Wplus_u_sbar/render_context.json",
+      "sha256": "1236b3ee959dfab89029b0c5f8084af4baffa450616c9f2b5dd2297b956cf4a2",
+      "size_bytes": 404
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/event_output.inc",
+      "sha256": "e82629f8695f3ef5af1cce856bf59041bdf0d536646e55748c4ca87c378d7669",
+      "size_bytes": 87
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/integration.inc",
+      "sha256": "7940e7adc8d87555c17a7899e6a64e1906d13613cb9e01f607b06b364c1c7d72",
+      "size_bytes": 39
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epem/epem/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/process.sin",
+      "relative_path": "f6f365_ee_unpol_epem/epem/process.sin",
+      "sha256": "71d3ca0da6cf7ff92643182afdb49da02276ed55052ec83ce5d48e0ec7ea8f35",
+      "size_bytes": 925
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epem/epem/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epem/epem/render_context.json",
+      "sha256": "7d3896a98eed20b982098ea19a35e06e2c336172c67d2c377149c8dffa28b8e2",
+      "size_bytes": 379
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/event_output.inc",
+      "sha256": "c69695e967185271904dc9ca943e9e57793f489e7fd16b674a2cd22165ccc00e",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/integration.inc",
+      "sha256": "a82dbf13a8b5e3c2d84bbba76b273770196700bdf9c2c52b2ecf1de44b82dd06",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/process.sin",
+      "sha256": "0a5e50378d0aaf63c34172866c8c1d84c9b7392ee2e5ffb55c7ba5cfb0eacedb",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_b/render_context.json",
+      "sha256": "b3521aef97c9e758cc5f47753cd07deb8dd5005829b189e051e48ea5cb5d35d7",
+      "size_bytes": 400
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/event_output.inc",
+      "sha256": "30b24ba98e52ead78668182abbad7ce3f467f71b341a2b7353b26c618b7189db",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/integration.inc",
+      "sha256": "cee6f305bc4d2847e8eb9d259bccd2a7b998e1022f5539ca77137c21fde027d3",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/process.sin",
+      "sha256": "0f7e180759364fa1fb260eb4789c7ab2d83b7d6176a9b838516a897382d8d00f",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_d/render_context.json",
+      "sha256": "810c5978ce09335fbb2c08d1788d4aa5ea99be102884b8874654eef3c7a40169",
+      "size_bytes": 400
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/event_output.inc",
+      "sha256": "f6c5f4424082c513847b07a299bdab6be8ba28381e962ea146066baa0384c2f0",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/integration.inc",
+      "sha256": "174a27505fd38fc3f71bab5f1f64e9fb05e95b8ae620383c0baa4eaa41c2c82d",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/process.sin",
+      "sha256": "9c2c95874bd6897cdcbd7fbeba028f5008f7d4bf823aec17236c1a55678c9c4c",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_cbar_s/render_context.json",
+      "sha256": "c0045e4d0b8a534512e61b88c296f77943d7e2d3b62d4ecb5e47dc1588d8638a",
+      "size_bytes": 400
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/event_output.inc",
+      "sha256": "8ee9690ef9ac83018343860fa1dea63ecf3152ad73bd7b270958b1f039f72c41",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/integration.inc",
+      "sha256": "432add82568ca57fa37abfc7768c913cc7f424e205c8e8c906675b2bde68b9d9",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/process.sin",
+      "sha256": "3eaf5bbbe177ce64ee0b925c90b5e9e01c7c648a8dd0a71478efae170f6422a7",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_b/render_context.json",
+      "sha256": "04a87ec14beeb243e5da430cb1c53e4d07c68f7104cd4b8eceda8b872a7e2803",
+      "size_bytes": 399
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/event_output.inc",
+      "sha256": "2483dab02d6900c9a93bb4063a971be5aac591d71209896531ce46b3c65e7037",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/integration.inc",
+      "sha256": "e8d6e0f453aaf36d9e83ef9a3a2e496ac1f01af16cf455b3b904515798239172",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/process.sin",
+      "sha256": "230201e346b6b0ca9597fb699de887c8e9cb1f5e63d2f51d6e9f05c303f023bf",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_d/render_context.json",
+      "sha256": "7397c1559d90083021107864806055503225d4be932e1b46906504c017bb457d",
+      "size_bytes": 400
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/event_output.inc",
+      "sha256": "7a9adcbdb8c629bd2d3f4774aa52e6591f93071ca46813242e4dec0fa739895d",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/integration.inc",
+      "sha256": "1eb5e98a10c726a62fc6b378e55cc4e01fc02c8fcefac7cff494b5e5c3cb7077",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/process.sin",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/process.sin",
+      "sha256": "77e22f0d5048e8bceb21531e3f8bf48ab94f2e94ee5ed9d5dbba33e109eaf887",
+      "size_bytes": 1037
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epjets/epjets__Wminus_ubar_s/render_context.json",
+      "sha256": "1c0f352d130de3c340e3c79954c8e471fbf654b9bcb87371947e25acc84b37a8",
+      "size_bytes": 400
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/event_output.inc",
+      "sha256": "4e0723bad53296930c373303d389993c2c4d2147a8c96d175aafb5ab9aa60c18",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/integration.inc",
+      "sha256": "eeb425232ee7523afc6b1e62df80466d08f5bbf38dc12d88357551e17f7861b5",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/process.sin",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/process.sin",
+      "sha256": "a80311a40544b225e3f096f9f26dfd3a1cdcb150fe4505c001faae2ed57a33e0",
+      "size_bytes": 936
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/render_context.json",
+      "relative_path": "f6f365_ee_unpol_epmum/epmum/render_context.json",
+      "sha256": "2ea5870b6509075a19c7b5209e8f701901b92454f3e655bcf4a0a49e841cc71a",
+      "size_bytes": 381
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/event_output.inc",
+      "sha256": "25849e5515b3f80ae61ae803da76464b0eb9486cf398ded108c6171f09054c9d",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/integration.inc",
+      "sha256": "962f0739ccdccac6d63f990c51dc9276a1a2b7e4f2cfc5057ef349507ce2637c",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/process.sin",
+      "sha256": "eb159d72020c2305a3251d1a2ce43b13ed3f4e372deb290fed2a66317aae8b73",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_bbar/render_context.json",
+      "sha256": "1d9df56dad199555c414db62e12e0dc82d7a27bcb0d2aaed37b70fd9ee04a3c5",
+      "size_bytes": 409
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/event_output.inc",
+      "sha256": "8af340cca7a2bbf85e99276a8e562c55d0e6b75905601cb2862ff60b01b3faf4",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/integration.inc",
+      "sha256": "afb36eb152517cc4bdc5cb919e98d70843e9091d30dfcf2f74cf5bb4a57ac8e8",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/process.sin",
+      "sha256": "7868b35b3066c2442052d0a7a44a755bc245918bac0e2fb10ae043ec05e3321c",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_dbar/render_context.json",
+      "sha256": "26cdcc658f71083525921cd0e670ccf63dd66f33c5862f01aac951bb394cf34b",
+      "size_bytes": 408
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/event_output.inc",
+      "sha256": "51f4914b99cae1a6418b544023d6ff7036aba473c32b832cbee66af3afec9102",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/integration.inc",
+      "sha256": "1756e115cf2eb32431e957af8eecb4609b6300748ced2aee95d9a052ea26090f",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/process.sin",
+      "sha256": "c0b5072e2629ad6936fd171b2e939db825899d0bf50c9433cfe259d6e553e092",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_c_sbar/render_context.json",
+      "sha256": "25d9b3e87ac0f2a4bf4ac3fb5ae928e45ef2cdfaf1b020ce5c622181f7325576",
+      "size_bytes": 409
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/event_output.inc",
+      "sha256": "5ecc0b7b394b8005c4fd78e0452d5fc4c06f782492bfa3ce8e00803b98900ec8",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/integration.inc",
+      "sha256": "9207a3dd7adb8a6c22554ec66a6e48a21e982ccf6cdf9ac646ffa91df66bad73",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/process.sin",
+      "sha256": "774204c2c2d970b333041984dcf2ebdb995b44a5e7f3a8cc544425464c23b240",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_bbar/render_context.json",
+      "sha256": "90c086ca6a8d6b84b2a7694e019ec46e76a8e1e6dc7549f274d8a2cd0f18f7b7",
+      "size_bytes": 408
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/event_output.inc",
+      "sha256": "389dc5ee8c364c0a3f9ef97e36ab055692fadaf12f8c1cf0a9896bcc63f87494",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/integration.inc",
+      "sha256": "78a2a99e81cbcb67a6ff0da7e5e986180b338adec886be94085762a7d347529c",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/process.sin",
+      "sha256": "65b34aab64698430836ea3ebb5e821bc108fcb46cada5d3f9bcb690cdac39b7e",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_dbar/render_context.json",
+      "sha256": "64dc7fbde6335e679ca5f753d8037fccb9e9b856a1ed8040ec757712f9391267",
+      "size_bytes": 408
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/event_output.inc",
+      "sha256": "7ad49dbcf2fdcbc9d8d4d413e0b35068805f0364cf167add7a0d07a30cec66b7",
+      "size_bytes": 119
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/integration.inc",
+      "sha256": "6359cf69b74e072dfc7ac52519aa06c47c8cd53b7600a4abd54213e86111e981",
+      "size_bytes": 55
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/process.sin",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/process.sin",
+      "sha256": "02b35993e3f70082654e75685a51be388545badaaecc7f4d720ba2cd569c515e",
+      "size_bytes": 1042
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mumjets/mumjets__Wplus_u_sbar/render_context.json",
+      "sha256": "ea1e7a826582b657ee528563049e6eed51cf94518f1194ed6abd4800a9d30ada",
+      "size_bytes": 408
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/event_output.inc",
+      "sha256": "143d90822b7ed8f5215ad90f0e5401ffab0390be7fe5c0ecdf2585d61ffd5dd6",
+      "size_bytes": 89
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/integration.inc",
+      "sha256": "5bdce1bf67f0b27fb3668e7715c75cec8e835013cfd181b433860d5eef34ab8c",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/process.sin",
+      "sha256": "7698fb523f465a4d95d791c1a4ff2eaae6cd713137685659b078917b6f10ea7f",
+      "size_bytes": 936
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupem/mupem/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupem/mupem/render_context.json",
+      "sha256": "ba16ef80721c65436342014dea2f79d3d4828aaa38de5dc07b7832659a780fee",
+      "size_bytes": 384
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/event_output.inc",
+      "sha256": "6a207b9cd056578e48c1b01d1c7e3a0d7028dc2a51dc9540ccdde63b7be5c469",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/integration.inc",
+      "sha256": "b2e7848089ca38b64deca3326d1f3341f0c18e089dd01871753789b3d5426f8e",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/process.sin",
+      "sha256": "d28a4e23aa01bd79c05016d12aa3a8a9c1eba029b9c087564889e1be4b16533b",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_b/render_context.json",
+      "sha256": "fbfbb115be4f49ac4ba0b1835f04b11fc09a0f68bf106278e775332b9932b89c",
+      "size_bytes": 404
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/event_output.inc",
+      "sha256": "5c4214820a1c56d7f063e08c116c34101123b92d70142db6fde9b3b2e650a0bd",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/integration.inc",
+      "sha256": "4d792dbfb2152854d2371adbc1c45987c2be73d1bc7c3d9249a9b6fa31b27adc",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/process.sin",
+      "sha256": "03fd00826f7765c20c5aeb4a98592768a579a83b309c1d447f277cd03e46ac5a",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_d/render_context.json",
+      "sha256": "df1ff6ec6c495e7dff1f63d1aa7ec7a5dac4e29b97575c56d3d6f8250520e93f",
+      "size_bytes": 405
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/event_output.inc",
+      "sha256": "901a0e714921eaf1e7085569ca9a67e1d1c10370f0ef55f9c038e4895308c588",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/integration.inc",
+      "sha256": "372aea24dea9d1e341151482e25a20c3d72907ad919ec07b8a1e0bfe4cd9eef9",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/process.sin",
+      "sha256": "3e39c015144abd3cbfeb51707e15c5e2de449671eddc8909177c4182526210ce",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_cbar_s/render_context.json",
+      "sha256": "49ac5899f6d8018271facc91f86ce6ec24a3f7c7c980957c6f88557186b6a94b",
+      "size_bytes": 405
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/event_output.inc",
+      "sha256": "5eb2a69b6c07902fe4ac71952fda4cca11a160a9002dee0cd79e23f571f6d6d9",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/integration.inc",
+      "sha256": "1deb66ca9875637ca23ac7061be2ce41453dc09071516b36ac6590c695a01d62",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/process.sin",
+      "sha256": "fad94972318b31201c51d5bb1565100c2882700a8527cc239afaa0606540005b",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_b/render_context.json",
+      "sha256": "92a358cd8890e041926204086cf74b42439eb68ce66ff03bb4e936b8c9fab94a",
+      "size_bytes": 405
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/event_output.inc",
+      "sha256": "3c5fabc7611f8fd777d814d1c37dc703fff912ed3f9a0d68e05d22b8de79659a",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/integration.inc",
+      "sha256": "687e5b35aecb6fd57fb6ea5798dcd4c5338bf076fa176d98ae1457d1a199be1e",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/process.sin",
+      "sha256": "c9f108dde552beb904768248b6f67d1a9a87832f90899bc49e2cff8ade261acd",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_d/render_context.json",
+      "sha256": "302f4059aad1e142374895a7c4efa0a5e02595690d8b8e449faff123fb8ec8cf",
+      "size_bytes": 405
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/event_output.inc",
+      "sha256": "1cb0de1704505f7248fed0c51ee001cd70c76cabe04674816228a097c3ed109b",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/integration.inc",
+      "sha256": "6cbc23fbfa75b81243c0f8712d16ac0bd76c59caa91671ec4a87008a70acab02",
+      "size_bytes": 56
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/process.sin",
+      "sha256": "7f38dde7220494c31b092f81654c0e0669b60c4139c3b5f08a8ab9b08f4728b5",
+      "size_bytes": 1048
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupjets/mupjets__Wminus_ubar_s/render_context.json",
+      "sha256": "50c4c8a360caa0be266f8c6a1cff0b44d89b2c595b8671bd89d251759328120f",
+      "size_bytes": 404
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/beams.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/beams.inc",
+      "sha256": "1f55252aa888237236b080db0bcbbb0009199090f4cd6bbb9181ff04d770de6f",
+      "size_bytes": 40
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/diagnostics.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/diagnostics.inc",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/event_output.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/event_output.inc",
+      "sha256": "ede4990b013d2e8b01efb07a134806ffcce828ea21b6a2f686e97dd61a76cc37",
+      "size_bytes": 91
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/integration.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/integration.inc",
+      "sha256": "4a27bcfde5e09d91569278598b8214a828fcb46644aa5da1bd32482956750a84",
+      "size_bytes": 41
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/isr.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/isr.inc",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/model.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/model.inc",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/parameters.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/parameters.inc",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "size_bytes": 1
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/common/polarization.inc",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/common/polarization.inc",
+      "sha256": "6ff8212b3ca0647248b5df10664e3b93979274743397272fc9b6dbeea956d0b3",
+      "size_bytes": 24
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/process.sin",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/process.sin",
+      "sha256": "7633f9077991d3a499e5db9377fea78b1a1bd1a7e22761a4c79169ae90a49c9e",
+      "size_bytes": 947
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_mupmum/mupmum/render_context.json",
+      "relative_path": "f6f365_ee_unpol_mupmum/mupmum/render_context.json",
+      "sha256": "e757f6a50bb072c4a14d592dec9f63242c832ae76258abd112968390a3a3b1ce",
+      "size_bytes": 388
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/rendered_cards_manifest.json",
+      "relative_path": "rendered_cards_manifest.json",
+      "sha256": "946454873c6b9ba39d3d27783e4ef1fbc8d676fea518768f0e54b9abc425a42b",
+      "size_bytes": 15143
+    }
+  ],
+  "generated_root": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1",
+  "notes": [
+    "This manifest captures the validated pre-Phase-10A baseline.",
+    "It is an inventory product and does not yet assert production qualification.",
+    "Physics differences and required changes are evaluated in later Phase 10A gates."
+  ],
+  "repository": {
+    "git_branch": "feature/top-qis-framework-v1",
+    "git_commit": "998cf56725c169a7afeba19bdbdb3aa01c89c82e",
+    "git_status_short": "M cglenn.cc\n M scripts/production/__pycache__/production_common.cpython-313.pyc\n M scripts/production/audit_phase10A_production_definition.sh\n M scripts/showering/validate_showering.py\n?? .package_installations/\n?? analysis_contracts/channel_matrix.yaml\n?? analysis_contracts/delphes_pairing_contract.yaml\n?? analysis_contracts/fiducial_particle_definition.yaml\n?? analysis_contracts/phase1_closeout_contract.yaml\n?? analysis_contracts/physics_model.yaml\n?? analysis_contracts/qis_observables.yaml\n?? analysis_contracts/reconstruction_contract.yaml\n?? analysis_contracts/runtime_contract.yaml.bak_before_pythia8316_runtime_revision\n?? analysis_contracts/spin_basis_conventions.yaml\n?? analysis_contracts/steering_definition.yaml\n?? analysis_contracts/top_spin_state_definition.yaml\n?? build-lcg-devkey-fri/\n?? campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition/\n?? campaigns/full6f_365gev_ee_ttbar_spinpol_v1/showering/phase9_10k_bridge_manifest_representative.jsonl\n?? condor/pilots/\n?? condor/production/\n?? condor/qis_bootstrap/\n?? condor_streams/\n?? configs/production/production_365GeV_ee_250k_v1.csv\n?? configs/qis/cms_spin_conventions_365GeV_v1.yaml\n?? configs/qis/qualification_365GeV_ee_iso_250k_v1.yaml\n?? configs/qis/qualification_365GeV_ee_iso_250k_v1.yaml.pre_2500_events_per_job_20260727T202108Z.bak\n?? configs/qis/qualification_365GeV_ee_iso_250k_v1.yaml.pre_source_manifest_fix_20260727T203751Z.bak\n?? configs/qis/qualification_365GeV_ee_sc_250k_v1.yaml\n?? configs/qis/qualification_365GeV_ee_sc_250k_v1.yaml.pre_2500_events_per_job_20260727T202108Z.bak\n?? configs/qis/qualification_365GeV_ee_sc_250k_v1.yaml.pre_source_manifest_fix_20260727T203751Z.bak\n?? docs/PHASE9_CLOSEOUT_20260803.md\n?? docs/package1/\n?? environments/verify_package1_environment.py\n?? inspection_outputs/\n?? package_tools/\n?? requirements/\n?? schemas/common/\n?? schemas/contracts/delphes_pairing_contract.schema.json\n?? schemas/contracts/phase1_closeout_contract.schema.json\n?? schemas/contracts/runtime_contract.schema.json\n?? schemas/manifests/overlay_manifest.schema.json\n?? schemas/manifests/phase_validation_record.schema.json\n?? scripts/common/setup_package1_python.sh\n?? scripts/contracts/\n?? scripts/qis/audit_365GeV_D_basis_mapping.py\n?? scripts/qis/audit_365GeV_D_conventions.py\n?? scripts/qis/audit_365GeV_paper_spin_adapter.py\n?? scripts/qis/audit_365GeV_paper_spin_adapter.py.pre_alignment_fix_20260727T012725Z.bak\n?? scripts/qis/audit_365GeV_paper_spin_adapter.py.pre_density_tolerance_typo_fix_20260727T145342Z.bak\n?? scripts/qis/collect_365GeV_qis_bootstrap_campaign.py\n?? scripts/qis/condor/prepare_365GeV_qis_bootstrap_campaign.py\n?? scripts/qis/condor/prepare_365GeV_qis_bootstrap_campaign.py.pre_arguments_quote_fix_20260727T152151Z.bak\n?? scripts/qis/condor/run_365GeV_qis_bootstrap_condor_job.sh\n?? scripts/qis/run_365GeV_qis_bootstrap_slice.py\n?? scripts/qis/validate_365GeV_qis_bootstrap_partitioning.py\n?? scripts/retirement/\n?? scripts/runtime/inventory_runtime.py\n?? scripts/runtime/run_phase2_static_inventory.sh\n?? scripts/runtime/validate_phase2_runtime.py.bak_before_pythia8316_runtime_revision\n?? scripts/showering/run_external_pythia.sh.bak_before_named_driver_interface_20260731T181300Z\n?? scripts/showering/validate_phase7_showering.py.bak_before_runtime_bridge_validation_20260731T182922Z\n?? scripts/showering/validate_showering.py.pre_eos_checksum_retry_20260728T160045Z.bak\n?? scripts/sindarin/render_full6f_cards.py.bak_before_antiquark_symbol_fix\n?? scripts/sindarin/render_full6f_cards.py.bak_before_fix_scrub_output_root_name\n?? scripts/sindarin/render_full6f_cards.py.bak_before_persistent_polarized_block_rendering\n?? scripts/sindarin/render_full6f_cards.py.bak_before_persistent_unpol_polarization_scrub\n?? scripts/sindarin/render_full6f_cards.py.bak_before_runtime_proven_renderer_cleanup\n?? scripts/sindarin/render_full6f_cards.py.bak_before_sample_basename_substitution\n?? scripts/sindarin/render_full6f_cards.py.bak_before_whizard_particle_symbol_fix\n?? scripts/sindarin/validate_phase4_cards.py.bak_before_remove_obsolete_comma_final_state_lint\n?? scripts/sindarin/validate_phase4_cards.py.bak_before_unpol_polarization_validator\n?? scripts/sindarin/validate_phase4_cards.py.bak_before_whizard_particle_symbol_lint\n?? sindarin/generated/\n?? sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_drop_circe1_for_365gev_smoke\n?? sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_runtime_proven_isr_only\n?? sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_whizard318_isr_fix\n?? sindarin/templates/full6f_365gev_v1/common/event_output.inc.in.bak_before_runtime_proven_event_output\n?? sindarin/templates/full6f_365gev_v1/common/event_output.inc.in.bak_before_whizard318_sample_output_fix\n?? sindarin/templates/full6f_365gev_v1/common/isr.inc.in.bak_before_runtime_proven_isr_handler\n?? sindarin/templates/full6f_365gev_v1/common/isr.inc.in.bak_before_whizard318_isr_fix\n?? sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_drop_empty_parameters_include\n?? sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_drop_invalid_diagnostics_include\n?? sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_process_spacing_fix\n?? sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_runtime_proven_cleanup\n?? sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_whizard318_include_fix\n?? sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_drop_empty_parameters_include\n?? sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_drop_invalid_diagnostics_include\n?? sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_process_spacing_fix\n?? sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_runtime_proven_cleanup\n?? sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_whizard318_include_fix\n?? src/ttbar_spinpol/__init__.py\n?? src/ttbar_spinpol/contracts/cross_validate.py\n?? src/ttbar_spinpol/contracts/index.py\n?? src/ttbar_spinpol/contracts/json_schema.py\n?? src/ttbar_spinpol/contracts/loader.py\n?? src/ttbar_spinpol/provenance/\n?? src/ttbar_spinpol/runtime/\n?? tests/package1/\n?? tests/qis/test_365GeV_cms_D_convention.py\n?? ttbar_spinpol_package1_v1_FAILED_PYYAML/\n?? ttbar_spinpol_package1_v1p1_FAILED_MANIFEST_PYCACHE/\n?? ttbar_spinpol_package1_v1p2/\n?? ttbar_spinpol_package2_v1p1/\n?? whizard_365_transport_files_20260722T235241Z.txt",
+    "root": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol"
+  },
+  "runtime": {
+    "hepmc3_config_path": "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config",
+    "hepmc3_version": "3.03.01",
+    "pythia8_config_path": "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config",
+    "pythia8_version": "8.316",
+    "python_version": "Python 3.13.11",
+    "whizard_path": "/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard",
+    "whizard_version": "WHIZARD 3.1.8\nCopyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter\n              ---------------------------------------                \nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "template_files": [
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/README.md",
+      "relative_path": "README.md",
+      "sha256": "0205c356f3f6c39835946d20f5d9cf6a0c18cd70bc324d0881873dece3467cff",
+      "size_bytes": 127
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in",
+      "relative_path": "common/beams.inc.in",
+      "sha256": "c1645c48ae1fca10cb6b41af2b52ccf523ac22cb6b79db358c83381b0f919a01",
+      "size_bytes": 47
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_drop_circe1_for_365gev_smoke",
+      "relative_path": "common/beams.inc.in.bak_before_drop_circe1_for_365gev_smoke",
+      "sha256": "c4e296c726eb4183017870af55073cc7ab4150ca0c056589bb1e26b45a993aae",
+      "size_bytes": 57
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_runtime_proven_isr_only",
+      "relative_path": "common/beams.inc.in.bak_before_runtime_proven_isr_only",
+      "sha256": "c1645c48ae1fca10cb6b41af2b52ccf523ac22cb6b79db358c83381b0f919a01",
+      "size_bytes": 47
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/beams.inc.in.bak_before_whizard318_isr_fix",
+      "relative_path": "common/beams.inc.in.bak_before_whizard318_isr_fix",
+      "sha256": "7c65ad7d69c551107afaeb979598af2f7999cae6f4a9ed2cf185363182747f87",
+      "size_bytes": 50
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/diagnostics.inc.in",
+      "relative_path": "common/diagnostics.inc.in",
+      "sha256": "5caa6595f7e68ece9736befb839069fec7402597965d1e8a060ab7425dcd8c95",
+      "size_bytes": 34
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in",
+      "relative_path": "common/event_output.inc.in",
+      "sha256": "7593028802d3991c4fbc6394d1aa4e7e1c06ec698b1d2545a5825201dacf09a3",
+      "size_bytes": 112
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in.bak_before_runtime_proven_event_output",
+      "relative_path": "common/event_output.inc.in.bak_before_runtime_proven_event_output",
+      "sha256": "7593028802d3991c4fbc6394d1aa4e7e1c06ec698b1d2545a5825201dacf09a3",
+      "size_bytes": 112
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in.bak_before_whizard318_sample_output_fix",
+      "relative_path": "common/event_output.inc.in.bak_before_whizard318_sample_output_fix",
+      "sha256": "fde9e66e9a87f2c62626178b2652683f16f4a234a5332fb1ddd0bb423e6c3631",
+      "size_bytes": 121
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/integration.inc.in",
+      "relative_path": "common/integration.inc.in",
+      "sha256": "a96a02d9dba4fbdfb62ea0ec015936266adfc48f0f47a93b877f1285a90855e8",
+      "size_bytes": 88
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in",
+      "relative_path": "common/isr.inc.in",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in.bak_before_runtime_proven_isr_handler",
+      "relative_path": "common/isr.inc.in.bak_before_runtime_proven_isr_handler",
+      "sha256": "b3708f4b81bdd63c994a5a82a1e78bcf73116f15ed74c02ef1b9f4f2a5db48d2",
+      "size_bytes": 104
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/isr.inc.in.bak_before_whizard318_isr_fix",
+      "relative_path": "common/isr.inc.in.bak_before_whizard318_isr_fix",
+      "sha256": "69e0509eb2e01590f3821c283cbe25d9b2804ce7dfc4a09230ecdf3153649078",
+      "size_bytes": 52
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/model.inc.in",
+      "relative_path": "common/model.inc.in",
+      "sha256": "44e7080bd51dd6baa7a4472c823c650d94c3f253787ca6743d6493a22c3ecd0e",
+      "size_bytes": 11
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/parameters.inc.in",
+      "relative_path": "common/parameters.inc.in",
+      "sha256": "68d5924758911bea285b4c16b50ce6aece7c9df5f987a53eee2b3a318c3e24a3",
+      "size_bytes": 19
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/polarization.inc.in",
+      "relative_path": "common/polarization.inc.in",
+      "sha256": "2f633e39e1c12623acd1d894088d06f8186e3f418ebd259cbbe0ca6335203f29",
+      "size_bytes": 66
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in",
+      "relative_path": "dilepton/process.sin.in",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_drop_empty_parameters_include",
+      "relative_path": "dilepton/process.sin.in.bak_before_drop_empty_parameters_include",
+      "sha256": "b3f33a6dda1c3e2464bf31e324a36cfc523f020d9f679bdbfae9b99cc0142c7e",
+      "size_bytes": 318
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_drop_invalid_diagnostics_include",
+      "relative_path": "dilepton/process.sin.in.bak_before_drop_invalid_diagnostics_include",
+      "sha256": "24c1b52e1d6df26209bd3a510855991dcfdba7001a7f71be2ecb59e4d9dd2a72",
+      "size_bytes": 359
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_process_spacing_fix",
+      "relative_path": "dilepton/process.sin.in.bak_before_process_spacing_fix",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_runtime_proven_cleanup",
+      "relative_path": "dilepton/process.sin.in.bak_before_runtime_proven_cleanup",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in.bak_before_whizard318_include_fix",
+      "relative_path": "dilepton/process.sin.in.bak_before_whizard318_include_fix",
+      "sha256": "fd6f874d48be83d07d9a639791fd5c81b3fa079528cddf01a4dcc2f75ecf33b8",
+      "size_bytes": 352
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in",
+      "relative_path": "semileptonic/process.sin.in",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_drop_empty_parameters_include",
+      "relative_path": "semileptonic/process.sin.in.bak_before_drop_empty_parameters_include",
+      "sha256": "b3f33a6dda1c3e2464bf31e324a36cfc523f020d9f679bdbfae9b99cc0142c7e",
+      "size_bytes": 318
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_drop_invalid_diagnostics_include",
+      "relative_path": "semileptonic/process.sin.in.bak_before_drop_invalid_diagnostics_include",
+      "sha256": "24c1b52e1d6df26209bd3a510855991dcfdba7001a7f71be2ecb59e4d9dd2a72",
+      "size_bytes": 359
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_process_spacing_fix",
+      "relative_path": "semileptonic/process.sin.in.bak_before_process_spacing_fix",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_runtime_proven_cleanup",
+      "relative_path": "semileptonic/process.sin.in.bak_before_runtime_proven_cleanup",
+      "sha256": "0a1368627aef1cdeea709d582010e5de10e1ed5986fc0cd032e414db4ba6b715",
+      "size_bytes": 278
+    },
+    {
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in.bak_before_whizard318_include_fix",
+      "relative_path": "semileptonic/process.sin.in.bak_before_whizard318_include_fix",
+      "sha256": "fd6f874d48be83d07d9a639791fd5c81b3fa079528cddf01a4dcc2f75ecf33b8",
+      "size_bytes": 352
+    }
+  ],
+  "template_root": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1",
+  "utc_stamp": "20260803T190349Z"
+}

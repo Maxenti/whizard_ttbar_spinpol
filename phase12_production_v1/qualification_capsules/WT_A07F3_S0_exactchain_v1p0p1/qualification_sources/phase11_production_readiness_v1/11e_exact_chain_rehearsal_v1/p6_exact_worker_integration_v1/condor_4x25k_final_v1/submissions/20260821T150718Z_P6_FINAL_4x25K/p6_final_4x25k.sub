@@ -1,0 +1,19 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/condor_4x25k_final_v1/submissions/20260821T150718Z_P6_FINAL_4x25K/run_p6_final_25k.sh
+
+arguments = $(ProcId) /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/condor_4x25k_final_v1/submissions/20260821T150718Z_P6_FINAL_4x25K/p6_4x25k_manifest.tsv /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1 /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_4x25k_final_v1/20260821T150718Z_P6_FINAL_4x25K /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/whizard_merged/full6f365_ee_LR100_epmum_WT_A07F3_S0.lhe full6f365_ee_LR100_epmum_WT_A07F3_S0
+
+getenv = True
+
+request_cpus = 1
+request_memory = 2000MB
+request_disk = 3000MB
+
+output = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/condor_4x25k_final_v1/submissions/20260821T150718Z_P6_FINAL_4x25K/logs/proc_$(ProcId).out
+error  = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/condor_4x25k_final_v1/submissions/20260821T150718Z_P6_FINAL_4x25K/logs/proc_$(ProcId).err
+log    = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/condor_4x25k_final_v1/submissions/20260821T150718Z_P6_FINAL_4x25K/logs/p6_final_4x25k.condor.log
+
++JobFlavour = "tomorrow"
+
+queue 4

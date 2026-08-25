@@ -1,0 +1,65 @@
+PHASE 11 WT A07/S3/F3 TECHNICAL REPAIR CLOSEOUT
+================================================
+
+Original campaign:
+20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2
+
+Original DAG:
+6053426
+
+Original DAG outcome:
+495 successful nodes
+1 failed node: C_A07_S3_F3
+
+Original failed execution:
+6054024.0
+
+Failure classification:
+Infrastructure/filesystem failure before WHIZARD integration.
+This is not classified as a numerical integration failure.
+
+Technical repair:
+HTCondor cluster 6054509
+
+Repair execution outcome:
+Normal termination, return value 0
+stderr empty
+STATUS=PASS
+
+Frozen physics identity:
+mode=A07_S3_F3
+parent_mode=A07_S3
+adaptive_id=A07
+fixed_id=F3
+seed_id=S3
+fixed_seed=769890491
+
+Schedules:
+adaptive = 10:100000:"gw"
+fixed    = 10:200000:""
+
+Grid/workspace validation:
+whizard_rc=0
+reuse_message_count=1
+new_grid_init_count=0
+phs_unchanged=1
+
+Final repaired fixed result:
+sigma = 11.502961 fb
+error = 0.0118 fb
+relative error ~= 0.10%
+
+Campaign result-tree status after repair:
+adaptive STATUS files = 120
+fixed STATUS files    = 368
+control STATUS files  = 8
+total STATUS files    = 496
+PASS                  = 496
+
+Interpretation:
+The original DAG history remains 495 successful + 1 infrastructure failure.
+The isolated technical repair supplies the exact missing frozen physics
+execution. The effective campaign physics/result set is complete at 496/496.
+
+The DAG rescue file must not be submitted because the missing execution has
+already been replaced by this explicitly documented technical replay.

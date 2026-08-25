@@ -1,0 +1,76 @@
+{
+  "basis": "rnk_common_v1_nominal_beam_phase9",
+  "bootstrap": {
+    "method": "event-level resampling within each parent_label, recomputing Bplus/Bminus/C and QIS metrics",
+    "n_bootstrap": 500,
+    "seed": 36520260803
+  },
+  "bootstrap_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_bootstrap_20260803/phase9_qis_bootstrap_observables.csv",
+  "bootstrap_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_bootstrap_20260803/phase9_qis_bootstrap_observables.json",
+  "component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "notes": [
+    "Bootstrap propagates event-level spin-moment fluctuations into raw density-matrix/QIS candidate observables.",
+    "QIS quantities remain diagnostic candidates for the Phase 9 parton-only truth-candidate product.",
+    "rho_positive_semidefinite_fraction estimates how often finite-statistics resamples yield a positive semidefinite raw rho."
+  ],
+  "samples": [
+    {
+      "bell_chsh_violation_fraction": 0.0,
+      "central_chsh": 1.4532054162128283,
+      "central_concurrence": 0.0,
+      "central_negativity": 0.0,
+      "central_purity": 0.4274957227161318,
+      "central_rho_min_eigenvalue": -0.0019178514669633505,
+      "chsh_se": 0.058932031610249284,
+      "n_events": 10000,
+      "parent_label": "unpol_epmum",
+      "purity_se": 0.011863048549558407,
+      "rho_min_eigenvalue_p16": -0.016536686965285506,
+      "rho_min_eigenvalue_p50": -0.003525809171733195,
+      "rho_min_eigenvalue_p84": 0.008145953029641207,
+      "rho_positive_semidefinite_fraction": 0.408,
+      "status": "PASS"
+    },
+    {
+      "bell_chsh_violation_fraction": 0.0,
+      "central_chsh": 1.3013138353937026,
+      "central_concurrence": 0.0,
+      "central_negativity": 0.0,
+      "central_purity": 0.6357687006913513,
+      "central_rho_min_eigenvalue": 0.0025867768466830013,
+      "chsh_se": 0.05650063010232231,
+      "n_events": 10000,
+      "parent_label": "LR100_epmum",
+      "purity_se": 0.014496036148796885,
+      "rho_min_eigenvalue_p16": -0.006663709873100691,
+      "rho_min_eigenvalue_p50": 0.0002344502273363897,
+      "rho_min_eigenvalue_p84": 0.0067505071184918225,
+      "rho_positive_semidefinite_fraction": 0.516,
+      "status": "PASS"
+    },
+    {
+      "bell_chsh_violation_fraction": 0.0,
+      "central_chsh": 1.2913881802363825,
+      "central_concurrence": 0.0,
+      "central_negativity": 0.0,
+      "central_purity": 0.6210601951220271,
+      "central_rho_min_eigenvalue": 0.006567748273434037,
+      "chsh_se": 0.05495577443514074,
+      "n_events": 10000,
+      "parent_label": "RL100_epmum",
+      "purity_se": 0.014327063688897303,
+      "rho_min_eigenvalue_p16": -0.00354031545210751,
+      "rho_min_eigenvalue_p50": 0.0033561566730834747,
+      "rho_min_eigenvalue_p84": 0.010030538997503028,
+      "rho_positive_semidefinite_fraction": 0.686,
+      "status": "PASS"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "truth_jsonl": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_parton_truth_observables_with_RL100_20260803/phase9_parton_truth_observables_with_RL100.jsonl"
+}

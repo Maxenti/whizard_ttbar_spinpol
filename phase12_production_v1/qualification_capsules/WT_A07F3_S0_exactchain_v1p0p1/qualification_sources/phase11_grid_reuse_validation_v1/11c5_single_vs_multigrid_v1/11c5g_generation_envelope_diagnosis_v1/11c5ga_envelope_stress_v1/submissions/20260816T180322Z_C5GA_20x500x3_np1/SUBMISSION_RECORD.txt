@@ -1,0 +1,26 @@
+Phase 11C.5G-A submission
+=========================
+
+Cluster:
+  20200509
+
+Tag:
+  20260816T180322Z_C5GA_20x500x3_np1
+
+Submission:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/11c5g_generation_envelope_diagnosis_v1/11c5ga_envelope_stress_v1/submissions/20260816T180322Z_C5GA_20x500x3_np1
+
+Output:
+  /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c5g_generation_envelope_stress_v1/20260816T180322Z_C5GA_20x500x3_np1
+
+Jobs:
+  60
+
+Events/job:
+  500
+
+Total requested:
+  30000
+
+Per frozen grid:
+  10000

@@ -1,0 +1,19 @@
+universe = vanilla
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification/full6f_365gev_scaling_v1
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification/full6f_365gev_scaling_v1/scripts/run_scaling_sweep.sh
+
+request_cpus   = 16
+request_memory = 20000
+request_disk   = 10000
+
+should_transfer_files = NO
+
+output = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification/full6f_365gev_scaling_v1/logs/scaling_$(ClusterId).out
+error  = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification/full6f_365gev_scaling_v1/logs/scaling_$(ClusterId).err
+log    = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification/full6f_365gev_scaling_v1/logs/scaling_$(ClusterId).condor.log
+
++JobFlavour = "tomorrow"
+
+queue

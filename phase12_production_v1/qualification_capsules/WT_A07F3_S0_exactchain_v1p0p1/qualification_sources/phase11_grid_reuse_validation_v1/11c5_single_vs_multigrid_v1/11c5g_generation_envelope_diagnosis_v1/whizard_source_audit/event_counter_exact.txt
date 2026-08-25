@@ -1,0 +1,121 @@
+  use shower
+  use evt_nlo
+
+  use dispatch_beams, only: dispatch_qcd
+  use dispatch_rng, only: dispatch_rng_factory
+  use dispatch_rng, only: update_rng_seed_in_var_list
+  use dispatch_me_methods, only: dispatch_core_update, dispatch_core_restore
+  use dispatch_transforms, only: dispatch_evt_isr_epa_handler
+  use dispatch_transforms, only: dispatch_evt_resonance
+  use dispatch_transforms, only: dispatch_evt_decay
+  use dispatch_transforms, only: dispatch_evt_shower
+  use dispatch_transforms, only: dispatch_evt_hadrons
+  use dispatch_transforms, only: dispatch_evt_nlo
+
+  use integrations
+
+  implicit none
+
+contains
+
+  module subroutine counter_write (counter, unit)
+    class(counter_t), intent(in) :: counter
+    integer, intent(in), optional :: unit
+    integer :: u
+    u = given_output_unit (unit)
+1   format (3x,A,I0)
+2   format (5x,A,I0)
+3   format (5x,A,ES19.12)
+    write (u, 1)  "Events total      = ", counter%total
+    write (u, 2)  "generated       = ", counter%generated
+    write (u, 2)  "read            = ", counter%read
+    write (u, 2)  "positive weight = ", counter%positive
+    write (u, 2)  "negative weight = ", counter%negative
+    write (u, 2)  "zero weight     = ", counter%zero
+    write (u, 2)  "excess weight   = ", counter%excess
+    if (counter%excess /= 0) then
+       write (u, 3)  "max excess      = ", counter%max_excess
+       write (u, 3)  "avg excess      = ", counter%sum_excess / counter%total
+    end if
+    write (u, 1)  "Events dropped    = ", counter%dropped
+  end subroutine counter_write
+
+  module subroutine counter_show_excess (counter)
+    class(counter_t), intent(in) :: counter
+    if (counter%excess > 0) then
+       write (msg_buffer, "(A,1x,I0,1x,A,1x,'(',F7.3,' %)')") &
+            "Encountered events with excess weight:", counter%excess, &
+            "events", 100 * counter%excess / real (counter%total)
+       call msg_warning ()
+       write (msg_buffer, "(A,ES10.3)") &
+            "Maximum excess weight =", counter%max_excess
+       call msg_message ()
+       write (msg_buffer, "(A,ES10.3)") &
+            "Average excess weight =", counter%sum_excess / counter%total
+       call msg_message ()
+    end if
+  end subroutine counter_show_excess
+
+  module subroutine counter_show_dropped (counter)
+    class(counter_t), intent(in) :: counter
+    if (counter%dropped > 0) then
+       write (msg_buffer, "(A,1x,I0,1x,'(',A,1x,I0,')')") &
+            "Dropped events (weight zero) =", &
+            counter%dropped, "total", counter%dropped + counter%total
+       call msg_message ()
+       write (msg_buffer, "(A,ES15.8)") &
+            "All event weights must be rescaled by f =", &
+            real (counter%total, default) &
+            / real (counter%dropped + counter%total, default)
+       call msg_warning ()
+    end if
+  end subroutine counter_show_dropped
+
+  module subroutine counter_show_mean_and_variance (counter)
+    class(counter_t), intent(in) :: counter
+    if (counter%reproduce_xsection .and. counter%nlo_weight_counter > 1) then
+       print *,  "Reconstructed cross-section from event weights: "
+       print *,  counter%mean, '+-', &
+            sqrt (counter%varsq / (counter%nlo_weight_counter - 1))
+    end if
+  end subroutine counter_show_mean_and_variance
+
+  module subroutine counter_record &
+       (counter, weight, excess, n_dropped, from_file)
+    class(counter_t), intent(inout) :: counter
+    real(default), intent(in), optional :: weight, excess
+    integer, intent(in), optional :: n_dropped
+    logical, intent(in), optional :: from_file
+    counter%total = counter%total + 1
+    if (present (from_file)) then
+       if (from_file) then
+          counter%read = counter%read + 1
+       else
+          counter%generated = counter%generated + 1
+       end if
+    else
+       counter%generated = counter%generated + 1
+    end if
+    if (present (weight)) then
+       if (weight > 0) then
+          counter%positive = counter%positive + 1
+       else if (weight < 0) then
+          counter%negative = counter%negative + 1
+       else
+          counter%zero = counter%zero + 1
+       end if
+    else
+       counter%positive = counter%positive + 1
+    end if
+    if (present (excess)) then
+       if (excess > 0) then
+          counter%excess = counter%excess + 1
+          counter%max_excess = max (counter%max_excess, excess)
+          counter%sum_excess = counter%sum_excess + excess
+       end if
+    end if
+    if (present (n_dropped)) then
+       counter%dropped = counter%dropped + n_dropped
+    end if
+  end subroutine counter_record
+

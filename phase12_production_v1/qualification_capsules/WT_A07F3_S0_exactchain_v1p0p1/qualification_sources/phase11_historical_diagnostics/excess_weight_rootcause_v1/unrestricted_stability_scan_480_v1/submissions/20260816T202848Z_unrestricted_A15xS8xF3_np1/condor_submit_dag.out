@@ -1,0 +1,11 @@
+Submitting job(s).
+1 job(s) submitted to cluster 6052520.
+
+-----------------------------------------------------------------------
+File for submitting this DAG to HTCondor           : campaign.dag.condor.sub
+Log of DAGMan debugging messages                   : campaign.dag.dagman.out
+Log of HTCondor library output                     : campaign.dag.lib.out
+Log of HTCondor library error messages             : campaign.dag.lib.err
+Log of the life of condor_dagman itself            : campaign.dag.dagman.log
+
+-----------------------------------------------------------------------

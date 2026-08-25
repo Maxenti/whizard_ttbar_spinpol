@@ -1,0 +1,15 @@
+universe = vanilla
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1/scripts/run_region_child.sh
+arguments = --region-id $(region_id) --window-id $(window_id) --mode $(mode) --parent-mode $(parent_mode) --adaptive-id $(adaptive_id) --fixed-id $(fixed_id) --seed-id $(seed_id) --campaign-dir /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1 --output-root $(node_output_root)
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/regions/submissions/20260816T230955Z_U9region_core_W15_S8_np1
+should_transfer_files = NO
+getenv = True
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 6000MB
++JobFlavour = "tomorrow"
+output=logs/$(mode).$(ClusterId).$(ProcId).out
+error=logs/$(mode).$(ClusterId).$(ProcId).err
+log=logs/region_child.$(ClusterId).log
+notification=Never
+queue

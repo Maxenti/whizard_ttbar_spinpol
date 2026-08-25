@@ -1,0 +1,10 @@
+HEPMC_FILES=4
+full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0001.hepmc3: events=25000 bad_weights=0 gate=PASS
+full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0002.hepmc3: events=25000 bad_weights=0 gate=PASS
+full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0003.hepmc3: events=25000 bad_weights=0 gate=PASS
+full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0004.hepmc3: events=25000 bad_weights=0 gate=PASS
+
+TOTAL_HEPMC_EVENTS=100000
+TOTAL_BAD_WEIGHT_EVENTS=0
+
+P6_100K_HEPMC_GATE=PASS

@@ -1,0 +1,102 @@
+{
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "classification": {
+    "legacy_bridge_role": "Phase 7/9 validation and showering bridge; not adopted as the canonical Phase 10 hard-process producer.",
+    "renderer_role": "Authoritative generator of the direct full-six-fermion card family.",
+    "required_phase10_extension": "Add an explicit pre-integration WHIZARD seed token to the full-six-fermion rendered card contract and implement a dedicated pinned-runtime production worker."
+  },
+  "files": {
+    "dilepton_process_template": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/dilepton/process.sin.in"
+    },
+    "event_output_template": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": true,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": true,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/event_output.inc.in"
+    },
+    "integration_template": {
+      "contains_full6f_process": false,
+      "contains_integrate": true,
+      "contains_n_events": false,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/common/integration.inc.in"
+    },
+    "legacy_bridge_runner": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": true,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/showering/run_phase7_canonical_bridge.py"
+    },
+    "phase7_manifest_builder": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": true,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/showering/build_phase7_bridge_manifest.py"
+    },
+    "phase7_manifest_runner": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": true,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/showering/run_phase7_bridge_manifest.py"
+    },
+    "phase9_manifest_builder": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/showering/build_phase9_sharded_manifest.py"
+    },
+    "renderer": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/sindarin/render_full6f_cards.py"
+    },
+    "semileptonic_process_template": {
+      "contains_full6f_process": false,
+      "contains_integrate": false,
+      "contains_n_events": false,
+      "contains_seed_assignment": false,
+      "contains_seed_token": false,
+      "contains_simulate": false,
+      "exists": true,
+      "path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1/semileptonic/process.sin.in"
+    }
+  },
+  "schema_version": 1,
+  "status": "PASS"
+}

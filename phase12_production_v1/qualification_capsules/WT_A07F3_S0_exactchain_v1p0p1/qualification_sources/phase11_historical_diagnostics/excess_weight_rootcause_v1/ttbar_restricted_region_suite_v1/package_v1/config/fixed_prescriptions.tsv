@@ -1,0 +1,5 @@
+fixed_id	suffix_schedule	total_calls	purpose
+F0	3:200000:""	600000	Phase11 G2-style three fixed iterations
+F1	1:600000:""	600000	Same fixed-call budget as F0 in one final iteration
+F2	1:2000000:""	2000000	Deep final-envelope measurement
+F3	10:200000:""	2000000	Exact FCC-Winter2023 fixed suffix when paired with A07

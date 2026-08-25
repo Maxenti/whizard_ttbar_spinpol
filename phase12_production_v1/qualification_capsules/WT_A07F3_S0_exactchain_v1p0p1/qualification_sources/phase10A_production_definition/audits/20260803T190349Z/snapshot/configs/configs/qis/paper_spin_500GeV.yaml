@@ -1,0 +1,193 @@
+schema_version: 1
+
+convention:
+  name: lepton_collider_paper_v1
+
+  # Primary analyzer source for publication-grade coefficients.
+  # This reconstructs both analyzers directly from four-vectors using the
+  # incoming-positive-lepton k,r,n convention and the canonical sequential
+  # lab -> ttbar ZMF -> parent-rest boost path.
+  analyzer_source: four_vectors
+  four_vector_reconstruction_reviewed: true
+  singular_tolerance: 1.0e-10
+  singular_policy: error
+  max_orthonormal_residual: 1.0e-10
+  max_handedness_deviation: 1.0e-10
+
+  four_vectors:
+    incoming_positive:
+      {e: beam_plus_e, px: beam_plus_px, py: beam_plus_py, pz: beam_plus_pz}
+    top:
+      {e: top_e, px: top_px, py: top_py, pz: top_pz}
+    antitop:
+      {e: antitop_e, px: antitop_px, py: antitop_py, pz: antitop_pz}
+    lepton_positive:
+      {e: lepton_plus_e, px: lepton_plus_px, py: lepton_plus_py, pz: lepton_plus_pz}
+    lepton_negative:
+      {e: lepton_minus_e, px: lepton_minus_px, py: lepton_minus_py, pz: lepton_minus_pz}
+
+  # Canonical production angle used by differential binning and the
+  # event-conditioned analytic benchmark. This is reconstructed directly
+  # rather than inferred by negating the legacy negative-beam cos_theta_t.
+  derived_kinematics:
+    enabled: true
+    reviewed: true
+    costheta_column: paper_cos_theta_t
+    overwrite_existing: false
+    comparison_tolerance: 1.0e-12
+    bound_tolerance: 1.0e-12
+
+  # The validated legacy ntuples store both charged-lepton analyzers in a
+  # k,r,n basis defined using the incoming negative lepton. The stored b2
+  # coordinates already include antitop_analyzer_sign = -1. The canonical
+  # paper convention instead defines the production plane using the incoming
+  # positive lepton.
+  legacy_map_reviewed: false
+  plus_columns: [b1k, b1r, b1n]
+  minus_columns: [b2k, b2r, b2n]
+  # Axis-only maps from the frozen legacy coordinates to the positive-beam
+  # paper basis. These maps do not account for the Wigner rotation introduced
+  # by the legacy direct lab-to-parent-rest boost path.
+  #
+  # Legacy top axes:
+  #   (k, r, n)
+  #
+  # Legacy antitop axes:
+  #   (kbar, rbar, nbar) = (-k, -r, n)
+  #
+  # Paper common axes:
+  #   (k, r, -n)
+  plus_component_transform:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, -1.0]
+  minus_component_transform:
+    - [-1.0, 0.0, 0.0]
+    - [0.0, -1.0, 0.0]
+    - [0.0, 0.0, -1.0]
+
+  # The stored b2 coordinates already include antitop_analyzer_sign = -1.
+  # The sign is contained in the stored analyzer and must not be added again.
+  raw_plus_sign: 1.0
+  raw_minus_sign: 1.0
+  max_norm_deviation: 1.0e-6
+  renormalize_within_tolerance: false
+
+weights:
+  candidates: [weight, event_weight, nominal_weight]
+  allow_negative: false
+
+event_key_candidates:
+  - event_id
+  - event
+  - event_number
+  - event_index
+  - source_event_index
+
+histograms:
+  enabled: true
+  bins: 20
+
+shape_fit:
+  enabled: true
+  calculate_covariance: true
+  max_iterations: 2000
+  gradient_tolerance: 1.0e-8
+
+# Linear coefficients receive an exact event-estimand covariance. Bootstrap is
+# reserved for nonlinear density-matrix and entanglement observables.
+bootstrap:
+  replicas: 1000
+  seed: 20260721
+
+analytic_benchmark:
+  enabled: true
+  mode: event_conditioned
+  sm_parameters: paper_spin_sm_parameters.yaml
+  quadrature_points: 256
+
+  # These remain false until the exact WHIZARD input scheme and the sign of the
+  # stored cos(theta) variable have been checked against the incoming positive
+  # lepton convention. The analysis records a skipped diagnostic rather than
+  # silently imposing an external sign convention.
+  kinematics_map_reviewed: true
+  sqrt_s_column: mtt_GeV
+  costheta_column: paper_cos_theta_t
+  costheta_sign: 1.0
+  sqrt_s_candidates:
+    - mtt_GeV
+    - sqrt_s_hat_GeV
+    - ttbar_mass_GeV
+    - m_tt_GeV
+  costheta_candidates:
+    - top_costheta_beam_plus
+    - costheta_top_beam_plus
+    - cos_theta_top_beam_plus
+    - top_costheta
+    - cos_theta_top
+  weight_candidates: [weight, event_weight, nominal_weight]
+
+validation:
+  expected_samples: 32
+  polarization_min_z: 5.0
+  spin_correlation_min_z: 5.0
+  flavour_consistency_max_z: 5.0
+  lepton_universality_max_z: 5.0
+  preservation_max_abs: 0.02
+  preservation_max_z: 5.0
+
+  # Strict event-transport contract for the 500 GeV
+  # qualification campaign: 16 LHE/HepMC pairs,
+  # each containing the complete matched 10k-event set.
+  lhe_hepmc_expected_paired_groups: 16
+  lhe_hepmc_expected_common_events_per_group: 10000
+
+  # Reference levels for reporting physical post-shower
+  # analyzer migration. Exceedances are warning-level
+  # diagnostics rather than identity failures.
+  shower_migration_reference_max_abs: 0.02
+  shower_migration_reference_max_z: 5.0
+
+  iso_null_max_chi2_per_dof: 4.0
+  moment_marginal_max_abs: 0.03
+  trace_closure_max_abs: 0.03
+  synthetic_max_abs_pull: 5.0
+  analytic_max_z: 5.0
+
+# Optional truth-level differential tomography. Kept behind reviewed mappings
+# because the current validated ntuple schema must be inspected on lxplus.
+differential:
+  enabled: true
+  variables:
+    - name: costheta_top_beam_plus
+      column: paper_cos_theta_t
+      candidates:
+        - top_costheta_beam_plus
+        - costheta_top_beam_plus
+        - cos_theta_top_beam_plus
+        - top_costheta
+        - cos_theta_top
+      sign: 1.0
+      mapping_reviewed: true
+      edges: [-1.0, -0.75, -0.5, -0.25, 0.0, 0.25, 0.5, 0.75, 1.0]
+      minimum_events: 100
+    - name: mtt_GeV
+      column: mtt_GeV
+      candidates: [mtt_GeV, sqrt_s_hat_GeV, ttbar_mass_GeV, m_tt_GeV]
+      sign: 1.0
+      mapping_reviewed: true
+      edges: [345.0, 370.0, 400.0, 450.0, 500.0, 550.0]
+      minimum_events: 100
+
+# Independent reconstruction from four-vectors. Fill the exact column names and
+# set mapping_reviewed true only after inspecting the current ntuple schema.
+basis_reconstruction_audit:
+  enabled: true
+  mapping_reviewed: true
+  singular_tolerance: 1.0e-10
+  four_vectors:
+    incoming_positive: {e: beam_plus_e, px: beam_plus_px, py: beam_plus_py, pz: beam_plus_pz}
+    top: {e: top_e, px: top_px, py: top_py, pz: top_pz}
+    antitop: {e: antitop_e, px: antitop_px, py: antitop_py, pz: antitop_pz}
+    lepton_positive: {e: lepton_plus_e, px: lepton_plus_px, py: lepton_plus_py, pz: lepton_plus_pz}
+    lepton_negative: {e: lepton_minus_e, px: lepton_minus_px, py: lepton_minus_py, pz: lepton_minus_pz}

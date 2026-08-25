@@ -1,0 +1,49 @@
+Phase 11C same-grid RNG-controller factorial
+============================================
+
+Observed prerequisite result:
+
+  S0_A and S0_B use the identical frozen G2_S0 workspace.
+
+  Their post-integration simulation seeds differ:
+    S0_A = 211120001
+    S0_B = 211120002
+
+  WHIZARD reports distinct simulation RNG seeds:
+    28545
+    28546
+
+  Nevertheless:
+    full LHE SHA256 identical
+    full LHE bytewise identical
+    ordered 10000-event sequence identical
+
+Purpose of this diagnostic:
+
+  Determine whether frozen-grid event sampling is controlled by:
+
+    A. the RNG seed active when integrate(proc_epmum) initializes/replays
+       the VAMP2 state;
+
+    B. the RNG seed assigned immediately before simulate(proc_epmum);
+
+    C. both;
+
+    D. neither, with the serialized VG2 state itself fixing the event
+       sequence.
+
+Method:
+
+  Four 100-event jobs use the exact same canonical frozen G2_S0
+  PHS/VG2 artifacts.
+
+       pre-integrate   pre-simulate
+  P00  211130001      211140001
+  P01  211130001      211140002
+  P10  211130002      211140001
+  P11  211130002      211140002
+
+No physics-distribution comparison is part of this diagnostic.
+
+Primary result:
+  exact raw LHE-event overlap / ordered sequence identity.

@@ -1,0 +1,14 @@
+LOG=/tmp/cglenn/phase11e_pythia_compat_v1/p25k/pythia.log
+LIVE_WARNING_LINES=1
+LIVE_ERROR_LINES=3
+SUMMARY_WARNING_OCCURRENCES=1271
+SUMMARY_ERROR_OCCURRENCES=3
+MEC_ABOVE_PS_OCCURRENCES=1271
+EVENTS=25000
+MEC_ABOVE_PS_PER_EVENT=0.05084000
+
+SUMMARY_MESSAGES
+    1271  Warning in SimpleTimeShower::findMEcorr: ME weight above PS one
+       1  Error in LundFragmentation::fragment: ministring fragmentation failed
+       1  Error in MiniStringFragmentation::fragment: no 1- or 2-body state found above mass threshold
+       1  Error in Pythia::next: hadronLevel failed; try again

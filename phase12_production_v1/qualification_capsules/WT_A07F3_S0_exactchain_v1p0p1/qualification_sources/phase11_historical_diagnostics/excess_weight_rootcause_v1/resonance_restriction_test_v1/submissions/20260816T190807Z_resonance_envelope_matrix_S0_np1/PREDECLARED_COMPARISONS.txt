@@ -1,0 +1,134 @@
+Phase 11 excess-weight root-cause study
+Predetermined resonance/envelope comparisons
+=============================================
+
+These comparisons are diagnostic.
+
+No grid produced here is automatically authorized as a Phase-12
+production grid based on post-run numerical performance.
+
+
+A. W-resonance restriction
+--------------------------
+
+Compare:
+
+  existing U_G2
+  versus
+  W_G2
+
+Question:
+
+  Does enforcing the W+ and W- resonance history materially improve
+  adaptive stability and/or generation-envelope behavior?
+
+
+B. Additional top-resonance restriction
+----------------------------------------
+
+Compare:
+
+  W_G2
+  versus
+  WT_G2
+
+Question:
+
+  Does additionally enforcing t and tbar resonance histories materially
+  improve the sampling problem?
+
+
+C. Large final fixed iteration
+-------------------------------
+
+Compare:
+
+  existing U_G2
+  versus
+  U_2M
+
+Question:
+
+  Does replacing the final collection of 200k-point fixed iterations
+  with one 2,000,000-point fixed iteration produce a more robust
+  serialized max_abs_f envelope without changing the physics definition?
+
+
+D. Interaction of resonance structure and envelope statistics
+--------------------------------------------------------------
+
+Compare:
+
+  U_2M
+  W_2M
+  WT_2M
+
+Question:
+
+  Are resonance restrictions and deeper final max_abs_f sampling
+  individually useful, complementary, or neither?
+
+
+E. Winter2023-style deep adaptation
+-----------------------------------
+
+Compare:
+
+  WT_G2
+  versus
+  WT_W23
+
+Question:
+
+  Does the previously observed late adaptive-grid destabilization
+  persist when the FCC-style W/t resonance restrictions are imposed?
+
+
+Fixed numerical controls
+------------------------
+
+WHIZARD:
+  3.1.8
+
+Integration method:
+  VAMP2
+
+RNG:
+  rng_stream
+
+VAMP parallel method:
+  simple
+
+MPI:
+  1 rank
+
+OpenMP:
+  1 thread
+
+Integration seed:
+  1740114216
+
+ISR:
+  unchanged
+
+Beam polarization:
+  LR100 unchanged
+
+
+Interpretation policy
+---------------------
+
+Successful execution is not itself qualification.
+
+After completion:
+
+  1. inspect per-iteration integration trajectories;
+  2. classify adaptive stability;
+  3. compare final integral and error;
+  4. inspect diagrams/channels and serialized artifacts;
+  5. inspect max_abs_f distributions;
+  6. only technically/numerically acceptable grids proceed to the
+     same predetermined generation-envelope stress streams.
+
+Do not select a production prescription merely because one member of
+this diagnostic matrix gives the most favorable result.

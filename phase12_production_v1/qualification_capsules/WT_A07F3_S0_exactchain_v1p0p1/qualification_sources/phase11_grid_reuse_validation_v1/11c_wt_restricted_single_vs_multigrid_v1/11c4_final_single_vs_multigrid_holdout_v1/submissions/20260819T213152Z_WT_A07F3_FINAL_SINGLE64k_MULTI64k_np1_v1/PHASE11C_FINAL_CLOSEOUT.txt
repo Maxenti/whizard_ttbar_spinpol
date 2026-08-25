@@ -1,0 +1,190 @@
+PHASE-11C FINAL SINGLE-FROZEN-GRID ARCHITECTURE CLOSEOUT
+================================================================
+
+Campaign:
+20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1
+
+Condor cluster:
+6065601
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum.
+
+Qualified integration prescription:
+A07 + F3
+
+Adaptive schedule:
+10:100000:"gw"
+
+Fixed schedule:
+10:200000:""
+
+Predetermined SINGLE production candidate:
+S0
+
+Independent MULTI reference:
+S1 + S2 + S3 + S4 + S5 + S6 + S7
+
+
+HOLDOUT DESIGN
+--------------
+
+SINGLE:
+64 fresh shards
+1000 events/shard
+64,000 events
+S0 only
+
+MULTI:
+64 fresh shards
+1000 events/shard
+64,000 events
+
+Reference allocation:
+S1 = 10,000
+S2 =  9,000
+S3 =  9,000
+S4 =  9,000
+S5 =  9,000
+S6 =  9,000
+S7 =  9,000
+
+Total:
+128 shards
+128,000 events
+
+
+TECHNICAL RESULT
+----------------
+
+128/128 Condor jobs returned zero.
+
+64,000 SINGLE events written.
+64,000 MULTI events written.
+
+No VAMP2 parameter mismatch.
+No discarded serialized integration pass.
+No new-grid initialization.
+No workspace mutation.
+Frozen PHS/VG2 identities preserved.
+
+Global event-hash audit:
+128,000 event hashes
+128,000 unique event hashes
+0 duplicates
+0 SINGLE/MULTI exact-event overlap
+
+
+PHYSICS VALIDATION
+------------------
+
+Validator mode:
+holdout
+
+Observables:
+24
+
+Holm-controlled hypothesis tests:
+48
+
+Familywise alpha:
+0.01
+
+Practical equivalence thresholds:
+|SMD| <= 0.05
+KS_D <= 0.02
+
+Final result:
+PASS
+
+Structural failures:
+0
+
+Holm-rejected tests:
+0 / 48
+
+Practical-equivalence failures:
+0
+
+SMD failures:
+0
+
+KS_D failures:
+0
+
+Largest observed |SMD|:
+0.013067
+observable = m_tbar
+
+Largest observed KS_D:
+0.007094
+observable = m_top
+
+
+INTERPRETATION
+--------------
+
+Within the pre-registered Phase-11C validation criteria, event generation
+from the predetermined S0 frozen A07/F3 grid is statistically compatible
+with generation from the ensemble of independently adapted and independently
+qualified S1-S7 A07/F3 grids.
+
+This validates the single-frozen-grid generation architecture for the
+tested WT-restricted 365 GeV LR100 process.
+
+The result supports using one predetermined, qualified, frozen production
+grid with many independent RNG generation shards instead of independently
+reintegrating the process for each production shard.
+
+This conclusion applies to the qualified A07/F3 prescription and tested
+physics/generation configuration. It does not remove the need for the
+remaining Phase-11 production-engineering qualification stages.
+
+
+PROVENANCE
+----------
+
+Qualified validator:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py
+
+Qualified validator SHA256:
+6ca54d4cce6b33044deb005b6cf7ebeb1437c33105bf7d48e586ff3b20b3ce9a
+
+Validation result:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c4_final_single_vs_multigrid_holdout_v1/submissions/20260819T213152Z_WT_A07F3_FINAL_SINGLE64k_MULTI64k_np1_v1/analysis/final_holdout_validation_v1/VALIDATION_RESULT.json
+
+VALIDATION_RESULT.json SHA256:
+ffc3393bdc1c30450a01547d75c8f43582c34c2ec9e023fca1c3cf6bf926ee7a
+
+VALIDATION_SUMMARY.txt SHA256:
+fed53f22c102dbd6f587f8cfc1df8f1058df1ccaed81924c60035657cc4fce26
+
+Final validator transcript SHA256:
+2ebb382bbe0b9c6ac8d4504b106c7c1cad7de9aa92eb647eac51b991a2d24ab6
+
+
+PHASE-11 STATUS
+---------------
+
+11A:
+MPI/VAMP2 implementation qualification
+COMPLETE
+
+11B:
+integration-prescription qualification
+COMPLETE
+
+11C:
+frozen-grid reuse and single-grid versus multi-grid physics validation
+COMPLETE -- PASS
+
+11D:
+generation shard-size / generation-rank scaling
+NEXT
+
+11E:
+approximately 100k exact-final-recipe rehearsal
+AFTER 11D
+
+Phase 12:
+only after 11D and 11E pass.

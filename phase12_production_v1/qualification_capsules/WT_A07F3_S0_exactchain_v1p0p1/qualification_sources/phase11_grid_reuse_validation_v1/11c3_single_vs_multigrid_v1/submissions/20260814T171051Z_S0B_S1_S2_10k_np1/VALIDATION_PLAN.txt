@@ -1,0 +1,221 @@
+Phase 11C single-grid versus multi-grid validation
+==================================================
+
+Campaign:
+  full6f_365gev_ee_ttbar_spinpol_v1
+
+Process:
+  e- e+ -> b bbar e+ nue mu- numubar
+
+sqrt(s):
+  365 GeV
+
+Polarization:
+  LR100
+
+Qualified grid-construction prescription:
+  5:50000:"gw"
+
+Frozen qualification prescription:
+  3:200000:""
+
+Purpose
+-------
+
+Test whether production from one predetermined frozen integration grid
+introduces statistically detectable physics distortions relative to event
+generation using independently constructed qualified grids.
+
+Grid selection remains predetermined.
+
+No result from this validation may be used to select whichever existing grid
+gives the most favorable efficiency, excess-weight behavior, cross section,
+or observable distributions.
+
+Primary samples
+---------------
+
+Single-grid sample:
+
+  S0_A
+    grid seed       = 1740114216
+    generation seed = 211120001
+    events          = 10000
+    source          = existing successful R0-v2 G2_S0 sample
+
+  S0_B
+    grid seed       = 1740114216
+    generation seed = 211120002
+    events          = 10000
+
+  pooled single-grid sample:
+    S0_A + S0_B = 20000 events
+
+
+Multi-grid reference:
+
+  S1_A
+    grid seed       = 1751949026
+    generation seed = 211120101
+    events          = 10000
+
+  S2_A
+    grid seed       = 1885084773
+    generation seed = 211120102
+    events          = 10000
+
+  pooled multi-grid reference:
+    S1_A + S2_A = 20000 events
+
+
+All generation-event seeds are disjoint from grid-construction seeds and
+must remain disjoint from Phase-12 production seeds.
+
+Generation/reuse requirements
+-----------------------------
+
+For every component sample:
+
+  WHIZARD return code = 0
+  requested events    = 10000
+  written events      = 10000
+  workspace unchanged = true
+  new VAMP2 grid initialization count = 0
+
+Production-envelope warning thresholds:
+
+  excess-event fraction <= 1.0 %
+  maximum excess weight <= 10
+  average excess weight <= 0.01
+
+A violation does not justify choosing a different existing integration grid.
+It requires further investigation of the production envelope.
+
+Required event content
+----------------------
+
+Each analyzed hard-process event must contain exactly one final-state:
+
+  b
+  bbar
+  e+
+  nue
+  mu-
+  numubar
+
+Additional non-final/intermediate LHE records do not invalidate an event.
+
+Observable suite
+----------------
+
+Inclusive kinematics:
+
+  pt_eplus
+  pt_muminus
+  eta_eplus
+  eta_muminus
+  energy_eplus
+  energy_muminus
+  pt_b
+  pt_bbar
+  eta_b
+  eta_bbar
+
+Resonance / ISR-sensitive:
+
+  m_Wplus
+  m_Wminus
+  m_top
+  m_tbar
+  m_bb
+  m_tt
+  pt_tt
+  abs_y_tt
+
+Spin / angular-sensitive:
+
+  abs_dphi_ll
+  deltaR_ll
+  cos_opening_ll
+  cos_helicity_eplus
+  cos_helicity_muminus
+  cos_helicity_product
+
+Definitions
+-----------
+
+t     = b    + e+  + nue
+tbar  = bbar + mu- + numubar
+
+W+    = e+  + nue
+W-    = mu- + numubar
+
+For helicity-angle observables:
+
+  1. reconstruct t and tbar from their final-state daughters;
+  2. boost t/tbar to the ttbar rest frame;
+  3. define each helicity axis from the corresponding top direction
+     in the ttbar rest frame;
+  4. boost the charged lepton to its parent-top rest frame;
+  5. evaluate cos(theta) relative to that helicity axis.
+
+Primary statistical comparison
+------------------------------
+
+  SINGLE = S0_A + S0_B
+  MULTI  = S1_A + S2_A
+
+For every predefined observable:
+
+  - two-sample Kolmogorov-Smirnov test;
+  - binned chi-square homogeneity test using 30 pooled equal-occupancy
+    quantile bins;
+  - standardized mean difference;
+  - normalized q05, median, and q95 shifts.
+
+Multiple testing:
+
+  KS and chi-square tests from the full observable family are combined into
+  one Holm-Bonferroni family.
+
+  family-wise alpha = 0.01
+
+Primary compatibility requirements:
+
+  1. zero Holm-Bonferroni rejected tests;
+  2. |standardized mean difference| <= 0.05 for every observable;
+  3. |q05/q50/q95 shift| / pooled IQR <= 0.10 for every observable;
+  4. no malformed/non-finite event records;
+  5. no exact event-block overlap among supposedly independent component
+     samples.
+
+Internal diagnostic comparisons
+--------------------------------
+
+Also calculate:
+
+  S0_A versus S0_B
+  S1_A versus S2_A
+
+These are diagnostics, not grid-selection criteria.
+
+Decision rule
+-------------
+
+PASS:
+
+  all structural requirements pass,
+  all primary distribution tests satisfy the frozen criteria,
+  and no production-envelope threshold is violated.
+
+FAIL / INVESTIGATE:
+
+  any structural failure,
+  any Holm-corrected distribution rejection,
+  any effect-size threshold violation,
+  or any production-envelope threshold violation.
+
+A failure does not permit replacement of S0 with whichever already-existing
+replica happens to look better.
+
+It requires investigation or a new predetermined qualification strategy.

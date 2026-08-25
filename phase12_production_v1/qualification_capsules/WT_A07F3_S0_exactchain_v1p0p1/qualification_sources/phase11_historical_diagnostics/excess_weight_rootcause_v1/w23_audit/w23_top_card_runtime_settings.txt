@@ -1,0 +1,266 @@
+FCC_CONFIG_COMMIT=ab965b8611bc0421aedf6dbbc5c470eaa017abc5
+
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_hadhad_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_hadhad_pol_ecm365.sin:57:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_hadhad_pol_ecm365.sin:61:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_hadhad_pol_ecm365.sin:82:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_leplep_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_leplep_pol_ecm365.sin:58:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_leplep_pol_ecm365.sin:62:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_leplep_pol_ecm365.sin:83:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:31:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:42:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:60:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:64:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:68:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ecm365.sin:89:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:69:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:73:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:77:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:98:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:69:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:73:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:77:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:98:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:31:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:42:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:58:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:62:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:66:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ecm365.sin:87:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_pol_ecm365.sin:59:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_pol_ecm365.sin:63:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_thadTlep_pol_ecm365.sin:84:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:31:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:42:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:58:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:62:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:66:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ecm365.sin:87:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:65:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:69:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:73:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:94:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:67:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_pol_ecm365.sin:58:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_pol_ecm365.sin:62:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepThad_pol_ecm365.sin:83:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:31:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:42:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:57:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:61:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:65:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ecm365.sin:86:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:64:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:68:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:72:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAdown_ecm365.sin:93:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:64:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:68:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:72:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_ta_ttAup_ecm365.sin:93:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:64:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:68:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:72:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAdown_ecm365.sin:93:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:49:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:64:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:68:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:72:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_tv_ttAup_ecm365.sin:93:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:66:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:70:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:74:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZdown_ecm365.sin:95:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:32:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:51:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:66:                          {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:70:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:74:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tlepTlep_noCKMmix_keepPolInfo_vr_ttZup_ecm365.sin:95:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:70:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:72:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:76:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTheavy_ecm365.sin:97:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:64:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlep_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:64:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tallTlight_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:70:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:72:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:76:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_theavyTall_ecm365.sin:97:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:64:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlepTall_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:64:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWb_tlightTall_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_pol_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_pol_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_pol_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:70:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:72:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:76:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTheavy_ecm365.sin:97:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:64:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlep_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:64:                        {$restrictions = "3+4~W- && 6+7~W+ && 3+4+5~tbar && 6+7+8~t"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWbTWs_tallTlight_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_pol_ecm365.sin:28:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_pol_ecm365.sin:71:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_pol_ecm365.sin:75:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_pol_ecm365.sin:96:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:70:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:72:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:76:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_theavyTall_ecm365.sin:97:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:64:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlepTall_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:29:#    Whizard version is 3.1.0, as in key4hep-stack/2023-04-08
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:45:?resonance_history = true
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:64:                        {$restrictions = "3+4~W+ && 6+7~W- && 3+4+5~t && 6+7+8~tbar"}
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:66:beams = e1, E1 => gaussian => isr
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:70:! beams = e1, E1 => gaussian 
+/tmp/cglenn_phase11_excess_weight_rootcause/FCC-config/FCCee/Generator/Whizard/v3.0.3/wzp6_ee_SM_tt_tWsTWb_tlightTall_ecm365.sin:91:integrate (proc) { iterations = 10:100000:"gw", 10:200000:"" }

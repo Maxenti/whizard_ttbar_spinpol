@@ -1,0 +1,46 @@
+PHASE-11D/11E PRODUCTION-READINESS RNG RESERVATION
+==================================================
+
+These seeds are validation/rehearsal only.
+They must never be reused for final Phase-12 production.
+
+11D-lite np4 smoke
+------------------
+WHIZARD seed:
+311190001
+
+Events:
+25,000
+
+Grid:
+S0 / WT_A07F3
+
+
+11E exact-chain rehearsal
+-------------------------
+WHIZARD seeds:
+311191001
+311191002
+311191003
+311191004
+
+Each WHIZARD shard:
+25,000 events
+
+Total WHIZARD rehearsal:
+100,000 events
+
+PYTHIA seeds:
+611191001
+611191002
+611191003
+611191004
+
+The PYTHIA seed namespace is deliberately separate from the WHIZARD
+validation namespace.
+
+Retry rule:
+A technical retry must reuse the exact same grid, WHIZARD seed,
+PYTHIA seed, and shard identity.
+
+No replacement seed may be chosen based on physics or generation results.

@@ -1,0 +1,16 @@
+================================================================
+FULL6F RENDERER AND TEMPLATE SEED SUPPORT
+================================================================
+scripts/sindarin/render_full6f_cards.py:9:from ttbar_spinpol.genchain.seed_policy import derive_seed
+scripts/sindarin/render_full6f_cards.py:108:        pol=POL[row.polarization]; seed=derive_seed('full6f_365gev_ee_ttbar_spinpol_v1',row.sample_id,row.exact_subprocess_id,'render',0,'whizard')
+scripts/sindarin/render_full6f_cards.py:111:            "SAMPLE_BASENAME": row.process_name,'FINAL_STATE':', '.join(to_whizard_particle(x) for x in row.final_state),'N_EVENTS':0,'GENERATOR_SEED':seed,'OUTPUT_LHE':f'EOS_OUTPUT_ROOT/{row.sample_id}/{row.exact_subprocess_id}.lhe','PARAMETER_BLOCK':'','COMMON_DIR':str(common_out)}
+scripts/sindarin/render_full6f_cards.py:114:        meta={'sample_id':row.sample_id,'channel':row.channel,'topology':row.topology,'polarization':row.polarization,'exact_subprocess_id':row.exact_subprocess_id,'final_state':list(row.final_state),'generator_seed':seed,'process_sin_sha256':sha256(outdir/'process.sin')}; write_json(outdir/'render_context.json',meta); rendered.append(meta)
+
+================================================================
+FULL6F INTEGRATION AND EVENT OUTPUT DEFINITIONS
+================================================================
+sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:1:simulate (${PROCESS_NAME}) {
+sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:2:  n_events = ${N_EVENTS}
+sindarin/templates/full6f_365gev_v1/common/event_output.inc.in:4:  $sample = "${SAMPLE_BASENAME}"
+sindarin/templates/full6f_365gev_v1/common/integration.inc.in:1:iterations = ${INTEGRATION_ITERATIONS}:${INTEGRATION_CALLS}
+sindarin/templates/full6f_365gev_v1/common/integration.inc.in:2:integrate (${PROCESS_NAME})

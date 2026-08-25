@@ -1,0 +1,101 @@
+    60	  mass mc
+    61	particle B_QUARK 5  like D_QUARK
+    62	  name b bottom
+    63	  anti bbar B "b~" 
+    64	  tex_anti "\bar{b}"
+    65	  mass mb
+    66	particle T_QUARK 6  like U_QUARK
+    67	  name t top
+    68	  anti tbar T "t~" 
+    69	  tex_anti "\bar{t}"
+    70	  mass mtop  width wtop
+    71	
+    72	# The leptons
+    73	particle E_LEPTON 11
+    74	  spin 1/2  charge  -1   isospin -1/2  
+    75	  name "e-" e1 electron e
+    76	  anti "e+" E1 positron 
+    77	  tex_name "e^-"
+    78	  tex_anti "e^+"
+    79	  mass me
+    80	particle E_NEUTRINO 12 left
+    81	  spin 1/2  isospin  1/2
+    82	  name nue n1 "nu_e" ve "e-neutrino" 
+    83	  anti nuebar N1 "ve~"             
+    84	  tex_name "\nu_e"
+    85	  tex_anti "\bar\nu_e"
+    86	particle MU_LEPTON 13  like E_LEPTON
+    87	  name "mu-" e2 mu muon 
+    88	  anti "mu+" E2       
+    89	  tex_name "\mu^-"
+    90	  tex_anti "\mu^+"
+    91	  mass mmu
+    92	particle MU_NEUTRINO 14  like E_NEUTRINO
+    93	  name numu "nu_mu" n2 vm "mu-neutrino" 
+    94	  anti numubar N2 "vm~"
+    95	  tex_name "\nu_\mu"
+    96	  tex_anti "\bar\nu_\mu"
+    97	particle TAU_LEPTON 15  like E_LEPTON
+    98	  name "tau-" e3 tau "ta-" tauon 
+    99	  anti "tau+" E3 "ta+"        
+   100	  tex_name "\tau^-"
+   101	  tex_anti "\tau^+"
+   102	  mass mtau
+   103	particle TAU_NEUTRINO 16  like E_NEUTRINO
+   104	  name nutau "nu_tau" n3 vt "tau_neutrino" 
+   105	  anti nutaubar N3 "vt~"               
+   106	  tex_name "\nu_\tau"
+   107	  tex_anti "\bar\nu_\tau"
+   108	
+   109	# The vector bosons
+   110	particle GLUON 21  parton gauge
+   111	  spin 1  color 8
+   112	  name gl g G gluon
+   113	particle PHOTON 22  gauge
+   114	  spin 1
+   115	  name A gamma photon 
+   116	  tex_name "\gamma"
+   117	particle Z_BOSON 23  gauge
+   118	  spin 1
+   119	  name Z
+   120	  mass mZ  width wZ
+   121	particle W_BOSON 24  gauge
+   122	  spin 1  charge 1
+   123	  name "W+" Wp 
+   124	  anti "W-" Wm
+   125	  tex_name "W^+"
+   126	  tex_anti "W^-"
+   127	  mass mW  width wW
+   128	
+   129	# The Higgs
+   130	particle HIGGS 25
+   131	  spin 0
+   132	  name H h Higgs
+   133	  mass mH  width wH
+   134	
+   135	# Hadrons
+   136	particle PROTON 2212
+   137	  spin 1/2  charge 1
+   138	  name p "p+"
+   139	  anti pbar "p-"
+   140	
+   141	# Beam remnants for proton colliders
+   142	particle HADRON_REMNANT 90
+   143	  name hr
+   144	  tex_name "had_r"
+   145	particle HADRON_REMNANT_SINGLET 91
+   146	  name hr1
+   147	  tex_name "had_r^{(1)}"
+   148	particle HADRON_REMNANT_TRIPLET 92
+   149	  color 3
+   150	  name hr3
+   151	  tex_name "had_r^{(3)}"
+   152	  anti hr3bar
+   153	  tex_anti "had_r^{(\bar 3)}"
+   154	particle HADRON_REMNANT_OCTET 93
+   155	  color 8
+   156	  name hr8
+   157	  tex_name "had_r^{(8)}"
+   158	
+   159	########################################################################
+   160	# Vertices of the Standard model

@@ -1,0 +1,556 @@
+{
+  "counts": {
+    "dilepton_rows": 8,
+    "exact_subprocess_rows": 32,
+    "sample_families": 12,
+    "semileptonic_rows": 24
+  },
+  "rendered": [
+    {
+      "channel": "epmum",
+      "exact_subprocess_id": "epmum",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "mu-",
+        "anti_nu_mu"
+      ],
+      "generator_seed": 3087664,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "ea89a50a3b817a404689ca0f92d92809f5f0d94d4a87734e47d96377f72c4891",
+      "sample_id": "f6f365_ee_unpol_epmum",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "mupem",
+      "exact_subprocess_id": "mupem",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "e-",
+        "anti_nu_e"
+      ],
+      "generator_seed": 1332553488,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "d8ecb9d6a024e6c342c980bec9bfbddd1bf47b30da29c215be677fb7fbb0c9e1",
+      "sample_id": "f6f365_ee_unpol_mupem",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "epem",
+      "exact_subprocess_id": "epem",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "e-",
+        "anti_nu_e"
+      ],
+      "generator_seed": 1423341395,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "03ba05f3225ee0741ee4b59903101248e617cfd53d7865b50ead509d7cb55279",
+      "sample_id": "f6f365_ee_unpol_epem",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "mupmum",
+      "exact_subprocess_id": "mupmum",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "mu-",
+        "anti_nu_mu"
+      ],
+      "generator_seed": 680156671,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "29de6593727aa62e70f0f9d5b9835fcb9b652b2e5bad4fac39082b3d1bf2b087",
+      "sample_id": "f6f365_ee_unpol_mupmum",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "epmum",
+      "exact_subprocess_id": "epmum",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "mu-",
+        "anti_nu_mu"
+      ],
+      "generator_seed": 672175147,
+      "polarization": "LR100",
+      "process_sin_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+      "sample_id": "f6f365_ee_LR100_epmum",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "epmum",
+      "exact_subprocess_id": "epmum",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "mu-",
+        "anti_nu_mu"
+      ],
+      "generator_seed": 1812360,
+      "polarization": "RL100",
+      "process_sin_sha256": "07b0e5f83733758c091c823d3c1e92f54862d188e65792a9aebf411084f1940c",
+      "sample_id": "f6f365_ee_RL100_epmum",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "mupem",
+      "exact_subprocess_id": "mupem",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "e-",
+        "anti_nu_e"
+      ],
+      "generator_seed": 674267363,
+      "polarization": "LR100",
+      "process_sin_sha256": "aa7d2b844b1d627ddb24f59da25543fa8434ac6717ada60cafe80fbf864d98da",
+      "sample_id": "f6f365_ee_LR100_mupem",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "mupem",
+      "exact_subprocess_id": "mupem",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "e-",
+        "anti_nu_e"
+      ],
+      "generator_seed": 1507680891,
+      "polarization": "RL100",
+      "process_sin_sha256": "77f72ebc8869bdeb2e97a9a404ffc262c3433bbaeb5fabbb53946131c3b20389",
+      "sample_id": "f6f365_ee_RL100_mupem",
+      "topology": "prompt_dilepton"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_ubar_d",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_u",
+        "d"
+      ],
+      "generator_seed": 1330779590,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "cdde22fdfc2a39ebe9f04e0d12a5bd4ba123b7a186a601531519757762ee504e",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_ubar_s",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_u",
+        "s"
+      ],
+      "generator_seed": 1256553496,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "e62eb101785839f727e99b4dc9952d01cf9d1892ab25b3cf46c32dfc40d6c4ed",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_ubar_b",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_u",
+        "b"
+      ],
+      "generator_seed": 320613311,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "8a8c3c2db5d1ed948191e6e4a942aec386dfce3abbaec00c97ab20db0cdd3246",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_cbar_d",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_c",
+        "d"
+      ],
+      "generator_seed": 1961594076,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "aaad5b62518f39e7d415c8baa1cf77788d260f96fff92bb797ff59337d05974e",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_cbar_s",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_c",
+        "s"
+      ],
+      "generator_seed": 1566521450,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "d98e25ac3ba235b78ec4f0c92937ab4e1a25adf7cb8b47d53aa497ac76520113",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "epjets",
+      "exact_subprocess_id": "epjets__Wminus_cbar_b",
+      "final_state": [
+        "b",
+        "bbar",
+        "e+",
+        "nu_e",
+        "anti_c",
+        "b"
+      ],
+      "generator_seed": 1884576060,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "23a8b8f210626204686730971b293f20299df581e92ae9037001d2dbbcb1a995",
+      "sample_id": "f6f365_ee_unpol_epjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_u_dbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "u",
+        "anti_d"
+      ],
+      "generator_seed": 1310875385,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "cce8c3af8614b0c5f5a94af10c43482f281239bc9c26203d2e470d74617d56a0",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_u_sbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "u",
+        "anti_s"
+      ],
+      "generator_seed": 1418423874,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "30426214af144810ade8e524b779fe7bbd4aabb3da2e3831aacea2478d58aa62",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_u_bbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "u",
+        "anti_b"
+      ],
+      "generator_seed": 1286950442,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "f5ed3faf3966c9a74aff96cc2775e404dd4b2fde9ad97db09243758038ce00c0",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_c_dbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "c",
+        "anti_d"
+      ],
+      "generator_seed": 264965862,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "284032f09fa610677acef62bfca744a4af3096f56befed6147584a04d204194c",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_c_sbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "c",
+        "anti_s"
+      ],
+      "generator_seed": 217689342,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "d852cf18919f0149f8ff4fee8a520913615d520345cc2c0e5ade02745ac07c5f",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "emjets",
+      "exact_subprocess_id": "emjets__Wplus_c_bbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "e-",
+        "anti_nu_e",
+        "c",
+        "anti_b"
+      ],
+      "generator_seed": 521585264,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "1dc6b894db549c9a5b7f54a088175b86317a8d33de805390360037da2546d214",
+      "sample_id": "f6f365_ee_unpol_emjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_ubar_d",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_u",
+        "d"
+      ],
+      "generator_seed": 1910300939,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "ad04e048d24fe5018b7fb88a8639c77c1ab54cda0a9985d6aa040bd2d54ce1a7",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_ubar_s",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_u",
+        "s"
+      ],
+      "generator_seed": 152300999,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "f0e1e76610c38a27d0aab6d725d50ea04fd693037be50a9acfef482ef77d7797",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_ubar_b",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_u",
+        "b"
+      ],
+      "generator_seed": 1392401970,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "6ff6695bfbcfc0577d5864e8e7c569bba9a35a9991987526820d7c325a11e317",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_cbar_d",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_c",
+        "d"
+      ],
+      "generator_seed": 1542193246,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "61eb5ee170af40c631ab67fc0e168ebf42687e8809f1ea2dbc9958fcc8b40f1a",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_cbar_s",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_c",
+        "s"
+      ],
+      "generator_seed": 1603251156,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "ca05e0cc6c89fedad6948700a93a0f89b657b41b51fb4da7e1aeb283556b7465",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mupjets",
+      "exact_subprocess_id": "mupjets__Wminus_cbar_b",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu+",
+        "nu_mu",
+        "anti_c",
+        "b"
+      ],
+      "generator_seed": 354649301,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "652c2592d57e4a1bf589c478777d8a9de3d7e86c63db63f066d76e7a7f3829c9",
+      "sample_id": "f6f365_ee_unpol_mupjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_u_dbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "u",
+        "anti_d"
+      ],
+      "generator_seed": 187153665,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "0d66ed955a87dc1bf1e39f0c309e7cb780aa436f54e540b50bb23f0ed58dbc30",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_u_sbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "u",
+        "anti_s"
+      ],
+      "generator_seed": 411433537,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "3feefe12f17a22cabeffc47b3c5f585af9378d4182c5e874c8acb6797121acaa",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_u_bbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "u",
+        "anti_b"
+      ],
+      "generator_seed": 501524823,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "8503486d76e46e7beb51728deda1432f612911498368d3c7824d27ba666334ea",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_c_dbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "c",
+        "anti_d"
+      ],
+      "generator_seed": 974999886,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "e82af34e841d9e2fe1a942dc129eabe60bdc1b01faca84acb8f4e96f31a24071",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_c_sbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "c",
+        "anti_s"
+      ],
+      "generator_seed": 1858118276,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "121316e29f81efc1ea493b2f64d9355d9d86e00d86ec269f2280abe05e61e2cf",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    },
+    {
+      "channel": "mumjets",
+      "exact_subprocess_id": "mumjets__Wplus_c_bbar",
+      "final_state": [
+        "b",
+        "bbar",
+        "mu-",
+        "anti_nu_mu",
+        "c",
+        "anti_b"
+      ],
+      "generator_seed": 1074375306,
+      "polarization": "unpolarized",
+      "process_sin_sha256": "7c5e9f62d31874ea64036196526b1273e8bac401b83aa3fdfcd03b9cff375ded",
+      "sample_id": "f6f365_ee_unpol_mumjets",
+      "topology": "prompt_semileptonic"
+    }
+  ],
+  "rendered_count": 32,
+  "status": "PASS"
+}

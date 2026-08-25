@@ -1,0 +1,37 @@
+SCANNING /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0001/phase11c_S0_11E_0001_seed311191001.lhe
+  events=25000
+SCANNING /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0002/phase11c_S0_11E_0002_seed311191002.lhe
+  events=25000
+SCANNING /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0003/phase11c_S0_11E_0003_seed311191003.lhe
+  events=25000
+SCANNING /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0004/phase11c_S0_11E_0004_seed311191004.lhe
+  events=25000
+
+================================================================================
+TTBAR RESONANCE-HISTORY CLASSIFICATION
+================================================================================
+TOTAL_EVENTS=100000
+
+TOP/TBAR DIRECT-CHILD MODES
+explicit_W           explicit_W              83362  83.36200%
+flat_3body           explicit_W               4525   4.52500%
+explicit_W           flat_3body               4346   4.34600%
+flat_3body           flat_3body                223   0.22300%
+
+EXPLICIT-W PRESENCE
+both_W                  83362  83.36200%
+Wminus_only              4525   4.52500%
+Wplus_only               4346   4.34600%
+no_W                      223   0.22300%
+
+NUP DISTRIBUTION
+NUP= 12  events=1
+NUP= 13  events=35
+NUP= 14  events=1003
+NUP= 15  events=15599
+NUP= 16  events=83362
+
+MALFORMED / UNCLASSIFIED
+top_count=0,tbar_count=1: 3640
+top_count=0,tbar_count=0: 253
+top_count=1,tbar_count=0: 3651

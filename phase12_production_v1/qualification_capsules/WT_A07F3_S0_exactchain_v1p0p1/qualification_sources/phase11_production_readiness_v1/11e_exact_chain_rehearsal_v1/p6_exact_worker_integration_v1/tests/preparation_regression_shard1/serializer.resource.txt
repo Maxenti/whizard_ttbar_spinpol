@@ -1,0 +1,23 @@
+	Command being timed: "python3 /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/candidate/reorder_lhe_history_for_pythia_v1.py --input /tmp/cglenn/p6_preparation_regression_shard1/canonical_isr.lhe --output /tmp/cglenn/p6_preparation_regression_shard1/serialized_v1.lhe --summary /tmp/cglenn/p6_preparation_regression_shard1/serialized_v1.summary.json"
+	User time (seconds): 2.23
+	System time (seconds): 0.43
+	Percent of CPU this job got: 86%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:03.09
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 246680
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 80873
+	Voluntary context switches: 13148
+	Involuntary context switches: 3094
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 95128
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

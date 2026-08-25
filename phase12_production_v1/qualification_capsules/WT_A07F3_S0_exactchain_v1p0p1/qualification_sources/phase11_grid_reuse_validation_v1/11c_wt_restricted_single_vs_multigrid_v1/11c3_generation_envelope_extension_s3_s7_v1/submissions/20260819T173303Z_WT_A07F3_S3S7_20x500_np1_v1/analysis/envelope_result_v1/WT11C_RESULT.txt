@@ -1,0 +1,19 @@
+Phase 11C.5G-A generation-envelope stress result
+================================================
+
+WT11C_STATUS=INCOMPLETE_TECHNICAL
+WT11C_TOTAL_EVENTS=0
+WT11C_GLOBAL_UNIQUE_EVENTS=50000
+WT11C_DUPLICATE_EVENT_HASHES=0
+
+Frozen aggregate gates:
+  excess_fraction <= 0.01
+  aggregate_avg_excess <= 0.01
+  global_max_excess <= 10.0
+
+S0: gate=FAIL technical=FAIL events=0 excess_events=0 excess_fraction=nan aggregate_avg_excess=nan global_max_excess=nan
+S1: gate=FAIL technical=FAIL events=0 excess_events=0 excess_fraction=nan aggregate_avg_excess=nan global_max_excess=nan
+S2: gate=FAIL technical=FAIL events=0 excess_events=0 excess_fraction=nan aggregate_avg_excess=nan global_max_excess=nan
+
+Next action:
+  Rerun only technical-failure modes with the SAME mode/grid/seed; do not substitute RNG seeds.

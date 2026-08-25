@@ -1,0 +1,36 @@
+PHASE-11C FINAL HOLDOUT RNG-SEED RESERVATION
+=============================================
+
+Purpose:
+One-shot final SINGLE-versus-MULTI architecture validation.
+
+SINGLE:
+311180001-311180064
+
+Grid:
+S0
+
+Jobs:
+64
+
+MULTI:
+311181001-311181064
+
+Grids:
+S1-S7 according to the frozen job manifest.
+
+Jobs:
+64
+
+Total:
+128 unique holdout generation seeds.
+
+These seeds are validation-only.
+
+They are disjoint from prior Phase-11 diagnostic/envelope seeds and must
+also remain disjoint from future Phase-12 production seeds.
+
+Technical retries, if required, MUST reuse exactly the affected original
+seed.
+
+No replacement RNG seed may be chosen after physics inspection.

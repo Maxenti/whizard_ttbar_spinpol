@@ -1,0 +1,19 @@
+universe = vanilla
+
+executable = $(worker)
+arguments = $(mode) $(out_root)
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = logs/freeze_after_n.$(ClusterId).log
+
+request_cpus   = 1
+request_memory = 3000MB
+request_disk   = 6000MB
+
++JobFlavour = "tomorrow"
+
+getenv = True
+should_transfer_files = NO
+
+queue mode,worker,out_root from itemdata.tsv

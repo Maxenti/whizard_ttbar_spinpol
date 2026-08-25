@@ -1,0 +1,136 @@
+
+================================================================
+STATE=unpol
+ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/isr.inc")
+     4	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     5	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/integration.inc")
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_unpol_epmum/epmum/common/event_output.inc")
+
+--- common/model.inc ---
+     1	model = SM
+
+--- common/parameters.inc ---
+     1	
+
+--- common/beams.inc ---
+     1	beams = e1, E1 => isr
+     2	sqrts = 365.0 GeV
+
+--- common/isr.inc ---
+     1	?isr_handler = true
+     2	$isr_handler_mode = "recoil"
+     3	?keep_beams = true
+     4	?keep_remnants = true
+     5	isr_mass = me
+
+--- common/polarization.inc ---
+     1	polarization = 0.0, 0.0
+
+--- common/integration.inc ---
+     1	iterations = 0:0
+     2	integrate (proc_epmum)
+
+--- common/event_output.inc ---
+     1	simulate (proc_epmum) {
+     2	  n_events = 0
+     3	  sample_format = lhef
+     4	  $sample = "proc_epmum"
+     5	}
+
+================================================================
+STATE=LR100
+ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/isr.inc")
+     4	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/integration.inc")
+     7	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common/event_output.inc")
+
+--- common/model.inc ---
+     1	model = SM
+
+--- common/parameters.inc ---
+     1	
+
+--- common/beams.inc ---
+     1	beams = e1, E1 => isr
+     2	sqrts = 365.0 GeV
+
+--- common/isr.inc ---
+     1	?isr_handler = true
+     2	$isr_handler_mode = "recoil"
+     3	?keep_beams = true
+     4	?keep_remnants = true
+     5	isr_mass = me
+
+--- common/polarization.inc ---
+     1	beams_pol_density = @(-1), @(+1)
+     2	beams_pol_fraction = 100%, 100%
+
+--- common/integration.inc ---
+     1	iterations = 0:0
+     2	integrate (proc_epmum)
+
+--- common/event_output.inc ---
+     1	simulate (proc_epmum) {
+     2	  n_events = 0
+     3	  sample_format = lhef
+     4	  $sample = "proc_epmum"
+     5	}
+
+================================================================
+STATE=RL100
+ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum
+================================================================
+
+--- process.sin ---
+     1	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/model.inc")
+     2	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/beams.inc")
+     3	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/isr.inc")
+     4	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/polarization.inc")
+     5	process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+     6	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/integration.inc")
+     7	include("/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_RL100_epmum/epmum/common/event_output.inc")
+
+--- common/model.inc ---
+     1	model = SM
+
+--- common/parameters.inc ---
+     1	
+
+--- common/beams.inc ---
+     1	beams = e1, E1 => isr
+     2	sqrts = 365.0 GeV
+
+--- common/isr.inc ---
+     1	?isr_handler = true
+     2	$isr_handler_mode = "recoil"
+     3	?keep_beams = true
+     4	?keep_remnants = true
+     5	isr_mass = me
+
+--- common/polarization.inc ---
+     1	beams_pol_density = @(+1), @(-1)
+     2	beams_pol_fraction = 100%, 100%
+
+--- common/integration.inc ---
+     1	iterations = 0:0
+     2	integrate (proc_epmum)
+
+--- common/event_output.inc ---
+     1	simulate (proc_epmum) {
+     2	  n_events = 0
+     3	  sample_format = lhef
+     4	  $sample = "proc_epmum"
+     5	}

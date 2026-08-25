@@ -1,0 +1,43 @@
+PHASE 11C WT SINGLE-GRID SELECTION LOCK
+=======================================
+
+Physics definition:
+WT-restricted e+e- -> b bbar e+ nue mu- numubar
+at sqrt(s) = 365 GeV, LR100.
+
+Qualified integration family:
+A07 + F3
+
+Adaptive:
+A07 = 10:100000:"gw"
+
+Fixed:
+F3 = 10:200000:""
+
+Canonical production-grid candidate:
+S0
+
+Selection rule:
+S0 is selected because it is the first canonical seed identifier in the
+predefined S0--S7 family and is being fixed before any Phase-11C WT
+generation-envelope or event-level validation result is inspected.
+
+S0 was NOT chosen for:
+- cross section value,
+- integration uncertainty,
+- generation efficiency,
+- excess-weight behavior,
+- event distributions,
+- or any later observable.
+
+Reference grids:
+S1 and S2 are the first two independent non-candidate members of the same
+qualified A07/F3 family and are reserved as independent multi-grid references.
+
+No post-generation substitution of S0, S1, or S2 is allowed on the basis of
+a more favorable numerical or physics result.
+
+Technical execution failures may be replayed only with the exact same grid
+and exact same RNG seed.
+
+Created before WT Phase-11C event generation.

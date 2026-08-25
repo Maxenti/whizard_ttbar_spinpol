@@ -1,0 +1,16 @@
+category	source_root	copied_files	copied_bytes	skipped_files
+phase10A_production_definition	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition	981	8206545	24
+phase11A_integration_qualification	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase11A_integration_qualification	18	17061	0
+phase11_mpi_integration_qualification	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase11_mpi_integration_qualification_v1	1	3495	0
+mpi_qualification	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/mpi_qualification	321	5355420	66
+phase11_grid_reuse_validation	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1	1662	52227536	28
+phase11_production_readiness	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1	780	15855197	128
+phase11_historical_diagnostics	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics	5795	36176804	116
+provenance_phase11_mpi_worker_qualified_20260811T210006Z	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/provenance/phase11_mpi_worker_qualified_20260811T210006Z	9	87273	0
+provenance_phase11_mpi_worker_pre_smoke_20260811T194828Z	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/provenance/phase11_mpi_worker_pre_smoke_20260811T194828Z	8	66528	0
+provenance_phase11_mpi_rank_merge_pre_regression_20260811T202402Z	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/provenance/phase11_mpi_rank_merge_pre_regression_20260811T202402Z	9	82837	0
+current_sindarin_template_support	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/templates/full6f_365gev_v1	29	5132	0
+optional_scripts_reproducibility	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/reproducibility	4	32393	0
+optional_condor_production	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/production	439	4385677	0
+optional_condor_pilots	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor/pilots	4	4092	0
+optional_condor_streams	/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor_streams	5	26983	0

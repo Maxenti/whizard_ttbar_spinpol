@@ -1,0 +1,30 @@
+WT PHASE-11C S3-S7 GENERATION-ENVELOPE SEED RESERVATION
+=======================================================
+
+Purpose:
+Generation-envelope qualification of WT A07/F3 grids S3-S7.
+
+Diagnostic only.
+These events MUST NOT enter the final physics holdout.
+
+S3:
+311173001-311173020
+
+S4:
+311174001-311174020
+
+S5:
+311175001-311175020
+
+S6:
+311176101-311176120
+
+S7:
+311177001-311177020
+
+The S6 range avoids 311176001 and 311176002, previously used for the
+WT_A07F3 S0 reuse qualification.
+
+Final Phase-11C physics holdout remains reserved in 31118xxxx.
+
+Technical retries must reuse the exact same affected seed.

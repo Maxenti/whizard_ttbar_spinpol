@@ -1,0 +1,121 @@
+             call msg_message ()
+             if (.not. vanishes (simulation%integral)) then
+                write (msg_buffer, "(A,1x,ES11.4)") &
+                     "            corr. to luminosity [fb-1] = ", &
+                     n_events / simulation%integral
+                call msg_message ()
+             end if
+          end if
+       end if
+    end if
+  end subroutine simulation_compute_n_events
+
+  module subroutine simulation_setup_openmp (simulation)
+    class(simulation_t), intent(inout) :: simulation
+
+    call openmp_set_num_threads_verbose &
+         (simulation%local%get_ival (var_str ("openmp_num_threads")), &
+         simulation%local%get_lval (var_str ("?openmp_logging")))
+
+  end subroutine simulation_setup_openmp
+
+  module subroutine simulation_prepare_event_streams (sim, es_array)
+    class(simulation_t), intent(inout) :: sim
+    type(event_stream_array_t), intent(out) :: es_array
+
+    integer :: n_events
+    logical :: rebuild_events, read_raw, write_raw
+    integer :: checkpoint, callback
+    integer :: n_fmt
+    type(event_sample_data_t) :: data
+    type(string_t), dimension(:), allocatable :: sample_fmt
+
+    n_events = &
+         sim%n_evt_requested
+    rebuild_events = &
+         sim%local%get_lval (var_str ("?rebuild_events"))
+    read_raw = &
+         sim%local%get_lval (var_str ("?read_raw")) .and. .not. rebuild_events
+    write_raw = &
+         sim%local%get_lval (var_str ("?write_raw"))
+    checkpoint = &
+         sim%local%get_ival (var_str ("checkpoint"))
+    callback = &
+         sim%local%get_ival (var_str ("event_callback_interval"))
+    if (read_raw) then
+       inquire (file = char (sim%sample_id) // ".evx", exist = read_raw)
+    end if
+    if (allocated (sim%local%sample_fmt)) then
+       n_fmt = size (sim%local%sample_fmt)
+    else
+       n_fmt = 0
+    end if
+    data = sim%get_data ()
+    data%n_evt = n_events
+    data%nlo_multiplier = sim%get_n_nlo_entries (1)
+    if (read_raw) then
+       allocate (sample_fmt (n_fmt))
+       if (n_fmt > 0)  sample_fmt = sim%local%sample_fmt
+       call es_array%init (sim%sample_id, &
+            sample_fmt, sim%local, &
+            data = data, &
+            input = var_str ("raw"), &
+            allow_switch = write_raw, &
+            checkpoint = checkpoint, &
+            callback = callback)
+    else if (write_raw) then
+       allocate (sample_fmt (n_fmt + 1))
+       if (n_fmt > 0)  sample_fmt(:n_fmt) = sim%local%sample_fmt
+       sample_fmt(n_fmt+1) = var_str ("raw")
+       call es_array%init (sim%sample_id, &
+            sample_fmt, sim%local, &
+            data = data, &
+            checkpoint = checkpoint, &
+            callback = callback)
+    else if (allocated (sim%local%sample_fmt) &
+         .or. checkpoint > 0 &
+         .or. callback > 0) then
+       allocate (sample_fmt (n_fmt))
+       if (n_fmt > 0)  sample_fmt = sim%local%sample_fmt
+       call es_array%init (sim%sample_id, &
+            sample_fmt, sim%local, &
+            data = data, &
+            checkpoint = checkpoint, &
+            callback = callback)
+    end if
+  end subroutine simulation_prepare_event_streams
+
+  module function simulation_get_n_nlo_entries &
+       (simulation, i_prc) result (n_extra)
+    class(simulation_t), intent(in) :: simulation
+    integer, intent(in) :: i_prc
+    integer :: n_extra
+    n_extra = simulation%entry(i_prc)%count_nlo_entries ()
+  end function simulation_get_n_nlo_entries
+
+  module subroutine simulation_init_process_selector (simulation)
+    class(simulation_t), intent(inout) :: simulation
+    integer :: i
+    if (simulation%has_integral) then
+       call simulation%process_selector%init (simulation%entry%integral, &
+            negative_weights = simulation%negative_weights)
+       do i = 1, simulation%n_prc
+          associate (entry => simulation%entry(i))
+            if (.not. entry%valid) then
+               call msg_warning ("Process '" // char (entry%process_id) // &
+                    "': matrix element vanishes, no events can be generated.")
+               cycle
+            end if
+            call entry%init_mci_selector (simulation%negative_weights)
+            entry%process_weight = simulation%process_selector%get_weight (i)
+          end associate
+       end do
+    end if
+  end subroutine simulation_init_process_selector
+
+  module function simulation_select_prc (simulation) result (i_prc)
+    class(simulation_t), intent(inout) :: simulation
+    integer :: i_prc
+    call simulation%process_selector%generate (simulation%rng, i_prc)
+  end function simulation_select_prc
+

@@ -1,0 +1,57 @@
+
+================================================================
+RUN=A
+================================================================
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+102:| RNG: Setting seed for random-number generator to 15089
+123:| Integrate: iterations = 3:5000:"gw", 3:20000
+145:| RNG: Setting seed for random-number generator to 15090
+166:| Integrate: iterations = 3:5000:"gw", 3:20000
+198:| RNG: Setting seed for random-number generator to 15091
+228:| Integrate: iterations = 5:20000:"gw", 5:50000
+263:n_events = 50
+274:| RNG: Setting seed for random-number generator to 15092
+286:| WHIZARD run finished.
+
+================================================================
+RUN=B
+================================================================
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+102:| RNG: Setting seed for random-number generator to 15089
+123:| Integrate: iterations = 3:5000:"gw", 3:20000
+145:| RNG: Setting seed for random-number generator to 15090
+166:| Integrate: iterations = 3:5000:"gw", 3:20000
+198:| RNG: Setting seed for random-number generator to 15091
+228:| Integrate: iterations = 5:20000:"gw", 5:50000
+263:n_events = 50
+274:| RNG: Setting seed for random-number generator to 15092
+286:| WHIZARD run finished.
+
+================================================================
+RUN=C
+================================================================
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+102:| RNG: Setting seed for random-number generator to 15090
+123:| Integrate: iterations = 3:5000:"gw", 3:20000
+145:| RNG: Setting seed for random-number generator to 15091
+166:| Integrate: iterations = 3:5000:"gw", 3:20000
+198:| RNG: Setting seed for random-number generator to 15092
+228:| Integrate: iterations = 5:20000:"gw", 5:50000
+263:n_events = 50
+274:| RNG: Setting seed for random-number generator to 15093
+286:| WHIZARD run finished.

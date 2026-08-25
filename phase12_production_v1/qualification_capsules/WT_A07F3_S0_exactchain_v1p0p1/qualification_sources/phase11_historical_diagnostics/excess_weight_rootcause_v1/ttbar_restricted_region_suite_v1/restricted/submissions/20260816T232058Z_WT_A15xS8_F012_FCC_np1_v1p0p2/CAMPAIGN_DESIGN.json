@@ -1,0 +1,13 @@
+{
+  "schema": "phase11_restricted_wt_qualification_v1",
+  "physics": "WT-restricted 2->6 ttbar signal definition; LR100; current project beam/ISR contract",
+  "restriction": "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar",
+  "total_nodes": 496,
+  "adaptive_parents": 120,
+  "main_fixed_children": 360,
+  "fcc_schedule_children": 8,
+  "legacy_numeric_controls": 8,
+  "source_sha256": "2246641146c35f49a1825344343a697cbbf6542828906b10cf7c06a3f81384f9",
+  "frozen_source_sha256": "682f2109e30fbcc4e2c07ad6be28e7590e9994ed4ed918d175d7e93d25a6799c",
+  "output_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2"
+}

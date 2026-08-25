@@ -1,0 +1,61 @@
+PHASE-11E PYTHIA COMPATIBILITY — P1/P2 QUALIFICATION
+====================================================
+
+Hard-process source:
+A07/F3 S0 365 GeV e+e- -> b bbar e+ nue mu- numubar
+with WHIZARD-selected resonance histories.
+
+LHE preparation:
+1. canonical-v2 ISR normalization
+2. history-preserving serializer v1
+3. no synthetic W insertion
+4. no synthetic top insertion
+
+PYTHIA:
+8.315
+
+P1:
+One fully resonant serialized event.
+
+Result:
+- PYTHIA return code 0
+- attempted 1
+- accepted 1
+- failed 0
+- HepMC event count 1
+- one event weight
+- zero PYTHIA warnings/errors
+
+P1 = PASS
+
+P2:
+One serialized event from every one of the 16 observed
+(t,tbar,W+,W-) resonance-history presence classes.
+
+Result:
+- PYTHIA return code 0
+- attempted 16
+- accepted 16
+- failed 0
+- HepMC event count 16
+- one event weight per event
+- binary t/tbar/W+/W- presence pattern preserved event-by-event
+  for all 16 history classes
+
+One PYTHIA warning was observed:
+SimpleTimeShower::findMEcorr: ME weight above PS one
+
+This warning is not currently classified as a failure.
+It will be monitored in representative P3/P4 samples before
+the 25k-event qualification.
+
+P2 = PASS
+
+Conclusion:
+The history-preserving serializer is not only LHE-valid but is accepted by
+PYTHIA across every resonance-history class observed in the qualified 100k
+WHIZARD sample.
+
+Next:
+P3 representative 100-event shower.
+P4 representative 1000-event shower.

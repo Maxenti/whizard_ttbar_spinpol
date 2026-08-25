@@ -1,0 +1,12 @@
+============================================================
+PHASE 11 FREEZE-AFTER-N F-SERIES COMPLETED RESULTS
+============================================================
+
+UTC=2026-08-12T18:50:29Z
+CLUSTER=11433353
+F_SUB=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/submissions/20260812T165458Z_F5_F6_F7_3seed_np1
+F_OUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/20260812T165458Z_F5_F6_F7_3seed_np1
+
+############################################################
+CONDOR HISTORY
+############################################################

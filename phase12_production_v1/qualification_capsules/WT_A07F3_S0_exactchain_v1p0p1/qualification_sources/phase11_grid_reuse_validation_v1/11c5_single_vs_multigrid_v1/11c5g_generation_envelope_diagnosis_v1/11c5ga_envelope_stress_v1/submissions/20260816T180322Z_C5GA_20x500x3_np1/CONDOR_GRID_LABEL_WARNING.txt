@@ -1,0 +1,26 @@
+HTCondor submission warning
+===========================
+
+condor_submit reported:
+
+  WARNING: the Queue variable 'grid_label' was unused by condor_submit.
+
+This is expected and harmless.
+
+The itemdata.tsv field grid_label is retained for manifest provenance and
+post-run grouping into S0/S1/S2.
+
+The worker does not require grid_label directly. It receives the exact:
+  mode
+  checkpoint kind
+  workspace tar
+  expected VG2 hash
+  expected PHS hash
+  grid-construction seed
+  shard RNG seed
+  metadata seed
+  event count
+
+Therefore grid_label does not appear in the executable arguments.
+
+No submission change or retry was made in response to this warning.

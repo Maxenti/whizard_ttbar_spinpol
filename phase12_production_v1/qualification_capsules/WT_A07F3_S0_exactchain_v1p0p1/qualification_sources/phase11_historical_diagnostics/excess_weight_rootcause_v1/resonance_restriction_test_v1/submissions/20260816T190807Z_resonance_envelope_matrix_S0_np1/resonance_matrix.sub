@@ -1,0 +1,24 @@
+universe = vanilla
+
+executable = $(worker)
+
+arguments = $(mode) $(out_root)
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/submissions/20260816T190807Z_resonance_envelope_matrix_S0_np1
+
+output = logs/$(mode).$(ClusterId).$(ProcId).out
+error  = logs/$(mode).$(ClusterId).$(ProcId).err
+log    = logs/resonance_matrix.$(ClusterId).log
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 6000MB
+
++JobFlavour = "tomorrow"
+
+getenv = True
+should_transfer_files = NO
+
+notification = Never
+
+queue mode,worker,out_root from /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/resonance_restriction_test_v1/submissions/20260816T190807Z_resonance_envelope_matrix_S0_np1/itemdata.tsv

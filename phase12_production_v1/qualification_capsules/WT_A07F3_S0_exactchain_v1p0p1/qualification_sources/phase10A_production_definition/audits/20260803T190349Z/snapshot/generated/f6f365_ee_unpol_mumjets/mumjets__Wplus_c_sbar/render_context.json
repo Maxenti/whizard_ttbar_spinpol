@@ -1,0 +1,17 @@
+{
+  "channel": "mumjets",
+  "exact_subprocess_id": "mumjets__Wplus_c_sbar",
+  "final_state": [
+    "b",
+    "bbar",
+    "mu-",
+    "anti_nu_mu",
+    "c",
+    "anti_s"
+  ],
+  "generator_seed": 1858118276,
+  "polarization": "unpolarized",
+  "process_sin_sha256": "121316e29f81efc1ea493b2f64d9355d9d86e00d86ec269f2280abe05e61e2cf",
+  "sample_id": "f6f365_ee_unpol_mumjets",
+  "topology": "prompt_semileptonic"
+}

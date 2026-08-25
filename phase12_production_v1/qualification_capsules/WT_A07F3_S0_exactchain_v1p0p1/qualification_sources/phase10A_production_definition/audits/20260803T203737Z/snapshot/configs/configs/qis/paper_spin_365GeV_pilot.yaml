@@ -1,0 +1,58 @@
+schema_version: 2
+
+campaign_id: paper_spin_365GeV_pilot_v1p1
+nominal_sqrt_s_GeV: 365.0
+physics_scope: polarized_tree_level_continuum_ttbar_near_threshold
+frozen_reference: paper-spin-500gev-v3p1
+
+sample:
+  initial_state: ee
+  decay_channel: epmum
+  polarization: LR100
+  spin_mode: sc
+  isr: true
+  events: 200
+  random_seed: 365001
+  sample_id: ee_ttbar_epmum_LR100_sc_ISR_365GeV
+
+production:
+  # Only an already-qualified ISR-enabled source is eligible. Non-ISR
+  # templates are intentionally excluded so the output name cannot overstate
+  # the generated physics.
+  template_candidates:
+    - runs/ee/ee_ttbar_epmum_LR100_sc_ISR_500GeV/input.sin
+  source_template_contract:
+    nominal_sqrt_s_GeV: 500.0
+    sample_id: ee_ttbar_epmum_LR100_sc_ISR_500GeV
+    require_isr_metadata: true
+    accepted_decay_metadata: [epmum, emu]
+  output_run_dir: runs/ee/ee_ttbar_epmum_LR100_sc_ISR_365GeV_smoke
+  input_filename: input.sin
+  whizard_command: whizard
+  source_setup: setup_lxplus.sh
+  execution: local
+
+validation:
+  minimum_generated_events: 200
+  nominal_energy_tolerance_GeV: 1.0e-6
+  maximum_mtt_above_nominal_GeV: 1.0e-5
+  threshold_tolerance_GeV: 0.05
+  maximum_top_decay_closure_residual_GeV: 1.0e-6
+  maximum_nonfinite_weights: 0
+  require_decay_channel: epmum
+  require_initial_state: ee
+
+threshold_audit:
+  nominal_top_mass_GeV: 173.1
+  record_quantiles: [0.0, 0.01, 0.05, 0.5, 0.95, 0.99, 1.0]
+  warn_if_fraction_below_mtt_GeV:
+    threshold_GeV: 350.0
+    fraction: 0.25
+
+next_stage:
+  full_low_statistics_matrix_events_per_sample: 500
+  qualification_events_per_sample: 10000
+  initial_states: [ee, mumu]
+  decay_channels: [epmum, mupem]
+  polarizations: [LR100, RL100]
+  spin_modes: [sc, iso]

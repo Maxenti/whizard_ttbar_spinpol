@@ -1,0 +1,40 @@
+Phase 11C S0_B_v2 replacement sample
+=====================================
+
+Purpose:
+
+  Replace the original S0_B sample, which was found to be an exact
+  duplicate of S0_A because both used the same RNG seed during frozen
+  VAMP2 state initialization.
+
+Configuration:
+
+  frozen integration grid = G2_S0
+  events                  = 10000
+  shard RNG seed          = 211120002
+
+Qualified recipe:
+
+  shard RNG seed is assigned before integrate(proc_epmum)
+
+  no explicit SINDARIN reseed occurs between integrate(proc_epmum)
+  and simulate(proc_epmum)
+
+Required post-generation gates:
+
+  WHIZARD_RC = 0
+  EVENTS_WRITTEN = 10000
+  WORKSPACE_UNCHANGED = 1
+  NEW_GRID_INIT_COUNT = 0
+
+  LHE XWGTUP = 1 for all events
+
+  S0_A vs S0_B_v2 exact-event overlap = 0
+
+If these pass, S0_B_v2 replaces the original duplicate S0_B in the
+Phase 11C SINGLE reference:
+
+  SINGLE = S0_A + S0_B_v2
+
+The original S0_B remains preserved for provenance but is excluded from
+all statistical validation.

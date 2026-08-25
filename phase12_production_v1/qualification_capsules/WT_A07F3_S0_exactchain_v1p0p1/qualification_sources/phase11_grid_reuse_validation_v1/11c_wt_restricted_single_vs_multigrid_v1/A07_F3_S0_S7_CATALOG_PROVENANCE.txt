@@ -1,0 +1,75 @@
+WT A07/F3 S0-S7 FROZEN-GRID CATALOG PROVENANCE
+================================================
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum.
+
+Integration family:
+A07 + F3
+
+Adaptive schedule:
+10:100000:"gw"
+
+Fixed schedule:
+10:200000:""
+
+Full serialized schedule:
+10:100000:"gw", 10:200000:""
+
+Workspace contents:
+proc_epmum.i1.phs
+proc_epmum.m1.vg2
+
+Construction-seed provenance:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/A07_S0_S7_CONSTRUCTION_SEEDS.tsv
+
+Literal F3 manifest rows:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/A07_S0_S7_F3_MANIFEST_ROWS.txt
+
+Source campaign manifest:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/campaign_manifest.tsv
+
+Source campaign manifest SHA256:
+bca142be3f5c294bbb6f97e3be8edc1714596ff63860e84cdda61e58a021d2ed
+
+Frozen S0-S7 catalog:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/FROZEN_GRID_CATALOG_WT_A07F3_S0_S7.tsv
+
+Frozen S0-S7 catalog SHA256:
+583a85f22c95498901d78c4f36460657c9ea4eb454b135a2c24d0678b5837761
+
+Workspace tar SHA256 manifest:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/A07_F3_S0_S7_WORKSPACE_TARS.sha256
+
+S3/F3 special provenance:
+The original C_A07_S3_F3 execution suffered an infrastructure/filesystem
+failure before meaningful WHIZARD execution.
+
+The isolated exact technical replay:
+- preserved A07
+- preserved F3
+- preserved S3
+- preserved frozen WT source
+- returned WHIZARD rc=0
+- reused the existing grid
+- initialized no new grid
+- preserved PHS
+- returned STATUS=PASS
+
+The repaired S3/F3 workspace is therefore part of the qualified A07/F3
+physics result set.
+
+Catalog semantic checkpoint:
+WT_A07F3
+
+WT_A07F3 represents the exact serialized integration history:
+10:100000:"gw", 10:200000:""
+
+The WT_A07F3 checkpoint has independently passed frozen-grid generation
+reuse qualification.
+
+S0-S2 have additionally passed generation-envelope qualification using
+20 independent generation streams and 10,000 events per grid.
+
+S3-S7 require the equivalent generation-envelope qualification before
+entering the final Phase-11C MULTI physics holdout.

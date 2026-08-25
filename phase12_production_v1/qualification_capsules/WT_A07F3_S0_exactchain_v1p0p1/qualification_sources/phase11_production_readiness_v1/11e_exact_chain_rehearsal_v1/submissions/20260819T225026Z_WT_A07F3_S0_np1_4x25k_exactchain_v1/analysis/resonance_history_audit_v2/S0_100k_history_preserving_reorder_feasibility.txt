@@ -1,0 +1,60 @@
+SCANNING /tmp/cglenn/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0001_seed311191001.canonical_relaxed.lhe
+  events=25000
+SCANNING /tmp/cglenn/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0002_seed311191002.canonical_relaxed.lhe
+  events=25000
+SCANNING /tmp/cglenn/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0003_seed311191003.canonical_relaxed.lhe
+  events=25000
+SCANNING /tmp/cglenn/phase11e_relaxed_canonical_100k/lhe/phase11c_S0_11E_0004_seed311191004.canonical_relaxed.lhe
+  events=25000
+
+====================================================================================================
+HISTORY-PRESERVING LHE REORDER FEASIBILITY
+====================================================================================================
+TOTAL_EVENTS=100000
+FEASIBLE_EVENTS=100000
+FAILED_EVENTS=0
+
+GREEDY_PASS=100000
+FALLBACK_PASS=0
+MAX_FALLBACK_STATES=0
+
+ALREADY_VALID_ORIGINAL_ORDER=234
+REORDERED_EVENTS=99766
+TOTAL_MOVED_PARTICLES=216708
+MAX_PARTICLE_DISPLACEMENT=4
+
+ROOT COUNT HISTOGRAM
+roots=2 events=100000
+
+SIBLING-GROUP COUNT HISTOGRAM
+groups=1 events=1
+groups=2 events=35
+groups=3 events=1003
+groups=4 events=15599
+groups=5 events=83362
+
+HISTORY PATTERN FEASIBILITY
+t1_tb1_Wp1_Wm1           total=   83362 pass=   83362 fail=       0
+t1_tb1_Wp0_Wm1           total=    4525 pass=    4525 fail=       0
+t1_tb1_Wp1_Wm0           total=    4346 pass=    4346 fail=       0
+t1_tb0_Wp1_Wm1           total=    3322 pass=    3322 fail=       0
+t0_tb1_Wp1_Wm1           total=    3308 pass=    3308 fail=       0
+t0_tb0_Wp1_Wm1           total=     223 pass=     223 fail=       0
+t1_tb1_Wp0_Wm0           total=     223 pass=     223 fail=       0
+t1_tb0_Wp0_Wm1           total=     177 pass=     177 fail=       0
+t0_tb1_Wp0_Wm1           total=     163 pass=     163 fail=       0
+t0_tb1_Wp1_Wm0           total=     162 pass=     162 fail=       0
+t1_tb0_Wp1_Wm0           total=     141 pass=     141 fail=       0
+t0_tb0_Wp0_Wm1           total=      17 pass=      17 fail=       0
+t0_tb0_Wp1_Wm0           total=      12 pass=      12 fail=       0
+t1_tb0_Wp0_Wm0           total=      11 pass=      11 fail=       0
+t0_tb1_Wp0_Wm0           total=       7 pass=       7 fail=       0
+t0_tb0_Wp0_Wm0           total=       1 pass=       1 fail=       0
+
+FAILURE REASONS
+none
+
+FIRST FAILURES
+none
+
+HISTORY_PRESERVING_REORDER_GATE=PASS

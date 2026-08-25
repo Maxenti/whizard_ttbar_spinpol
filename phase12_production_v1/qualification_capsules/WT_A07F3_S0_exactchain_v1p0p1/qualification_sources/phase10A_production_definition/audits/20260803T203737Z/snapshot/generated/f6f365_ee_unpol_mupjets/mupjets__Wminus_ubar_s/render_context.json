@@ -1,0 +1,17 @@
+{
+  "channel": "mupjets",
+  "exact_subprocess_id": "mupjets__Wminus_ubar_s",
+  "final_state": [
+    "b",
+    "bbar",
+    "mu+",
+    "nu_mu",
+    "anti_u",
+    "s"
+  ],
+  "generator_seed": 152300999,
+  "polarization": "unpolarized",
+  "process_sin_sha256": "f0e1e76610c38a27d0aab6d725d50ea04fd693037be50a9acfef482ef77d7797",
+  "sample_id": "f6f365_ee_unpol_mupjets",
+  "topology": "prompt_semileptonic"
+}

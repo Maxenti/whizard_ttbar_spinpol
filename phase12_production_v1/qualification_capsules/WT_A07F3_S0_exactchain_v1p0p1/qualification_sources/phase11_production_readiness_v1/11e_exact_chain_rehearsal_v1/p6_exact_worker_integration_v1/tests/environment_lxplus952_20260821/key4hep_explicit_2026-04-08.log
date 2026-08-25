@@ -1,0 +1,17 @@
+BEGIN_EXPLICIT_KEY4HEP
+AlmaLinux/RockyLinux/RHEL 9 detected
+Setting up the Key4hep software stack release 2026-04-08 from CVMFS
+Use the following command to reproduce the current environment: 
+
+        source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2026-04-08
+
+If you have any issues, comments or requests, open an issue at https://github.com/key4hep/key4hep-spack/issues
+Tip: A new -d flag can be used to access debug builds, otherwise the default is the optimized build
+KEY4HEP_RC=0
+PYTHON=/cvmfs/sw.hsf.org/key4hep/releases/2026-02-01/x86_64-almalinux9-gcc14.2.0-opt/python-venv/1.0-uab3wy/bin/python3
+GCC=/cvmfs/sw.hsf.org/contrib/x86_64-almalinux9-gcc11.4.1-opt/gcc/14.2.0-yuyjov/bin/gcc
+
+SHOWER_LINKAGE
+	libpythia8.so => /cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/pythia8/8.315-6r34nu/lib/libpythia8.so (0x00007f147ee00000)
+	libHepMC3.so.4 => /cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/hepmc3/3.3.1-5ee2bd/lib64/libHepMC3.so.4 (0x00007f147fb7f000)
+	libstdc++.so.6 => /cvmfs/sw.hsf.org/contrib/x86_64-almalinux9-gcc11.4.1-opt/gcc/14.2.0-yuyjov/lib64/libstdc++.so.6 (0x00007f147ea00000)

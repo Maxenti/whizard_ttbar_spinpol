@@ -1,0 +1,54 @@
+{
+  "basis": "rnk_common_v1_nominal_beam_phase9",
+  "component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "notes": [
+    "Density matrices are built from raw Phase 9 truth-candidate spin moments.",
+    "QIS quantities are diagnostic candidates; they should not be used as final publication claims until full physics-sample settings are frozen.",
+    "Negative rho eigenvalues indicate that the raw estimated moment set is not exactly positive semidefinite; this can happen from statistical fluctuations or from non-final sample definitions.",
+    "Bell-CHSH maximum uses the Horodecki criterion with the C matrix as the two-qubit correlation tensor."
+  ],
+  "qis_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_observables_20260803/phase9_density_matrix_qis_observables.csv",
+  "qis_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_qis_observables_20260803/phase9_density_matrix_qis_observables.json",
+  "samples": [
+    {
+      "bell_chsh_horodecki_max": 1.3013138353937006,
+      "bell_chsh_violation_candidate": false,
+      "concurrence_candidate": 0.0,
+      "n_events": 10000,
+      "negativity_candidate": 0.0,
+      "parent_label": "LR100_epmum",
+      "purity_tr_rho2": 0.635768700691351,
+      "rho_min_eigenvalue": 0.0025867768466825126,
+      "rho_physicality_flag": "physical_with_tolerance"
+    },
+    {
+      "bell_chsh_horodecki_max": 1.2913881802363834,
+      "bell_chsh_violation_candidate": false,
+      "concurrence_candidate": 0.0,
+      "n_events": 10000,
+      "negativity_candidate": 0.0,
+      "parent_label": "RL100_epmum",
+      "purity_tr_rho2": 0.6210601951220287,
+      "rho_min_eigenvalue": 0.006567748273433659,
+      "rho_physicality_flag": "physical_with_tolerance"
+    },
+    {
+      "bell_chsh_horodecki_max": 1.4532054162128223,
+      "bell_chsh_violation_candidate": false,
+      "concurrence_candidate": 0.0,
+      "n_events": 10000,
+      "negativity_candidate": 0.0,
+      "parent_label": "unpol_epmum",
+      "purity_tr_rho2": 0.4274957227161305,
+      "rho_min_eigenvalue": -0.0019178514669623953,
+      "rho_physicality_flag": "raw_nonpositive"
+    }
+  ],
+  "schema_version": 1,
+  "spin_moments_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_moments_with_RL100_20260803/phase9_dilepton_spin_moments_with_RL100.json",
+  "status": "PASS"
+}

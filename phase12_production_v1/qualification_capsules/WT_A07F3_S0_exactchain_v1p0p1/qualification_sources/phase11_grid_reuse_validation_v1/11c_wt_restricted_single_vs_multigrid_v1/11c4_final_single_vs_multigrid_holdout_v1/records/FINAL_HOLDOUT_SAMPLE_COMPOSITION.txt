@@ -1,0 +1,76 @@
+PHASE-11C FINAL SINGLE-VERSUS-MULTI HOLDOUT SAMPLE COMPOSITION
+================================================================
+
+Purpose:
+Test whether generation from the predetermined single frozen A07/F3 grid
+S0 is statistically compatible with generation from the independent
+qualified A07/F3 reference-grid family S1-S7.
+
+Fresh events only.
+
+No event generated during integration diagnosis, reuse qualification,
+generation-envelope qualification, or prior G2/C4/C5 studies is reused.
+
+SINGLE ARM
+----------
+
+Grid:
+S0
+
+Shards:
+64
+
+Events per shard:
+1000
+
+Total:
+64,000
+
+
+MULTI ARM
+---------
+
+S1:
+10 shards x 1000 = 10,000
+
+S2:
+9 shards x 1000 = 9,000
+
+S3:
+9 shards x 1000 = 9,000
+
+S4:
+9 shards x 1000 = 9,000
+
+S5:
+9 shards x 1000 = 9,000
+
+S6:
+9 shards x 1000 = 9,000
+
+S7:
+9 shards x 1000 = 9,000
+
+MULTI total:
+64 shards
+64,000 events
+
+Reason S1 receives the one additional 1000-event shard:
+64 is not divisible by seven.
+The extra shard is assigned deterministically to the first canonical
+reference grid S1 before holdout generation.
+
+This assignment must not change after physics results are observed.
+
+TOTAL FINAL HOLDOUT:
+128 shards
+128,000 events
+
+These are validation-only events.
+
+They must use RNG seeds disjoint from:
+- all prior Phase-11 validation and diagnostics
+- all Phase-12 production seeds
+
+Physics distributions must not be inspected before the frozen holdout
+validator is executed.

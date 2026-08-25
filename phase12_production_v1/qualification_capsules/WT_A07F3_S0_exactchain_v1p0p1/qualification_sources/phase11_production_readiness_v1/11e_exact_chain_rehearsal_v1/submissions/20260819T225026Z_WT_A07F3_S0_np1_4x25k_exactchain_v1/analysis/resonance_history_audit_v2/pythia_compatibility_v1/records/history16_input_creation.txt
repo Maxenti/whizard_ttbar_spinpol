@@ -1,0 +1,19 @@
+HISTORY_PATTERNS=16
+ 0 t0_tb0_Wp0_Wm0       NUP=10 event=  5471 file=phase11c_S0_11E_0002_seed311191002.serialized_v1.lhe
+ 1 t0_tb0_Wp0_Wm1       NUP=11 event=  5852 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 2 t0_tb0_Wp1_Wm0       NUP=12 event= 23700 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 3 t0_tb0_Wp1_Wm1       NUP=12 event=    57 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 4 t0_tb1_Wp0_Wm0       NUP=11 event=  3969 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 5 t0_tb1_Wp0_Wm1       NUP=12 event=   404 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 6 t0_tb1_Wp1_Wm0       NUP=12 event=  3152 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 7 t0_tb1_Wp1_Wm1       NUP=13 event=    17 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 8 t1_tb0_Wp0_Wm0       NUP=11 event=  1189 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+ 9 t1_tb0_Wp0_Wm1       NUP=12 event=   402 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+10 t1_tb0_Wp1_Wm0       NUP=12 event=   377 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+11 t1_tb0_Wp1_Wm1       NUP=13 event=   128 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+12 t1_tb1_Wp0_Wm0       NUP=12 event=   289 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+13 t1_tb1_Wp0_Wm1       NUP=13 event=     1 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+14 t1_tb1_Wp1_Wm0       NUP=13 event=    53 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+15 t1_tb1_Wp1_Wm1       NUP=14 event=     2 file=phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe
+
+HISTORY16_INPUT_GATE=PASS

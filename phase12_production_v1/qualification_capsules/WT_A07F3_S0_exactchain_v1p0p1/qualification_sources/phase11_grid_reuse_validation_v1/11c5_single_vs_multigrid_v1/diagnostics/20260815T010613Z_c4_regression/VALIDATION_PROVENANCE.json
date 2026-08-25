@@ -1,0 +1,76 @@
+{
+  "argv": [
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py",
+    "--validation-mode",
+    "diagnostic",
+    "--s0-c",
+    "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/r0_same_map_maxabsf_v1/20260814T163010Z_R0v2_G1_G2_10k_np1/R0_G2_S0/phase11c_R0_G2_S0_seed211120001.lhe",
+    "--s0-d",
+    "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_s0b_v2_v1/20260814T235258Z_S0Bv2_10k_np1/S0_B_v2/phase11c_S0_B_v2_seed211120002.lhe",
+    "--s1-b",
+    "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S1_A/phase11c_S1_A_seed211120101.lhe",
+    "--s2-b",
+    "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S2_A/phase11c_S2_A_seed211120102.lhe",
+    "--validation-plan",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/VALIDATION_PLAN_C5.txt",
+    "--outdir",
+    "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/diagnostics/20260815T010613Z_c4_regression"
+  ],
+  "finished_utc": "2026-08-15T01:06:38+00:00",
+  "frozen_constants": {
+    "expected_events_per_component": 10000,
+    "familywise_alpha": 0.01,
+    "holm_test_count": 48,
+    "ks_D_max": 0.02,
+    "observable_count": 24,
+    "quantile_chi2_bins": 30,
+    "smd_abs_max": 0.05,
+    "unit_weight_atol": 1e-15
+  },
+  "holdout_rule_would_pass": true,
+  "hostname": "lxplus993.cern.ch",
+  "input_manifest": {
+    "S0_C": {
+      "events_seen": 10000,
+      "file_size_bytes": 18360304,
+      "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/r0_same_map_maxabsf_v1/20260814T163010Z_R0v2_G1_G2_10k_np1/R0_G2_S0/phase11c_R0_G2_S0_seed211120001.lhe",
+      "sha256": "591918e2fd8ab1b5697d29121c2becc18a970ffd0fc1d730eb1c774846dffd21",
+      "unique_event_hashes": 10000
+    },
+    "S0_D": {
+      "events_seen": 10000,
+      "file_size_bytes": 18360304,
+      "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_s0b_v2_v1/20260814T235258Z_S0Bv2_10k_np1/S0_B_v2/phase11c_S0_B_v2_seed211120002.lhe",
+      "sha256": "4a527d1f4825721c5d9abbb80efe7e14046fde3adea05e9e9f29a11e58fa8bab",
+      "unique_event_hashes": 10000
+    },
+    "S1_B": {
+      "events_seen": 10000,
+      "file_size_bytes": 18360304,
+      "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S1_A/phase11c_S1_A_seed211120101.lhe",
+      "sha256": "92d26efbdc5e323472833b8b009a52bf71f5e5a8782ce6692d3bd0faf2acbc6c",
+      "unique_event_hashes": 10000
+    },
+    "S2_B": {
+      "events_seen": 10000,
+      "file_size_bytes": 18360304,
+      "path": "/eos/home-c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c3_single_vs_multigrid_v1/20260814T171051Z_S0B_S1_S2_10k_np1/S2_A/phase11c_S2_A_seed211120102.lhe",
+      "sha256": "0b46a8b3991e22c891537ba024652f1984a2b57403121a3d42dcfc8e2d8e517b",
+      "unique_event_hashes": 10000
+    }
+  },
+  "matplotlib_version": "3.4.3",
+  "numpy_version": "1.23.5",
+  "python_version": "3.9.25",
+  "result_gate": "DIAGNOSTIC_ONLY",
+  "schema_version": 2,
+  "scipy_version": "1.9.3",
+  "script_path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/analysis/validate_single_vs_multigrid_c5.py",
+  "script_sha256": "6ca54d4cce6b33044deb005b6cf7ebeb1437c33105bf7d48e586ff3b20b3ce9a",
+  "started_utc": "2026-08-15T01:06:22+00:00",
+  "validation_mode": "diagnostic",
+  "validation_plan_path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/VALIDATION_PLAN_C5.txt",
+  "validation_plan_sha256": "f4a8d0562a3eabdbd6abd13e27e2e23f71e093cc8f82d9addb396dc7e959105e",
+  "validator_name": "validate_single_vs_multigrid_c5.py",
+  "validator_version": "phase11c5-v1"
+}

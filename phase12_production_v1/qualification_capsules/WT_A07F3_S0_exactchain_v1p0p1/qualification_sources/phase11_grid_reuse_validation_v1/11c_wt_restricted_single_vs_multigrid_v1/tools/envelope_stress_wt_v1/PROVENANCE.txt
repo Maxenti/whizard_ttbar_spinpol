@@ -1,0 +1,23 @@
+WT Phase-11C generation-envelope compatibility tools.
+
+Purpose:
+Adapt campaign-specific validation/collection utilities from the earlier
+C5GA unrestricted envelope-stress workflow to the new WT-restricted 11C
+campaign.
+
+Original reusable package:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/11c5g_generation_envelope_diagnosis_v1/11c5ga_envelope_stress_v1/package_v1
+
+Important:
+The qualified WHIZARD generation worker itself is NOT modified.
+
+Qualified worker SHA256:
+28f898ff0cfdcaf9b4cb9566c090ab9eabd4b1a019cef399a7cd6dade0210285
+
+WT campaign differences requiring utility adaptation:
+- mode names: S0_WTGA01 ... S2_WTGA20
+- validation RNG range: 31117xxxx instead of old 21117xxxx
+- frozen grids are WT A07/F3 S0/S1/S2
+- source is the WT-restricted process card
+
+The old package is preserved unchanged.

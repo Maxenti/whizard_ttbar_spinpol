@@ -1,0 +1,19 @@
+# WHIZARD 3.1.5 built-in SM alpha_internal/on-shell values inherited from the
+# frozen 500 GeV generator validation. Changing sqrt(s) does not change these
+# model inputs.
+alpha_em_inverse: 132.5049458125
+sin2_theta_w: 0.22224994472998416
+mass_z_GeV: 91.1882
+width_z_GeV: 2.443
+mass_top_GeV: 173.1
+mass_electron_GeV: 0.00051099895
+mass_muon_GeV: 0.1056583755
+color_factor: 3.0
+source: whizard_3.1.5_builtin_SM_alpha_internal_on_shell_from_500GeV_validation
+generator_match_reviewed: true
+
+# Scope lock: this parameter file validates the tree-level continuum model.
+# It does not assert threshold resummation, Coulomb resummation, or nonresonant
+# e+e- -> W+b W-bbar contributions.
+threshold_resummation_included: false
+nonresonant_backgrounds_included: false

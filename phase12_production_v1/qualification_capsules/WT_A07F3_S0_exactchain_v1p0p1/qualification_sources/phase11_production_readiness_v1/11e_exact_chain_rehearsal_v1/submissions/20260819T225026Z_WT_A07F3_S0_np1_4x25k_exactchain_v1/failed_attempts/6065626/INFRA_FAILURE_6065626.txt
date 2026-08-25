@@ -1,0 +1,53 @@
+PHASE-11E PYTHIA/HepMC3 REHEARSAL — ZERO-EVENT INFRASTRUCTURE FAILURE
+====================================================================
+
+Cluster:
+6065626
+
+Requested:
+4 x 25,000-event shower jobs
+100,000 total requested events
+
+PYTHIA seeds:
+611191001
+611191002
+611191003
+611191004
+
+Observed:
+All four jobs ran for approximately two hours.
+
+Direct execute-node inspection showed:
+- no qis_shower_* work directory
+- no canonical_v2 LHE
+- no explicit_w_v3 LHE
+- no qis_lhe_to_hepmc3 process
+- no output.hepmc3.partial
+- no PYTHIA events generated
+
+The run_pythia_shard.sh wrapper itself was consuming CPU and memory before
+its work-directory creation stage.
+
+Cause:
+The custom Condor submission used:
+
+    getenv = False
+
+This prevented inheritance of the already-prepared project runtime and
+WHIZARD_TTBAR_ENV_READY=1.
+
+The worker therefore entered its expensive fallback environment-setup path
+and stalled there.
+
+Physics interpretation:
+NONE.
+
+Events generated:
+0
+
+Corrective action:
+Replay exactly the same four shard identities and exactly the same PYTHIA
+seeds with the validated submit-host environment inherited by HTCondor.
+
+The retry adds a strict runtime preflight so loss of the inherited environment
+causes an immediate failure rather than silently entering fallback setup.

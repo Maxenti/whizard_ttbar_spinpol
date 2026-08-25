@@ -1,0 +1,130 @@
+Phase 11C corrected frozen-grid shard RNG recipe qualification
+===============================================================
+
+Campaign:
+  full6f_365gev_ee_ttbar_spinpol_v1
+
+Process:
+  e- e+ -> b bbar e+ nue mu- numubar
+
+Configuration:
+  sqrt(s) = 365 GeV
+  LR100
+  SM + ISR
+  WHIZARD 3.1.8
+  VAMP2
+  rng_stream
+
+Frozen integration state:
+  G2_S0
+
+PHS SHA256:
+  20733e0e17025d2c73f73a666c5b62f92c105ca98114231020130b77f5730d5d
+
+VG2 SHA256:
+  87969b9b4cf40b1c31bea520be30da86ea728dba7f20bcea6acf17a207d1c4f6
+
+
+Qualified recipe
+----------------
+
+A unique shard RNG seed is assigned before the reused:
+
+  integrate(proc_epmum)
+
+step.
+
+There is NO explicit SINDARIN reseed between integrate(proc_epmum)
+and simulate(proc_epmum).
+
+WHIZARD internally initializes its simulation RNG stream after the
+integration-state initialization; this stream is deterministically
+controlled by the earlier shard RNG seed.
+
+
+Qualification test
+------------------
+
+Three 100-event jobs were generated:
+
+  R0:
+    shard RNG seed = 211150001
+
+  R0R:
+    shard RNG seed = 211150001
+
+  R1:
+    shard RNG seed = 211150002
+
+
+Integrity results
+-----------------
+
+All three:
+
+  WHIZARD_RC = 0
+  EVENTS_WRITTEN = 100
+  WORKSPACE_UNCHANGED = 1
+  NEW_GRID_INIT_COUNT = 0
+
+PHS and VG2 hashes remained unchanged.
+
+
+Exact-event results
+-------------------
+
+R0 vs R0R:
+  overlap = 100
+  same-position = 100
+  ordered-identical = YES
+
+R0 vs R1:
+  overlap = 0
+  same-position = 0
+  ordered-identical = NO
+
+R0R vs R1:
+  overlap = 0
+  same-position = 0
+  ordered-identical = NO
+
+Therefore:
+
+  SAME_SEED_REPRODUCIBLE = PASS
+  DIFFERENT_SEED_INDEPENDENT = PASS
+  SHARD_RNG_RECIPE_QUALIFICATION = PASS
+
+
+LHE weights
+-----------
+
+R0:
+  100 / 100 XWGTUP = 1
+
+R0R:
+  100 / 100 XWGTUP = 1
+
+R1:
+  100 / 100 XWGTUP = 1
+
+SHARD_RECIPE_UNIT_WEIGHTS = PASS
+
+
+Conclusion
+----------
+
+The corrected frozen-grid generation architecture is qualified.
+
+For every independent production shard:
+
+  1. restore the same frozen production G2 workspace;
+  2. assign a unique shard RNG seed before integrate(proc_epmum);
+  3. reuse the frozen integration state;
+  4. do not explicitly reseed before simulate(proc_epmum);
+  5. require exact-event non-overlap between distinct shards.
+
+The next Phase-11C sample is S0_B_v2 with:
+
+  frozen grid = G2_S0
+  shard RNG seed = 211120002
+  events = 10000

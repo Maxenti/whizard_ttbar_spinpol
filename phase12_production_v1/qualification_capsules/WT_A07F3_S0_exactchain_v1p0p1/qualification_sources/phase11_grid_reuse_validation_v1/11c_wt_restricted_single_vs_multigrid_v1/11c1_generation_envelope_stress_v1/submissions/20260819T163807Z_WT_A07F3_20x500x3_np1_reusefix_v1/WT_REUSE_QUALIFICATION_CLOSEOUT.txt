@@ -1,0 +1,72 @@
+WT A07/F3 RNG-STREAM FROZEN-GRID REUSE QUALIFICATION
+====================================================
+
+Campaign:
+20260819T162959Z_S0_A07F3_rngreuse_3x100_v1
+
+Purpose:
+Qualify the corrected WT_A07F3 checkpoint contract before replaying the
+Phase-11C 60-job generation-envelope stress campaign.
+
+Worker:
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c2_wt_a07f3_reuse_qualification_v1/submissions/20260819T162959Z_S0_A07F3_rngreuse_3x100_v1/run_wt_a07f3_rng_reuse.sh
+
+Worker SHA256:
+4bbc08fa762bcfe30902b50842290bbb35fe7a46df363d5289ef5f9491e5e25f
+
+Checkpoint:
+WT_A07F3
+
+Stored integration prescription:
+10:100000:"gw", 10:200000:""
+
+Tests:
+S0_WTQ00
+  RNG seed = 311176001
+  events = 100
+
+S0_WTQ00R
+  RNG seed = 311176001
+  events = 100
+
+S0_WTQ01
+  RNG seed = 311176002
+  events = 100
+
+Execution result:
+3/3 Condor jobs normal termination return value 0.
+
+Frozen-workspace invariants:
+3/3:
+  STATUS=PASS
+  WHIZARD_RC=0
+  EVENTS_REQUESTED=100
+  EVENTS_WRITTEN=100
+  WORKSPACE_UNCHANGED=1
+  NEW_GRID_INIT_COUNT=0
+
+Frozen PHS:
+516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+
+Frozen S0 VG2:
+8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+
+No VAMP2 parameter mismatch, discarded-pass, or new-grid initialization
+markers were observed.
+
+RNG reproducibility:
+S0_WTQ00 versus S0_WTQ00R:
+  exact same-seed event sequence = PASS
+
+S0_WTQ00 versus S0_WTQ01:
+  exact duplicate-event overlap = 0
+
+Conclusion:
+WT_A07F3 frozen-grid rng_stream generation reuse is QUALIFIED.
+
+The superseded 60-job campaign using checkpoint kind G2 remains technically
+invalid and is not used for physics or envelope qualification.
+
+Next:
+Replay the exact original 60 validation RNG seeds using WT_A07F3 in a fresh
+output tree.

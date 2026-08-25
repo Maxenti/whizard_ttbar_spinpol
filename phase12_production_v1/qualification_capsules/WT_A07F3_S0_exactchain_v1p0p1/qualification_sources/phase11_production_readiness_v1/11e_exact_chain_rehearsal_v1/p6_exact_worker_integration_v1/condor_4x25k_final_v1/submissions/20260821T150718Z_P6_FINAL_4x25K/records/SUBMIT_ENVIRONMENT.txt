@@ -1,0 +1,9 @@
+DATE_UTC=2026-08-21T15:08:06Z
+HOST=lxplus952.cern.ch
+READY=1
+PYTHON=/cvmfs/sw.hsf.org/key4hep/releases/2026-02-01/x86_64-almalinux9-gcc14.2.0-opt/python-venv/1.0-uab3wy/bin/python3
+
+PYTHIA_HEPMC_LINKAGE
+	libpythia8.so => /cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/pythia8/8.315-6r34nu/lib/libpythia8.so (0x00007fe4fc400000)
+	libHepMC3.so.4 => /cvmfs/sw.hsf.org/key4hep/releases/2026-04-08/x86_64-almalinux9-gcc14.2.0-opt/hepmc3/3.3.1-5ee2bd/lib64/libHepMC3.so.4 (0x00007fe4fd11d000)
+	libstdc++.so.6 => /cvmfs/sw.hsf.org/contrib/x86_64-almalinux9-gcc11.4.1-opt/gcc/14.2.0-yuyjov/lib64/libstdc++.so.6 (0x00007fe4fc000000)

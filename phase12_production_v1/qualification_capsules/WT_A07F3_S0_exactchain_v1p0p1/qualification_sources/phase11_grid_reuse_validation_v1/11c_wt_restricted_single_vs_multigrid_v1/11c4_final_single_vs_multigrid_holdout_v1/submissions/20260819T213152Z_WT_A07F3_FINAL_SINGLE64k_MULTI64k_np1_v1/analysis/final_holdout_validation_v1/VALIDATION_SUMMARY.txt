@@ -1,0 +1,36 @@
+PHASE11C5_SINGLE_VS_MULTIGRID=PASS
+
+Physics evaluation performed: YES
+Structural failures: 0
+
+Holm-rejected tests: 0 / 48
+
+Practical-equivalence failures: 0
+
+SMD failures: 0 (limit |SMD| <= 0.05)
+KS_D failures: 0 (limit KS_D <= 0.02)
+q05/q50/q95 shifts: DIAGNOSTIC ONLY; NOT A C.5 GATE
+
+Largest |SMD| values:
+  m_tbar                       SMD=-0.013067 KS_D=0.004828 KS_p=0.443397
+  pt_muminus                   SMD=+0.010798 KS_D=0.006672 KS_p=0.11528
+  energy_muminus               SMD=+0.008737 KS_D=0.006484 KS_p=0.134997
+  eta_eplus                    SMD=-0.008038 KS_D=0.005125 KS_p=0.368736
+  energy_eplus                 SMD=+0.007833 KS_D=0.006375 KS_p=0.147709
+  cos_opening_ll               SMD=-0.006369 KS_D=0.005453 KS_p=0.296143
+  cos_helicity_muminus         SMD=+0.006115 KS_D=0.005547 KS_p=0.277375
+  m_Wminus                     SMD=-0.005722 KS_D=0.004469 KS_p=0.543615
+  cos_helicity_product         SMD=-0.004986 KS_D=0.006859 KS_p=0.0979969
+  deltaR_ll                    SMD=+0.004607 KS_D=0.003609 KS_p=0.797269
+
+Largest KS_D values:
+  m_top                        KS_D=0.007094 SMD=+0.001185 KS_p=0.0794823
+  cos_helicity_product         KS_D=0.006859 SMD=-0.004986 KS_p=0.0979969
+  pt_muminus                   KS_D=0.006672 SMD=+0.010798 KS_p=0.11528
+  m_tt                         KS_D=0.006547 SMD=-0.001993 KS_p=0.12814
+  energy_muminus               KS_D=0.006484 SMD=+0.008737 KS_p=0.134997
+  energy_eplus                 KS_D=0.006375 SMD=+0.007833 KS_p=0.147709
+  pt_tt                        KS_D=0.005812 SMD=-0.003030 KS_p=0.228896
+  cos_helicity_muminus         KS_D=0.005547 SMD=+0.006115 KS_p=0.277375
+  cos_opening_ll               KS_D=0.005453 SMD=-0.006369 KS_p=0.296143
+  abs_y_tt                     KS_D=0.005391 SMD=+0.004189 KS_p=0.309143

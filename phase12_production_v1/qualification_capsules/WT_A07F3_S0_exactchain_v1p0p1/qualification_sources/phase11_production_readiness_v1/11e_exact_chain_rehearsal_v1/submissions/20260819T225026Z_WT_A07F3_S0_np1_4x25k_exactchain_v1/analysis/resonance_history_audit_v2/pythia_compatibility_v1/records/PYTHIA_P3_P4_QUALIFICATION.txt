@@ -1,0 +1,64 @@
+PHASE-11E PYTHIA COMPATIBILITY — P3/P4
+======================================
+
+P3:
+Representative first 100 events from serialized S0 shard 0001.
+
+Result:
+- attempted = 100
+- accepted = 100
+- failed = 0
+- HepMC events = 100
+- bad event-weight multiplicities = 0
+- PYTHIA errors = 0
+- return code = 0
+- status = success
+
+PYTHIA warning summary:
+SimpleTimeShower::findMEcorr:
+ME weight above PS one
+
+Occurrences:
+5 / 100 = 5.0%
+
+P3 = PASS
+
+
+P4:
+Representative first 1000 events from serialized S0 shard 0001.
+
+Result:
+- attempted = 1000
+- accepted = 1000
+- failed = 0
+- HepMC events = 1000
+- bad event-weight multiplicities = 0
+- PYTHIA errors = 0
+- return code = 0
+- status = success
+
+PYTHIA warning summary:
+SimpleTimeShower::findMEcorr:
+ME weight above PS one
+
+Occurrences:
+48 / 1000 = 4.8%
+
+P4 = PASS
+
+
+Interpretation:
+The only observed warning class is stable at approximately 5% between
+the 100- and 1000-event representative samples.
+
+It causes:
+- no rejected events
+- no failed events
+- no invalid HepMC output
+- no event-weight multiplicity failures
+
+No change to the PYTHIA MEC configuration is justified from this warning
+alone. Continue monitoring it during the 25k qualification.
+
+Next:
+P5 = complete 25,000-event serialized S0 shard shower.

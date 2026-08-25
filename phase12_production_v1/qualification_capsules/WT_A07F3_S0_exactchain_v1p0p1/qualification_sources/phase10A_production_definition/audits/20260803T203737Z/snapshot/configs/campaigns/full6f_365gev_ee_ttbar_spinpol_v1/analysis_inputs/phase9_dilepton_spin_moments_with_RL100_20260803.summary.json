@@ -1,0 +1,33 @@
+{
+  "basis": "rnk_common_v1_truth_candidate",
+  "component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "n_events_by_sample": {
+    "LR100_epmum": 10000,
+    "RL100_epmum": 10000,
+    "unpol_epmum": 10000
+  },
+  "notes": [
+    "First-pass truth-candidate spin moments from parton-only HepMC3-derived truth table.",
+    "Uses nominal e- beam axis boosted to reconstructed ttbar rest frame.",
+    "Precision interpretation should freeze ISR/effective-beam convention before publication use."
+  ],
+  "sample_labels": [
+    "LR100_epmum",
+    "RL100_epmum",
+    "unpol_epmum"
+  ],
+  "schema_version": 1,
+  "skipped_by_parent_label": {
+    "unpol_epjets_Wminus_ubar_d": 10000
+  },
+  "spin_moments_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_moments_with_RL100_20260803/phase9_dilepton_spin_moments_with_RL100.csv",
+  "spin_moments_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_moments_with_RL100_20260803/phase9_dilepton_spin_moments_with_RL100.json",
+  "status": "PASS",
+  "total_dilepton_events_used": 30000,
+  "total_truth_events_seen": 40000,
+  "truth_jsonl": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_parton_truth_observables_with_RL100_20260803/phase9_parton_truth_observables_with_RL100.jsonl"
+}

@@ -1,0 +1,224 @@
+================================================================
+A. RUNTIME CARD REWRITING
+================================================================
+   150	    if src not in pieces:
+   151	        pieces.insert(0, src)
+   152	    env["PYTHONPATH"] = ":".join(pieces)
+   153	
+   154	
+   155	def localize_card(
+   156	    *,
+   157	    source_card: Path,
+   158	    source_common: Path,
+   159	    run_dir: Path,
+   160	    events: int,
+   161	    iterations: str,
+   162	    sample_basename: str,
+   163	) -> Path:
+   164	    if not source_card.is_file():
+   165	        raise BridgeError(f"missing source card: {source_card}")
+   166	    if not source_common.is_dir():
+   167	        raise BridgeError(f"missing source common directory: {source_common}")
+   168	
+   169	    run_dir.mkdir(parents=True, exist_ok=False)
+   170	
+   171	    shutil.copy2(source_card, run_dir / "process.original.sin")
+   172	    shutil.copytree(source_common, run_dir / "common")
+   173	
+   174	    src = run_dir / "process.original.sin"
+   175	    dst = run_dir / "process.bridge.sin"
+   176	
+   177	    text = src.read_text(encoding="utf-8")
+   178	
+   179	    def repl_include(match: re.Match[str]) -> str:
+   180	        return f'include("common/{Path(match.group(1)).name}")'
+   181	
+   182	    text = re.sub(
+   183	        r'(?m)^\s*include\("([^"]*/common/[^"]+)"\)\s*$',
+   184	        repl_include,
+   185	        text,
+   186	    )
+   187	
+   188	    kept: list[str] = []
+   189	    for line in text.splitlines():
+   190	        m = re.match(r'\s*include\("common/([^"]+)"\)\s*$', line)
+   191	        if m:
+   192	            inc = run_dir / "common" / m.group(1)
+   193	            if inc.exists() and inc.read_text(encoding="utf-8").strip() == "":
+   194	                print(f"DROPPING_EMPTY_INCLUDE={inc}")
+   195	                continue
+   196	        kept.append(line)
+   197	
+   198	    dst.write_text("\n".join(kept) + "\n", encoding="utf-8")
+   199	
+   200	    integration = run_dir / "common" / "integration.inc"
+   201	    if not integration.is_file():
+   202	        raise BridgeError(f"missing integration include: {integration}")
+   203	
+   204	    t = integration.read_text(encoding="utf-8")
+   205	    t, n_iter = re.subn(
+   206	        r"(?m)^(\s*iterations\s*=\s*).*$",
+   207	        rf"\g<1>{iterations}",
+   208	        t,
+   209	    )
+   210	    if n_iter == 0:
+   211	        t = f"iterations = {iterations}\n" + t
+   212	    integration.write_text(t, encoding="utf-8")
+   213	
+   214	    event_output = run_dir / "common" / "event_output.inc"
+   215	    if not event_output.is_file():
+   216	        raise BridgeError(f"missing event-output include: {event_output}")
+   217	
+   218	    t = event_output.read_text(encoding="utf-8")
+   219	    t, n_events = re.subn(
+   220	        r"(?m)^(\s*n_events\s*=\s*).*$",
+   221	        rf"\g<1>{events}",
+   222	        t,
+   223	    )
+   224	    t, n_sample = re.subn(
+   225	        r'(?m)^(\s*\$sample\s*=\s*).*$',
+   226	        rf'\g<1>"{sample_basename}"',
+   227	        t,
+   228	    )
+   229	
+   230	    if n_events == 0:
+   231	        raise BridgeError(f"could not find n_events assignment in {event_output}")
+   232	    if n_sample == 0:
+   233	        raise BridgeError(f"could not find $sample assignment in {event_output}")
+   234	
+   235	    event_output.write_text(t, encoding="utf-8")
+
+================================================================
+B. ARGUMENT PARSING
+================================================================
+   480	        f"VALIDATOR_LOG={validator_log}",
+   481	        f"RAW_LHE_EVENT_COUNT={summary['event_counts'].get('raw_lhe')}",
+   482	        f"CANONICAL_LHE_EVENT_COUNT={summary['event_counts'].get('canonical_lhe')}",
+   483	        f"HEPMC_EVENT_COUNT={summary['event_counts'].get('hepmc')}",
+   484	        f"WHIZARD_BRIDGE_RC={summary['return_codes'].get('whizard')}",
+   485	        f"CANON_RC={summary['return_codes'].get('canonicalizer')}",
+   486	        f"PYTHIA_CANON_V2_RC={summary['return_codes'].get('pythia')}",
+   487	        f"PHASE7_VALIDATE_RUNTIME_BRIDGE_RC={summary['return_codes'].get('validator')}",
+   488	        f"PHASE7_BRIDGE_STATUS={summary.get('status')}",
+   489	        "NOTES=Phase 7 canonical-v2 bridge runner output. PASS_WITH_RUNTIME_WARNINGS is acceptable for bridge proof but not final production shower certification.",
+   490	    ]
+   491	
+   492	    (run_dir / "RUNTIME_PHASE7_BRIDGE.txt").write_text("\n".join(lines) + "\n", encoding="utf-8")
+   493	
+   494	
+   495	def parse_args() -> argparse.Namespace:
+   496	    parser = argparse.ArgumentParser(
+   497	        description="Run one Phase 7 canonical-v2 WHIZARD/PYTHIA/HepMC bridge sample."
+   498	    )
+   499	    parser.add_argument("--repo", type=Path, default=Path(os.environ.get("REPO", ".")).resolve())
+   500	    parser.add_argument("--card", type=Path, required=True)
+   501	    parser.add_argument("--label", required=True)
+   502	    parser.add_argument("--sample-id", default=None)
+   503	    parser.add_argument("--campaign-id", default=DEFAULT_CAMPAIGN_ID)
+   504	    parser.add_argument("--shard-id", default=None)
+   505	    parser.add_argument("--seed", type=int, default=12345)
+   506	    parser.add_argument("--events", type=int, default=100)
+   507	    parser.add_argument("--iterations", default="3:5000")
+   508	    parser.add_argument(
+   509	        "--pythia-profile",
+   510	        choices=["full_hadron", "parton_only"],
+   511	        default="full_hadron",
+   512	        help="PYTHIA final-state profile. Use parton_only for stable spin/QIS qualification without Lund fragmentation.",
+   513	    )
+   514	    parser.add_argument("--output-base", type=Path, default=Path(os.environ.get("TTSP_RUN_BASE", str(DEFAULT_OUTPUT_BASE))))
+   515	    parser.add_argument("--build-dir", type=Path, default=None)
+   516	    parser.add_argument("--pythia-exec", type=Path, default=None)
+   517	    parser.add_argument("--timeout-whizard-minutes", type=int, default=120)
+   518	    parser.add_argument("--runtime-view", default=DEFAULT_RUNTIME_VIEW)
+   519	    parser.add_argument("--dry-run", action="store_true")
+   520	    return parser.parse_args()
+   521	
+   522	
+   523	def main() -> int:
+   524	    args = parse_args()
+   525	
+   526	    repo = args.repo.resolve()
+   527	    card = args.card.resolve()
+   528	    output_base = args.output_base
+   529	    build_dir = args.build_dir or (repo / "build-lcg-devkey-fri")
+   530	    pythia_exec = args.pythia_exec or (build_dir / "qis_lhe_to_hepmc3")
+
+================================================================
+C. PYTHIA SETTINGS SUBSTITUTION
+================================================================
+   620	            str(raw_lhe),
+   621	            "--output",
+   622	            str(canon_lhe),
+   623	            "--summary",
+   624	            str(canon_summary),
+   625	        ],
+   626	        cwd=repo,
+   627	        log_path=canon_log,
+   628	        env=env,
+   629	    )
+   630	    (run_dir / "canonicalize.rc").write_text(f"CANON_RC={canon_rc}\n", encoding="utf-8")
+   631	
+   632	    if canon_rc != 0:
+   633	        raise BridgeError(f"canonicalizer failed with rc={canon_rc}; see {canon_log}")
+   634	
+   635	    pythia_config = run_dir / "pythia8_bridge_canonical_v2.cmnd"
+   636	    write_pythia_cmnd(pythia_config, args.events, args.pythia_profile)
+   637	
+   638	    hepmc = run_dir / f"{args.label}.canonical_v2.hepmc3"
+   639	    pythia_log = run_dir / "run_external_pythia_canonical_v2.log"
+   640	
+   641	    pythia_env = dict(env)
+   642	    pythia_env.update(
+   643	        {
+   644	            "PYTHIA_EXEC": str(pythia_exec),
+   645	            "SAMPLE_ID": sample_id,
+   646	            "CAMPAIGN_ID": args.campaign_id,
+   647	            "SHARD_ID": shard_id,
+   648	            "MAX_EVENTS": str(args.events),
+   649	            "SEED": str(args.seed),
+   650	        }
+   651	    )
+   652	
+   653	    pythia_rc = run_logged(
+   654	        [
+   655	            "bash",
+   656	            str(wrapper),
+   657	            "--config",
+   658	            str(pythia_config),
+   659	            "--lhe",
+   660	            str(canon_lhe),
+   661	            "--out",
+   662	            str(hepmc),
+   663	        ],
+   664	        cwd=repo,
+   665	        log_path=pythia_log,
+   666	        env=pythia_env,
+   667	    )
+   668	    (run_dir / "pythia_canonical_v2.rc").write_text(
+   669	        f"PYTHIA_CANON_V2_RC={pythia_rc}\n",
+   670	        encoding="utf-8",
+   671	    )
+   672	
+   673	    if pythia_rc != 0:
+   674	        raise BridgeError(f"PYTHIA/HepMC bridge failed with rc={pythia_rc}; see {pythia_log}")
+   675	
+   676	    validator_log = run_dir / "phase7_validate_runtime_bridge.log"
+   677	    metadata = Path(str(hepmc) + ".metadata.json")
+   678	
+   679	    validator_rc = run_logged(
+   680	        [
+
+================================================================
+D. ALL SEED REFERENCES
+================================================================
+649:            "SEED": str(args.seed),
+
+================================================================
+E. CARD-REWRITE FUNCTIONS
+================================================================
+121:def count_lhe_events(path: Path) -> int:
+129:def count_hepmc_events(path: Path) -> int:
+175:    dst = run_dir / "process.bridge.sin"
+200:    integration = run_dir / "common" / "integration.inc"
+214:    event_output = run_dir / "common" / "event_output.inc"
+240:def write_pythia_cmnd(path: Path, events: int, profile: str) -> None:

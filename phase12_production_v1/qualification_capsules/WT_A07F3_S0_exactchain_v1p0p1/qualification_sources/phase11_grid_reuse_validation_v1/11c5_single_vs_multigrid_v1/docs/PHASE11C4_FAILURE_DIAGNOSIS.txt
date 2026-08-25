@@ -1,0 +1,98 @@
+Phase 11C.4 failure diagnosis
+=============================
+
+The original frozen Phase-11C.4 SINGLE-vs-MULTI validation is retained
+as a formal FAIL.
+
+C.4 result:
+  structural failures = 0
+  Holm-rejected hypothesis tests = 0 / 48
+  SMD failures = 0
+  quantile/IQR effect failures = 5
+
+Failing observables:
+  m_Wplus
+  m_top
+  m_tt
+  pt_tt
+  abs_y_tt
+
+Original quantile effect criterion:
+  max_q |Delta Q_q| / pooled_IQR <= 0.10
+  q = 0.05, 0.50, 0.95
+
+
+Diagnostic finding
+------------------
+
+The pooled-IQR-normalized quantile criterion is not statistically
+stable for several of the tested observables.
+
+Independent same-family component comparisons exceed the old 0.10
+threshold, including:
+
+  S0_A vs S0_B_v2:
+    m_Wplus = 0.11125
+    pt_tt   = 4.10421
+
+  S1_A vs S2_A:
+    m_Wplus = 0.22327
+    m_top   = 0.35543
+    m_tt    = 0.16725
+    pt_tt   = 0.75852
+
+Pooled-null randomization diagnostics further show null medians:
+
+  m_Wplus  = 0.11227
+  m_top    = 0.17406
+  m_tt     = 0.15854
+  pt_tt    = 3.06022
+  abs_y_tt = 0.19073
+
+All five null medians exceed the frozen 0.10 threshold.
+
+Therefore the old threshold has an unacceptable false-failure rate
+for these distribution shapes.
+
+
+pt_tt example
+-------------
+
+Pooled pt_tt:
+  Q25 = 6.3746e-06 GeV
+  Q50 = 3.5831e-04 GeV
+  Q75 = 1.3438e-02 GeV
+  IQR = 1.3432e-02 GeV
+
+but:
+  Q95 = 8.9217e-01 GeV
+  Q99 = 4.9916 GeV
+  max = 68.4653 GeV
+
+The distribution therefore has a very narrow near-zero core and a
+long ISR-recoil tail.
+
+The observed q95 difference:
+  0.82063 vs 0.96427 GeV
+  Delta = -0.14363 GeV
+
+becomes -10.693 pooled IQR only because the q95 tail shift is divided
+by the narrow near-zero-core IQR.
+
+
+Interpretation
+--------------
+
+C.4 remains a formal FAIL under its predetermined rule.
+
+However, the diagnostics do not establish a physics bias in G2_S0.
+They establish that the specific pooled-IQR-normalized quantile
+effect-size criterion is unsuitable as a qualification discriminator
+for these observables.
+
+G2_S0 therefore remains the predetermined production-grid candidate.
+
+A new Phase 11C.5 validation must:
+  - be fully specified and frozen before new events are generated;
+  - use fresh validation-only RNG seeds;
+  - not reuse C.4 events for its final pass/fail decision.

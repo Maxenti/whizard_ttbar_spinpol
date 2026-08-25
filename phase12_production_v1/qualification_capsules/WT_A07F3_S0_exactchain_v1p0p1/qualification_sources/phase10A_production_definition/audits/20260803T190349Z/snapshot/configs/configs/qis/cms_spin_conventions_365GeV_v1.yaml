@@ -1,0 +1,135 @@
+schema_version: 1
+
+convention_id: cms_spin_conventions_365GeV_v1
+
+references:
+  spin15:
+    report_number: CMS-TOP-18-006
+    arxiv: 1907.03729
+
+  entanglement:
+    report_number: CMS-TOP-23-001
+    arxiv: 2406.03976
+
+basis:
+  order:
+    - k
+    - r
+    - n
+
+  incoming_reference:
+    particle: electron
+    description: incoming negative lepton defines the positive beam reference
+
+repository_input_convention:
+  name: particle_helicity_right_handed
+
+  # This sign is already folded into the stored uminus_* and b2*/cij
+  # event-level analyzer variables.
+  antitop_analyzer_sign: -1.0
+
+  # M maps the stored antitop analyzer coordinates into physical
+  # charged-lepton coordinates aligned with the top-side k,r,n frame:
+  #
+  #   lminus_aligned = M * uminus_stored
+  #
+  # It therefore includes both the antitop local-axis relation and the
+  # stored antitop analyzer sign.
+  stored_antitop_analyzer_to_physical_aligned_matrix:
+    - [1.0, 0.0, 0.0]
+    - [0.0, 1.0, 0.0]
+    - [0.0, 0.0, -1.0]
+
+  # The corresponding pure local-basis transformation before folding
+  # in antitop_analyzer_sign=-1 is -M.
+  antitop_local_basis_to_top_aligned_matrix:
+    - [-1.0, 0.0, 0.0]
+    - [0.0, -1.0, 0.0]
+    - [0.0, 0.0, 1.0]
+
+transformations:
+  B1_aligned: B1_stored
+
+  # The stored B2 coefficients already contain antitop_analyzer_sign.
+  B2_aligned: M_times_B2_stored
+
+  # CMS Eq. (4) has a minus sign multiplying the C term. Because the
+  # repository stores cij=uplus_i*uminus_j with the antitop analyzer
+  # sign folded into uminus, the physical aligned matrix is:
+  #
+  #   C_CMS = -C_stored * M^T
+  C_aligned: minus_C_stored_times_M_transpose
+
+opening_angle:
+  name: cos_phi_CMS
+
+  # Physical dot product of the charged-lepton directions in their
+  # respective parent rest frames, represented in the aligned k,r,n
+  # convention.
+  formula: uplus_transpose_times_M_times_uminus
+
+  expanded_formula: >-
+    uplus_k*uminus_k + uplus_r*uminus_r
+    - uplus_n*uminus_n
+
+D:
+  trace_formula_aligned: trace_C_aligned_over_3
+
+  # Stored repository coefficient form:
+  #
+  #   C_aligned_kk = -Cstored_kk
+  #   C_aligned_rr = -Cstored_rr
+  #   C_aligned_nn = +Cstored_nn
+  trace_formula_stored: (-Ckk_minus_Crr_plus_Cnn)_over_3
+
+  angle_formula: -3_times_weighted_mean_cos_phi_CMS
+
+  threshold_witness_boundary: -0.3333333333333333
+  witness_condition: D_less_than_minus_one_third
+
+D_tilde:
+  # General diagonal witness:
+  #
+  #   Delta = -C33 + |C11 + C22| - 1
+  #   D_tilde = (Delta + 1)/3
+  formula_aligned: (abs(Ckk_plus_Crr)_minus_Cnn)_over_3
+
+  # With C_aligned = -C_stored M^T:
+  formula_stored: (abs(Ckk_plus_Crr)_minus_Cnn)_over_3
+
+  witness_boundary: 0.3333333333333333
+  witness_condition: D_tilde_greater_than_one_third
+
+interpretation:
+  D:
+    primary_region: threshold
+    notes:
+      - Use the physical CMS-aligned correlation matrix.
+      - Validate independently with the physical charged-lepton opening angle.
+      - D below minus one third is a sufficient entanglement witness in the applicable threshold configuration.
+      - Failure of the D witness does not establish separability.
+
+  D_tilde:
+    primary_region: boosted_or_general_diagonal_witness
+    notes:
+      - Report for the 365 GeV sample as a complementary diagnostic.
+      - The full physical density-matrix PPT test remains authoritative.
+      - Do not claim a boosted regime merely because D_tilde exceeds its boundary.
+
+  authoritative_general_test:
+    name: Peres-Horodecki partial-transpose criterion
+    implementation_status: pending
+
+validation:
+  mapping_source:
+    method: exhaustive_signed_permutation_scan
+    tested_candidates: 48
+    selected_matrix: stored_antitop_analyzer_to_physical_aligned_matrix
+    selected_mapping_label: k=+k, r=+r, n=-n
+
+  required_closures:
+    - D_from_aligned_trace_matches_D_from_physical_cos_phi
+    - LHE_to_HepMC_preservation
+    - SC_to_ISO_discrimination
+    - physical_density_matrix_trace_and_Hermiticity
+    - physical_density_matrix_positive_semidefinite_after_fit_or_projection

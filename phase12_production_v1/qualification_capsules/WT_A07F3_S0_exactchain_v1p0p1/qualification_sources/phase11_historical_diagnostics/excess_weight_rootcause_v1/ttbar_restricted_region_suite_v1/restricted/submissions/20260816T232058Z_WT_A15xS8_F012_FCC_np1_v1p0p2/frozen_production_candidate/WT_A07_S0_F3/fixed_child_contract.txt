@@ -1,0 +1,13 @@
+MODE=A07_S0_F3
+PARENT_MODE=A07_S0
+ADAPTIVE_ID=A07
+FIXED_ID=F3
+SEED_ID=S0
+FIXED_SEED=648318690
+ADAPTIVE_SCHEDULE=10:100000:"gw"
+FIXED_SCHEDULE=10:200000:""
+FULL_SCHEDULE=10:100000:"gw",10:200000:""
+PARENT_TAR=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/adaptive/A07_S0/integration_artifacts.tar.gz
+PARENT_TAR_SHA256=38ddd2acf59746d83a8b505080382afa57a249c678fea9f36dec2aa42c478051
+PARENT_PHS_SHA256=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+PARENT_VG2_SHA256=28c213fdaae5d2d0a116ab6681c27fa1fa496c759555f75a71e8401d0c0a876f

@@ -1,0 +1,342 @@
+{
+  "events_by_parent_label": {
+    "LR100_epmum": 10000,
+    "unpol_epjets_Wminus_ubar_d": 10000,
+    "unpol_epmum": 10000
+  },
+  "hepmc_files": 41,
+  "records": [
+    {
+      "events": 10000,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epmum_20260731T213434Z/unpol_epmum.canonical_v2.hepmc3",
+      "label": "unpol_epmum",
+      "parent_label": "unpol_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260803T151440Z/LR100_epmum_s000.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s000",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s010_20260803T151440Z/LR100_epmum_s010.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s010",
+      "parent_label": "LR100_epmum",
+      "salvaged": true,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s011_20260803T151445Z/LR100_epmum_s011.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s011",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s012_20260803T151445Z/LR100_epmum_s012.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s012",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s013_20260803T151445Z/LR100_epmum_s013.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s013",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s014_20260803T151454Z/LR100_epmum_s014.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s014",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s015_20260803T151446Z/LR100_epmum_s015.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s015",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s016_20260803T151445Z/LR100_epmum_s016.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s016",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s017_20260803T151453Z/LR100_epmum_s017.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s017",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s018_20260803T151442Z/LR100_epmum_s018.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s018",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s019_20260803T151445Z/LR100_epmum_s019.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s019",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s001_20260803T151454Z/LR100_epmum_s001.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s001",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s000_20260803T151448Z/unpol_epjets_Wminus_ubar_d_s000.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s000",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s001_20260803T151455Z/unpol_epjets_Wminus_ubar_d_s001.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s001",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s002_20260803T151453Z/unpol_epjets_Wminus_ubar_d_s002.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s002",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": true,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s003_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s003.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s003",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s004_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s004.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s004",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s005_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s005.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s005",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s006_20260803T151510Z/unpol_epjets_Wminus_ubar_d_s006.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s006",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s007_20260803T151452Z/unpol_epjets_Wminus_ubar_d_s007.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s007",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s008_20260803T151451Z/unpol_epjets_Wminus_ubar_d_s008.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s008",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s009_20260803T151451Z/unpol_epjets_Wminus_ubar_d_s009.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s009",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s002_20260803T151440Z/LR100_epmum_s002.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s002",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s010_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s010.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s010",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s011_20260803T151454Z/unpol_epjets_Wminus_ubar_d_s011.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s011",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s012_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s012.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s012",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s013_20260803T151448Z/unpol_epjets_Wminus_ubar_d_s013.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s013",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s014_20260803T151451Z/unpol_epjets_Wminus_ubar_d_s014.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s014",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s015_20260803T151451Z/unpol_epjets_Wminus_ubar_d_s015.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s015",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s016_20260803T151454Z/unpol_epjets_Wminus_ubar_d_s016.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s016",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s017_20260803T151453Z/unpol_epjets_Wminus_ubar_d_s017.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s017",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s018_20260803T151449Z/unpol_epjets_Wminus_ubar_d_s018.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s018",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_unpol_epjets_Wminus_ubar_d_s019_retry00_20260803T161500Z/unpol_epjets_Wminus_ubar_d_s019_retry00.canonical_v2.hepmc3",
+      "label": "unpol_epjets_Wminus_ubar_d_s019",
+      "parent_label": "unpol_epjets_Wminus_ubar_d",
+      "salvaged": false,
+      "salvaged_from_retry": true
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s003_20260803T151441Z/LR100_epmum_s003.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s003",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s004_20260803T151500Z/LR100_epmum_s004.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s004",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s005_20260803T151445Z/LR100_epmum_s005.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s005",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s006_20260803T151441Z/LR100_epmum_s006.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s006",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s007_20260803T151441Z/LR100_epmum_s007.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s007",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s008_20260803T151445Z/LR100_epmum_s008.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s008",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    },
+    {
+      "events": 500,
+      "hepmc": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s009_20260803T151445Z/LR100_epmum_s009.canonical_v2.hepmc3",
+      "label": "LR100_epmum_s009",
+      "parent_label": "LR100_epmum",
+      "salvaged": false,
+      "salvaged_from_retry": false
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "total_events": 30000,
+  "total_records": 41
+}

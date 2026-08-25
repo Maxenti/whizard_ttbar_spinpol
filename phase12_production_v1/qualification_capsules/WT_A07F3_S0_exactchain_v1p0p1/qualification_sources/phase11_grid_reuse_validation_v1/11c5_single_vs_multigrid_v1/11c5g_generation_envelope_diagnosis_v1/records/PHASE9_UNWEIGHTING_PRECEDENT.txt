@@ -1,0 +1,44 @@
+Phase-9 precedent relevant to Phase-11C.5G
+==========================================
+
+The existing project documentation records prior pathological
+WHIZARD unweighting behavior during the 365-GeV full-6f campaign.
+
+Relevant documented observations include:
+
+- monolithic/difficult event-generation jobs could encounter rare
+  high-weight tails;
+
+- a documented 500-event diagnostic produced only 103/500 raw
+  events after approximately 56 minutes because of a rare
+  high-weight spike;
+
+- the Phase-9 workflow adopted smaller 500-event shards so that a
+  pathological unweighting seed affected only one small shard rather
+  than invalidating a full monolithic sample;
+
+- Phase-9 operational documentation permitted pathological shards to
+  be removed and retried.
+
+Relevance to Phase 11
+---------------------
+
+This establishes that rare unweighting-tail behavior predates the
+Phase-11 frozen-grid reuse tests.
+
+However, the Phase-9 remove-and-retry policy cannot automatically be
+adopted for the precision Phase-11 validation.
+
+For Phase 11 we must distinguish:
+
+1. an operationally retryable failed production shard;
+
+2. evidence that a frozen integration/envelope is statistically
+   insufficient;
+
+3. selection bias introduced by repeatedly regenerating until a
+   desired envelope diagnostic is obtained.
+
+Therefore no new C.5 holdout replacement shards will be selected
+until the WHIZARD excess-weight definition and generation-envelope
+behavior have been audited.

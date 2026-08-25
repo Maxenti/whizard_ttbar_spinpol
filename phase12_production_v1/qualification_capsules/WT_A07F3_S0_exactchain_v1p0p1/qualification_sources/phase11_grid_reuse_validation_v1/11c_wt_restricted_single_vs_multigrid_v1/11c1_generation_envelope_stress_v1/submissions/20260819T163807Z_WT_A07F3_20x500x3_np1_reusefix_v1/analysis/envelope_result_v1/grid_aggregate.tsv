@@ -1,0 +1,4 @@
+grid	n_shards	technical_pass	total_events	excess_events	excess_fraction	aggregate_avg_excess	global_max_excess	efficiency_min_percent	efficiency_median_percent	efficiency_mean_percent	efficiency_max_percent	gate_shard_count	gate_event_count	gate_excess_fraction	gate_aggregate_avg_excess	gate_global_max_excess	grid_gate
+S0	20	True	10000	24	0.0024	0.00060966	1.051	7.07	7.390000000000001	7.463500000000001	8.28	True	True	True	True	True	True
+S1	20	True	10000	31	0.0031	0.0006139565000000001	1.026	6.87	7.335	7.297499999999999	7.73	True	True	True	True	True	True
+S2	20	True	10000	25	0.0025	0.000582345	0.8482	7.01	7.5	7.539499999999999	8.28	True	True	True	True	True	True

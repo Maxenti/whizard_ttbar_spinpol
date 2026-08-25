@@ -1,0 +1,38 @@
+=== production configuration hits ===
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:2:500GeV_ISR_iso_validation_v1,ee_ttbar_epmum_LR100_iso_ISR_500GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,500,true,0.000510997,0.0072973525693,false,none,1,10000,6100000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:3:500GeV_ISR_iso_validation_v1,ee_ttbar_epmum_RL100_iso_ISR_500GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,500,true,0.000510997,0.0072973525693,false,none,1,10000,6200000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:4:500GeV_ISR_iso_validation_v1,ee_ttbar_mupem_LR100_iso_ISR_500GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,500,true,0.000510997,0.0072973525693,false,none,1,10000,6300000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:5:500GeV_ISR_iso_validation_v1,ee_ttbar_mupem_RL100_iso_ISR_500GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,500,true,0.000510997,0.0072973525693,false,none,1,10000,6400000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:6:500GeV_ISR_iso_validation_v1,mumu_ttbar_epmum_LR100_iso_ISR_500GeV,true,mumu,e2,E2,epmum,LR100,-1,1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7100000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:7:500GeV_ISR_iso_validation_v1,mumu_ttbar_epmum_RL100_iso_ISR_500GeV,true,mumu,e2,E2,epmum,RL100,1,-1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7200000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:8:500GeV_ISR_iso_validation_v1,mumu_ttbar_mupem_LR100_iso_ISR_500GeV,true,mumu,e2,E2,mupem,LR100,-1,1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7300000,1,3000,tomorrow,true
+configs/production/production_500GeV_ISR_iso_validation_v1.csv:9:500GeV_ISR_iso_validation_v1,mumu_ttbar_mupem_RL100_iso_ISR_500GeV,true,mumu,e2,E2,mupem,RL100,1,-1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7400000,1,3000,tomorrow,true
+configs/production/retry_mumu_ttbar_mupem_LR100_iso_ISR_500GeV_20260720T151403Z.csv:2:500GeV_ISR_iso_validation_v1,mumu_ttbar_mupem_LR100_iso_ISR_500GeV,true,mumu,e2,E2,mupem,LR100,-1,1,1.0,1.0,500,true,0.105658389,0.0072973525693,false,none,1,10000,7300000,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_iso_v1.csv:2:paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_LR100_iso_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510002,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_iso_v1.csv:3:paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_epmum_RL100_iso_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510004,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_iso_v1.csv:4:paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_LR100_iso_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510006,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_iso_v1.csv:5:paper_spin_365GeV_lhe_matrix_10k_v1,ee_ttbar_mupem_RL100_iso_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,1,10000,36510008,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_250k_v1.csv:3:paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_LR100_iso_ISR_365GeV,true,ee,e1,E1,epmum,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365252000,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_250k_v1.csv:5:paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_epmum_RL100_iso_ISR_365GeV,true,ee,e1,E1,epmum,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365254000,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_250k_v1.csv:7:paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_LR100_iso_ISR_365GeV,true,ee,e1,E1,mupem,LR100,-1,1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365256000,1,3000,tomorrow,true
+configs/production/production_365GeV_ee_250k_v1.csv:9:paper_spin_365GeV_ee_lhe_matrix_250k_v1,ee_ttbar_mupem_RL100_iso_ISR_365GeV,true,ee,e1,E1,mupem,RL100,1,-1,1.0,1.0,365,true,0.000510997,0.0072973525693,false,none,25,10000,365258000,1,3000,tomorrow,true
+
+=== tracked ISO template history ===
+75b3857 Add validated 365 GeV ee Spin-15 qualification workflow
+02a892b update 7/20
+9700bb3 updates
+
+=== Git-tracked production configurations ===
+configs/production/production_365GeV_ee_iso_v1.csv
+configs/production/production_365GeV_ee_sc_v1.csv
+configs/production/production_500GeV_ISR_iso_validation_v1.csv
+configs/production/production_500GeV_ISR_sc_v1.csv
+configs/production/retry_mumu_ttbar_mupem_LR100_iso_ISR_500GeV_20260720T151403Z.csv
+
+=== untracked production configurations ===
+production_365GeV_ee_250k_v1.csv
+production_365GeV_ee_iso_v1.csv
+production_365GeV_ee_sc_v1.csv
+production_500GeV_ISR_iso_validation_v1.csv
+production_500GeV_ISR_sc_v1.csv
+retry_mumu_ttbar_mupem_LR100_iso_ISR_500GeV_20260720T151403Z.csv

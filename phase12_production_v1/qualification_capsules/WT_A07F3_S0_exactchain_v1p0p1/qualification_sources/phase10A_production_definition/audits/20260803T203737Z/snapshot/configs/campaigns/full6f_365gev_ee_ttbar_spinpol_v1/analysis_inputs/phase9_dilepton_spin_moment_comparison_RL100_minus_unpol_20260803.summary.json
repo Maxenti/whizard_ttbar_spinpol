@@ -1,0 +1,181 @@
+{
+  "basis": "rnk_common_v1_nominal_beam_phase9",
+  "bootstrap": {
+    "n_bootstrap": 500,
+    "seed": 36520260804
+  },
+  "classification_counts": {
+    "large_resolved_shift": 4,
+    "not_resolved": 10,
+    "small_but_resolved_shift": 1
+  },
+  "comparison_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_moments_with_RL100_20260803/phase9_dilepton_spin_moment_comparison_RL100_minus_unpol.csv",
+  "comparison_json": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_spin_moments_with_RL100_20260803/phase9_dilepton_spin_moment_comparison_RL100_minus_unpol.json",
+  "component_order": [
+    "r",
+    "n",
+    "k"
+  ],
+  "notes": [
+    "Pair-configurable Phase 9 spin-moment comparison.",
+    "Moment contributions are computed from truth JSONL objects using the frozen nominal-beam r,n,k convention.",
+    "This remains a parton-only truth-candidate comparison."
+  ],
+  "sample_pair": {
+    "comparison": "RL100_epmum",
+    "delta_definition": "RL100_epmum - unpol_epmum",
+    "reference": "unpol_epmum"
+  },
+  "schema_version": 2,
+  "skipped_events_by_sample": {},
+  "status": "PASS",
+  "top_resolved_shifts": [
+    {
+      "RL100_epmum": -0.694601606856529,
+      "classification": "large_resolved_shift",
+      "component": "r",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.9952699671324347,
+      "delta_bootstrap_p16": -1.02143621342492,
+      "delta_bootstrap_p50": -0.9933730548280462,
+      "delta_bootstrap_p84": -0.9717354788619668,
+      "delta_bootstrap_se": 0.024186600135560864,
+      "delta_z": -41.14964325511455,
+      "family": "Bminus",
+      "key": "Bminus_r",
+      "unpol_epmum": 0.3006683602759056
+    },
+    {
+      "RL100_epmum": -0.683963021079238,
+      "classification": "large_resolved_shift",
+      "component": "r",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.9718406592268247,
+      "delta_bootstrap_p16": -0.9982402564797107,
+      "delta_bootstrap_p50": -0.9726739603046393,
+      "delta_bootstrap_p84": -0.9472169809830335,
+      "delta_bootstrap_se": 0.024753109372637052,
+      "delta_z": -39.26135680962696,
+      "family": "Bplus",
+      "key": "Bplus_r",
+      "unpol_epmum": 0.2878776381475867
+    },
+    {
+      "RL100_epmum": 0.2400936602195542,
+      "classification": "large_resolved_shift",
+      "component": "k",
+      "delta_RL100_epmum_minus_unpol_epmum": 0.3014640146217763,
+      "delta_bootstrap_p16": 0.27929710916211087,
+      "delta_bootstrap_p50": 0.30231121318534965,
+      "delta_bootstrap_p84": 0.3245509680171216,
+      "delta_bootstrap_se": 0.02377132619682682,
+      "delta_z": 12.681834077141982,
+      "family": "Bminus",
+      "key": "Bminus_k",
+      "unpol_epmum": -0.0613703544022221
+    },
+    {
+      "RL100_epmum": 0.23781559566270088,
+      "classification": "large_resolved_shift",
+      "component": "k",
+      "delta_RL100_epmum_minus_unpol_epmum": 0.30775255053894235,
+      "delta_bootstrap_p16": 0.2850029946229365,
+      "delta_bootstrap_p50": 0.3085940743322758,
+      "delta_bootstrap_p84": 0.33214918271572236,
+      "delta_bootstrap_se": 0.024351533907738632,
+      "delta_z": 12.637912326382947,
+      "family": "Bplus",
+      "key": "Bplus_k",
+      "unpol_epmum": -0.06993695487624148
+    },
+    {
+      "RL100_epmum": 0.4829714205294337,
+      "classification": "small_but_resolved_shift",
+      "component": "rr",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.1156473991148213,
+      "delta_bootstrap_p16": -0.14996609611522027,
+      "delta_bootstrap_p50": -0.11344219232010314,
+      "delta_bootstrap_p84": -0.07117508033365708,
+      "delta_bootstrap_se": 0.040188320643186,
+      "delta_z": -2.8776370165253353,
+      "family": "C",
+      "key": "C_rr",
+      "unpol_epmum": 0.598618819644255
+    },
+    {
+      "RL100_epmum": -0.13086109880874688,
+      "classification": "not_resolved",
+      "component": "rk",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.08269836008145917,
+      "delta_bootstrap_p16": -0.12607605963073282,
+      "delta_bootstrap_p50": -0.0805892211793513,
+      "delta_bootstrap_p84": -0.04389633351666425,
+      "delta_bootstrap_se": 0.04247680992915099,
+      "delta_z": -1.946906093451828,
+      "family": "C",
+      "key": "C_rk",
+      "unpol_epmum": -0.04816273872728772
+    },
+    {
+      "RL100_epmum": -0.0502708323251136,
+      "classification": "not_resolved",
+      "component": "nn",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.059043057709486584,
+      "delta_bootstrap_p16": -0.10382613092581258,
+      "delta_bootstrap_p50": -0.06040799220060376,
+      "delta_bootstrap_p84": -0.01504204935343911,
+      "delta_bootstrap_se": 0.043498615273210646,
+      "delta_z": -1.3573548798885384,
+      "family": "C",
+      "key": "C_nn",
+      "unpol_epmum": 0.008772225384372986
+    },
+    {
+      "RL100_epmum": -0.018139959644262398,
+      "classification": "not_resolved",
+      "component": "nk",
+      "delta_RL100_epmum_minus_unpol_epmum": 0.0530306251269189,
+      "delta_bootstrap_p16": 0.008905505979693584,
+      "delta_bootstrap_p50": 0.048227542838353774,
+      "delta_bootstrap_p84": 0.08927528110581834,
+      "delta_bootstrap_se": 0.04214695193896062,
+      "delta_z": 1.2582315609375636,
+      "family": "C",
+      "key": "C_nk",
+      "unpol_epmum": -0.0711705847711813
+    },
+    {
+      "RL100_epmum": -0.11872239513450074,
+      "classification": "not_resolved",
+      "component": "kr",
+      "delta_RL100_epmum_minus_unpol_epmum": -0.03285771279192397,
+      "delta_bootstrap_p16": -0.07249947599658563,
+      "delta_bootstrap_p50": -0.031781286922388914,
+      "delta_bootstrap_p84": 0.009800978599586254,
+      "delta_bootstrap_se": 0.04190941878900809,
+      "delta_z": -0.7840173818049182,
+      "family": "C",
+      "key": "C_kr",
+      "unpol_epmum": -0.08586468234257677
+    },
+    {
+      "RL100_epmum": 0.015620726589959453,
+      "classification": "not_resolved",
+      "component": "n",
+      "delta_RL100_epmum_minus_unpol_epmum": 0.014547015619626201,
+      "delta_bootstrap_p16": -0.009060474201896842,
+      "delta_bootstrap_p50": 0.013846264651019607,
+      "delta_bootstrap_p84": 0.03940781429240963,
+      "delta_bootstrap_se": 0.024351745525051895,
+      "delta_z": 0.5973705500766233,
+      "family": "Bplus",
+      "key": "Bplus_n",
+      "unpol_epmum": 0.0010737109703332509
+    }
+  ],
+  "total_dilepton_events_seen_for_pair": 20000,
+  "total_truth_events_seen": 40000,
+  "truth_jsonl": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/analysis/phase9_parton_truth_observables_with_RL100_20260803/phase9_parton_truth_observables_with_RL100.jsonl",
+  "usable_events_by_sample": {
+    "RL100_epmum": 10000,
+    "unpol_epmum": 10000
+  }
+}

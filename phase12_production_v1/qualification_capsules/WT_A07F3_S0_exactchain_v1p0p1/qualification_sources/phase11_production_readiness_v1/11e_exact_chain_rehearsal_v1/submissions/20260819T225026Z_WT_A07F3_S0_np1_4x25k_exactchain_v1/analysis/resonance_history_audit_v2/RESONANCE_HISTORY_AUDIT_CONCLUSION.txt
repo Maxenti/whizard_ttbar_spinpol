@@ -1,0 +1,57 @@
+PHASE-11E — 100k WHIZARD RESONANCE-HISTORY AUDIT
+=================================================
+
+Sample:
+full6f365_ee_LR100_epmum_WT_A07F3_S0
+
+Events:
+100000
+
+Final-state multiplicity:
+PASS
+All 100000 events contain exactly the required stable six-fermion final state.
+
+Main history:
+t1_tb1_Wp1_Wm1
+83362 events
+83.362%
+
+Observed behavior:
+1. Explicit W histories are associated with reconstructed l+nu masses tightly
+   concentrated around the W resonance.
+
+2. When a W history is omitted while its parent top remains explicit, the
+   reconstructed l+nu invariant mass becomes broad while the reconstructed
+   top mass remains tightly resonant.
+
+3. Explicit top histories are associated with reconstructed b+l+nu masses
+   tightly concentrated around the top resonance.
+
+4. When a top history is omitted while W histories remain explicit, the
+   corresponding reconstructed b+l+nu invariant mass becomes broad while
+   the retained W and opposite-side top remain resonance-like.
+
+5. Rare partial/no-history classes continue the same qualitative behavior.
+
+Interpretation:
+The event-dependent partial resonance histories are physically structured
+and correlated with resonance virtuality. They are not treated as malformed
+events.
+
+Production consequence:
+Preserve WHIZARD's selected resonance history exactly.
+
+Do NOT:
+- synthesize missing W histories
+- synthesize missing top histories
+- remove existing resonance histories
+- replace the qualified S0 hard-process sample
+- migrate production to the grouped-order diagnostic source
+
+Required handoff correction:
+Implement a history-preserving LHE serialization step that changes particle
+row ordering and remaps mother indices only, followed by strict daughter-range
+validation before PYTHIA8.
+
+The qualified hard-process physics sample remains authoritative unless a later
+test demonstrates an independent defect.

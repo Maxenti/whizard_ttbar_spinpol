@@ -1,0 +1,245 @@
+PHASE 11 — PRODUCTION READINESS CLOSEOUT
+=======================================
+
+FINAL STATUS
+------------
+
+PHASE11_PRODUCTION_READINESS=PASS
+
+
+Qualified physics definition
+----------------------------
+
+Collider:
+  e+ e-
+
+sqrt(s):
+  365 GeV
+
+Signal definition:
+  WT-restricted full six-fermion matrix element
+
+Representative process:
+  e1, E1 => b, bbar, E1, n1, e2, N2
+
+Resonance restrictions:
+  5+6 ~ W+
+  7+8 ~ W-
+  3+5+6 ~ t
+  4+7+8 ~ tbar
+
+WHIZARD resonance histories:
+  enabled and preserved event-by-event
+
+The sample is not reinterpreted as unrestricted inclusive six-fermion
+production.
+
+
+Integration prescription
+------------------------
+
+Integrator:
+  VAMP2
+
+RNG:
+  rng_stream
+
+Parallel balancing:
+  simple
+
+Adaptive prescription:
+  10:100000:"gw"
+
+Fixed validation:
+  10:200000:""
+
+Qualified grid family:
+  WT_A07F3 S0-S7
+
+Predetermined production grid:
+  S0
+
+Production-grid selection:
+  predetermined, not chosen from generation appearance or statistical
+  fluctuations.
+
+S0 grid-construction seed:
+  1740114216
+
+S0 VG2 SHA256:
+  8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+
+Common PHS SHA256:
+  516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+
+
+Generation architecture
+-----------------------
+
+WHIZARD generation:
+  one MPI rank per HTCondor worker
+
+OMP_NUM_THREADS:
+  1
+
+Parallelism:
+  independent HTCondor jobs
+
+Qualified hard-process shard size:
+  25000 events
+
+The np4 shared-workspace generation architecture was rejected because
+of a dynamic resonance-library compilation race. The failure occurred
+before physics-event generation and does not invalidate the np1
+architecture.
+
+
+Single-grid qualification
+-------------------------
+
+S0 versus independent S1-S7 multigrid holdout:
+  PASS
+
+Final holdout:
+  64000 S0 events
+  64000 multigrid events
+
+Structural failures:
+  0
+
+Holm-rejected tests:
+  0 / 48
+
+Practical-equivalence failures:
+  0
+
+SMD failures:
+  0
+
+KS-D failures:
+  0
+
+
+WHIZARD -> PYTHIA preparation
+-----------------------------
+
+Production preparation policy:
+
+  raw WHIZARD LHE
+    -> canonical ISR normalization
+    -> history-preserving serialization
+    -> strict mother-before-child validation
+    -> strict contiguous-daughter validation
+
+Explicit-W synthesis:
+  DISABLED
+
+Particle additions:
+  forbidden
+
+Particle removals:
+  forbidden
+
+Resonance additions:
+  forbidden
+
+Resonance removals:
+  forbidden
+
+
+PYTHIA / HepMC production
+-------------------------
+
+PYTHIA:
+  8.315
+
+HepMC3:
+  3.3.1
+
+WHIZARD ISR:
+  retained
+
+PYTHIA ISR:
+  disabled
+
+PYTHIA MPI:
+  disabled
+
+PYTHIA resonance decays:
+  disabled for the hard-process resonance history
+
+TimeShower:QEDshowerByGamma:
+  off
+
+FSR / hadronization / ordinary subsequent decays:
+  enabled according to frozen PYTHIA configuration
+
+
+Exact-chain qualification
+-------------------------
+
+1-event exact worker:
+  PASS
+
+100-event exact worker:
+  PASS
+
+25000-event exact worker:
+  PASS
+
+Same-input/same-seed P5/P6 25000-event physics-record comparison:
+  byte-identical PASS
+
+Final 4 x 25000 HTCondor rehearsal:
+  PASS
+
+Requested:
+  100000
+
+Attempted:
+  100000
+
+Accepted:
+  100000
+
+Failed:
+  0
+
+HepMC events:
+  100000
+
+Bad-weight events:
+  0
+
+History-presence mismatches:
+  0
+
+Unknown PYTHIA errors:
+  0
+
+ME-weight-above-PS warnings:
+  4955 / 100000 = 0.04955
+
+Recovered hadron-level retries:
+  4 / 100000 = 4e-5
+
+All four automatically prepared LHE shards exactly reproduced their
+independently qualified preparation references.
+
+
+Phase-12 authorization
+----------------------
+
+Phase 12 is authorized to use:
+
+  predetermined WT_A07F3 S0 frozen grid
+  np1 WHIZARD workers
+  25000 hard events/job
+  independent HTCondor job parallelism
+  frozen history-preserving exact shower worker
+
+Validation RNG seeds used during Phase 11 are excluded from Phase-12
+production.
+
+No physics/configuration changes are authorized without reopening
+production qualification.

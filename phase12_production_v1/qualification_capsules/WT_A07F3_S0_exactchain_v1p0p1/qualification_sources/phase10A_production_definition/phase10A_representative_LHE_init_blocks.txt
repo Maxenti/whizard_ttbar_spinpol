@@ -1,0 +1,16 @@
+
+LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_LR100_epmum_s000_20260801T030224Z/LR100_epmum_s000.canonical_v2.lhe
+<init>
+ 11 -11  1.8250000000E+02  1.8250000000E+02 -1 -1 -1 -1 3 1
+  1.3055906079E-02  9.8578954297E-04  1.0000000000E+00 1
+<generator version="3.1.8">WHIZARD</generator>
+<xsecinfo neve="500" totxsec="1.3055906079E-02" />
+</init>
+
+LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/phase7_bridge_RL100_epmum_s003_20260803T180627Z/RL100_epmum_s003.canonical_v2.lhe
+<init>
+ 11 -11  1.8250000000E+02  1.8250000000E+02 -1 -1 -1 -1 3 1
+  3.8150888396E-03  2.6750056317E-04  1.0000000000E+00 1
+<generator version="3.1.8">WHIZARD</generator>
+<xsecinfo neve="500" totxsec="3.8150888396E-03" />
+</init>

@@ -1,0 +1,17 @@
+{
+  "channel": "epem",
+  "exact_subprocess_id": "epem",
+  "final_state": [
+    "b",
+    "bbar",
+    "e+",
+    "nu_e",
+    "e-",
+    "anti_nu_e"
+  ],
+  "generator_seed": 1423341395,
+  "polarization": "unpolarized",
+  "process_sin_sha256": "03ba05f3225ee0741ee4b59903101248e617cfd53d7865b50ead509d7cb55279",
+  "sample_id": "f6f365_ee_unpol_epem",
+  "topology": "prompt_dilepton"
+}

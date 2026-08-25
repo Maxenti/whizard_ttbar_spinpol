@@ -1,0 +1,84 @@
+PHASE-11C WT A07/F3 S0-S7 GENERATION-ENVELOPE QUALIFICATION
+================================================================
+
+Physics:
+WT-restricted 365 GeV LR100 proc_epmum.
+
+Integration family:
+A07 + F3
+
+Adaptive schedule:
+10:100000:"gw"
+
+Fixed schedule:
+10:200000:""
+
+Eligibility rule:
+A grid may enter the final SINGLE-versus-MULTI holdout only after:
+1. integration qualification PASS, and
+2. generation-envelope qualification PASS.
+
+Integration qualification:
+S0 PASS
+S1 PASS
+S2 PASS
+S3 PASS
+S4 PASS
+S5 PASS
+S6 PASS
+S7 PASS
+
+Generation-envelope qualification depth:
+20 independent rng_stream generation streams per grid.
+500 events per stream.
+10,000 events per grid.
+
+Generation-envelope:
+S0 PASS
+S1 PASS
+S2 PASS
+S3 PASS
+S4 PASS
+S5 PASS
+S6 PASS
+S7 PASS
+
+Total diagnostic envelope exposure:
+80,000 events.
+
+All envelope events are excluded from the final physics holdout.
+
+Predetermined SINGLE candidate:
+S0
+
+S0 remains selected by the canonical pre-generation selection rule and
+was not selected because of integration precision, generation efficiency,
+excess-weight behavior, or event-level physics distributions.
+
+Final MULTI reference set:
+S1
+S2
+S3
+S4
+S5
+S6
+S7
+
+All seven reference grids are independent A07/F3 VG2 realizations.
+
+No member of S1-S7 was added or removed on the basis of favorable
+event-generation or physics-distribution behavior.
+
+Technical failures may be replayed only using exactly the same grid and
+exactly the same RNG seed.
+
+A genuine physics-validation failure must not be repaired by choosing a
+different grid or a more favorable subset of the reference family.
+
+FINAL HOLDOUT ELIGIBILITY:
+S0       ELIGIBLE -- SINGLE
+S1-S7    ELIGIBLE -- MULTI
+
+Next:
+Freeze the final physics-analysis rule and final holdout sample composition
+before creating fresh holdout events.

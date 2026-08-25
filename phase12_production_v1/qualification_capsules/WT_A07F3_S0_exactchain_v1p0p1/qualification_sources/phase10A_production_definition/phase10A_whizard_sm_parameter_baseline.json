@@ -1,0 +1,152 @@
+{
+  "beam_and_isr": {
+    "beam_energy_per_beam_GeV": 182.5,
+    "beam_energy_spread": false,
+    "beam_particles": [
+      "electron",
+      "positron"
+    ],
+    "beamstrahlung": false,
+    "isr_handler": true,
+    "isr_handler_mode": "recoil",
+    "isr_mass_GeV": 0.000510997,
+    "keep_beams": true,
+    "keep_remnants": true
+  },
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "decision": "This record freezes what Phase 9 used. It is not yet the final Phase 10 production parameter choice.",
+  "electroweak_input_scheme": {
+    "GF_GeV_minus2": 1.16639e-05,
+    "classification": "GF_mW_mZ",
+    "derived_relations": {
+      "cw": "mW / mZ",
+      "ee": "2 * sw * mW / v",
+      "inverse_alpha_em": "4 * pi / ee^2",
+      "sw": "sqrt(1 - cw^2)",
+      "v": "1 / sqrt(sqrt(2) * GF)"
+    },
+    "mW_GeV": 80.419,
+    "mZ_GeV": 91.1882
+  },
+  "flavor_structure": {
+    "ckm": "trivial",
+    "model_comment": "Standard Model with trivial CKM matrix"
+  },
+  "hard_process": {
+    "description": "full six-fermion e+e- to b bbar e+ nu_e mu- anti-nu_mu",
+    "events_per_representative_shard": 500,
+    "integration_iterations": "5:50000",
+    "process": "e1, E1 => b, bbar, E1, n1, e2, N2",
+    "sample_format": "LHEF",
+    "sqrts_GeV": 365.0
+  },
+  "masses_GeV": {
+    "Higgs": 125.0,
+    "W": 80.419,
+    "Z": 91.1882,
+    "bottom": 4.2,
+    "charm": 1.2,
+    "electron": 0.000510997,
+    "muon": 0.105658389,
+    "strange": 0.095,
+    "tau": 1.77705,
+    "top": 173.1
+  },
+  "model_files": {
+    "SM.mdl": {
+      "path": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl",
+      "sha256": "f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede"
+    },
+    "SM_hadrons.mdl": {
+      "path": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl",
+      "sha256": "f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd"
+    }
+  },
+  "open_items": [
+    "Document exact WHIZARD meaning of model scheme 'default' for unstable propagators.",
+    "Decide whether Phase 10 retains this inherited parameter set or adopts an updated production parameter profile.",
+    "Make the unpolarized beam state explicit.",
+    "Decide whether an FCC-ee beam-energy-spread model is required.",
+    "Decide whether beamstrahlung is intentionally omitted.",
+    "Implement and validate explicit independent WHIZARD and PYTHIA seed streams."
+  ],
+  "parameter_override_policy": {
+    "effective_source": "WHIZARD 3.1.8 SM.mdl defaults identified by exact file hash",
+    "phase9_parameters_inc": "empty",
+    "runtime_parameter_overrides_observed": false
+  },
+  "polarization_states": {
+    "LR100": {
+      "degrees": [
+        1.0,
+        1.0
+      ],
+      "electron_helicity": -1,
+      "positron_helicity": 1
+    },
+    "RL100": {
+      "degrees": [
+        1.0,
+        1.0
+      ],
+      "electron_helicity": 1,
+      "positron_helicity": -1
+    },
+    "unpolarized": {
+      "effective_definition": "no active polarization include in Phase 9 rendered process"
+    }
+  },
+  "random_number_baseline": {
+    "interpretation": "The Phase 9 manifest seed controlled the downstream PYTHIA bridge. No explicit WHIZARD hard-process seed was found in the effective runtime Sindarin includes.",
+    "manifest_seed_observed_use": "PYTHIA bridge seed",
+    "phase10_requirement": "Define independent whizard_seed and pythia_seed fields, set the WHIZARD seed explicitly, record the reported integration and simulation seeds, and pass a same-seed byte-replay test.",
+    "representative_runs": {
+      "LR100_epmum_s000": {
+        "manifest_seed": 24705000,
+        "pythia_metadata_seed": 24705000,
+        "whizard_integration_seed": 16518,
+        "whizard_simulation_seed": 16519
+      },
+      "RL100_epmum_s003": {
+        "manifest_seed": 24800003,
+        "pythia_metadata_seed": 24800003,
+        "whizard_integration_seed": 31803,
+        "whizard_simulation_seed": 31804
+      }
+    },
+    "status": "INCOMPLETE_FOR_PRODUCTION",
+    "whizard_seed_explicitly_set": false
+  },
+  "representative_cross_sections_pb": {
+    "LR100_epmum": {
+      "events": 500,
+      "integration_uncertainty": 0.00098578954297,
+      "value": 0.013055906079
+    },
+    "RL100_epmum": {
+      "events": 500,
+      "integration_uncertainty": 0.00026750056317,
+      "value": 0.0038150888396
+    }
+  },
+  "runtime": {
+    "binary": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/bin/whizard",
+    "generator": "WHIZARD",
+    "model": "SM",
+    "model_scheme": "default",
+    "secondary_preloaded_model": "SM_hadrons",
+    "version": "3.1.8"
+  },
+  "schema_version": 1,
+  "scope": "Phase 9 inherited WHIZARD hard-process parameter baseline",
+  "status": "PASS_WITH_OPEN_PRODUCTION_CHOICE",
+  "strong_coupling": {
+    "alphas_at_Z_point": 0.1178
+  },
+  "widths_GeV": {
+    "Higgs": 0.004143,
+    "W": 2.049,
+    "Z": 2.443,
+    "top": 1.523
+  }
+}

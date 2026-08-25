@@ -1,0 +1,72 @@
+PHASE-11C FINAL HOLDOUT COMPONENT-SPLIT LOCK
+=============================================
+
+Purpose:
+Divide the frozen 64k SINGLE and 64k MULTI samples into four 32k
+analysis-packaging components required by the qualified legacy validator.
+
+This split is frozen before holdout generation.
+
+SINGLE
+------
+
+SINGLE_A:
+32 S0 shards
+
+SINGLE_B:
+32 S0 shards
+
+Assignment:
+odd-numbered S0 holdout shards -> SINGLE_A
+even-numbered S0 holdout shards -> SINGLE_B
+
+Legacy validator mapping:
+SINGLE_A -> S0_C
+SINGLE_B -> S0_D
+
+Therefore:
+S0_C = 32,000 events
+S0_D = 32,000 events
+
+
+MULTI
+-----
+
+Grid    MULTI_A    MULTI_B    Total
+S1         5          5        10
+S2         5          4         9
+S3         4          5         9
+S4         5          4         9
+S5         4          5         9
+S6         5          4         9
+S7         4          5         9
+
+Totals:
+MULTI_A = 32 shards = 32,000 events
+MULTI_B = 32 shards = 32,000 events
+
+Legacy validator mapping:
+MULTI_A -> S1_B
+MULTI_B -> S2_B
+
+Within each grid, assignment is deterministic by local shard index.
+
+S1:
+local shards 1-5  -> MULTI_A
+local shards 6-10 -> MULTI_B
+
+S2, S4, S6:
+odd local shards  -> MULTI_A
+even local shards -> MULTI_B
+
+S3, S5, S7:
+odd local shards  -> MULTI_B
+even local shards -> MULTI_A
+
+This split is analysis packaging only.
+
+The primary MULTI sample is always the pooled union of all 64 qualified
+S1-S7 holdout shards.
+
+No split, grid membership, threshold, or sample composition may be changed
+after physics distributions are inspected.

@@ -1,0 +1,339 @@
+{
+  "baseline_json": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/phase10A_production_definition/phase10A_whizard_sm_parameter_baseline.json",
+  "checks": [
+    {
+      "check": "model_sha256",
+      "expected": "f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede",
+      "file": "SM.mdl",
+      "observed": "f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede",
+      "passed": true
+    },
+    {
+      "check": "model_sha256",
+      "expected": "f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd",
+      "file": "SM_hadrons.mdl",
+      "observed": "f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd",
+      "passed": true
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.16639e-05,
+      "observed": 1.16639e-05,
+      "parameter": "GF",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.16639e-05,
+      "observed": 1.16639e-05,
+      "parameter": "GF",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 91.1882,
+      "observed": 91.1882,
+      "parameter": "mZ",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 91.1882,
+      "observed": 91.1882,
+      "parameter": "mZ",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 80.419,
+      "observed": 80.419,
+      "parameter": "mW",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 80.419,
+      "observed": 80.419,
+      "parameter": "mW",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 125.0,
+      "observed": 125.0,
+      "parameter": "mH",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 125.0,
+      "observed": 125.0,
+      "parameter": "mH",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.1178,
+      "observed": 0.1178,
+      "parameter": "alphas",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.1178,
+      "observed": 0.1178,
+      "parameter": "alphas",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.000510997,
+      "observed": 0.000510997,
+      "parameter": "me",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.000510997,
+      "observed": 0.000510997,
+      "parameter": "me",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.105658389,
+      "observed": 0.105658389,
+      "parameter": "mmu",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.105658389,
+      "observed": 0.105658389,
+      "parameter": "mmu",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.77705,
+      "observed": 1.77705,
+      "parameter": "mtau",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.77705,
+      "observed": 1.77705,
+      "parameter": "mtau",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.095,
+      "observed": 0.095,
+      "parameter": "ms",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.095,
+      "observed": 0.095,
+      "parameter": "ms",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.2,
+      "observed": 1.2,
+      "parameter": "mc",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.2,
+      "observed": 1.2,
+      "parameter": "mc",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 4.2,
+      "observed": 4.2,
+      "parameter": "mb",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 4.2,
+      "observed": 4.2,
+      "parameter": "mb",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 173.1,
+      "observed": 173.1,
+      "parameter": "mtop",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 173.1,
+      "observed": 173.1,
+      "parameter": "mtop",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.523,
+      "observed": 1.523,
+      "parameter": "wtop",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 1.523,
+      "observed": 1.523,
+      "parameter": "wtop",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 2.443,
+      "observed": 2.443,
+      "parameter": "wZ",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 2.443,
+      "observed": 2.443,
+      "parameter": "wZ",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 2.049,
+      "observed": 2.049,
+      "parameter": "wW",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 2.049,
+      "observed": 2.049,
+      "parameter": "wW",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.004143,
+      "observed": 0.004143,
+      "parameter": "wH",
+      "passed": true,
+      "source": "SM.mdl"
+    },
+    {
+      "check": "parameter_value",
+      "expected": 0.004143,
+      "observed": 0.004143,
+      "parameter": "wH",
+      "passed": true,
+      "source": "SM_hadrons.mdl"
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "model \"SM\"",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "Standard Model with trivial CKM matrix",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "derived v     = 1 / sqrt (sqrt (2.) * GF)",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "derived cw    = mW / mZ",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "derived sw    = sqrt (1-cw**2)",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "derived ee    = 2 * sw * mW / v",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "mass mtop  width wtop",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "mass mZ  width wZ",
+      "passed": true
+    },
+    {
+      "check": "required_model_fragment",
+      "fragment": "mass mW  width wW",
+      "passed": true
+    },
+    {
+      "check": "baseline_json_hash",
+      "expected": "f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede",
+      "file": "SM.mdl",
+      "observed": "f6cba9141f9405bbe4dcf604fe4b28b30dd697f1243ea558dbda0d25f435aede",
+      "passed": true
+    },
+    {
+      "check": "baseline_json_hash",
+      "expected": "f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd",
+      "file": "SM_hadrons.mdl",
+      "observed": "f9fdbb9a2b61785a1414bab5cfc63650d0eb7ebbf15ca32dcd6018a322d23efd",
+      "passed": true
+    }
+  ],
+  "failures": [],
+  "schema_version": 1,
+  "sm_hadrons_model": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM_hadrons.mdl",
+  "sm_model": "/cvmfs/sft-nightlies.cern.ch/lcg/nightlies/devkey-head/Fri/whizard/3.1.8/x86_64-el9-gcc14-opt/share/whizard/models/SM.mdl",
+  "status": "PASS"
+}

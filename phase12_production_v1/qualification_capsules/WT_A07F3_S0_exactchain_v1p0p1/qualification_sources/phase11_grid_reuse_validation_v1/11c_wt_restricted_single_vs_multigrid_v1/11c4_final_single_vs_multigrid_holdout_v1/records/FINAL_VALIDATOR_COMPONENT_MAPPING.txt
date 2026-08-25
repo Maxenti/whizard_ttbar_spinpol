@@ -1,0 +1,49 @@
+PHASE-11C FINAL HOLDOUT VALIDATOR COMPONENT MAPPING
+===================================================
+
+The previously qualified C5 validator is reused without editing its source.
+
+Its historical four-component interface is mapped as follows:
+
+Legacy validator label     Final semantic meaning
+-------------------------------------------------
+S0_C                       SINGLE_A
+S0_D                       SINGLE_B
+S1_B                       MULTI_A
+S2_B                       MULTI_B
+
+Primary validator construction:
+
+SINGLE =
+    S0_C + S0_D
+  = SINGLE_A + SINGLE_B
+  = 32,000 + 32,000
+  = 64,000 events
+
+MULTI =
+    S1_B + S2_B
+  = MULTI_A + MULTI_B
+  = 32,000 + 32,000
+  = 64,000 events
+
+The legacy names do NOT imply that MULTI contains only grids S1 and S2.
+
+Final MULTI contains all qualified non-candidate grids:
+S1, S2, S3, S4, S5, S6, S7.
+
+The four input files are analysis-packaging components only.
+
+Primary physics result:
+SINGLE 64k versus MULTI 64k.
+
+The validator's component-level comparisons:
+S0_C vs S0_D
+S1_B vs S2_B
+
+remain diagnostic and are not separate final holdout gates.
+
+Only the runtime structural expected event count is changed:
+10,000 -> 32,000 events/component.
+
+No physics observable, parser, statistical estimator, Holm procedure,
+SMD threshold, KS threshold, or final PASS/FAIL rule is modified.

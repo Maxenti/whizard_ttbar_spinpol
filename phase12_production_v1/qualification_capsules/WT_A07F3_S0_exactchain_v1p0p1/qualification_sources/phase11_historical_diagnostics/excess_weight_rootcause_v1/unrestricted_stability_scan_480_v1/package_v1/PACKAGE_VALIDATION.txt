@@ -1,0 +1,25 @@
+Phase 11 unrestricted stability scan package validation
+=======================================================
+
+Package schema:
+  phase11_unrestricted_stability_scan_480_v1
+
+Static checks performed before packaging:
+  - bash syntax PASS for all shell scripts
+  - Python compile PASS for prepare_campaign.py and collect_results.py
+  - mock prepare_campaign.py PASS
+  - generated manifest = 480 data rows + header
+  - generated DAG parent JOB count = 120
+  - generated DAG child JOB count = 360
+  - generated DAG dependency count = 120
+  - representative adaptive-parent preflight PASS for all A00..A14
+  - mocked fixed-child prefix-reuse contract PASS
+  - adaptive metadata JSON parse PASS
+  - fixed-child metadata JSON parse PASS
+  - collector smoke PASS on partial mocked outputs
+
+Not executable outside CERN during package validation:
+  - real WHIZARD numerical integration
+  - CERN condor_submit_dag parser / schedd submission
+
+Those are explicitly covered by preflight_campaign.sh on lxplus before submission.

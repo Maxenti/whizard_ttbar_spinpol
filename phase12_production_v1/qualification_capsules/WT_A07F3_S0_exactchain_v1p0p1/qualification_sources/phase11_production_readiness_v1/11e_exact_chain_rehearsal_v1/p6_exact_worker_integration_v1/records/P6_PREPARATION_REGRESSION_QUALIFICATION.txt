@@ -1,0 +1,48 @@
+PHASE-11E P6 PREPARATION REGRESSION QUALIFICATION
+=================================================
+
+Test input:
+Authoritative S0 11E shard 0001, 25000 events.
+
+P6 ISR canonicalizer result:
+- events = 25000
+- canonicalized = 25000
+- removed bridges = 50000
+- promoted beams = 50000
+- rewired ISR photons = 50000
+- removed sqme_prc tags = 25000
+- max absolute closure = 9.408836e-09 GeV
+
+Canonical byte-regression:
+PASS
+SHA256 = 976450d0c5f558a9290724f33aa87d04751ca2c24bc466d114c2819a7bc88f4e
+
+History serializer:
+- total events = 25000
+- total particles = 345444
+- reordered events = 24926
+- already-valid events = 74
+- moved particles = 54202
+- maximum particle displacement = 4
+- particles added = 0
+- particles removed = 0
+- resonances added = 0
+- resonances removed = 0
+
+Strict serialization validation:
+PARTICLE_CONTENT_PRESERVATION=PASS
+MOTHER_INDEX_REMAP=PASS
+MOTHER_BEFORE_CHILD=PASS
+DAUGHTER_CONTIGUITY=PASS
+HISTORY_SERIALIZATION_VALIDATION=PASS
+
+Serialized byte-regression against actual P5-qualified input:
+PASS
+SHA256 = d244b87903718ec9b1436415344a01c0c16fb816d76db3854c8f8b4c91109baf
+
+Conclusion:
+The P6 automatic physics-preparation chain is byte-identical to the
+manually qualified P5 preparation for shard 0001.
+
+No further physics-sensitive preparation changes are authorized for P6
+unless a subsequent exact-worker qualification exposes a concrete defect.

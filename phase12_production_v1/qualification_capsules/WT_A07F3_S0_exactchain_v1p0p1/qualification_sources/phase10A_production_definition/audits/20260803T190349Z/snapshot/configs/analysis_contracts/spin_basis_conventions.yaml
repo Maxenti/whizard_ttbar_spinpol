@@ -1,0 +1,375 @@
+schema:
+  name: "whizard_ttbar_spin_basis_conventions"
+  version: 1
+  status: "frozen_phase1c"
+
+campaign_reference:
+  campaign_id: "full6f_365gev_ee_ttbar_spinpol_v1"
+  state_contract: "analysis_contracts/top_spin_state_definition.yaml"
+
+global_coordinate_convention:
+  metric_signature: "+---"
+  three_vector_cross_product: "right_handed"
+  laboratory_positive_z_axis: "nominal incoming electron beam direction"
+
+  incoming_beam_reference:
+    primary: "hard-process incoming electron four-vector"
+    fallback: "nominal laboratory positive-z electron direction"
+    fallback_permitted_for_nominal_results: false
+
+  reason_for_electron_reference: >
+    Every production-plane basis is oriented using the incoming electron
+    direction, independent of beam polarization or lepton flavour.
+
+frame_definitions:
+  laboratory:
+    frame_id: "lab"
+    description: "Generator or detector laboratory frame."
+
+  six_fermion_pair_rest:
+    frame_id: "pair_zmf"
+    four_vector: "Q = q_t + q_tbar"
+    boost: "rotationless boost that brings Q to rest"
+    nominal_basis_construction_frame: true
+
+  truth_top_candidate_rest:
+    frame_id: "top_rest"
+    four_vector: "q_t"
+    boost_source_frame: "pair_zmf"
+    boost: "rotationless boost along the pair-frame q_t velocity"
+
+  truth_antitop_candidate_rest:
+    frame_id: "antitop_rest"
+    four_vector: "q_tbar"
+    boost_source_frame: "pair_zmf"
+    boost: "rotationless boost along the pair-frame q_tbar velocity"
+
+canonical_common_axis_basis:
+  basis_id: "rnk_common_v1"
+  component_order:
+    - "r"
+    - "n"
+    - "k"
+
+  construction_frame: "pair_zmf"
+
+  input_vectors:
+    electron_direction:
+      symbol: "p_hat"
+      definition: >
+        Unit three-vector of the hard-process incoming electron momentum after
+        boosting the incoming electron four-vector into the pair rest frame.
+
+    top_direction:
+      symbol: "k_hat"
+      definition: >
+        Unit three-vector of q_t in the pair rest frame.
+
+  axes:
+    k:
+      formula: "k_hat = p_t / |p_t|"
+      interpretation: "truth-reconstructed top direction"
+
+    n:
+      formula: "n_hat = (p_hat cross k_hat) / |p_hat cross k_hat|"
+      interpretation: "normal to the production plane"
+
+    r:
+      formula: "r_hat = n_hat cross k_hat"
+      interpretation: "in-plane transverse direction"
+
+  handedness:
+    required_relation: "r_hat cross n_hat = k_hat"
+    determinant: 1
+
+  orthonormality_requirements:
+    - "|r_hat| = 1"
+    - "|n_hat| = 1"
+    - "|k_hat| = 1"
+    - "r_hat dot n_hat = 0"
+    - "r_hat dot k_hat = 0"
+    - "n_hat dot k_hat = 0"
+
+  top_qubit_axes:
+    r: "r_hat"
+    n: "n_hat"
+    k: "k_hat"
+
+  antitop_qubit_axes:
+    r: "r_hat"
+    n: "n_hat"
+    k: "k_hat"
+
+  interpretation: >
+    Both qubit spin components are represented in the same right-handed
+    pair-frame triad. The antitop k component in this common-axis basis is
+    measured along the top direction, not along the antitop momentum.
+
+axis_transport_to_candidate_rest_frames:
+  method: "canonical_rotationless_boost"
+
+  top:
+    boost_direction: "+k_hat"
+    additional_spatial_rotation: false
+
+  antitop:
+    boost_direction: "-k_hat"
+    additional_spatial_rotation: false
+
+  requirement: >
+    The pair-frame axes are carried to each candidate rest frame without an
+    additional user-defined rotation. Analyzer components are then computed
+    by dotting the rest-frame lepton unit vector with the transported axes.
+
+  implementation_validation:
+    - "boost candidate four-vector to numerical rest"
+    - "verify lepton four-vector remains future directed"
+    - "verify transported axes remain orthonormal within tolerance"
+    - "verify axis handedness"
+    - "verify inverse-boost closure"
+
+analyzer_component_definitions:
+  top:
+    rest_frame: "top_rest"
+    analyzer: "prompt l+"
+
+    components:
+      uplus_r: "uplus dot r_hat"
+      uplus_n: "uplus dot n_hat"
+      uplus_k: "uplus dot k_hat"
+
+  antitop:
+    rest_frame: "antitop_rest"
+    analyzer: "prompt l-"
+
+    components:
+      uminus_r: "uminus dot r_hat"
+      uminus_n: "uminus dot n_hat"
+      uminus_k: "uminus dot k_hat"
+
+local_helicity_basis:
+  basis_id: "rnk_local_helicity_v1"
+  role: "derived presentation basis"
+
+  top_axes:
+    r: "r_hat"
+    n: "n_hat"
+    k: "k_hat"
+
+  antitop_axes:
+    kbar:
+      formula: "-k_hat"
+
+    nbar:
+      formula: >
+        normalize(p_hat cross kbar_hat) = -n_hat
+
+    rbar:
+      formula: >
+        nbar_hat cross kbar_hat = r_hat
+
+  antitop_axes_in_common_coordinates:
+    rbar: [1, 0, 0]
+    nbar: [0, -1, 0]
+    kbar: [0, 0, -1]
+
+  common_to_antitop_local_rotation:
+    matrix: "diag(1, -1, -1)"
+    determinant: 1
+    interpretation: "proper rotation by pi about the r axis"
+
+  vector_transformations:
+    antitop_local_to_common: "v_common = Rminus v_local"
+    antitop_common_to_local: "v_local = Rminus^T v_common"
+
+  state_transformations:
+    top_polarization: "Bplus_local = Bplus_common"
+    antitop_polarization: "Bminus_local = Rminus^T Bminus_common"
+    correlation: "C_local = C_common Rminus"
+
+  opening_angle_from_local_components:
+    formula: "cos_phi = uplus_local^T Rminus uminus_local"
+
+beam_axis_basis:
+  basis_id: "beam_rnk_common_v1"
+  role: "optional derived presentation basis"
+  implementation_status: "declared_not_yet_primary"
+
+  axes:
+    k_beam: "p_hat"
+    n_beam: "n_hat"
+    r_beam: "n_beam cross k_beam"
+
+  requirement: >
+    The transformation from the canonical basis must be implemented as a
+    proper orthogonal rotation and validated event by event.
+
+off_diagonal_basis:
+  basis_id: "off_diagonal_ee_ttbar_v1"
+  role: "optional theory-comparison basis"
+  implementation_status: "not_locked"
+
+  production_use_permitted: false
+
+  lock_requirements:
+    - "documented analytic definition including gamma and Z couplings"
+    - "WHIZARD convention cross-check"
+    - "threshold and ultrarelativistic limiting-case tests"
+    - "proper-rotation determinant test"
+    - "published reference recorded in provenance"
+
+basis_singularities:
+  minimum_candidate_momentum_GeV: 1.0e-9
+  minimum_production_plane_sine: 1.0e-8
+
+  undefined_conditions:
+    - "|p_t in pair_zmf| below minimum_candidate_momentum_GeV"
+    - "|p_hat cross k_hat| below minimum_production_plane_sine"
+    - "non-timelike candidate four-vector"
+    - "non-timelike pair four-vector"
+
+  nominal_policy: "exclude_from_basis_dependent_observables"
+
+  required_bookkeeping:
+    - "total selected events"
+    - "number of basis-valid events"
+    - "number rejected for each undefined condition"
+    - "weighted rejected fraction"
+
+  deterministic_fallback:
+    permitted_for_debug_visualization: true
+    permitted_for_physics_results: false
+
+angular_ranges:
+  analyzer_components:
+    minimum: -1.0
+    maximum: 1.0
+
+  cos_theta_top:
+    minimum: -1.0
+    maximum: 1.0
+
+  azimuth:
+    range: "[-pi, pi)"
+
+basis_rotation_rules:
+  vector:
+    formula: "v_new = R^T v_old"
+
+  top_polarization:
+    formula: "Bplus_new = Rplus^T Bplus_old"
+
+  antitop_polarization:
+    formula: "Bminus_new = Rminus^T Bminus_old"
+
+  correlation:
+    formula: "C_new = Rplus^T C_old Rminus"
+
+  density_matrix:
+    requirement: >
+      The corresponding SU(2) unitary transformations must be used when
+      rotating the full density matrix directly.
+
+  proper_rotation_requirement:
+    orthogonality: "R^T R = I"
+    determinant: 1
+
+  reflection_policy: >
+    A determinant-minus-one reflection is not a physical spin-space rotation.
+    Reflections may appear only in explicitly labelled legacy presentation
+    conventions and must not be silently applied as SU(2) rotations.
+
+event_averaging_rules:
+  canonical_basis_required_before_averaging: true
+
+  event_dependent_basis_warning: >
+    Although r, n, and k are constructed separately for each event, every
+    analyzer is first expressed in the canonical component labels before
+    moments are accumulated.
+
+  prohibited:
+    - "averaging laboratory Cartesian components without alignment"
+    - "averaging matrices expressed in different component orders"
+    - "averaging local-helicity matrices as though antitop axes were common"
+    - "combining reflected legacy matrices with proper-rotation matrices"
+
+charge_and_flavour_rules:
+  top_branch_identifier: "positive prompt lepton branch"
+  antitop_branch_identifier: "negative prompt lepton branch"
+
+  mixed_flavour_combination:
+    epmum_and_mupem:
+      basis_mapping_required: false
+      reason: >
+        Both channels use the same positive-lepton top branch and
+        negative-lepton antitop branch convention.
+
+  flavour_changes_axis_orientation: false
+
+polarization_rules:
+  electron_reference_direction_changes_with_helicity: false
+
+  rule: >
+    The incoming electron direction defines the production plane in all
+    unpolarized, LR100, and RL100 samples. Beam helicity changes event weights
+    and the physical spin state, not the geometric axis definition.
+
+legacy_cms_reflection_presentation:
+  basis_id: "legacy_cms_reflection_v0"
+  status: "regression_only"
+
+  component_order:
+    - "r"
+    - "n"
+    - "k"
+
+  matrix:
+    symbol: "M_legacy"
+    value: "diag(1, 1, -1)"
+    determinant: -1
+
+  opening_angle:
+    formula: "cos_phi_legacy = uplus^T M_legacy uminus"
+
+  stored_matrix_conversion:
+    formula: "C_legacy_cms = -C_stored M_legacy^T"
+
+  trace_relation:
+    formula: "D_legacy = trace(C_legacy_cms)/3"
+
+  restrictions:
+    - "not a canonical common-axis Pauli basis"
+    - "not an SU(2) rotation"
+    - "not permitted for new nominal state storage"
+    - "must be explicitly converted for comparisons"
+
+numerical_tolerances:
+  unit_vector_norm: 1.0e-10
+  orthogonality: 1.0e-10
+  handedness: 1.0e-10
+  rotation_orthogonality: 1.0e-10
+  rotation_determinant: 1.0e-10
+  inverse_boost_closure_relative: 1.0e-10
+
+required_validation_tests:
+  - "synthetic orthogonal event with known r, n, k axes"
+  - "forward and backward production-plane singularity detection"
+  - "top and antitop candidate rest-frame closure"
+  - "right-handed canonical basis test"
+  - "right-handed local-helicity antitop basis test"
+  - "common-to-local matrix conversion test"
+  - "C_new = Rplus^T C_old Rminus test"
+  - "opening-angle invariance under proper rotations"
+  - "legacy reflection regression test"
+  - "epmum versus mupem axis-label consistency"
+  - "LR100 versus RL100 geometry-label consistency"
+
+required_output_metadata:
+  - "basis_id"
+  - "component_order"
+  - "incoming-electron reference source"
+  - "top-object definition_id"
+  - "basis-valid event count"
+  - "basis-invalid event count by reason"
+  - "rotation or conversion history"
+  - "legacy-convention flag"

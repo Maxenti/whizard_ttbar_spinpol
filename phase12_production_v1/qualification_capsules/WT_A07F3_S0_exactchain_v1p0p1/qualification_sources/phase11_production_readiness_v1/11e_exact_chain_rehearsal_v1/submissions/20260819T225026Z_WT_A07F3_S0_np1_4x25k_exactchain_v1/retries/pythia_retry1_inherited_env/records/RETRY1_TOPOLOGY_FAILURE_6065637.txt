@@ -1,0 +1,50 @@
+PHASE-11E PYTHIA/HepMC3 RETRY1 — LHE TOPOLOGY PREPARATION FAILURE
+=================================================================
+
+Cluster:
+6065637
+
+Jobs:
+4
+
+Requested:
+4 x 25,000 events
+
+Runtime-preflight result:
+PASS on all four jobs.
+
+Runtime mode:
+inherited_submit_host on all four jobs.
+
+Condor result:
+4 x return value 1.
+
+Observed deterministic preparation errors:
+- event 1: parent 5 has non-contiguous daughters [8, 10, 11]
+  implied range [8, 9, 10, 11]
+
+or
+
+- event 1: parent 5 has non-contiguous daughters [7, 9]
+  implied range [7, 8, 9]
+
+Interpretation:
+The inherited-environment correction succeeded.
+
+Failure occurs in LHE topology/canonicalization before PYTHIA8 event
+generation.
+
+PYTHIA events produced:
+0
+
+Physics interpretation:
+NONE yet.
+
+The failure indicates that the current full-6f resonance-history LHE particle
+ordering does not satisfy the contiguous-daughter topology contract expected
+by the canonical-v2/PYTHIA handoff.
+
+Next action:
+Audit the first source event and compare its resonance daughter ordering with
+the FCC-style decay-chain-grouped external-state convention before modifying
+either the physics source or the canonicalizer.

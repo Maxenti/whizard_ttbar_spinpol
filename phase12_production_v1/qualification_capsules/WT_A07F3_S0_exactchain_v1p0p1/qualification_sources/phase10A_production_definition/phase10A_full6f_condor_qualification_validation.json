@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "gate": "PHASE10A_GATE_4C4B_FULL6F_CONDOR_QUALIFICATION",
+  "campaign_id": "full6f_365gev_ee_ttbar_spinpol_v1",
+  "production_id": "phase10_production_v1",
+  "runtime": {
+    "whizard_version": "3.1.8"
+  },
+  "qualification": {
+    "samples": [
+      {
+        "sample_id": "f6f365_ee_unpol_epmum",
+        "polarization": "unpol",
+        "events": 100,
+        "whizard_seed": 1946128702,
+        "status": "PASS",
+        "polarization_include_expected": false
+      },
+      {
+        "sample_id": "f6f365_ee_LR100_epmum",
+        "polarization": "LR100",
+        "events": 100,
+        "whizard_seed": 95558043,
+        "status": "PASS",
+        "polarization_include_expected": true
+      },
+      {
+        "sample_id": "f6f365_ee_RL100_epmum",
+        "polarization": "RL100",
+        "events": 100,
+        "whizard_seed": 868518022,
+        "status": "PASS",
+        "polarization_include_expected": true
+      }
+    ],
+    "metadata_count": 3,
+    "success_marker_count": 3,
+    "lhe_count": 3,
+    "unique_seed_count": 3,
+    "integration_iterations": "1:8900"
+  },
+  "validated_properties": [
+    "direct_full_six_fermion_mode",
+    "localized_process_cards",
+    "state_specific_polarization_include",
+    "effective_seed_before_integration",
+    "requested_event_count",
+    "raw_lhe_sha256",
+    "whizard_finished",
+    "condor_execution"
+  ],
+  "notes": [
+    "The unpolarized source card correctly omits polarization.inc.",
+    "The worker was corrected so polarization.inc is optional rather than universally required.",
+    "The qualification integration setting is an infrastructure smoke setting and is not the canonical production integration setting."
+  ]
+}

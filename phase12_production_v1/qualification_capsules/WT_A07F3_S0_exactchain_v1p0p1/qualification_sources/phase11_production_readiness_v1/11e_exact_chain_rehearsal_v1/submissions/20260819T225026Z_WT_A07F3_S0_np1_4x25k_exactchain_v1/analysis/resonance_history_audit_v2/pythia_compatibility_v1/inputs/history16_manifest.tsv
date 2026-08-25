@@ -1,0 +1,17 @@
+output_event_index	pattern	source_lhe	source_event_index	nup
+0	t0_tb0_Wp0_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0002_seed311191002.serialized_v1.lhe	5471	10
+1	t0_tb0_Wp0_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	5852	11
+2	t0_tb0_Wp1_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	23700	12
+3	t0_tb0_Wp1_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	57	12
+4	t0_tb1_Wp0_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	3969	11
+5	t0_tb1_Wp0_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	404	12
+6	t0_tb1_Wp1_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	3152	12
+7	t0_tb1_Wp1_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	17	13
+8	t1_tb0_Wp0_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	1189	11
+9	t1_tb0_Wp0_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	402	12
+10	t1_tb0_Wp1_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	377	12
+11	t1_tb0_Wp1_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	128	13
+12	t1_tb1_Wp0_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	289	12
+13	t1_tb1_Wp0_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	1	13
+14	t1_tb1_Wp1_Wm0	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	53	13
+15	t1_tb1_Wp1_Wm1	/tmp/cglenn/phase11e_serialized_candidate_v1/lhe/phase11c_S0_11E_0001_seed311191001.serialized_v1.lhe	2	14

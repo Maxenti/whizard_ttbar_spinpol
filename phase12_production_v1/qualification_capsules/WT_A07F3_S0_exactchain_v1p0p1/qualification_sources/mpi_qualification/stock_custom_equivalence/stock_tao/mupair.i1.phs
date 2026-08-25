@@ -1,0 +1,27 @@
+ process mupair_i1
+
+! List of subprocesses with particle bincodes:
+!  8  4      1   2
+! e- e+ => mu- mu+
+!  8  4      1   2
+
+   md5sum_process    = "1846556C6F90E86B98E752EE60A4DF18"
+   md5sum_model_par  = "7656C90A0B2C4325AD911301DACF50EB"
+   md5sum_phs_config = "3FC8DECB69B51E74BC95B12A58BD407C"
+   sqrts         =  2.500000000000E+02
+   m_threshold_s =  5.000000000000E+01
+   m_threshold_t =  1.000000000000E+02
+   off_shell = 2
+   t_channel = 6
+   keep_nonresonant = T
+
+ ! Multiplicity = 2, no resonances,  0 logs,  0 off-shell,  s-channel graph
+ grove #1
+ ! Channel #1
+   tree  3
+
+ ! Multiplicity = 1, 1 resonance,   0 logs,  0 off-shell,  s-channel graph
+ grove #2
+ ! Channel #2
+   tree  3
+   map   3 s_channel        23 ! Z

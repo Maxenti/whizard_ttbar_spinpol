@@ -1,0 +1,7 @@
+sample_a	sample_b	exact_event_overlap	same_position_event_hashes
+S0_C	S0_D	0	0
+S0_C	S1_B	0	0
+S0_C	S2_B	0	0
+S0_D	S1_B	0	0
+S0_D	S2_B	0	0
+S1_B	S2_B	0	0

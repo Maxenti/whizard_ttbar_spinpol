@@ -1,0 +1,16 @@
+model = SM
+
+$rng_method = "rng_stream"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 24680
+
+process mupair = e1, E1 => e2, E2
+
+sqrts = 250 GeV
+
+iterations = 5:100000
+
+integrate (mupair)

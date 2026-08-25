@@ -1,0 +1,24 @@
+{
+  "events_by_parent_label": {
+    "LR100_epmum": 10000,
+    "RL100_epmum": 10000,
+    "unpol_epjets_Wminus_ubar_d": 10000,
+    "unpol_epmum": 10000
+  },
+  "failed_labels": [],
+  "failed_records": 0,
+  "failures_by_parent_label": {},
+  "qa_jsonl": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/campaigns/full6f_365gev_ee_ttbar_spinpol_v1/analysis_inputs/phase9_parton_only_hepmc_qa_with_RL100_20260803.jsonl",
+  "records_by_parent_label": {
+    "LR100_epmum": 20,
+    "RL100_epmum": 20,
+    "unpol_epjets_Wminus_ubar_d": 20,
+    "unpol_epmum": 1
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "total_records": 61,
+  "warning_labels": [],
+  "warning_records": 0,
+  "warnings_by_parent_label": {}
+}

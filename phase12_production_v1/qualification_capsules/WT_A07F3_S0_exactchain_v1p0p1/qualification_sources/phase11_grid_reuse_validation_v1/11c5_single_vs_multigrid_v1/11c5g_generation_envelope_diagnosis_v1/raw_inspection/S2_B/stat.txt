@@ -1,0 +1,9 @@
+  File: /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c5_single_vs_multigrid_v1/holdout_generation_v1/20260815T011402Z_C5_holdout_4x10k_np1/S2_B/phase11c_S2_B_seed211160102.evx
+  Size: 63640116  	Blocks: 124298     IO Block: 4096   regular file
+Device: 41h/65d	Inode: 9223372040629872157  Links: 1
+Access: (0644/-rw-r--r--)  Uid: (177189/  cglenn)   Gid: ( 1399/      zh)
+Context: system_u:object_r:fusefs_t:s0
+Access: 2026-08-15 03:19:24.935862112 +0200
+Modify: 2026-08-15 03:48:01.512268145 +0200
+Change: 2026-08-15 03:48:02.712441516 +0200
+ Birth: -

@@ -1,0 +1,8 @@
+include("common/model.inc")
+include("common/beams.inc")
+include("common/isr.inc")
+include("common/polarization.inc")
+
+process proc_epmum = e1, E1 => b, bbar, E1, n1, e2, N2
+
+include("common/integration.inc")

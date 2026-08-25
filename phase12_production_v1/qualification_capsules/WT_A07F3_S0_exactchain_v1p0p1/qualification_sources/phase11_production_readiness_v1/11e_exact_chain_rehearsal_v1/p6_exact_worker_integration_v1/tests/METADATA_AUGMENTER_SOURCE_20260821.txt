@@ -1,0 +1,159 @@
+     1	#!/usr/bin/env python3
+     2	"""Augment shower metadata with deterministic LHE-shard provenance."""
+     3	from __future__ import annotations
+     4	
+     5	import argparse
+     6	import hashlib
+     7	import json
+     8	import re
+     9	from pathlib import Path
+    10	
+    11	
+    12	def sha256(path: Path) -> str:
+    13	    digest = hashlib.sha256()
+    14	    with path.open("rb") as stream:
+    15	        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+    16	            digest.update(chunk)
+    17	    return digest.hexdigest()
+    18	
+    19	
+    20	def warning_count(text: str, message: str) -> int:
+    21	    pattern = re.compile(
+    22	        rf"^\s*\|\s*(\d+)\s+Warning in {re.escape(message)}",
+    23	        re.MULTILINE,
+    24	    )
+    25	    found = pattern.findall(text)
+    26	    if found:
+    27	        return int(found[-1])
+    28	    return text.count(f"Warning in {message}")
+    29	
+    30	
+    31	def main() -> int:
+    32	    parser = argparse.ArgumentParser(description=__doc__)
+    33	    parser.add_argument("--metadata", required=True, type=Path)
+    34	    parser.add_argument("--input-shard", required=True, type=Path)
+    35	    parser.add_argument("--input-shard-path", required=True)
+    36	    parser.add_argument("--input-shard-expected-sha256", required=True)
+    37	    parser.add_argument("--parent-lhe-path", required=True)
+    38	    parser.add_argument("--source-event-start", required=True, type=int)
+    39	    parser.add_argument("--source-event-stop-exclusive", required=True, type=int)
+    40	    parser.add_argument("--expected-events", required=True, type=int)
+    41	    parser.add_argument("--canonical-summary", required=True, type=Path)
+    42	    parser.add_argument("--explicit-w-summary", required=True, type=Path)
+    43	    parser.add_argument("--worker-log", required=True, type=Path)
+    44	    parser.add_argument(
+    45	        "--qed-shower-by-gamma", required=True, choices=("on", "off")
+    46	    )
+    47	    parser.add_argument("--output", type=Path)
+    48	    args = parser.parse_args()
+    49	
+    50	    for path in (
+    51	        args.metadata,
+    52	        args.input_shard,
+    53	        args.canonical_summary,
+    54	        args.explicit_w_summary,
+    55	        args.worker_log,
+    56	    ):
+    57	        if not path.is_file():
+    58	            raise FileNotFoundError(path)
+    59	    if args.source_event_start < 0:
+    60	        raise ValueError("source-event-start must be non-negative")
+    61	    if args.source_event_stop_exclusive <= args.source_event_start:
+    62	        raise ValueError("source-event-stop-exclusive must exceed start")
+    63	    if (
+    64	        args.source_event_stop_exclusive - args.source_event_start
+    65	        != args.expected_events
+    66	    ):
+    67	        raise ValueError("source event range does not match expected-events")
+    68	
+    69	    metadata = json.loads(args.metadata.read_text())
+    70	    canonical = json.loads(args.canonical_summary.read_text())
+    71	    explicit_w = json.loads(args.explicit_w_summary.read_text())
+    72	    log_text = args.worker_log.read_text(errors="replace")
+    73	    actual_shard_sha = sha256(args.input_shard)
+    74	    if actual_shard_sha != args.input_shard_expected_sha256:
+    75	        raise ValueError(
+    76	            "input shard checksum changed between submit and metadata stages"
+    77	        )
+    78	
+    79	    accepted = int(metadata.get("accepted_events", -1))
+    80	    requested = int(metadata.get("requested_events", -1))
+    81	    canonical_events = int(canonical.get("total_events", -1))
+    82	    explicit_events = int(explicit_w.get("total_events", -1))
+    83	    if not (
+    84	        accepted
+    85	        == requested
+    86	        == canonical_events
+    87	        == explicit_events
+    88	        == args.expected_events
+    89	    ):
+    90	        raise ValueError(
+    91	            "event-count contract failure: "
+    92	            f"accepted={accepted} requested={requested} "
+    93	            f"canonical={canonical_events} explicit_w={explicit_events} "
+    94	            f"expected={args.expected_events}"
+    95	        )
+    96	
+    97	    metadata.update(
+    98	        {
+    99	            "source_lhe_path": args.parent_lhe_path,
+   100	            "input_shard_lhe_path": args.input_shard_path,
+   101	            "input_shard_lhe_sha256": actual_shard_sha,
+   102	            "source_event_range": {
+   103	                "start": args.source_event_start,
+   104	                "stop_exclusive": args.source_event_stop_exclusive,
+   105	                "events": args.expected_events,
+   106	            },
+   107	            "prepared_lhe_policy": (
+   108	                "whizard_extended_isr_to_canonical_lha_v2_explicit_w_v3"
+   109	            ),
+   110	            "preparation_event_limit_verified": True,
+   111	            "qed_shower_by_gamma": args.qed_shower_by_gamma == "on",
+   112	            "photon_conversion_policy": (
+   113	                "pythia_default_on"
+   114	                if args.qed_shower_by_gamma == "on"
+   115	                else "generator_systematic_off"
+   116	            ),
+   117	            "preparation": {
+   118	                "canonical_v2": canonical,
+   119	                "explicit_w_v3": explicit_w,
+   120	            },
+   121	            "pythia_warning_counts": {
+   122	                "me_weight_above_ps": warning_count(
+   123	                    log_text,
+   124	                    "SimpleTimeShower::findMEcorr: ME weight above PS one",
+   125	                ),
+   126	                "negative_dipole_mass": warning_count(
+   127	                    log_text,
+   128	                    "SimpleTimeShower::pTnext: negative dipole mass",
+   129	                ),
+   130	            },
+   131	            "pythia_warning_policy": {
+   132	                "me_weight_above_ps": "must_be_zero_for_explicit_w_v3",
+   133	                "negative_dipole_mass": (
+   134	                    "count_and_monitor_nonfatal_gamma_conversion_trials"
+   135	                    if args.qed_shower_by_gamma == "on"
+   136	                    else "must_be_zero_when_gamma_conversion_is_off"
+   137	                ),
+   138	            },
+   139	        }
+   140	    )
+   141	
+   142	    output = args.output or args.metadata
+   143	    output.parent.mkdir(parents=True, exist_ok=True)
+   144	    temporary = output.with_name(f".{output.name}.partial")
+   145	    temporary.write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n")
+   146	    temporary.replace(output)
+   147	    print(
+   148	        "METADATA AUGMENTED "
+   149	        f"events={args.expected_events} "
+   150	        f"range=[{args.source_event_start},{args.source_event_stop_exclusive}) "
+   151	        f"inserted_w={explicit_w.get('inserted_w_resonances')} "
+   152	        f"qed_shower_by_gamma={args.qed_shower_by_gamma} "
+   153	        f"output={output}"
+   154	    )
+   155	    return 0
+   156	
+   157	
+   158	if __name__ == "__main__":
+   159	    raise SystemExit(main())

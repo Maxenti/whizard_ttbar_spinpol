@@ -1,0 +1,32 @@
+Resonance matrix preflight attempt 1
+====================================
+
+Status:
+  ABORTED BEFORE SUBMISSION
+
+Observed failure:
+  ERROR: no generated-tree common includes found
+
+Root cause:
+  Worker generator patched SOURCE_DIR but left SOURCE_CARD pointing at
+  the original unrestricted generated process.sin.
+
+This created an inconsistent source contract:
+
+  SOURCE_CARD -> original generated process.sin
+  SOURCE_DIR  -> resonance-test variant tree
+  SOURCE_COMMON -> resonance-test variant common/
+
+The qualified localization logic correctly rejected this combination.
+
+Resolution:
+  Regenerate all six workers by replacing the initial SOURCE_CARD
+  assignment and preserving the qualified derivation:
+
+    SOURCE_CARD="$(readlink -f "$SOURCE_CARD")"
+    SOURCE_DIR="$(dirname "$SOURCE_CARD")"
+    SOURCE_COMMON="$SOURCE_DIR/common"
+    SOURCE_CONTEXT="$SOURCE_DIR/render_context.json"
+
+No integration jobs were submitted or executed under the inconsistent
+configuration.

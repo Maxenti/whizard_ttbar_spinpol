@@ -1,0 +1,22 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/scripts/qis/run_365GeV_lhe_point.sh
+
+arguments = --repo-root /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol --campaign-root /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/runs/paper_spin_365GeV_lhe_matrix_10k_v1 --sample-id mumu_ttbar_mupem_RL100_sc_ISR_365GeV --rerun
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+
+getenv = True
+should_transfer_files = NO
+
+output = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor_streams/paper_spin_365GeV_lhe_matrix_10k_v1/recovery_mumu_ttbar_mupem_RL100_sc_ISR_365GeV_20260722T180513Z/stdout/mumu_ttbar_mupem_RL100_sc_ISR_365GeV.out
+error  = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor_streams/paper_spin_365GeV_lhe_matrix_10k_v1/recovery_mumu_ttbar_mupem_RL100_sc_ISR_365GeV_20260722T180513Z/stderr/mumu_ttbar_mupem_RL100_sc_ISR_365GeV.err
+log    = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/condor_streams/paper_spin_365GeV_lhe_matrix_10k_v1/recovery_mumu_ttbar_mupem_RL100_sc_ISR_365GeV_20260722T180513Z/cluster.log
+
+request_cpus = 1
+request_memory = 2500MB
+request_disk = 2500MB
+
++JobFlavour = "tomorrow"
+
+queue 1

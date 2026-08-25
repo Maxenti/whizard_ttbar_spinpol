@@ -1,0 +1,122 @@
+Phase 11 freeze-after-N integration study
+Frozen acceptance criteria
+
+Reference cross section:
+  Candidate-A weighted reference:
+    sigma_A = 12.0403 fb
+    error_A = 0.0201 fb
+
+Families:
+
+  F5:
+    5:100000:"gw",3:200000:""
+
+  F6:
+    6:100000:"gw",3:200000:""
+
+  F7:
+    7:100000:"gw",3:200000:""
+
+Predetermined seeds:
+
+  S0 = 1740114216
+  S1 = 1751949026
+  S2 = 1885084773
+
+
+======================================================================
+EXECUTION STATUS
+======================================================================
+
+Execution PASS requires:
+
+  1. WHIZARD return code = 0.
+  2. No fatal execution error.
+  3. Required output artifacts are present.
+
+Worker-side SUCCESS / EXECUTION_SUCCESS markers indicate execution only.
+
+Worker-side metadata must initially record:
+
+  integration_status = UNASSESSED
+
+Integration quality is determined only by post-run qualification.
+
+
+======================================================================
+SINGLE-JOB INTEGRATION PASS
+======================================================================
+
+A single F-series job passes integration qualification only if ALL of the
+following conditions hold:
+
+  1. Execution status is PASS.
+
+  2. No NaN, infinite, non-finite, or non-positive fixed-grid cross-section
+     result occurs.
+
+  3. All three individual fixed-grid evaluations are finite and positive.
+
+  4. Each individual fixed-grid evaluation has:
+       relative uncertainty < 10%.
+
+  5. The combined fixed-grid result has:
+       relative uncertainty < 2%.
+
+  6. The three individual fixed-grid evaluations are mutually statistically
+     compatible.
+
+     For every pair i,j require:
+
+       |sigma_i - sigma_j|
+       -------------------------------- < 3
+       sqrt(error_i^2 + error_j^2)
+
+  7. The combined fixed-grid result is statistically compatible with the
+     Candidate-A reference.
+
+     Require:
+
+       |sigma_fixed - 12.0403|
+       ------------------------------------ < 3
+       sqrt(error_fixed^2 + 0.0201^2)
+
+
+======================================================================
+FAMILY-LEVEL PASS
+======================================================================
+
+An F5, F6, or F7 prescription passes only if:
+
+  S0 passes
+  AND
+  S1 passes
+  AND
+  S2 passes.
+
+No seed may be discarded or replaced because another seed gives a prettier
+cross section, smaller uncertainty, better efficiency, or more favorable
+grid.
+
+
+======================================================================
+DECISION RULE
+======================================================================
+
+If F5 passes all three seeds:
+  five adaptive iterations are a viable robust stopping point and become the
+  leading candidate for renewed Phase-11 qualification.
+
+If F5 passes but F6 and/or F7 fail:
+  this supports an over-adaptation interpretation and strongly favors
+  stopping after five adaptive iterations.
+
+If F5 itself fails:
+  the stopping boundary lies earlier and/or the per-iteration statistics
+  must be reconsidered. Candidate-A's 5x50k prescription then remains an
+  especially important reference.
+
+F6/F7 are diagnostic boundary tests, not automatically preferred because
+they use more integration statistics.
+
+A family is never qualified by selecting the most favorable stochastic seed.

@@ -1,0 +1,16 @@
+{
+  "already_valid_events": 74,
+  "input_path": "/tmp/cglenn/p6_preparation_regression_shard1/canonical_isr.lhe",
+  "max_particle_displacement": 4,
+  "output_path": "/tmp/cglenn/p6_preparation_regression_shard1/serialized_v1.lhe",
+  "particles_added": 0,
+  "particles_removed": 0,
+  "reordered_events": 24926,
+  "resonances_added": 0,
+  "resonances_removed": 0,
+  "schema_version": 1,
+  "tool": "reorder_lhe_history_for_pythia_v1",
+  "total_events": 25000,
+  "total_moved_particles": 54202,
+  "total_particles": 345444
+}

@@ -1,0 +1,1132 @@
+================================================================
+WORKER HEADER / HELPER RESOLUTION
+================================================================
+     1	#!/usr/bin/env bash
+     2	set -euo pipefail
+     3	
+     4	usage() {
+     5	  cat <<'USAGE'
+     6	Usage: run_pythia_shard.sh --input LHE_SHARD --input-sha256 SHA256
+     7	       --parent-lhe AUTHORITATIVE_LHE --source-event-start N
+     8	       --source-event-stop N --output-root EOS_DIR --sample-id ID
+     9	       --campaign-id ID --shard-id ID --seed N --max-events N
+    10	       --executable PATH --settings PATH [options]
+    11	
+    12	Options:
+    13	  --repo-root PATH               Authoritative project root on shared storage.
+    14	  --key4hep-setup PATH           Project environment setup script.
+    15	  --qed-shower-by-gamma on|off   PYTHIA gamma->fermion shower switch.
+    16	USAGE
+    17	}
+    18	
+    19	INPUT= INPUT_SHA256= PARENT_LHE= SOURCE_EVENT_START= SOURCE_EVENT_STOP=
+    20	OUTPUT_ROOT= SAMPLE_ID= CAMPAIGN_ID= SHARD_ID= SEED= MAX_EVENTS=
+    21	EXECUTABLE= SETTINGS= PROJECT_ROOT=
+    22	KEY4HEP_SETUP=${KEY4HEP_SETUP:-}
+    23	QED_SHOWER_BY_GAMMA=on
+    24	
+    25	while (($#)); do
+    26	  case "$1" in
+    27	    --input) INPUT=$2; shift 2;;
+    28	    --input-sha256) INPUT_SHA256=$2; shift 2;;
+    29	    --parent-lhe) PARENT_LHE=$2; shift 2;;
+    30	    --source-event-start) SOURCE_EVENT_START=$2; shift 2;;
+    31	    --source-event-stop) SOURCE_EVENT_STOP=$2; shift 2;;
+    32	    --output-root) OUTPUT_ROOT=$2; shift 2;;
+    33	    --sample-id) SAMPLE_ID=$2; shift 2;;
+    34	    --campaign-id) CAMPAIGN_ID=$2; shift 2;;
+    35	    --shard-id) SHARD_ID=$2; shift 2;;
+    36	    --seed) SEED=$2; shift 2;;
+    37	    --max-events) MAX_EVENTS=$2; shift 2;;
+    38	    --executable) EXECUTABLE=$2; shift 2;;
+    39	    --settings) SETTINGS=$2; shift 2;;
+    40	    --repo-root) PROJECT_ROOT=$2; shift 2;;
+    41	    --key4hep-setup) KEY4HEP_SETUP=$2; shift 2;;
+    42	    --qed-shower-by-gamma) QED_SHOWER_BY_GAMMA=$2; shift 2;;
+    43	    -h|--help) usage; exit 0;;
+    44	    *) echo "ERROR: unknown argument: $1" >&2; usage >&2; exit 2;;
+    45	  esac
+    46	done
+    47	
+    48	for value in \
+    49	  INPUT INPUT_SHA256 PARENT_LHE SOURCE_EVENT_START SOURCE_EVENT_STOP \
+    50	  OUTPUT_ROOT SAMPLE_ID CAMPAIGN_ID SHARD_ID SEED MAX_EVENTS \
+    51	  EXECUTABLE SETTINGS; do
+    52	  [[ -n ${!value} ]] || { echo "ERROR: missing $value" >&2; exit 2; }
+    53	done
+    54	[[ $QED_SHOWER_BY_GAMMA == on || $QED_SHOWER_BY_GAMMA == off ]] \
+    55	  || { echo "ERROR: --qed-shower-by-gamma must be on or off" >&2; exit 2; }
+    56	[[ $MAX_EVENTS =~ ^[0-9]+$ ]] && (( MAX_EVENTS > 0 )) \
+    57	  || { echo "ERROR: --max-events must be positive" >&2; exit 2; }
+    58	[[ $SOURCE_EVENT_START =~ ^[0-9]+$ && $SOURCE_EVENT_STOP =~ ^[0-9]+$ ]] \
+    59	  || { echo "ERROR: source event range must be non-negative integers" >&2; exit 2; }
+    60	(( SOURCE_EVENT_STOP - SOURCE_EVENT_START == MAX_EVENTS )) \
+    61	  || { echo "ERROR: source range/count mismatch" >&2; exit 2; }
+    62	[[ $INPUT_SHA256 =~ ^[0-9a-fA-F]{64}$ ]] \
+    63	  || { echo "ERROR: invalid --input-sha256" >&2; exit 2; }
+    64	[[ -r $INPUT ]] || { echo "ERROR: unreadable LHE shard: $INPUT" >&2; exit 3; }
+    65	[[ -r $PARENT_LHE ]] || { echo "ERROR: unreadable parent LHE: $PARENT_LHE" >&2; exit 3; }
+    66	[[ -x $EXECUTABLE ]] \
+    67	  || { echo "ERROR: shower executable is not executable: $EXECUTABLE" >&2; exit 4; }
+    68	[[ -r $SETTINGS ]] || { echo "ERROR: unreadable settings: $SETTINGS" >&2; exit 5; }
+    69	[[ $OUTPUT_ROOT == /eos/* ]] \
+    70	  || { echo "ERROR: output root must be EOS: $OUTPUT_ROOT" >&2; exit 6; }
+    71	
+    72	SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+    73	if [[ -n $PROJECT_ROOT ]]; then
+    74	  [[ -d $PROJECT_ROOT ]] \
+    75	    || { echo "ERROR: project root does not exist: $PROJECT_ROOT" >&2; exit 7; }
+    76	  REPO_ROOT=$(cd -- "$PROJECT_ROOT" && pwd)
+    77	else
+    78	  REPO_ROOT=$(cd -- "$SCRIPT_DIR/../.." && pwd)
+    79	fi
+    80	
+    81	HELPER_DIR="$REPO_ROOT/scripts/showering"
+    82	CANONICALIZER="$HELPER_DIR/canonicalize_whizard_lhe_for_pythia.py"
+    83	EXPLICIT_W_ADAPTER="$HELPER_DIR/insert_explicit_w_resonances.py"
+    84	METADATA_AUGMENTER="$HELPER_DIR/augment_shower_metadata.py"
+    85	for helper in "$CANONICALIZER" "$EXPLICIT_W_ADAPTER" "$METADATA_AUGMENTER"; do
+    86	  [[ -x $helper ]] || { echo "ERROR: missing executable helper: $helper" >&2; exit 7; }
+    87	done
+    88	
+    89	# The submit description inherits the already validated Key4HEP runtime
+    90	# environment from the submit host.  This avoids independently sourcing the
+    91	# full Key4HEP/Spack setup in every shard, which is expensive and can create a
+    92	# large simultaneous CVMFS/setup storm for O(100) jobs.
+    93	if [[ ${WHIZARD_TTBAR_ENV_READY:-0} == 1 ]]; then
+    94	  echo "RUNTIME_ENV mode=inherited_submit_host"
+    95	elif [[ -n $KEY4HEP_SETUP ]]; then
+    96	  echo "RUNTIME_ENV mode=worker_fallback_setup"
+    97	  [[ -r $KEY4HEP_SETUP ]] \
+    98	    || { echo "ERROR: unreadable environment setup: $KEY4HEP_SETUP" >&2; exit 8; }
+    99	  nounset_was_on=0
+   100	  errexit_was_on=0
+   101	  case $- in *u*) nounset_was_on=1; set +u;; esac
+   102	  case $- in *e*) errexit_was_on=1; set +e;; esac
+   103	  # shellcheck disable=SC1090
+   104	  source "$KEY4HEP_SETUP"
+   105	  setup_rc=$?
+   106	  (( errexit_was_on == 0 )) || set -e
+   107	  (( nounset_was_on == 0 )) || set -u
+   108	  (( setup_rc == 0 )) \
+   109	    || { echo "ERROR: environment setup failed rc=$setup_rc" >&2; exit 8; }
+   110	else
+   111	  echo "ERROR: no inherited Key4HEP runtime and no fallback setup script" >&2
+   112	  exit 8
+   113	fi
+   114	
+   115	for command in python3 sha256sum ldd; do
+   116	  command -v "$command" >/dev/null 2>&1 \
+   117	    || { echo "ERROR: runtime command missing after environment setup: $command" >&2; exit 8; }
+   118	done
+   119	
+   120	missing_libraries=$(ldd "$EXECUTABLE" 2>&1 | awk '/not found/ {print}')
+   121	if [[ -n $missing_libraries ]]; then
+   122	  echo "ERROR: shower executable has unresolved shared libraries:" >&2
+   123	  printf '%s\n' "$missing_libraries" >&2
+   124	  exit 8
+   125	fi
+   126	
+   127	export PYTHONDONTWRITEBYTECODE=1
+   128	SCRATCH_BASE=${_CONDOR_SCRATCH_DIR:-${TMPDIR:-/tmp/${USER:-unknown}}}
+   129	WORK=$(mktemp -d "$SCRATCH_BASE/qis_shower_${SAMPLE_ID}_${SHARD_ID}_XXXXXX")
+   130	cleanup(){ rm -rf "$WORK"; }
+   131	trap cleanup EXIT
+   132	
+   133	LOCAL_SOURCE=$WORK/source_shard.lhe
+   134	LOCAL_V2=$WORK/canonical_v2.lhe
+   135	LOCAL_V2_SUMMARY=$WORK/canonical_v2.summary.json
+   136	LOCAL_V3=$WORK/explicit_w_v3.lhe
+   137	LOCAL_V3_SUMMARY=$WORK/explicit_w_v3.summary.json
+   138	LOCAL_OUT=$WORK/output.hepmc3
+   139	LOCAL_META=$WORK/output.hepmc3.metadata.json
+   140	LOCAL_LOG=$WORK/pythia.log
+   141	
+   142	cp -p "$INPUT" "$LOCAL_SOURCE"
+   143	actual_sha=$(sha256sum "$LOCAL_SOURCE" | awk '{print $1}')
+   144	[[ $actual_sha == "$INPUT_SHA256" ]] \
+   145	  || { echo "ERROR: input shard checksum mismatch" >&2; exit 9; }
+   146	
+   147	python3 "$CANONICALIZER" \
+   148	  --input "$LOCAL_SOURCE" \
+   149	  --output "$LOCAL_V2" \
+   150	  --summary "$LOCAL_V2_SUMMARY"
+
+================================================================
+WORKER PREPARATION / PYTHIA / STAGING
+================================================================
+   150	  --summary "$LOCAL_V2_SUMMARY"
+   151	
+   152	python3 "$EXPLICIT_W_ADAPTER" \
+   153	  --input "$LOCAL_V2" \
+   154	  --output "$LOCAL_V3" \
+   155	  --summary "$LOCAL_V3_SUMMARY"
+   156	
+   157	python3 - \
+   158	  "$LOCAL_V2_SUMMARY" \
+   159	  "$LOCAL_V3_SUMMARY" \
+   160	  "$MAX_EVENTS" <<'PY'
+   161	import json
+   162	import sys
+   163	from pathlib import Path
+   164	
+   165	canonical = json.loads(Path(sys.argv[1]).read_text())
+   166	explicit_w = json.loads(Path(sys.argv[2]).read_text())
+   167	expected = int(sys.argv[3])
+   168	canonical_events = int(canonical.get("total_events", -1))
+   169	explicit_events = int(explicit_w.get("total_events", -1))
+   170	inserted_w = int(explicit_w.get("inserted_w_resonances", -1))
+   171	if canonical_events != expected:
+   172	    raise SystemExit(
+   173	        f"canonicalizer processed {canonical_events} events; expected {expected}"
+   174	    )
+   175	if explicit_events != expected:
+   176	    raise SystemExit(
+   177	        f"explicit-W adapter processed {explicit_events} events; expected {expected}"
+   178	    )
+   179	if inserted_w != 2 * expected:
+   180	    raise SystemExit(
+   181	        f"explicit-W adapter inserted {inserted_w} W resonances; "
+   182	        f"expected {2 * expected}"
+   183	    )
+   184	print(
+   185	    "PREPARATION EVENT LIMIT PASS "
+   186	    f"events={expected} inserted_w={inserted_w}"
+   187	)
+   188	PY
+   189	
+   190	PYTHIA_OVERRIDES=()
+   191	if [[ $QED_SHOWER_BY_GAMMA == off ]]; then
+   192	  PYTHIA_OVERRIDES+=(--set "TimeShower:QEDshowerByGamma = off")
+   193	fi
+   194	
+   195	set +e
+   196	"$EXECUTABLE" \
+   197	  --input "$LOCAL_V3" \
+   198	  --output "$LOCAL_OUT" \
+   199	  --metadata "$LOCAL_META" \
+   200	  --settings "$SETTINGS" \
+   201	  --sample-id "$SAMPLE_ID" \
+   202	  --campaign-id "$CAMPAIGN_ID" \
+   203	  --shard-id "$SHARD_ID" \
+   204	  --seed "$SEED" \
+   205	  --max-events "$MAX_EVENTS" \
+   206	  "${PYTHIA_OVERRIDES[@]}" \
+   207	  2>&1 | tee "$LOCAL_LOG"
+   208	shower_rc=${PIPESTATUS[0]}
+   209	set -e
+   210	if (( shower_rc != 0 )); then
+   211	  echo "ERROR: PYTHIA/HepMC conversion failed rc=$shower_rc" >&2
+   212	  exit "$shower_rc"
+   213	fi
+   214	
+   215	[[ -s $LOCAL_OUT ]] || { echo "ERROR: missing/empty local HepMC output" >&2; exit 10; }
+   216	[[ -s $LOCAL_META ]] || { echo "ERROR: missing/empty local metadata" >&2; exit 11; }
+   217	
+   218	python3 "$METADATA_AUGMENTER" \
+   219	  --metadata "$LOCAL_META" \
+   220	  --input-shard "$LOCAL_SOURCE" \
+   221	  --input-shard-path "$INPUT" \
+   222	  --input-shard-expected-sha256 "$INPUT_SHA256" \
+   223	  --parent-lhe-path "$PARENT_LHE" \
+   224	  --source-event-start "$SOURCE_EVENT_START" \
+   225	  --source-event-stop-exclusive "$SOURCE_EVENT_STOP" \
+   226	  --expected-events "$MAX_EVENTS" \
+   227	  --canonical-summary "$LOCAL_V2_SUMMARY" \
+   228	  --explicit-w-summary "$LOCAL_V3_SUMMARY" \
+   229	  --worker-log "$LOCAL_LOG" \
+   230	  --qed-shower-by-gamma "$QED_SHOWER_BY_GAMMA"
+   231	
+   232	FINAL_DIR=$OUTPUT_ROOT/hepmc3/$SAMPLE_ID
+   233	META_DIR=$OUTPUT_ROOT/metadata/$SAMPLE_ID
+   234	LOG_DIR=$OUTPUT_ROOT/logs/$SAMPLE_ID
+   235	PREP_DIR=$OUTPUT_ROOT/preparation/$SAMPLE_ID
+   236	for directory in "$FINAL_DIR" "$META_DIR" "$LOG_DIR" "$PREP_DIR"; do
+   237	  for attempt in 1 2 3 4 5; do
+   238	    mkdir -p "$directory" 2>/dev/null || true
+   239	    [[ -d $directory ]] && break
+   240	    sleep "$attempt"
+   241	  done
+   242	  [[ -d $directory ]] || { echo "ERROR: cannot prepare $directory" >&2; exit 12; }
+   243	done
+   244	
+   245	BASE=${SAMPLE_ID}__${SHARD_ID}
+   246	stage_atomic() {
+   247	  local source=$1
+   248	  local destination=$2
+   249	  local directory
+   250	  directory=$(dirname -- "$destination")
+   251	  local temporary="$directory/.$(basename -- "$destination").partial.$$"
+   252	  cp -p "$source" "$temporary"
+   253	  mv -f "$temporary" "$destination"
+   254	}
+   255	
+   256	stage_atomic "$LOCAL_OUT" "$FINAL_DIR/${BASE}.hepmc3"
+   257	stage_atomic "$LOCAL_META" "$META_DIR/${BASE}.json"
+   258	stage_atomic "$LOCAL_LOG" "$LOG_DIR/${BASE}.log"
+   259	stage_atomic "$LOCAL_V2_SUMMARY" "$PREP_DIR/${BASE}.canonical_v2.json"
+   260	stage_atomic "$LOCAL_V3_SUMMARY" "$PREP_DIR/${BASE}.explicit_w_v3.json"
+   261	
+   262	echo "STAGED $FINAL_DIR/${BASE}.hepmc3"
+   263	echo "METADATA $META_DIR/${BASE}.json"
+   264	echo "SOURCE_RANGE [$SOURCE_EVENT_START,$SOURCE_EVENT_STOP) events=$MAX_EVENTS"
+   265	echo "POLICY explicit_w_v3 qed_shower_by_gamma=$QED_SHOWER_BY_GAMMA repo=$REPO_ROOT"
+
+================================================================
+CANONICALIZER VALIDATION
+================================================================
+   230	
+   231	        particle.mother1 = incoming_pair[0]
+   232	        particle.mother2 = incoming_pair[1]
+   233	        rewired += 1
+   234	
+   235	    return rewired
+   236	
+   237	
+   238	def validate_contiguous_daughter_ranges(
+   239	    particles: list[Particle],
+   240	    *,
+   241	    event_number: int,
+   242	) -> None:
+   243	    """Require each parent's explicit daughter indices to form one range.
+   244	
+   245	    PYTHIA stores daughter relationships as inclusive first/last index ranges.
+   246	    A non-contiguous child set therefore cannot be represented without
+   247	    accidentally claiming unrelated particles as daughters.
+   248	    """
+   249	
+   250	    children_by_parent: dict[int, list[int]] = {
+   251	        index: [] for index in range(1, len(particles) + 1)
+   252	    }
+   253	
+   254	    for child_index, particle in enumerate(particles, start=1):
+   255	        parents = {
+   256	            mother
+   257	            for mother in (particle.mother1, particle.mother2)
+   258	            if mother != 0
+   259	        }
+   260	        for parent in parents:
+   261	            children_by_parent[parent].append(child_index)
+   262	
+   263	    for parent, children in children_by_parent.items():
+   264	        if not children:
+   265	            continue
+   266	        ordered = sorted(set(children))
+   267	        expected = list(range(ordered[0], ordered[-1] + 1))
+   268	        if ordered != expected:
+   269	            raise CanonicalizationError(
+   270	                f"event {event_number}: parent {parent} has non-contiguous "
+   271	                f"daughters {ordered}; implied range would be {expected}"
+   272	            )
+   273	
+   274	def validate_canonical_particles(
+   275	    particles: list[Particle],
+   276	    *,
+   277	    event_number: int,
+   278	    closure_rel_tolerance: float,
+   279	    closure_abs_tolerance_gev: float,
+   280	) -> tuple[float, float]:
+   281	    if len(particles) < 4:
+   282	        raise CanonicalizationError(
+   283	            f"event {event_number}: canonical event contains only {len(particles)} particles"
+   284	        )
+   285	
+   286	    incoming = [p for p in particles if p.status == -1]
+   287	    if len(incoming) != 2:
+   288	        raise CanonicalizationError(
+   289	            f"event {event_number}: expected exactly two ISTUP=-1 particles, found {len(incoming)}"
+   290	        )
+   291	    if any(p.status == -9 for p in particles):
+   292	        raise CanonicalizationError(
+   293	            f"event {event_number}: ISTUP=-9 remains after canonicalization"
+   294	        )
+   295	
+   296	    size = len(particles)
+   297	    for new_index, particle in enumerate(particles, start=1):
+   298	        for label, mother in (("mother1", particle.mother1), ("mother2", particle.mother2)):
+   299	            if mother < 0 or mother > size:
+   300	                raise CanonicalizationError(
+   301	                    f"event {event_number}: particle {new_index} {label}={mother} "
+   302	                    f"outside [0,{size}]"
+   303	                )
+   304	            if mother == new_index:
+   305	                raise CanonicalizationError(
+   306	                    f"event {event_number}: particle {new_index} is its own mother"
+   307	                )
+   308	
+   309	    validate_contiguous_daughter_ranges(
+   310	        particles,
+   311	        event_number=event_number,
+   312	    )
+   313	
+   314	    max_abs, max_rel = closure_metrics(particles)
+   315	    if max_abs > closure_abs_tolerance_gev and max_rel > closure_rel_tolerance:
+   316	        raise CanonicalizationError(
+   317	            f"event {event_number}: four-momentum closure failed: "
+   318	            f"max_abs={max_abs:.6e} GeV max_rel={max_rel:.6e}"
+   319	        )
+   320	    return max_abs, max_rel
+   321	
+   322	
+   323	def canonicalize_event(
+   324	    event_lines: list[str],
+   325	    *,
+   326	    event_number: int,
+   327	    closure_rel_tolerance: float,
+   328	    closure_abs_tolerance_gev: float,
+   329	) -> EventResult:
+   330	    if not event_lines or event_lines[0].strip() != "<event>":
+
+================================================================
+CANONICALIZER TRANSFORM
+================================================================
+   330	    if not event_lines or event_lines[0].strip() != "<event>":
+   331	        raise CanonicalizationError(f"event {event_number}: missing <event> opener")
+   332	    if event_lines[-1].strip() != "</event>":
+   333	        raise CanonicalizationError(f"event {event_number}: missing </event> closer")
+   334	
+   335	    cursor = 1
+   336	    while cursor < len(event_lines) - 1 and not event_lines[cursor].strip():
+   337	        cursor += 1
+   338	    if cursor >= len(event_lines) - 1:
+   339	        raise CanonicalizationError(f"event {event_number}: missing event header")
+   340	
+   341	    header_tokens = event_lines[cursor].split()
+   342	    if len(header_tokens) < 6:
+   343	        raise CanonicalizationError(
+   344	            f"event {event_number}: malformed event header {event_lines[cursor]!r}"
+   345	        )
+   346	    try:
+   347	        nup = int(header_tokens[0])
+   348	    except ValueError as exc:
+   349	        raise CanonicalizationError(
+   350	            f"event {event_number}: invalid NUP value {header_tokens[0]!r}"
+   351	        ) from exc
+   352	
+   353	    particle_start = cursor + 1
+   354	    particle_end = particle_start + nup
+   355	    if particle_end > len(event_lines) - 1:
+   356	        raise CanonicalizationError(
+   357	            f"event {event_number}: NUP={nup} exceeds available particle lines"
+   358	        )
+   359	
+   360	    particles = [
+   361	        parse_particle(event_lines[particle_start + offset], offset + 1)
+   362	        for offset in range(nup)
+   363	    ]
+   364	    trailing = event_lines[particle_end:-1]
+   365	
+   366	    beams = [p for p in particles if p.status == -9]
+   367	    bridges = [p for p in particles if p.status == -1]
+   368	
+   369	    if not beams and len(bridges) == 2:
+   370	        rewired_isr_photons = normalize_isr_photon_mothers(particles)
+   371	        max_abs, max_rel = validate_canonical_particles(
+   372	            particles,
+   373	            event_number=event_number,
+   374	            closure_rel_tolerance=closure_rel_tolerance,
+   375	            closure_abs_tolerance_gev=closure_abs_tolerance_gev,
+   376	        )
+   377	
+   378	        if rewired_isr_photons == 0:
+   379	            rendered = event_lines
+   380	        else:
+   381	            rendered = [
+   382	                "<event>",
+   383	                " " + " ".join(header_tokens),
+   384	                *(particle.render() for particle in particles),
+   385	                *trailing,
+   386	                "</event>",
+   387	            ]
+   388	
+   389	        return EventResult(
+   390	            lines=rendered,
+   391	            canonicalized=False,
+   392	            removed_bridges=0,
+   393	            promoted_beams=0,
+   394	            rewired_isr_photons=rewired_isr_photons,
+   395	            max_abs_closure_gev=max_abs,
+   396	            max_rel_closure=max_rel,
+   397	        )
+   398	
+   399	    if len(beams) != 2 or len(bridges) != 2:
+   400	        raise CanonicalizationError(
+   401	            f"event {event_number}: unsupported incoming layout: "
+   402	            f"ISTUP=-9 count={len(beams)}, ISTUP=-1 count={len(bridges)}"
+   403	        )
+   404	
+   405	    beam_indices = {p.original_index for p in beams}
+   406	    bridge_to_beam: dict[int, int] = {}
+   407	
+   408	    for bridge in bridges:
+   409	        if bridge.mother1 not in beam_indices or bridge.mother2 != 0:
+   410	            raise CanonicalizationError(
+   411	                f"event {event_number}: bridge particle {bridge.original_index} "
+   412	                f"has mothers ({bridge.mother1},{bridge.mother2}), expected one beam mother"
+   413	            )
+   414	        beam = next(p for p in beams if p.original_index == bridge.mother1)
+   415	        if beam.pid != bridge.pid:
+   416	            raise CanonicalizationError(
+   417	                f"event {event_number}: beam/bridge PID mismatch: "
+   418	                f"beam {beam.original_index} pid={beam.pid}, "
+   419	                f"bridge {bridge.original_index} pid={bridge.pid}"
+   420	            )
+   421	        bridge_to_beam[bridge.original_index] = beam.original_index
+   422	
+   423	    if len(set(bridge_to_beam.values())) != 2:
+   424	        raise CanonicalizationError(
+   425	            f"event {event_number}: bridge particles do not map one-to-one onto beams"
+   426	        )
+   427	
+   428	    remove_indices = set(bridge_to_beam)
+   429	    survivors = [p for p in particles if p.original_index not in remove_indices]
+   430	    old_to_new = {
+   431	        particle.original_index: new_index
+   432	        for new_index, particle in enumerate(survivors, start=1)
+   433	    }
+   434	
+   435	    for particle in survivors:
+   436	        if particle.original_index in beam_indices:
+   437	            particle.status = -1
+   438	            particle.mother1 = 0
+   439	            particle.mother2 = 0
+   440	        else:
+   441	            particle.mother1 = remap_mother(
+   442	                particle.mother1,
+   443	                old_to_new=old_to_new,
+   444	                bridge_to_beam=bridge_to_beam,
+   445	            )
+   446	            particle.mother2 = remap_mother(
+   447	                particle.mother2,
+   448	                old_to_new=old_to_new,
+   449	                bridge_to_beam=bridge_to_beam,
+   450	            )
+   451	
+   452	    rewired_isr_photons = normalize_isr_photon_mothers(survivors)
+   453	
+   454	    max_abs, max_rel = validate_canonical_particles(
+   455	        survivors,
+   456	        event_number=event_number,
+   457	        closure_rel_tolerance=closure_rel_tolerance,
+   458	        closure_abs_tolerance_gev=closure_abs_tolerance_gev,
+   459	    )
+   460	
+   461	    header_tokens[0] = str(len(survivors))
+   462	    rendered = [
+   463	        "<event>",
+   464	        " " + " ".join(header_tokens),
+   465	        *(particle.render() for particle in survivors),
+   466	        *trailing,
+   467	        "</event>",
+   468	    ]
+   469	    return EventResult(
+   470	        lines=rendered,
+   471	        canonicalized=True,
+   472	        removed_bridges=len(remove_indices),
+   473	        promoted_beams=len(beams),
+   474	        rewired_isr_photons=rewired_isr_photons,
+   475	        max_abs_closure_gev=max_abs,
+   476	        max_rel_closure=max_rel,
+   477	    )
+   478	
+   479	
+   480	def strip_sqme_prc(lines: list[str]) -> tuple[list[str], int]:
+   481	    output: list[str] = []
+   482	    removed = 0
+   483	    skipping = False
+   484	
+   485	    for line in lines:
+   486	        if not skipping and SQME_OPEN_RE.search(line):
+   487	            removed += 1
+   488	            if "</weight>" not in line:
+   489	                skipping = True
+   490	            continue
+   491	        if skipping:
+   492	            if "</weight>" in line:
+   493	                skipping = False
+   494	            continue
+   495	        output.append(line)
+   496	
+   497	    if skipping:
+   498	        raise CanonicalizationError("unterminated sqme_prc <weight> element")
+   499	    return output, removed
+   500	
+   501	
+   502	def write_atomic(path: Path, text_lines: Iterable[str]) -> None:
+   503	    path.parent.mkdir(parents=True, exist_ok=True)
+   504	    fd, temporary_name = tempfile.mkstemp(
+   505	        prefix=f".{path.name}.",
+   506	        suffix=".tmp",
+   507	        dir=path.parent,
+   508	        text=True,
+   509	    )
+   510	    temporary = Path(temporary_name)
+
+================================================================
+CANONICALIZER MAIN
+================================================================
+   540	
+   541	    output_lines: list[str] = []
+   542	    in_event = False
+   543	    event_lines: list[str] = []
+   544	
+   545	    with input_path.open("r", encoding="utf-8", errors="strict") as source:
+   546	        for raw in source:
+   547	            line = raw.rstrip("\r\n")
+   548	            if not in_event:
+   549	                if line.strip() == "<event>":
+   550	                    in_event = True
+   551	                    event_lines = [line]
+   552	                else:
+   553	                    output_lines.append(line)
+   554	                continue
+   555	
+   556	            event_lines.append(line)
+   557	            if line.strip() != "</event>":
+   558	                continue
+   559	
+   560	            summary.total_events += 1
+   561	            result = canonicalize_event(
+   562	                event_lines,
+   563	                event_number=summary.total_events,
+   564	                closure_rel_tolerance=closure_rel_tolerance,
+   565	                closure_abs_tolerance_gev=closure_abs_tolerance_gev,
+   566	            )
+   567	            transformed = result.lines
+   568	            if remove_sqme_prc:
+   569	                transformed, removed = strip_sqme_prc(transformed)
+   570	                summary.removed_sqme_prc_tags += removed
+   571	
+   572	            output_lines.extend(transformed)
+   573	            summary.max_abs_closure_gev = max(
+   574	                summary.max_abs_closure_gev,
+   575	                result.max_abs_closure_gev,
+   576	            )
+   577	            summary.max_rel_closure = max(
+   578	                summary.max_rel_closure,
+   579	                result.max_rel_closure,
+   580	            )
+   581	            if result.canonicalized:
+   582	                summary.canonicalized_events += 1
+   583	                summary.removed_bridge_particles += result.removed_bridges
+   584	                summary.promoted_beam_particles += result.promoted_beams
+   585	            summary.rewired_isr_photons += result.rewired_isr_photons
+   586	            if not result.canonicalized:
+   587	                summary.already_canonical_events += 1
+   588	
+   589	            event_lines = []
+   590	            in_event = False
+   591	
+   592	    if in_event:
+   593	        raise CanonicalizationError("input ended inside an <event> block")
+   594	    if summary.total_events == 0:
+   595	        raise CanonicalizationError("input contains no <event> blocks")
+   596	
+   597	    write_atomic(output_path, output_lines)
+   598	
+   599	    if summary_path is not None:
+   600	        summary_path.parent.mkdir(parents=True, exist_ok=True)
+   601	        summary_path.write_text(
+   602	            json.dumps(summary.to_dict(), indent=2, sort_keys=True) + "\n",
+   603	            encoding="utf-8",
+   604	        )
+   605	
+   606	    return summary
+   607	
+   608	
+   609	def build_parser() -> argparse.ArgumentParser:
+   610	    parser = argparse.ArgumentParser(
+   611	        description="Canonicalize WHIZARD LHE ISR history for PYTHIA8."
+   612	    )
+   613	    parser.add_argument("--input", required=True, type=Path)
+   614	    parser.add_argument("--output", required=True, type=Path)
+   615	    parser.add_argument("--summary", type=Path)
+   616	    parser.add_argument(
+   617	        "--keep-sqme-prc",
+   618	        action="store_true",
+   619	        help="Retain WHIZARD sqme_prc auxiliary weight tags.",
+   620	    )
+   621	    parser.add_argument(
+   622	        "--closure-rel-tolerance",
+   623	        type=float,
+   624	        default=1.0e-7,
+   625	    )
+   626	    parser.add_argument(
+   627	        "--closure-abs-tolerance-gev",
+   628	        type=float,
+   629	        default=1.0e-6,
+   630	    )
+   631	    return parser
+   632	
+   633	
+   634	def main() -> int:
+   635	    args = build_parser().parse_args()
+   636	    try:
+   637	        summary = canonicalize_file(
+   638	            args.input,
+   639	            args.output,
+   640	            summary_path=args.summary,
+   641	            remove_sqme_prc=not args.keep_sqme_prc,
+   642	            closure_rel_tolerance=args.closure_rel_tolerance,
+   643	            closure_abs_tolerance_gev=args.closure_abs_tolerance_gev,
+   644	        )
+   645	    except (OSError, CanonicalizationError) as exc:
+   646	        print(f"ERROR: {exc}", file=sys.stderr)
+   647	        return 1
+   648	
+   649	    print(
+   650	        "CANONICALIZATION SUCCESS "
+   651	        f"events={summary.total_events} "
+   652	        f"canonicalized={summary.canonicalized_events} "
+   653	        f"already_canonical={summary.already_canonical_events} "
+   654	        f"removed_bridges={summary.removed_bridge_particles} "
+   655	        f"promoted_beams={summary.promoted_beam_particles} "
+   656	        f"rewired_isr_photons={summary.rewired_isr_photons} "
+   657	        f"removed_sqme_prc={summary.removed_sqme_prc_tags} "
+   658	        f"max_abs_closure_GeV={summary.max_abs_closure_gev:.6e} "
+   659	        f"output={summary.output_path}"
+   660	    )
+   661	    return 0
+   662	
+   663	
+   664	if __name__ == "__main__":
+   665	    raise SystemExit(main())
+
+================================================================
+SERIALIZER MAIN / CLI
+================================================================
+   540	    output_lines.extend(
+   541	        event.suffix_lines
+   542	    )
+   543	
+   544	    output_lines.append(
+   545	        event.closing
+   546	    )
+   547	
+   548	    return (
+   549	        output_lines,
+   550	        {
+   551	            "particles": len(particles),
+   552	            "moved_particles": moved_particles,
+   553	            "max_displacement": max_displacement,
+   554	            "reordered": int(
+   555	                order != original_order
+   556	            ),
+   557	        },
+   558	    )
+   559	
+   560	
+   561	def main() -> int:
+   562	    args = parse_args()
+   563	
+   564	    input_path = args.input.resolve()
+   565	    output_path = args.output.resolve()
+   566	    summary_path = args.summary.resolve()
+   567	
+   568	    lines = input_path.read_text(
+   569	        errors="replace"
+   570	    ).splitlines(
+   571	        keepends=True
+   572	    )
+   573	
+   574	    output_path.parent.mkdir(
+   575	        parents=True,
+   576	        exist_ok=True,
+   577	    )
+   578	
+   579	    summary_path.parent.mkdir(
+   580	        parents=True,
+   581	        exist_ok=True,
+   582	    )
+   583	
+   584	    output_lines: list[str] = []
+   585	
+   586	    total_events = 0
+   587	    reordered_events = 0
+   588	    total_particles = 0
+   589	    total_moved_particles = 0
+   590	    max_displacement = 0
+   591	
+   592	    i = 0
+   593	
+   594	    while i < len(lines):
+   595	        if lines[i].strip() != "<event>":
+   596	            output_lines.append(
+   597	                lines[i]
+   598	            )
+   599	            i += 1
+   600	            continue
+   601	
+   602	        event, next_i = read_event(
+   603	            lines,
+   604	            i,
+   605	        )
+   606	
+   607	        serialized, stats = serialize_event(
+   608	            event
+   609	        )
+   610	
+   611	        output_lines.extend(
+   612	            serialized
+   613	        )
+   614	
+   615	        total_events += 1
+   616	        reordered_events += stats[
+   617	            "reordered"
+   618	        ]
+   619	
+   620	        total_particles += stats[
+   621	            "particles"
+   622	        ]
+   623	
+   624	        total_moved_particles += stats[
+   625	            "moved_particles"
+   626	        ]
+   627	
+   628	        max_displacement = max(
+   629	            max_displacement,
+   630	            stats[
+   631	                "max_displacement"
+   632	            ],
+   633	        )
+   634	
+   635	        i = next_i
+   636	
+   637	    output_path.write_text(
+   638	        "".join(output_lines)
+   639	    )
+   640	
+   641	    summary = {
+   642	        "schema_version": 1,
+   643	        "tool": (
+   644	            "reorder_lhe_history_for_pythia_v1"
+   645	        ),
+   646	        "input_path": str(
+   647	            input_path
+   648	        ),
+   649	        "output_path": str(
+   650	            output_path
+   651	        ),
+   652	        "total_events": total_events,
+   653	        "total_particles": total_particles,
+   654	        "reordered_events": reordered_events,
+   655	        "already_valid_events": (
+   656	            total_events
+   657	            - reordered_events
+   658	        ),
+   659	        "total_moved_particles": (
+   660	            total_moved_particles
+   661	        ),
+   662	        "max_particle_displacement": (
+   663	            max_displacement
+   664	        ),
+   665	        "particles_added": 0,
+   666	        "particles_removed": 0,
+   667	        "resonances_added": 0,
+   668	        "resonances_removed": 0,
+   669	    }
+   670	
+   671	    summary_path.write_text(
+   672	        json.dumps(
+   673	            summary,
+   674	            indent=2,
+   675	            sort_keys=True,
+   676	        )
+   677	        + "\n"
+   678	    )
+   679	
+   680	    print(
+   681	        "HISTORY SERIALIZATION SUCCESS "
+   682	        f"events={total_events} "
+   683	        f"reordered={reordered_events} "
+   684	        f"moved_particles={total_moved_particles} "
+   685	        f"max_displacement={max_displacement} "
+   686	        f"output={output_path}"
+   687	    )
+   688	
+   689	    return 0
+   690	
+   691	
+   692	if __name__ == "__main__":
+   693	    raise SystemExit(
+   694	        main()
+   695	    )
+
+================================================================
+SERIALIZER VALIDATOR CLI
+================================================================
+     1	#!/usr/bin/env python3
+     2	
+     3	from __future__ import annotations
+     4	
+     5	import argparse
+     6	import collections
+     7	from pathlib import Path
+     8	
+     9	
+    10	def parse_args():
+    11	    p = argparse.ArgumentParser()
+    12	
+    13	    p.add_argument(
+    14	        "--input",
+    15	        required=True,
+    16	        type=Path,
+    17	    )
+    18	
+    19	    p.add_argument(
+    20	        "--output",
+    21	        required=True,
+    22	        type=Path,
+    23	    )
+    24	
+    25	    return p.parse_args()
+    26	
+    27	
+    28	def iter_events(path: Path):
+    29	    inside = False
+    30	    got_header = False
+    31	    remaining = 0
+    32	    particles = []
+    33	
+    34	    with path.open(errors="replace") as f:
+    35	        for line in f:
+    36	            s = line.strip()
+    37	
+    38	            if s == "<event>":
+    39	                inside = True
+    40	                got_header = False
+    41	                particles = []
+    42	                continue
+    43	
+    44	            if not inside:
+    45	                continue
+    46	
+    47	            if not got_header:
+    48	                if not s or s.startswith("#"):
+    49	                    continue
+    50	
+    51	                remaining = int(
+    52	                    s.split()[0]
+    53	                )
+    54	
+    55	                got_header = True
+    56	                continue
+    57	
+    58	            if remaining:
+    59	                if not s or s.startswith("#"):
+    60	                    continue
+    61	
+    62	                particles.append(
+    63	                    s.split()
+    64	                )
+    65	
+    66	                remaining -= 1
+    67	                continue
+    68	
+    69	            if s == "</event>":
+    70	                yield particles
+    71	                inside = False
+    72	
+    73	
+    74	def mothers(tokens):
+    75	    values = {
+    76	        int(tokens[2]),
+    77	        int(tokens[3]),
+    78	    }
+    79	
+    80	    values.discard(0)
+    81	
+    82	    return tuple(
+    83	        sorted(values)
+    84	    )
+    85	
+    86	
+    87	def expected_order(particles):
+    88	    roots = []
+    89	
+    90	    groups = collections.defaultdict(
+    91	        list
+    92	    )
+    93	
+    94	    for i, p in enumerate(
+    95	        particles,
+    96	        start=1,
+    97	    ):
+    98	        ms = mothers(p)
+    99	
+   100	        if not ms:
+   101	            roots.append(i)
+   102	        else:
+   103	            groups[ms].append(i)
+   104	
+   105	    roots.sort()
+   106	
+   107	    for children in groups.values():
+   108	        children.sort()
+   109	
+   110	    order = list(roots)
+   111	    placed = set(order)
+   112	
+   113	    remaining = dict(groups)
+   114	
+   115	    while remaining:
+   116	        ready = [
+   117	            ms
+   118	            for ms in remaining
+   119	            if set(ms).issubset(
+   120	                placed
+   121	            )
+   122	        ]
+   123	
+   124	        if not ready:
+   125	            raise RuntimeError(
+   126	                "no valid serialization order"
+   127	            )
+   128	
+   129	        ready.sort(
+   130	            key=lambda ms: (
+   131	                min(
+   132	                    remaining[ms]
+   133	                ),
+   134	                ms,
+   135	            )
+   136	        )
+   137	
+   138	        chosen = ready[0]
+   139	        children = remaining.pop(
+   140	            chosen
+   141	        )
+   142	
+   143	        order.extend(children)
+   144	        placed.update(children)
+   145	
+   146	    return order
+   147	
+   148	
+   149	def validate_topology(particles):
+   150	    children = collections.defaultdict(
+   151	        list
+   152	    )
+   153	
+   154	    n = len(particles)
+   155	
+   156	    for child, p in enumerate(
+   157	        particles,
+   158	        start=1,
+   159	    ):
+   160	        for mother in mothers(p):
+   161	            if not (
+   162	                1 <= mother < child <= n
+   163	            ):
+   164	                raise RuntimeError(
+   165	                    f"invalid mother/child "
+   166	                    f"{mother}->{child}"
+   167	                )
+   168	
+   169	            children[mother].append(
+   170	                child
+   171	            )
+   172	
+   173	    for parent, ds in children.items():
+   174	        ds = sorted(
+   175	            set(ds)
+   176	        )
+   177	
+   178	        expected = list(
+   179	            range(
+   180	                ds[0],
+   181	                ds[-1] + 1,
+   182	            )
+   183	        )
+   184	
+   185	        if ds != expected:
+   186	            raise RuntimeError(
+   187	                f"parent {parent} "
+   188	                f"non-contiguous daughters {ds}"
+   189	            )
+   190	
+   191	
+   192	def main():
+   193	    args = parse_args()
+   194	
+   195	    input_events = iter_events(
+   196	        args.input
+   197	    )
+   198	
+   199	    output_events = iter_events(
+   200	        args.output
+   201	    )
+   202	
+   203	    total = 0
+   204	    particles_checked = 0
+   205	    moved_particles = 0
+   206	    max_displacement = 0
+   207	
+   208	    while True:
+   209	        try:
+   210	            old = next(
+   211	                input_events
+   212	            )
+   213	            old_done = False
+   214	        except StopIteration:
+   215	            old = None
+   216	            old_done = True
+   217	
+   218	        try:
+   219	            new = next(
+   220	                output_events
+   221	            )
+   222	            new_done = False
+   223	        except StopIteration:
+   224	            new = None
+   225	            new_done = True
+   226	
+   227	        if old_done and new_done:
+   228	            break
+   229	
+   230	        if old_done != new_done:
+   231	            raise RuntimeError(
+   232	                "input/output event counts differ"
+   233	            )
+   234	
+   235	        assert old is not None
+   236	        assert new is not None
+   237	
+   238	        total += 1
+   239	
+   240	        if len(old) != len(new):
+
+================================================================
+METADATA AUGMENTER HELP
+================================================================
+usage: augment_shower_metadata.py [-h] --metadata METADATA
+                                  --input-shard INPUT_SHARD
+                                  --input-shard-path INPUT_SHARD_PATH
+                                  --input-shard-expected-sha256 INPUT_SHARD_EXPECTED_SHA256
+                                  --parent-lhe-path PARENT_LHE_PATH
+                                  --source-event-start SOURCE_EVENT_START
+                                  --source-event-stop-exclusive SOURCE_EVENT_STOP_EXCLUSIVE
+                                  --expected-events EXPECTED_EVENTS
+                                  --canonical-summary CANONICAL_SUMMARY
+                                  --explicit-w-summary EXPLICIT_W_SUMMARY
+                                  --worker-log WORKER_LOG
+                                  --qed-shower-by-gamma {on,off}
+                                  [--output OUTPUT]
+
+Augment shower metadata with deterministic LHE-shard provenance.
+
+options:
+  -h, --help            show this help message and exit
+  --metadata METADATA
+  --input-shard INPUT_SHARD
+  --input-shard-path INPUT_SHARD_PATH
+  --input-shard-expected-sha256 INPUT_SHARD_EXPECTED_SHA256
+  --parent-lhe-path PARENT_LHE_PATH
+  --source-event-start SOURCE_EVENT_START
+  --source-event-stop-exclusive SOURCE_EVENT_STOP_EXCLUSIVE
+  --expected-events EXPECTED_EVENTS
+  --canonical-summary CANONICAL_SUMMARY
+  --explicit-w-summary EXPLICIT_W_SUMMARY
+  --worker-log WORKER_LOG
+  --qed-shower-by-gamma {on,off}
+  --output OUTPUT

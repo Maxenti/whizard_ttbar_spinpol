@@ -1,0 +1,25 @@
+Phase 11 unrestricted stability scan v1 seed provenance
+=======================================================
+
+Adaptive seeds S0-S2 are inherited unchanged from the existing Phase-11 diagnostic
+replicas:
+
+S0 = 1740114216
+S1 = 1751949026
+S2 = 1885084773
+
+For S3-S7, the seed was deterministically generated as:
+
+  100000000 + int.from_bytes(
+      SHA256("phase11_unrestricted_stability_scan_480_v1:adaptive:Sx")[:8],
+      "big"
+  ) % 1800000000
+
+For every fixed-stage seed S0-S7:
+
+  100000000 + int.from_bytes(
+      SHA256("phase11_unrestricted_stability_scan_480_v1:fixed:Sx")[:8],
+      "big"
+  ) % 1800000000
+
+Exact frozen values are in config/seeds.tsv.

@@ -1,0 +1,21 @@
+Phase 11C S3-S7 generation-envelope qualification result
+================================================
+
+WT11C_STATUS=PASS_ALL_GRIDS
+WT11C_TOTAL_EVENTS=50000
+WT11C_GLOBAL_UNIQUE_EVENTS=50000
+WT11C_DUPLICATE_EVENT_HASHES=0
+
+Frozen aggregate gates:
+  excess_fraction <= 0.01
+  aggregate_avg_excess <= 0.01
+  global_max_excess <= 10.0
+
+S3: gate=PASS technical=PASS events=10000 excess_events=26 excess_fraction=0.0026 aggregate_avg_excess=0.000763292 global_max_excess=1.037
+S4: gate=PASS technical=PASS events=10000 excess_events=27 excess_fraction=0.0027 aggregate_avg_excess=0.00073052 global_max_excess=1.49
+S5: gate=PASS technical=PASS events=10000 excess_events=17 excess_fraction=0.0017 aggregate_avg_excess=0.0005299916 global_max_excess=1.393
+S6: gate=PASS technical=PASS events=10000 excess_events=21 excess_fraction=0.0021 aggregate_avg_excess=0.0005523415 global_max_excess=0.9415
+S7: gate=PASS technical=PASS events=10000 excess_events=26 excess_fraction=0.0026 aggregate_avg_excess=0.0005412075 global_max_excess=0.7896
+
+Next action:
+  S3-S7 generation-envelope qualification passed. Combine with the already-qualified S0-S2 result, freeze the final Phase-11C physics-analysis contract, and build the fresh SINGLE-versus-MULTI holdout.

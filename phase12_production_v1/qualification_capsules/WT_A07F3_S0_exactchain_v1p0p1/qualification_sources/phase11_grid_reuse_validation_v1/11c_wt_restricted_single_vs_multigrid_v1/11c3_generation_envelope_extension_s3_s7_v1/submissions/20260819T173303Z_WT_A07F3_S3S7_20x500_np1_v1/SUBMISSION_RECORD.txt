@@ -1,0 +1,26 @@
+WT PHASE-11C S3-S7 ENVELOPE SUBMISSION
+==========================================
+
+TAG=20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1
+CLUSTER=6064368
+
+SUBMISSION_DIR=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c3_generation_envelope_extension_s3_s7_v1/submissions/20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1
+OUTPUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c3_generation_envelope_extension_s3_s7_v1/20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1
+
+GRIDS=S3,S4,S5,S6,S7
+
+JOBS_PER_GRID=20
+EVENTS_PER_JOB=500
+EVENTS_PER_GRID=10000
+
+TOTAL_JOBS=100
+TOTAL_EVENTS=50000
+
+CHECKPOINT=WT_A07F3
+
+WORKER_SHA256=4bbc08fa762bcfe30902b50842290bbb35fe7a46df363d5289ef5f9491e5e25f
+
+CATALOG_SHA256=583a85f22c95498901d78c4f36460657c9ea4eb454b135a2c24d0678b5837761
+
+S0-S2 ARE NOT RERUN IN THIS CAMPAIGN.
+Their existing generation-envelope qualification remains authoritative.
