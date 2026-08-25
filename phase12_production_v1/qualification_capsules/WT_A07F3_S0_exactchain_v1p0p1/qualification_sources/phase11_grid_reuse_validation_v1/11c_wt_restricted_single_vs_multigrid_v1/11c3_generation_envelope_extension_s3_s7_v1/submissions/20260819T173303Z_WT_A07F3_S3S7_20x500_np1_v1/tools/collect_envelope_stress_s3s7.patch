@@ -1,0 +1,88 @@
+--- /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/tools/envelope_stress_wt_v1/collect_envelope_stress_wt11c.py	2026-08-19 17:17:33.000000001 +0200
++++ /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c3_generation_envelope_extension_s3_s7_v1/submissions/20260819T173303Z_WT_A07F3_S3S7_20x500_np1_v1/tools/collect_envelope_stress_s3s7.py	2026-08-19 23:15:16.000000001 +0200
+@@ -13,11 +13,11 @@
+ from pathlib import Path
+ 
+ # FROZEN Phase 11C.5G-A decision constants.
+-EXPECTED_GRIDS = ("S0", "S1", "S2")
++EXPECTED_GRIDS = ("S3", "S4", "S5", "S6", "S7")
+ EXPECTED_SHARDS_PER_GRID = 20
+ EXPECTED_EVENTS_PER_SHARD = 500
+ EXPECTED_EVENTS_PER_GRID = 10_000
+-EXPECTED_TOTAL_EVENTS = 30_000
++EXPECTED_TOTAL_EVENTS = len(EXPECTED_GRIDS) * EXPECTED_EVENTS_PER_GRID
+ MAX_EXCESS_FRACTION = 0.01     # <= 1.0%
+ MAX_AGGREGATE_AVG_EXCESS = 0.01
+ MAX_GLOBAL_EVENT_EXCESS = 10.0
+@@ -25,7 +25,7 @@
+ 
+ 
+ def parse_args() -> argparse.Namespace:
+-    p = argparse.ArgumentParser(description="Collect/freeze Phase 11C.5G-A envelope stress results.")
++    p = argparse.ArgumentParser(description="Collect/freeze Phase 11C S3-S7 generation-envelope qualification results.")
+     p.add_argument("--itemdata", required=True, type=Path)
+     p.add_argument("--output-root", required=True, type=Path)
+     p.add_argument("--outdir", required=True, type=Path)
+@@ -345,29 +345,38 @@
+     total_events_all = sum(r["total_events"] for r in grid_rows)
+     all_technical = all(r["technical_pass"] for r in grid_rows)
+     all_grid_pass = all(r["grid_gate"] for r in grid_rows)
+-    s0_pass = next(r["grid_gate"] for r in grid_rows if r["grid"] == "S0")
+-    refs_pass = all(r["grid_gate"] for r in grid_rows if r["grid"] in ("S1", "S2"))
+ 
+-    if not all_technical or total_events_all != EXPECTED_TOTAL_EVENTS or structural_issues:
++    if (
++        not all_technical
++        or total_events_all != EXPECTED_TOTAL_EVENTS
++        or structural_issues
++    ):
+         status = "INCOMPLETE_TECHNICAL"
+         rc = 3
+-        next_action = "Rerun only technical-failure modes with the SAME mode/grid/seed; do not substitute RNG seeds."
++        next_action = (
++            "Rerun only genuine technical-failure modes with the SAME "
++            "mode/grid/seed; do not substitute RNG seeds."
++        )
++
+     elif all_grid_pass:
+         status = "PASS_ALL_GRIDS"
+         rc = 0
+-        next_action = "Freeze C5G-A PASS and build a fresh C5R holdout using new validation-only seeds; do not reuse stress events for physics."
+-    elif s0_pass and not refs_pass:
+-        status = "FAIL_REFERENCE_ONLY"
+-        rc = 2
+-        next_action = "Retain G2_S0 candidate; S1/S2 are not qualified references. Build a predetermined fresh-reference-grid qualification stage before any new holdout."
+-    elif not s0_pass:
+-        status = "FAIL_PRODUCTION_CANDIDATE"
+-        rc = 2
+-        next_action = "G2_S0 is not generation-envelope qualified. Revisit integration/envelope prescription before C5R or Phase12."
++        next_action = (
++            "S3-S7 generation-envelope qualification passed. "
++            "Combine with the already-qualified S0-S2 result, freeze the "
++            "final Phase-11C physics-analysis contract, and build the fresh "
++            "SINGLE-versus-MULTI holdout."
++        )
++
+     else:
+-        status = "FAIL_ENVELOPE"
++        status = "FAIL_GRID_GATES"
+         rc = 2
+-        next_action = "Investigate failing grid envelope(s); do not cherry-pick replacement shards."
++        next_action = (
++            "At least one S3-S7 grid failed a frozen generation-envelope "
++            "gate. Do not substitute another grid or RNG stream. Inspect the "
++            "failing grid and revisit the qualified prescription before the "
++            "final physics holdout."
++        )
+ 
+     result = {
+         "phase": "11C.5G-A",
+@@ -393,7 +402,7 @@
+ 
+     (a.outdir / "WT11C_RESULT.json").write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
+     with (a.outdir / "WT11C_RESULT.txt").open("w") as f:
+-        f.write("Phase 11C.5G-A generation-envelope stress result\n")
++        f.write("Phase 11C S3-S7 generation-envelope qualification result\n")
+         f.write("================================================\n\n")
+         f.write(f"WT11C_STATUS={status}\n")
+         f.write(f"WT11C_TOTAL_EVENTS={total_events_all}\n")

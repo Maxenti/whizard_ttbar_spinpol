@@ -1,0 +1,42 @@
+000 (6053047.000.000) 08/17 01:09:22 Job submitted from host: <188.185.133.2:9618?addrs=188.185.133.2-9618+[2001-1458-d03-2--100-208]-9618&alias=bigbird102.cern.ch&noUDP&sock=schedd_5723_1498>
+    DAG Node: P_A05_S4
+...
+040 (6053047.000.000) 08/17 01:11:25 Started transferring input files
+	Transferring to host: <188.185.196.116:9618?addrs=188.185.196.116-9618+[2001-1458-303-23--100-70]-9618&alias=b9p16p8594.cern.ch&noUDP&sock=slot1_5_5955_960b_30804>
+...
+040 (6053047.000.000) 08/17 01:11:25 Finished transferring input files
+...
+001 (6053047.000.000) 08/17 01:11:26 Job executing on host: <188.185.196.116:9618?addrs=188.185.196.116-9618+[2001-1458-303-23--100-70]-9618&alias=b9p16p8594.cern.ch&noUDP&sock=startd_4719_6b82>
+	SlotName: slot1_5@b9p16p8594.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3321934"
+	Cpus = 1
+	Disk = 6146864
+	GPUs = 0
+	Memory = 3000
+...
+006 (6053047.000.000) 08/17 01:11:26 Image size of job updated: 244
+	0  -  MemoryUsage of job (MB)
+	0  -  ResidentSetSize of job (KB)
+...
+040 (6053047.000.000) 08/17 01:11:26 Started transferring output files
+...
+040 (6053047.000.000) 08/17 01:11:26 Finished transferring output files
+...
+005 (6053047.000.000) 08/17 01:11:27 Job terminated.
+	(1) Normal termination (return value 1)
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	79  -  Run Bytes Sent By Job
+	7129  -  Run Bytes Received By Job
+	79  -  Total Bytes Sent By Job
+	7129  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :        0        1         1 
+	   Disk (KB)            :       37  6144000   6146864 
+	   GPUs                 :                           0 
+	   Memory (MB)          :        0     3000      3000 
+	   TimeExecute (s)      :        0                    
+	   TimeSlotBusy (s)     :        2                    
+...

@@ -1,0 +1,2 @@
+ERROR: missing worker for MODE=D2_vamp_tao_np1
+WORKER=/pool/condor/dir_4073340/run_D2_vamp_tao_np1.sh

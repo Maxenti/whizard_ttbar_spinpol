@@ -1,0 +1,34 @@
+--- /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/submissions/20260819T151300Z_WT_A07F3_20x500x3_np1/run_wt11c_envelope.sh	2026-08-15 01:41:28.000000001 +0200
++++ /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c2_wt_a07f3_reuse_qualification_v1/tools/run_wt_a07f3_rng_reuse.sh	2026-08-19 18:27:47.000000001 +0200
+@@ -7,7 +7,7 @@
+   run_r0v2_generation_reuse.sh \
+     --repo PATH \
+     --mode NAME \
+-    --checkpoint-kind G1|G2 \
++    --checkpoint-kind G1|G2|WT_A07F3 \
+     --workspace-tar PATH \
+     --expected-vg2-sha SHA256 \
+     --expected-phs-sha SHA256 \
+@@ -94,8 +94,21 @@
+   G2)
+     STORED_ITERATIONS='5:50000:"gw", 3:200000:""'
+     ;;
++  WT_A07F3)
++    # WT-restricted Phase-11 production candidate.
++    #
++    # This workspace was constructed with:
++    #   A07 = 10:100000:"gw"
++    #   F3  = 10:200000:""
++    #
++    # The integrate() call used for frozen-grid reuse must reproduce the
++    # exact serialized integration prescription.  Using the historical
++    # G2 schedule here causes a VAMP2 header-parameter mismatch and forces
++    # WHIZARD to initialize a new grid.
++    STORED_ITERATIONS='10:100000:"gw", 10:200000:""'
++    ;;
+   *)
+-    echo "ERROR: checkpoint kind must be G1 or G2" >&2
++    echo "ERROR: checkpoint kind must be G1, G2, or WT_A07F3" >&2
+     exit 2
+     ;;
+ esac

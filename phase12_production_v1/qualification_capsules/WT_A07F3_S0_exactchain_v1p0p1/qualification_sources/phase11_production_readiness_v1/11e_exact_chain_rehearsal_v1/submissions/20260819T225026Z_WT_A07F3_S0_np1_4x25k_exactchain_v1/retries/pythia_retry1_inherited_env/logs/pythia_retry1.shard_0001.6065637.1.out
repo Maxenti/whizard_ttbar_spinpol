@@ -1,0 +1,6 @@
+RUNTIME_PREFLIGHT=PASS
+RUNTIME_ENV mode=inherited_submit_host
+WHIZARD_TTBAR_ENV_READY=1
+python=/cvmfs/sw.hsf.org/key4hep/releases/2026-02-01/x86_64-almalinux9-gcc14.2.0-opt/python-venv/1.0-uab3wy/bin/python3
+OMP_NUM_THREADS=1
+RUNTIME_ENV mode=inherited_submit_host

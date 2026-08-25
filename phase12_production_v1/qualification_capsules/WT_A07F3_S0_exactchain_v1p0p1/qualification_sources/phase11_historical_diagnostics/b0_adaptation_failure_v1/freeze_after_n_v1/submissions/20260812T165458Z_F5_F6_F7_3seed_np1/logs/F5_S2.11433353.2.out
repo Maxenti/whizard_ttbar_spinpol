@@ -1,0 +1,242 @@
+============================================================
+PHASE11_FREEZE_AFTER_N_V1_F5_S2
+MODE=F5_S2
+INTEGRATION_METHOD=vamp2
+SEED=1885084773
+ITERATIONS=5:100000:"gw",3:200000:""
+SOURCE_CARD=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/process.sin
+SOURCE_DIR=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum
+SOURCE_COMMON=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/common
+SOURCE_CONTEXT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum/render_context.json
+PREFLIGHT_ONLY=0
+HOST=b9p06p8127.cern.ch
+============================================================
+SOURCE_DEPENDENCIES=PASS
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+QUALIFIED_WHIZARD_PATH_CHECK=PASS
+WHIZARD_REALPATH=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+WORK=/pool/condor/dir_1983916/d1d2_F5_S2_uemZkA
+PROCESS_SIN_COPY=PASS
+COMMON_COPY=PASS
+CONTEXT_COPY=PASS
+LOCALIZED_COMMON_INCLUDES=model.inc,beams.inc,isr.inc,polarization.inc,integration.inc,event_output.inc
+LOCALIZED_COMMON_INCLUDE_COUNT=6
+EVENT_OUTPUT_INCLUDE_REMOVED=PASS
+LOCAL_INCLUDES=model.inc,beams.inc,isr.inc,polarization.inc,integration.inc
+LOCALIZED_CARD_CONTRACT=PASS
+EVENT_GENERATION_DISABLED=PASS
+
+=== EFFECTIVE integration.inc ===
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 1885084773
+
+iterations = 5:100000:"gw",3:200000:""
+
+integrate (proc_epmum)
+
+=== EFFECTIVE process includes ===
+1:include("common/model.inc")
+2:include("common/beams.inc")
+3:include("common/isr.inc")
+4:include("common/polarization.inc")
+6:include("common/integration.inc")
+START_UTC=2026-08-12T16:59:34Z
+MPI_RANKS=1
+OMP_NUM_THREADS=1
+EXECUTION_START=1
+| Writing log to 'whizard.log'
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'process.sin'
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts =  3.650000000000E+02
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+| End of included 'common/polarization.inc'
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 1885084773
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        proc_epmum_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 215 fusions, 46 propagators, 402 diagrams
+SUMMARY: 53 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 7269
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Phase space: generating configuration ...
+Warning:  Intermediate decay of zero-width particle mu- may be possible.
+| Phase space: ... success.
+| Phase space: writing configuration file 'proc_epmum.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| Integrate: iterations = 5:100000:"gw", 3:200000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: Initialize new grids and write to file 'proc_epmum.m1.vg2'.
+| VAMP2: set chain: use chained weights.
+   1     100019  1.2293927E+01  1.41E+00   11.47   36.27*   3.24
+   2     100021  1.2443046E+01  2.33E-01    1.88    5.93*   1.13
+   3     100004  1.2312570E+01  1.07E-01    0.87    2.74*   2.96
+   4      99997  1.2202138E+01  8.47E-02    0.69    2.20*   4.35
+   5     100005  1.2059645E+01  7.42E-02    0.62    1.95*   5.34
+|-----------------------------------------------------------------------------|
+   5     500046  1.2174745E+01  4.84E-02    0.40    2.81    5.34    1.38   5
+|-----------------------------------------------------------------------------|
+   6     199999  1.2316688E+01  1.73E-01    1.40    6.28    2.70
+   7     199999  1.2480091E+01  2.80E-01    2.24   10.04    2.22
+   8     199999  1.2157543E+01  5.02E-02    0.41    1.85*   4.51
+|-----------------------------------------------------------------------------|
+   8     599997  1.2178850E+01  4.75E-02    0.39    3.02    4.51    0.99   3
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:09m:25s
+| End of included 'common/integration.inc'
+| There were no errors and    2 warning(s).
+| WHIZARD run finished.
+|=============================================================================|
+WHIZARD_RC=0
+EXECUTION_STATUS=PASS
+INTEGRATION_STATUS=UNASSESSED
+WALL_SECONDS=2591
+END_UTC=2026-08-12T17:42:45Z
+JOB_OUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/b0_adaptation_failure_v1/freeze_after_n_v1/20260812T165458Z_F5_F6_F7_3seed_np1/F5_S2
+DIAGNOSTIC_COMPLETE=1

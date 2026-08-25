@@ -1,0 +1,54 @@
+000 (6053508.000.000) 08/17 01:21:45 Job submitted from host: <188.185.133.2:9618?addrs=188.185.133.2-9618+[2001-1458-d03-2--100-208]-9618&alias=bigbird102.cern.ch&noUDP&sock=schedd_5723_1498>
+    DAG Node: P_A10_S1
+...
+040 (6053508.000.000) 08/17 01:23:52 Started transferring input files
+	Transferring to host: <188.185.193.55:9618?addrs=188.185.193.55-9618+[2001-1458-303-20--100-33]-9618&alias=b9p19p3911.cern.ch&noUDP&sock=slot1_25_5202_078d_31834>
+...
+040 (6053508.000.000) 08/17 01:23:52 Finished transferring input files
+...
+001 (6053508.000.000) 08/17 01:23:53 Job executing on host: <188.185.193.55:9618?addrs=188.185.193.55-9618+[2001-1458-303-20--100-33]-9618&alias=b9p19p3911.cern.ch&noUDP&sock=startd_4212_a8fe>
+	SlotName: slot1_25@b9p19p3911.cern.ch
+	CondorScratchDir = "/pool/condor/dir_778224"
+	Cpus = 1
+	Disk = 6146842
+	GPUs = 0
+	Memory = 3000
+...
+006 (6053508.000.000) 08/17 01:24:02 Image size of job updated: 28212
+	27  -  MemoryUsage of job (MB)
+	27316  -  ResidentSetSize of job (KB)
+...
+006 (6053508.000.000) 08/17 01:29:03 Image size of job updated: 110776
+	109  -  MemoryUsage of job (MB)
+	110776  -  ResidentSetSize of job (KB)
+...
+006 (6053508.000.000) 08/17 01:34:04 Image size of job updated: 111112
+	109  -  MemoryUsage of job (MB)
+	111112  -  ResidentSetSize of job (KB)
+...
+006 (6053508.000.000) 08/17 01:35:40 Image size of job updated: 111284
+	109  -  MemoryUsage of job (MB)
+	111112  -  ResidentSetSize of job (KB)
+...
+040 (6053508.000.000) 08/17 01:35:40 Started transferring output files
+...
+040 (6053508.000.000) 08/17 01:35:40 Finished transferring output files
+...
+005 (6053508.000.000) 08/17 01:35:41 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:11:28, Sys 0 00:00:06  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:11:28, Sys 0 00:00:06  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	16787  -  Run Bytes Sent By Job
+	7129  -  Run Bytes Received By Job
+	16787  -  Total Bytes Sent By Job
+	7129  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.99        1         1 
+	   Disk (KB)            :  9236     6144000   6146842 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   109        3000      3000 
+	   TimeExecute (s)      :   707                       
+	   TimeSlotBusy (s)     :   708                       
+...

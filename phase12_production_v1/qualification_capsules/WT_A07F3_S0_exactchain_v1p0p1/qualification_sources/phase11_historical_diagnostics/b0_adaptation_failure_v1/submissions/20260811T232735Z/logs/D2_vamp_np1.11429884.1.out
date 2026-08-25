@@ -1,0 +1,36 @@
+============================================================
+PHASE11_B0_ADAPTATION_DIAGNOSTIC
+MODE=D2_vamp_np1
+HOST=b9g23p8151.cern.ch
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+BASE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/sindarin/generated/full6f_365gev_ee_ttbar_spinpol_v1/f6f365_ee_LR100_epmum/epmum
+SEED=1740114216
+ITERATIONS=10:100000:"gw",2:200000:""
+INTEGRATION_METHOD=vamp
+_CONDOR_SCRATCH_DIR=/pool/condor/dir_1473750
+============================================================
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+WHIZARD_BIN=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD_REALPATH=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+QUALIFIED_WHIZARD_PATH_CHECK=PASS

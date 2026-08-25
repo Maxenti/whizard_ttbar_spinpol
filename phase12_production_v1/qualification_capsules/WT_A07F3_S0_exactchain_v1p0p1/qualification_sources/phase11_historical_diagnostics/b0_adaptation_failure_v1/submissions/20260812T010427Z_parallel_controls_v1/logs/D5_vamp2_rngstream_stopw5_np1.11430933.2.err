@@ -1,0 +1,2 @@
+ERROR: missing worker for MODE=D5_vamp2_rngstream_stopw5_np1
+WORKER=/pool/condor/dir_2958072/run_D5_vamp2_rngstream_stopw5_np1.sh

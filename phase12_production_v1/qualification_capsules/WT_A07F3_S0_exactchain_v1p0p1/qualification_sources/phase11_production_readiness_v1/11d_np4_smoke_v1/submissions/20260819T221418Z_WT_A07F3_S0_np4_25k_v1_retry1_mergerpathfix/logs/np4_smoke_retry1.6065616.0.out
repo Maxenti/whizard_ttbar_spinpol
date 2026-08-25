@@ -1,0 +1,1684 @@
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+============================================================
+MODE=S0_NP4_SMOKE_25K
+CHECKPOINT_KIND=WT_A07F3
+GRID_CONSTRUCTION_SEED=1740114216
+PRE_INTEGRATION_RNG_SEED=311190001
+POST_SIMULATION_RNG_SEED=311190001
+EVENTS=25000
+STORED_ITERATIONS=10:100000:"gw", 10:200000:""
+PHS_SHA256_BEFORE=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+VG2_SHA256_BEFORE=8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+============================================================
+
+===== INTEGRATION.INC =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 311190001
+
+iterations = 10:100000:"gw", 10:200000:""
+integrate (proc_epmum)
+
+===== EVENT_OUTPUT.INC =====
+! Independent Phase-11 validation-event RNG.
+# IMPORTANT:
+# Do not reseed here.
+#
+# Phase-11C RNG-controller qualification demonstrated that the
+# shard-defining RNG seed must be active before integrate(proc_epmum).
+# The RNG state then continues into event generation.
+simulate (proc_epmum) {
+  n_events = 25000
+  sample_format = lhef
+  $sample = "phase11c_S0_NP4_SMOKE_25K_seed311190001"
+}
+MPI_RANKS=4
+OMP_NUM_THREADS=1
+WHIZARD_EXE=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+MPI_MERGER=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/tools/np4_generation_v1/merge_mpi_lhe.py
+LHE_LAYOUT=whizard_mpi_rank_merge
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+| Writing log to 'whizard.log'
+|=============================================================================|
+|=============================================================================|
+|=============================================================================|
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|                                        W                                    |
+|                                       sW                                    |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                                                             |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                                                             |
+|                                        W                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                      sWW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|                                    wWWWW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                                    WW WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                                    WW WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|                                WW     WW                                    |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|                                                                             |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                     wWWWwwwwwWW       WW                                    |
+|=============================================================================|
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                               WHIZARD 3.1.8
+|=============================================================================|
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|=============================================================================|
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                                                                             |
+|                     WWWW                      WWWW     WWw                  |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|=============================================================================|
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Preloaded model: SM
+| Preloaded model: SM
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Process library 'default_lib': initialized
+| Process library 'default_lib': initialized
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Preloaded library: default_lib
+| Preloaded library: default_lib
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'process.sin'
+| Reading commands from file 'process.sin'
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts = sqrts =  3.650000000000E+02
+ 3.650000000000E+02
+| End of included 'common/beams.inc'
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+?isr_handler = true
+$isr_handler_mode = "recoil"
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+?keep_beams = true
+isr_mass =  5.109970000000E-04
+?keep_remnants = true
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+isr_mass =  5.109970000000E-04
+| End of included 'common/polarization.inc'
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+?resonance_history = true
+| End of included 'common/polarization.inc'
+resonance_on_shell_limit =  1.000000000000E+01
+resonance_background_factor =  0.000000000000E+00
+?resonance_history = true
+resonance_on_shell_limit =  1.000000000000E+01
+resonance_background_factor =  0.000000000000E+00
+$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"
+$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+?omega_openmp = false
+openmp_num_threads = 1
+openmp_num_threads = 1
+seed = 311190001
+seed = 311190001
+| Reading commands from file 'process.sin'
+| MPI: wait for master to finish process initialization ...
+| MPI: wait for master to finish process initialization ...
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts =  3.650000000000E+02
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+| End of included 'common/polarization.inc'
+?resonance_history = true
+resonance_on_shell_limit =  1.000000000000E+01
+resonance_background_factor =  0.000000000000E+00
+$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 311190001
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Reading commands from file 'process.sin'
+| Process library 'default_lib': writing makefile
+| Including Sindarin from 'common/model.inc'
+| Process library 'default_lib': writing driver
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts =  3.650000000000E+02
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+| Process library 'default_lib': creating source code
+| End of included 'common/polarization.inc'
+?resonance_history = true
+resonance_on_shell_limit =  1.000000000000E+01
+resonance_background_factor =  0.000000000000E+00
+$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 311190001
+| MPI: wait for master to finish process initialization ...
+  RM        proc_epmum_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.93 secs, total: 0.93 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.93 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 25073
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| MPI: finish process initialization, load slaves ...
+| Integrate: current process library needs compilation
+| Integrate: current process library needs compilation
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': keeping makefile
+| Process library 'default_lib': keeping driver
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 25073
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 25073
+| Initializing integration for process proc_epmum:
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Process library 'default_lib': active
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 25073
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| MPI: Workers do not build phase space configuration.
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| MPI: Workers do not build phase space configuration.
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| MPI: Workers do not build phase space configuration.
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| MPI: Using 4 processes.
+| MPI: slave worker #1
+| MPI: Using 4 processes.
+| MPI: slave worker #3
+| MPI: Using 4 processes.
+| MPI: slave worker #2
+| MPI: Using 4 processes.
+| MPI: master worker
+| OpenMP: Using 1 thread
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| Starting integration for process 'proc_epmum'
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| Integrate: iterations = 10:100000:"gw", 10:200000:""
+| Integrate: iterations = 10:100000:"gw", 10:200000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrate: iterations = 10:100000:"gw", 10:200000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrate: iterations = 10:100000:"gw", 10:200000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| Integrator: 100000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| Integrator: VAMP2
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+   1      99998  1.2575489E+01  1.52E+00   12.11   38.30*   3.01
+   1      99998  1.2575489E+01  1.52E+00   12.11   38.30*   3.01
+   1      99998  1.2575489E+01  1.52E+00   12.11   38.30*   3.01
+   1      99998  1.2575489E+01  1.52E+00   12.11   38.30*   3.01
+   2      99991  1.1494885E+01  2.27E-01    1.97    6.24*   0.75
+   2      99991  1.1494885E+01  2.27E-01    1.97    6.24*   0.75
+   2      99991  1.1494885E+01  2.27E-01    1.97    6.24*   0.75
+   2      99991  1.1494885E+01  2.27E-01    1.97    6.24*   0.75
+   3     100010  1.1581815E+01  9.95E-02    0.86    2.72*   2.96
+   3     100010  1.1581815E+01  9.95E-02    0.86    2.72*   2.96
+   3     100010  1.1581815E+01  9.95E-02    0.86    2.72*   2.96
+   3     100010  1.1581815E+01  9.95E-02    0.86    2.72*   2.96
+   4     100003  1.1494240E+01  7.12E-02    0.62    1.96*   5.71
+   4     100003  1.1494240E+01  7.12E-02    0.62    1.96*   5.71
+   5     100000  1.1510578E+01  6.23E-02    0.54    1.71*   7.09
+   6     100000  1.1446996E+01  5.71E-02    0.50    1.58*   6.63
+   4     100003  1.1494240E+01  7.12E-02    0.62    1.96*   5.71
+   5     100000  1.1510578E+01  6.23E-02    0.54    1.71*   7.09
+   4     100003  1.1494240E+01  7.12E-02    0.62    1.96*   5.71
+   5     100000  1.1510578E+01  6.23E-02    0.54    1.71*   7.09
+   5     100000  1.1510578E+01  6.23E-02    0.54    1.71*   7.09
+   7     100001  1.1485072E+01  5.47E-02    0.48    1.51*   7.77
+   8      99997  1.1442935E+01  5.30E-02    0.46    1.47*   8.55
+   6     100000  1.1446996E+01  5.71E-02    0.50    1.58*   6.63
+   7     100001  1.1485072E+01  5.47E-02    0.48    1.51*   7.77
+   6     100000  1.1446996E+01  5.71E-02    0.50    1.58*   6.63
+   6     100000  1.1446996E+01  5.71E-02    0.50    1.58*   6.63
+   8      99997  1.1442935E+01  5.30E-02    0.46    1.47*   8.55
+   9     100000  1.1498255E+01  5.30E-02    0.46    1.46*   8.29
+   7     100001  1.1485072E+01  5.47E-02    0.48    1.51*   7.77
+   9     100000  1.1498255E+01  5.30E-02    0.46    1.46*   8.29
+   7     100001  1.1485072E+01  5.47E-02    0.48    1.51*   7.77
+  10     100000  1.1502876E+01  5.25E-02    0.46    1.44*   8.56
+  10     100000  1.1502876E+01  5.25E-02    0.46    1.44*   8.56
+   8      99997  1.1442935E+01  5.30E-02    0.46    1.47*   8.55
+   8      99997  1.1442935E+01  5.30E-02    0.46    1.47*   8.55
+   9     100000  1.1498255E+01  5.30E-02    0.46    1.46*   8.29
+   9     100000  1.1498255E+01  5.30E-02    0.46    1.46*   8.29
+  10     100000  1.1502876E+01  5.25E-02    0.46    1.44*   8.56
+  10     100000  1.1502876E+01  5.25E-02    0.46    1.44*   8.56
+|-----------------------------------------------------------------------------|
+  10    1000000  1.1486520E+01  2.09E-02    0.18    1.82    8.56    0.32  10
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+  10    1000000  1.1486520E+01  2.09E-02    0.18    1.82    8.56    0.32  10
+|-----------------------------------------------------------------------------|
+|-----------------------------------------------------------------------------|
+  10    1000000  1.1486520E+01  2.09E-02    0.18    1.82    8.56    0.32  10
+|-----------------------------------------------------------------------------|
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+|-----------------------------------------------------------------------------|
+  10    1000000  1.1486520E+01  2.09E-02    0.18    1.82    8.56    0.32  10
+|-----------------------------------------------------------------------------|
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+| VAMP2: Simple Request Balancing.
+  11     200007  1.1478122E+01  3.71E-02    0.32    1.45    7.33
+  11     200007  1.1478122E+01  3.71E-02    0.32    1.45    7.33
+  11     200007  1.1478122E+01  3.71E-02    0.32    1.45    7.33
+  11     200007  1.1478122E+01  3.71E-02    0.32    1.45    7.33
+  12     200007  1.1440362E+01  3.73E-02    0.33    1.46    6.48
+  12     200007  1.1440362E+01  3.73E-02    0.33    1.46    6.48
+  12     200007  1.1440362E+01  3.73E-02    0.33    1.46    6.48
+  12     200007  1.1440362E+01  3.73E-02    0.33    1.46    6.48
+  13     200007  1.1542674E+01  3.73E-02    0.32    1.45*   7.49
+  13     200007  1.1542674E+01  3.73E-02    0.32    1.45*   7.49
+  13     200007  1.1542674E+01  3.73E-02    0.32    1.45*   7.49
+  13     200007  1.1542674E+01  3.73E-02    0.32    1.45*   7.49
+  14     200007  1.1536988E+01  3.72E-02    0.32    1.44*   8.05
+  14     200007  1.1536988E+01  3.72E-02    0.32    1.44*   8.05
+  14     200007  1.1536988E+01  3.72E-02    0.32    1.44*   8.05
+  14     200007  1.1536988E+01  3.72E-02    0.32    1.44*   8.05
+  15     200007  1.1516560E+01  3.71E-02    0.32    1.44*   7.57
+  15     200007  1.1516560E+01  3.71E-02    0.32    1.44*   7.57
+  15     200007  1.1516560E+01  3.71E-02    0.32    1.44*   7.57
+  16     200007  1.1566689E+01  3.74E-02    0.32    1.45    6.93
+  15     200007  1.1516560E+01  3.71E-02    0.32    1.44*   7.57
+  16     200007  1.1566689E+01  3.74E-02    0.32    1.45    6.93
+  17     200007  1.1515247E+01  3.73E-02    0.32    1.45    7.26
+  16     200007  1.1566689E+01  3.74E-02    0.32    1.45    6.93
+  16     200007  1.1566689E+01  3.74E-02    0.32    1.45    6.93
+  17     200007  1.1515247E+01  3.73E-02    0.32    1.45    7.26
+  17     200007  1.1515247E+01  3.73E-02    0.32    1.45    7.26
+  18     200007  1.1541847E+01  3.75E-02    0.32    1.45    7.23
+  17     200007  1.1515247E+01  3.73E-02    0.32    1.45    7.26
+  18     200007  1.1541847E+01  3.75E-02    0.32    1.45    7.23
+  18     200007  1.1541847E+01  3.75E-02    0.32    1.45    7.23
+  18     200007  1.1541847E+01  3.75E-02    0.32    1.45    7.23
+  19     200007  1.1455768E+01  3.70E-02    0.32    1.44*   7.82
+  19     200007  1.1455768E+01  3.70E-02    0.32    1.44*   7.82
+  19     200007  1.1455768E+01  3.70E-02    0.32    1.44*   7.82
+  19     200007  1.1455768E+01  3.70E-02    0.32    1.44*   7.82
+  20     200007  1.1544267E+01  3.74E-02    0.32    1.45    7.46
+  20     200007  1.1544267E+01  3.74E-02    0.32    1.45    7.46
+  20     200007  1.1544267E+01  3.74E-02    0.32    1.45    7.46
+  20     200007  1.1544267E+01  3.74E-02    0.32    1.45    7.46
+|-----------------------------------------------------------------------------|
+  20    2000070  1.1513669E+01  1.18E-02    0.10    1.45    7.46    1.27  10
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+|-----------------------------------------------------------------------------|
+  20    2000070  1.1513669E+01  1.18E-02    0.10    1.45    7.46    1.27  10
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+|-----------------------------------------------------------------------------|
+  20    2000070  1.1513669E+01  1.18E-02    0.10    1.45    7.46    1.27  10
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 25000
+$sample = "phase11c_S0_NP4_SMOKE_25K_seed311190001"
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 25000
+$sample = "phase11c_S0_NP4_SMOKE_25K_seed311190001"
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 25000
+$sample = "phase11c_S0_NP4_SMOKE_25K_seed311190001"
+| Starting simulation for process 'proc_epmum'
+| Starting simulation for process 'proc_epmum'
+| Starting simulation for process 'proc_epmum'
+|-----------------------------------------------------------------------------|
+  20    2000070  1.1513669E+01  1.18E-02    0.10    1.45    7.46    1.27  10
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 25000
+$sample = "phase11c_S0_NP4_SMOKE_25K_seed311190001"
+| Starting simulation for process 'proc_epmum'
+| Creating library for resonant subprocesses 'proc_epmum_R'
+| Process library 'proc_epmum_R': initialized
+| MCI: Advance RNG for parallel event simulation
+| Creating library for resonant subprocesses 'proc_epmum_R'
+| Process library 'proc_epmum_R': initialized
+| Resonant subprocess #1: 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R1'
+| Creating library for resonant subprocesses 'proc_epmum_R'
+| Process library 'proc_epmum_R': initialized
+| Resonant subprocess #2: 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R2'
+| Resonant subprocess #1: 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R1'
+| Resonant subprocess #3: 5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R3'
+| Resonant subprocess #2: 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R2'
+| Resonant subprocess #4: 3+4~Z && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R4'
+| Resonant subprocess #1: 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R1'
+| Resonant subprocess #3: 5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R3'
+| Resonant subprocess #5: 3+4~H && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R5'
+| Resonant subprocess #2: 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R2'
+| Resonant subprocess #4: 3+4~Z && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R4'
+| Resonant subprocess #6: 3+4+5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R6'
+| Resonant subprocess #3: 5+6~W+ && 3+4+5+6+7+8~Z
+| Resonant subprocess #5: 3+4~H && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R3'
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R5'
+| Resonant subprocess #7: 5+6~W+ && 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R7'
+| Resonant subprocess #6: 3+4+5+6~W+ && 7+8~W-
+| Resonant subprocess #4: 3+4~Z && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R4'
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R6'
+| Resonant subprocess #8: 3+4+5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R8'
+| Resonant subprocess #7: 5+6~W+ && 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R7'
+| Resonant subprocess #5: 3+4~H && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R5'
+| Resonant subprocess #9: 3+4+5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R9'
+| Resonant subprocess #6: 3+4+5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R6'
+| Resonant subprocess #8: 3+4+5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R8'
+| Resonant subprocess #10: 7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R10'
+| Resonant subprocess #7: 5+6~W+ && 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R7'
+| Resonant subprocess #9: 3+4+5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R9'
+| Resonant subprocess #11: 3+4+7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R11'
+| Resonant subprocess #8: 3+4+5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R8'
+| Resonant subprocess #10: 7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R10'
+| Resonant subprocess #9: 3+4+5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R9'
+| Resonant subprocess #12: 5+6~W+ && 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R12'
+| Resonant subprocess #11: 3+4+7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R11'
+| Resonant subprocess #10: 7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R10'
+| Resonant subprocess #13: 5+6~W+ && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R13'
+| Resonant subprocess #12: 5+6~W+ && 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R12'
+| Resonant subprocess #11: 3+4+7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R11'
+| Resonant subprocess #14: 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R14'
+| Resonant subprocess #13: 5+6~W+ && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R13'
+| Resonant subprocess #12: 5+6~W+ && 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R12'
+| Resonant subprocess #15: 5+6~W+ && 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R15'
+| Resonant subprocess #14: 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R14'
+| Resonant subprocess #13: 5+6~W+ && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R13'
+| Resonant subprocess #16: 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R16'
+| Resonant subprocess #15: 5+6~W+ && 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R15'
+| Resonant subprocess #14: 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R14'
+| Resonant subprocess #17: 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R17'
+| Resonant subprocess #16: 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R16'
+| Resonant subprocess #15: 5+6~W+ && 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R15'
+| Resonant subprocess #18: 3+4~H && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R18'
+| Resonant subprocess #17: 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R17'
+| Resonant subprocess #16: 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R16'
+| Resonant subprocess #19: 3+4~Z && 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R19'
+| Resonant subprocess #18: 3+4~H && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R18'
+| Resonant subprocess #17: 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R17'
+| Resonant subprocess #20: 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R20'
+| Resonant subprocess #18: 3+4~H && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R18'
+| Resonant subprocess #19: 3+4~Z && 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R19'
+| Resonant subprocess #21: 5+6~W+ && 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R21'
+| Resonant subprocess #19: 3+4~Z && 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R19'
+| Resonant subprocess #20: 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R20'
+| Resonant subprocess #22: 5+6~W+ && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R22'
+| Resonant subprocess #20: 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R20'
+| Resonant subprocess #21: 5+6~W+ && 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R21'
+| Resonant subprocess #23: 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R23'
+| Resonant subprocess #21: 5+6~W+ && 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R21'
+| Resonant subprocess #22: 5+6~W+ && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R22'
+| Resonant subprocess #24: 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R24'
+| Resonant subprocess #22: 5+6~W+ && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R22'
+| Resonant subprocess #23: 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R23'
+| Resonant subprocess #25: 3+4~H && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R25'
+| Resonant subprocess #23: 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R23'
+| Resonant subprocess #26: 3+4~Z && 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R26'
+| Resonant subprocess #24: 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R24'
+| Resonant subprocess #24: 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R24'
+| Resonant subprocess #27: 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R27'
+| Resonant subprocess #25: 3+4~H && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R25'
+| Resonant subprocess #25: 3+4~H && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R25'
+| Resonant subprocess #28: 3+4~H && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R28'
+| Resonant subprocess #26: 3+4~Z && 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R26'
+| Resonant subprocess #26: 3+4~Z && 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R26'
+| Resonant subprocess #29: 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R29'
+| Resonant subprocess #27: 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R27'
+| Resonant subprocess #27: 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R27'
+| Resonant subprocess #30: 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R30'
+| Resonant subprocess #28: 3+4~H && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R28'
+| Resonant subprocess #28: 3+4~H && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R28'
+| Resonant subprocess #31: 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R31'
+| Resonant subprocess #29: 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R29'
+| Resonant subprocess #29: 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R29'
+| Resonant subprocess #32: 3+4~Z && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R32'
+| Resonant subprocess #30: 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R30'
+| Resonant subprocess #30: 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R30'
+| Resonant subprocess #33: 3+4~H && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R33'
+| Resonant subprocess #31: 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R31'
+| Resonant subprocess #31: 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R31'
+| Resonant subprocess #34: 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R34'
+| Resonant subprocess #32: 3+4~Z && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R32'
+| Resonant subprocess #32: 3+4~Z && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R32'
+| Resonant subprocess #35: 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R35'
+| Resonant subprocess #33: 3+4~H && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R33'
+| Resonant subprocess #33: 3+4~H && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R33'
+| Resonant subprocess #36: 3+4~Z && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R36'
+| Resonant subprocess #34: 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R34'
+| Resonant subprocess #37: 3+4~Z && 5+6~W+
+| Resonant subprocess #34: 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R37'
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R34'
+| Resonant subprocess #35: 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R35'
+| Resonant subprocess #35: 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R35'
+| Resonant subprocess #38: 3+4~Z && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R38'
+| Resonant subprocess #36: 3+4~Z && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R36'
+| Resonant subprocess #36: 3+4~Z && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R36'
+| Resonant subprocess #39: 3+4~Z && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R39'
+| Resonant subprocess #37: 3+4~Z && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R37'
+| Resonant subprocess #37: 3+4~Z && 5+6~W+
+| Resonant subprocess #40: 3+4~H && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R37'
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R40'
+| Resonant subprocess #38: 3+4~Z && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R38'
+| Resonant subprocess #41: 3+4~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R41'
+| Resonant subprocess #38: 3+4~Z && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R38'
+| Resonant subprocess #39: 3+4~Z && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R39'
+| Resonant subprocess #39: 3+4~Z && 5+6+7+8~Z
+| Resonant subprocess #42: 3+4~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R39'
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R42'
+| Resonant subprocess #40: 3+4~H && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R40'
+| Resonant subprocess #40: 3+4~H && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R40'
+| Resonant subprocess #43: 5+6~W+ && 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R43'
+| Resonant subprocess #41: 3+4~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R41'
+| Resonant subprocess #44: 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R44'
+| Resonant subprocess #41: 3+4~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R41'
+| Process library 'proc_epmum_R': compiling ...
+| Resonant subprocess #42: 3+4~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R42'
+| Resonant subprocess #42: 3+4~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R42'
+| Resonant subprocess #43: 5+6~W+ && 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R43'
+| Resonant subprocess #43: 5+6~W+ && 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R43'
+| Resonant subprocess #44: 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R44'
+| Process library 'proc_epmum_R': compiling ...
+| Resonant subprocess #44: 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R44'
+| Process library 'proc_epmum_R': compiling ...
+| Process library 'proc_epmum_R': writing makefile
+| Process library 'proc_epmum_R': writing driver
+| Process library 'proc_epmum_R': keeping makefile
+| Process library 'proc_epmum_R': keeping driver
+| Process library 'proc_epmum_R': creating source code
+| Process library 'proc_epmum_R': keeping makefile
+| Process library 'proc_epmum_R': keeping driver
+| Process library 'proc_epmum_R': creating source code
+| Process library 'proc_epmum_R': creating source code
+| MCI: Advance RNG for parallel event simulation
+| Creating library for resonant subprocesses 'proc_epmum_R'
+| Process library 'proc_epmum_R': initialized
+| Resonant subprocess #1: 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R1'
+| Resonant subprocess #2: 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R2'
+| Resonant subprocess #3: 5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R3'
+| Resonant subprocess #4: 3+4~Z && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R4'
+| Resonant subprocess #5: 3+4~H && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R5'
+| Resonant subprocess #6: 3+4+5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R6'
+| Resonant subprocess #7: 5+6~W+ && 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R7'
+| Resonant subprocess #8: 3+4+5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R8'
+| Resonant subprocess #9: 3+4+5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R9'
+| Resonant subprocess #10: 7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R10'
+  RM        proc_epmum_R1_i1.f90,.mod,.lo
+  RM        proc_epmum_R1_i1.f90,.mod,.lo
+  RM        proc_epmum_R1_i1.f90,.mod,.lo
+| Resonant subprocess #11: 3+4+7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R11'
+| Resonant subprocess #12: 5+6~W+ && 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R12'
+| Resonant subprocess #13: 5+6~W+ && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R13'
+| Resonant subprocess #14: 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R14'
+| Resonant subprocess #15: 5+6~W+ && 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R15'
+| Resonant subprocess #16: 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R16'
+| Resonant subprocess #17: 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R17'
+| Resonant subprocess #18: 3+4~H && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R18'
+| Resonant subprocess #19: 3+4~Z && 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R19'
+| Resonant subprocess #20: 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R20'
+| Resonant subprocess #21: 5+6~W+ && 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R21'
+| Resonant subprocess #22: 5+6~W+ && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R22'
+| Resonant subprocess #23: 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R23'
+| Resonant subprocess #24: 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R24'
+| Resonant subprocess #25: 3+4~H && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R25'
+| Resonant subprocess #26: 3+4~Z && 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R26'
+| Resonant subprocess #27: 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R27'
+| Resonant subprocess #28: 3+4~H && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R28'
+| Resonant subprocess #29: 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R29'
+| Resonant subprocess #30: 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R30'
+| Resonant subprocess #31: 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R31'
+| Resonant subprocess #32: 3+4~Z && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R32'
+| Resonant subprocess #33: 3+4~H && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R33'
+| Resonant subprocess #34: 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R34'
+| Resonant subprocess #35: 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R35'
+| Resonant subprocess #36: 3+4~Z && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R36'
+  RM        proc_epmum_R2_i1.f90,.mod,.lo
+  RM        proc_epmum_R2_i1.f90,.mod,.lo
+  RM        proc_epmum_R2_i1.f90,.mod,.lo
+| Resonant subprocess #37: 3+4~Z && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R37'
+| Resonant subprocess #38: 3+4~Z && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R38'
+| Resonant subprocess #39: 3+4~Z && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R39'
+| Resonant subprocess #40: 3+4~H && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R40'
+| Resonant subprocess #41: 3+4~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R41'
+| Resonant subprocess #42: 3+4~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R42'
+| Resonant subprocess #43: 5+6~W+ && 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R43'
+| Resonant subprocess #44: 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R44'
+| Process library 'proc_epmum_R': compiling ...
+  RM        proc_epmum_R3_i1.f90,.mod,.lo
+  RM        proc_epmum_R3_i1.f90,.mod,.lo
+  RM        proc_epmum_R3_i1.f90,.mod,.lo
+| Process library 'proc_epmum_R': keeping makefile
+| Process library 'proc_epmum_R': keeping driver
+| Process library 'proc_epmum_R': creating source code
+  RM        proc_epmum_R1_i1.f90,.mod,.lo
+  RM        proc_epmum_R4_i1.f90,.mod,.lo
+  RM        proc_epmum_R4_i1.f90,.mod,.lo
+  RM        proc_epmum_R4_i1.f90,.mod,.lo
+  RM        proc_epmum_R2_i1.f90,.mod,.lo
+  RM        proc_epmum_R5_i1.f90,.mod,.lo
+  RM        proc_epmum_R5_i1.f90,.mod,.lo
+  RM        proc_epmum_R5_i1.f90,.mod,.lo
+  RM        proc_epmum_R3_i1.f90,.mod,.lo
+  RM        proc_epmum_R6_i1.f90,.mod,.lo
+  RM        proc_epmum_R6_i1.f90,.mod,.lo
+  RM        proc_epmum_R6_i1.f90,.mod,.lo
+  RM        proc_epmum_R4_i1.f90,.mod,.lo
+  RM        proc_epmum_R7_i1.f90,.mod,.lo
+  RM        proc_epmum_R7_i1.f90,.mod,.lo
+  RM        proc_epmum_R7_i1.f90,.mod,.lo
+  RM        proc_epmum_R5_i1.f90,.mod,.lo
+  RM        proc_epmum_R8_i1.f90,.mod,.lo
+  RM        proc_epmum_R8_i1.f90,.mod,.lo
+  RM        proc_epmum_R8_i1.f90,.mod,.lo
+  RM        proc_epmum_R6_i1.f90,.mod,.lo
+  RM        proc_epmum_R9_i1.f90,.mod,.lo
+  RM        proc_epmum_R9_i1.f90,.mod,.lo
+  RM        proc_epmum_R9_i1.f90,.mod,.lo
+  RM        proc_epmum_R7_i1.f90,.mod,.lo
+  RM        proc_epmum_R10_i1.f90,.mod,.lo
+  RM        proc_epmum_R10_i1.f90,.mod,.lo
+  RM        proc_epmum_R10_i1.f90,.mod,.lo
+  RM        proc_epmum_R8_i1.f90,.mod,.lo
+  RM        proc_epmum_R11_i1.f90,.mod,.lo
+  RM        proc_epmum_R11_i1.f90,.mod,.lo
+  RM        proc_epmum_R11_i1.f90,.mod,.lo
+  RM        proc_epmum_R9_i1.f90,.mod,.lo
+  RM        proc_epmum_R12_i1.f90,.mod,.lo
+  RM        proc_epmum_R12_i1.f90,.mod,.lo
+  RM        proc_epmum_R12_i1.f90,.mod,.lo
+  RM        proc_epmum_R10_i1.f90,.mod,.lo
+  RM        proc_epmum_R13_i1.f90,.mod,.lo
+  RM        proc_epmum_R13_i1.f90,.mod,.lo
+  RM        proc_epmum_R13_i1.f90,.mod,.lo
+  RM        proc_epmum_R11_i1.f90,.mod,.lo
+  RM        proc_epmum_R14_i1.f90,.mod,.lo
+  RM        proc_epmum_R14_i1.f90,.mod,.lo
+  RM        proc_epmum_R14_i1.f90,.mod,.lo
+  RM        proc_epmum_R15_i1.f90,.mod,.lo
+  RM        proc_epmum_R12_i1.f90,.mod,.lo
+  RM        proc_epmum_R15_i1.f90,.mod,.lo
+  RM        proc_epmum_R15_i1.f90,.mod,.lo
+  RM        proc_epmum_R16_i1.f90,.mod,.lo
+  RM        proc_epmum_R13_i1.f90,.mod,.lo
+  RM        proc_epmum_R16_i1.f90,.mod,.lo
+  RM        proc_epmum_R16_i1.f90,.mod,.lo
+  RM        proc_epmum_R14_i1.f90,.mod,.lo
+  RM        proc_epmum_R17_i1.f90,.mod,.lo
+  RM        proc_epmum_R17_i1.f90,.mod,.lo
+  RM        proc_epmum_R17_i1.f90,.mod,.lo
+  RM        proc_epmum_R15_i1.f90,.mod,.lo
+  RM        proc_epmum_R18_i1.f90,.mod,.lo
+  RM        proc_epmum_R18_i1.f90,.mod,.lo
+  RM        proc_epmum_R18_i1.f90,.mod,.lo
+  RM        proc_epmum_R16_i1.f90,.mod,.lo
+  RM        proc_epmum_R19_i1.f90,.mod,.lo
+  RM        proc_epmum_R19_i1.f90,.mod,.lo
+  RM        proc_epmum_R19_i1.f90,.mod,.lo
+  RM        proc_epmum_R17_i1.f90,.mod,.lo
+  RM        proc_epmum_R20_i1.f90,.mod,.lo
+  RM        proc_epmum_R20_i1.f90,.mod,.lo
+  RM        proc_epmum_R20_i1.f90,.mod,.lo
+  RM        proc_epmum_R18_i1.f90,.mod,.lo
+  RM        proc_epmum_R21_i1.f90,.mod,.lo
+  RM        proc_epmum_R21_i1.f90,.mod,.lo
+  RM        proc_epmum_R21_i1.f90,.mod,.lo
+  RM        proc_epmum_R19_i1.f90,.mod,.lo
+  RM        proc_epmum_R22_i1.f90,.mod,.lo
+  RM        proc_epmum_R22_i1.f90,.mod,.lo
+  RM        proc_epmum_R20_i1.f90,.mod,.lo
+  RM        proc_epmum_R22_i1.f90,.mod,.lo
+  RM        proc_epmum_R23_i1.f90,.mod,.lo
+  RM        proc_epmum_R23_i1.f90,.mod,.lo
+  RM        proc_epmum_R23_i1.f90,.mod,.lo
+  RM        proc_epmum_R21_i1.f90,.mod,.lo
+  RM        proc_epmum_R24_i1.f90,.mod,.lo
+  RM        proc_epmum_R24_i1.f90,.mod,.lo
+  RM        proc_epmum_R24_i1.f90,.mod,.lo
+  RM        proc_epmum_R22_i1.f90,.mod,.lo
+  RM        proc_epmum_R25_i1.f90,.mod,.lo
+  RM        proc_epmum_R25_i1.f90,.mod,.lo
+  RM        proc_epmum_R25_i1.f90,.mod,.lo
+  RM        proc_epmum_R26_i1.f90,.mod,.lo
+  RM        proc_epmum_R23_i1.f90,.mod,.lo
+  RM        proc_epmum_R26_i1.f90,.mod,.lo
+  RM        proc_epmum_R27_i1.f90,.mod,.lo
+  RM        proc_epmum_R26_i1.f90,.mod,.lo
+  RM        proc_epmum_R24_i1.f90,.mod,.lo
+  RM        proc_epmum_R27_i1.f90,.mod,.lo
+  RM        proc_epmum_R27_i1.f90,.mod,.lo
+  RM        proc_epmum_R28_i1.f90,.mod,.lo
+  RM        proc_epmum_R25_i1.f90,.mod,.lo
+  RM        proc_epmum_R28_i1.f90,.mod,.lo
+  RM        proc_epmum_R29_i1.f90,.mod,.lo
+  RM        proc_epmum_R28_i1.f90,.mod,.lo
+  RM        proc_epmum_R26_i1.f90,.mod,.lo
+  RM        proc_epmum_R29_i1.f90,.mod,.lo
+  RM        proc_epmum_R30_i1.f90,.mod,.lo
+  RM        proc_epmum_R29_i1.f90,.mod,.lo
+  RM        proc_epmum_R27_i1.f90,.mod,.lo
+  RM        proc_epmum_R30_i1.f90,.mod,.lo
+  RM        proc_epmum_R31_i1.f90,.mod,.lo
+  RM        proc_epmum_R30_i1.f90,.mod,.lo
+  RM        proc_epmum_R28_i1.f90,.mod,.lo
+  RM        proc_epmum_R31_i1.f90,.mod,.lo
+  RM        proc_epmum_R32_i1.f90,.mod,.lo
+  RM        proc_epmum_R31_i1.f90,.mod,.lo
+  RM        proc_epmum_R29_i1.f90,.mod,.lo
+  RM        proc_epmum_R32_i1.f90,.mod,.lo
+  RM        proc_epmum_R33_i1.f90,.mod,.lo
+  RM        proc_epmum_R32_i1.f90,.mod,.lo
+  RM        proc_epmum_R30_i1.f90,.mod,.lo
+  RM        proc_epmum_R34_i1.f90,.mod,.lo
+  RM        proc_epmum_R33_i1.f90,.mod,.lo
+  RM        proc_epmum_R33_i1.f90,.mod,.lo
+  RM        proc_epmum_R31_i1.f90,.mod,.lo
+  RM        proc_epmum_R34_i1.f90,.mod,.lo
+  RM        proc_epmum_R35_i1.f90,.mod,.lo
+  RM        proc_epmum_R34_i1.f90,.mod,.lo
+  RM        proc_epmum_R32_i1.f90,.mod,.lo
+  RM        proc_epmum_R35_i1.f90,.mod,.lo
+  RM        proc_epmum_R35_i1.f90,.mod,.lo
+  RM        proc_epmum_R33_i1.f90,.mod,.lo
+  RM        proc_epmum_R36_i1.f90,.mod,.lo
+  RM        proc_epmum_R36_i1.f90,.mod,.lo
+  RM        proc_epmum_R34_i1.f90,.mod,.lo
+  RM        proc_epmum_R36_i1.f90,.mod,.lo
+  RM        proc_epmum_R37_i1.f90,.mod,.lo
+  RM        proc_epmum_R35_i1.f90,.mod,.lo
+  RM        proc_epmum_R37_i1.f90,.mod,.lo
+  RM        proc_epmum_R37_i1.f90,.mod,.lo
+  RM        proc_epmum_R38_i1.f90,.mod,.lo
+  RM        proc_epmum_R38_i1.f90,.mod,.lo
+  RM        proc_epmum_R36_i1.f90,.mod,.lo
+  RM        proc_epmum_R38_i1.f90,.mod,.lo
+  RM        proc_epmum_R39_i1.f90,.mod,.lo
+  RM        proc_epmum_R39_i1.f90,.mod,.lo
+  RM        proc_epmum_R37_i1.f90,.mod,.lo
+  RM        proc_epmum_R39_i1.f90,.mod,.lo
+  RM        proc_epmum_R40_i1.f90,.mod,.lo
+  RM        proc_epmum_R38_i1.f90,.mod,.lo
+  RM        proc_epmum_R40_i1.f90,.mod,.lo
+  RM        proc_epmum_R40_i1.f90,.mod,.lo
+  RM        proc_epmum_R41_i1.f90,.mod,.lo
+  RM        proc_epmum_R41_i1.f90,.mod,.lo
+  RM        proc_epmum_R42_i1.f90,.mod,.lo
+  RM        proc_epmum_R41_i1.f90,.mod,.lo
+  RM        proc_epmum_R39_i1.f90,.mod,.lo
+  RM        proc_epmum_R42_i1.f90,.mod,.lo
+  RM        proc_epmum_R43_i1.f90,.mod,.lo
+  RM        proc_epmum_R42_i1.f90,.mod,.lo
+  RM        proc_epmum_R40_i1.f90,.mod,.lo
+  RM        proc_epmum_R43_i1.f90,.mod,.lo
+  RM        proc_epmum_R44_i1.f90,.mod,.lo
+  RM        proc_epmum_R43_i1.f90,.mod,.lo
+  RM        proc_epmum_R44_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_R1_i1.f90
+  RM        proc_epmum_R41_i1.f90,.mod,.lo
+  RM        proc_epmum_R44_i1.f90,.mod,.lo
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...  OMEGA     proc_epmum_R2_i1.f90
+  OMEGA     proc_epmum_R2_i1.f90
+  RM        proc_epmum_R42_i1.f90,.mod,.lo
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ...  RM        proc_epmum_R43_i1.f90,.mod,.lo
+  RM        proc_epmum_R44_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_R3_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.59 secs, total: 0.59 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.59 secs]
+ allowed. [time: 0.57 secs, total: 0.57 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.57 secs]
+SUMMARY: 73 fusions, 20 propagators, 61 diagrams
+SUMMARY: 42 vertices
+  OMEGA     proc_epmum_R4_i1.f90
+SUMMARY: 102 fusions, 26 propagators, 122 diagrams
+SUMMARY: 44 vertices
+  OMEGA     proc_epmum_R4_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.60 secs, total: 0.60 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.60 secs]
+SUMMARY: 102 fusions, 26 propagators, 122 diagrams
+SUMMARY: 44 vertices
+  OMEGA     proc_epmum_R5_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.59 secs, total: 0.59 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.59 secs]
+SUMMARY: 74 fusions, 21 propagators, 49 diagrams
+SUMMARY: 38 vertices
+  OMEGA     proc_epmum_R6_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.61 secs, total: 0.61 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.61 secs]
+ allowed. [time: 0.60 secs, total: 0.60 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.60 secs]
+SUMMARY: 39 fusions, 14 propagators, 16 diagrams
+SUMMARY: 24 vertices
+SUMMARY: 39 fusions, 14 propagators, 16 diagrams
+SUMMARY: 24 vertices
+  OMEGA     proc_epmum_R7_i1.f90
+  OMEGA     proc_epmum_R7_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.60 secs, total: 0.60 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.60 secs]
+SUMMARY: 20 fusions, 10 propagators, 7 diagrams
+SUMMARY: 15 vertices
+  OMEGA     proc_epmum_R8_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R9_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+SUMMARY: 28 fusions, 14 propagators, 42 diagrams
+SUMMARY: 20 vertices
+  OMEGA     proc_epmum_R10_i1.f90
+ allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R10_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 16 vertices
+  OMEGA     proc_epmum_R11_i1.f90
+ allowed. [time: 0.64 secs, total: 0.64 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.64 secs]
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R12_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+ allowed. [time: 0.59 secs, total: 0.59 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.59 secs]
+SUMMARY: 74 fusions, 21 propagators, 49 diagrams
+SUMMARY: 37 vertices
+SUMMARY: 74 fusions, 21 propagators, 49 diagrams
+SUMMARY: 37 vertices
+ allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+  OMEGA     proc_epmum_R13_i1.f90
+  OMEGA     proc_epmum_R13_i1.f90
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 16 vertices
+  OMEGA     proc_epmum_R13_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.69 secs, total: 0.69 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.69 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R14_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R15_i1.f90
+ allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...  OMEGA     proc_epmum_R15_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.77 secs, total: 0.77 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.77 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R16_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.77 secs, total: 0.77 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.77 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R17_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R18_i1.f90
+ allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...  OMEGA     proc_epmum_R18_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R19_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+SUMMARY: 12 fusions, 7 propagators, 3 diagrams
+SUMMARY: 9 vertices
+  OMEGA     proc_epmum_R20_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 12 fusions, 7 propagators, 3 diagrams
+SUMMARY: 9 vertices
+  OMEGA     proc_epmum_R21_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.59 secs, total: 0.59 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.59 secs]
+SUMMARY: 7 fusions, 5 propagators, 1 diagrams
+SUMMARY: 6 vertices
+  OMEGA     proc_epmum_R22_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 1.02 secs, total: 1.02 secs, remaining: 0.00 secs]
+all processes done. [total time: 1.02 secs]
+SUMMARY: 166 fusions, 36 propagators, 244 diagrams
+SUMMARY: 52 vertices
+  OMEGA     proc_epmum_R23_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 14 fusions, 8 propagators, 5 diagrams
+SUMMARY: 13 vertices
+  OMEGA     proc_epmum_R24_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.57 secs, total: 0.57 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.57 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R25_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.62 secs, total: 0.62 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.62 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R26_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 37 fusions, 17 propagators, 84 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R27_i1.f90
+ allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 12 fusions, 7 propagators, 3 diagrams
+SUMMARY: 10 vertices
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...  OMEGA     proc_epmum_R27_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 1.02 secs, total: 1.02 secs, remaining: 0.00 secs]
+all processes done. [total time: 1.02 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R28_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.57 secs, total: 0.57 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.57 secs]
+SUMMARY: 7 fusions, 5 propagators, 1 diagrams
+SUMMARY: 6 vertices
+  OMEGA     proc_epmum_R29_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 14 fusions, 8 propagators, 5 diagrams
+SUMMARY: 13 vertices
+  OMEGA     proc_epmum_R30_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.63 secs, total: 0.63 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.63 secs]
+SUMMARY: 14 fusions, 8 propagators, 5 diagrams
+SUMMARY: 13 vertices
+  OMEGA     proc_epmum_R31_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.59 secs, total: 0.59 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.59 secs]
+SUMMARY: 27 fusions, 14 propagators, 27 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R32_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.55 secs, total: 0.55 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.55 secs]
+SUMMARY: 31 fusions, 16 propagators, 45 diagrams
+SUMMARY: 23 vertices
+  OMEGA     proc_epmum_R33_i1.f90
+ allowed. [time: 1.03 secs, total: 1.03 secs, remaining: 0.00 secs]
+all processes done. [total time: 1.03 secs]
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...SUMMARY: 16 fusions, 9 propagators, 5 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R34_i1.f90
+ allowed. [time: 0.62 secs, total: 0.62 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.62 secs]
+SUMMARY: 27 fusions, 14 propagators, 27 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R34_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.60 secs, total: 0.60 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.60 secs]
+SUMMARY: 106 fusions, 27 propagators, 80 diagrams
+SUMMARY: 33 vertices
+  OMEGA     proc_epmum_R35_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.57 secs, total: 0.57 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.57 secs]
+SUMMARY: 41 fusions, 16 propagators, 20 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R36_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.92 secs, total: 0.92 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.92 secs]
+SUMMARY: 41 fusions, 16 propagators, 20 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R37_i1.f90
+ allowed. [time: 0.99 secs, total: 0.99 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.99 secs]
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ...SUMMARY: 50 fusions, 19 propagators, 24 diagrams
+SUMMARY: 24 vertices
+  OMEGA     proc_epmum_R38_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 1.06 secs, total: 1.06 secs, remaining: 0.00 secs]
+all processes done. [total time: 1.06 secs]
+SUMMARY: 41 fusions, 16 propagators, 20 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R39_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 14 fusions, 8 propagators, 6 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R40_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.68 secs, total: 0.68 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.68 secs]
+SUMMARY: 67 fusions, 20 propagators, 40 diagrams
+SUMMARY: 28 vertices
+  OMEGA     proc_epmum_R41_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.98 secs, total: 0.98 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.98 secs]
+SUMMARY: 14 fusions, 8 propagators, 6 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R42_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 30 fusions, 14 propagators, 12 diagrams
+SUMMARY: 20 vertices
+  OMEGA     proc_epmum_R43_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 1.05 secs, total: 1.05 secs, remaining: 0.00 secs]
+all processes done. [total time: 1.05 secs]
+SUMMARY: 18 fusions, 10 propagators, 10 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R44_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.57 secs, total: 0.57 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 153 fusions, 37 propagators, 152 diagrams
+SUMMARY: 34 vertices
+| Process library 'proc_epmum_R': compiling sources
+ allowed. [time: 0.56 secs, total: 0.56 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.56 secs]
+SUMMARY: 68 fusions, 27 propagators, 34 diagrams
+SUMMARY: 28 vertices
+| Process library 'proc_epmum_R': compiling sources
+ allowed. [time: 0.58 secs, total: 0.58 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.58 secs]
+SUMMARY: 24 fusions, 11 propagators, 10 diagrams
+SUMMARY: 15 vertices
+| Process library 'proc_epmum_R': compiling sources
+ allowed. [time: 0.99 secs, total: 0.99 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.99 secs]
+SUMMARY: 24 fusions, 11 propagators, 10 diagrams
+SUMMARY: 15 vertices
+| Process library 'proc_epmum_R': compiling sources
+make: *** [proc_epmum_R.makefile:60: proc_epmum_R1_i1.lo] Error 1
+| command: make compile -j1 -f proc_epmum_R.makefile
+| Return code = 512
+******************************************************************************
+******************************************************************************
+*** FATAL ERROR: System command returned with nonzero status code
+******************************************************************************
+******************************************************************************
+| There were no errors and    1 warning(s).
+WHIZARD run aborted.
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+proc_epmum_R1_i1.f90:722:7:
+
+  722 |   use opr_proc_epmum_R1_i1_computation, only: number_particles_in, &
+      |       1
+Fatal Error: Cannot open module file 'opr_proc_epmum_r1_i1_computation.mod' for reading at (1): No such file or directory
+compilation terminated.
+make: *** [proc_epmum_R.makefile:60: proc_epmum_R1_i1.lo] Error 1
+Terminated
+make: *** [proc_epmum_R.makefile:60: proc_epmum_R1_i1.lo] Error 1
+Terminated
+make: *** [proc_epmum_R.makefile:60: proc_epmum_R1_i1.lo] Error 1
+| command: make compile -j1 -f proc_epmum_R.makefile
+| Return code = 512
+******************************************************************************
+******************************************************************************
+*** FATAL ERROR: System command returned with nonzero status code
+******************************************************************************
+******************************************************************************
+| There were no errors and    1 warning(s).
+WHIZARD run aborted.
+| command: make compile -j1 -f proc_epmum_R.makefile
+| Return code = 15
+******************************************************************************
+******************************************************************************
+*** FATAL ERROR: System command returned with nonzero status code
+******************************************************************************
+******************************************************************************
+| There were no errors and    1 warning(s).
+WHIZARD run aborted.
+| command: make compile -j1 -f proc_epmum_R.makefile
+| Return code = 15
+******************************************************************************
+******************************************************************************
+*** FATAL ERROR: System command returned with nonzero status code
+******************************************************************************
+******************************************************************************
+| There were no errors and    1 warning(s).
+WHIZARD run aborted.
+--------------------------------------------------------------------------
+mpirun detected that one or more processes exited with non-zero status, thus causing
+the job to be terminated. The first process to do so was:
+
+  Process name: [[51374,1],2]
+  Exit code:    1
+--------------------------------------------------------------------------
+
+============================================================
+R0V2=FAIL
+MODE=S0_NP4_SMOKE_25K
+CHECKPOINT_KIND=WT_A07F3
+STATUS=FAIL
+WHIZARD_RC=1
+GRID_SEED=1740114216
+GENERATION_SEED=311190001
+EVENTS_REQUESTED=25000
+EVENTS_WRITTEN=0
+MPI_RANKS=4
+OMP_NUM_THREADS=1
+LHE_LAYOUT=whizard_mpi_rank_merge
+MPI_MERGE_RC=0
+WALL_SECONDS=25
+WORKSPACE_UNCHANGED=1
+NEW_GRID_INIT_COUNT=0
+PHS_SHA256_BEFORE=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+PHS_SHA256_AFTER=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+VG2_SHA256_BEFORE=8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+VG2_SHA256_AFTER=8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+EFFICIENCY_LINE=
+FAILURES=whizard_rc_1;lhe_file_count_0
+OUTPUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11d_np4_smoke_v1/20260819T221418Z_WT_A07F3_S0_np4_25k_v1_retry1_mergerpathfix/S0_NP4_SMOKE_25K
+============================================================

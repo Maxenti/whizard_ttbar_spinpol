@@ -1,0 +1,208 @@
+============================================================
+P6 FINAL 4x25K WORKER
+============================================================
+HOST=b9p20p2466.cern.ch
+PROC=2
+SHARD_ID=P6_FINAL_0003
+INPUT_LHE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/S0_11E_0003/phase11c_S0_11E_0003_seed311191003.lhe
+INPUT_SHA=172153da5e4675ff0a6118346f2547e961c481725453cd6ceaa910d5eb1ef532
+SOURCE_RANGE=[50000,75000)
+MAX_EVENTS=25000
+PYTHIA_SEED=711261003
+OUTPUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_4x25k_final_v1/20260821T150718Z_P6_FINAL_4x25K
+FROZEN=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1
+READY=1
+============================================================
+PREPARATION_HELPERS  canonicalizer=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1/helpers/canonicalize_whizard_lhe_for_pythia.py  serializer=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1/helpers/reorder_lhe_history_for_pythia_v1.py  validator=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1/helpers/validate_lhe_history_serialization_v1.py  metadata=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1/helpers/augment_shower_metadata.py
+RUNTIME_ENV mode=inherited_submit_host
+INPUT_SHA256_VERIFIED sha256=172153da5e4675ff0a6118346f2547e961c481725453cd6ceaa910d5eb1ef532
+CANONICALIZATION SUCCESS events=25000 canonicalized=25000 already_canonical=0 removed_bridges=50000 promoted_beams=50000 rewired_isr_photons=50000 removed_sqme_prc=25000 max_abs_closure_GeV=9.193684e-09 output=/pool/condor/dir_1221787/qis_shower_full6f365_ee_LR100_epmum_WT_A07F3_S0_P6_FINAL_0003_4ejojg/canonical_isr_v2.lhe
+HISTORY SERIALIZATION SUCCESS events=25000 reordered=24951 moved_particles=54071 max_displacement=4 output=/pool/condor/dir_1221787/qis_shower_full6f365_ee_LR100_epmum_WT_A07F3_S0_P6_FINAL_0003_4ejojg/history_serialized_v1.lhe
+EVENTS_CHECKED=25000
+PARTICLES_CHECKED=345737
+MOVED_PARTICLES=54071
+MAX_PARTICLE_DISPLACEMENT=4
+PARTICLE_CONTENT_PRESERVATION=PASS
+MOTHER_INDEX_REMAP=PASS
+MOTHER_BEFORE_CHILD=PASS
+DAUGHTER_CONTIGUITY=PASS
+HISTORY_SERIALIZATION_VALIDATION=PASS
+PREPARATION EVENT LIMIT PASS events=25000 reordered=24951 moved_particles=54071 max_displacement=4
+input_shard_sha256=172153da5e4675ff0a6118346f2547e961c481725453cd6ceaa910d5eb1ef532
+canonical_isr_v2_sha256=93a1a26e1f1fa104bb5b2d555d7307c35aa6c262219a7e36490eb734c1e49a9e
+history_serialized_v1_sha256=ebe7b94d8f0541c3a35f7bf35de2493fd30a47da20d2bb5c4bdca3996ab9f4eb
+
+ *------------------------------------------------------------------------------------* 
+ |                                                                                    | 
+ |  *------------------------------------------------------------------------------*  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  |   PPP   Y   Y  TTTTT  H   H  III    A      Welcome to the Lund Monte Carlo!  |  | 
+ |  |   P  P   Y Y     T    H   H   I    A A     This is PYTHIA version 8.315      |  | 
+ |  |   PPP     Y      T    HHHHH   I   AAAAA    Last date of change: 27 May 2025  |  | 
+ |  |   P       Y      T    H   H   I   A   A                                      |  | 
+ |  |   P       Y      T    H   H  III  A   A    Now is 21 Aug 2026 at 17:13:32    |  | 
+ |  |                                                                              |  | 
+ |  |   Program documentation and an archive of historic versions is found on:     |  | 
+ |  |                                                                              |  | 
+ |  |                               https://pythia.org/                            |  | 
+ |  |                                                                              |  | 
+ |  |   PYTHIA is authored by a collaboration consisting of:                       |  | 
+ |  |                                                                              |  | 
+ |  |   Javira Altmann, Christian Bierlich, Naomi Cooke, Nishita Desai,            |  | 
+ |  |   Ilkka Helenius, Philip Ilten, Leif Lonnblad, Stephen Mrenna,               |  | 
+ |  |   Christian Preuss, Torbjorn Sjostrand, and Peter Skands.                    |  | 
+ |  |                                                                              |  | 
+ |  |   The complete list of authors, including contact information and            |  | 
+ |  |   affiliations, can be found on https://pythia.org/.                         |  | 
+ |  |   Problems or bugs should be reported on email at authors@pythia.org.        |  | 
+ |  |                                                                              |  | 
+ |  |   The main program reference is C. Bierlich et al,                           |  | 
+ |  |   'A comprehensive guide to the physics and usage of Pythia 8.3',            |  | 
+ |  |   SciPost Phys. Codebases 8-r8.3 (2022) [arXiv:2203.11601 [hep-ph]]          |  | 
+ |  |                                                                              |  | 
+ |  |   PYTHIA is released under the GNU General Public Licence version 2          |  | 
+ |  |   or later. Please respect the MCnet Guidelines for Generator Authors        |  | 
+ |  |   and Users.                                                                 |  | 
+ |  |                                                                              |  | 
+ |  |   Disclaimer: this program comes without any guarantees.                     |  | 
+ |  |   Beware of errors and use common sense when interpreting results.           |  | 
+ |  |                                                                              |  | 
+ |  |   Copyright (C) 2025 Torbjorn Sjostrand                                      |  | 
+ |  |                                                                              |  | 
+ |  |                                                                              |  | 
+ |  *------------------------------------------------------------------------------*  | 
+ |                                                                                    | 
+ *------------------------------------------------------------------------------------* 
+
+
+ *-------  PYTHIA Process Initialization  --------------------------*
+ |                                                                  |
+ | We collide e- with e+ at a CM energy of 3.650e+02 GeV            |
+ |                                                                  |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Subprocess                                    Code |   Estimated |
+ |                                                    |    max (mb) |
+ |                                                    |             |
+ |------------------------------------------------------------------|
+ |                                                    |             |
+ | Les Houches User Process(es)                  9999 |   1.151e-11 |
+ |                                                                  |
+ *-------  End PYTHIA Process Initialization -----------------------*
+
+ *-------  PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings (changes only)  ------------------* 
+ |                                                                                                                 | 
+ | Name                                          |                      Now |      Default         Min         Max | 
+ |                                               |                          |                                      | 
+ | Beams:frameType                               |                        4 |            1           1           5 | 
+ | Beams:LHEF                                    | /pool/condor/dir_1221787/qis_shower_full6f365_ee_LR100_epmum_WT_A07F3_S0_P6_FINAL_0003_4ejojg/history_serialized_v1.lhe |         void | 
+ | Check:epTolErr                                |               1.0000e-06 |   1.0000e-04                         | 
+ | Check:epTolWarn                               |               1.0000e-08 |   1.0000e-06                         | 
+ | Next:numberCount                              |                    10000 |         1000           0             | 
+ | Next:numberShowEvent                          |                        0 |            1           0             | 
+ | Next:numberShowInfo                           |                        0 |            1           0             | 
+ | Next:numberShowProcess                        |                        0 |            1           0             | 
+ | PartonLevel:ISR                               |                      off |           on                         | 
+ | PartonLevel:MPI                               |                      off |           on                         | 
+ | ProcessLevel:resonanceDecays                  |                      off |           on                         | 
+ | Random:seed                                   |                711261003 |           -1               900000000 | 
+ | Random:setSeed                                |                       on |          off                         | 
+ | SpaceShower:QEDshowerByL                      |                      off |           on                         | 
+ | StringZ:useOldAExtra                          |                       on |          off                         | 
+ | TimeShower:QEDshowerByGamma                   |                      off |           on                         | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Flag + Mode + Parm + Word + FVec + MVec + PVec + WVec Settings  -----------------------------* 
+
+ --------  PYTHIA Particle Data Table (changed only)  ------------------------------------------------------------------------------
+ 
+      id   name            antiName         spn chg col      m0        mWidth      mMin       mMax       tau0    res dec ext vis wid
+             no onMode   bRatio   meMode     products 
+
+       6  t                tbar               2   2   1  173.00000    1.35678   86.00000    0.00000  1.45438e-13   1   0   0   1   0
+              0     1   0.0000664    0       24        1 
+              1     1   0.0017361    0       24        3 
+              2     1   0.9981975    0       24        5 
+              3     0   0.0000000    0       37        5 
+
+ --------  End PYTHIA Particle Data Table  -----------------------------------------------------------------------------------------
+
+
+ --------  LHA initialization information  ------------ 
+
+  beam    kind      energy  pdfgrp  pdfset 
+     A      11     182.500      -1      -1
+     B     -11     182.500      -1      -1
+
+  Event weighting strategy =  3
+
+  Processes, with strategy-dependent cross section info 
+  number      xsec (pb)      xerr (pb)      xmax (pb) 
+       1     1.1514e-02     1.1786e-05     1.0000e+00
+
+ --------  End LHA initialization information  -------- 
+
+ --------  LHA event information and listing  ---------------------------------------------------------------------- 
+
+    process =        1    weight =   1.0000e+00     scale =   3.6497e+02 (GeV) 
+                        alpha_em =  -1.0000e+00    alpha_strong =   1.1780e-01
+
+    Participating Particles 
+    no        id stat     mothers     colours      p_x        p_y        p_z         e          m        tau    spin 
+     1        11   -1     0     0     0     0      0.000      0.000    182.500    182.500      0.001   0.000   9.000
+     2       -11   -1     0     0     0     0      0.000      0.000   -182.500    182.500      0.001   0.000   9.000
+     3        22    1     1     2     0     0     -0.023      0.009      0.017      0.030     -0.000   0.000   9.000
+     4        22    1     1     2     0     0     -0.000     -0.000     -0.000      0.000      0.000   0.000   9.000
+     5         6    2     1     2   501     0    -47.956     27.423    -18.061    182.903    173.423   0.000   9.000
+     6        -6    2     1     2     0   501     47.979    -27.432     18.044    182.066    172.534   0.000   9.000
+     7        24    2     5     0     0     0    -12.875     -5.159     57.739     93.151     71.770   0.000   9.000
+     8         5    1     5     0   501     0    -35.081     32.581    -75.800     89.752      4.200   0.000   9.000
+     9       -24    2     6     0     0     0      0.823     29.470     52.380    100.469     80.506   0.000   9.000
+    10        -5    1     6     0     0   501     47.156    -56.902    -34.336     81.597      4.200   0.000   9.000
+    11       -11    1     7     0     0     0     12.611     10.092    -10.132     19.067      0.001   0.000   9.000
+    12        12    1     7     0     0     0    -25.487    -15.250     67.870     74.085     -0.000   0.000   9.000
+    13        13    1     9     0     0     0     23.508    -19.030     29.478     42.234      0.106   0.000   9.000
+    14       -14    1     9     0     0     0    -22.685     48.499     22.903     58.235     -0.000   0.000   9.000
+
+ --------  End LHA event information and listing  ------------------------------------------------------------------ 
+ PYTHIA Warning in SimpleTimeShower::findMEcorr: ME weight above PS one
+ PYTHIA Error in MiniStringFragmentation::fragment: no 1- or 2-body state found above mass threshold
+ PYTHIA Error in LundFragmentation::fragment: ministring fragmentation failed
+ PYTHIA Error in Pythia::next: hadronLevel failed; try again
+ PYTHIA Warning in HadronWidths::pickMasses: angular momentum and running widths not used
+
+ Pythia::next(): 10000 events have been generated 
+
+ Pythia::next(): 20000 events have been generated 
+
+ *-------  PYTHIA Event and Cross Section Statistics  -------------------------------------------------------------*
+ |                                                                                                                 |
+ | Subprocess                                    Code |            Number of events       |      sigma +- delta    |
+ |                                                    |       Tried   Selected   Accepted |     (estimated) (mb)   |
+ |                                                    |                                   |                        |
+ |-----------------------------------------------------------------------------------------------------------------|
+ |                                                    |                                   |                        |
+ | Les Houches User Process(es)                  9999 |       25000      25000      25000 |   1.151e-11  1.179e-14 |
+ |    ... whereof user classification code          1 |       25000      25000      25000 |                        | 
+ |                                                    |                                   |                        |
+ | sum                                                |       25000      25000      25000 |   1.151e-11  1.179e-14 |
+ |                                                                                                                 |
+ *-------  End PYTHIA Event and Cross Section Statistics ----------------------------------------------------------*
+
+ *-------  PYTHIA Error and Warning Messages Statistics  ----------------------------------------------------------* 
+ |                                                                                                                 | 
+ |  times   message                                                                                                | 
+ |                                                                                                                 | 
+ |      2   Error in LundFragmentation::fragment: ministring fragmentation failed                                  | 
+ |      2   Error in MiniStringFragmentation::fragment: no 1- or 2-body state found above mass threshold           | 
+ |      2   Error in Pythia::next: hadronLevel failed; try again                                                   | 
+ |      1   Warning in HadronWidths::pickMasses: angular momentum and running widths not used                      | 
+ |   1209   Warning in SimpleTimeShower::findMEcorr: ME weight above PS one                                        | 
+ |                                                                                                                 | 
+ *-------  End PYTHIA Error and Warning Messages Statistics  ------------------------------------------------------* 
+SHOWER SUCCESS sample=full6f365_ee_LR100_epmum_WT_A07F3_S0 events=25000 sanitized=no removed_sqme_prc=0 output="/pool/condor/dir_1221787/qis_shower_full6f365_ee_LR100_epmum_WT_A07F3_S0_P6_FINAL_0003_4ejojg/output.hepmc3"
+METADATA AUGMENTED events=25000 range=[50000,75000) reordered=24951 hadron_retries=2 mec_above_ps=1209 qed_shower_by_gamma=off output=/pool/condor/dir_1221787/qis_shower_full6f365_ee_LR100_epmum_WT_A07F3_S0_P6_FINAL_0003_4ejojg/output.hepmc3.metadata.json
+STAGED /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_4x25k_final_v1/20260821T150718Z_P6_FINAL_4x25K/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0003.hepmc3
+METADATA /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/20260819T225026Z_WT_A07F3_S0_np1_4x25k_exactchain_v1/p6_exact_worker_4x25k_final_v1/20260821T150718Z_P6_FINAL_4x25K/metadata/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P6_FINAL_0003.json
+SOURCE_RANGE  [50000,75000)  events=25000
+POLICY  canonical_isr_v2+history_serializer_v1  explicit_w_adapter=off  qed_shower_by_gamma=off  repo=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol  helpers=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/frozen_exact_worker_v1/helpers

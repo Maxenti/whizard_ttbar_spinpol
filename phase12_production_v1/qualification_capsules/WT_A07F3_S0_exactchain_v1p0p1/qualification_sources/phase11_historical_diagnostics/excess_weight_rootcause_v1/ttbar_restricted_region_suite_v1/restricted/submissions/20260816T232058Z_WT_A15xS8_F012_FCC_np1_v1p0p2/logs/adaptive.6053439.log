@@ -1,0 +1,50 @@
+000 (6053439.000.000) 08/17 01:21:44 Job submitted from host: <188.185.133.2:9618?addrs=188.185.133.2-9618+[2001-1458-d03-2--100-208]-9618&alias=bigbird102.cern.ch&noUDP&sock=schedd_5723_1498>
+    DAG Node: P_A01_S4
+...
+040 (6053439.000.000) 08/17 01:22:51 Started transferring input files
+	Transferring to host: <188.185.197.176:9618?addrs=188.185.197.176-9618+[2001-1458-303-24--100-ac]-9618&alias=b9p14p2771.cern.ch&noUDP&sock=slot1_40_3667_7bae_23802>
+...
+040 (6053439.000.000) 08/17 01:22:51 Finished transferring input files
+...
+001 (6053439.000.000) 08/17 01:22:52 Job executing on host: <188.185.197.176:9618?addrs=188.185.197.176-9618+[2001-1458-303-24--100-ac]-9618&alias=b9p14p2771.cern.ch&noUDP&sock=startd_2915_06a9>
+	SlotName: slot1_40@b9p14p2771.cern.ch
+	CondorScratchDir = "/pool/condor/dir_638026"
+	Cpus = 1
+	Disk = 6149555
+	GPUs = 0
+	Memory = 3000
+...
+006 (6053439.000.000) 08/17 01:23:01 Image size of job updated: 97872
+	96  -  MemoryUsage of job (MB)
+	97872  -  ResidentSetSize of job (KB)
+...
+006 (6053439.000.000) 08/17 01:28:02 Image size of job updated: 126940
+	124  -  MemoryUsage of job (MB)
+	126940  -  ResidentSetSize of job (KB)
+...
+006 (6053439.000.000) 08/17 01:30:46 Image size of job updated: 126944
+	124  -  MemoryUsage of job (MB)
+	126940  -  ResidentSetSize of job (KB)
+...
+040 (6053439.000.000) 08/17 01:30:46 Started transferring output files
+...
+040 (6053439.000.000) 08/17 01:30:46 Finished transferring output files
+...
+005 (6053439.000.000) 08/17 01:30:47 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:07:43, Sys 0 00:00:03  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:07:43, Sys 0 00:00:03  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	16857  -  Run Bytes Sent By Job
+	7129  -  Run Bytes Received By Job
+	16857  -  Total Bytes Sent By Job
+	7129  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.99        1         1 
+	   Disk (KB)            : 39246     6144000   6149555 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   124        3000      3000 
+	   TimeExecute (s)      :   474                       
+	   TimeSlotBusy (s)     :   475                       
+...

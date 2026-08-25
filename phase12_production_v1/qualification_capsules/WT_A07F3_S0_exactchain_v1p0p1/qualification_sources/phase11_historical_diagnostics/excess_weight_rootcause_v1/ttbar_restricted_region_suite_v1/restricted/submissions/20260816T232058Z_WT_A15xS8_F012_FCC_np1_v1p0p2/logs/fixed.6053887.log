@@ -1,0 +1,66 @@
+000 (6053887.000.000) 08/17 01:56:57 Job submitted from host: <188.185.133.2:9618?addrs=188.185.133.2-9618+[2001-1458-d03-2--100-208]-9618&alias=bigbird102.cern.ch&noUDP&sock=schedd_5723_1498>
+    DAG Node: C_A09_S1_F0
+...
+040 (6053887.000.000) 08/17 01:57:22 Started transferring input files
+	Transferring to host: <128.142.33.61:9618?addrs=128.142.33.61-9618+[2001-1458-301-53--100-3a]-9618&alias=b9g34p5098.cern.ch&noUDP&sock=slot1_17_4777_941b_29947>
+...
+040 (6053887.000.000) 08/17 01:57:22 Finished transferring input files
+...
+001 (6053887.000.000) 08/17 01:57:23 Job executing on host: <128.142.33.61:9618?addrs=128.142.33.61-9618+[2001-1458-301-53--100-3a]-9618&alias=b9g34p5098.cern.ch&noUDP&sock=startd_4471_5006>
+	SlotName: slot1_17@b9g34p5098.cern.ch
+	CondorScratchDir = "/pool/condor/dir_3791982"
+	Cpus = 1
+	Disk = 6146650
+	GPUs = 0
+	Memory = 3000
+...
+006 (6053887.000.000) 08/17 01:57:31 Image size of job updated: 40476
+	40  -  MemoryUsage of job (MB)
+	40476  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:02:31 Image size of job updated: 90224
+	89  -  MemoryUsage of job (MB)
+	90224  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:07:32 Image size of job updated: 90724
+	89  -  MemoryUsage of job (MB)
+	90724  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:12:32 Image size of job updated: 102312
+	100  -  MemoryUsage of job (MB)
+	102312  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:17:33 Image size of job updated: 102316
+	100  -  MemoryUsage of job (MB)
+	102316  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:22:34 Image size of job updated: 113156
+	111  -  MemoryUsage of job (MB)
+	113156  -  ResidentSetSize of job (KB)
+...
+006 (6053887.000.000) 08/17 02:32:35 Image size of job updated: 113164
+	111  -  MemoryUsage of job (MB)
+	113164  -  ResidentSetSize of job (KB)
+...
+040 (6053887.000.000) 08/17 02:33:11 Started transferring output files
+...
+040 (6053887.000.000) 08/17 02:33:11 Finished transferring output files
+...
+005 (6053887.000.000) 08/17 02:33:11 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:35:25, Sys 0 00:00:05  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:35:25, Sys 0 00:00:05  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	17386  -  Run Bytes Sent By Job
+	10066  -  Run Bytes Received By Job
+	17386  -  Total Bytes Sent By Job
+	10066  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     1.00        1         1 
+	   Disk (KB)            : 39223     6144000   6146650 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   111        3000      3000 
+	   TimeExecute (s)      :  2148                       
+	   TimeSlotBusy (s)     :  2149                       
+...

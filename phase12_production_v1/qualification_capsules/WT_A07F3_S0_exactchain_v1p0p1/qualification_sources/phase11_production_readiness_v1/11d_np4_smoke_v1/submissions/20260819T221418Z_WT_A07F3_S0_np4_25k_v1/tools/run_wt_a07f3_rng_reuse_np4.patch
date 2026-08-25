@@ -1,0 +1,92 @@
+--- /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c2_wt_a07f3_reuse_qualification_v1/tools/run_wt_a07f3_rng_reuse.sh	2026-08-19 18:27:47.000000001 +0200
++++ /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11d_np4_smoke_v1/submissions/20260819T221418Z_WT_A07F3_S0_np4_25k_v1/tools/run_wt_a07f3_rng_reuse_np4.sh	2026-08-20 00:16:02.000000001 +0200
+@@ -281,10 +281,66 @@
+ START_EPOCH=$(date +%s)
+ 
+ set +e
+-timeout 12h whizard process.sin 2>&1 | tee console.log
++
++MPI_RANKS=4
++export OMP_NUM_THREADS=1
++
++WHIZARD_EXE="$(
++  readlink -f "$(command -v whizard)"
++)"
++
++MPI_MERGER="$(
++  cd "$(dirname "${BASH_SOURCE[0]}")"
++  pwd
++)/merge_mpi_lhe.py"
++
++if [[ ! -s "$MPI_MERGER" ]]; then
++  echo "ERROR: MPI LHE merger missing: $MPI_MERGER" >&2
++  exit 2
++fi
++
++MPI_MERGE_RC=0
++LHE_LAYOUT="whizard_mpi_rank_merge"
++LHE_RANK_MANIFEST="$PWD/lhe_rank_manifest.json"
++
++echo "MPI_RANKS=$MPI_RANKS"
++echo "OMP_NUM_THREADS=$OMP_NUM_THREADS"
++echo "WHIZARD_EXE=$WHIZARD_EXE"
++echo "MPI_MERGER=$MPI_MERGER"
++echo "LHE_LAYOUT=$LHE_LAYOUT"
++
++timeout 12h \
++  mpirun \
++    -np "$MPI_RANKS" \
++    --nooversubscribe \
++    --bind-to core \
++    --map-by core \
++    "$WHIZARD_EXE" process.sin \
++  2>&1 | tee console.log
++
+ WHIZARD_RC=${PIPESTATUS[0]}
++
++if (( WHIZARD_RC == 0 )); then
++
++  python3 \
++    "$MPI_MERGER" \
++    --input-dir "$PWD" \
++    --basename "$SAMPLE" \
++    --expected-ranks "$MPI_RANKS" \
++    --expected-events "$EVENTS" \
++    --output "$PWD/${SAMPLE}.lhe" \
++    --manifest "$LHE_RANK_MANIFEST"
++
++  MPI_MERGE_RC=$?
++
++fi
++
+ set -e
+ 
++if (( WHIZARD_RC == 0 && MPI_MERGE_RC != 0 )); then
++  WHIZARD_RC=$MPI_MERGE_RC
++fi
++
+ END_EPOCH=$(date +%s)
+ WALL_SECONDS=$((END_EPOCH - START_EPOCH))
+ 
+@@ -367,6 +423,10 @@
+   echo "GENERATION_SEED=$GENERATION_SEED"
+   echo "EVENTS_REQUESTED=$EVENTS"
+   echo "EVENTS_WRITTEN=$EVENTS_WRITTEN"
++  echo "MPI_RANKS=$MPI_RANKS"
++  echo "OMP_NUM_THREADS=$OMP_NUM_THREADS"
++  echo "LHE_LAYOUT=$LHE_LAYOUT"
++  echo "MPI_MERGE_RC=$MPI_MERGE_RC"
+   echo "WALL_SECONDS=$WALL_SECONDS"
+   echo "WORKSPACE_UNCHANGED=$WORKSPACE_UNCHANGED"
+   echo "NEW_GRID_INIT_COUNT=$NEW_GRID_INIT_COUNT"
+@@ -378,6 +438,10 @@
+   echo "FAILURES=$(IFS=';'; echo "${FAILURES[*]:-}")"
+ } > reuse_checks.txt
+ 
++if [[ -s "$LHE_RANK_MANIFEST" ]]; then
++  cp -a "$LHE_RANK_MANIFEST" "$DEST/"
++fi
++
+ cp -a \
+   console.log \
+   process.sin \

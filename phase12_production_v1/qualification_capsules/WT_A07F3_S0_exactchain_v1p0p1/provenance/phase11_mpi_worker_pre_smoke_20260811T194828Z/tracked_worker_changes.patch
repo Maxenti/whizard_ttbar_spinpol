@@ -1,0 +1,442 @@
+diff --git a/scripts/condor/run_full6f_production_job.sh b/scripts/condor/run_full6f_production_job.sh
+index 24996dc..e404fba 100755
+--- a/scripts/condor/run_full6f_production_job.sh
++++ b/scripts/condor/run_full6f_production_job.sh
+@@ -2,7 +2,7 @@
+ set -euo pipefail
+ 
+ usage() {
+-  cat <<'EOF'
++  cat <<'EOF_USAGE'
+ Usage:
+   run_full6f_production_job.sh \
+     --repo PATH \
+@@ -16,8 +16,19 @@ Usage:
+     --iterations SPEC \
+     --campaign-root PATH \
+     --archive-workspace 0|1 \
+-    --timeout-minutes N
+-EOF
++    --timeout-minutes N \
++    [--mpi-ranks N] \
++    [--vamp-parallel-method simple|load]
++
++Defaults:
++  --mpi-ranks 1
++  --vamp-parallel-method simple
++
++mpi-ranks=1 preserves the historical serial production path.
++
++mpi-ranks>1 selects the qualified WHIZARD 3.1.8 MPI runtime and delegates
++MPI/VAMP2 execution to run_full6f_production_shard.sh.
++EOF_USAGE
+ }
+ 
+ REPO=""
+@@ -33,6 +44,9 @@ CAMPAIGN_ROOT=""
+ ARCHIVE_WORKSPACE=""
+ TIMEOUT_MINUTES=""
+ 
++MPI_RANKS=1
++VAMP_PARALLEL_METHOD="simple"
++
+ while (($#)); do
+   case "$1" in
+     --repo)
+@@ -83,6 +97,14 @@ while (($#)); do
+       TIMEOUT_MINUTES=${2:?}
+       shift 2
+       ;;
++    --mpi-ranks)
++      MPI_RANKS=${2:?}
++      shift 2
++      ;;
++    --vamp-parallel-method)
++      VAMP_PARALLEL_METHOD=${2:?}
++      shift 2
++      ;;
+     -h|--help)
+       usage
+       exit 0
+@@ -115,14 +137,40 @@ do
+   fi
+ done
+ 
++if [[ ! "$MPI_RANKS" =~ ^[0-9]+$ ]] || (( MPI_RANKS < 1 )); then
++  echo "ERROR: --mpi-ranks must be a positive integer: $MPI_RANKS" >&2
++  exit 2
++fi
++
++case "$VAMP_PARALLEL_METHOD" in
++  simple|load)
++    ;;
++  *)
++    echo \
++      "ERROR: --vamp-parallel-method must be simple or load: " \
++      "$VAMP_PARALLEL_METHOD" >&2
++    exit 2
++    ;;
++esac
++
+ cd "$REPO" || {
+   echo "ERROR: cannot enter repository: $REPO" >&2
+   exit 1
+ }
+ 
+-SETUP="$REPO/environments/setup_lcg_devkey_head_fri_ttsp.sh"
++SERIAL_SETUP="$REPO/environments/setup_lcg_devkey_head_fri_ttsp.sh"
++MPI_SETUP="$REPO/environments/setup_whizard_3p1p8_mpi_qualified.sh"
++
+ WORKER="$REPO/scripts/production/run_full6f_production_shard.sh"
+ 
++if (( MPI_RANKS > 1 )); then
++  SETUP="$MPI_SETUP"
++  EXECUTION_MODE="mpi_vamp2"
++else
++  SETUP="$SERIAL_SETUP"
++  EXECUTION_MODE="serial"
++fi
++
+ [[ -s "$SETUP" ]] || {
+   echo "ERROR: missing runtime setup: $SETUP" >&2
+   exit 1
+@@ -141,10 +189,32 @@ set -u
+ export OMP_NUM_THREADS=1
+ export OPENBLAS_NUM_THREADS=1
+ export MKL_NUM_THREADS=1
++export BLIS_NUM_THREADS=1
+ export VECLIB_MAXIMUM_THREADS=1
+ export NUMEXPR_NUM_THREADS=1
+ export MALLOC_ARENA_MAX=2
+ 
++if (( MPI_RANKS > 1 )); then
++  command -v mpirun >/dev/null 2>&1 || {
++    echo "ERROR: MPI execution requested but mpirun is unavailable" >&2
++    exit 1
++  }
++
++  if [[ -z "${WHIZARD_MPI_ROOT:-}" ]]; then
++    echo "ERROR: MPI runtime setup did not define WHIZARD_MPI_ROOT" >&2
++    exit 1
++  fi
++
++  EXPECTED_MPI_ROOT="$REPO/local/whizard-3.1.8-mpi-omp-qualified-20260811"
++
++  if [[ "$WHIZARD_MPI_ROOT" != "$EXPECTED_MPI_ROOT" ]]; then
++    echo "ERROR: unexpected WHIZARD_MPI_ROOT" >&2
++    echo "Expected: $EXPECTED_MPI_ROOT" >&2
++    echo "Observed: $WHIZARD_MPI_ROOT" >&2
++    exit 1
++  fi
++fi
++
+ echo "============================================================"
+ echo "FULL6F_CONDOR_JOB"
+ echo "HOST=$(hostname -f 2>/dev/null || hostname)"
+@@ -159,7 +229,13 @@ echo "WHIZARD_SEED=$WHIZARD_SEED"
+ echo "EVENTS=$EVENTS"
+ echo "ITERATIONS=$ITERATIONS"
+ echo "CAMPAIGN_ROOT=$CAMPAIGN_ROOT"
++echo "EXECUTION_MODE=$EXECUTION_MODE"
++echo "MPI_RANKS=$MPI_RANKS"
++echo "OMP_NUM_THREADS=$OMP_NUM_THREADS"
++echo "VAMP_PARALLEL_METHOD=$VAMP_PARALLEL_METHOD"
+ echo "WHIZARD=$(command -v whizard)"
++echo "MPIRUN=$(command -v mpirun 2>/dev/null || true)"
++echo "WHIZARD_MPI_ROOT=${WHIZARD_MPI_ROOT:-UNSET}"
+ whizard --version | sed -n '1p'
+ echo "============================================================"
+ 
+@@ -174,4 +250,6 @@ exec "$WORKER" \
+   --iterations "$ITERATIONS" \
+   --campaign-root "$CAMPAIGN_ROOT" \
+   --archive-workspace "$ARCHIVE_WORKSPACE" \
+-  --timeout-minutes "$TIMEOUT_MINUTES"
++  --timeout-minutes "$TIMEOUT_MINUTES" \
++  --mpi-ranks "$MPI_RANKS" \
++  --vamp-parallel-method "$VAMP_PARALLEL_METHOD"
+diff --git a/scripts/production/run_full6f_production_shard.sh b/scripts/production/run_full6f_production_shard.sh
+index b96098c..43107cd 100755
+--- a/scripts/production/run_full6f_production_shard.sh
++++ b/scripts/production/run_full6f_production_shard.sh
+@@ -16,6 +16,8 @@ Usage:
+     --campaign-root PATH \
+     [--archive-workspace 0|1] \
+     [--timeout-minutes N] \
++    [--mpi-ranks N] \
++    [--vamp-parallel-method simple|load] \
+     [--force]
+ 
+ Runs one direct-full6f WHIZARD production shard.
+@@ -37,6 +39,8 @@ ITERATIONS=""
+ CAMPAIGN_ROOT=""
+ ARCHIVE_WORKSPACE=1
+ TIMEOUT_MINUTES=180
++MPI_RANKS=1
++VAMP_PARALLEL_METHOD="simple"
+ FORCE=0
+ 
+ while (($#)); do
+@@ -85,6 +89,14 @@ while (($#)); do
+       TIMEOUT_MINUTES=${2:?}
+       shift 2
+       ;;
++    --mpi-ranks)
++      MPI_RANKS=${2:?}
++      shift 2
++      ;;
++    --vamp-parallel-method)
++      VAMP_PARALLEL_METHOD=${2:?}
++      shift 2
++      ;;
+     --force)
+       FORCE=1
+       shift
+@@ -121,7 +133,7 @@ for variable in "${required_values[@]}"; do
+   fi
+ done
+ 
+-for numeric in SHARD_INDEX WHIZARD_SEED EVENTS TIMEOUT_MINUTES; do
++for numeric in SHARD_INDEX WHIZARD_SEED EVENTS TIMEOUT_MINUTES MPI_RANKS; do
+   if [[ ! "${!numeric}" =~ ^[0-9]+$ ]]; then
+     echo "ERROR: $numeric must be a nonnegative integer: ${!numeric}" >&2
+     exit 2
+@@ -138,6 +150,20 @@ if (( WHIZARD_SEED <= 0 )); then
+   exit 2
+ fi
+ 
++if (( MPI_RANKS <= 0 )); then
++  echo "ERROR: MPI_RANKS must be positive" >&2
++  exit 2
++fi
++
++case "$VAMP_PARALLEL_METHOD" in
++  simple|load)
++    ;;
++  *)
++    echo       "ERROR: VAMP_PARALLEL_METHOD must be simple or load: "       "$VAMP_PARALLEL_METHOD" >&2
++    exit 2
++    ;;
++esac
++
+ if [[ "$ARCHIVE_WORKSPACE" != 0 && "$ARCHIVE_WORKSPACE" != 1 ]]; then
+   echo "ERROR: --archive-workspace must be 0 or 1" >&2
+   exit 2
+@@ -354,7 +380,9 @@ PY_LOCALIZE
+ python3 - \
+   "$LOCAL_INTEGRATION" \
+   "$WHIZARD_SEED" \
+-  "$ITERATIONS" <<'PY'
++  "$ITERATIONS" \
++  "$MPI_RANKS" \
++  "$VAMP_PARALLEL_METHOD" <<'PY'
+ from __future__ import annotations
+ 
+ import re
+@@ -364,6 +392,8 @@ from pathlib import Path
+ path = Path(sys.argv[1])
+ requested_seed = int(sys.argv[2])
+ iterations = sys.argv[3]
++mpi_ranks = int(sys.argv[4])
++vamp_parallel_method = sys.argv[5]
+ 
+ text = path.read_text(encoding="utf-8")
+ 
+@@ -409,6 +439,80 @@ if text.index(f"seed = {requested_seed}") >= text.index("integrate ("):
+         "ERROR: localized WHIZARD seed does not precede integration"
+     )
+ 
++if mpi_ranks > 1:
++    managed_keys = [
++        "$integration_method",
++        "$rng_method",
++        "$vamp_parallel_method",
++        "?omega_openmp",
++        "openmp_num_threads",
++    ]
++
++    for key in managed_keys:
++        pattern = re.compile(
++            rf"(?m)^\s*{re.escape(key)}\s*=.*$"
++        )
++
++        existing = list(pattern.finditer(text))
++
++        if existing:
++            raise SystemExit(
++                f"ERROR: source integration include already defines "
++                f"MPI-managed setting {key}: {path}"
++            )
++
++    mpi_lines = [
++        '$integration_method = "vamp2"',
++        '$rng_method = "rng_stream"',
++        f'$vamp_parallel_method = "{vamp_parallel_method}"',
++        "?omega_openmp = false",
++        "openmp_num_threads = 1",
++    ]
++
++    seed_line_pattern = re.compile(
++        rf"(?m)^\s*seed\s*=\s*{requested_seed}\s*$"
++    )
++
++    seed_line = seed_line_pattern.search(text)
++
++    if seed_line is None:
++        raise SystemExit(
++            "ERROR: cannot locate rewritten seed assignment "
++            "for MPI configuration insertion"
++        )
++
++    mpi_block = "\n".join(mpi_lines) + "\n\n"
++
++    text = (
++        text[:seed_line.start()]
++        + mpi_block
++        + text[seed_line.start():]
++    )
++
++    for line in mpi_lines:
++        count = text.count(line)
++
++        if count != 1:
++            raise SystemExit(
++                f"ERROR: expected exactly one MPI setting after "
++                f"rendering, found {count}: {line}"
++            )
++
++    if text.index('$integration_method = "vamp2"') >= text.index(
++        f"seed = {requested_seed}"
++    ):
++        raise SystemExit(
++            "ERROR: MPI/VAMP2 configuration does not precede seed"
++        )
++
++    print("FULL6F_MPI_INTEGRATION_CONTRACT=PASS")
++    print(f"MPI_RANKS={mpi_ranks}")
++    print(f"VAMP_PARALLEL_METHOD={vamp_parallel_method}")
++
++else:
++    print("FULL6F_SERIAL_INTEGRATION_CONTRACT=UNCHANGED")
++    print(f"MPI_RANKS={mpi_ranks}")
++
+ path.write_text(text, encoding="utf-8")
+ PY
+ 
+@@ -604,6 +708,46 @@ printf '%s\n' "$WHIZARD_REALPATH" \
+ CONSOLE_LOG="$RUN_DIR/console.log"
+ TIMEOUT_SECONDS=$(( TIMEOUT_MINUTES * 60 ))
+ 
++if (( MPI_RANKS > 1 )); then
++  if ! command -v mpirun >/dev/null 2>&1; then
++    echo "ERROR: MPI_RANKS=$MPI_RANKS but mpirun is unavailable" >&2
++    exit 1
++  fi
++
++  EXECUTION_MODE="mpi_vamp2"
++
++  WHIZARD_COMMAND=(
++    mpirun
++    -np "$MPI_RANKS"
++    --bind-to core
++    --map-by core
++    "$WHIZARD_REALPATH"
++    process.sin
++  )
++else
++  EXECUTION_MODE="serial"
++
++  WHIZARD_COMMAND=(
++    "$WHIZARD_REALPATH"
++    process.sin
++  )
++fi
++
++{
++  echo "EXECUTION_MODE=$EXECUTION_MODE"
++  echo "MPI_RANKS=$MPI_RANKS"
++  echo "OMP_NUM_THREADS=${OMP_NUM_THREADS:-UNSET}"
++  echo "VAMP_PARALLEL_METHOD=$VAMP_PARALLEL_METHOD"
++  printf 'COMMAND='
++  printf '%q ' "${WHIZARD_COMMAND[@]}"
++  printf '\n'
++} > "$RUN_DIR/whizard_command.txt"
++
++echo "============================================================"
++echo "FULL6F_WHIZARD_EXECUTION"
++cat "$RUN_DIR/whizard_command.txt"
++echo "============================================================"
++
+ set +e
+ (
+   cd "$SCRATCH_DIR" || exit 1
+@@ -611,9 +755,9 @@ set +e
+   if command -v timeout >/dev/null 2>&1; then
+     timeout --signal=TERM --kill-after=60 \
+       "$TIMEOUT_SECONDS" \
+-      whizard process.sin
++      "${WHIZARD_COMMAND[@]}"
+   else
+-    whizard process.sin
++    "${WHIZARD_COMMAND[@]}"
+   fi
+ ) 2>&1 | tee "$CONSOLE_LOG"
+ 
+@@ -685,7 +829,11 @@ python3 - \
+   "$END_UTC" \
+   "$HOSTNAME_VALUE" \
+   "$SCRATCH_DIR" \
+-  "$ARCHIVE_WORKSPACE" <<'PY'
++  "$ARCHIVE_WORKSPACE" \
++  "$EXECUTION_MODE" \
++  "$MPI_RANKS" \
++  "${OMP_NUM_THREADS:-1}" \
++  "$VAMP_PARALLEL_METHOD" <<'PY'
+ from __future__ import annotations
+ 
+ import json
+@@ -718,6 +866,10 @@ from pathlib import Path
+     hostname,
+     scratch_directory,
+     archive_workspace,
++    execution_mode,
++    mpi_ranks,
++    omp_threads,
++    vamp_parallel_method,
+ ) = sys.argv[1:]
+ 
+ payload = {
+@@ -750,6 +902,25 @@ payload = {
+         "whizard_version": whizard_version,
+         "whizard_binary": whizard_binary,
+         "required_whizard_version": "3.1.8",
++        "execution_mode": execution_mode,
++        "mpi_enabled": int(mpi_ranks) > 1,
++        "mpi_ranks": int(mpi_ranks),
++        "omp_threads": int(omp_threads),
++        "integration_method": (
++            "vamp2"
++            if int(mpi_ranks) > 1
++            else "default_serial"
++        ),
++        "rng_method": (
++            "rng_stream"
++            if int(mpi_ranks) > 1
++            else "default_serial"
++        ),
++        "vamp_parallel_method": (
++            vamp_parallel_method
++            if int(mpi_ranks) > 1
++            else None
++        ),
+     },
+     "start_utc": start_utc,
+     "end_utc": end_utc,
+@@ -773,6 +944,7 @@ PY
+     "$RUN_DIR/render_context.json" \
+     "$RUN_DIR/whizard_version.txt" \
+     "$RUN_DIR/whizard_binary.txt" \
++    "$RUN_DIR/whizard_command.txt" \
+     "$CONSOLE_LOG" \
+     "$METADATA" \
+     "$RAW_LHE"

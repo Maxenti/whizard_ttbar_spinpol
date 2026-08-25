@@ -1,0 +1,194 @@
+--- scripts/condor/run_full6f_production_job_encoded_iterations.sh.before_mpi_phase11_20260811T192100Z	2026-08-10 18:11:16.000000001 +0200
++++ scripts/condor/run_full6f_production_job_encoded_iterations.sh	2026-08-11 21:21:11.000000001 +0200
+@@ -3,17 +3,16 @@
+ set -Eeuo pipefail
+ 
+ ###############################################################################
+-# run_full6f_production_job_encoded_iterations.sh
+-#
+ # Thin transport wrapper around the authoritative full6f worker.
+ #
+-# HTCondor queue-from itemdata uses comma/whitespace parsing, while WHIZARD
+-# integration schedules contain commas and double quotes, e.g.
++# Integration schedules contain commas and quotes, e.g.
+ #
+ #   5:50000:"gw",5:100000:""
+ #
+-# Therefore the integration schedule is transported through HTCondor as
+-# lowercase hexadecimal and decoded here before invoking the existing worker.
++# They are transported through HTCondor as lowercase hexadecimal and decoded
++# here before invoking run_full6f_production_job.sh.
++#
++# MPI options are ordinary scalar fields and do not require encoding.
+ ###############################################################################
+ 
+ decode_hex() {
+@@ -45,9 +44,8 @@
+ PY
+ }
+ 
+-
+ ###############################################################################
+-# Diagnostic mode: decode without running WHIZARD.
++# Diagnostic decode mode.
+ ###############################################################################
+ 
+ if [[ "${1:-}" == "--decode-only" ]]; then
+@@ -60,9 +58,8 @@
+     exit 0
+ fi
+ 
+-
+ ###############################################################################
+-# Parse production arguments.
++# Parse arguments.
+ ###############################################################################
+ 
+ REPO=""
+@@ -78,68 +75,67 @@
+ ARCHIVE_WORKSPACE=""
+ TIMEOUT_MINUTES=""
+ 
++MPI_RANKS=1
++VAMP_PARALLEL_METHOD="simple"
++
+ while (( $# > 0 )); do
+     case "$1" in
+         --repo)
+             REPO="$2"
+             shift 2
+             ;;
+-
+         --campaign-id)
+             CAMPAIGN_ID="$2"
+             shift 2
+             ;;
+-
+         --sample-id)
+             SAMPLE_ID="$2"
+             shift 2
+             ;;
+-
+         --subprocess-id)
+             SUBPROCESS_ID="$2"
+             shift 2
+             ;;
+-
+         --source-card)
+             SOURCE_CARD="$2"
+             shift 2
+             ;;
+-
+         --shard-index)
+             SHARD_INDEX="$2"
+             shift 2
+             ;;
+-
+         --whizard-seed)
+             WHIZARD_SEED="$2"
+             shift 2
+             ;;
+-
+         --events)
+             EVENTS="$2"
+             shift 2
+             ;;
+-
+         --iterations-hex)
+             ITERATIONS_HEX="$2"
+             shift 2
+             ;;
+-
+         --campaign-root)
+             CAMPAIGN_ROOT="$2"
+             shift 2
+             ;;
+-
+         --archive-workspace)
+             ARCHIVE_WORKSPACE="$2"
+             shift 2
+             ;;
+-
+         --timeout-minutes)
+             TIMEOUT_MINUTES="$2"
+             shift 2
+             ;;
+-
++        --mpi-ranks)
++            MPI_RANKS="$2"
++            shift 2
++            ;;
++        --vamp-parallel-method)
++            VAMP_PARALLEL_METHOD="$2"
++            shift 2
++            ;;
+         *)
+             echo "ERROR: unknown argument: $1" >&2
+             exit 64
+@@ -147,9 +143,8 @@
+     esac
+ done
+ 
+-
+ ###############################################################################
+-# Validate all required fields.
++# Required transport fields.
+ ###############################################################################
+ 
+ declare -A REQUIRED_VALUES=(
+@@ -174,9 +169,24 @@
+     fi
+ done
+ 
++if [[ ! "$MPI_RANKS" =~ ^[0-9]+$ ]] || (( MPI_RANKS < 1 )); then
++    echo "ERROR: invalid MPI rank count: $MPI_RANKS" >&2
++    exit 64
++fi
++
++case "$VAMP_PARALLEL_METHOD" in
++    simple|load)
++        ;;
++    *)
++        echo \
++            "ERROR: invalid VAMP parallel method: " \
++            "$VAMP_PARALLEL_METHOD" >&2
++        exit 64
++        ;;
++esac
+ 
+ ###############################################################################
+-# Hex transport validation.
++# Decode integration schedule.
+ ###############################################################################
+ 
+ if [[ ! "$ITERATIONS_HEX" =~ ^[0-9A-Fa-f]+$ ]]; then
+@@ -197,18 +207,14 @@
+     exit 64
+ fi
+ 
+-
+-###############################################################################
+-# Record exactly what was decoded.
+-###############################################################################
+-
+ echo "ENCODED_ITERATION_TRANSPORT=1"
+ echo "INTEGRATION_ITERATIONS_HEX=$ITERATIONS_HEX"
+ echo "INTEGRATION_ITERATIONS_DECODED=$INTEGRATION_ITERATIONS"
+-
++echo "MPI_RANKS=$MPI_RANKS"
++echo "VAMP_PARALLEL_METHOD=$VAMP_PARALLEL_METHOD"
+ 
+ ###############################################################################
+-# Delegate to the existing authoritative worker.
++# Delegate to authoritative worker.
+ ###############################################################################
+ 
+ AUTHORITATIVE_WORKER="$REPO/scripts/condor/run_full6f_production_job.sh"
+@@ -231,4 +237,6 @@
+     --iterations "$INTEGRATION_ITERATIONS" \
+     --campaign-root "$CAMPAIGN_ROOT" \
+     --archive-workspace "$ARCHIVE_WORKSPACE" \
+-    --timeout-minutes "$TIMEOUT_MINUTES"
++    --timeout-minutes "$TIMEOUT_MINUTES" \
++    --mpi-ranks "$MPI_RANKS" \
++    --vamp-parallel-method "$VAMP_PARALLEL_METHOD"

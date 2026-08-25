@@ -1,0 +1,97 @@
+000 (6054509.000.000) 08/18 00:14:11 Job submitted from host: <188.185.133.2:9618?addrs=188.185.133.2-9618+[2001-1458-d03-2--100-208]-9618&alias=bigbird102.cern.ch&noUDP&sock=schedd_5723_1498>
+...
+040 (6054509.000.000) 08/18 00:15:58 Started transferring input files
+	Transferring to host: <188.185.214.102:9618?addrs=188.185.214.102-9618+[2001-1458-303-1c--100-62]-9618&alias=b9p29p3838.cern.ch&noUDP&sock=slot1_7_270375_658c_42805>
+...
+040 (6054509.000.000) 08/18 00:15:58 Finished transferring input files
+...
+001 (6054509.000.000) 08/18 00:15:59 Job executing on host: <188.185.214.102:9618?addrs=188.185.214.102-9618+[2001-1458-303-1c--100-62]-9618&alias=b9p29p3838.cern.ch&noUDP&sock=startd_3769_cc8a>
+	SlotName: slot1_7@b9p29p3838.cern.ch
+	CondorScratchDir = "/pool/condor/dir_475455"
+	Cpus = 1
+	Disk = 6146763
+	GPUs = 0
+	Memory = 3000
+...
+006 (6054509.000.000) 08/18 00:16:07 Image size of job updated: 32408
+	31  -  MemoryUsage of job (MB)
+	31528  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:21:07 Image size of job updated: 95016
+	93  -  MemoryUsage of job (MB)
+	95016  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:26:08 Image size of job updated: 106772
+	105  -  MemoryUsage of job (MB)
+	106772  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:31:08 Image size of job updated: 117616
+	115  -  MemoryUsage of job (MB)
+	117616  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:41:09 Image size of job updated: 128412
+	126  -  MemoryUsage of job (MB)
+	128412  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:46:10 Image size of job updated: 128416
+	126  -  MemoryUsage of job (MB)
+	128416  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:51:10 Image size of job updated: 139256
+	136  -  MemoryUsage of job (MB)
+	139256  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 00:56:10 Image size of job updated: 150052
+	147  -  MemoryUsage of job (MB)
+	150052  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:01:11 Image size of job updated: 150056
+	147  -  MemoryUsage of job (MB)
+	150056  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:06:11 Image size of job updated: 160892
+	158  -  MemoryUsage of job (MB)
+	160892  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:11:12 Image size of job updated: 171688
+	168  -  MemoryUsage of job (MB)
+	171688  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:16:12 Image size of job updated: 171696
+	168  -  MemoryUsage of job (MB)
+	171696  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:21:13 Image size of job updated: 182604
+	179  -  MemoryUsage of job (MB)
+	182604  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:26:13 Image size of job updated: 193400
+	189  -  MemoryUsage of job (MB)
+	193400  -  ResidentSetSize of job (KB)
+...
+006 (6054509.000.000) 08/18 01:30:13 Image size of job updated: 193404
+	189  -  MemoryUsage of job (MB)
+	193400  -  ResidentSetSize of job (KB)
+...
+040 (6054509.000.000) 08/18 01:30:13 Started transferring output files
+...
+040 (6054509.000.000) 08/18 01:30:13 Finished transferring output files
+...
+005 (6054509.000.000) 08/18 01:30:13 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 01:12:42, Sys 0 00:00:12  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 01:12:42, Sys 0 00:00:12  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	18365  -  Run Bytes Sent By Job
+	10066  -  Run Bytes Received By Job
+	18365  -  Total Bytes Sent By Job
+	10066  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.99        1         1 
+	   Disk (KB)            : 39288     6144000   6146763 
+	   GPUs                 :                           0 
+	   Memory (MB)          :   189        3000      3000 
+	   TimeExecute (s)      :  4454                       
+	   TimeSlotBusy (s)     :  4457                       
+...

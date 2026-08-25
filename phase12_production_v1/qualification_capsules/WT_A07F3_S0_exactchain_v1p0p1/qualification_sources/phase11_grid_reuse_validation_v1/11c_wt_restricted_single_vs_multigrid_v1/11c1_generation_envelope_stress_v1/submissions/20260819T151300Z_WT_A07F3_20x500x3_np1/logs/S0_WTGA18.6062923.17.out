@@ -1,0 +1,1731 @@
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+============================================================
+MODE=S0_WTGA18
+CHECKPOINT_KIND=G2
+GRID_CONSTRUCTION_SEED=1740114216
+PRE_INTEGRATION_RNG_SEED=311170018
+POST_SIMULATION_RNG_SEED=311170018
+EVENTS=500
+STORED_ITERATIONS=5:50000:"gw", 3:200000:""
+PHS_SHA256_BEFORE=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+VG2_SHA256_BEFORE=8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+============================================================
+
+===== INTEGRATION.INC =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 311170018
+
+iterations = 5:50000:"gw", 3:200000:""
+integrate (proc_epmum)
+
+===== EVENT_OUTPUT.INC =====
+! Independent Phase-11 validation-event RNG.
+# IMPORTANT:
+# Do not reseed here.
+#
+# Phase-11C RNG-controller qualification demonstrated that the
+# shard-defining RNG seed must be active before integrate(proc_epmum).
+# The RNG state then continues into event generation.
+simulate (proc_epmum) {
+  n_events = 500
+  sample_format = lhef
+  $sample = "phase11c_S0_WTGA18_seed311170018"
+}
+| Writing log to 'whizard.log'
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'process.sin'
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts =  3.650000000000E+02
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+| End of included 'common/polarization.inc'
+?resonance_history = true
+resonance_on_shell_limit =  1.000000000000E+01
+resonance_background_factor =  0.000000000000E+00
+$restrictions = "5+6~W+ && 7+8~W- && 3+5+6~t && 4+7+8~tbar"
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 311170018
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        proc_epmum_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.43 secs, total: 0.43 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.43 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5090
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| Integrate: iterations = 5:50000:"gw", 3:200000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 50000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: header: parameter mismatch, discarding pass from file 'proc_epmum.m1.vg2'.
+| VAMP2: Initialize new grids and write to file 'proc_epmum.m1.vg2'.
+| VAMP2: set chain: use chained weights.
+   1      50001  1.0424010E+01  1.93E+00   18.56   41.50*   4.97
+   2      49993  1.1036121E+01  3.64E-01    3.29    7.37*   0.99
+   3      49995  1.1389246E+01  1.82E-01    1.60    3.57*   1.92
+   4      50000  1.1695558E+01  1.30E-01    1.11    2.49*   3.57
+   5      50003  1.1639566E+01  1.05E-01    0.91    2.03*   5.54
+|-----------------------------------------------------------------------------|
+   5     249992  1.1590632E+01  7.31E-02    0.63    3.16    5.54    1.19   5
+|-----------------------------------------------------------------------------|
+   6     199999  1.1470431E+01  4.62E-02    0.40    1.80*   5.54
+   7     199999  1.1492075E+01  4.61E-02    0.40    1.79*   5.79
+   8     199999  1.1498489E+01  4.63E-02    0.40    1.80    6.17
+|-----------------------------------------------------------------------------|
+   8     599997  1.1487002E+01  2.67E-02    0.23    1.80    6.17    0.10   3
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:04m:38s
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 500
+$sample = "phase11c_S0_WTGA18_seed311170018"
+| Starting simulation for process 'proc_epmum'
+| Creating library for resonant subprocesses 'proc_epmum_R'
+| Process library 'proc_epmum_R': initialized
+| Resonant subprocess #1: 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R1'
+| Resonant subprocess #2: 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R2'
+| Resonant subprocess #3: 5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R3'
+| Resonant subprocess #4: 3+4~Z && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R4'
+| Resonant subprocess #5: 3+4~H && 5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R5'
+| Resonant subprocess #6: 3+4+5+6~W+ && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R6'
+| Resonant subprocess #7: 5+6~W+ && 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R7'
+| Resonant subprocess #8: 3+4+5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R8'
+| Resonant subprocess #9: 3+4+5+6~W+ && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R9'
+| Resonant subprocess #10: 7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R10'
+| Resonant subprocess #11: 3+4+7+8~W- && 3+4+5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R11'
+| Resonant subprocess #12: 5+6~W+ && 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R12'
+| Resonant subprocess #13: 5+6~W+ && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R13'
+| Resonant subprocess #14: 3+5+6~t && 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R14'
+| Resonant subprocess #15: 5+6~W+ && 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R15'
+| Resonant subprocess #16: 3+5+6~t && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R16'
+| Resonant subprocess #17: 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R17'
+| Resonant subprocess #18: 3+4~H && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R18'
+| Resonant subprocess #19: 3+4~Z && 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R19'
+| Resonant subprocess #20: 7+8~W- && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R20'
+| Resonant subprocess #21: 5+6~W+ && 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R21'
+| Resonant subprocess #22: 5+6~W+ && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R22'
+| Resonant subprocess #23: 3+5+6~t && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R23'
+| Resonant subprocess #24: 3+4+7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R24'
+| Resonant subprocess #25: 3+4~H && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R25'
+| Resonant subprocess #26: 3+4~Z && 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R26'
+| Resonant subprocess #27: 5+6~W+ && 5+6+7+8~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R27'
+| Resonant subprocess #28: 3+4~H && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R28'
+| Resonant subprocess #29: 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R29'
+| Resonant subprocess #30: 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R30'
+| Resonant subprocess #31: 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R31'
+| Resonant subprocess #32: 3+4~Z && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R32'
+| Resonant subprocess #33: 3+4~H && 7+8~W-
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R33'
+| Resonant subprocess #34: 7+8~W- && 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R34'
+| Resonant subprocess #35: 4+7+8~tbar
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R35'
+| Resonant subprocess #36: 3+4~Z && 7+8~W- && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R36'
+| Resonant subprocess #37: 3+4~Z && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R37'
+| Resonant subprocess #38: 3+4~Z && 5+6~W+ && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R38'
+| Resonant subprocess #39: 3+4~Z && 5+6+7+8~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R39'
+| Resonant subprocess #40: 3+4~H && 5+6~W+
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R40'
+| Resonant subprocess #41: 3+4~Z
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R41'
+| Resonant subprocess #42: 3+4~H
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R42'
+| Resonant subprocess #43: 5+6~W+ && 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R43'
+| Resonant subprocess #44: 3+5+6~t
+| Process library 'proc_epmum_R': recorded process 'proc_epmum_R44'
+| Process library 'proc_epmum_R': compiling ...
+| Process library 'proc_epmum_R': writing makefile
+| Process library 'proc_epmum_R': writing driver
+| Process library 'proc_epmum_R': creating source code
+  RM        proc_epmum_R1_i1.f90,.mod,.lo
+  RM        proc_epmum_R2_i1.f90,.mod,.lo
+  RM        proc_epmum_R3_i1.f90,.mod,.lo
+  RM        proc_epmum_R4_i1.f90,.mod,.lo
+  RM        proc_epmum_R5_i1.f90,.mod,.lo
+  RM        proc_epmum_R6_i1.f90,.mod,.lo
+  RM        proc_epmum_R7_i1.f90,.mod,.lo
+  RM        proc_epmum_R8_i1.f90,.mod,.lo
+  RM        proc_epmum_R9_i1.f90,.mod,.lo
+  RM        proc_epmum_R10_i1.f90,.mod,.lo
+  RM        proc_epmum_R11_i1.f90,.mod,.lo
+  RM        proc_epmum_R12_i1.f90,.mod,.lo
+  RM        proc_epmum_R13_i1.f90,.mod,.lo
+  RM        proc_epmum_R14_i1.f90,.mod,.lo
+  RM        proc_epmum_R15_i1.f90,.mod,.lo
+  RM        proc_epmum_R16_i1.f90,.mod,.lo
+  RM        proc_epmum_R17_i1.f90,.mod,.lo
+  RM        proc_epmum_R18_i1.f90,.mod,.lo
+  RM        proc_epmum_R19_i1.f90,.mod,.lo
+  RM        proc_epmum_R20_i1.f90,.mod,.lo
+  RM        proc_epmum_R21_i1.f90,.mod,.lo
+  RM        proc_epmum_R22_i1.f90,.mod,.lo
+  RM        proc_epmum_R23_i1.f90,.mod,.lo
+  RM        proc_epmum_R24_i1.f90,.mod,.lo
+  RM        proc_epmum_R25_i1.f90,.mod,.lo
+  RM        proc_epmum_R26_i1.f90,.mod,.lo
+  RM        proc_epmum_R27_i1.f90,.mod,.lo
+  RM        proc_epmum_R28_i1.f90,.mod,.lo
+  RM        proc_epmum_R29_i1.f90,.mod,.lo
+  RM        proc_epmum_R30_i1.f90,.mod,.lo
+  RM        proc_epmum_R31_i1.f90,.mod,.lo
+  RM        proc_epmum_R32_i1.f90,.mod,.lo
+  RM        proc_epmum_R33_i1.f90,.mod,.lo
+  RM        proc_epmum_R34_i1.f90,.mod,.lo
+  RM        proc_epmum_R35_i1.f90,.mod,.lo
+  RM        proc_epmum_R36_i1.f90,.mod,.lo
+  RM        proc_epmum_R37_i1.f90,.mod,.lo
+  RM        proc_epmum_R38_i1.f90,.mod,.lo
+  RM        proc_epmum_R39_i1.f90,.mod,.lo
+  RM        proc_epmum_R40_i1.f90,.mod,.lo
+  RM        proc_epmum_R41_i1.f90,.mod,.lo
+  RM        proc_epmum_R42_i1.f90,.mod,.lo
+  RM        proc_epmum_R43_i1.f90,.mod,.lo
+  RM        proc_epmum_R44_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_R1_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.47 secs, total: 0.47 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.47 secs]
+SUMMARY: 73 fusions, 20 propagators, 61 diagrams
+SUMMARY: 42 vertices
+  OMEGA     proc_epmum_R2_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.45 secs, total: 0.45 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.45 secs]
+SUMMARY: 102 fusions, 26 propagators, 122 diagrams
+SUMMARY: 44 vertices
+  OMEGA     proc_epmum_R3_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.47 secs, total: 0.47 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.47 secs]
+SUMMARY: 74 fusions, 21 propagators, 49 diagrams
+SUMMARY: 38 vertices
+  OMEGA     proc_epmum_R4_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.48 secs, total: 0.48 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.48 secs]
+SUMMARY: 39 fusions, 14 propagators, 16 diagrams
+SUMMARY: 24 vertices
+  OMEGA     proc_epmum_R5_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.47 secs, total: 0.47 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.47 secs]
+SUMMARY: 20 fusions, 10 propagators, 7 diagrams
+SUMMARY: 15 vertices
+  OMEGA     proc_epmum_R6_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.45 secs, total: 0.45 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.45 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R7_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R8_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 28 fusions, 14 propagators, 42 diagrams
+SUMMARY: 20 vertices
+  OMEGA     proc_epmum_R9_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 16 vertices
+  OMEGA     proc_epmum_R10_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 74 fusions, 21 propagators, 49 diagrams
+SUMMARY: 37 vertices
+  OMEGA     proc_epmum_R11_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 23 fusions, 12 propagators, 21 diagrams
+SUMMARY: 16 vertices
+  OMEGA     proc_epmum_R12_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R13_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.45 secs, total: 0.45 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.45 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R14_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R15_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R16_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R17_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.45 secs, total: 0.45 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.45 secs]
+SUMMARY: 166 fusions, 36 propagators, 244 diagrams
+SUMMARY: 52 vertices
+  OMEGA     proc_epmum_R18_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 12 fusions, 7 propagators, 3 diagrams
+SUMMARY: 9 vertices
+  OMEGA     proc_epmum_R19_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 7 fusions, 5 propagators, 1 diagrams
+SUMMARY: 6 vertices
+  OMEGA     proc_epmum_R20_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 14 fusions, 8 propagators, 5 diagrams
+SUMMARY: 13 vertices
+  OMEGA     proc_epmum_R21_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R22_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 19 fusions, 9 propagators, 7 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R23_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 9 fusions, 6 propagators, 2 diagrams
+SUMMARY: 8 vertices
+  OMEGA     proc_epmum_R24_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.45 secs, total: 0.45 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.45 secs]
+SUMMARY: 37 fusions, 17 propagators, 84 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R25_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 12 fusions, 7 propagators, 3 diagrams
+SUMMARY: 10 vertices
+  OMEGA     proc_epmum_R26_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 7 fusions, 5 propagators, 1 diagrams
+SUMMARY: 6 vertices
+  OMEGA     proc_epmum_R27_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 14 fusions, 8 propagators, 5 diagrams
+SUMMARY: 13 vertices
+  OMEGA     proc_epmum_R28_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 16 fusions, 9 propagators, 5 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R29_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.47 secs, total: 0.47 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.47 secs]
+SUMMARY: 27 fusions, 14 propagators, 27 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R30_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 27 fusions, 14 propagators, 27 diagrams
+SUMMARY: 22 vertices
+  OMEGA     proc_epmum_R31_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 31 fusions, 16 propagators, 45 diagrams
+SUMMARY: 23 vertices
+  OMEGA     proc_epmum_R32_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 106 fusions, 27 propagators, 80 diagrams
+SUMMARY: 33 vertices
+  OMEGA     proc_epmum_R33_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.47 secs, total: 0.47 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.47 secs]
+SUMMARY: 50 fusions, 19 propagators, 24 diagrams
+SUMMARY: 24 vertices
+  OMEGA     proc_epmum_R34_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.48 secs, total: 0.48 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.48 secs]
+SUMMARY: 41 fusions, 16 propagators, 20 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R35_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.43 secs, total: 0.43 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.43 secs]
+SUMMARY: 41 fusions, 16 propagators, 20 diagrams
+SUMMARY: 17 vertices
+  OMEGA     proc_epmum_R36_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 14 fusions, 8 propagators, 6 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R37_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 67 fusions, 20 propagators, 40 diagrams
+SUMMARY: 28 vertices
+  OMEGA     proc_epmum_R38_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 14 fusions, 8 propagators, 6 diagrams
+SUMMARY: 11 vertices
+  OMEGA     proc_epmum_R39_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 18 fusions, 10 propagators, 10 diagrams
+SUMMARY: 12 vertices
+  OMEGA     proc_epmum_R40_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 30 fusions, 14 propagators, 12 diagrams
+SUMMARY: 20 vertices
+  OMEGA     proc_epmum_R41_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 153 fusions, 37 propagators, 152 diagrams
+SUMMARY: 34 vertices
+  OMEGA     proc_epmum_R42_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.44 secs, total: 0.44 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.44 secs]
+SUMMARY: 68 fusions, 27 propagators, 34 diagrams
+SUMMARY: 28 vertices
+  OMEGA     proc_epmum_R43_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 24 fusions, 11 propagators, 10 diagrams
+SUMMARY: 15 vertices
+  OMEGA     proc_epmum_R44_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.46 secs, total: 0.46 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.46 secs]
+SUMMARY: 24 fusions, 11 propagators, 10 diagrams
+SUMMARY: 15 vertices
+| Process library 'proc_epmum_R': compiling sources
+  FC        proc_epmum_R.lo
+| Process library 'proc_epmum_R': linking
+  FCLD      proc_epmum_R.la
+| Process library 'proc_epmum_R': loading
+| Process library 'proc_epmum_R': ... success.
+| Simulate: initializing resonant subprocess 'proc_epmum_R1'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5091
+| Initializing integration for process proc_epmum_R1:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R1'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_R1_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R2'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5092
+| Initializing integration for process proc_epmum_R2:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R2'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 2
+|   Process components:
+|     1: 'proc_epmum_R2_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R3'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5093
+| Initializing integration for process proc_epmum_R3:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R3'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 3
+|   Process components:
+|     1: 'proc_epmum_R3_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R4'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5094
+| Initializing integration for process proc_epmum_R4:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R4'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 4
+|   Process components:
+|     1: 'proc_epmum_R4_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R5'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5095
+| Initializing integration for process proc_epmum_R5:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R5'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 5
+|   Process components:
+|     1: 'proc_epmum_R5_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R6'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5096
+| Initializing integration for process proc_epmum_R6:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R6'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 6
+|   Process components:
+|     1: 'proc_epmum_R6_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R7'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5097
+| Initializing integration for process proc_epmum_R7:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R7'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 7
+|   Process components:
+|     1: 'proc_epmum_R7_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R8'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5098
+| Initializing integration for process proc_epmum_R8:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R8'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 8
+|   Process components:
+|     1: 'proc_epmum_R8_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R9'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5099
+| Initializing integration for process proc_epmum_R9:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R9'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 9
+|   Process components:
+|     1: 'proc_epmum_R9_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R10'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5100
+| Initializing integration for process proc_epmum_R10:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R10'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 10
+|   Process components:
+|     1: 'proc_epmum_R10_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R11'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5101
+| Initializing integration for process proc_epmum_R11:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R11'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 11
+|   Process components:
+|     1: 'proc_epmum_R11_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R12'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5102
+| Initializing integration for process proc_epmum_R12:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R12'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 12
+|   Process components:
+|     1: 'proc_epmum_R12_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R13'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5103
+| Initializing integration for process proc_epmum_R13:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R13'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 13
+|   Process components:
+|     1: 'proc_epmum_R13_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R14'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5104
+| Initializing integration for process proc_epmum_R14:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R14'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 14
+|   Process components:
+|     1: 'proc_epmum_R14_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R15'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5105
+| Initializing integration for process proc_epmum_R15:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R15'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 15
+|   Process components:
+|     1: 'proc_epmum_R15_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R16'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5106
+| Initializing integration for process proc_epmum_R16:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R16'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 16
+|   Process components:
+|     1: 'proc_epmum_R16_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R17'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5107
+| Initializing integration for process proc_epmum_R17:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R17'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 17
+|   Process components:
+|     1: 'proc_epmum_R17_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R18'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5108
+| Initializing integration for process proc_epmum_R18:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R18'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 18
+|   Process components:
+|     1: 'proc_epmum_R18_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R19'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5109
+| Initializing integration for process proc_epmum_R19:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R19'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 19
+|   Process components:
+|     1: 'proc_epmum_R19_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R20'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5110
+| Initializing integration for process proc_epmum_R20:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R20'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 20
+|   Process components:
+|     1: 'proc_epmum_R20_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R21'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5111
+| Initializing integration for process proc_epmum_R21:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R21'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 21
+|   Process components:
+|     1: 'proc_epmum_R21_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R22'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5112
+| Initializing integration for process proc_epmum_R22:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R22'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 22
+|   Process components:
+|     1: 'proc_epmum_R22_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R23'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5113
+| Initializing integration for process proc_epmum_R23:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R23'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 23
+|   Process components:
+|     1: 'proc_epmum_R23_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R24'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5114
+| Initializing integration for process proc_epmum_R24:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R24'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 24
+|   Process components:
+|     1: 'proc_epmum_R24_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R25'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5115
+| Initializing integration for process proc_epmum_R25:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R25'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 25
+|   Process components:
+|     1: 'proc_epmum_R25_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R26'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5116
+| Initializing integration for process proc_epmum_R26:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R26'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 26
+|   Process components:
+|     1: 'proc_epmum_R26_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R27'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5117
+| Initializing integration for process proc_epmum_R27:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R27'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 27
+|   Process components:
+|     1: 'proc_epmum_R27_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R28'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5118
+| Initializing integration for process proc_epmum_R28:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R28'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 28
+|   Process components:
+|     1: 'proc_epmum_R28_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R29'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5119
+| Initializing integration for process proc_epmum_R29:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R29'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 29
+|   Process components:
+|     1: 'proc_epmum_R29_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R30'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5120
+| Initializing integration for process proc_epmum_R30:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R30'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 30
+|   Process components:
+|     1: 'proc_epmum_R30_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R31'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5121
+| Initializing integration for process proc_epmum_R31:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R31'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 31
+|   Process components:
+|     1: 'proc_epmum_R31_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R32'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5122
+| Initializing integration for process proc_epmum_R32:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R32'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 32
+|   Process components:
+|     1: 'proc_epmum_R32_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R33'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5123
+| Initializing integration for process proc_epmum_R33:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R33'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 33
+|   Process components:
+|     1: 'proc_epmum_R33_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R34'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5124
+| Initializing integration for process proc_epmum_R34:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R34'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 34
+|   Process components:
+|     1: 'proc_epmum_R34_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R35'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5125
+| Initializing integration for process proc_epmum_R35:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R35'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 35
+|   Process components:
+|     1: 'proc_epmum_R35_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R36'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5126
+| Initializing integration for process proc_epmum_R36:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R36'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 36
+|   Process components:
+|     1: 'proc_epmum_R36_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R37'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5127
+| Initializing integration for process proc_epmum_R37:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R37'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 37
+|   Process components:
+|     1: 'proc_epmum_R37_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R38'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5128
+| Initializing integration for process proc_epmum_R38:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R38'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 38
+|   Process components:
+|     1: 'proc_epmum_R38_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R39'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5129
+| Initializing integration for process proc_epmum_R39:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R39'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 39
+|   Process components:
+|     1: 'proc_epmum_R39_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R40'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5130
+| Initializing integration for process proc_epmum_R40:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R40'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 40
+|   Process components:
+|     1: 'proc_epmum_R40_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R41'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5131
+| Initializing integration for process proc_epmum_R41:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R41'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 41
+|   Process components:
+|     1: 'proc_epmum_R41_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R42'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5132
+| Initializing integration for process proc_epmum_R42:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R42'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 42
+|   Process components:
+|     1: 'proc_epmum_R42_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R43'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5133
+| Initializing integration for process proc_epmum_R43:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R43'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 43
+|   Process components:
+|     1: 'proc_epmum_R43_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: initializing resonant subprocess 'proc_epmum_R44'
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5134
+| Initializing integration for process proc_epmum_R44:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum_R44'
+|   Library name  = 'proc_epmum_R'
+|   Process index = 44
+|   Process components:
+|     1: 'proc_epmum_R44_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: none
+| Beam structure: isr, none => none, isr
+| Beam structure: 1 channels, 2 dimensions
+Warning: No cuts have been defined.
+| Simulate: activating resonance insertion
+| Simulate: activating ISR handler
+| Simulate: ISR/EPA handler mode: pair recoil
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 5135
+| OpenMP: Using 1 thread
+| Simulation: requested number of events = 500
+|             corr. to luminosity [fb-1] =   4.3527E+01
+| Events: writing to LHEF file 'phase11c_S0_WTGA18_seed311170018.lhe'
+| Events: writing to raw file 'phase11c_S0_WTGA18_seed311170018.evx'
+| Events: generating 500 unweighted, unpolarized events ...
+| Events: event normalization mode '1'
+|         ... event sample complete.
+| Events: actual unweighting efficiency =   6.03 %
+| Events: closing LHEF file 'phase11c_S0_WTGA18_seed311170018.lhe'
+| Events: closing raw file 'phase11c_S0_WTGA18_seed311170018.evx'
+| End of included 'common/event_output.inc'
+| There were no errors and   45 warning(s).
+| WHIZARD run finished.
+|=============================================================================|
+
+============================================================
+R0V2=FAIL
+MODE=S0_WTGA18
+CHECKPOINT_KIND=G2
+STATUS=FAIL
+WHIZARD_RC=0
+GRID_SEED=1740114216
+GENERATION_SEED=311170018
+EVENTS_REQUESTED=500
+EVENTS_WRITTEN=500
+WALL_SECONDS=1482
+WORKSPACE_UNCHANGED=0
+NEW_GRID_INIT_COUNT=1
+PHS_SHA256_BEFORE=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+PHS_SHA256_AFTER=516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+VG2_SHA256_BEFORE=8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+VG2_SHA256_AFTER=9c005953a10d2f579a593c06db7b46a4db27ff16b342efb38522f3b7efde4d2c
+EFFICIENCY_LINE=| Events: actual unweighting efficiency =   6.03 %
+FAILURES=workspace_mutated;new_grid_initialization
+OUTPUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c1_generation_envelope_stress_v1/20260819T151300Z_WT_A07F3_20x500x3_np1/S0_WTGA18
+============================================================

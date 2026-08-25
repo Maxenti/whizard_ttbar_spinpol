@@ -1,0 +1,14 @@
+--- /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11d_np4_smoke_v1/submissions/20260819T221418Z_WT_A07F3_S0_np4_25k_v1/tools/run_wt_a07f3_rng_reuse_np4.sh	2026-08-20 00:16:02.000000001 +0200
++++ /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11d_np4_smoke_v1/submissions/20260819T221418Z_WT_A07F3_S0_np4_25k_v1_retry1_mergerpathfix/tools/run_wt_a07f3_rng_reuse_np4.sh	2026-08-20 00:23:50.000000001 +0200
+@@ -289,10 +289,7 @@
+   readlink -f "$(command -v whizard)"
+ )"
+ 
+-MPI_MERGER="$(
+-  cd "$(dirname "${BASH_SOURCE[0]}")"
+-  pwd
+-)/merge_mpi_lhe.py"
++MPI_MERGER=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/tools/np4_generation_v1/merge_mpi_lhe.py
+ 
+ if [[ ! -s "$MPI_MERGER" ]]; then
+   echo "ERROR: MPI LHE merger missing: $MPI_MERGER" >&2

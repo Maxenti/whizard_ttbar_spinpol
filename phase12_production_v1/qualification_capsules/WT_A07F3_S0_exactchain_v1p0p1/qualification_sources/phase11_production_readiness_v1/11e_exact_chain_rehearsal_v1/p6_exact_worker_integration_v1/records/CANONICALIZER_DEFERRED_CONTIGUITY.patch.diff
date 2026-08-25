@@ -1,0 +1,17 @@
+--- /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/records/canonicalize_whizard_lhe_for_pythia_v3.before_deferred_contiguity.py	2026-07-17 21:32:59.000000001 +0200
++++ /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_production_readiness_v1/11e_exact_chain_rehearsal_v1/p6_exact_worker_integration_v1/candidate/canonicalize_whizard_lhe_for_pythia_v3.py	2026-08-21 16:05:15.000000001 +0200
+@@ -306,10 +306,10 @@
+                     f"event {event_number}: particle {new_index} is its own mother"
+                 )
+ 
+-    validate_contiguous_daughter_ranges(
+-        particles,
+-        event_number=event_number,
+-    )
++    # Phase-11E / P6:
++    # Daughter contiguity is intentionally deferred until after the
++    # qualified history-preserving serializer has reordered the LHE rows.
++    # Index validity and four-momentum closure are still checked here.
+ 
+     max_abs, max_rel = closure_metrics(particles)
+     if max_abs > closure_abs_tolerance_gev and max_rel > closure_rel_tolerance:

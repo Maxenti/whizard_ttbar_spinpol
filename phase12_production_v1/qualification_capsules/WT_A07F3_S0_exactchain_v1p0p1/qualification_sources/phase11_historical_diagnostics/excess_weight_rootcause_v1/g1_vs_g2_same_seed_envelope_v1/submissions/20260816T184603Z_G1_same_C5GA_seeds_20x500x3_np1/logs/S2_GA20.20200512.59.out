@@ -1,0 +1,253 @@
+TTSP pinned runtime loaded
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+whizard=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/whizard
+WHIZARD 3.1.8
+pythia8-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/pythia8-config
+8.316
+HepMC3-config=/cvmfs/sft-nightlies.cern.ch/lcg/views/devkey-head/Fri/x86_64-el9-gcc14-opt/bin/HepMC3-config
+3.03.01
+Qualified WHIZARD MPI runtime loaded
+WHIZARD_MPI_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811
+whizard=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/bin/whizard
+WHIZARD 3.1.8
+Copyright (C) 1999-2026 Wolfgang Kilian, Thorsten Ohl, Juergen Reuter
+              ---------------------------------------                
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+LOCALIZED_INCLUDE_REPLACEMENTS=6
+============================================================
+MODE=S2_GA20
+CHECKPOINT_KIND=G1
+GRID_CONSTRUCTION_SEED=1885084773
+PRE_INTEGRATION_RNG_SEED=211172020
+POST_SIMULATION_RNG_SEED=211172020
+EVENTS=500
+STORED_ITERATIONS=5:50000:"gw", 5:100000:""
+PHS_SHA256_BEFORE=20733e0e17025d2c73f73a666c5b62f92c105ca98114231020130b77f5730d5d
+VG2_SHA256_BEFORE=2ec66a0ce3bf467c64212e17ee0bc630b479e57aae06cfd2797d21ded783a60e
+============================================================
+
+===== INTEGRATION.INC =====
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+
+?omega_openmp = false
+openmp_num_threads = 1
+
+seed = 211172020
+
+iterations = 5:50000:"gw", 5:100000:""
+integrate (proc_epmum)
+
+===== EVENT_OUTPUT.INC =====
+! Independent Phase-11 validation-event RNG.
+# IMPORTANT:
+# Do not reseed here.
+#
+# Phase-11C RNG-controller qualification demonstrated that the
+# shard-defining RNG seed must be active before integrate(proc_epmum).
+# The RNG state then continues into event generation.
+simulate (proc_epmum) {
+  n_events = 500
+  sample_format = lhef
+  $sample = "phase11c_S2_GA20_seed211172020"
+}
+| Writing log to 'whizard.log'
+|=============================================================================|
+|                                                                             |
+|    WW             WW  WW   WW  WW  WWWWWW      WW      WWWWW    WWWW        |
+|     WW    WW     WW   WW   WW  WW     WW      WWWW     WW  WW   WW  WW      |
+|      WW  WW WW  WW    WWWWWWW  WW    WW      WW  WW    WWWWW    WW   WW     |
+|       WWWW   WWWW     WW   WW  WW   WW      WWWWWWWW   WW  WW   WW  WW      |
+|        WW     WW      WW   WW  WW  WWWWWW  WW      WW  WW   WW  WWWW        |
+|                                                                             |
+|                                                                             |
+|                                        W                                    |
+|                                       sW                                    |
+|                                       WW                                    |
+|                                      sWW                                    |
+|                                      WWW                                    |
+|                                     wWWW                                    |
+|                                    wWWWW                                    |
+|                                    WW WW                                    |
+|                                    WW WW                                    |
+|                                   wWW WW                                    |
+|                                  wWW  WW                                    |
+|                                  WW   WW                                    |
+|                                  WW   WW                                    |
+|                                 WW    WW                                    |
+|                                 WW    WW                                    |
+|                                WW     WW                                    |
+|                                WW     WW                                    |
+|           wwwwww              WW      WW                                    |
+|              WWWWWww          WW      WW                                    |
+|                 WWWWWwwwww   WW       WW                                    |
+|                     wWWWwwwwwWW       WW                                    |
+|                 wWWWWWWWWWWwWWW       WW                                    |
+|                wWWWWW       wW        WWWWWWW                               |
+|                  WWWW       wW        WW  wWWWWWWWwww                       |
+|                   WWWW                      wWWWWWWWwwww                    |
+|                     WWWW                      WWWW     WWw                  |
+|                       WWWWww                   WWWW                         |
+|                           WWWwwww              WWWW                         |
+|                               wWWWWwww       wWWWWW                         |
+|                                     WwwwwwwwwWWW                            |
+|                                                                             |
+|                                                                             |
+|                                                                             |
+|  by:   Wolfgang Kilian, Thorsten Ohl, Juergen Reuter                        |
+|        with contributions from Christian Speckner                           |
+|        Contact: <whizard@desy.de>                                           |
+|                                                                             |
+|  if you use WHIZARD please cite:                                            |
+|        W. Kilian, T. Ohl, J. Reuter,  Eur.Phys.J.C71 (2011) 1742            |
+|                                          [arXiv: 0708.4233 [hep-ph]]        |
+|        M. Moretti, T. Ohl, J. Reuter, arXiv: hep-ph/0102195                 |
+|                                                                             |
+|=============================================================================|
+|                               WHIZARD 3.1.8
+|=============================================================================|
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM.mdl'
+| Preloaded model: SM
+| Process library 'default_lib': initialized
+| Preloaded library: default_lib
+| Reading model file '/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/local/whizard-3.1.8-mpi-omp-qualified-20260811/share/whizard/models/SM_hadrons.mdl'
+| Reading commands from file 'process.sin'
+| Including Sindarin from 'common/model.inc'
+| Switching to model 'SM', scheme 'default'
+| End of included 'common/model.inc'
+| Including Sindarin from 'common/beams.inc'
+sqrts =  3.650000000000E+02
+| End of included 'common/beams.inc'
+| Including Sindarin from 'common/isr.inc'
+?isr_handler = true
+$isr_handler_mode = "recoil"
+?keep_beams = true
+?keep_remnants = true
+isr_mass =  5.109970000000E-04
+| End of included 'common/isr.inc'
+| Including Sindarin from 'common/polarization.inc'
+| End of included 'common/polarization.inc'
+| Process library 'default_lib': recorded process 'proc_epmum'
+| Including Sindarin from 'common/integration.inc'
+$integration_method = "vamp2"
+$rng_method = "rng_stream"
+$vamp_parallel_method = "simple"
+?omega_openmp = false
+openmp_num_threads = 1
+seed = 211172020
+| Integrate: current process library needs compilation
+| Process library 'default_lib': compiling ...
+| Process library 'default_lib': writing makefile
+| Process library 'default_lib': writing driver
+| Process library 'default_lib': creating source code
+  RM        proc_epmum_i1.f90,.mod,.lo
+  OMEGA     proc_epmum_i1.f90
+[1/1] e- e+ -> b bbar e+ nue mu- numubar ... allowed. [time: 0.85 secs, total: 0.85 secs, remaining: 0.00 secs]
+all processes done. [total time: 0.85 secs]
+SUMMARY: 215 fusions, 46 propagators, 402 diagrams
+SUMMARY: 53 vertices
+| Process library 'default_lib': compiling sources
+  FC        default_lib.lo
+| Process library 'default_lib': linking
+  FCLD      default_lib.la
+| Process library 'default_lib': loading
+| Process library 'default_lib': ... success.
+| Integrate: compilation done
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 15028
+| Initializing integration for process proc_epmum:
+| Beam structure: e-, e+ => isr
+|   polarization (beam 1):
+|     @(-1: -1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization (beam 2):
+|     @(+1: +1: ( 1.000000000000E+00, 0.000000000000E+00))
+|   polarization degree = 1.0000000, 1.0000000
+| Beam data (collision):
+|   e-  (mass = 5.1099700E-04 GeV)  polarized
+|   e+  (mass = 5.1099700E-04 GeV)  polarized
+|   sqrts = 3.650000000000E+02 GeV
+| Phase space: keeping configuration file 'proc_epmum.i1.phs'
+| ------------------------------------------------------------------------
+| Process [scattering]: 'proc_epmum'
+|   Library name  = 'default_lib'
+|   Process index = 1
+|   Process components:
+|     1: 'proc_epmum_i1':   e-, e+ => b, bbar, e+, nue, mu-, numubar [omega]
+| ------------------------------------------------------------------------
+| Phase space: 890 channels, 14 dimensions
+| Phase space: found 890 channels, collected in 239 groves.
+| Phase space: Using 1060 equivalences between channels.
+| Phase space: wood
+| Beam structure: isr, none => none, isr
+| Beam structure: 2 channels, 2 dimensions
+Warning: No cuts have been defined.
+| OpenMP: Using 1 thread
+| Starting integration for process 'proc_epmum'
+| Integrate: iterations = 5:50000:"gw", 5:100000:""
+| Integrator: 239 chains, 890 channels, 16 dimensions
+| Integrator: Using VAMP2 channel equivalences
+| Integrator: Write grid header and grids to 'proc_epmum.m1.vg2'
+| Integrator: Grid checkpoint after each iteration
+| Integrator: 50000 initial calls, 20 max. bins, stratified = T
+| Integrator: VAMP2
+|=============================================================================|
+| It      Calls  Integral[fb]  Error[fb]   Err[%]    Acc  Eff[%]   Chi2 N[It] |
+|=============================================================================|
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+   1      50027  1.3193789E+01  2.30E+00   17.41   38.94*   5.57
+   2      50020  1.1999358E+01  4.97E-01    4.14    9.27*   0.68
+   3      50003  1.2181034E+01  2.24E-01    1.84    4.11*   1.56
+   4      50007  1.2196368E+01  1.80E-01    1.47    3.30*   2.40
+   5      49997  1.2020324E+01  1.14E-01    0.95    2.12*   4.41
+|-----------------------------------------------------------------------------|
+   5     250054  1.2086974E+01  8.70E-02    0.72    3.60    4.41    0.29   5
+|-----------------------------------------------------------------------------|
+| VAMP2: Using grids and results from file ’proc_epmum.m1.vg2’.
+   6     100002  1.2248489E+01  1.22E-01    1.00    3.15    2.17
+   7     100002  1.2043342E+01  7.20E-02    0.60    1.89*   5.53
+   8     100002  1.2075472E+01  7.29E-02    0.60    1.91    5.62
+   9     100002  1.2092142E+01  7.44E-02    0.62    1.95    4.56
+  10     100002  1.2025570E+01  7.19E-02    0.60    1.89*   5.37
+|-----------------------------------------------------------------------------|
+  10     500010  1.2074020E+01  3.49E-02    0.29    2.04    5.37    0.69   5
+|=============================================================================|
+| Time estimate for generating 10000 events: 0d:00h:00m:00s
+| End of included 'common/integration.inc'
+| Including Sindarin from 'common/event_output.inc'
+n_events = 500
+$sample = "phase11c_S2_GA20_seed211172020"
+| Starting simulation for process 'proc_epmum'
+| Simulate: activating ISR handler
+| Simulate: ISR/EPA handler mode: pair recoil
+| RNG: Initializing RNG Stream random-number generator
+| RNG: Setting seed for random-number generator to 15029
+| OpenMP: Using 1 thread
+| Simulation: requested number of events = 500
+|             corr. to luminosity [fb-1] =   4.1411E+01
+| Events: writing to LHEF file 'phase11c_S2_GA20_seed211172020.lhe'
+| Events: writing to raw file 'phase11c_S2_GA20_seed211172020.evx'
+| Events: generating 500 unweighted, unpolarized events ...
+| Events: event normalization mode '1'
+|         ... event sample complete.
+| Events: actual unweighting efficiency =   5.16 %
+Warning: Encountered events with excess weight: 3 events (  0.600 %)
+| Maximum excess weight = 1.343E-01
+| Average excess weight = 6.523E-04
+| Events: closing LHEF file 'phase11c_S2_GA20_seed211172020.lhe'
+| Events: closing raw file 'phase11c_S2_GA20_seed211172020.evx'
+| End of included 'common/event_output.inc'
+| There were no errors and    2 warning(s).
+| WHIZARD run finished.
+|=============================================================================|
+
+============================================================
+R0V2=PASS
+MODE=S2_GA20
+EVENTS_WRITTEN=500
+WALL_SECONDS=74
+| Events: actual unweighting efficiency =   5.16 %
+OUTPUT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase11_diagnostics/excess_weight_rootcause_v1/g1_vs_g2_same_seed_envelope_v1/20260816T184603Z_G1_same_C5GA_seeds_20x500x3_np1/S2_GA20
+============================================================

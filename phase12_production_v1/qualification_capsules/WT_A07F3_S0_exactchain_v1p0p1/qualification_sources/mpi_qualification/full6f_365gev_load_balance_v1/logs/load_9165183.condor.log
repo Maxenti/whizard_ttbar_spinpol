@@ -1,0 +1,53 @@
+000 (9165183.000.000) 08/11 20:52:58 Job submitted from host: <188.185.125.71:9618?addrs=188.185.125.71-9618+[2001-1458-d00-4a--100-15e]-9618&alias=bigbird28.cern.ch&noUDP&sock=schedd_5892_001a>
+...
+040 (9165183.000.000) 08/11 20:54:20 Started transferring input files
+	Transferring to host: <188.185.194.148:9618?addrs=188.185.194.148-9618+[2001-1458-303-21--100-90]-9618&alias=b9p20p7611.cern.ch&noUDP&sock=slot1_1_4547_85d2_26280>
+...
+040 (9165183.000.000) 08/11 20:54:20 Finished transferring input files
+...
+001 (9165183.000.000) 08/11 20:54:21 Job executing on host: <188.185.194.148:9618?addrs=188.185.194.148-9618+[2001-1458-303-21--100-90]-9618&alias=b9p20p7611.cern.ch&noUDP&sock=startd_3463_e88f>
+	SlotName: slot1_1@b9p20p7611.cern.ch
+	CondorScratchDir = "/pool/condor/dir_1833058"
+	Cpus = 16
+	Disk = 13124
+	GPUs = 0
+	Memory = 48000
+...
+006 (9165183.000.000) 08/11 20:54:30 Image size of job updated: 190556
+	187  -  MemoryUsage of job (MB)
+	190556  -  ResidentSetSize of job (KB)
+...
+006 (9165183.000.000) 08/11 20:59:31 Image size of job updated: 649340
+	635  -  MemoryUsage of job (MB)
+	649340  -  ResidentSetSize of job (KB)
+...
+006 (9165183.000.000) 08/11 21:04:32 Image size of job updated: 1236416
+	1208  -  MemoryUsage of job (MB)
+	1236416  -  ResidentSetSize of job (KB)
+...
+006 (9165183.000.000) 08/11 21:07:35 Image size of job updated: 1238504
+	1208  -  MemoryUsage of job (MB)
+	1236416  -  ResidentSetSize of job (KB)
+...
+040 (9165183.000.000) 08/11 21:50:01 Started transferring output files
+...
+040 (9165183.000.000) 08/11 21:50:01 Finished transferring output files
+...
+004 (9165183.000.000) 08/11 21:50:01 Job was evicted. Code 1009 Subcode 0
+	(0) CPU times
+		Usr 0 02:26:59, Sys 0 00:00:27  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+	228275  -  Run Bytes Sent By Job
+	2991  -  Run Bytes Received By Job
+	Reason: Claim deactivated
+	Partitionable Resources :    Usage  Request Allocated 
+	   Cpus                 :     0.00       16        16 
+	   Disk (KB)            : 71638       10000     13124 
+	   GPUs                 :                           0 
+	   Memory (MB)          :  1208       48000     48000 
+	   TimeExecute (s)      :  3340                       
+	   TimeSlotBusy (s)     :  3342                       
+...
+009 (9165183.000.000) 08/11 21:50:01 Job was aborted.
+	via condor_rm (by user cglenn)
+...

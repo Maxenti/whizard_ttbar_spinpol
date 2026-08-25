@@ -1,0 +1,2 @@
+ERROR: missing worker for MODE=D4_vamp2_rngstream_gonly_np1
+WORKER=/pool/condor/dir_1081395/run_D4_vamp2_rngstream_gonly_np1.sh

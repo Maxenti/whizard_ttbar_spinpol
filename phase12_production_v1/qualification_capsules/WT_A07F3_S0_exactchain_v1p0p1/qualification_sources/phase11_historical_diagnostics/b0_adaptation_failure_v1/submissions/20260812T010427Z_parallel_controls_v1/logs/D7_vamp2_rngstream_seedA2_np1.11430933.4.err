@@ -1,0 +1,2 @@
+ERROR: missing worker for MODE=D7_vamp2_rngstream_seedA2_np1
+WORKER=/pool/condor/dir_1781497/run_D7_vamp2_rngstream_seedA2_np1.sh
