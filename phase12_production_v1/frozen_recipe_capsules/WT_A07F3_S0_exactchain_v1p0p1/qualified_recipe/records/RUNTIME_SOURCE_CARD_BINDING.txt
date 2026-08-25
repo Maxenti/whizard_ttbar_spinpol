@@ -1,0 +1,44 @@
+PHASE-12 RUNTIME SOURCE-CARD BINDING
+====================================
+
+Recipe revision:
+  WT_A07F3_S0_exactchain_v1p0p1
+
+Runtime source card:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source/process.sin
+
+Runtime source directory:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source
+
+Runtime common directory:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source/common
+
+Reason:
+  The qualified reuse worker localizes absolute Sindarin include paths
+  relative to dirname(--source-card).
+
+  The qualified source card contains absolute include paths anchored to
+  the original frozen source directory.
+
+  Therefore the original qualified source-card path is part of the
+  qualified runtime interface and must be supplied to the worker.
+
+Archival source copy:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1p0p1/whizard/process.sin
+
+Archival process.sin and runtime process.sin:
+  byte-identical
+
+Archival common/ and runtime common/:
+  byte-identical
+
+Physics modification:
+  NONE
+
+Qualified worker modification:
+  NONE
+
+Grid modification:
+  NONE
+
+This revision corrects runtime path binding only.

@@ -1,0 +1,53 @@
+PHASE-12 WHIZARD SOURCE PACKAGE PROVENANCE
+==========================================
+
+Qualified Phase-11 frozen source:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source
+
+Phase-12 source package:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1/whizard
+
+process.sin source:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source/process.sin
+
+process.sin SHA256:
+  682f2109e30fbcc4e2c07ad6be28e7590e9994ed4ed918d175d7e93d25a6799c
+
+Qualified common/ source:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_diagnostics/excess_weight_rootcause_v1/ttbar_restricted_region_suite_v1/restricted/submissions/20260816T232058Z_WT_A15xS8_F012_FCC_np1_v1p0p2/frozen_source/common
+
+Phase-12 common/:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1/whizard/common
+
+process.sin byte identity:
+  PASS
+
+common/ byte identity:
+  PASS
+
+Qualified WHIZARD reuse worker:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase11_grid_reuse_validation_v1/11c_wt_restricted_single_vs_multigrid_v1/11c2_wt_a07f3_reuse_qualification_v1/tools/run_wt_a07f3_rng_reuse.sh
+
+Qualified worker SHA256:
+  4bbc08fa762bcfe30902b50842290bbb35fe7a46df363d5289ef5f9491e5e25f
+
+Phase-12 worker SHA256:
+  4bbc08fa762bcfe30902b50842290bbb35fe7a46df363d5289ef5f9491e5e25f
+
+Worker byte identity:
+  PASS
+
+render_context.json:
+  copied from qualified source when present
+
+Initial source-package dry-run failure:
+  missing common/ in Phase-12 recipe
+
+Physics change associated with correction:
+  NONE
+
+Production events generated before correction:
+  0
+
+Production jobs submitted before correction:
+  0

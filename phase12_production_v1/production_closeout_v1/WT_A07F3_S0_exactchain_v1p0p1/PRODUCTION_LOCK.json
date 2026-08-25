@@ -1,0 +1,119 @@
+{
+  "closeout_repository_head": "cb2f6017776c2bb11c52943407f21e0c7bb65a07",
+  "freeze_time_utc": "2026-08-25T13:31:02.384866+00:00",
+  "hard_generation": {
+    "balancing": "VAMP simple balancing",
+    "events_per_shard": 25000,
+    "generator": "WHIZARD",
+    "grid": "S0",
+    "grid_independence_note": "The integration grid is an importance-sampling map, not a source of event statistical independence. Independent generation seeds provide independent event draws after the frozen grid was qualified against independent integration replicas, over-integration, and single-vs-multi-grid controls.",
+    "grid_policy": "one predetermined frozen qualified grid",
+    "hard_seed_first": 412100001,
+    "hard_seed_last": 412100040,
+    "integration_backend": "VAMP2",
+    "mpi_ranks_per_job": 1,
+    "omp_threads": 1,
+    "production_events": 1000000,
+    "production_shards": 40,
+    "qualified_version": "3.1.8",
+    "rng_mode": "rng_stream"
+  },
+  "paths": {
+    "hard_submission": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/submissions/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1",
+    "qed_output": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1",
+    "qed_submission": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/qed_systematics_v1/submissions/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1",
+    "shower_output": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/phase12b_exactchain_v1/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1",
+    "shower_submission": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1"
+  },
+  "preparation": {
+    "canonical_isr_normalization": true,
+    "history_preserving_serializer": true,
+    "particle_add_remove_policy": "none",
+    "strict_topology_validation": true,
+    "synthetic_W_insertion": false,
+    "synthetic_resonance_insertion": false
+  },
+  "process": {
+    "beam_configuration": "LR100",
+    "collider": "e+e-",
+    "decay_channel": "e+ nu_e mu- anti-nu_mu b bbar",
+    "matrix_element_order": "LO",
+    "representative_process": "e1,E1 => b,bbar,E1,n1,e2,N2",
+    "signal_definition": "WT-restricted resonant full six-fermion",
+    "sqrt_s_GeV": 365.0
+  },
+  "production_result": {
+    "accepted_events": 1000000,
+    "bad_weight_events": 0,
+    "failed_events": 0,
+    "hadron_level_retries": 37,
+    "historical_string_join_occurrences": 2,
+    "history_presence_mismatches": 0,
+    "known_recoverable_error_occurrences": 109,
+    "me_weight_above_ps_occurrences": 48368,
+    "output_root": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1",
+    "parent_lhe": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/closeout_v1/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M.lhe",
+    "parent_lhe_sha256": "a8504e3b8b56cdacd0adccd251c57aade5259a844e5ae1031f5a956371abb133",
+    "requested_events": 1000000,
+    "sample_id": "full6f365_ee_LR100_epmum_WT_A07F3_S0",
+    "unknown_pythia_errors": 0
+  },
+  "qed_systematics": {
+    "G0_H0": {
+      "HadronLevel_QED": false,
+      "QEDshowerByGamma": false
+    },
+    "G0_H1": {
+      "HadronLevel_QED": true,
+      "QEDshowerByGamma": false
+    },
+    "G1_H0": {
+      "HadronLevel_QED": false,
+      "QEDshowerByGamma": true
+    },
+    "G1_H1": {
+      "HadronLevel_QED": true,
+      "QEDshowerByGamma": true
+    },
+    "decision": "retain G0_H0 as nominal; retain other configurations as generator-systematic variations; no 1M regeneration required",
+    "nominal": "G0_H0",
+    "status": "PASS"
+  },
+  "recipe": {
+    "canonical_future_shower_worker": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/worker_revisions/frozen_exact_worker_v1p0p1_string_join",
+    "implementation_note": "The final 1M production is valid. For future productions, use the v1p0p1_string_join worker revision as the canonical shower implementation.",
+    "physics_recipe_path": "/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1p0p1",
+    "recipe_id": "WT_A07F3_S0_exactchain_v1p0p1"
+  },
+  "schema_version": 1,
+  "shower": {
+    "generator": "PYTHIA8",
+    "hepmc3_version": "3.3.1",
+    "physics_interpretation": {
+      "incoming_lepton_ISR": "provided by WHIZARD and retained",
+      "prompt_final_state_QED_FSR": "enabled for leptons and quarks",
+      "pythia_ISR": "disabled to avoid ISR double counting",
+      "top_decay_in_pythia": false
+    },
+    "pythia_seed_first": 812100001,
+    "pythia_seed_last": 812100040,
+    "qualified_version": "8.315",
+    "settings": {
+      "6:mayDecay": false,
+      "Beams:frameType": 4,
+      "HadronLevel:Decay": true,
+      "HadronLevel:Hadronize": true,
+      "HadronLevel:QED": false,
+      "PartonLevel:FSR": true,
+      "PartonLevel:ISR": false,
+      "PartonLevel:MPI": false,
+      "ProcessLevel:resonanceDecays": false,
+      "SpaceShower:QEDshowerByL": false,
+      "TimeShower:QEDshowerByGamma": false,
+      "TimeShower:QEDshowerByL": true,
+      "TimeShower:QEDshowerByQ": true
+    }
+  },
+  "software_provenance_note": "The current generic setup_lxplus.sh may resolve a different WHIZARD version. Production qualification belongs to WHIZARD 3.1.8 and the frozen production environment/snapshots, not to whatever 'latest' currently resolves to.",
+  "status": "FROZEN_AND_QUALIFIED"
+}

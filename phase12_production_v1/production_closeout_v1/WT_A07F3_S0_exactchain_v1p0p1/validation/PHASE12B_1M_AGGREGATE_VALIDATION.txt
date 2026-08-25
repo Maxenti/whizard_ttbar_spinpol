@@ -1,0 +1,80 @@
+DISCOVERY_METADATA_FILES=40
+DISCOVERY_HEPMC_FILES=40
+DISCOVERY_LOG_FILES=40
+DISCOVERY_PREPARATION_FILES=160
+
+MANIFEST_CONTRACT=PASS
+proc=00 shard=P12_1M_0001 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=01 shard=P12_1M_0002 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=02 shard=P12_1M_0003 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=03 shard=P12_1M_0004 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=04 shard=P12_1M_0005 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=05 shard=P12_1M_0006 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=06 shard=P12_1M_0007 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=07 shard=P12_1M_0008 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=08 shard=P12_1M_0009 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=09 shard=P12_1M_0010 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=10 shard=P12_1M_0011 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=11 shard=P12_1M_0012 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=12 shard=P12_1M_0013 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=13 shard=P12_1M_0014 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=14 shard=P12_1M_0015 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=15 shard=P12_1M_0016 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=16 shard=P12_1M_0017 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=17 shard=P12_1M_0018 events=25000 bad_weights=0 retries=3 string_join=0 PASS
+proc=18 shard=P12_1M_0019 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=19 shard=P12_1M_0020 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=20 shard=P12_1M_0021 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=21 shard=P12_1M_0022 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=22 shard=P12_1M_0023 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=23 shard=P12_1M_0024 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=24 shard=P12_1M_0025 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=25 shard=P12_1M_0026 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=26 shard=P12_1M_0027 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=27 shard=P12_1M_0028 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=28 shard=P12_1M_0029 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=29 shard=P12_1M_0030 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=30 shard=P12_1M_0031 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=31 shard=P12_1M_0032 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=32 shard=P12_1M_0033 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=33 shard=P12_1M_0034 events=25000 bad_weights=0 retries=2 string_join=0 PASS
+proc=34 shard=P12_1M_0035 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=35 shard=P12_1M_0036 events=25000 bad_weights=0 retries=1 string_join=1 PASS
+proc=36 shard=P12_1M_0037 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=37 shard=P12_1M_0038 events=25000 bad_weights=0 retries=0 string_join=0 PASS
+proc=38 shard=P12_1M_0039 events=25000 bad_weights=0 retries=1 string_join=0 PASS
+proc=39 shard=P12_1M_0040 events=25000 bad_weights=0 retries=4 string_join=1 PASS
+
+============================================================
+PHASE 12B AGGREGATE
+============================================================
+REQUESTED=1000000
+ATTEMPTED=1000000
+ACCEPTED=1000000
+FAILED=0
+HEPMC_EVENTS=1000000
+BAD_WEIGHTS=0
+KNOWN_RECOVERABLE_ERROR_OCCURRENCES=109
+HADRON_LEVEL_RETRIES=37
+UNKNOWN_ERROR_OCCURRENCES=0
+MEC_ABOVE_PS=48368
+STRING_JOIN_OCCURRENCES=2
+
+catalog_rows=PASS
+requested_total=PASS
+attempted_total=PASS
+accepted_total=PASS
+failed_zero=PASS
+hepmc_total=PASS
+bad_weights_zero=PASS
+unknown_errors_zero=PASS
+hepmc_files=PASS
+metadata_files=PASS
+worker_logs=PASS
+preparation_files=PASS
+inventory_hepmc_exact=PASS
+inventory_metadata_exact=PASS
+inventory_logs_exact=PASS
+inventory_prep_exact=PASS
+
+PHASE12B_1M_METADATA_HEPMC_GATE=PASS

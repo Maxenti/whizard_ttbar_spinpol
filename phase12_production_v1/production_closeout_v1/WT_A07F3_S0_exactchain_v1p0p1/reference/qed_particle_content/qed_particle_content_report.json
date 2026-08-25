@@ -1,0 +1,26 @@
+{
+  "expected_events_per_variant": 25000,
+  "outputs": {
+    "factorial_contrasts_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/analysis_v1/particle_content/qed_particle_content_factorial_contrasts.csv",
+    "paired_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/analysis_v1/particle_content/qed_particle_content_paired_differences.csv",
+    "summary_csv": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/analysis_v1/particle_content/qed_particle_content_summary.csv"
+  },
+  "pairing": {
+    "event_keys": "PASS",
+    "weights": "PASS"
+  },
+  "paths": {
+    "G0_H0": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/G0_H0/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M_0001_G0_H0.hepmc3",
+    "G0_H1": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/G0_H1/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M_0001_G0_H1.hepmc3",
+    "G1_H0": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/G1_H0/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M_0001_G1_H0.hepmc3",
+    "G1_H1": "/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/qed_systematics_v1/20260824T154629Z_P12_QED4x25k_samehard_seed812100001_v1/G1_H1/hepmc3/full6f365_ee_LR100_epmum_WT_A07F3_S0/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M_0001_G1_H1.hepmc3"
+  },
+  "reference": "G0_H0",
+  "status": "PASS",
+  "variants": [
+    "G0_H0",
+    "G1_H0",
+    "G0_H1",
+    "G1_H1"
+  ]
+}

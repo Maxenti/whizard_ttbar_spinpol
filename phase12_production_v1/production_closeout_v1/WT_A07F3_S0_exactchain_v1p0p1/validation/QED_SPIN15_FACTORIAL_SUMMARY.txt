@@ -1,0 +1,26 @@
+QED 2x2 SPIN-15 FACTORIAL CLOSEOUT
+=================================
+
+representation=bare
+  gamma_main_effect: max_abs_z=1.605728 coefficient=B2r effect=-0.00115101016 stderr=0.000716814935
+  hadron_qed_main_effect: max_abs_z=2.243333 coefficient=Ckk effect=-0.00396490854 stderr=0.00176741888
+  gamma_x_hadron_interaction: max_abs_z=1.778424 coefficient=Crn effect=+0.00614346346 stderr=0.00345444325
+
+representation=dressed_all
+  gamma_main_effect: max_abs_z=1.587310 coefficient=B2r effect=-0.00113676887 stderr=0.000716160718
+  hadron_qed_main_effect: max_abs_z=2.240524 coefficient=Ckk effect=-0.0039579718 stderr=0.00176653809
+  gamma_x_hadron_interaction: max_abs_z=1.720938 coefficient=Crn effect=+0.00594383593 stderr=0.00345383492
+
+representation=dressed_prompt
+  gamma_main_effect: max_abs_z=1.591241 coefficient=B2r effect=-0.00113949415 stderr=0.000716104245
+  hadron_qed_main_effect: max_abs_z=2.242151 coefficient=Ckk effect=-0.00396097133 stderr=0.00176659427
+  gamma_x_hadron_interaction: max_abs_z=1.710078 coefficient=Crn effect=+0.00590556828 stderr=0.00345339122
+
+Decision:
+  G0_H0 remains the qualified nominal PYTHIA policy.
+  G1_H0 is retained as the gamma-conversion systematic.
+  G0_H1 is retained as the HadronLevel-QED systematic.
+  G1_H1 is retained as the combined-QED systematic.
+  No 1M regeneration is required from this study.
+
+QED_SPIN15_CLOSEOUT=PASS

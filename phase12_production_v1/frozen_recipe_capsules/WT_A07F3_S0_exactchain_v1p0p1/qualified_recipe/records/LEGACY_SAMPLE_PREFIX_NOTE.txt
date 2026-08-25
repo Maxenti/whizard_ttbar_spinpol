@@ -1,0 +1,26 @@
+PHASE-12 LEGACY LHE SAMPLE-LABEL PREFIX
+=======================================
+
+The qualified WHIZARD S0 reuse worker generates LHE sample labels with
+the historical prefix:
+
+  phase11c_
+
+For example, Phase-12 shard P12_1M_0001 is rendered as:
+
+  phase11c_S0_P12_1M_0001_seed412100001
+
+This prefix is inherited from the already-qualified Phase-11C reuse
+worker. The actual production identity remains uniquely specified by:
+
+  Phase-12 production tag
+  shard manifest
+  MODE=S0_P12_1M_NNNN
+  WHIZARD production seed
+  source event range
+  EOS output tree
+  file checksums
+
+The worker is intentionally NOT modified merely to rename this legacy
+prefix, because doing so would change a qualified production component
+without changing the physics.

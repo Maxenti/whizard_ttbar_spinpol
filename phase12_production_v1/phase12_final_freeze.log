@@ -1,0 +1,84 @@
+
+================================================================
+PHASE 12 FINAL FREEZE — PREFLIGHT
+================================================================
+SOURCE_TREE_PREFLIGHT=PASS
+NO_ACTIVE_PHASE12_CONDOR_JOBS=PASS
+EXISTING_RECIPE_SHA256=PASS
+PHASE12B_PRE_SUBMISSION_FREEZE=PASS
+PHASE12_FINAL_GATE=PASS
+QED_FINAL_QUALIFICATION=PASS
+RECIPE_SYMLINK_COUNT=0
+CANONICAL_WORKER_SYMLINK_COUNT=0
+REPRODUCTION_CAPSULE_SYMLINK_GATE=PASS
+PHASE 12 DATA-INTEGRITY SUMMARY
+================================
+
+hard_shards=40
+hard_events=1000000
+hard_seed_first=412100001
+hard_seed_last=412100040
+pythia_seed_first=812100001
+pythia_seed_last=812100040
+parent_lhe_events=1000000
+parent_lhe_sha256=a8504e3b8b56cdacd0adccd251c57aade5259a844e5ae1031f5a956371abb133
+hepmc_shards=40
+hepmc_events=1000000
+
+HARD_LHE_MANIFEST_GATE=PASS
+HARD_SEED_NAMESPACE_GATE=PASS
+PYTHIA_SEED_NAMESPACE_GATE=PASS
+PARENT_LHE_INTEGRITY_GATE=PASS
+FINAL_HEPMC_COUNT_GATE=PASS
+
+FULL_DATA_INTEGRITY_MANIFEST=PASS
+NOMINAL_REPRODUCTION=PASS
+QED 2x2 SPIN-15 FACTORIAL CLOSEOUT
+=================================
+
+representation=bare
+  gamma_main_effect: max_abs_z=1.605728 coefficient=B2r effect=-0.00115101016 stderr=0.000716814935
+  hadron_qed_main_effect: max_abs_z=2.243333 coefficient=Ckk effect=-0.00396490854 stderr=0.00176741888
+  gamma_x_hadron_interaction: max_abs_z=1.778424 coefficient=Crn effect=+0.00614346346 stderr=0.00345444325
+
+representation=dressed_all
+  gamma_main_effect: max_abs_z=1.587310 coefficient=B2r effect=-0.00113676887 stderr=0.000716160718
+  hadron_qed_main_effect: max_abs_z=2.240524 coefficient=Ckk effect=-0.0039579718 stderr=0.00176653809
+  gamma_x_hadron_interaction: max_abs_z=1.720938 coefficient=Crn effect=+0.00594383593 stderr=0.00345383492
+
+representation=dressed_prompt
+  gamma_main_effect: max_abs_z=1.591241 coefficient=B2r effect=-0.00113949415 stderr=0.000716104245
+  hadron_qed_main_effect: max_abs_z=2.242151 coefficient=Ckk effect=-0.00396097133 stderr=0.00176659427
+  gamma_x_hadron_interaction: max_abs_z=1.710078 coefficient=Crn effect=+0.00590556828 stderr=0.00345339122
+
+Decision:
+  G0_H0 remains the qualified nominal PYTHIA policy.
+  G1_H0 is retained as the gamma-conversion systematic.
+  G0_H1 is retained as the HadronLevel-QED systematic.
+  G1_H1 is retained as the combined-QED systematic.
+  No 1M regeneration is required from this study.
+
+QED_SPIN15_CLOSEOUT=PASS
+
+CLOSEOUT_INTERNAL_SHA256=PASS
+REPO_CLOSEOUT_PUBLISHED=PASS
+EOS_REPRODUCTION_CAPSULE=PASS
+
+================================================================
+PHASE 12 FINAL FREEZE RESULT
+================================================================
+PHASE12_FINAL_FREEZE=PASS
+
+RECIPE_ID=WT_A07F3_S0_exactchain_v1p0p1
+PRODUCTION_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1
+CLOSEOUT_ROOT=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/production_closeout_v1/WT_A07F3_S0_exactchain_v1p0p1
+EOS_CLOSEOUT_ROOT=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/production_closeout_v1
+REPRODUCTION_CAPSULE=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/production_closeout_v1/WT_A07F3_S0_exactchain_v1p0p1_reproduction_capsule.tar.gz
+
+PARENT_LHE_SHA256=a8504e3b8b56cdacd0adccd251c57aade5259a844e5ae1031f5a956371abb133
+NOMINAL_PHYSICS_SHA256=68d7ef9666043644e319f9323d857d52fe9fbc6898570857c52f57eefed88bb2
+
+CANONICAL_FUTURE_SHOWER_WORKER=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/worker_revisions/frozen_exact_worker_v1p0p1_string_join
+
+NEXT_STAGE=FCCANALYSES_INTEGRATION
+================================================================

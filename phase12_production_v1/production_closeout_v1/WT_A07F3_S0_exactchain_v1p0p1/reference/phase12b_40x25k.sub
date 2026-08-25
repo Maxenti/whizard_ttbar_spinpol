@@ -1,0 +1,24 @@
+universe = vanilla
+
+executable = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/run_phase12b_25k.sh
+
+arguments = $(ProcId) /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/phase12b_worker_manifest.tsv /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1p0p1/shower/frozen_exact_worker_v1 /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/shower/phase12b_exactchain_v1/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1 /eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/closeout_v1/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M.lhe full6f365_ee_LR100_epmum_WT_A07F3_S0
+
+initialdir = /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1
+
+should_transfer_files = NO
+getenv = True
+
+request_cpus = 1
+request_memory = 3000MB
+request_disk = 4000MB
+
++JobFlavour = "tomorrow"
+
+output = logs/proc_$(ProcId).$(ClusterId).out
+error  = logs/proc_$(ProcId).$(ClusterId).err
+log    = logs/phase12b_40x25k.condor.log
+
+notification = Never
+
+queue 40

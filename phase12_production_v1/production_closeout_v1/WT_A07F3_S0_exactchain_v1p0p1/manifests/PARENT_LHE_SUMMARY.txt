@@ -1,0 +1,4 @@
+path=/eos/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/production/full6f_365gev_ee_ttbar_spinpol_v1/phase12_production_v1/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/closeout_v1/full6f365_ee_LR100_epmum_WT_A07F3_S0__P12_1M.lhe
+bytes=2376759451
+events=1000000
+sha256=a8504e3b8b56cdacd0adccd251c57aade5259a844e5ae1031f5a956371abb133

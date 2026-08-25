@@ -1,0 +1,10 @@
+schema=phase12b_worker_manifest_v1
+columns=proc,shard_id,input_lhe,input_sha256,start,stop,pythia_seed
+rows=40
+events_per_shard=25000
+hard_seed_source=input_lhe_filename
+hard_seed_first=412100001
+hard_seed_last=412100040
+pythia_seed_first=812100001
+pythia_seed_last=812100040
+WORKER_MANIFEST_SCHEMA_GATE=PASS

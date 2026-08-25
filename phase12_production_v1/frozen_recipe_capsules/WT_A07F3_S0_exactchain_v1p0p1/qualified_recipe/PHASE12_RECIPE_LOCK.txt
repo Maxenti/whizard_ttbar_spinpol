@@ -1,0 +1,160 @@
+PHASE 12 PRODUCTION RECIPE LOCK
+===============================
+
+Recipe:
+  WT_A07F3_S0_exactchain_v1
+
+Physics
+-------
+
+Collider:
+  e+e-
+
+sqrt(s):
+  365 GeV
+
+Hard process:
+  WT-restricted full six-fermion matrix element
+
+Beam polarization:
+  LR100
+
+Resonance histories:
+  WHIZARD-selected histories preserved event-by-event
+
+
+WHIZARD
+-------
+
+Version:
+  qualified WHIZARD 3.1.8 build
+
+Integrator:
+  VAMP2
+
+RNG:
+  rng_stream
+
+VAMP parallel method:
+  simple
+
+Production grid:
+  predetermined S0 / WT_A07F3
+
+Grid construction seed:
+  1740114216
+
+VG2 SHA256:
+  8737e7026dab11c30f4de1d4cc1fccbe65e6a917066d4d2fe25d6e4980a2c6e1
+
+PHS SHA256:
+  516cd15ab307b2e2200ab836ba104f2b55e21d3edc8455005dec435b7310526b
+
+MPI ranks/job:
+  1
+
+OMP threads/job:
+  1
+
+Hard-process events/job:
+  25000
+
+
+Preparation
+-----------
+
+raw WHIZARD LHE
+  -> canonical ISR normalization
+  -> history-preserving row serializer
+  -> strict topology validation
+
+Explicit-W synthesis:
+  OFF
+
+Particle/resonance additions or removals:
+  forbidden
+
+
+PYTHIA
+------
+
+Version:
+  8.315
+
+PYTHIA ISR:
+  OFF
+
+MPI:
+  OFF
+
+ProcessLevel resonance decays:
+  OFF
+
+TimeShower:QEDshowerByGamma:
+  OFF
+
+FSR/hadronization/subsequent unstable-particle decays:
+  frozen qualified configuration
+
+
+HepMC
+-----
+
+HepMC3:
+  3.3.1
+
+
+Production architecture
+-----------------------
+
+Stage A:
+  independent 25000-event WHIZARD shards
+
+Hard gate:
+  validate every shard
+  validate all input/grid/source/tool identities
+  require globally unique hard events
+
+Stage A.5:
+  merge validated shards into authoritative parent LHE
+  freeze parent SHA256
+
+Stage B:
+  independent exact-chain PYTHIA/HepMC workers
+
+Hard gate:
+  accepted == requested
+  failed == 0
+  HepMC count exact
+  bad weights == 0
+  serialization validation PASS
+  history-presence mismatches == 0
+  unknown PYTHIA errors == 0
+
+
+Seed policy
+-----------
+
+Phase-11 validation seeds:
+  prohibited in Phase-12 production
+
+WHIZARD and PYTHIA production namespaces:
+  separately reserved and recorded in the immutable Phase-12 manifest.
+
+
+Change-control rule
+-------------------
+
+Any change to:
+  process.sin
+  integration grid
+  grid hashes
+  WHIZARD worker
+  shard size
+  preparation code
+  PYTHIA settings
+  PYTHIA executable
+  environment
+  exact shower worker
+
+invalidates this recipe lock and requires explicit requalification.

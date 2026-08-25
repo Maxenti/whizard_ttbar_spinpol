@@ -1,0 +1,19 @@
+! WHIZARD already supplies the incoming-lepton ISR and correlated top decays.
+Beams:frameType = 4
+PartonLevel:ISR = off
+PartonLevel:FSR = on
+PartonLevel:MPI = off
+HadronLevel:Hadronize = on
+HadronLevel:Decay = on
+ProcessLevel:resonanceDecays = off
+6:mayDecay = off
+TimeShower:QEDshowerByL = on
+TimeShower:QEDshowerByQ = on
+SpaceShower:QEDshowerByL = off
+Check:event = on
+Check:epTolErr = 1e-6
+Check:epTolWarn = 1e-8
+Next:numberShowInfo = 0
+Next:numberShowProcess = 0
+Next:numberShowEvent = 0
+Next:numberCount = 10000

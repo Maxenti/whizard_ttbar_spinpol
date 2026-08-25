@@ -1,0 +1,6 @@
+FREEZE_TIME_UTC=2026-08-25T13:27:50Z
+HOST=lxplus9113.cern.ch
+USER=cglenn
+REPO=/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol
+GIT_HEAD=cb2f6017776c2bb11c52943407f21e0c7bb65a07
+GIT_BRANCH=feature/top-qis-framework-v1

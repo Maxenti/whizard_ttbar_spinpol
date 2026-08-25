@@ -1,0 +1,74 @@
+PHASE-12B P6 EXACT-WORKER METADATA POLICY REVISION V1P0P1
+=========================================================
+
+Parent worker:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1p0p1/shower/frozen_exact_worker_v1
+
+Revision:
+  /afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/worker_revisions/frozen_exact_worker_v1p0p1_string_join
+
+Reason:
+  Phase-12B production cluster 6066587 produced one previously
+  unclassified PYTHIA diagnostic in two deterministic production
+  streams:
+
+    Error in StringFragmentation::fragment: stuck in joining
+
+Affected production procs:
+  proc 35 / P12_1M_0036 / Pythia seed 812100036
+  proc 39 / P12_1M_0040 / Pythia seed 812100040
+
+Observed behavior for BOTH:
+  PYTHIA completed the full requested event sample
+  tried = 25000
+  selected = 25000
+  accepted = 25000
+  SHOWER SUCCESS present
+  hadronLevel failed; try again present
+  no fatal Pythia abort
+  no parton+hadronLevel failed; giving up
+
+Production evidence gate:
+  STRING_JOIN_RECOVERABILITY_EVIDENCE_GATE=PASS
+
+Interpretation:
+  The diagnostic represents a failed individual string-fragmentation
+  attempt followed by the already-qualified PYTHIA hadron-level retry
+  path.
+
+Revision:
+  Add exactly one PYTHIA error class to KNOWN_RECOVERABLE_ERRORS:
+
+    Error in StringFragmentation::fragment: stuck in joining
+
+Physics/runtime modifications:
+  NONE
+
+Pythia executable change:
+  NONE
+
+Pythia settings change:
+  NONE
+
+Canonicalization change:
+  NONE
+
+History serialization change:
+  NONE
+
+Topology validation change:
+  NONE
+
+Explicit-W policy change:
+  NONE
+
+QED shower policy change:
+  NONE
+
+Production seed change:
+  NONE
+
+Source LHE change:
+  NONE
+
+The original frozen worker remains untouched.

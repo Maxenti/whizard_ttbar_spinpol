@@ -1,0 +1,1 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/validation/phase12b_closeout_v1/PHASE12_FINAL_GATE_STATUS.txt

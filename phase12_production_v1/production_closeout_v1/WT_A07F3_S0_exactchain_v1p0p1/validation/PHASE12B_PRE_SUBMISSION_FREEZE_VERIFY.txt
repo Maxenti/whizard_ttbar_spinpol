@@ -1,0 +1,7 @@
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/submissions/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/validation/phase12a_closeout_v1/phase12b_shower_manifest.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/phase12b_worker_manifest.tsv: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/run_phase12b_25k.sh: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/phase12b_40x25k.sub: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/phase12b_exactchain_v1/submissions/20260821T175012Z_P12B_1M_40x25k_P6_exact_v1/records/SUBMIT_ENVIRONMENT.txt: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/recipe_freeze/WT_A07F3_S0_exactchain_v1p0p1/RECIPE_SHA256SUMS.txt: OK
+/afs/cern.ch/user/c/cglenn/FCCWork/whizard/whizard_ttbar_spinpol/phase12_production_v1/submissions/20260821T162202Z_WT_A07F3_S0_1M_40x25k_v1p0p1/validation/phase12a_closeout_v1/PHASE12A_CLOSEOUT_SUMMARY.txt: OK

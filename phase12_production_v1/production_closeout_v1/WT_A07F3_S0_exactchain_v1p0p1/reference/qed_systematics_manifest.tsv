@@ -1,0 +1,5 @@
+proc	variant	gamma_conversion	hadron_level_qed
+0	G0_H0	off	off
+1	G1_H0	on	off
+2	G0_H1	off	on
+3	G1_H1	on	on

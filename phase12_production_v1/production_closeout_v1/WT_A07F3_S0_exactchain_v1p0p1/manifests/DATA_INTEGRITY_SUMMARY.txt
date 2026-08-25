@@ -1,0 +1,19 @@
+PHASE 12 DATA-INTEGRITY SUMMARY
+================================
+
+hard_shards=40
+hard_events=1000000
+hard_seed_first=412100001
+hard_seed_last=412100040
+pythia_seed_first=812100001
+pythia_seed_last=812100040
+parent_lhe_events=1000000
+parent_lhe_sha256=a8504e3b8b56cdacd0adccd251c57aade5259a844e5ae1031f5a956371abb133
+hepmc_shards=40
+hepmc_events=1000000
+
+HARD_LHE_MANIFEST_GATE=PASS
+HARD_SEED_NAMESPACE_GATE=PASS
+PYTHIA_SEED_NAMESPACE_GATE=PASS
+PARENT_LHE_INTEGRITY_GATE=PASS
+FINAL_HEPMC_COUNT_GATE=PASS
